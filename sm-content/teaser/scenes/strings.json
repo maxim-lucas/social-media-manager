@@ -1,0 +1,212 @@
+{
+  "_readme": [
+    "All teaser copy, EN + FR. Edit here and re-render — never edit a PNG.",
+    "",
+    "COMPLIANCE, before you change a word. Marketing-Plan/01-strategy-overview.md and",
+    "the app repo's legal/MARKETING_CLAIMS.md forbid promising a dollar amount or a",
+    "guaranteed refund in any marketing copy (Competition Act s.74.01 / LPC s.219 —",
+    "the test is the general impression, not the literal words). Every line below is",
+    "therefore a question, an instruction, or hedged ('some', 'might'). A teaser has",
+    "no room for the paired fine-print disclaimer, which is exactly the clipped-card",
+    "failure mode MARKETING_CLAIMS.md warns about — so it must make no claim at all.",
+    "",
+    "In date, ## is a masking placeholder the renderer draws as an ink bar.",
+    "",
+    "Do not add: a dollar figure, 'get money back', 'guaranteed', a retailer name, a",
+    "retailer logo, or the PriceBack wordmark. The withheld name is the whole point."
+  ],
+
+  "date": "09 . ## . 26",
+
+  "en": {
+    "posts": [
+      {
+        "id": "01",
+        "kicker": "RETAIN FOR YOUR RECORDS",
+        "message": ["DON'T THROW", "THIS OUT."],
+        "alt": "A faded thermal receipt, its store name and items illegible. Printed over it: don't throw this out."
+      },
+      {
+        "id": "02",
+        "kicker": "ITEMS",
+        "rows": [
+          ["PAPER TOWEL 12", "24.99"],
+          ["OLIVE OIL 2L", "21.49"],
+          ["COFFEE 1.13KG", "18.99"],
+          ["__REDACTED__", "__REDACTED__"],
+          ["BATTERIES AA20", "16.79"],
+          ["T-SHIRT 2PK", "13.99"]
+        ],
+        "message": ["THE LINE", "NOBODY READS."],
+        "alt": "A receipt's item list. One line is blacked out and circled in green marker. Below it: the line nobody reads."
+      },
+      {
+        "id": "03",
+        "kicker": "DAYS REMAINING",
+        "big": "30",
+        "message": ["WHAT HAPPENS", "ON DAY 31?"],
+        "alt": "The number 30 printed huge on receipt paper. Underneath: what happens on day 31?"
+      },
+      {
+        "id": "04",
+        "kicker": "TOTAL",
+        "rows": [
+          ["SUBTOTAL", "__REDACTED__"],
+          ["TAX", "__REDACTED__"],
+          ["TOTAL", "__REDACTED__"]
+        ],
+        "message": ["SOME RECEIPTS", "ARE WORTH MORE", "THAN YOU THINK."],
+        "footer": "COMING TO THIS PAGE.",
+        "alt": "A receipt total block with every amount blacked out, a green stamp beside it, and the words: some receipts are worth more than you think."
+      }
+    ],
+    "stories": [
+      {
+        "id": "01",
+        "kicker": "QUESTION 01",
+        "message": ["HOW MANY RECEIPTS", "DID YOU THROW OUT", "THIS MONTH?"],
+        "sticker": "poll",
+        "stickerNote": "Poll sticker — options: \"A few\" / \"All of them\"",
+        "alt": "Receipt paper asking how many receipts you threw out this month."
+      },
+      {
+        "id": "02",
+        "message": ["ONE OF THEM", "MIGHT STILL", "MATTER."],
+        "sticker": "none",
+        "alt": "A receipt curling out of frame. Text: one of them might still matter."
+      },
+      {
+        "id": "03",
+        "kicker": "DAYS REMAINING",
+        "big": "30",
+        "message": ["WHAT HAPPENS", "ON DAY 31?"],
+        "sticker": "question",
+        "stickerNote": "Question sticker — \"Take a guess\"",
+        "alt": "The number 30 on receipt paper, above the question: what happens on day 31?"
+      },
+      {
+        "id": "04",
+        "message": ["WE CAN'T SHOW", "YOU THIS YET."],
+        "sticker": "question",
+        "stickerNote": "Question sticker — \"Guess what's under the bar\"",
+        "alt": "A blacked-out receipt line circled in green. Text: we can't show you this yet."
+      },
+      {
+        "id": "05",
+        "rows": [
+          ["ITEM", "__REDACTED__"],
+          ["ITEM", "__REDACTED__"],
+          ["WINDOW", "30"],
+          ["ITEM", "__REDACTED__"]
+        ],
+        "message": ["IT WAS ALWAYS", "THIRTY."],
+        "sticker": "none",
+        "alt": "A receipt where every value is blacked out except one, which reads 30. Text: it was always thirty."
+      },
+      {
+        "id": "06",
+        "message": ["TURN ON", "NOTIFICATIONS."],
+        "footer": "YOU'LL WANT TO SEE THIS ONE.",
+        "sticker": "reminder",
+        "stickerNote": "Reminder sticker (or link sticker once the landing page is live)",
+        "alt": "A green stamp on receipt paper with a partly hidden date, above: turn on notifications."
+      }
+    ]
+  },
+
+  "fr": {
+    "posts": [
+      {
+        "id": "01",
+        "kicker": "À CONSERVER POUR VOS DOSSIERS",
+        "message": ["NE JETEZ", "PAS ÇA."],
+        "alt": "Un reçu thermique décoloré, nom du commerce et articles illisibles. Imprimé par-dessus : ne jetez pas ça."
+      },
+      {
+        "id": "02",
+        "kicker": "ARTICLES",
+        "rows": [
+          ["ESSUIE-TOUT 12", "24,99"],
+          ["HUILE OLIVE 2L", "21,49"],
+          ["CAFÉ 1,13KG", "18,99"],
+          ["__REDACTED__", "__REDACTED__"],
+          ["PILES AA20", "16,79"],
+          ["T-SHIRT 2PK", "13,99"]
+        ],
+        "message": ["LA LIGNE QUE", "PERSONNE NE LIT."],
+        "alt": "La liste d'articles d'un reçu. Une ligne est caviardée et encerclée au marqueur vert. En dessous : la ligne que personne ne lit."
+      },
+      {
+        "id": "03",
+        "kicker": "JOURS RESTANTS",
+        "big": "30",
+        "message": ["QU'ARRIVE-T-IL", "LE 31E JOUR ?"],
+        "alt": "Le nombre 30 imprimé en très grand sur un reçu. En dessous : qu'arrive-t-il le 31e jour ?"
+      },
+      {
+        "id": "04",
+        "kicker": "TOTAL",
+        "rows": [
+          ["SOUS-TOTAL", "__REDACTED__"],
+          ["TAXES", "__REDACTED__"],
+          ["TOTAL", "__REDACTED__"]
+        ],
+        "message": ["CERTAINS REÇUS", "VALENT PLUS", "QUE VOUS PENSEZ."],
+        "footer": "BIENTÔT SUR CETTE PAGE.",
+        "alt": "Le bloc total d'un reçu, tous les montants caviardés, un tampon vert à côté, et les mots : certains reçus valent plus que vous pensez."
+      }
+    ],
+    "stories": [
+      {
+        "id": "01",
+        "kicker": "QUESTION 01",
+        "message": ["COMBIEN DE REÇUS", "AVEZ-VOUS JETÉS", "CE MOIS-CI ?"],
+        "sticker": "poll",
+        "stickerNote": "Sondage — choix : « Quelques-uns » / « Tous »",
+        "alt": "Un reçu qui demande combien de reçus vous avez jetés ce mois-ci."
+      },
+      {
+        "id": "02",
+        "message": ["L'UN D'EUX", "COMPTE PEUT-", "ÊTRE ENCORE."],
+        "sticker": "none",
+        "alt": "Un reçu qui s'enroule hors du cadre. Texte : l'un d'eux compte peut-être encore."
+      },
+      {
+        "id": "03",
+        "kicker": "JOURS RESTANTS",
+        "big": "30",
+        "message": ["QU'ARRIVE-T-IL", "LE 31E JOUR ?"],
+        "sticker": "question",
+        "stickerNote": "Sticker Question — « Devinez »",
+        "alt": "Le nombre 30 sur un reçu, au-dessus de la question : qu'arrive-t-il le 31e jour ?"
+      },
+      {
+        "id": "04",
+        "message": ["ON NE PEUT PAS", "ENCORE VOUS", "LE MONTRER."],
+        "sticker": "question",
+        "stickerNote": "Sticker Question — « Devinez ce qu'il y a sous la barre »",
+        "alt": "Une ligne de reçu caviardée, encerclée en vert. Texte : on ne peut pas encore vous le montrer."
+      },
+      {
+        "id": "05",
+        "rows": [
+          ["ARTICLE", "__REDACTED__"],
+          ["ARTICLE", "__REDACTED__"],
+          ["DÉLAI", "30"],
+          ["ARTICLE", "__REDACTED__"]
+        ],
+        "message": ["ÇA A TOUJOURS", "ÉTÉ TRENTE."],
+        "sticker": "none",
+        "alt": "Un reçu dont toutes les valeurs sont caviardées sauf une, qui indique 30. Texte : ça a toujours été trente."
+      },
+      {
+        "id": "06",
+        "message": ["ACTIVEZ LES", "NOTIFICATIONS."],
+        "footer": "VOUS VOUDREZ VOIR ÇA.",
+        "sticker": "reminder",
+        "stickerNote": "Sticker Rappel (ou sticker Lien une fois la page d'atterrissage en ligne)",
+        "alt": "Un tampon vert sur un reçu avec une date partiellement masquée, au-dessus de : activez les notifications."
+      }
+    ]
+  }
+}
