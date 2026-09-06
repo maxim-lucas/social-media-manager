@@ -11,8 +11,19 @@ Output assets from Cowork session `cse_01QJzpqDCPqZ4HAHmNa7UfXK`
 | `carousels/` | 20 | 1080×1350 feed carousel, 10 slides each — EN + FR (`priceback-carousel-{en,fr}-01..10.png`) |
 | `statics/` | 6 | 1080×1350 feed singles, 3 colourways — EN + FR (`priceback-static-{en,fr}-01..03.png`) |
 | `stories/` | 10 | 1080×1920 story sequence, 5 frames each — EN + FR (`priceback-stories-{en,fr}-01..05.png`) |
+| `teaser/` | 20 | The **pre-launch** pack — see below. Its own folder, its own renderer |
 
-Total: 38 assets.
+Total: 38 launch assets + 20 teaser assets.
+
+## Two packs, in order
+
+`teaser/` runs **first**, before any of the above: four numbered feed posts and
+six story frames on thermal-receipt paper that never name the product, the
+category or a retailer. It is built to look like it came from somewhere else,
+so the launch pack lands as the answer to it. Read `teaser/TEASER-NOTES.md`.
+
+Unlike the launch assets, the teaser ships its own source — edit
+`teaser/scenes/strings.json` and re-render rather than editing a PNG.
 
 ## Read first
 
