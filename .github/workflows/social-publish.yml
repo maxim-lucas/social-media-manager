@@ -17,9 +17,15 @@ name: Social publish
 #   META_INSTAGRAM_ACCESS_TOKEN          a long-lived token with
 #                                        instagram_content_publish
 #
-# Meta FETCHES each image from a public URL, so the repo must be public (the
-# default ASSET_BASE_URL points at raw.githubusercontent.com) or ASSET_BASE_URL
-# must point somewhere Meta's servers can reach.
+#   ASSET_BASE_URL (variable)            REQUIRED while this repo is private.
+#                                        Meta FETCHES each image from a public
+#                                        URL and cannot authenticate, so
+#                                        raw.githubusercontent.com (the default)
+#                                        returns 404 to it. Point this at R2, a
+#                                        CDN, or the Vercel deployment's public
+#                                        directory. publish-due.js preflights the
+#                                        URL and refuses to publish if Meta could
+#                                        not fetch it.
 
 on:
   schedule:
@@ -63,15 +69,19 @@ jobs:
 
       - name: Dry run
         if: ${{ vars.PUBLISH_ENABLED != 'true' || inputs.dry_run }}
+        env:
+          ASSET_BASE_URL: ${{ vars.ASSET_BASE_URL }}
+          ASSET_REF: ${{ github.ref_name }}
         run: |
           echo "PUBLISH_ENABLED=${{ vars.PUBLISH_ENABLED }} — running dry."
-          node scripts/publish-due.js ${{ inputs.only && format('--only={0}', inputs.only) || '' }}
+          node scripts/publish-due.js --preflight ${{ inputs.only && format('--only={0}', inputs.only) || '' }}
 
       - name: Publish what is due
         if: ${{ vars.PUBLISH_ENABLED == 'true' && !inputs.dry_run }}
         env:
           META_INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.META_INSTAGRAM_BUSINESS_ACCOUNT_ID }}
           META_INSTAGRAM_ACCESS_TOKEN: ${{ secrets.META_INSTAGRAM_ACCESS_TOKEN }}
+          ASSET_BASE_URL: ${{ vars.ASSET_BASE_URL }}
           ASSET_REF: ${{ github.ref_name }}
         run: node scripts/publish-due.js --write ${{ inputs.only && format('--only={0}', inputs.only) || '' }}
 

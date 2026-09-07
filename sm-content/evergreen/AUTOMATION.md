@@ -27,14 +27,17 @@ switched off.** Until the repository variable `PUBLISH_ENABLED` is set to
 2. **Get a long-lived token** with `instagram_content_publish` (and
    `instagram_basic`, `pages_show_list`) from
    <https://developers.facebook.com/apps>.
-3. **Repository → Settings → Secrets and variables → Actions:**
+3. **Put the assets somewhere Meta can fetch them** — see the next section.
+   This repo is private, so this step is not optional.
+4. **Repository → Settings → Secrets and variables → Actions:**
    - Secret `META_INSTAGRAM_BUSINESS_ACCOUNT_ID`
    - Secret `META_INSTAGRAM_ACCESS_TOKEN`
+   - Variable `ASSET_BASE_URL` — the public base URL from step 3
    - Variable `PUBLISH_ENABLED` = `true`
-4. **Dry-run it first** from the Actions tab: *Social publish → Run workflow →
+5. **Dry-run it first** from the Actions tab: *Social publish → Run workflow →
    dry run ✓*. Read the caption it prints. Then run one real slot with
    `only: d01-post-01` and `dry run ✗`, and look at the account.
-5. Only then leave the cron to it.
+6. Only then leave the cron to it.
 
 Long-lived tokens expire after about 60 days. When one does, the script prints
 `the access token is invalid or expired; regenerate it` — that is Meta error
@@ -42,19 +45,46 @@ code 190 and no amount of retrying fixes it.
 
 ---
 
-## How the images reach Meta
+## How the images reach Meta — and the one thing blocking this today
 
-Instagram's publishing flow does not accept an upload. It takes a **public
-URL** and fetches the image itself, so the assets have to be reachable from
-Meta's servers.
+Instagram's publishing flow does not accept an upload. It takes a **public URL**
+and fetches the image itself, so the assets have to be reachable, *without
+authentication*, from Meta's servers.
 
-The default is `raw.githubusercontent.com`, pointed at this repo and the branch
-the workflow is running on (`ASSET_REF`). That works as long as the repo is
-public. If it goes private, set `ASSET_BASE_URL` to a bucket or CDN instead —
-the script only ever joins it with the slot's `asset` path.
+> ### ⚠ This repository is private, so the default does not work
+>
+> `raw.githubusercontent.com` will not serve a private repo's files to Meta.
+> **Before switching publishing on, set `ASSET_BASE_URL` to somewhere public.**
+> The script only ever joins it with the slot's `asset` path, so any static host
+> works:
+>
+> | Option | Notes |
+> | --- | --- |
+> | **Cloudflare R2** | PriceBack already has a bucket and credentials. Upload `sm-content/evergreen/{posts,stories}/` once; the paths line up. |
+> | **The Vercel deployment** | This repo already deploys. Copy the pack into `public/` and point `ASSET_BASE_URL` at `https://<deployment>/evergreen/`. Costs ~8 MB in the repo. |
+> | **Make the repo public** | Then the default works — but the whole content strategy, schedule and captions become public too. |
+>
+> There is no way around this: Meta pulls, it does not accept a push.
 
-A container that Meta cannot fetch reports `ERROR`, and the script surfaces that
-rather than retrying: a bad URL does not become good by polling longer.
+**The script checks before it asks Meta to.** Every `--write` run — and any run
+with `--preflight` — fetches the asset URL first and refuses to publish if it is
+not publicly reachable and not an image:
+
+```
+$ node scripts/publish-due.js --only=d01-post-01 --preflight
+  image   https://raw.githubusercontent.com/.../priceback-evergreen-post-en-01.png
+  ⚠ NOT PUBLISHABLE: the image HTTP 404 — this repository is PRIVATE, so
+    raw.githubusercontent.com will not serve it to Meta. Set ASSET_BASE_URL
+    to a public host.
+```
+
+That check exists because the failure it replaces is genuinely hard to read:
+Meta reports an unfetchable image as a bare `ERROR` status on the container,
+several seconds later, with no detail — after a post has been half-created. A
+one-byte range request says exactly what is wrong while it is still cheap to fix.
+
+A plain dry run skips the check so it stays offline and instant; add
+`--preflight` when you want it.
 
 ---
 

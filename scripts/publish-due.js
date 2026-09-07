@@ -6,6 +6,8 @@
  *   node scripts/publish-due.js --check      validate every slot; no network
  *   node scripts/publish-due.js              DRY RUN — what would post right now
  *   node scripts/publish-due.js --write      actually publish what is due
+ *   node scripts/publish-due.js --preflight  dry run + check the images are
+ *                                            publicly reachable by Meta
  *
  * Reads sm-content/evergreen/schedule.json, works out which slots are due, and
  * publishes them to Instagram through Meta's Graph API. Writes a receipt for
@@ -69,20 +71,60 @@ const PRINT = has("print");
 const CHECK = has("check");
 // Lets a human post one slot by hand without waiting for its window.
 const ONLY = argVal("only", null);
+// Off in a plain dry run so it stays offline and instant; always on for --write.
+const PREFLIGHT = has("preflight") || WRITE;
 
 const schedule = JSON.parse(fs.readFileSync(SCHEDULE_PATH, "utf8"));
 
 /**
- * Public base URL the assets are served from. Meta FETCHES the image itself, so
- * a local path is useless — the URL has to be reachable from Meta's servers.
- * raw.githubusercontent.com serves this repo's files directly and is the
- * default; override for a CDN or a private mirror.
+ * Public base URL the assets are served from.
+ *
+ * Meta FETCHES the image itself, so a local path is useless and an
+ * authenticated one is too — the URL has to be reachable, unauthenticated, from
+ * Meta's servers.
+ *
+ * THIS REPOSITORY IS PRIVATE, so the raw.githubusercontent default below does
+ * NOT work as-is: Meta gets a 404 and the container fails with an unhelpful
+ * "could not process the image". Set ASSET_BASE_URL to somewhere public (an R2
+ * bucket, the Vercel deployment's /public, any CDN) before switching publishing
+ * on. preflight() below turns that from a confusing upstream failure into a
+ * clear one, and refuses to publish rather than letting Meta discover it.
+ *
+ * ASSET_REF only matters if the repo is ever made public; the workflow passes
+ * the branch it is running on.
  */
 const ASSET_BASE =
   process.env.ASSET_BASE_URL ||
   `https://raw.githubusercontent.com/maxim-lucas/social-media-manager/${
-    process.env.ASSET_REF || "sm-content-evergreen"
+    process.env.ASSET_REF || "sm-content-teaser"
   }/sm-content/evergreen/`;
+
+/**
+ * Confirm an asset URL is publicly reachable and is actually an image, BEFORE
+ * handing it to Meta.
+ *
+ * Meta's container flow reports a fetch failure as a generic ERROR status with
+ * no detail, several seconds later, after a post has already been half-created.
+ * A HEAD request costs nothing and says exactly what is wrong — a private repo,
+ * a branch that was deleted, a typo'd path — while it is still cheap to fix.
+ */
+async function preflight(imageUrl) {
+  let res;
+  try {
+    res = await fetch(imageUrl, { method: "GET", headers: { range: "bytes=0-0" }, signal: AbortSignal.timeout(15_000) });
+  } catch (e) {
+    return `cannot be fetched (${e.message})`;
+  }
+  if (!res.ok) {
+    const hint = new URL(imageUrl).hostname === "raw.githubusercontent.com"
+      ? " — this repository is PRIVATE, so raw.githubusercontent.com will not serve it to Meta. Set ASSET_BASE_URL to a public host."
+      : "";
+    return `HTTP ${res.status}${hint}`;
+  }
+  const type = res.headers.get("content-type") || "";
+  if (!type.startsWith("image/")) return `served as "${type}", not an image`;
+  return null;
+}
 
 // ── Time ────────────────────────────────────────────────────────────────────
 /** Milliseconds `tz` is ahead of UTC at the given instant. */
@@ -388,7 +430,8 @@ async function run() {
 
     if (!WRITE) {
       console.log(`\nDRY RUN — would publish ${slot.id} (scheduled ${fmtLocal(at)})`);
-      console.log(`  image   ${imageUrl}`);
+      const reachable = PREFLIGHT ? await preflight(imageUrl) : null;
+      console.log(`  image   ${imageUrl}${reachable ? `\n  ⚠ NOT PUBLISHABLE: the image ${reachable}` : PREFLIGHT ? "  ✓ publicly reachable" : ""}`);
       console.log(`  ask     ${slot.ask}   hook: ${slot.hook}`);
       console.log(`  caption ${caption.length} chars:`);
       console.log(
@@ -403,6 +446,18 @@ async function run() {
     if (!igUserId || !token) {
       console.error(
         `refusing to publish ${slot.id}: META_INSTAGRAM_BUSINESS_ACCOUNT_ID and an access token must both be set.`
+      );
+      process.exitCode = 1;
+      return;
+    }
+
+    const unreachable = await preflight(imageUrl);
+    if (unreachable) {
+      console.error(
+        `refusing to publish ${slot.id}: the image ${unreachable}
+  ${imageUrl}
+` +
+          `  Meta fetches this URL itself; if it cannot, the container fails several seconds later with no detail.`
       );
       process.exitCode = 1;
       return;
