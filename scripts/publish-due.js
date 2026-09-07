@@ -48,9 +48,6 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = path.join(__dirname, "..");
-const PACK = path.join(ROOT, "sm-content", "evergreen");
-const SCHEDULE_PATH = path.join(PACK, "schedule.json");
-const LEDGER_PATH = path.join(PACK, "published.json");
 
 const GRAPH_API_VERSION = "v20.0";
 const GRAPH_BASE = `https://graph.facebook.com/${GRAPH_API_VERSION}`;
@@ -73,6 +70,25 @@ const CHECK = has("check");
 const ONLY = argVal("only", null);
 // Off in a plain dry run so it stays offline and instant; always on for --write.
 const PREFLIGHT = has("preflight") || WRITE;
+
+// Which pack under sm-content/ this run publishes.
+//
+// Hardcoded to "evergreen" while evergreen was the only pack with a schedule.
+// It is a flag now because the community pack has one too, and one publisher
+// reading a named pack is a far smaller thing to maintain than two publishers
+// that drift: this file holds the due-window logic, the idempotency ledger and
+// the disclaimer-append rule, and none of that is pack-specific.
+//
+//   node scripts/publish-due.js --pack=04-community --check
+const PACK_NAME = argVal("pack", "evergreen");
+const PACK = path.join(ROOT, "sm-content", PACK_NAME);
+const SCHEDULE_PATH = path.join(PACK, "schedule.json");
+const LEDGER_PATH = path.join(PACK, "published.json");
+
+if (!fs.existsSync(SCHEDULE_PATH)) {
+  console.error(`no schedule at ${path.relative(ROOT, SCHEDULE_PATH)} - is --pack=${PACK_NAME} right?`);
+  process.exit(1);
+}
 
 const schedule = JSON.parse(fs.readFileSync(SCHEDULE_PATH, "utf8"));
 
@@ -192,6 +208,28 @@ function recordPublish(entry) {
 
 // ── Caption assembly ────────────────────────────────────────────────────────
 function buildCaption(slot) {
+  // A bilingual slot (lang "bi") is a carousel whose slides run English,
+  // divider, French. Its caption carries both languages, so it has to carry BOTH
+  // disclaimers - a French reader who swiped to the French half and found only
+  // an English disclaimer has, for the purposes of LPC s.219, not been given
+  // one. The always-tags merge and de-duplicate for the same reason.
+  if (slot.lang === "bi") {
+    const tags = [
+      ...new Set([
+        ...(schedule.hashtags.always.en || []),
+        ...(schedule.hashtags.always.fr || []),
+        ...(slot.tags || []),
+      ]),
+    ];
+    const parts = [
+      slot.caption.trim(),
+      tags.join(" "),
+      schedule.disclaimer.en.trim(),
+      schedule.disclaimer.fr.trim(),
+    ];
+    return parts.filter(Boolean).join("\n\n");
+  }
+
   const lang = slot.lang === "fr" ? "fr" : "en";
   const tags = [...(schedule.hashtags.always[lang] || []), ...(slot.tags || [])];
   const parts = [slot.caption.trim(), tags.join(" "), schedule.disclaimer[lang].trim()];
@@ -282,22 +320,53 @@ function check() {
 
     if (!/^\d{4}-\d{2}-\d{2}$/.test(slot.date)) problems.push(`${at}: bad date "${slot.date}"`);
     if (!/^\d{2}:\d{2}$/.test(slot.time)) problems.push(`${at}: bad time "${slot.time}"`);
-    if (!["feed", "story", "reel"].includes(slot.kind)) problems.push(`${at}: unknown kind "${slot.kind}"`);
-    if (!["en", "fr"].includes(slot.lang)) problems.push(`${at}: unknown lang "${slot.lang}"`);
+    if (!["feed", "carousel", "story", "reel"].includes(slot.kind)) problems.push(`${at}: unknown kind "${slot.kind}"`);
+    // "bi" is a slot that is BOTH languages in one post: a carousel running
+    // English slides, a divider, then French. It is the community pack's default
+    // shape, and it exists so a French follower never has to be served an
+    // English post and told the translation is somewhere else in the feed.
+    if (!["en", "fr", "bi"].includes(slot.lang)) problems.push(`${at}: unknown lang "${slot.lang}"`);
+    // No restriction on which kinds may be "bi": the language-notice frames are
+    // single images that carry both languages on the face, and a carousel is bi
+    // by being a sequence. What IS restricted is a bilingual carousel with no
+    // divider - see below.
 
     if (slot.asset) {
       const file = path.join(PACK, slot.asset);
       if (!fs.existsSync(file)) problems.push(`${at}: asset not found — ${slot.asset}`);
       // A caption in one language over art in the other is invisible in a diff
       // and obvious to a reader, so it is worth asserting mechanically.
-      if (!slot.asset.includes(`-${slot.lang}-`)) {
+      // The language tag may be infixed (evergreen: ...-post-en-03.png) or a
+      // suffix (community: ...-03-post-en.png). The check used to look for
+      // `-en-` only and failed ten perfectly correct community slots, which is
+      // the classic shape of a convention check that encodes one pack's naming
+      // rather than the rule the naming exists to serve. The rule is "the file
+      // is tagged with this language somewhere", so match the tag followed by a
+      // separator OR the extension.
+      const tagged = new RegExp(`-${slot.lang}[-.]`).test(slot.asset);
+      if (slot.lang !== "bi" && !tagged) {
         problems.push(`${at}: lang is "${slot.lang}" but the asset is ${slot.asset}`);
       }
     } else if (slot.automate) {
       problems.push(`${at}: automate:true with no asset`);
     }
 
-    if (slot.kind === "feed") {
+    if (slot.kind === "carousel") {
+      const slides = slot.assets || [];
+      if (slides.length < 2) problems.push(`${at}: a carousel needs at least 2 slides, got ${slides.length}`);
+      if (slides.length > 10) problems.push(`${at}: Instagram allows 10 slides, got ${slides.length}`);
+      for (const a of slides) {
+        if (!fs.existsSync(path.join(PACK, a))) problems.push(`${at}: slide not found — ${a}`);
+      }
+      // The seam is the promise the pack makes. A bilingual carousel with no
+      // divider is an English post with some French stuck on the end, and the
+      // reader has no way to know the French is there before they stop swiping.
+      if (slot.lang === "bi" && !slides.some((a) => a.includes("divider"))) {
+        problems.push(`${at}: bilingual carousel with no divider slide — nothing tells the reader the French is coming`);
+      }
+    }
+
+    if (slot.kind === "feed" || slot.kind === "carousel") {
       if (!slot.caption || !slot.caption.trim()) problems.push(`${at}: feed slot with no caption`);
       if (!slot.ask) problems.push(`${at}: feed slot with no stated ask (send/save/comment/follow)`);
       const list = feedByDay.get(slot.date) || [];
@@ -313,7 +382,12 @@ function check() {
       problems.push(`${at}: story slot must declare a sticker ("none" is a valid answer)`);
     }
     if (slot.automate && slot.kind !== "feed") {
-      problems.push(`${at}: only feed slots can be automated — stickers and in-app audio cannot be set through the API`);
+      // Carousels are excluded deliberately, and not because the Graph API
+      // cannot do them — it can, as N child containers plus a CAROUSEL parent.
+      // They are excluded because this script does not implement that flow yet,
+      // and a slot marked automate:true that silently never posts is worse than
+      // one the operator knows is theirs. See CAROUSELS in 04-community/CALENDAR.md.
+      problems.push(`${at}: only single-image feed slots can be automated — stickers, in-app audio and carousel children are not implemented here`);
     }
   }
 
@@ -337,7 +411,7 @@ function check() {
     problems.forEach((p) => console.error(`  x ${p}`));
     process.exit(1);
   }
-  const feed = schedule.slots.filter((s) => s.kind === "feed").length;
+  const feed = schedule.slots.filter((s) => s.kind === "feed" || s.kind === "carousel").length;
   const story = schedule.slots.filter((s) => s.kind === "story").length;
   const reel = schedule.slots.filter((s) => s.kind === "reel").length;
   console.log(`check OK — ${schedule.slots.length} slots (${feed} feed, ${story} story, ${reel} reel), 0 problems.`);
@@ -354,7 +428,7 @@ function print() {
     byDate.set(s.date, list);
   }
 
-  console.log(`\nPriceBack — evergreen run · ${schedule.account} · ${schedule.timezone}\n`);
+  console.log(`\nPriceBack — ${schedule.pack || PACK_NAME} run · ${schedule.account} · ${schedule.timezone}\n`);
   const dates = [...byDate.keys()].sort();
   let day = 0;
   for (const date of dates) {
@@ -365,18 +439,26 @@ function print() {
     console.log(`Day ${String(day).padStart(2)}  ${wd} ${date}`);
     for (const s of byDate.get(date).sort((a, b) => (a.time < b.time ? -1 : 1))) {
       const mark = done.has(s.id) ? "published" : s.automate ? "auto" : "by hand";
-      const tag = `${s.kind}/${s.lang}`.padEnd(10);
-      console.log(`        ${s.time}  ${tag} ${String(s.hook || s.sticker || "-").padEnd(22)} ${mark.padEnd(10)} ${s.id}`);
+      const tag = `${s.kind}/${s.lang}`.padEnd(11);
+      // A carousel has no single hook or sticker to name, so it reports its
+      // shape instead - the thing the operator actually has to assemble by hand.
+      const what = s.kind === "carousel" ? `${(s.assets || []).length} slides` : s.hook || s.sticker || "-";
+      console.log(`        ${s.time}  ${tag} ${String(what).padEnd(22)} ${mark.padEnd(10)} ${s.id}`);
       if (s.note) console.log(`               ↳ ${s.note.split("\n")[0]}`);
     }
   }
-  const feed = schedule.slots.filter((s) => s.kind === "feed");
+  const count = (k) => schedule.slots.filter((s) => s.kind === k).length;
   console.log(
-    `\n${dates.length} days · ${feed.length} feed posts · ${
-      schedule.slots.filter((s) => s.kind === "story").length
-    } stories · ${schedule.slots.filter((s) => s.kind === "reel").length} reels`
+    `\n${dates.length} days · ${count("feed")} feed posts · ${count("carousel")} carousels · ${count(
+      "story"
+    )} stories · ${count("reel")} reels`
   );
-  console.log(`asks: ${feed.map((s) => s.ask).join(", ")}\n`);
+
+  // Both kinds carry an ask, and the ask distribution is the thing worth
+  // eyeballing in one line: a run with no follow ask converts nobody, and one
+  // where every post asks for a follow converts nobody either.
+  const asking = schedule.slots.filter((s) => s.kind === "feed" || s.kind === "carousel");
+  console.log(`asks: ${asking.map((s) => s.ask).filter(Boolean).join(", ")}\n`);
 }
 
 // ── Publish ─────────────────────────────────────────────────────────────────

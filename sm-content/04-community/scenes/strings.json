@@ -1,0 +1,1230 @@
+{
+  "_readme": [
+    "Every word of the community pack, in both languages. A copy change is a re-render:",
+    "edit here, run render.js, run verify.js. Never edit a PNG.",
+    "",
+    "PUBLISH ORDER IS IN THE FILENAME AND IN THE FOLDER NAME.",
+    "  seq        a global 01..15 running order across the whole pack",
+    "  wave       the folder it renders into, itself numbered 00..06",
+    "  notices    the bilingual language notice - ONE asset per format, not one",
+    "             per language. It is the frame that says the French is coming, so",
+    "             it cannot itself be in one language: it leads in FRENCH and puts",
+    "             the English under it, dimmed. seq 01 belongs to it, which is why",
+    "             the per-language posts start at 02 and the stories at 02.",
+    "So 03-stores-growing/priceback-community-09-post-en.png is the ninth thing",
+    "that goes out, and it is about stores. Neither number needs a spreadsheet to",
+    "read. schedule.json still owns the dates; this owns the ORDER, and the order",
+    "survives the dates being moved.",
+    "",
+    "Rules verify.js enforces on this file:",
+    "  - no claim window stated in days, in either language (see claims.js: the",
+    "    window is per retailer, so one number printed here is wrong the day a",
+    "    store with different terms goes live)",
+    "  - no dollar figure, no percentage, no 'guarantee' / 'garanti'",
+    "  - no implied partnership with, or endorsement by, a named retailer",
+    "  - ANY frame naming a retailer must also carry `fineprint`, rendered on the",
+    "    art itself. A caption disclaimer survives until the first screenshot.",
+    "  - EN and FR carry identical seq, wave, layouts, accents, scenes, sticker",
+    "    plans and row/step/check/hook counts",
+    "",
+    "'__REDACTED__' in a row renders as an ink bar. That is compliance, not styling:",
+    "the pack never prints an amount it would have to stand behind.",
+    "",
+    "ACCENTS: French RECEIPT ROWS are deliberately unaccented (PAYE, ECART, RECUS).",
+    "That is not an i18n slip and the checker will not flag it — thermal receipt",
+    "printers drop accents, so an accented row is the one thing on the paper that",
+    "would read as typeset rather than printed. Everything a PERSON writes — kickers,",
+    "hooks, sub-lines, captions, the status badge — is fully accented, because that",
+    "is the app speaking, not a receipt."
+  ],
+  "meta": {
+    "pack": "04-community",
+    "built": "2026-09-07",
+    "storesLiveOn": "2026-09-07",
+    "storesLiveNote": [
+      "The ticked stores on post 09 and story 04 claim exactly the stores that have",
+      "a DEDICATED receipt parser in a production build — src/services/receiptParsers/",
+      "index.js, STORE_PARSERS. On 2026-09-07 that is Costco and Best Buy; everything",
+      "else detected falls through to the generic parser, which is not the same claim.",
+      "If store three ships, tick it here in BOTH languages and re-render."
+    ]
+  },
+  "waves": [
+    {
+      "n": "00",
+      "dir": "00-language-notice",
+      "en": "Both languages, always",
+      "fr": "Les deux langues, toujours"
+    },
+    {
+      "n": "01",
+      "dir": "01-together",
+      "en": "Nobody beats inflation alone",
+      "fr": "Personne ne bat l'inflation tout seul"
+    },
+    {
+      "n": "02",
+      "dir": "02-made-in-canada",
+      "en": "Made here",
+      "fr": "Fait ici"
+    },
+    {
+      "n": "03",
+      "dir": "03-stores-growing",
+      "en": "The list only grows",
+      "fr": "La liste ne fait que grandir"
+    },
+    {
+      "n": "04",
+      "dir": "04-crowd-power",
+      "en": "Why a crowd reads prices better",
+      "fr": "Pourquoi la foule lit mieux les prix"
+    },
+    {
+      "n": "05",
+      "dir": "05-earn-credits",
+      "en": "Helping pays",
+      "fr": "Aider rapporte"
+    }
+  ],
+  "coversDir": "06-highlight-covers",
+  "covers": [
+    {
+      "id": "1",
+      "icon": "how",
+      "slug": "how-it-works",
+      "titleEn": "How it works",
+      "titleFr": "Ça marche"
+    },
+    {
+      "id": "2",
+      "icon": "stores",
+      "slug": "stores",
+      "titleEn": "Stores",
+      "titleFr": "Magasins"
+    },
+    {
+      "id": "3",
+      "icon": "faq",
+      "slug": "faq",
+      "titleEn": "FAQ",
+      "titleFr": "FAQ"
+    },
+    {
+      "id": "4",
+      "icon": "tips",
+      "slug": "tips",
+      "titleEn": "Tips",
+      "titleFr": "Astuces"
+    },
+    {
+      "id": "5",
+      "icon": "feedback",
+      "slug": "feedback",
+      "titleEn": "Feedback",
+      "titleFr": "Vos idées"
+    },
+    {
+      "id": "6",
+      "icon": "about",
+      "slug": "about",
+      "titleEn": "About",
+      "titleFr": "À propos"
+    },
+    {
+      "id": "7",
+      "icon": "support",
+      "slug": "support",
+      "titleEn": "Support",
+      "titleFr": "Aide"
+    },
+    {
+      "id": "8",
+      "icon": "french",
+      "slug": "francais",
+      "titleEn": "Français",
+      "titleFr": "Français"
+    }
+  ],
+  "notices": [
+    {
+      "seq": "01",
+      "kind": "post",
+      "wave": "00-language-notice",
+      "layout": "bottom",
+      "accent": "seam",
+      "seamDir": "down",
+      "hookType": "promise-of-order",
+      "kicker": "DEUX LANGUES / TWO LANGUAGES",
+      "hook": [
+        "LE FRANÇAIS",
+        "SUIT TOUJOURS."
+      ],
+      "sub": [
+        "Chaque publication existe dans les deux langues.",
+        "Every post here exists in both languages. French always follows."
+      ],
+      "subOps": [
+        0.8,
+        0.48
+      ],
+      "rows": [
+        [
+          "FRANCAIS",
+          "TOUJOURS"
+        ],
+        [
+          "ENGLISH",
+          "ALWAYS"
+        ]
+      ]
+    },
+    {
+      "seq": "01",
+      "kind": "story",
+      "wave": "00-language-notice",
+      "scene": "seam",
+      "seamDir": "down",
+      "sticker": "none",
+      "kicker": "DEUX LANGUES / TWO LANGUAGES",
+      "hook": [
+        "LE FRANÇAIS",
+        "SUIT TOUJOURS."
+      ],
+      "sub": [
+        "Chaque Highlight se termine en français.",
+        "Every Highlight ends in French. Keep tapping."
+      ],
+      "subOps": [
+        0.8,
+        0.48
+      ]
+    }
+  ],
+  "dividers": [
+    {
+      "id": "to-fr",
+      "wave": "00-language-notice",
+      "seamDir": "right",
+      "over": "LA SUITE EN FRANÇAIS",
+      "word": [
+        "FRANÇAIS"
+      ],
+      "sub": [
+        "La version française commence ici.",
+        "The French version starts here."
+      ],
+      "subOps": [
+        0.8,
+        0.48
+      ]
+    },
+    {
+      "id": "to-en",
+      "wave": "00-language-notice",
+      "seamDir": "right",
+      "over": "FIN DE LA PARTIE FRANÇAISE",
+      "word": [
+        "ENGLISH"
+      ],
+      "sub": [
+        "The English version starts here.",
+        "La version anglaise commence ici."
+      ],
+      "subOps": [
+        0.8,
+        0.48
+      ]
+    }
+  ],
+  "en": {
+    "handle": "@priceback.ca",
+    "posts": [
+      {
+        "seq": "02",
+        "wave": "01-together",
+        "layout": "band",
+        "accent": "circle",
+        "hookType": "shared-loss",
+        "kicker": "IT IS NOT JUST YOU",
+        "hook": [
+          "NOBODY BEATS",
+          "INFLATION",
+          "ALONE."
+        ],
+        "sub": [
+          "Everything on this receipt costs more than it did last year.",
+          "None of us fixes that alone. Several of us is a different thing."
+        ],
+        "rows": [
+          [
+            "ITEM",
+            "__REDACTED__"
+          ],
+          [
+            "ITEM",
+            "__REDACTED__"
+          ],
+          [
+            "ITEM",
+            "__REDACTED__"
+          ]
+        ],
+        "circleRow": 1
+      },
+      {
+        "seq": "03",
+        "wave": "01-together",
+        "layout": "top",
+        "accent": "arrow",
+        "hookType": "honest-limit",
+        "kicker": "WHAT WE CAN ACTUALLY DO",
+        "hook": [
+          "WE CAN'T FIX",
+          "THE PRICES.",
+          "WE CAN SHARE THEM."
+        ],
+        "sub": [
+          "Nobody here decides what a shelf says. What we decide is",
+          "whether the rest of us hear about it when it changes."
+        ],
+        "rows": [
+          [
+            "PAID",
+            "__REDACTED__"
+          ],
+          [
+            "NOW",
+            "__REDACTED__"
+          ],
+          [
+            "DIFFERENCE",
+            "__REDACTED__"
+          ]
+        ]
+      },
+      {
+        "seq": "04",
+        "wave": "01-together",
+        "layout": "bottom",
+        "accent": "status",
+        "hookType": "one-for-all",
+        "kicker": "HOW THIS ACTUALLY WORKS",
+        "hook": [
+          "IF ONE OF US",
+          "FINDS IT,",
+          "ALL OF US SAVE."
+        ],
+        "sub": [
+          "One shopper notices a price that moved. Everyone watching",
+          "that same product hears about it the same day."
+        ],
+        "rows": [
+          [
+            "FOUND BY",
+            "ONE OF US"
+          ],
+          [
+            "USEFUL TO",
+            "ALL OF US"
+          ]
+        ],
+        "circleRow": 0,
+        "statusLabel": "SHARED"
+      },
+      {
+        "seq": "05",
+        "wave": "01-together",
+        "layout": "top",
+        "accent": "ballot",
+        "hookType": "name-one",
+        "kicker": "TELL US ONE",
+        "hook": [
+          "WHAT WENT UP",
+          "THE MOST",
+          "IN YOUR CART?"
+        ],
+        "sub": [
+          "Coffee? Diapers? The thing you quietly stopped buying?",
+          "Put it in the comments — we are building the list together."
+        ],
+        "ballot": [
+          "01",
+          "02",
+          "03"
+        ]
+      },
+      {
+        "seq": "06",
+        "wave": "02-made-in-canada",
+        "layout": "bottom",
+        "accent": "leaf",
+        "hookType": "origin",
+        "kicker": "WHO BUILT THIS",
+        "hook": [
+          "MADE HERE.",
+          "FOR PRICES",
+          "PAID HERE."
+        ],
+        "sub": [
+          "Built in Canada, run from Canada, answered from Canada.",
+          "Not the branch office of anything."
+        ],
+        "rows": [
+          [
+            "BUILT",
+            "CANADA"
+          ],
+          [
+            "RUN FROM",
+            "CANADA"
+          ],
+          [
+            "SUPPORT",
+            "CANADA"
+          ]
+        ]
+      },
+      {
+        "seq": "07",
+        "wave": "02-made-in-canada",
+        "layout": "top",
+        "accent": "leaf",
+        "hookType": "costless-ask",
+        "kicker": "WHY IT MATTERS",
+        "hook": [
+          "SUPPORTING THIS",
+          "COSTS YOU",
+          "NOTHING EXTRA."
+        ],
+        "sub": [
+          "It only decides who gets to build the tools Canadians use",
+          "on Canadian receipts. That turns out to matter."
+        ],
+        "rows": [
+          [
+            "DOWNLOAD",
+            "FREE"
+          ],
+          [
+            "MADE BY",
+            "CANADIANS"
+          ]
+        ]
+      },
+      {
+        "seq": "08",
+        "wave": "02-made-in-canada",
+        "layout": "band",
+        "accent": "glyph",
+        "hookType": "smallness-as-feature",
+        "kicker": "SMALL, ON PURPOSE",
+        "hook": [
+          "NO CALL CENTRE.",
+          "YOU ARE WRITING",
+          "TO THE BUILDER."
+        ],
+        "sub": [
+          "Send a message and the person who can change the app reads it.",
+          "That is the whole advantage of being this small."
+        ],
+        "rows": [
+          [
+            "TEAM",
+            "SMALL"
+          ],
+          [
+            "REPLIES",
+            "A PERSON"
+          ]
+        ]
+      },
+      {
+        "seq": "09",
+        "wave": "03-stores-growing",
+        "layout": "top",
+        "accent": "checks",
+        "hookType": "not-the-point",
+        "kicker": "STORE ONE OF MANY",
+        "hook": [
+          "COSTCO WAS",
+          "THE START.",
+          "NOT THE POINT."
+        ],
+        "sub": [
+          "Two chains have a reader built for their own receipt layout.",
+          "The list grows in one direction, and it gets announced here first."
+        ],
+        "checks": [
+          [
+            "Costco",
+            "live"
+          ],
+          [
+            "Best Buy",
+            "live"
+          ],
+          [
+            "More chains",
+            "soon"
+          ],
+          [
+            "Yours?",
+            "soon"
+          ]
+        ],
+        "fineprint": [
+          "PriceBack is an independent app. Not affiliated with, endorsed by, or",
+          "connected to any retailer named here."
+        ]
+      },
+      {
+        "seq": "10",
+        "wave": "03-stores-growing",
+        "layout": "bottom",
+        "accent": "ballot",
+        "hookType": "you-choose",
+        "kicker": "YOU PICK THE NEXT ONE",
+        "hook": [
+          "WHICH STORE",
+          "SHOULD WE",
+          "READ NEXT?"
+        ],
+        "sub": [
+          "Every new chain is a receipt layout somebody had to teach us.",
+          "Tell us where you shop and it moves up the queue."
+        ],
+        "ballot": [
+          "01",
+          "02",
+          "03"
+        ]
+      },
+      {
+        "seq": "11",
+        "wave": "03-stores-growing",
+        "layout": "band",
+        "accent": "status",
+        "hookType": "cost-of-a-store",
+        "kicker": "WHAT A NEW STORE TAKES",
+        "hook": [
+          "A STORE IS NOT",
+          "A CHECKBOX.",
+          "IT IS A LANGUAGE."
+        ],
+        "sub": [
+          "Every chain prints its receipts differently. Teaching the app to",
+          "read one takes real receipts — which is where you come in."
+        ],
+        "rows": [
+          [
+            "RECEIPTS READ",
+            "REAL ONES"
+          ],
+          [
+            "TAUGHT BY",
+            "SHOPPERS"
+          ]
+        ],
+        "circleRow": 0,
+        "statusLabel": "LEARNING"
+      },
+      {
+        "seq": "12",
+        "wave": "04-crowd-power",
+        "layout": "top",
+        "accent": "circle",
+        "hookType": "scale-argument",
+        "kicker": "WHY A CROWD",
+        "hook": [
+          "ONE RECEIPT",
+          "IS A STORY.",
+          "A THOUSAND IS DATA."
+        ],
+        "sub": [
+          "The more of us scanning, the sooner a price change is caught",
+          "and the fewer people find out about it too late."
+        ],
+        "rows": [
+          [
+            "SHOPPERS",
+            "MANY"
+          ],
+          [
+            "PRICES SEEN",
+            "MORE"
+          ],
+          [
+            "MISSED",
+            "FEWER"
+          ]
+        ],
+        "circleRow": 2
+      },
+      {
+        "seq": "13",
+        "wave": "04-crowd-power",
+        "layout": "bottom",
+        "accent": "steps",
+        "hookType": "low-effort-ask",
+        "kicker": "WHAT HELPING LOOKS LIKE",
+        "hook": [
+          "POINT YOUR",
+          "CAMERA AT",
+          "A SHELF TAG."
+        ],
+        "sub": [
+          "That is the entire contribution. A photo of a price you were",
+          "already standing in front of."
+        ],
+        "steps": [
+          "Scan a shelf tag in store",
+          "Other shoppers confirm the same price",
+          "It becomes a verified price"
+        ]
+      },
+      {
+        "seq": "14",
+        "wave": "05-earn-credits",
+        "layout": "top",
+        "accent": "steps",
+        "hookType": "self-interest",
+        "kicker": "WHY BOTHER",
+        "hook": [
+          "HELPING THE LIST",
+          "PUTS CREDITS",
+          "IN YOUR ACCOUNT."
+        ],
+        "sub": [
+          "A verified contribution earns credits, and credits are what pay",
+          "for scanning your own receipts. Weekly limits apply."
+        ],
+        "steps": [
+          "You scan a shelf tag",
+          "Others confirm the same price",
+          "Credits land in your balance"
+        ]
+      },
+      {
+        "seq": "15",
+        "wave": "05-earn-credits",
+        "layout": "band",
+        "accent": "status",
+        "hookType": "the-honest-version",
+        "kicker": "THE HONEST VERSION",
+        "hook": [
+          "CREDITS COME",
+          "WHEN THE PRICE",
+          "IS CONFIRMED."
+        ],
+        "sub": [
+          "Not the second you scan. A price one person saw is a rumour;",
+          "a price several people saw is worth paying for."
+        ],
+        "rows": [
+          [
+            "SCANNED",
+            "PENDING"
+          ],
+          [
+            "CONFIRMED",
+            "CREDITED"
+          ],
+          [
+            "CAPS",
+            "WEEKLY"
+          ]
+        ],
+        "circleRow": 1,
+        "statusLabel": "VERIFIED"
+      }
+    ],
+    "stories": [
+      {
+        "seq": "02",
+        "wave": "01-together",
+        "scene": "ask",
+        "sticker": "poll",
+        "kicker": "HONESTLY",
+        "hook": [
+          "HAS A PRICE",
+          "DROPPED RIGHT",
+          "AFTER YOU BOUGHT?"
+        ],
+        "stickerCopy": "Poll: Yes, it stings / Never noticed"
+      },
+      {
+        "seq": "03",
+        "wave": "02-made-in-canada",
+        "scene": "leaf",
+        "sticker": "none",
+        "kicker": "WHO BUILT THIS",
+        "hook": [
+          "MADE HERE.",
+          "ANSWERED HERE."
+        ],
+        "sub": [
+          "Built in Canada, for prices paid in Canada."
+        ]
+      },
+      {
+        "seq": "04",
+        "wave": "03-stores-growing",
+        "scene": "checks",
+        "sticker": "none",
+        "kicker": "SUPPORTED TODAY",
+        "hook": [
+          "TWO DOWN.",
+          "THE LIST GROWS",
+          "HERE FIRST."
+        ],
+        "checks": [
+          [
+            "Costco",
+            "live"
+          ],
+          [
+            "Best Buy",
+            "live"
+          ],
+          [
+            "More chains",
+            "soon"
+          ],
+          [
+            "Yours?",
+            "soon"
+          ]
+        ],
+        "fineprint": [
+          "PriceBack is an independent app. Not affiliated with, endorsed by,",
+          "or connected to any retailer named here."
+        ]
+      },
+      {
+        "seq": "05",
+        "wave": "04-crowd-power",
+        "scene": "ask",
+        "sticker": "question",
+        "kicker": "ASK US ANYTHING",
+        "hook": [
+          "WHERE DO YOU",
+          "SHOP THE MOST?"
+        ],
+        "stickerCopy": "Question sticker: Which store should we read next?"
+      },
+      {
+        "seq": "06",
+        "wave": "05-earn-credits",
+        "scene": "steps",
+        "sticker": "none",
+        "kicker": "EARN AS YOU SHOP",
+        "hook": [
+          "SCAN A TAG.",
+          "GET CREDITED",
+          "ONCE IT IS CONFIRMED."
+        ],
+        "steps": [
+          "You scan a shelf tag",
+          "Others confirm the same price",
+          "Credits land in your balance"
+        ]
+      }
+    ]
+  },
+  "fr": {
+    "handle": "@priceback.ca",
+    "posts": [
+      {
+        "seq": "02",
+        "wave": "01-together",
+        "layout": "band",
+        "accent": "circle",
+        "hookType": "shared-loss",
+        "kicker": "CE N'EST PAS QUE VOUS",
+        "hook": [
+          "PERSONNE NE BAT",
+          "L'INFLATION",
+          "TOUT SEUL."
+        ],
+        "sub": [
+          "Tout sur ce reçu coûte plus cher que l'an dernier.",
+          "Aucun de nous ne règle ça seul. À plusieurs, c'est autre chose."
+        ],
+        "rows": [
+          [
+            "ARTICLE",
+            "__REDACTED__"
+          ],
+          [
+            "ARTICLE",
+            "__REDACTED__"
+          ],
+          [
+            "ARTICLE",
+            "__REDACTED__"
+          ]
+        ],
+        "circleRow": 1
+      },
+      {
+        "seq": "03",
+        "wave": "01-together",
+        "layout": "top",
+        "accent": "arrow",
+        "hookType": "honest-limit",
+        "kicker": "CE QU'ON PEUT VRAIMENT FAIRE",
+        "hook": [
+          "ON NE FIXE PAS",
+          "LES PRIX.",
+          "ON LES PARTAGE."
+        ],
+        "sub": [
+          "Personne ici ne décide de l'étiquette. Ce qu'on décide,",
+          "c'est si les autres apprennent qu'elle a bougé."
+        ],
+        "rows": [
+          [
+            "PAYE",
+            "__REDACTED__"
+          ],
+          [
+            "MAINTENANT",
+            "__REDACTED__"
+          ],
+          [
+            "ECART",
+            "__REDACTED__"
+          ]
+        ]
+      },
+      {
+        "seq": "04",
+        "wave": "01-together",
+        "layout": "bottom",
+        "accent": "status",
+        "hookType": "one-for-all",
+        "kicker": "COMMENT ÇA MARCHE VRAIMENT",
+        "hook": [
+          "SI L'UN DE NOUS",
+          "LE TROUVE,",
+          "TOUS ÉCONOMISENT."
+        ],
+        "sub": [
+          "Une personne remarque un prix qui a bougé. Tous ceux qui",
+          "suivent le même produit l'apprennent la journée même."
+        ],
+        "rows": [
+          [
+            "TROUVE PAR",
+            "UN DE NOUS"
+          ],
+          [
+            "UTILE A",
+            "NOUS TOUS"
+          ]
+        ],
+        "circleRow": 0,
+        "statusLabel": "PARTAGÉ"
+      },
+      {
+        "seq": "05",
+        "wave": "01-together",
+        "layout": "top",
+        "accent": "ballot",
+        "hookType": "name-one",
+        "kicker": "NOMMEZ-EN UN",
+        "hook": [
+          "QU'EST-CE QUI",
+          "A LE PLUS MONTÉ",
+          "DANS VOTRE PANIER?"
+        ],
+        "sub": [
+          "Le café? Les couches? Ce que vous n'achetez plus?",
+          "Écrivez-le en commentaire — on bâtit la liste ensemble."
+        ],
+        "ballot": [
+          "01",
+          "02",
+          "03"
+        ]
+      },
+      {
+        "seq": "06",
+        "wave": "02-made-in-canada",
+        "layout": "bottom",
+        "accent": "leaf",
+        "hookType": "origin",
+        "kicker": "QUI A BÂTI ÇA",
+        "hook": [
+          "FAIT ICI.",
+          "POUR DES PRIX",
+          "PAYÉS ICI."
+        ],
+        "sub": [
+          "Conçu au Canada, opéré du Canada, et le support répond d'ici.",
+          "Ce n'est la succursale de personne."
+        ],
+        "rows": [
+          [
+            "CONCU",
+            "CANADA"
+          ],
+          [
+            "OPERE DU",
+            "CANADA"
+          ],
+          [
+            "SUPPORT",
+            "CANADA"
+          ]
+        ]
+      },
+      {
+        "seq": "07",
+        "wave": "02-made-in-canada",
+        "layout": "top",
+        "accent": "leaf",
+        "hookType": "costless-ask",
+        "kicker": "POURQUOI ÇA COMPTE",
+        "hook": [
+          "NOUS SOUTENIR",
+          "NE VOUS COÛTE",
+          "RIEN DE PLUS."
+        ],
+        "sub": [
+          "Ça décide seulement qui bâtit les outils que les Canadiens",
+          "utilisent sur des reçus canadiens. Ça finit par compter."
+        ],
+        "rows": [
+          [
+            "TELECHARGEMENT",
+            "GRATUIT"
+          ],
+          [
+            "FAIT PAR",
+            "DES CANADIENS"
+          ]
+        ]
+      },
+      {
+        "seq": "08",
+        "wave": "02-made-in-canada",
+        "layout": "band",
+        "accent": "glyph",
+        "hookType": "smallness-as-feature",
+        "kicker": "PETIT, VOLONTAIREMENT",
+        "hook": [
+          "AUCUN CENTRE",
+          "D'APPELS. VOUS",
+          "ÉCRIVEZ AU DEV."
+        ],
+        "sub": [
+          "Écrivez-nous : la personne qui peut changer l'app vous lit.",
+          "C'est tout l'avantage d'être aussi petit."
+        ],
+        "rows": [
+          [
+            "EQUIPE",
+            "PETITE"
+          ],
+          [
+            "REPONSES",
+            "UNE PERSONNE"
+          ]
+        ]
+      },
+      {
+        "seq": "09",
+        "wave": "03-stores-growing",
+        "layout": "top",
+        "accent": "checks",
+        "hookType": "not-the-point",
+        "kicker": "LE PREMIER MAGASIN",
+        "hook": [
+          "COSTCO ÉTAIT",
+          "LE DÉBUT.",
+          "PAS LE BUT."
+        ],
+        "sub": [
+          "Deux chaînes ont un lecteur bâti pour leur propre format de reçu.",
+          "La liste grandit dans un sens, et ça s'annonce ici en premier."
+        ],
+        "checks": [
+          [
+            "Costco",
+            "live"
+          ],
+          [
+            "Best Buy",
+            "live"
+          ],
+          [
+            "D'autres chaînes",
+            "soon"
+          ],
+          [
+            "La vôtre?",
+            "soon"
+          ]
+        ],
+        "fineprint": [
+          "PriceBack est une application indépendante. Aucun lien avec les",
+          "détaillants nommés ici, ni approbation de leur part."
+        ]
+      },
+      {
+        "seq": "10",
+        "wave": "03-stores-growing",
+        "layout": "bottom",
+        "accent": "ballot",
+        "hookType": "you-choose",
+        "kicker": "VOUS CHOISISSEZ LE PROCHAIN",
+        "hook": [
+          "QUEL MAGASIN",
+          "ON DEVRAIT",
+          "LIRE ENSUITE?"
+        ],
+        "sub": [
+          "Chaque nouvelle chaîne est un format de reçu qu'il faut apprendre.",
+          "Dites-nous où vous magasinez et il monte dans la file."
+        ],
+        "ballot": [
+          "01",
+          "02",
+          "03"
+        ]
+      },
+      {
+        "seq": "11",
+        "wave": "03-stores-growing",
+        "layout": "band",
+        "accent": "status",
+        "hookType": "cost-of-a-store",
+        "kicker": "CE QU'EXIGE UN NOUVEAU MAGASIN",
+        "hook": [
+          "UN MAGASIN,",
+          "C'EST PAS UNE CASE.",
+          "C'EST UNE LANGUE."
+        ],
+        "sub": [
+          "Chaque chaîne imprime ses reçus autrement. Apprendre à en lire",
+          "un demande de vrais reçus — c'est là que vous entrez."
+        ],
+        "rows": [
+          [
+            "RECUS LUS",
+            "DE VRAIS"
+          ],
+          [
+            "APPRIS PAR",
+            "DES CLIENTS"
+          ]
+        ],
+        "circleRow": 0,
+        "statusLabel": "EN COURS"
+      },
+      {
+        "seq": "12",
+        "wave": "04-crowd-power",
+        "layout": "top",
+        "accent": "circle",
+        "hookType": "scale-argument",
+        "kicker": "POURQUOI À PLUSIEURS",
+        "hook": [
+          "UN REÇU:",
+          "UNE ANECDOTE.",
+          "MILLE: DES DONNÉES."
+        ],
+        "sub": [
+          "Plus on est à numériser, plus vite un changement de prix est vu,",
+          "et moins de gens l'apprennent trop tard."
+        ],
+        "rows": [
+          [
+            "CLIENTS",
+            "PLUSIEURS"
+          ],
+          [
+            "PRIX VUS",
+            "PLUS"
+          ],
+          [
+            "MANQUES",
+            "MOINS"
+          ]
+        ],
+        "circleRow": 2
+      },
+      {
+        "seq": "13",
+        "wave": "04-crowd-power",
+        "layout": "bottom",
+        "accent": "steps",
+        "hookType": "low-effort-ask",
+        "kicker": "AIDER, C'EST ÇA",
+        "hook": [
+          "POINTEZ VOTRE",
+          "CAMÉRA SUR",
+          "UNE ÉTIQUETTE."
+        ],
+        "sub": [
+          "C'est toute la contribution. La photo d'un prix devant lequel",
+          "vous étiez déjà debout."
+        ],
+        "steps": [
+          "Numérisez une étiquette en magasin",
+          "D'autres clients confirment le prix",
+          "Le prix devient vérifié"
+        ]
+      },
+      {
+        "seq": "14",
+        "wave": "05-earn-credits",
+        "layout": "top",
+        "accent": "steps",
+        "hookType": "self-interest",
+        "kicker": "POURQUOI LE FAIRE",
+        "hook": [
+          "AIDER LA LISTE",
+          "MET DES CRÉDITS",
+          "DANS VOTRE COMPTE."
+        ],
+        "sub": [
+          "Une contribution vérifiée donne des crédits, et les crédits paient",
+          "la numérisation de vos propres reçus. Plafonds hebdomadaires."
+        ],
+        "steps": [
+          "Vous numérisez une étiquette",
+          "D'autres confirment le même prix",
+          "Les crédits arrivent au solde"
+        ]
+      },
+      {
+        "seq": "15",
+        "wave": "05-earn-credits",
+        "layout": "band",
+        "accent": "status",
+        "hookType": "the-honest-version",
+        "kicker": "LA VERSION HONNÊTE",
+        "hook": [
+          "LES CRÉDITS",
+          "ARRIVENT QUAND",
+          "LE PRIX EST CONFIRMÉ."
+        ],
+        "sub": [
+          "Pas à la seconde du scan. Un prix vu par une seule personne est",
+          "une rumeur; vu par plusieurs, il vaut la peine d'être payé."
+        ],
+        "rows": [
+          [
+            "NUMERISE",
+            "EN ATTENTE"
+          ],
+          [
+            "CONFIRME",
+            "CREDITE"
+          ],
+          [
+            "PLAFONDS",
+            "SEMAINE"
+          ]
+        ],
+        "circleRow": 1,
+        "statusLabel": "VÉRIFIÉ"
+      }
+    ],
+    "stories": [
+      {
+        "seq": "02",
+        "wave": "01-together",
+        "scene": "ask",
+        "sticker": "poll",
+        "kicker": "SOYONS HONNÊTES",
+        "hook": [
+          "UN PRIX A DÉJÀ",
+          "BAISSÉ JUSTE",
+          "APRÈS VOTRE ACHAT?"
+        ],
+        "stickerCopy": "Sondage : Oui, ça pique / Jamais remarqué"
+      },
+      {
+        "seq": "03",
+        "wave": "02-made-in-canada",
+        "scene": "leaf",
+        "sticker": "none",
+        "kicker": "QUI A BÂTI ÇA",
+        "hook": [
+          "FAIT ICI.",
+          "RÉPONDU D'ICI."
+        ],
+        "sub": [
+          "Conçu au Canada, pour des prix payés au Canada."
+        ]
+      },
+      {
+        "seq": "04",
+        "wave": "03-stores-growing",
+        "scene": "checks",
+        "sticker": "none",
+        "kicker": "PRIS EN CHARGE",
+        "hook": [
+          "DEUX DE FAITS.",
+          "LA LISTE GRANDIT",
+          "ICI D'ABORD."
+        ],
+        "checks": [
+          [
+            "Costco",
+            "live"
+          ],
+          [
+            "Best Buy",
+            "live"
+          ],
+          [
+            "D'autres chaînes",
+            "soon"
+          ],
+          [
+            "La vôtre?",
+            "soon"
+          ]
+        ],
+        "fineprint": [
+          "PriceBack est une application indépendante. Aucun lien avec les",
+          "détaillants nommés ici, ni approbation de leur part."
+        ]
+      },
+      {
+        "seq": "05",
+        "wave": "04-crowd-power",
+        "scene": "ask",
+        "sticker": "question",
+        "kicker": "DEMANDEZ-NOUS",
+        "hook": [
+          "VOUS MAGASINEZ",
+          "OÙ LE PLUS SOUVENT?"
+        ],
+        "stickerCopy": "Sticker question : quel magasin lire ensuite?"
+      },
+      {
+        "seq": "06",
+        "wave": "05-earn-credits",
+        "scene": "steps",
+        "sticker": "none",
+        "kicker": "GAGNEZ EN MAGASINANT",
+        "hook": [
+          "NUMÉRISEZ UNE",
+          "ÉTIQUETTE. CRÉDITÉ",
+          "UNE FOIS CONFIRMÉ."
+        ],
+        "steps": [
+          "Vous numérisez une étiquette",
+          "D'autres confirment le même prix",
+          "Les crédits arrivent au solde"
+        ]
+      }
+    ]
+  }
+}
