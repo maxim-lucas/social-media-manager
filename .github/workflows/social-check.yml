@@ -1,0 +1,44 @@
+name: Social content check
+
+# Validates the evergreen schedule on every change to it: assets exist, captions
+# are present and under Instagram's 2200-character limit once the disclaimer is
+# appended, language matches the art, one feed post per day, ids unique, and the
+# fortnight asks for a follow somewhere but not everywhere.
+#
+# What this deliberately does NOT do is re-render the pack. render.js resolves
+# Roboto and Roboto Mono through the SYSTEM font list, and a runner's font
+# versions will not match the build machine's byte for byte — so a CI render
+# would either fail spuriously or, worse, quietly redefine what "correct" means.
+# Rendering and the six visual gates (scenes/verify.js) are run locally by
+# whoever changes the copy. This job checks everything that is a fact about the
+# files rather than about the fonts, which is cheap, fast and cannot flake.
+
+on:
+  pull_request:
+    paths:
+      - "sm-content/evergreen/**"
+      - "scripts/publish-due.js"
+      - ".github/workflows/social-check.yml"
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Validate the schedule
+        run: node scripts/publish-due.js --check
+
+      - name: Print the run
+        run: node scripts/publish-due.js --print
+
+      - name: Assert the pack's copy gate is intact
+        # scenes/verify.js needs sharp and fonts for its visual gates, but its
+        # copy gate is pure JSON. Re-checking the ban list here means a caption
+        # that names a retailer, states a claim window in days, or prints a
+        # figure cannot reach main even if nobody ran verify.js locally.
+        run: node scripts/check-copy.js

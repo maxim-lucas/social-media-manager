@@ -1,0 +1,89 @@
+name: Social publish
+
+# Posts whatever the evergreen schedule says is due, to Instagram, via the Graph
+# API. See scripts/publish-due.js for the four safety properties it guarantees.
+#
+# ── This workflow does nothing until it is switched on ──────────────────────
+#
+# The publish step is gated on the repository variable PUBLISH_ENABLED being
+# exactly "true" (Settings -> Secrets and variables -> Actions -> Variables).
+# Until then every scheduled run does a dry run and prints what it *would* have
+# posted. That gate is deliberate: a cron job that starts posting to a live
+# public account the moment it is merged is not something anyone should have to
+# notice in a diff.
+#
+# Required secrets, once you do switch it on:
+#   META_INSTAGRAM_BUSINESS_ACCOUNT_ID   the IG professional account id
+#   META_INSTAGRAM_ACCESS_TOKEN          a long-lived token with
+#                                        instagram_content_publish
+#
+# Meta FETCHES each image from a public URL, so the repo must be public (the
+# default ASSET_BASE_URL points at raw.githubusercontent.com) or ASSET_BASE_URL
+# must point somewhere Meta's servers can reach.
+
+on:
+  schedule:
+    # 22:30 and 23:30 UTC = 18:30 in America/Toronto during EDT and EST
+    # respectively, which is the schedule's feed-post slot year-round. Running
+    # both is harmless: the ledger makes a second run a no-op, and two runs a
+    # day is a rounding error against the Actions budget.
+    - cron: "30 22 * * *"
+    - cron: "30 23 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (print what would post, publish nothing)"
+        type: boolean
+        default: true
+      only:
+        description: "Publish one slot id, ignoring its schedule window (e.g. d12-post-07)"
+        type: string
+        required: false
+
+concurrency:
+  # Two runs publishing at once would each read the ledger before the other
+  # wrote it. The ledger makes double-posting unlikely; this makes it impossible.
+  group: social-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # to commit the published.json receipt back
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Validate the schedule
+        run: node scripts/publish-due.js --check
+
+      - name: Dry run
+        if: ${{ vars.PUBLISH_ENABLED != 'true' || inputs.dry_run }}
+        run: |
+          echo "PUBLISH_ENABLED=${{ vars.PUBLISH_ENABLED }} — running dry."
+          node scripts/publish-due.js ${{ inputs.only && format('--only={0}', inputs.only) || '' }}
+
+      - name: Publish what is due
+        if: ${{ vars.PUBLISH_ENABLED == 'true' && !inputs.dry_run }}
+        env:
+          META_INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.META_INSTAGRAM_BUSINESS_ACCOUNT_ID }}
+          META_INSTAGRAM_ACCESS_TOKEN: ${{ secrets.META_INSTAGRAM_ACCESS_TOKEN }}
+          ASSET_REF: ${{ github.ref_name }}
+        run: node scripts/publish-due.js --write ${{ inputs.only && format('--only={0}', inputs.only) || '' }}
+
+      - name: Commit the receipt
+        if: ${{ vars.PUBLISH_ENABLED == 'true' && !inputs.dry_run }}
+        run: |
+          if git diff --quiet -- sm-content/evergreen/published.json; then
+            echo "nothing published this run."
+            exit 0
+          fi
+          git config user.name "priceback-bot"
+          git config user.email "bot@priceback.ca"
+          git add sm-content/evergreen/published.json
+          git commit -m "chore(social): record published slots [skip ci]"
+          git push

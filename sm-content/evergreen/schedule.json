@@ -1,0 +1,302 @@
+{
+  "_readme": [
+    "The 14-day evergreen run. This file is the SINGLE SOURCE OF TRUTH for what",
+    "goes out and when — scripts/publish-due.js reads it, and CALENDAR.md",
+    "explains the reasoning behind it rather than repeating the copy.",
+    "",
+    "  node scripts/publish-due.js --print     read the fortnight as an agenda",
+    "  node scripts/publish-due.js --check     validate every slot (no network)",
+    "  node scripts/publish-due.js             dry run: what would post right now",
+    "  node scripts/publish-due.js --write     actually publish due slots",
+    "",
+    "The disclaimer below is appended to every published caption by the script,",
+    "not typed into the captions themselves. legal/MARKETING_CLAIMS.md in the app",
+    "repo names the exact failure mode this prevents: a claim clipped into a",
+    "social card without its paired fine print. A disclaimer that has to be",
+    "remembered per-post is a disclaimer that eventually is not."
+  ],
+
+  "timezone": "America/Toronto",
+  "account": "@priceback.ca",
+  "platform": "instagram",
+
+  "disclaimer": {
+    "en": "Free to download. Scan credits cover processing; our share of your savings is charged on successful claims only. Price-adjustment terms are set by each retailer and conditions apply. PriceBack is not affiliated with any retailer.",
+    "fr": "Téléchargement gratuit. Les crédits de numérisation couvrent le traitement; notre part de vos économies n'est facturée que sur les réclamations réussies. Les conditions d'ajustement de prix sont fixées par chaque détaillant. PriceBack n'est affilié à aucun détaillant."
+  },
+
+  "hashtags": {
+    "always": {
+      "en": ["#PriceBack", "#canadiandeals"],
+      "fr": ["#PriceBack", "#aubaines"]
+    },
+    "rotate": {
+      "en": ["#priceadjustment", "#pricematch", "#dealscanada", "#savingmoneycanada", "#shoppingtips", "#moneytipscanada"],
+      "fr": ["#economiser", "#consommateurquebec", "#bonsplansquebec", "#trucsdeconso", "#financespersonnelles"]
+    }
+  },
+
+  "slots": [
+    {
+      "id": "d01-post-01",
+      "date": "2026-09-07",
+      "time": "18:30",
+      "kind": "feed",
+      "lang": "en",
+      "automate": true,
+      "asset": "posts/priceback-evergreen-post-en-01.png",
+      "hook": "impossible-instruction",
+      "ask": "send",
+      "tags": ["#priceadjustment", "#shoppingtips"],
+      "caption": "Most people bin the receipt before they've left the parking lot.\n\nHere's the part almost nobody uses: a lot of Canadian retailers will adjust the price if it drops after you've already paid. Not a coupon, not a sale — the difference back, on something you already bought.\n\nEvery one of those policies has one thing in common. You need the receipt.\n\nSo: don't throw that out.\n\nSend this to the person who empties their pockets straight into the bin."
+    },
+    {
+      "id": "d01-story-01",
+      "date": "2026-09-07",
+      "time": "12:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "asset": "stories/priceback-evergreen-story-en-01.png",
+      "sticker": "poll",
+      "note": "Poll sticker in the empty band: \"Always\" / \"Straight in the bin\". Screenshot the result on day 4 — that split is content, and it tells you what share of the audience already knows price adjustments exist."
+    },
+    {
+      "id": "d02-story-02",
+      "date": "2026-09-08",
+      "time": "12:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "asset": "stories/priceback-evergreen-story-en-02.png",
+      "sticker": "none",
+      "note": "No sticker. A sequence where every frame asks for a tap stops feeling like a story and starts feeling like a survey."
+    },
+    {
+      "id": "d03-post-02",
+      "date": "2026-09-09",
+      "time": "18:30",
+      "kind": "feed",
+      "lang": "fr",
+      "automate": true,
+      "asset": "posts/priceback-evergreen-post-fr-02.png",
+      "hook": "loss-frame",
+      "ask": "save",
+      "tags": ["#economiser", "#bonsplansquebec"],
+      "caption": "Vous avez tout fait comme il faut. Vous avez comparé, attendu le solde, payé.\n\nPuis le prix a bougé quand même.\n\nCe n'est pas de la malchance — c'est le fonctionnement normal des prix, et c'est exactement pourquoi les politiques d'ajustement existent. L'écart entre ce que vous avez payé et ce que ça coûte maintenant porte un nom, et dans bien des magasins, il se réclame.\n\nLe hic : encore faut-il le remarquer. Personne ne refait le prix de son reçu, ligne par ligne, chaque jour.\n\nPriceBack s'occupe de cette partie-là.\n\nEnregistrez ceci pour votre prochain gros achat."
+    },
+    {
+      "id": "d03-story-03",
+      "date": "2026-09-09",
+      "time": "12:00",
+      "kind": "story",
+      "lang": "fr",
+      "automate": false,
+      "asset": "stories/priceback-evergreen-story-fr-03.png",
+      "sticker": "quiz",
+      "note": "Quiz sticker: « La politique » / « Savoir quand » — bonne réponse : savoir quand. A quiz outperforms a poll here because there is a right answer and it is the product's whole thesis."
+    },
+    {
+      "id": "d04-story-poll-result",
+      "date": "2026-09-10",
+      "time": "12:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "asset": null,
+      "sticker": "none",
+      "note": "CONTENT YOU MAKE ON THE DAY: screenshot day 1's poll result and post it — \"X% of you bin them.\" No asset ships for this on purpose; the number has to be real."
+    },
+    {
+      "id": "d05-post-03",
+      "date": "2026-09-11",
+      "time": "18:30",
+      "kind": "feed",
+      "lang": "en",
+      "automate": true,
+      "asset": "posts/priceback-evergreen-post-en-03.png",
+      "hook": "personal-indictment",
+      "ask": "comment",
+      "tags": ["#pricematch", "#moneytipscanada"],
+      "caption": "The policy isn't hidden. It's on the wall, on the website, in the terms.\n\nNobody uses it anyway.\n\nNot because people don't care about money — because using it means re-checking every item you bought, every day, until the window closes. By hand. For a difference you can't know is there until you look.\n\nThat isn't laziness. That's a job nobody has time for.\n\nIt is, however, a job software is good at.\n\nTag someone who'd absolutely go back for it if they knew."
+    },
+    {
+      "id": "d05-story-04",
+      "date": "2026-09-11",
+      "time": "12:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "asset": "stories/priceback-evergreen-story-en-04.png",
+      "sticker": "none",
+      "note": "The three-step frame. Runs the day the 'nobody checks' post goes out, so the objection and the answer land within hours of each other."
+    },
+    {
+      "id": "d06-story-05",
+      "date": "2026-09-12",
+      "time": "12:00",
+      "kind": "story",
+      "lang": "fr",
+      "automate": false,
+      "asset": "stories/priceback-evergreen-story-fr-05.png",
+      "sticker": "question",
+      "note": "Question sticker: « Nommez-en un ». Answers feed day 13's feed post — keep every reply, they are the raw material for the count you promise there."
+    },
+    {
+      "id": "d07-post-04",
+      "date": "2026-09-13",
+      "time": "18:30",
+      "kind": "feed",
+      "lang": "fr",
+      "automate": true,
+      "asset": "posts/priceback-evergreen-post-fr-04.png",
+      "hook": "effort-collapse",
+      "ask": "save",
+      "tags": ["#trucsdeconso", "#economiser"],
+      "caption": "Le produit au complet, en trois étapes :\n\n1. Scannez le reçu. Une photo, une seule fois.\n2. On revérifie les prix qui s'y trouvent.\n3. Si l'un baisse, vous êtes averti — et l'application vous guide pour réclamer l'écart en magasin.\n\nC'est tout. Il n'y a pas de quatrième étape, et il n'y a rien à retenir.\n\nEnregistrez ceci — vous y reviendrez à votre prochaine vraie dépense."
+    },
+    {
+      "id": "d07-reel-a",
+      "date": "2026-09-13",
+      "time": "19:30",
+      "kind": "reel",
+      "lang": "en",
+      "automate": false,
+      "asset": null,
+      "note": "Reel A — script in reels/REEL-SCRIPTS.md. Shoot on a phone: a real receipt, a real thumb. Add in-app audio at post time; picking Instagram's own audio helps reach more than a voice-over does, and every message is on screen so it works muted."
+    },
+    {
+      "id": "d08-story-06",
+      "date": "2026-09-14",
+      "time": "12:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "asset": "stories/priceback-evergreen-story-en-06.png",
+      "sticker": "none",
+      "note": "The alert frame. Sets up day 11's feed post, which is the same idea at full size."
+    },
+    {
+      "id": "d09-post-05",
+      "date": "2026-09-15",
+      "time": "18:30",
+      "kind": "feed",
+      "lang": "en",
+      "automate": true,
+      "asset": "posts/priceback-evergreen-post-en-05.png",
+      "hook": "reversal",
+      "ask": "send",
+      "tags": ["#priceadjustment", "#dealscanada"],
+      "caption": "Worth being blunt about: no store sends you money because a price changed.\n\nA price adjustment is something you claim. The policy is real and the money is real, and it sits there unclaimed because the person who paid never finds out the price moved.\n\nThat's the whole gap. Not the asking — the knowing.\n\nSend this to someone who just made a big purchase."
+    },
+    {
+      "id": "d10-story-07",
+      "date": "2026-09-16",
+      "time": "12:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "asset": "stories/priceback-evergreen-story-en-07.png",
+      "sticker": "slider",
+      "note": "Emoji slider, \"Never … every week\". A slider is the lowest-friction interaction Instagram has — it costs one drag and still counts as engagement."
+    },
+    {
+      "id": "d11-post-06",
+      "date": "2026-09-17",
+      "time": "18:30",
+      "kind": "feed",
+      "lang": "fr",
+      "automate": true,
+      "asset": "posts/priceback-evergreen-post-fr-06.png",
+      "hook": "curiosity-gap",
+      "ask": "save",
+      "tags": ["#consommateurquebec", "#economiser"],
+      "caption": "Voilà à quoi ressemble une alerte.\n\nUne ligne sur un reçu que vous aviez déjà oublié, revérifiée, et maintenant moins chère que ce que vous avez payé. L'application vous dit quel article, quel magasin, et ce que la politique du magasin prévoit pour le réclamer.\n\nLes montants sont masqués volontairement : les vôtres dépendent de ce que vous avez acheté et de l'endroit, et on préfère ne rien afficher plutôt qu'un montant qui ne serait pas le vôtre. La forme, elle, est toujours celle-là.\n\nEnregistrez-le. Puis allez retrouver votre dernier gros reçu."
+    },
+    {
+      "id": "d11-story-08",
+      "date": "2026-09-17",
+      "time": "12:00",
+      "kind": "story",
+      "lang": "fr",
+      "automate": false,
+      "asset": "stories/priceback-evergreen-story-fr-08.png",
+      "sticker": "none",
+      "note": "Sets up tomorrow's store-list post."
+    },
+    {
+      "id": "d12-post-07",
+      "date": "2026-09-18",
+      "time": "18:30",
+      "kind": "feed",
+      "lang": "en",
+      "automate": true,
+      "asset": "posts/priceback-evergreen-post-en-07.png",
+      "hook": "open-loop",
+      "ask": "follow",
+      "tags": ["#dealscanada", "#shoppingtips"],
+      "caption": "Every retailer writes its own price-adjustment rules. Different conditions, different paperwork, a different counter to walk up to. That's why this gets built one store at a time instead of all at once.\n\nTwo are live. The rest are queued, and the queue moves.\n\nIf your store isn't on the list yet — it's on the list.\n\nNew stores get announced here first. Follow, and you'll find out the day yours goes live.",
+      "note": "THE FOLLOW POST — the fortnight's primary follow ask, and the only one that spends a whole caption earning it: the payoff is dated and following is the only way to receive it. Day 14 closes with a softer restatement; nothing in between asks at all, because an ask repeated on every post stops being an ask."
+    },
+    {
+      "id": "d12-story-09",
+      "date": "2026-09-18",
+      "time": "12:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "asset": "stories/priceback-evergreen-story-en-09.png",
+      "sticker": "link",
+      "note": "Link sticker to the landing page. The only link in the fortnight — a story that always links stops being read."
+    },
+    {
+      "id": "d13-post-08",
+      "date": "2026-09-19",
+      "time": "18:30",
+      "kind": "feed",
+      "lang": "fr",
+      "automate": true,
+      "asset": "posts/priceback-evergreen-post-fr-08.png",
+      "hook": "participation",
+      "ask": "comment",
+      "tags": ["#bonsplansquebec", "#consommateurquebec"],
+      "caption": "Vraie question, et la réponse change ce qui sera construit ensuite.\n\nQuel magasin aimeriez-vous pouvoir scanner ?\n\nNommez-le en commentaire. On les lit tous, et celui qui revient le plus souvent passe en tête de file.\n\n(On publiera le décompte quand il sera fait.)",
+      "note": "Saturday on purpose: comment rate is highest on weekends, and this post is worth nothing without comments. The parenthetical is the open loop — the count only reaches people who follow."
+    },
+    {
+      "id": "d14-post-09",
+      "date": "2026-09-20",
+      "time": "18:30",
+      "kind": "feed",
+      "lang": "en",
+      "automate": true,
+      "asset": "posts/priceback-evergreen-post-en-09.png",
+      "hook": "recurrence",
+      "ask": "follow",
+      "tags": ["#priceadjustment", "#canadiandeals"],
+      "caption": "If you take one thing from this page:\n\nKeep the receipt.\n\nThe price you paid isn't final at a lot of Canadian stores. If it drops afterwards, the difference can be claimed — but only by someone who still has proof of what they paid, and only by someone who finds out in time.\n\nScan it once. We watch the prices. You claim the difference.\n\nNew stores land here first.",
+      "note": "Published LAST so it sits top-left of the grid, which is the first thing a profile visitor reads. It is the only frame in the pack that states the whole proposition in one line."
+    },
+    {
+      "id": "d14-story-10",
+      "date": "2026-09-20",
+      "time": "12:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "asset": "stories/priceback-evergreen-story-en-10.png",
+      "sticker": "reminder",
+      "note": "Reminder sticker for the next store announcement, if one is dated. Otherwise post it plain."
+    },
+    {
+      "id": "d14-reel-b",
+      "date": "2026-09-20",
+      "time": "19:30",
+      "kind": "reel",
+      "lang": "fr",
+      "automate": false,
+      "asset": null,
+      "note": "Reel B — script in reels/REEL-SCRIPTS.md, French cut. Separate post, separate audience, separate reach pool."
+    }
+  ]
+}

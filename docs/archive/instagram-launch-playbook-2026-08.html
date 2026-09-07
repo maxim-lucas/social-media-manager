@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PriceBack Launch Playbook</title>
+<!--
+  ARCHIVED — this is the launch playbook as published to claude.ai artifact
+  e9375fa1-99a1-4f30-9165-d9d0d93ae90f in August 2026, saved here so the
+  guidance survives the artifact. Its page content is unchanged; only the
+  artifact host's runtime wrapper has been stripped and a real <head> added.
+
+  It is SUPERSEDED for day-to-day use by ../instagram-playbook.md, which
+  generalises it away from a single retailer and a single claim window. Read
+  this one for the ranking-signal and profile-setup material, which is still
+  accurate and is not repeated there.
+-->
+<style>body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style>
+</head>
+<body>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+
+<style>
+/* ============================================================
+   PriceBack — Instagram launch playbook
+   Palette pulled from the app itself: warehouse green, thermal
+   receipt paper, the mint the app uses for a confirmed saving,
+   and the amber it uses for earned credits.
+   ============================================================ */
+:root{
+  --ground:#F2F6F2;
+  --paper:#FCFCF8;
+  --surface:#FFFFFF;
+  --line:#D4E0D8;
+  --line-soft:#E4EDE7;
+  --ink:#0C2C20;
+  --ink-2:#3F5B4E;
+  --ink-3:#71887C;
+  --accent:#0E8F5C;
+  --accent-deep:#0A6B45;
+  --mint:#1FBE7C;
+  --amber:#A9701A;
+  --amber-bg:#FBF1DF;
+  --shadow:0 1px 2px rgba(12,44,32,.05), 0 12px 28px -18px rgba(12,44,32,.35);
+  --radius:14px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#07201A;
+    --paper:#12291F;
+    --surface:#0D2A20;
+    --line:#1E4536;
+    --line-soft:#173A2C;
+    --ink:#E2EFE7;
+    --ink-2:#A6C0B2;
+    --ink-3:#7A9587;
+    --accent:#3ED694;
+    --accent-deep:#7DEBBB;
+    --mint:#3ED694;
+    --amber:#E2A94F;
+    --amber-bg:#2A2011;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 14px 30px -18px rgba(0,0,0,.7);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#07201A;
+  --paper:#12291F;
+  --surface:#0D2A20;
+  --line:#1E4536;
+  --line-soft:#173A2C;
+  --ink:#E2EFE7;
+  --ink-2:#A6C0B2;
+  --ink-3:#7A9587;
+  --accent:#3ED694;
+  --accent-deep:#7DEBBB;
+  --mint:#3ED694;
+  --amber:#E2A94F;
+  --amber-bg:#2A2011;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 14px 30px -18px rgba(0,0,0,.7);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Instrument Sans",ui-sans-serif,system-ui,sans-serif;
+  font-size:16.5px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:820px;margin:0 auto;padding:0 24px 120px}
+
+/* ---------- masthead ---------- */
+header.mast{
+  padding:56px 0 34px;
+  border-bottom:1px solid var(--line);
+  display:flex;flex-wrap:wrap;align-items:flex-end;gap:20px 28px;
+}
+.mast h1{
+  font-family:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  font-weight:800;font-size:clamp(34px,6vw,52px);line-height:1.02;
+  letter-spacing:-.028em;margin:0;text-wrap:balance;flex:1 1 320px;
+}
+.mast h1 em{font-style:normal;color:var(--accent)}
+.mast .meta{
+  font-family:"DM Mono",ui-monospace,monospace;font-size:12px;
+  text-transform:uppercase;letter-spacing:.09em;color:var(--ink-3);
+  text-align:right;flex:0 0 auto;line-height:1.9;
+}
+.standfirst{
+  margin:26px 0 0;font-size:18.5px;color:var(--ink-2);max-width:64ch;
+}
+.standfirst strong{color:var(--ink);font-weight:600}
+
+/* ---------- section rhythm ---------- */
+section{padding-top:54px}
+h2{
+  font-family:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  font-weight:700;font-size:26px;letter-spacing:-.018em;
+  margin:0 0 6px;text-wrap:balance;
+}
+h2 .num{
+  font-family:"DM Mono",ui-monospace,monospace;font-size:13px;font-weight:500;
+  color:var(--accent);letter-spacing:.06em;display:block;margin-bottom:9px;
+  text-transform:uppercase;
+}
+h3{
+  font-family:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  font-weight:700;font-size:17.5px;letter-spacing:-.01em;margin:32px 0 8px;
+}
+p{margin:0 0 14px;max-width:66ch}
+a{color:var(--accent-deep);text-decoration-thickness:1px;text-underline-offset:2px}
+strong{font-weight:600}
+ul,ol{margin:0 0 16px;padding-left:20px;max-width:66ch}
+li{margin-bottom:7px}
+li::marker{color:var(--ink-3)}
+hr.rule{border:0;border-top:1px solid var(--line);margin:0}
+
+/* ---------- receipt slip: copy-paste blocks ---------- */
+.slip{
+  position:relative;background:var(--paper);border:1px solid var(--line);
+  border-bottom:none;border-radius:6px 6px 0 0;padding:18px 20px 20px;
+  margin:14px 0 26px;box-shadow:var(--shadow);
+  font-family:"DM Mono",ui-monospace,monospace;font-size:13.5px;line-height:1.72;
+  color:var(--ink);
+}
+.slip .txt{white-space:pre-wrap}
+.slip::after{
+  content:"";position:absolute;left:-1px;right:-1px;bottom:-11px;height:12px;
+  background:var(--paper);
+  clip-path:polygon(0 0,100% 0,100% 12%,96% 100%,92% 12%,88% 100%,84% 12%,80% 100%,
+    76% 12%,72% 100%,68% 12%,64% 100%,60% 12%,56% 100%,52% 12%,48% 100%,44% 12%,
+    40% 100%,36% 12%,32% 100%,28% 12%,24% 100%,20% 12%,16% 100%,12% 12%,8% 100%,
+    4% 12%,0 100%);
+  filter:drop-shadow(0 1px 0 var(--line));
+}
+.slip .lb{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  font-size:10.5px;text-transform:uppercase;letter-spacing:.11em;
+  color:var(--ink-3);margin-bottom:12px;padding-bottom:9px;
+  border-bottom:1px dashed var(--line);
+}
+.copy{
+  font-family:"DM Mono",ui-monospace,monospace;font-size:10.5px;
+  text-transform:uppercase;letter-spacing:.09em;
+  background:none;border:1px solid var(--line);color:var(--ink-2);
+  border-radius:999px;padding:3px 11px;cursor:pointer;flex:0 0 auto;
+  transition:background .15s,color .15s,border-color .15s;
+}
+.copy:hover,.copy:focus-visible{background:var(--accent);border-color:var(--accent);color:#fff}
+:root[data-theme="dark"] .copy:hover,:root[data-theme="dark"] .copy:focus-visible{color:#06231A}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .copy:hover,
+  :root:not([data-theme="light"]) .copy:focus-visible{color:#06231A}
+}
+.copy.done{background:var(--mint);border-color:var(--mint);color:#06231A}
+.slip .cnt{font-size:11px;color:var(--ink-3);letter-spacing:.04em}
+
+/* ---------- language switch ---------- */
+.langbar{
+  position:sticky;top:0;z-index:20;background:var(--ground);
+  padding:10px 0;margin:0 0 -6px;border-bottom:1px solid var(--line-soft);
+  display:flex;gap:8px;align-items:center;
+}
+.langbar .lbl{
+  font-family:"DM Mono",ui-monospace,monospace;font-size:10.5px;
+  text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-right:4px;
+}
+.langbtn{
+  font-family:"DM Mono",ui-monospace,monospace;font-size:11.5px;letter-spacing:.06em;
+  border:1px solid var(--line);background:var(--surface);color:var(--ink-2);
+  border-radius:999px;padding:5px 15px;cursor:pointer;transition:all .15s;
+}
+.langbtn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+:root[data-theme="dark"] .langbtn[aria-pressed="true"]{color:#06231A}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .langbtn[aria-pressed="true"]{color:#06231A}
+}
+body[data-lang="en"] [data-when="fr"],
+body[data-lang="fr"] [data-when="en"]{display:none}
+
+/* ---------- callout ---------- */
+.note{
+  border-left:3px solid var(--accent);background:var(--surface);
+  border-radius:0 var(--radius) var(--radius) 0;
+  padding:16px 20px;margin:20px 0;box-shadow:var(--shadow);
+}
+.note.warn{border-left-color:var(--amber);background:var(--amber-bg)}
+.note p:last-child{margin-bottom:0}
+.note .h{
+  font-family:"DM Mono",ui-monospace,monospace;font-size:10.5px;
+  text-transform:uppercase;letter-spacing:.11em;color:var(--ink-3);
+  display:block;margin-bottom:7px;
+}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;margin:16px 0 26px;border:1px solid var(--line);
+  border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:14.5px}
+th,td{padding:11px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line-soft)}
+tbody tr:last-child td{border-bottom:none}
+th{
+  font-family:"DM Mono",ui-monospace,monospace;font-weight:500;font-size:10.5px;
+  text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);
+  background:var(--ground);border-bottom:1px solid var(--line);white-space:nowrap;
+}
+td.d{font-family:"DM Mono",ui-monospace,monospace;font-size:12.5px;
+  color:var(--ink-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.tag{
+  display:inline-block;font-family:"DM Mono",ui-monospace,monospace;font-size:11.5px;
+  background:var(--ground);border:1px solid var(--line);border-radius:999px;
+  padding:1px 9px;margin:2px 3px 2px 0;color:var(--ink-2);
+}
+.tag.core{background:var(--accent);border-color:var(--accent);color:#fff}
+:root[data-theme="dark"] .tag.core{color:#06231A}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .tag.core{color:#06231A}
+}
+
+/* ---------- signal ranking ---------- */
+.signals{list-style:none;padding:0;margin:16px 0 24px;max-width:none}
+.signals li{
+  display:grid;grid-template-columns:auto 1fr;gap:0 16px;align-items:baseline;
+  padding:13px 0;border-bottom:1px solid var(--line-soft);margin:0;
+}
+.signals li:last-child{border-bottom:none}
+.signals .r{
+  font-family:"Bricolage Grotesque",ui-sans-serif,sans-serif;font-weight:800;
+  font-size:22px;color:var(--accent);font-variant-numeric:tabular-nums;
+  min-width:1.4em;
+}
+.signals .t{font-weight:600}
+.signals .s{grid-column:2;color:var(--ink-2);font-size:15px}
+
+/* ---------- footer ---------- */
+footer{
+  margin-top:70px;padding-top:24px;border-top:1px solid var(--line);
+  font-family:"DM Mono",ui-monospace,monospace;font-size:11.5px;
+  color:var(--ink-3);line-height:1.9;
+}
+footer a{color:var(--ink-3)}
+
+@media (max-width:560px){
+  body{font-size:16px}
+  .wrap{padding:0 18px 90px}
+  .mast{padding-top:38px}
+  .mast .meta{text-align:left}
+  .slip{font-size:12.5px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <h1>Getting PriceBack <em>seen</em> on Instagram</h1>
+  <div class="meta">Launch playbook<br>Canada · EN + FR<br>Aug 2026</div>
+</header>
+
+<p class="standfirst">Everything below assumes the assets you now have: two 59-second Reels, two 12-slide carousels, and 24 story frames. <strong>The single thing that decides how far any of it travels is how many people send it to someone else.</strong> Every recommendation here is downstream of that.</p>
+
+<div class="langbar">
+  <span class="lbl">Copy blocks</span>
+  <button class="langbtn" id="lang-en" aria-pressed="true">English</button>
+  <button class="langbtn" id="lang-fr" aria-pressed="false">Français</button>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<section id="signals">
+  <h2><span class="num">What reach is actually made of</span>The five things Instagram counts</h2>
+  <p>Adam Mosseri has been unusually direct about this in 2026. In rough order of weight for a Reel:</p>
+
+  <ul class="signals">
+    <li><span class="r">1</span><span class="t">Sends</span>
+      <span class="s">One person forwarding your Reel in a DM is worth far more than a like. Instagram reads it as "this was worth interrupting a friend for." This is the metric to design posts around.</span></li>
+    <li><span class="r">2</span><span class="t">Watch time &amp; completion</span>
+      <span class="s">Explore and the Reels tab weight the probability someone watches 95%+ of the video. A 59-second Reel that holds 30 seconds beats a 15-second one that holds 6.</span></li>
+    <li><span class="r">3</span><span class="t">Saves</span>
+      <span class="s">Strong on carousels specifically — a how-to people intend to come back to. Your 12-slide tutorial is built for this.</span></li>
+    <li><span class="r">4</span><span class="t">Likes and comments</span>
+      <span class="s">Still counted, but the weakest of the four. A comment you reply to is worth more than one you don't.</span></li>
+    <li><span class="r">5</span><span class="t">Originality</span>
+      <span class="s">Content that looks recycled from another platform gets down-ranked. Never upload a version with a TikTok watermark — export clean from the source file every time.</span></li>
+  </ul>
+
+  <div class="note">
+    <span class="h">The uncomfortable part</span>
+    <p>Hashtags are not on this list. In July 2026 Mosseri said plainly that hashtags "work, but they've never been a good way to actually increase your reach" — they help "ever so slightly on the margins." Use a few because they classify your post and feed search. Do not build a strategy on them. There's a set further down; it takes ten seconds to apply and then you stop thinking about it.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<section id="profile">
+  <h2><span class="num">Do this before you post anything</span>Set the profile up so it converts</h2>
+  <p>The profile is the conversion step. Someone watches the Reel, taps your name, and decides in about three seconds whether to install. Right now that page has to answer one question: <em>what does this do for me and is it free?</em></p>
+
+  <h3>Account type and settings</h3>
+  <ul>
+    <li><strong>Professional → Business</strong>, not Creator. Business gives you the contact button, Meta Business Suite scheduling, and eligibility to run ads on the same posts later.</li>
+    <li><strong>Public.</strong> A private account is invisible to recommendations.</li>
+    <li>Settings → <strong>"Similar account suggestions" ON.</strong> This puts you in the suggested-accounts rail after someone follows a comparable account. It's free distribution and it's off by default for some accounts.</li>
+    <li>Sharing → allow <strong>Remixes</strong> and <strong>sharing to Stories</strong>. Every barrier you leave up is a send you don't get.</li>
+    <li>Turn on <strong>auto-generated captions</strong> for Reels. A large share of viewers watch muted — and yours is currently silent in French anyway.</li>
+  </ul>
+
+  <h3>The Name field is the one that gets searched</h3>
+  <p>Instagram's in-app search indexes your <strong>username</strong> and the <strong>Name</strong> field far more strongly than the bio. The Name field is 30 characters and most brands waste it by repeating the handle. Put a keyword in it.</p>
+
+  <div class="slip" data-when="en">
+    <div class="lb"><span>Name field · 30 char limit</span><button class="copy">Copy</button></div><div class="txt">PriceBack · Price Drop Refunds</div></div>
+  <div class="slip" data-when="fr">
+    <div class="lb"><span>Champ Nom · 30 caractères max</span><button class="copy">Copier</button></div><div class="txt">PriceBack · Remboursement prix</div></div>
+
+  <p>Handle: keep it identical across Instagram, TikTok and Facebook so a mention on one platform finds you on the others. <span class="tag">@pricebackapp</span> or <span class="tag">@priceback.ca</span> if the first is taken.</p>
+
+  <h3>Bio</h3>
+  <p>150 characters. Lead with the problem in the customer's words, not the product category. "Price adjustment tracking app" means nothing to someone who has never heard the phrase.</p>
+
+  <div class="slip" data-when="en">
+    <div class="lb"><span>Bio · 137 characters</span><button class="copy">Copy</button></div><div class="txt">Bought it at Costco, then the price dropped? Claim the difference.
+Scan your receipt → we watch 30 days → you get paid back.
+Free · Canada</div></div>
+  <div class="slip" data-when="fr">
+    <div class="lb"><span>Bio · 146 caractères</span><button class="copy">Copier</button></div><div class="txt">Le prix baisse après votre achat chez Costco ? Réclamez la différence.
+Scannez votre reçu → on surveille 30 jours → vous êtes remboursé.
+Gratuit · Canada</div></div>
+
+  <h3>Links, category, highlights</h3>
+  <ul>
+    <li>Instagram allows up to <strong>five links</strong>. Use three: App Store, Google Play, and your site. Label them clearly — "Download for iPhone", "Download for Android", "How it works". This beats a link-in-bio service, which adds a tap and loses people.</li>
+    <li>Category: <strong>Shopping &amp; Retail</strong>. Add the email contact button.</li>
+    <li>Four Story highlights, in this order, using your 9:16 frames as covers: <span class="tag">How it works</span> <span class="tag">Real claims</span> <span class="tag">Stores</span> <span class="tag">FAQ</span></li>
+  </ul>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<section id="reel">
+  <h2><span class="num">Publishing the Reel</span>The checklist that matters</h2>
+  <ul>
+    <li><strong>Cover frame:</strong> use the receipt shot around 0:05 — the one where the total reads $3,340.71. A number on the cover earns the tap.</li>
+    <li><strong>Your first three seconds are doing the work.</strong> The film opens on the receipt printing and the total landing, which is the right instinct. If a Reel underperforms twice, re-cut the first three seconds before you change anything else.</li>
+    <li><strong>Length:</strong> 59.4 s is in the right band. Keep future cuts under 90 seconds.</li>
+    <li><strong>Audio:</strong> the English cut has the voice-over. For the French cut, either wait for the regenerated VO or add a trending audio track inside Instagram at post time — picking in-app audio helps reach more than a voice-over does, and the on-screen text carries the whole story regardless.</li>
+    <li><strong>Never post an export that carries another platform's watermark.</strong> Upload the source file to each platform separately.</li>
+    <li><strong>Post it to Feed as well as Reels</strong> (the toggle in the sharing screen). Two surfaces, one upload.</li>
+  </ul>
+
+  <div class="note warn">
+    <span class="h">Trial Reels — not yet</span>
+    <p>Trial Reels show a video to non-followers only for 72 hours before you decide whether to publish it to followers. It's the best testing tool Instagram has ever shipped, and it needs a public professional account with <strong>1,000+ followers</strong>. Put it on the list for when you cross that line — then use it to test hooks against the same body of the video.</p>
+  </div>
+
+  <h3>Reel caption</h3>
+  <p>The last line is the most important one in the whole post. It asks for the send.</p>
+
+  <div class="slip" data-when="en">
+    <div class="lb"><span>Reel caption · English</span><button class="copy">Copy</button></div><div class="txt">Costco has a 30-day price adjustment policy. Almost nobody uses it — because almost nobody checks.
+
+PriceBack reads your receipt once, watches every item on it for the full 30 days, and tells you the moment one drops. Then it walks you through claiming the difference at the counter.
+
+The TV in this video: $2,799.99 → $2,399.99. That's $400 back for a two-minute conversation at the membership desk.
+
+Free on iPhone and Android. Costco now — Best Buy, Home Depot and Rona coming.
+
+Send this to whoever you know who just bought a TV.</div></div>
+
+  <div class="slip" data-when="fr">
+    <div class="lb"><span>Légende du Reel · Français</span><button class="copy">Copier</button></div><div class="txt">Costco applique une politique d'ajustement de prix de 30 jours. Presque personne ne s'en sert — parce que presque personne ne vérifie.
+
+PriceBack lit votre reçu une seule fois, surveille chaque article pendant les 30 jours, et vous avertit dès qu'un prix baisse. Ensuite, l'app vous guide pour réclamer la différence au comptoir.
+
+La télé dans cette vidéo : 2 799,99 $ → 2 399,99 $. Soit 400 $ récupérés pour deux minutes au comptoir des membres.
+
+Gratuit sur iPhone et Android. Costco maintenant — Best Buy, Home Depot et Rona bientôt.
+
+Envoyez ça à quelqu'un qui vient d'acheter une télé.</div></div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<section id="carousel">
+  <h2><span class="num">Publishing the carousel</span>Built to be saved</h2>
+  <p>Use the <strong>4:5 set</strong> (1080×1350) — it's the tallest ratio the feed allows, so it occupies the most screen. The 9:16 set is for Stories and standalone posts. Instagram allows up to 20 slides; twelve is the right length for a tutorial.</p>
+  <p>A carousel earns reach differently from a Reel: every slide someone swipes to is dwell time, and a genuinely useful sequence gets <em>saved</em>. Slide 12 is your call to action, so people who swipe all the way land on the download card.</p>
+
+  <div class="slip" data-when="en">
+    <div class="lb"><span>Carousel caption · English</span><button class="copy">Copy</button></div><div class="txt">How to get money back when a price drops after you've already paid — in 12 steps. →
+
+1–2. You just spent $3,340.71 at Costco. Some of those prices will move inside the 30-day adjustment window.
+3–5. Scan the receipt once. PriceBack reads all 11 line items, then you confirm the purchase date — that's what sets your window.
+6–8. From there it re-checks every price, every day. The TV drops $400 and you get an alert the same day.
+9–10. Show the claim screen at the membership desk. Or spot a lower shelf price yourself, scan the tag, earn credits.
+11–12. Receipts, tracking, alerts and claims in one free app.
+
+Save this for the next big purchase you make.</div></div>
+
+  <div class="slip" data-when="fr">
+    <div class="lb"><span>Légende du carrousel · Français</span><button class="copy">Copier</button></div><div class="txt">Comment récupérer de l'argent quand un prix baisse après votre achat — en 12 étapes. →
+
+1–2. Vous venez de payer 3 340,71 $ chez Costco. Certains de ces prix vont bouger dans la fenêtre de 30 jours.
+3–5. Scannez le reçu une seule fois. PriceBack lit les 11 articles, puis vous confirmez la date d'achat — c'est elle qui fixe votre fenêtre.
+6–8. Ensuite, l'app revérifie chaque prix, chaque jour. La télé baisse de 400 $ et vous recevez l'alerte le jour même.
+9–10. Présentez l'écran de réclamation au comptoir des membres. Ou repérez vous-même un prix plus bas, scannez l'étiquette, gagnez des crédits.
+11–12. Reçus, suivi, alertes et réclamations dans une seule app gratuite.
+
+Enregistrez ce carrousel pour votre prochain gros achat.</div></div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<section id="tags">
+  <h2><span class="num">Hashtags</span>Three to five, then stop</h2>
+  <p>Two constants on every post so your own content is linked together, plus two or three rotated to match the post. Before you commit to any of the rotating tags, search it in-app once and check it isn't so large that a small account is invisible in it — mid-size and local tags are better for you right now than the biggest ones.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Slot</th><th>English posts</th><th>French posts</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="d">Always</td>
+          <td><span class="tag core">#PriceBack</span> <span class="tag core">#costcocanada</span></td>
+          <td><span class="tag core">#PriceBack</span> <span class="tag core">#costcoquebec</span></td>
+        </tr>
+        <tr>
+          <td class="d">Rotate 2–3</td>
+          <td><span class="tag">#priceadjustment</span> <span class="tag">#pricematch</span> <span class="tag">#canadiandeals</span> <span class="tag">#dealscanada</span> <span class="tag">#savingmoneycanada</span></td>
+          <td><span class="tag">#aubaines</span> <span class="tag">#economiser</span> <span class="tag">#consommateurquebec</span> <span class="tag">#bonsplansquebec</span></td>
+        </tr>
+        <tr>
+          <td class="d">Local swap</td>
+          <td colspan="2">Swap one rotating tag for the city when a post names a specific warehouse.<br>
+            <span class="tag">#ottawa</span> <span class="tag">#torontodeals</span> <span class="tag">#vancouverdeals</span> <span class="tag">#calgary</span> <span class="tag">#montreal</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Put them in the caption, not the first comment. The difference in reach is nil, and in the caption they contribute to search.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<section id="calendar">
+  <h2><span class="num">First four weeks</span>A schedule you can actually keep</h2>
+  <p>The assets you have cover roughly three weeks. The pattern is deliberate: never two big posts on consecutive days, because you want to be present in the comments for the full day after each one.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Day</th><th>Post</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td class="d">Day 0</td><td>Profile setup — name, bio, links, highlights</td><td>Nothing you post converts until this exists</td></tr>
+        <tr><td class="d">Day 1</td><td><strong>Reel (EN)</strong> — Feed + Reels</td><td>Your strongest asset goes first, while the account is newest and the algorithm is still forming a picture of it</td></tr>
+        <tr><td class="d">Day 2</td><td>5 Story frames from the 9:16 EN set + a poll: "Did you know Costco refunds price drops?"</td><td>Story engagement drops off past 5 slides in one sitting. The poll is a cheap interaction signal</td></tr>
+        <tr><td class="d">Day 3</td><td><strong>Carousel (EN)</strong>, 12 slides</td><td>Different surface, different signal — this one is chasing saves</td></tr>
+        <tr><td class="d">Day 4</td><td>Nothing. Reply to every comment on days 1 and 3</td><td>Replies inside the first 24h are the cheapest engagement you will ever buy</td></tr>
+        <tr><td class="d">Day 5</td><td><strong>Reel (FR)</strong></td><td>Separate post, separate audience, separate reach pool</td></tr>
+        <tr><td class="d">Day 6</td><td>5 Story frames from the FR set</td><td></td></tr>
+        <tr><td class="d">Day 8</td><td><strong>Carousel (FR)</strong></td><td></td></tr>
+        <tr><td class="d">Day 10</td><td>Single post: slide 9 (the $406 claim screen) with a caption about one real claim</td><td>Proof beats explanation. If you have a real user claim by then, use theirs</td></tr>
+        <tr><td class="d">Day 12</td><td>Reel re-cut: first 15 seconds only, new hook</td><td>Tests whether the hook or the length is the constraint</td></tr>
+        <tr><td class="d">Week 3+</td><td>Steady state: 3 Reels + 1 carousel per week, Stories most days</td><td>Consistency is a ranking input; volume without it is not</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>Timing:</strong> post when your own audience is on, which Insights will tell you once you have a few hundred followers. Until then, weekday early evening Eastern (6–8 pm) is the reasonable default for a Canadian consumer app — and consistency of time matters more than the specific hour.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<section id="bilingual">
+  <h2><span class="num">One account or two</span>Bilingual, and Quebec specifically</h2>
+  <p><strong>Start with one account.</strong> Splitting a new account in two halves your follower count, your engagement rate and your posting cadence on both — and engagement rate is what the recommendation system reads. Post English and French as separate posts on the same account, each with a single-language caption. Don't stack both languages in one caption; it doubles the length and halves the read rate.</p>
+  <p>Split into <span class="tag">@priceback</span> and <span class="tag">@priceback.qc</span> once one language reliably outperforms the other and you have enough volume to feed both. That's a good problem, not a launch problem.</p>
+  <div class="note">
+    <span class="h">Worth knowing</span>
+    <p>Quebec engagement with French content runs dramatically higher than with English, and Quebec's Charter of the French Language sets expectations for commercial communication in the province. Genuinely localised French — which is what you have, right down to <span class="tag">2 799,99 $</span> rather than <span class="tag">$2,799.99</span> — is doing real work here. Worth having a Quebec-based reader check the copy before you scale spend.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<section id="measure">
+  <h2><span class="num">Reading the numbers</span>What to look at, what to ignore</h2>
+  <p>Instagram Insights will give you a dozen metrics. Four of them tell you something you can act on:</p>
+  <ul>
+    <li><strong>Sends per view.</strong> The one to optimise. Compare each post to your own median rather than to a published benchmark — the absolute number matters far less than the trend across your posts.</li>
+    <li><strong>Views from non-followers.</strong> This is the recommendation system deciding whether to push you. A post that's 80% followers didn't get picked up; a post that's 80% non-followers did.</li>
+    <li><strong>Average watch time.</strong> Where in the video people leave. If there's a cliff, it's almost always in the first five seconds.</li>
+    <li><strong>Profile visits → link taps.</strong> Your actual funnel. If Reels get views but nobody taps through, the problem is the profile, not the video.</li>
+  </ul>
+  <p>Ignore follower count for the first month. It's the slowest-moving number on the page and it will make you change things that were working.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<section id="cautions">
+  <h2><span class="num">Two things to get right</span>Before you put money behind it</h2>
+  <div class="note warn">
+    <span class="h">Using the Costco name</span>
+    <p>Naming Costco to describe what the app does is ordinary descriptive use, and the film already avoids their logo, their wordmark styling, and any implied endorsement — the TV is deliberately unbranded for the same reason. Keep it that way: no Costco logo, no styling that reads as an official Costco product, no language suggesting a partnership. Paid Meta ads get reviewed against a stricter bar than organic posts, so have someone qualified look at the ad creative before you spend.</p>
+  </div>
+  <div class="note warn">
+    <span class="h">Don't promise the refund</span>
+    <p>The policy has conditions — the item has to be in stock at the lower price, inside the window. The film states this in the fine print on the claim frame, and the captions above say "claim" rather than "get". Keep that discipline in every caption. One screenshot of an over-promise is worse than a hundred posts of accurate ones.</p>
+  </div>
+</section>
+
+<footer>
+  PriceBack launch playbook · built alongside the film and carousel assets<br>
+  Ranking-signal and hashtag guidance current as of August 2026 — Instagram changes this often enough that it's worth re-checking each quarter.
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var body = document.body;
+  body.setAttribute('data-lang','en');
+  var en = document.getElementById('lang-en'), fr = document.getElementById('lang-fr');
+  function setLang(l){
+    body.setAttribute('data-lang', l);
+    en.setAttribute('aria-pressed', String(l === 'en'));
+    fr.setAttribute('aria-pressed', String(l === 'fr'));
+    try { localStorage.setItem('pb-lang', l); } catch (e) {}
+  }
+  en.addEventListener('click', function(){ setLang('en'); });
+  fr.addEventListener('click', function(){ setLang('fr'); });
+  try { var s = localStorage.getItem('pb-lang'); if (s === 'fr') setLang('fr'); } catch (e) {}
+
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var text = btn.closest('.slip').querySelector('.txt').textContent.trim();
+      var done = function(){
+        var old = btn.textContent;
+        btn.textContent = old === 'Copier' ? 'Copié' : 'Copied';
+        btn.classList.add('done');
+        setTimeout(function(){ btn.textContent = old; btn.classList.remove('done'); }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function(){ fallback(text, done); });
+      } else { fallback(text, done); }
+    });
+  });
+  function fallback(text, cb){
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); cb(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+})();
+</script>
+
+</body></html>
+</body>
+</html>
