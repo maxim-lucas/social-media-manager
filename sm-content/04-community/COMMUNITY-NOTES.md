@@ -1,6 +1,6 @@
 # The community pack — what it is and how to change it
 
-Built 2026-09-07. **50 assets**: 14 feed posts × 2 languages, 5 story frames × 2
+Built 2026-09-07. **72 assets**: 14 feed posts × 2 languages, 16 story frames × 2
 languages, 2 bilingual notice frames, 2 carousel dividers, 8 Highlight covers.
 Rendered deterministically from SVG scenes — a copy change is a re-render, not a
 rebuild.
@@ -17,9 +17,9 @@ something**.
 
 ---
 
-## The five things it says
+## What it says
 
-Five waves, numbered in the order they go out, each in its own folder:
+Six waves, numbered in the order they go out, each in its own folder:
 
 | Folder | The argument |
 | --- | --- |
@@ -29,9 +29,17 @@ Five waves, numbered in the order they go out, each in its own folder:
 | `03-stores-growing/` | Costco was the start, not the point. The list only grows, and it grows here first. |
 | `04-crowd-power/` | One receipt is a story; a thousand is data. More of us means fewer people find out too late. |
 | `05-earn-credits/` | Helping the list pays — and it pays on *confirmation*, not on submission. |
+| `07-highlight-frames/` | The eleven frames that live **inside** the Highlights: Tips, Feedback, Support, FAQ. |
 
 `06-highlight-covers/` is not in the sequence. Those are uploaded once, from a
 phone, and never posted. Read [`HIGHLIGHTS.md`](HIGHLIGHTS.md).
+
+`07-highlight-frames/` **is** posted — a Highlight can only hold a story that
+went out — but it is not part of the argument. It is furniture: the eleven
+frames that make four of the eight trays worth opening. Without it the covers
+are labels on empty drawers, which is the most common way a Highlight tray dies.
+They go out in a four-day burst after the run ends, grouped by tray, so each one
+can be added to its Highlight the same day it is live.
 
 ---
 
@@ -161,7 +169,7 @@ Three things are new:
 ## Changing it
 
 ```bash
-node sm-content/04-community/scenes/render.js            # all 50 assets (~90s)
+node sm-content/04-community/scenes/render.js            # all 72 assets (~2 min)
 node sm-content/04-community/scenes/verify.js            # nine gates - must exit 0
 node scripts/publish-due.js --pack=04-community --check  # the schedule
 node scripts/publish-due.js --pack=04-community --print  # the run as an agenda
@@ -237,6 +245,25 @@ string, which is the whole reason that rule exists: *a disclaimer someone has to
 remember is a disclaimer that eventually is not there.* Typing one by hand looks
 like extra care and is actually the first step toward the version that gets
 forgotten. The gate caught a discipline drift, not a false positive.
+
+**Step text drawn at a size nobody computed.** The steps were set at a flat
+29 px while every other block in the system is fitted to its column — and the
+French *"Lumière égale, aucune ombre dessus"*, three words longer than its
+English original, ran 52 px under the story's right action rail. Nothing in the
+copy was wrong; the layout simply had no idea how wide the words were. Step text
+is monospaced, so its width is arithmetic rather than a measurement, which makes
+assuming one especially hard to defend. Now computed, in both the post and story
+scenes.
+
+**Operator instructions on the art, twice.** Frame 11's sub-line read *"Replace
+this frame every time something somebody asked for lands in a release"* — a note
+to whoever runs the account, rendered at 34 px onto a public story. It was caught
+by the copy gate, but only incidentally: it tripped the `every time` rule, not an
+"is this addressed to a reader" rule, because no such rule can exist. The same
+draft also put `TRAY: TIPS` in eleven kickers. The lesson is a filing one — a
+field that exists for the operator (`note`, `tray`, `stickerCopy`) has to be
+*used*, because the moment production metadata is convenient to type into a copy
+field, it will be.
 
 **A maple leaf built from straight lines is a star.** Two polygonal versions were
 drawn and thrown away. What makes the silhouette read as a leaf is the *curve

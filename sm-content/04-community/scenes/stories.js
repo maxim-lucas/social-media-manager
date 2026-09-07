@@ -39,6 +39,7 @@ const {
   finePrint,
   seamChevrons,
   r2,
+  ADV,
 } = require("./surface");
 const { hookBlock, subBlock, fitSize, rowsBlock, circleMark, checkRow } = require("./layout");
 
@@ -79,6 +80,14 @@ function stripContent(t, s) {
   const bodyTop = s.y + 150;
 
   if (t.scene === "steps") {
+    // Step text is monospaced, so its width is arithmetic rather than a
+    // measurement - and it has to be computed, not assumed. The first version
+    // set 29px flat and a three-word-longer French step ran 52px under the
+    // story's right action rail. Nothing in the copy was wrong; the layout
+    // simply had no idea how wide the words were.
+    const avail = w - 78 - 12;
+    const longest = Math.max(...t.steps.map((s) => s.length));
+    const stepSize = Math.max(20, Math.min(29, Math.floor(avail / (longest * ADV))));
     t.steps.forEach((label, i) => {
       const y = bodyTop + i * 104;
       out.push(
@@ -94,7 +103,7 @@ function stripContent(t, s) {
           fill: C.emeraldDeep,
           anchor: "middle",
         }),
-        text(label, { x: x + 78, y, size: 29, op: FADE.print })
+        text(label, { x: x + 78, y, size: stepSize, op: FADE.print })
       );
       if (i < t.steps.length - 1) out.push(rule({ x: x + 78, y: y + 44, w: w - 78, op: FADE.faint }));
     });

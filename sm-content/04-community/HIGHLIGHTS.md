@@ -91,14 +91,26 @@ as the feed carousels, so the account has one rule and the reader learns it once
 
 | # | File | Icon | English title | Titre français | What goes in it |
 | --- | --- | --- | --- | --- | --- |
-| 1 | `…-cover-1-how-it-works.png` | falling price arrow | **How it works** | **Ça marche** | Story 06 (the three steps), evergreen story 04, any explainer |
-| 2 | `…-cover-2-stores.png` | storefront with an awning | **Stores** | **Magasins** | Story 04 (the ticked list). Re-shoot it the day store three ships |
-| 3 | `…-cover-3-faq.png` | ? in a circle | **FAQ** | **FAQ** | Screenshots of answered question stickers, one per frame |
-| 4 | `…-cover-4-tips.png` | bulb | **Tips** | **Astuces** | Keep the receipt, check before you rebuy, what a shelf tag scan is |
-| 5 | `…-cover-5-feedback.png` | speech bubble, tail on the left | **Feedback** | **Vos idées** | What people asked for, and what shipped because of it |
-| 6 | `…-cover-6-about.png` | the PriceBack mark | **About** | **À propos** | Story 03 (made here), who builds it, what it will not do |
-| 7 | `…-cover-7-support.png` | life ring | **Support** | **Aide** | How to reach a person, what to send, the reference-code frames |
+| 1 | `…-cover-1-how-it-works.png` | falling price arrow | **How it works** | **Ça marche** | Story **06** (the three steps), plus any evergreen explainer |
+| 2 | `…-cover-2-stores.png` | storefront with an awning | **Stores** | **Magasins** | Story **04** (the ticked list). Re-shoot it the day store three ships |
+| 3 | `…-cover-3-faq.png` | ? in a circle | **FAQ** | **FAQ** | Stories **15 · 16 · 17** — does it cost anything, what if the store says no, do you see my email |
+| 4 | `…-cover-4-tips.png` | bulb | **Tips** | **Astuces** | Stories **07 · 08 · 09** — keep the receipt, scan the tag, keep watching a big purchase |
+| 5 | `…-cover-5-feedback.png` | speech bubble, tail on the left | **Feedback** | **Vos idées** | Stories **10 · 11** — the ask, and the receipt for the ask |
+| 6 | `…-cover-6-about.png` | the PriceBack mark | **About** | **À propos** | Story **03** (made here), who builds it, what it will not do |
+| 7 | `…-cover-7-support.png` | life ring | **Support** | **Aide** | Stories **12 · 13 · 14** — there is a person, send the code, a bad scan is a bad photo |
 | 8 | `…-cover-8-francais.png` | **FR** | **Français** | **Français** | The French half of everything, for someone who wants only that |
+
+Frames **07–17** live in `07-highlight-frames/`, in both languages, and go out in
+a four-day burst after the run ends — `schedule.json` groups them by tray so each
+can be added to its Highlight the same day it is live. **A cover with nothing
+behind it is a label on an empty drawer**, and that is the most common way a
+Highlight tray dies: eight beautiful circles, four of which open onto one stale
+frame.
+
+Frame **11** ("You asked. It shipped.") is meant to be **replaced**, not
+archived. Each time something somebody requested lands in a release, re-render it
+naming the change. It is the receipt for frame 10's ask, and an ask with no
+visible answer is worse than never asking.
 
 Two notes on icons that were harder than they look:
 

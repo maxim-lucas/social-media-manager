@@ -85,6 +85,12 @@
       "dir": "05-earn-credits",
       "en": "Helping pays",
       "fr": "Aider rapporte"
+    },
+    {
+      "n": "07",
+      "dir": "07-highlight-frames",
+      "en": "The frames that live inside the Highlights",
+      "fr": "Les images qui vivent dans les Highlights"
     }
   ],
   "coversDir": "06-highlight-covers",
@@ -729,6 +735,190 @@
           "Others confirm the same price",
           "Credits land in your balance"
         ]
+      },
+      {
+        "seq": "07",
+        "wave": "07-highlight-frames",
+        "scene": "statement",
+        "sticker": "none",
+        "tray": "Tips",
+        "kicker": "A SMALL THING",
+        "hook": [
+          "KEEP THE",
+          "RECEIPT."
+        ],
+        "sub": [
+          "Almost every price-adjustment policy in the country needs it.",
+          "A clear photo of it counts."
+        ]
+      },
+      {
+        "seq": "08",
+        "wave": "07-highlight-frames",
+        "scene": "statement",
+        "sticker": "none",
+        "tray": "Tips",
+        "kicker": "WORTH KNOWING",
+        "hook": [
+          "SCAN THE TAG,",
+          "NOT JUST",
+          "THE RECEIPT."
+        ],
+        "sub": [
+          "A shelf tag is a price change seen early — and once other",
+          "shoppers confirm it, scanning one earns credits."
+        ]
+      },
+      {
+        "seq": "09",
+        "wave": "07-highlight-frames",
+        "scene": "statement",
+        "sticker": "poll",
+        "tray": "Tips",
+        "kicker": "IF YOU BUY BIG",
+        "hook": [
+          "BIG PURCHASE?",
+          "KEEP WATCHING IT."
+        ],
+        "sub": [
+          "Electronics and seasonal goods move most after you buy.",
+          "Those are the ones worth leaving in the app."
+        ],
+        "stickerCopy": "Poll: I check / I forget instantly"
+      },
+      {
+        "seq": "10",
+        "wave": "07-highlight-frames",
+        "scene": "statement",
+        "sticker": "question",
+        "tray": "Feedback",
+        "kicker": "YOUR IDEAS",
+        "hook": [
+          "TELL US WHAT",
+          "THE APP",
+          "GOT WRONG."
+        ],
+        "sub": [
+          "The person who can change it reads every message.",
+          "That is the whole advantage of being this small."
+        ],
+        "stickerCopy": "Question sticker: What should the app do that it doesn't?"
+      },
+      {
+        "seq": "11",
+        "wave": "07-highlight-frames",
+        "scene": "statement",
+        "sticker": "none",
+        "tray": "Feedback",
+        "kicker": "WHAT YOU ASKED FOR",
+        "hook": [
+          "YOU ASKED.",
+          "IT SHIPPED."
+        ],
+        "sub": [
+          "Every change on this list started as somebody's message.",
+          "Yours is how the next one starts."
+        ],
+        "note": "Operator: replace this frame each time a requested change ships, naming the change. It is the receipt for frame 10's ask, and an unanswered ask is worse than never asking."
+      },
+      {
+        "seq": "12",
+        "wave": "07-highlight-frames",
+        "scene": "statement",
+        "sticker": "none",
+        "tray": "Support",
+        "kicker": "STUCK?",
+        "hook": [
+          "THERE IS A PERSON",
+          "AT THE OTHER END."
+        ],
+        "sub": [
+          "Write from inside the app, or to support@priceback.ca.",
+          "No queue, no bot, no script."
+        ]
+      },
+      {
+        "seq": "13",
+        "wave": "07-highlight-frames",
+        "scene": "statement",
+        "sticker": "none",
+        "tray": "Support",
+        "kicker": "WHAT TO SEND US",
+        "hook": [
+          "SEND THE CODE,",
+          "NOT THE",
+          "SCREENSHOT."
+        ],
+        "sub": [
+          "Errors end in a reference like GMAIL-403. That code says in",
+          "one second what a screenshot cannot say at all."
+        ]
+      },
+      {
+        "seq": "14",
+        "wave": "07-highlight-frames",
+        "scene": "steps",
+        "sticker": "none",
+        "tray": "Support",
+        "kicker": "SCAN FAILING?",
+        "hook": [
+          "A BAD SCAN",
+          "IS USUALLY",
+          "A BAD PHOTO."
+        ],
+        "steps": [
+          "Lay the receipt flat, no curl",
+          "Even light, no shadow across it",
+          "Whole receipt in frame, edges included"
+        ]
+      },
+      {
+        "seq": "15",
+        "wave": "07-highlight-frames",
+        "scene": "statement",
+        "sticker": "none",
+        "tray": "FAQ",
+        "kicker": "ASKED A LOT",
+        "hook": [
+          "DOES IT COST",
+          "ANYTHING?"
+        ],
+        "sub": [
+          "Free to download. Scanning spends credits — you start with",
+          "some, contributing earns more, and packs top them up."
+        ]
+      },
+      {
+        "seq": "16",
+        "wave": "07-highlight-frames",
+        "scene": "statement",
+        "sticker": "none",
+        "tray": "FAQ",
+        "kicker": "THE HONEST ANSWER",
+        "hook": [
+          "WHAT IF THE",
+          "STORE SAYS NO?"
+        ],
+        "sub": [
+          "Then it says no. Every retailer sets its own terms and we do",
+          "not control the decision. We make sure you can ask in time."
+        ]
+      },
+      {
+        "seq": "17",
+        "wave": "07-highlight-frames",
+        "scene": "statement",
+        "sticker": "none",
+        "tray": "FAQ",
+        "kicker": "ABOUT YOUR INBOX",
+        "hook": [
+          "DO YOU SEE",
+          "MY EMAIL?"
+        ],
+        "sub": [
+          "No. Email sync runs on your phone, and receipt data from your",
+          "inbox never leaves the device. There is a test that proves it."
+        ]
       }
     ]
   },
@@ -1223,6 +1413,190 @@
           "Vous numérisez une étiquette",
           "D'autres confirment le même prix",
           "Les crédits arrivent au solde"
+        ]
+      },
+      {
+        "seq": "07",
+        "wave": "07-highlight-frames",
+        "scene": "statement",
+        "sticker": "none",
+        "tray": "Astuces",
+        "kicker": "UNE PETITE CHOSE",
+        "hook": [
+          "GARDEZ",
+          "LE REÇU."
+        ],
+        "sub": [
+          "Presque toutes les politiques d'ajustement au pays l'exigent.",
+          "Une photo nette compte."
+        ]
+      },
+      {
+        "seq": "08",
+        "wave": "07-highlight-frames",
+        "scene": "statement",
+        "sticker": "none",
+        "tray": "Astuces",
+        "kicker": "BON À SAVOIR",
+        "hook": [
+          "NUMÉRISEZ L'ÉTIQUETTE,",
+          "PAS SEULEMENT",
+          "LE REÇU."
+        ],
+        "sub": [
+          "Une étiquette, c'est un changement de prix vu tôt — et une fois",
+          "confirmée par d'autres, elle rapporte des crédits."
+        ]
+      },
+      {
+        "seq": "09",
+        "wave": "07-highlight-frames",
+        "scene": "statement",
+        "sticker": "poll",
+        "tray": "Astuces",
+        "kicker": "SI VOUS ACHETEZ GROS",
+        "hook": [
+          "GROS ACHAT?",
+          "CONTINUEZ À LE SUIVRE."
+        ],
+        "sub": [
+          "L'électronique et le saisonnier bougent le plus après l'achat.",
+          "Ce sont ceux à laisser dans l'app."
+        ],
+        "stickerCopy": "Sondage : Je vérifie / J'oublie aussitôt"
+      },
+      {
+        "seq": "10",
+        "wave": "07-highlight-frames",
+        "scene": "statement",
+        "sticker": "question",
+        "tray": "Vos idées",
+        "kicker": "VOS IDÉES",
+        "hook": [
+          "DITES-NOUS CE QUE",
+          "L'APP A",
+          "MAL FAIT."
+        ],
+        "sub": [
+          "La personne qui peut la changer lit chaque message.",
+          "C'est tout l'avantage d'être aussi petit."
+        ],
+        "stickerCopy": "Sticker question : que devrait faire l'app et qu'elle ne fait pas?"
+      },
+      {
+        "seq": "11",
+        "wave": "07-highlight-frames",
+        "scene": "statement",
+        "sticker": "none",
+        "tray": "Vos idées",
+        "kicker": "CE QUE VOUS AVEZ DEMANDÉ",
+        "hook": [
+          "VOUS L'AVEZ DEMANDÉ.",
+          "C'EST LIVRÉ."
+        ],
+        "sub": [
+          "Chaque changement de cette liste a commencé par un message.",
+          "Le vôtre, c'est comme ça que le prochain commence."
+        ],
+        "note": "Opérateur : remplacez cette image chaque fois qu'une demande est livrée, en nommant le changement."
+      },
+      {
+        "seq": "12",
+        "wave": "07-highlight-frames",
+        "scene": "statement",
+        "sticker": "none",
+        "tray": "Aide",
+        "kicker": "BLOQUÉ?",
+        "hook": [
+          "IL Y A UNE PERSONNE",
+          "À L'AUTRE BOUT."
+        ],
+        "sub": [
+          "Écrivez depuis l'app, ou à support@priceback.ca.",
+          "Pas de file, pas de robot, pas de script."
+        ]
+      },
+      {
+        "seq": "13",
+        "wave": "07-highlight-frames",
+        "scene": "statement",
+        "sticker": "none",
+        "tray": "Aide",
+        "kicker": "QUOI NOUS ENVOYER",
+        "hook": [
+          "ENVOYEZ LE CODE,",
+          "PAS LA",
+          "CAPTURE D'ÉCRAN."
+        ],
+        "sub": [
+          "Les erreurs finissent par une référence comme GMAIL-403. Ce code",
+          "dit en une seconde ce qu'une capture ne dit pas du tout."
+        ]
+      },
+      {
+        "seq": "14",
+        "wave": "07-highlight-frames",
+        "scene": "steps",
+        "sticker": "none",
+        "tray": "Aide",
+        "kicker": "LE SCAN ÉCHOUE?",
+        "hook": [
+          "UN MAUVAIS SCAN,",
+          "C'EST SOUVENT",
+          "UNE MAUVAISE PHOTO."
+        ],
+        "steps": [
+          "Reçu à plat, sans pli",
+          "Lumière égale, aucune ombre dessus",
+          "Reçu entier dans le cadre, bords inclus"
+        ]
+      },
+      {
+        "seq": "15",
+        "wave": "07-highlight-frames",
+        "scene": "statement",
+        "sticker": "none",
+        "tray": "FAQ",
+        "kicker": "SOUVENT DEMANDÉ",
+        "hook": [
+          "EST-CE QUE",
+          "ÇA COÛTE QUELQUE CHOSE?"
+        ],
+        "sub": [
+          "Gratuit à télécharger. Numériser dépense des crédits — vous en",
+          "recevez au départ, contribuer en donne, des packs en ajoutent."
+        ]
+      },
+      {
+        "seq": "16",
+        "wave": "07-highlight-frames",
+        "scene": "statement",
+        "sticker": "none",
+        "tray": "FAQ",
+        "kicker": "LA RÉPONSE HONNÊTE",
+        "hook": [
+          "ET SI LE MAGASIN",
+          "DIT NON?"
+        ],
+        "sub": [
+          "Alors il dit non. Chaque détaillant fixe ses conditions et on ne",
+          "décide pas à sa place. On fait en sorte que vous puissiez demander."
+        ]
+      },
+      {
+        "seq": "17",
+        "wave": "07-highlight-frames",
+        "scene": "statement",
+        "sticker": "none",
+        "tray": "FAQ",
+        "kicker": "À PROPOS DE VOS COURRIELS",
+        "hook": [
+          "VOYEZ-VOUS",
+          "MES COURRIELS?"
+        ],
+        "sub": [
+          "Non. La synchro courriel tourne sur votre téléphone et les données",
+          "de reçus ne quittent jamais l'appareil. Un test le prouve."
         ]
       }
     ]

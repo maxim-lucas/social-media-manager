@@ -1,4 +1,4 @@
-# The run — 20 days, 15 feed posts, 11 story frames
+# The run — 24 days, 15 feed posts, 33 story frames
 
 `schedule.json` is the source of truth for **what and when**. This file is the
 reasoning, so the schedule does not have to carry it in comments.
@@ -8,7 +8,7 @@ node scripts/publish-due.js --pack=04-community --print   # the run as an agenda
 node scripts/publish-due.js --pack=04-community --check   # validate every slot
 ```
 
-**Mon 21 Sep → Mon 19 Oct 2026.** Starts the day after the evergreen fortnight
+**Mon 21 Sep → Fri 23 Oct 2026.** Starts the day after the evergreen fortnight
 ends, so the two packs never compete for the same evening.
 
 ---
@@ -37,6 +37,10 @@ ends, so the two packs never compete for the same evening.
 | Sat 17 Oct | 05 | Helping the list puts credits in your account. |
 | Sun 18 Oct | 05 | Three-step story, EN then FR → **How it works** Highlight |
 | Mon 19 Oct | 05 | Credits come when the price is confirmed. *(follow)* |
+| Tue 20 Oct | 07 | **Highlight build:** Tips — 3 frames, EN then FR |
+| Wed 21 Oct | 07 | **Highlight build:** Support — 3 frames, EN then FR |
+| Thu 22 Oct | 07 | **Highlight build:** FAQ — 3 frames, EN then FR |
+| Fri 23 Oct | 07 | **Highlight build:** Feedback — 2 frames, EN then FR |
 
 Feed at **18:30** America/Toronto, stories at **noon**. One feed post a day,
 never two — `--check` fails a day with two, because a second post on the same day
@@ -68,7 +72,7 @@ lands on post 09 and not on post 02.
 interesting to someone who already believes the thing works. Asked in week one it
 reads as a chore; asked in week four it reads as a discount.
 
-Three follow asks across twenty days. `--check` fails at more — past two or three
+Three follow asks across the whole run. `--check` fails at more — past two or three
 the ask stops meaning anything.
 
 ---
@@ -99,6 +103,20 @@ it means it.
 
 ---
 
+## The Highlight build week
+
+The last four days are not part of the argument — they are furniture. Eleven
+frames go out grouped by tray, three or two a day, English then French, at 11:00
+/ 12:00 / 13:00.
+
+**Add each one to its Highlight the same day.** A Highlight assembled later from
+expired stories is an archaeology exercise, and the whole point of doing it in a
+burst is that the tray is finished the week it is started. Covers without frames
+are labels on empty drawers.
+
+Frame 11 — *You asked. It shipped.* — is designed to be **replaced** rather than
+archived. Re-render it naming the change each time a requested feature lands.
+
 ## Stories
 
 Stories are **never** automated, in any pack. The Graph API can publish story
@@ -107,14 +125,13 @@ these frames the sticker *is* the content; the art deliberately leaves an empty
 band at `y 1210–1510` for it. An automated story would post a frame with a hole
 in it.
 
-Each story runs **English at 12:00, French at 12:05**, back to back, so the
-sequence reads in the same order as the carousels and the account has one rule
-instead of two.
+Run stories **English first, French immediately after** — 12:00 / 12:05 in the
+main run, 11:00 / 11:05 and so on during the build week. Same order as the
+carousels, so the account has one rule and the reader learns it once.
 
-Five of the eleven story frames are also **Highlight material** — the schedule
-notes say which tray each belongs in. Add them the same day, while the story is
-still live; a Highlight assembled from expired stories is an archaeology
-exercise.
+**All 16 story frames are Highlight material**, and the schedule note on each
+slot says which tray it belongs in. Add them the same day, while the story is
+still live.
 
 ---
 

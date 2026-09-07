@@ -41,6 +41,7 @@ const {
   seamChevrons,
   r2,
   monoWidth,
+  ADV,
 } = require("./surface");
 const { hookBlock, subBlock, fitSize, rowsBlock, circleMark, fallArrow, checkRow } = require("./layout");
 
@@ -129,6 +130,12 @@ function stripContent(t, s) {
   }
 
   if (t.accent === "steps") {
+    // Same arithmetic as the story scene, same reason: monospaced step text has
+    // a computable width, and assuming one is how a longer translation ends up
+    // past the margin. See stories.js for the frame that caught it.
+    const avail = w - 72 - 12;
+    const longest = Math.max(...t.steps.map((s) => s.length));
+    const stepSize = Math.max(20, Math.min(28, Math.floor(avail / (longest * ADV))));
     t.steps.forEach((label, i) => {
       const y = bodyTop + i * 96;
       out.push(
@@ -144,7 +151,7 @@ function stripContent(t, s) {
           fill: C.emeraldDeep,
           anchor: "middle",
         }),
-        text(label, { x: x + 72, y, size: 28, op: FADE.print })
+        text(label, { x: x + 72, y, size: stepSize, op: FADE.print })
       );
       if (i < t.steps.length - 1) out.push(rule({ x: x + 72, y: y + 40, w: w - 72, op: FADE.faint }));
     });
