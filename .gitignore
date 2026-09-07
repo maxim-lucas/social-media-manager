@@ -40,3 +40,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# render.js --svg dumps its SVG beside each PNG for debugging. Those are build
+# artefacts of a deterministic renderer, not assets — the PNGs are the output.
+sm-content/**/*.svg
