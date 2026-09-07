@@ -1,0 +1,534 @@
+{
+  "_readme": [
+    "Every word of the evergreen pack, in both languages. A copy change is a re-render:",
+    "edit here, run render.js, run verify.js. Never edit a PNG.",
+    "",
+    "Rules verify.js enforces on this file (gate 6):",
+    "  - no retailer is named, anywhere, in either language",
+    "  - no claim window is stated as a number of days",
+    "  - no dollar figure, no percentage, no 'guarantee' / 'garanti'",
+    "  - EN and FR carry identical ids, grid cells, scenes, accents and sticker plans",
+    "'__REDACTED__' in a row renders as an ink bar. That is compliance, not styling:",
+    "the pack never prints an amount it would have to stand behind.",
+    "",
+    "grid = the cell this post occupies in a 3x3 profile grid. Instagram fills the",
+    "grid newest-first, so grid 1 is top-left and is therefore the LAST post published.",
+    "The publish order is post 01 -> 09; the reading order on the profile is 09 -> 01."
+  ],
+
+  "meta": {
+    "pack": "evergreen",
+    "built": "2026-09-06",
+    "gridCols": 3
+  },
+
+  "en": {
+    "handle": "@priceback.ca",
+    "posts": [
+      {
+        "id": "01",
+        "grid": 9,
+        "layout": "band",
+        "accent": "circle",
+        "hookType": "impossible-instruction",
+        "kicker": "BEFORE YOU BIN IT",
+        "hook": ["DON'T THROW", "THAT OUT."],
+        "sub": [
+          "Plenty of Canadian retailers have a price-adjustment",
+          "policy. Almost every one of them needs the receipt."
+        ],
+        "rows": [
+          ["ITEM", "__REDACTED__"],
+          ["ITEM", "__REDACTED__"],
+          ["ITEM", "__REDACTED__"]
+        ],
+        "circleRow": 1
+      },
+      {
+        "id": "02",
+        "grid": 8,
+        "layout": "top",
+        "accent": "arrow",
+        "hookType": "loss-frame",
+        "kicker": "AFTER YOU PAID",
+        "hook": ["THE PRICE", "MOVED."],
+        "sub": [
+          "You paid one price. The shelf changed its mind.",
+          "That difference has a name — and it's yours to ask for."
+        ],
+        "rows": [
+          ["PAID", "__REDACTED__"],
+          ["NOW", "__REDACTED__"]
+        ]
+      },
+      {
+        "id": "03",
+        "grid": 7,
+        "layout": "bottom",
+        "accent": "circle",
+        "hookType": "personal-indictment",
+        "kicker": "WHY THE MONEY STAYS PUT",
+        "hook": ["NOBODY", "CHECKS."],
+        "sub": [
+          "The policy is public. Using it means re-pricing every",
+          "line, every day, by hand. So it mostly doesn't happen."
+        ],
+        "rows": [
+          ["ITEM", "__REDACTED__"],
+          ["ITEM", "__REDACTED__"],
+          ["ITEM", "__REDACTED__"],
+          ["ITEM", "__REDACTED__"]
+        ],
+        "circleRow": 2
+      },
+      {
+        "id": "04",
+        "grid": 6,
+        "layout": "top",
+        "accent": "steps",
+        "hookType": "effort-collapse",
+        "kicker": "THE WHOLE JOB",
+        "hook": ["SCAN IT", "ONCE."],
+        "sub": [
+          "One photo of the receipt. After that, the checking",
+          "stops being something you have to remember."
+        ],
+        "steps": ["SCAN THE RECEIPT", "WE WATCH THE PRICES", "YOU CLAIM THE DIFFERENCE"]
+      },
+      {
+        "id": "05",
+        "grid": 5,
+        "layout": "bottom",
+        "accent": "arrow",
+        "hookType": "reversal",
+        "kicker": "THE CATCH",
+        "hook": ["NOTHING", "COMES BACK", "ON ITS OWN."],
+        "sub": [
+          "A price adjustment is claimed, never delivered.",
+          "The hard part was never the asking. It's the knowing."
+        ],
+        "rows": [
+          ["PAID", "__REDACTED__"],
+          ["NOW", "__REDACTED__"]
+        ]
+      },
+      {
+        "id": "06",
+        "grid": 4,
+        "layout": "band",
+        "accent": "status",
+        "hookType": "curiosity-gap",
+        "kicker": "WHAT AN ALERT LOOKS LIKE",
+        "hook": ["ONE LINE", "JUST GOT", "CHEAPER."],
+        "sub": [
+          "Amounts hidden — yours depend on what you bought",
+          "and where. The shape is always this one."
+        ],
+        "rows": [
+          ["ITEM", "__REDACTED__"],
+          ["ITEM", "__REDACTED__"],
+          ["ITEM", "__REDACTED__"]
+        ],
+        "statusLabel": "CLAIMABLE",
+        "circleRow": 1
+      },
+      {
+        "id": "07",
+        "grid": 3,
+        "layout": "top",
+        "accent": "checks",
+        "hookType": "open-loop",
+        "kicker": "THE LIST KEEPS GROWING",
+        "hook": ["YOUR STORE", "IS ON", "THE LIST."],
+        "sub": [
+          "Some are live today. More are queued.",
+          "Follow and you'll see yours the day it lands."
+        ],
+        "checks": [
+          ["WAREHOUSE CLUB", "live"],
+          ["ELECTRONICS CHAIN", "live"],
+          ["HOME IMPROVEMENT", "queued"],
+          ["SPORTS RETAIL", "queued"],
+          ["PHARMACY", "queued"],
+          ["GROCERY", "queued"]
+        ]
+      },
+      {
+        "id": "08",
+        "grid": 2,
+        "layout": "bottom",
+        "accent": "ballot",
+        "hookType": "participation",
+        "kicker": "YOU PICK",
+        "hook": ["WHICH ONE", "NEXT?"],
+        "sub": [
+          "Name the store you'd scan first, in the comments.",
+          "The one said most often moves to the front."
+        ],
+        "ballot": ["1.", "2.", "3."]
+      },
+      {
+        "id": "09",
+        "grid": 1,
+        "layout": "band",
+        "accent": "glyph",
+        "hookType": "recurrence",
+        "kicker": "NEW STORES LAND HERE FIRST",
+        "hook": ["KEEP THE", "RECEIPT."],
+        "sub": [
+          "Scan it once. We watch the prices.",
+          "You claim the difference. That's the whole app."
+        ],
+        "rows": [["ITEM", "__REDACTED__"]]
+      }
+    ],
+
+    "stories": [
+      {
+        "id": "01",
+        "scene": "ask",
+        "kicker": "HONESTLY",
+        "hook": ["DO YOU KEEP", "YOUR RECEIPTS?"],
+        "sticker": "poll",
+        "stickerCopy": "Always / Straight in the bin"
+      },
+      {
+        "id": "02",
+        "scene": "statement",
+        "kicker": "THE BIT NOBODY USES",
+        "hook": ["A PRICE CAN", "DROP AFTER", "YOU PAY."],
+        "sub": ["Plenty of retailers will adjust it. You have to ask."],
+        "sticker": "none",
+        "stickerCopy": ""
+      },
+      {
+        "id": "03",
+        "scene": "ask",
+        "kicker": "QUICK ONE",
+        "hook": ["WHAT ACTUALLY", "STOPS PEOPLE", "CLAIMING?"],
+        "sticker": "quiz",
+        "stickerCopy": "The policy / Knowing when — answer: knowing when"
+      },
+      {
+        "id": "04",
+        "scene": "steps",
+        "kicker": "THE WHOLE JOB",
+        "hook": ["SCAN ONCE."],
+        "steps": ["SCAN THE RECEIPT", "WE WATCH THE PRICES", "YOU CLAIM THE DIFFERENCE"],
+        "sticker": "none",
+        "stickerCopy": ""
+      },
+      {
+        "id": "05",
+        "scene": "ask",
+        "kicker": "YOU DECIDE",
+        "hook": ["WHICH STORE", "SHOULD WE", "ADD NEXT?"],
+        "sticker": "question",
+        "stickerCopy": "Name one"
+      },
+      {
+        "id": "06",
+        "scene": "receipt",
+        "kicker": "WHAT AN ALERT LOOKS LIKE",
+        "hook": ["ONE LINE", "JUST GOT", "CHEAPER."],
+        "rows": [
+          ["ITEM", "__REDACTED__"],
+          ["ITEM", "__REDACTED__"],
+          ["ITEM", "__REDACTED__"]
+        ],
+        "circleRow": 1,
+        "sticker": "none",
+        "stickerCopy": ""
+      },
+      {
+        "id": "07",
+        "scene": "ask",
+        "kicker": "BE HONEST",
+        "hook": ["HOW OFTEN DO", "YOU RE-CHECK", "A PRICE?"],
+        "sticker": "slider",
+        "stickerCopy": "Never ... every week"
+      },
+      {
+        "id": "08",
+        "scene": "statement",
+        "kicker": "THE LIST",
+        "hook": ["TWO STORES", "LIVE.", "MORE QUEUED."],
+        "sub": ["The current list is in the app, and it changes."],
+        "sticker": "none",
+        "stickerCopy": ""
+      },
+      {
+        "id": "09",
+        "scene": "statement",
+        "kicker": "IF YOU WANT THE LIST",
+        "hook": ["IT'S ALL", "IN THE APP."],
+        "sub": ["Free to download. Canada."],
+        "sticker": "link",
+        "stickerCopy": "Link to the landing page"
+      },
+      {
+        "id": "10",
+        "scene": "mark",
+        "kicker": "SO YOU DON'T MISS IT",
+        "hook": ["NEW STORES", "LAND HERE", "FIRST."],
+        "sticker": "reminder",
+        "stickerCopy": "Follow / reminder sticker"
+      }
+    ]
+  },
+
+  "fr": {
+    "handle": "@priceback.ca",
+    "posts": [
+      {
+        "id": "01",
+        "grid": 9,
+        "layout": "band",
+        "accent": "circle",
+        "hookType": "impossible-instruction",
+        "kicker": "AVANT DE LE JETER",
+        "hook": ["NE JETEZ", "PAS ÇA."],
+        "sub": [
+          "Beaucoup de détaillants canadiens ont une politique",
+          "d'ajustement de prix. Presque toutes exigent le reçu."
+        ],
+        "rows": [
+          ["ARTICLE", "__REDACTED__"],
+          ["ARTICLE", "__REDACTED__"],
+          ["ARTICLE", "__REDACTED__"]
+        ],
+        "circleRow": 1
+      },
+      {
+        "id": "02",
+        "grid": 8,
+        "layout": "top",
+        "accent": "arrow",
+        "hookType": "loss-frame",
+        "kicker": "APRÈS AVOIR PAYÉ",
+        "hook": ["LE PRIX", "A BOUGÉ."],
+        "sub": [
+          "Vous avez payé un prix. La tablette a changé d'idée.",
+          "Cette différence porte un nom — et elle se réclame."
+        ],
+        "rows": [
+          ["PAYÉ", "__REDACTED__"],
+          ["MAINTENANT", "__REDACTED__"]
+        ]
+      },
+      {
+        "id": "03",
+        "grid": 7,
+        "layout": "bottom",
+        "accent": "circle",
+        "hookType": "personal-indictment",
+        "kicker": "POURQUOI L'ARGENT RESTE LÀ",
+        "hook": ["PERSONNE", "NE VÉRIFIE."],
+        "sub": [
+          "La politique est publique. S'en servir veut dire refaire",
+          "le prix de chaque ligne, chaque jour, à la main."
+        ],
+        "rows": [
+          ["ARTICLE", "__REDACTED__"],
+          ["ARTICLE", "__REDACTED__"],
+          ["ARTICLE", "__REDACTED__"],
+          ["ARTICLE", "__REDACTED__"]
+        ],
+        "circleRow": 2
+      },
+      {
+        "id": "04",
+        "grid": 6,
+        "layout": "top",
+        "accent": "steps",
+        "hookType": "effort-collapse",
+        "kicker": "TOUT LE TRAVAIL",
+        "hook": ["SCANNEZ-LE", "UNE FOIS."],
+        "sub": [
+          "Une photo du reçu. Ensuite, la vérification cesse",
+          "d'être quelque chose que vous devez retenir."
+        ],
+        "steps": ["SCANNEZ LE REÇU", "ON SUIT LES PRIX", "VOUS RÉCLAMEZ L'ÉCART"]
+      },
+      {
+        "id": "05",
+        "grid": 5,
+        "layout": "bottom",
+        "accent": "arrow",
+        "hookType": "reversal",
+        "kicker": "LE HIC",
+        "hook": ["RIEN NE", "REVIENT", "TOUT SEUL."],
+        "sub": [
+          "Un ajustement de prix se réclame, il ne s'envoie pas.",
+          "Le difficile n'a jamais été de demander. C'est de savoir."
+        ],
+        "rows": [
+          ["PAYÉ", "__REDACTED__"],
+          ["MAINTENANT", "__REDACTED__"]
+        ]
+      },
+      {
+        "id": "06",
+        "grid": 4,
+        "layout": "band",
+        "accent": "status",
+        "hookType": "curiosity-gap",
+        "kicker": "À QUOI RESSEMBLE UNE ALERTE",
+        "hook": ["UNE LIGNE", "VIENT DE", "BAISSER."],
+        "sub": [
+          "Montants masqués — les vôtres dépendent de l'achat",
+          "et du magasin. La forme, elle, est toujours celle-là."
+        ],
+        "rows": [
+          ["ARTICLE", "__REDACTED__"],
+          ["ARTICLE", "__REDACTED__"],
+          ["ARTICLE", "__REDACTED__"]
+        ],
+        "statusLabel": "RÉCLAMABLE",
+        "circleRow": 1
+      },
+      {
+        "id": "07",
+        "grid": 3,
+        "layout": "top",
+        "accent": "checks",
+        "hookType": "open-loop",
+        "kicker": "LA LISTE S'ALLONGE",
+        "hook": ["VOTRE MAGASIN", "EST SUR", "LA LISTE."],
+        "sub": [
+          "Certains sont actifs. D'autres s'en viennent.",
+          "Abonnez-vous : vous verrez le vôtre le jour venu."
+        ],
+        "checks": [
+          ["CLUB ENTREPÔT", "live"],
+          ["CHAÎNE ÉLECTRO", "live"],
+          ["RÉNOVATION", "queued"],
+          ["ARTICLES DE SPORT", "queued"],
+          ["PHARMACIE", "queued"],
+          ["ÉPICERIE", "queued"]
+        ]
+      },
+      {
+        "id": "08",
+        "grid": 2,
+        "layout": "bottom",
+        "accent": "ballot",
+        "hookType": "participation",
+        "kicker": "À VOUS DE CHOISIR",
+        "hook": ["LEQUEL", "ENSUITE ?"],
+        "sub": [
+          "Nommez en commentaire le magasin que vous scanneriez",
+          "en premier. Le plus nommé passe en tête de file."
+        ],
+        "ballot": ["1.", "2.", "3."]
+      },
+      {
+        "id": "09",
+        "grid": 1,
+        "layout": "band",
+        "accent": "glyph",
+        "hookType": "recurrence",
+        "kicker": "LES NOUVEAUX MAGASINS ARRIVENT ICI",
+        "hook": ["GARDEZ", "LE REÇU."],
+        "sub": [
+          "Scannez-le une fois. On suit les prix.",
+          "Vous réclamez l'écart. C'est toute l'application."
+        ],
+        "rows": [["ARTICLE", "__REDACTED__"]]
+      }
+    ],
+
+    "stories": [
+      {
+        "id": "01",
+        "scene": "ask",
+        "kicker": "FRANCHEMENT",
+        "hook": ["GARDEZ-VOUS", "VOS REÇUS ?"],
+        "sticker": "poll",
+        "stickerCopy": "Toujours / Direct à la poubelle"
+      },
+      {
+        "id": "02",
+        "scene": "statement",
+        "kicker": "CE QUE PERSONNE N'UTILISE",
+        "hook": ["UN PRIX PEUT", "BAISSER APRÈS", "L'ACHAT."],
+        "sub": ["Beaucoup de détaillants l'ajustent. Il faut le demander."],
+        "sticker": "none",
+        "stickerCopy": ""
+      },
+      {
+        "id": "03",
+        "scene": "ask",
+        "kicker": "UNE VITE FAITE",
+        "hook": ["QU'EST-CE QUI", "EMPÊCHE VRAIMENT", "DE RÉCLAMER ?"],
+        "sticker": "quiz",
+        "stickerCopy": "La politique / Savoir quand — réponse : savoir quand"
+      },
+      {
+        "id": "04",
+        "scene": "steps",
+        "kicker": "TOUT LE TRAVAIL",
+        "hook": ["SCANNEZ", "UNE FOIS."],
+        "steps": ["SCANNEZ LE REÇU", "ON SUIT LES PRIX", "VOUS RÉCLAMEZ L'ÉCART"],
+        "sticker": "none",
+        "stickerCopy": ""
+      },
+      {
+        "id": "05",
+        "scene": "ask",
+        "kicker": "VOUS DÉCIDEZ",
+        "hook": ["QUEL MAGASIN", "DEVRAIT-ON", "AJOUTER ?"],
+        "sticker": "question",
+        "stickerCopy": "Nommez-en un"
+      },
+      {
+        "id": "06",
+        "scene": "receipt",
+        "kicker": "À QUOI RESSEMBLE UNE ALERTE",
+        "hook": ["UNE LIGNE", "VIENT DE", "BAISSER."],
+        "rows": [
+          ["ARTICLE", "__REDACTED__"],
+          ["ARTICLE", "__REDACTED__"],
+          ["ARTICLE", "__REDACTED__"]
+        ],
+        "circleRow": 1,
+        "sticker": "none",
+        "stickerCopy": ""
+      },
+      {
+        "id": "07",
+        "scene": "ask",
+        "kicker": "SOYEZ HONNÊTE",
+        "hook": ["VOUS REVÉRIFIEZ", "UN PRIX", "SOUVENT ?"],
+        "sticker": "slider",
+        "stickerCopy": "Jamais ... chaque semaine"
+      },
+      {
+        "id": "08",
+        "scene": "statement",
+        "kicker": "LA LISTE",
+        "hook": ["DEUX MAGASINS", "ACTIFS.", "D'AUTRES EN FILE."],
+        "sub": ["La liste à jour est dans l'application, et elle bouge."],
+        "sticker": "none",
+        "stickerCopy": ""
+      },
+      {
+        "id": "09",
+        "scene": "statement",
+        "kicker": "SI VOUS VOULEZ LA LISTE",
+        "hook": ["TOUT EST DANS", "L'APPLICATION."],
+        "sub": ["Téléchargement gratuit. Canada."],
+        "sticker": "link",
+        "stickerCopy": "Lien vers la page d'accueil"
+      },
+      {
+        "id": "10",
+        "scene": "mark",
+        "kicker": "POUR NE RIEN MANQUER",
+        "hook": ["LES NOUVEAUX", "MAGASINS", "ARRIVENT ICI."],
+        "sticker": "reminder",
+        "stickerCopy": "Abonnement / rappel"
+      }
+    ]
+  }
+}
