@@ -13,14 +13,20 @@ name: Social content check
 # by whoever changes the copy. This job checks everything that is a fact about
 # the files rather than about the fonts, which is cheap, fast and cannot flake.
 #
-# ── Why the paths filter is the whole of sm-content ────────────────────────
+# ── Why the filter is all of sm-content, and why every pack is named ───────
 #
-# It used to be `sm-content/evergreen/**`, which was right when evergreen was
-# the only pack with a schedule. It stopped being right the moment a second one
-# landed, and it stopped LOUDLY SAYING SO: a PR touching only the community pack
-# matched no path, so this job did not run, and the pack's schedule, captions
-# and Reel scripts reached main having been checked by nobody. A green PR with
-# no checks on it looks exactly like a green PR with checks on it.
+# The filter used to be `sm-content/evergreen/**`, which was right while
+# evergreen was the only pack with a schedule and stopped being right when the
+# second one landed. A PR touching only the community pack matches none of the
+# old paths, and this job does not run at all.
+#
+# The sharper half was the step, not the filter. `publish-due.js --check` with
+# no --pack defaults to evergreen, so on the runs that DID fire — the community
+# pack's own PR among them, matched incidentally because its diff also touches
+# scripts/publish-due.js — this job validated 22 evergreen slots and went green
+# without ever looking at the 48 slots under review. A check that runs, passes
+# and never read the thing being changed is worse than one that is skipped: the
+# skip is at least visible on the PR.
 
 on:
   pull_request:
