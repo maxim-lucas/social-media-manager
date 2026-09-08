@@ -102,7 +102,7 @@ occupies the most screen.
 ```bash
 node sm-content/evergreen/scenes/render.js     # all 38 assets (~40s)
 node sm-content/evergreen/scenes/verify.js     # the six gates — must exit 0
-node scripts/check-copy.js                     # the claim gate, art + captions
+node scripts/check-copy.js                     # the claim gate: art + captions + Reels
 node scripts/publish-due.js --check            # the schedule
 ```
 

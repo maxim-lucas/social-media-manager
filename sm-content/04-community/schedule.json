@@ -1,0 +1,778 @@
+{
+  "_readme": [
+    "The community pack's run. This file is the SINGLE SOURCE OF TRUTH for what",
+    "goes out and when; CALENDAR.md explains the reasoning rather than repeating",
+    "the copy.",
+    "",
+    "  node scripts/publish-due.js --pack=04-community --print   read it as an agenda",
+    "  node scripts/publish-due.js --pack=04-community --check   validate every slot",
+    "",
+    "THE SHAPE OF A POST HERE IS A BILINGUAL CAROUSEL, and that is the pack's one",
+    "structural idea. Every feed slot is three slides: the English frame, the",
+    "divider that says LA SUITE EN FRANCAIS, the French frame. lang is 'bi'.",
+    "",
+    "The evergreen pack alternates languages instead - five English posts and four",
+    "French across a fortnight. That works for a rotation nobody is expected to",
+    "read end to end. It does not work for a launch, because a French follower",
+    "arriving on an English day sees an English account and leaves before the",
+    "French day arrives. A carousel puts the translation one swipe away instead of",
+    "two days away, and the divider is what tells them it is there.",
+    "",
+    "publish-due.js will NOT automate a carousel. The Graph API can do them (N",
+    "child containers, then a CAROUSEL parent) but this script does not implement",
+    "that flow, and a slot marked automate:true that silently never posts is worse",
+    "than one the operator knows is theirs. Every feed slot here is manual on",
+    "purpose; --print lists them as the day's work.",
+    "",
+    "The disclaimers below are appended to every published caption by the script,",
+    "never typed into the captions themselves - and a 'bi' slot gets BOTH, because",
+    "a French reader who swiped to the French half and found only an English",
+    "disclaimer has, for the purposes of LPC s.219, not been given one.",
+    "",
+    "Note what the disclaimer does NOT say: it does not state a claim window. Each",
+    "retailer sets its own and they differ, so this pack states none anywhere -",
+    "claims.js fails the build on one. The non-affiliation line is on the ART of",
+    "every frame that names a store, not only here."
+  ],
+  "timezone": "America/Toronto",
+  "account": "@priceback.ca",
+  "platform": "instagram",
+  "pack": "04-community",
+  "disclaimer": {
+    "en": "Free to download. Scan credits cover processing; our share of your savings is charged on successful claims only. Price-adjustment terms are set by each retailer and conditions apply. PriceBack is not affiliated with any retailer.",
+    "fr": "Téléchargement gratuit. Les crédits de numérisation couvrent le traitement; notre part de vos économies n'est facturée que sur les réclamations réussies. Les conditions d'ajustement de prix sont fixées par chaque détaillant. PriceBack n'est affilié à aucun détaillant."
+  },
+  "hashtags": {
+    "always": {
+      "en": [
+        "#PriceBack",
+        "#canadiandeals"
+      ],
+      "fr": [
+        "#PriceBack",
+        "#aubaines"
+      ]
+    },
+    "rotate": {
+      "en": [
+        "#madeincanada",
+        "#canadianmade",
+        "#supportcanadian",
+        "#inflationcanada",
+        "#groceryprices",
+        "#savingmoneycanada",
+        "#shoppingtips",
+        "#pricematch"
+      ],
+      "fr": [
+        "#faitauquebec",
+        "#achatlocal",
+        "#economiser",
+        "#inflation",
+        "#consommateurquebec",
+        "#bonsplansquebec",
+        "#trucsdeconso"
+      ]
+    }
+  },
+  "slots": [
+    {
+      "id": "d01-notice-post",
+      "date": "2026-09-21",
+      "time": "18:30",
+      "kind": "feed",
+      "lang": "bi",
+      "automate": false,
+      "asset": "00-language-notice/priceback-community-01-post.png",
+      "wave": "00-language-notice",
+      "ask": "follow",
+      "tags": [
+        "#faitauquebec",
+        "#madeincanada"
+      ],
+      "caption": "Le français ne sera jamais une traduction ajoutée après coup ici.\n\nChaque publication de ce compte existe dans les deux langues. Sur une carrousel, glissez : l'anglais ouvre, le séparateur annonce le français, la version française suit. Dans les Highlights, continuez à taper : ça finit toujours en français.\n\nSi vous voyez de l'anglais, la suite existe. Elle est à un glissement.\n\n— — —\n\nFrench is never an afterthought here.\n\nEvery post on this account exists in both languages. On a carousel: swipe. English opens, a divider announces the French, the French version follows. In a Highlight: keep tapping. It always ends in French.\n\nIf you are reading English, the rest exists. It is one swipe away."
+    },
+    {
+      "id": "d01-notice-story",
+      "date": "2026-09-21",
+      "time": "12:00",
+      "kind": "story",
+      "lang": "bi",
+      "automate": false,
+      "sticker": "none",
+      "asset": "00-language-notice/priceback-community-01-story.png",
+      "wave": "00-language-notice",
+      "note": "Pin this as the FIRST frame of every Highlight. It is the frame that makes the tray honest: a francophone who opens 'How it works' and sees English needs to know, in frame one, that French is coming."
+    },
+    {
+      "id": "d03-carousel-02",
+      "date": "2026-09-23",
+      "time": "18:30",
+      "kind": "carousel",
+      "lang": "bi",
+      "automate": false,
+      "wave": "01-together",
+      "assets": [
+        "01-together/priceback-community-02-post-en.png",
+        "00-language-notice/priceback-community-divider-to-fr.png",
+        "01-together/priceback-community-02-post-fr.png"
+      ],
+      "ask": "send",
+      "tags": [
+        "#inflationcanada",
+        "#groceryprices",
+        "#inflation"
+      ],
+      "caption": "Nobody is beating inflation alone.\n\nYou already know the feeling: the same cart, the same list, a bigger number at the bottom. None of us fixes that by shopping harder.\n\nHere is the part that is actually within reach. When a price drops after you have paid, a lot of Canadian retailers will adjust it — if you ask, if you can prove what you paid, and if you find out in time. Most people never find out. That is the only part we can change, and we can only change it together: the more of us watching, the more of us catch it.\n\nSend this to whoever you complain about prices with.\n\n— — —\n\nPersonne ne bat l'inflation tout seul.\n\nVous connaissez la sensation : même panier, même liste, un plus gros total. Aucun de nous ne règle ça en magasinant plus fort.\n\nVoici la partie qu'on peut vraiment atteindre. Quand un prix baisse après votre achat, beaucoup de détaillants canadiens vont l'ajuster — si vous le demandez, si vous pouvez prouver ce que vous avez payé, et si vous l'apprenez à temps. La plupart des gens ne l'apprennent jamais. C'est la seule partie qu'on peut changer, et on ne peut la changer qu'ensemble.\n\nEnvoyez ça à la personne avec qui vous vous plaignez des prix."
+    },
+    {
+      "id": "d03-story-02",
+      "date": "2026-09-24",
+      "time": "12:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "sticker": "poll",
+      "asset": "01-together/priceback-community-02-story-en.png",
+      "wave": "01-together",
+      "note": "Poll: 'Yes, it stings' / 'Never noticed'. The second option is the honest one for most people and it is the answer that makes the next story land."
+    },
+    {
+      "id": "d03-story-02-fr",
+      "date": "2026-09-24",
+      "time": "12:05",
+      "kind": "story",
+      "lang": "fr",
+      "automate": false,
+      "sticker": "poll",
+      "asset": "01-together/priceback-community-02-story-fr.png",
+      "wave": "01-together",
+      "note": "Same poll in French, posted immediately after the English frame so the sequence reads EN then FR, the same order as the feed."
+    },
+    {
+      "id": "d05-carousel-03",
+      "date": "2026-09-25",
+      "time": "18:30",
+      "kind": "carousel",
+      "lang": "bi",
+      "automate": false,
+      "wave": "01-together",
+      "assets": [
+        "01-together/priceback-community-03-post-en.png",
+        "00-language-notice/priceback-community-divider-to-fr.png",
+        "01-together/priceback-community-03-post-fr.png"
+      ],
+      "ask": "save",
+      "tags": [
+        "#shoppingtips",
+        "#trucsdeconso"
+      ],
+      "caption": "We cannot fix the prices. We can share them.\n\nThat is the whole idea, and it is deliberately unglamorous. Nobody in this app decides what a shelf says. What we decide is whether the rest of us hear about it when it moves.\n\nOne person notices. Everyone watching that product finds out. That is not a feature — it is arithmetic, and it only works at a certain number of people.\n\nSave this if you have ever found out about a price drop a week too late.\n\n— — —\n\nOn ne fixe pas les prix. On les partage.\n\nC'est toute l'idée, et elle est volontairement peu spectaculaire. Personne dans cette app ne décide de ce qu'affiche une étiquette. Ce qu'on décide, c'est si les autres l'apprennent quand elle bouge.\n\nUne personne le remarque. Tous ceux qui suivent ce produit l'apprennent. Ce n'est pas une fonctionnalité — c'est de l'arithmétique, et ça ne fonctionne qu'à partir d'un certain nombre de personnes.\n\nEnregistrez si vous avez déjà appris une baisse de prix une semaine trop tard."
+    },
+    {
+      "id": "d07-carousel-04",
+      "date": "2026-09-27",
+      "time": "18:30",
+      "kind": "carousel",
+      "lang": "bi",
+      "automate": false,
+      "wave": "01-together",
+      "assets": [
+        "01-together/priceback-community-04-post-en.png",
+        "00-language-notice/priceback-community-divider-to-fr.png",
+        "01-together/priceback-community-04-post-fr.png"
+      ],
+      "ask": "send",
+      "tags": [
+        "#savingmoneycanada",
+        "#economiser"
+      ],
+      "caption": "If one of us finds it, all of us save.\n\nThis is the mechanic in one line. A shopper notices a price that moved on something they bought. Everybody else watching that same product hears about it the same day — and every one of them gets the chance to ask, on their own receipt.\n\nOne person's five minutes becomes everybody's. That is the only reason a community is worth building here instead of just shipping an app.\n\nFollow if you want to be on the receiving end of that.\n\n— — —\n\nSi l'un de nous le trouve, tous économisent.\n\nVoici le mécanisme en une ligne. Une personne remarque qu'un prix a bougé sur un article qu'elle a acheté. Tous ceux qui suivent le même produit l'apprennent la journée même — et chacun a la chance de le demander, sur son propre reçu.\n\nLes cinq minutes d'une personne deviennent celles de tout le monde. C'est la seule raison pour laquelle ça vaut la peine de bâtir une communauté ici plutôt que de simplement livrer une app.\n\nAbonnez-vous si vous voulez être du bon côté de ça."
+    },
+    {
+      "id": "d09-carousel-05",
+      "date": "2026-09-29",
+      "time": "18:30",
+      "kind": "carousel",
+      "lang": "bi",
+      "automate": false,
+      "wave": "01-together",
+      "assets": [
+        "01-together/priceback-community-05-post-en.png",
+        "00-language-notice/priceback-community-divider-to-fr.png",
+        "01-together/priceback-community-05-post-fr.png"
+      ],
+      "ask": "comment",
+      "tags": [
+        "#groceryprices",
+        "#inflation",
+        "#consommateurquebec"
+      ],
+      "caption": "What went up the most in your cart?\n\nNot a rhetorical question. Coffee, diapers, olive oil, the thing you quietly stopped buying — put it in the comments.\n\nWe are building a list of what Canadians are actually watching, and it decides what gets tracked first. The list is more useful than any of us guessing at it.\n\n— — —\n\nQu'est-ce qui a le plus monté dans votre panier?\n\nCe n'est pas une question rhétorique. Le café, les couches, l'huile d'olive, la chose que vous avez arrêté d'acheter sans le dire — écrivez-le en commentaire.\n\nOn bâtit une liste de ce que les Canadiens surveillent vraiment, et c'est elle qui décide de ce qu'on suit en premier. La liste est plus utile que nos suppositions."
+    },
+    {
+      "id": "d11-carousel-06",
+      "date": "2026-10-01",
+      "time": "18:30",
+      "kind": "carousel",
+      "lang": "bi",
+      "automate": false,
+      "wave": "02-made-in-canada",
+      "assets": [
+        "02-made-in-canada/priceback-community-06-post-en.png",
+        "00-language-notice/priceback-community-divider-to-fr.png",
+        "02-made-in-canada/priceback-community-06-post-fr.png"
+      ],
+      "ask": "save",
+      "tags": [
+        "#madeincanada",
+        "#canadianmade",
+        "#faitauquebec",
+        "#achatlocal"
+      ],
+      "caption": "Made here. For prices paid here.\n\nPriceBack is built in Canada, run from Canada, and when you write to support, a person in Canada answers. It is not the branch office of anything, and there is no head office somewhere else deciding what Canadian shoppers need.\n\nThat matters more than it sounds. Price-adjustment rules are Canadian rules. Receipts are Canadian receipts. Every one of them had to be read by somebody who knew what they were looking at.\n\n— — —\n\nFait ici. Pour des prix payés ici.\n\nPriceBack est conçu au Canada, opéré du Canada, et quand vous écrivez au support, c'est une personne au Canada qui répond. Ce n'est la succursale de personne, et il n'y a pas de siège social ailleurs qui décide de ce dont les acheteurs canadiens ont besoin.\n\nÇa compte plus qu'il n'y paraît. Les règles d'ajustement de prix sont des règles canadiennes. Les reçus sont des reçus canadiens. Chacun d'eux a dû être lu par quelqu'un qui savait ce qu'il regardait."
+    },
+    {
+      "id": "d11-story-03",
+      "date": "2026-10-02",
+      "time": "12:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "sticker": "none",
+      "asset": "02-made-in-canada/priceback-community-03-story-en.png",
+      "wave": "02-made-in-canada",
+      "note": "Goes in the About Highlight, under the English notice frame."
+    },
+    {
+      "id": "d11-story-03-fr",
+      "date": "2026-10-02",
+      "time": "12:05",
+      "kind": "story",
+      "lang": "fr",
+      "automate": false,
+      "sticker": "none",
+      "asset": "02-made-in-canada/priceback-community-03-story-fr.png",
+      "wave": "02-made-in-canada",
+      "note": "The French half of the About Highlight."
+    },
+    {
+      "id": "d13-carousel-07",
+      "date": "2026-10-03",
+      "time": "18:30",
+      "kind": "carousel",
+      "lang": "bi",
+      "automate": false,
+      "wave": "02-made-in-canada",
+      "assets": [
+        "02-made-in-canada/priceback-community-07-post-en.png",
+        "00-language-notice/priceback-community-divider-to-fr.png",
+        "02-made-in-canada/priceback-community-07-post-fr.png"
+      ],
+      "ask": "send",
+      "tags": [
+        "#supportcanadian",
+        "#achatlocal"
+      ],
+      "caption": "Supporting this costs you nothing extra.\n\nThe app is free to download. Choosing it over something built elsewhere does not cost a cent more — it just decides who gets to build the tools Canadians use on Canadian receipts.\n\nThat turns out to matter. A tool built for somewhere else gets the rules almost right, and almost right is what makes you miss a claim.\n\nSend it to someone who would rather the answer came from here.\n\n— — —\n\nNous soutenir ne vous coûte rien de plus.\n\nL'application est gratuite à télécharger. La choisir plutôt qu'un produit bâti ailleurs ne coûte pas un sou de plus — ça décide seulement qui bâtit les outils que les Canadiens utilisent sur des reçus canadiens.\n\nEt ça finit par compter. Un outil bâti pour ailleurs applique les règles presque correctement, et c'est le « presque » qui vous fait manquer une réclamation.\n\nEnvoyez-le à quelqu'un qui préfère que la réponse vienne d'ici."
+    },
+    {
+      "id": "d15-carousel-08",
+      "date": "2026-10-05",
+      "time": "18:30",
+      "kind": "carousel",
+      "lang": "bi",
+      "automate": false,
+      "wave": "02-made-in-canada",
+      "assets": [
+        "02-made-in-canada/priceback-community-08-post-en.png",
+        "00-language-notice/priceback-community-divider-to-fr.png",
+        "02-made-in-canada/priceback-community-08-post-fr.png"
+      ],
+      "ask": "comment",
+      "tags": [
+        "#canadianmade",
+        "#faitauquebec"
+      ],
+      "caption": "No call centre. You are writing to the builder.\n\nSend a message here and the person who can actually change the app reads it. Not a ticket queue, not a chatbot, not a script.\n\nThat is the entire advantage of being this small, and it expires the moment we stop being this small — so use it now. Tell us what is broken, what is confusing, what you expected the app to do and it did not.\n\n— — —\n\nAucun centre d'appels. Vous écrivez à la personne qui code.\n\nÉcrivez-nous ici et c'est la personne qui peut réellement changer l'application qui vous lit. Pas une file de billets, pas un robot, pas un script.\n\nC'est tout l'avantage d'être aussi petit, et il disparaîtra le jour où on ne le sera plus — alors profitez-en maintenant. Dites-nous ce qui est brisé, ce qui est confus, ce que vous attendiez de l'app et qu'elle n'a pas fait."
+    },
+    {
+      "id": "d17-carousel-09",
+      "date": "2026-10-07",
+      "time": "18:30",
+      "kind": "carousel",
+      "lang": "bi",
+      "automate": false,
+      "wave": "03-stores-growing",
+      "assets": [
+        "03-stores-growing/priceback-community-09-post-en.png",
+        "00-language-notice/priceback-community-divider-to-fr.png",
+        "03-stores-growing/priceback-community-09-post-fr.png"
+      ],
+      "ask": "follow",
+      "tags": [
+        "#pricematch",
+        "#shoppingtips",
+        "#bonsplansquebec"
+      ],
+      "caption": "Costco was the start. It was never the point.\n\nTwo chains now have a reader built specifically for the way they print a receipt — Costco first, then Best Buy. Every chain formats differently, so each one is real work rather than a switch we flip.\n\nThe list only grows in one direction. New stores get announced here first, which is the honest reason to follow this account rather than a vague one.\n\n— — —\n\nCostco était le début. Ça n'a jamais été le but.\n\nDeux chaînes ont maintenant un lecteur bâti spécifiquement pour leur façon d'imprimer un reçu — Costco d'abord, puis Best Buy. Chaque chaîne a son format, donc chacune représente du vrai travail, pas un interrupteur.\n\nLa liste ne grandit que dans un sens. Les nouveaux magasins s'annoncent ici en premier : c'est la vraie raison de suivre ce compte."
+    },
+    {
+      "id": "d17-story-04",
+      "date": "2026-10-08",
+      "time": "12:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "sticker": "none",
+      "asset": "03-stores-growing/priceback-community-04-story-en.png",
+      "wave": "03-stores-growing",
+      "note": "The Stores Highlight's cover frame. It carries the non-affiliation line in the art, so it must NOT take a sticker — a poll dropped on it would cover the disclaimer. verify.js gate 3 enforces that."
+    },
+    {
+      "id": "d17-story-04-fr",
+      "date": "2026-10-08",
+      "time": "12:05",
+      "kind": "story",
+      "lang": "fr",
+      "automate": false,
+      "sticker": "none",
+      "asset": "03-stores-growing/priceback-community-04-story-fr.png",
+      "wave": "03-stores-growing",
+      "note": "French half of the Stores Highlight. Re-shoot both frames the day a third store ships."
+    },
+    {
+      "id": "d19-carousel-10",
+      "date": "2026-10-09",
+      "time": "18:30",
+      "kind": "carousel",
+      "lang": "bi",
+      "automate": false,
+      "wave": "03-stores-growing",
+      "assets": [
+        "03-stores-growing/priceback-community-10-post-en.png",
+        "00-language-notice/priceback-community-divider-to-fr.png",
+        "03-stores-growing/priceback-community-10-post-fr.png"
+      ],
+      "ask": "comment",
+      "tags": [
+        "#dealscanada",
+        "#bonsplansquebec"
+      ],
+      "caption": "Which store should we read next?\n\nGenuine question, and the answer changes the roadmap. Every new chain is a receipt format somebody has to teach the app, using real receipts from real baskets — so the order is decided by where people actually shop, not by which logo looks best on a slide.\n\nName one in the comments. Where you buy groceries counts. Where you bought the last big thing counts more.\n\n— — —\n\nQuel magasin devrait-on lire ensuite?\n\nVraie question, et la réponse change la feuille de route. Chaque nouvelle chaîne est un format de reçu qu'il faut apprendre à l'app, avec de vrais reçus de vrais paniers — donc l'ordre se décide selon où les gens magasinent vraiment, pas selon le logo qui paraît le mieux.\n\nNommez-en un en commentaire. Votre épicerie compte. Le dernier gros achat compte encore plus."
+    },
+    {
+      "id": "d21-carousel-11",
+      "date": "2026-10-11",
+      "time": "18:30",
+      "kind": "carousel",
+      "lang": "bi",
+      "automate": false,
+      "wave": "03-stores-growing",
+      "assets": [
+        "03-stores-growing/priceback-community-11-post-en.png",
+        "00-language-notice/priceback-community-divider-to-fr.png",
+        "03-stores-growing/priceback-community-11-post-fr.png"
+      ],
+      "ask": "save",
+      "tags": [
+        "#shoppingtips",
+        "#trucsdeconso"
+      ],
+      "caption": "A store is not a checkbox. It is a language.\n\nWhy the list grows slowly, honestly: every chain prints its receipts differently. Different abbreviations, different discount lines, different places the total hides. Teaching the app to read one takes dozens of real receipts and a hunt for the ways it could be wrong.\n\nThat hunt is the part that matters. A parser that is right on the tests and wrong on your receipt gives you a number you will act on. We would rather add a store late than add one that lies.\n\n— — —\n\nUn magasin, ce n'est pas une case à cocher. C'est une langue.\n\nPourquoi la liste grandit lentement, honnêtement : chaque chaîne imprime ses reçus autrement. Autres abréviations, autres lignes de rabais, le total caché ailleurs. Apprendre à en lire un demande des dizaines de vrais reçus et une chasse aux façons de se tromper.\n\nC'est cette chasse qui compte. Un lecteur correct sur les tests mais faux sur votre reçu vous donne un chiffre sur lequel vous allez agir. On préfère ajouter un magasin en retard qu'en ajouter un qui ment."
+    },
+    {
+      "id": "d23-carousel-12",
+      "date": "2026-10-13",
+      "time": "18:30",
+      "kind": "carousel",
+      "lang": "bi",
+      "automate": false,
+      "wave": "04-crowd-power",
+      "assets": [
+        "04-crowd-power/priceback-community-12-post-en.png",
+        "00-language-notice/priceback-community-divider-to-fr.png",
+        "04-crowd-power/priceback-community-12-post-fr.png"
+      ],
+      "ask": "comment",
+      "tags": [
+        "#savingmoneycanada",
+        "#economiser"
+      ],
+      "caption": "One receipt is a story. A thousand is data.\n\nThis is why the community half is not decoration. A single scan tells us what one person paid once. Enough scans tell us when a price actually moved, in which province, and whether it stuck.\n\nThe more of us, the sooner a change is caught — and the fewer people find out about it too late to do anything.\n\n— — —\n\nUn reçu, c'est une anecdote. Mille, c'est des données.\n\nC'est pourquoi le volet communautaire n'est pas décoratif. Une numérisation nous dit ce qu'une personne a payé une fois. Assez de numérisations nous disent quand un prix a vraiment bougé, dans quelle province, et si ça a tenu.\n\nPlus on est nombreux, plus vite un changement est repéré — et moins de gens l'apprennent trop tard pour faire quoi que ce soit."
+    },
+    {
+      "id": "d23-story-05",
+      "date": "2026-10-14",
+      "time": "12:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "sticker": "question",
+      "asset": "04-crowd-power/priceback-community-05-story-en.png",
+      "wave": "04-crowd-power",
+      "note": "Question sticker: 'Which store should we read next?'. Screenshot the best answers into the Stores Highlight — the ask and the receipt for the ask in one place."
+    },
+    {
+      "id": "d23-story-05-fr",
+      "date": "2026-10-14",
+      "time": "12:05",
+      "kind": "story",
+      "lang": "fr",
+      "automate": false,
+      "sticker": "question",
+      "asset": "04-crowd-power/priceback-community-05-story-fr.png",
+      "wave": "04-crowd-power",
+      "note": "Sticker question en français : « quel magasin lire ensuite? »"
+    },
+    {
+      "id": "d25-carousel-13",
+      "date": "2026-10-15",
+      "time": "18:30",
+      "kind": "carousel",
+      "lang": "bi",
+      "automate": false,
+      "wave": "04-crowd-power",
+      "assets": [
+        "04-crowd-power/priceback-community-13-post-en.png",
+        "00-language-notice/priceback-community-divider-to-fr.png",
+        "04-crowd-power/priceback-community-13-post-fr.png"
+      ],
+      "ask": "save",
+      "tags": [
+        "#shoppingtips",
+        "#trucsdeconso"
+      ],
+      "caption": "Point your camera at a shelf tag.\n\nThat is the whole contribution. Not a form, not a review, not a survey — a photo of a price you were already standing in front of.\n\nOther shoppers see the same tag. When enough of them agree, that price becomes verified, and everyone watching the item benefits from a number nobody had to take on faith.\n\n— — —\n\nPointez votre caméra sur une étiquette.\n\nC'est toute la contribution. Pas un formulaire, pas un avis, pas un sondage — la photo d'un prix devant lequel vous étiez déjà debout.\n\nD'autres clients voient la même étiquette. Quand assez de gens concordent, le prix devient vérifié, et tous ceux qui suivent l'article profitent d'un chiffre que personne n'a eu à croire sur parole."
+    },
+    {
+      "id": "d27-carousel-14",
+      "date": "2026-10-17",
+      "time": "18:30",
+      "kind": "carousel",
+      "lang": "bi",
+      "automate": false,
+      "wave": "05-earn-credits",
+      "assets": [
+        "05-earn-credits/priceback-community-14-post-en.png",
+        "00-language-notice/priceback-community-divider-to-fr.png",
+        "05-earn-credits/priceback-community-14-post-fr.png"
+      ],
+      "ask": "save",
+      "tags": [
+        "#savingmoneycanada",
+        "#economiser",
+        "#trucsdeconso"
+      ],
+      "caption": "Helping the list puts credits in your account.\n\nScanning a receipt costs a credit, because reading it costs us something real. Contributing earns them back: scan a shelf tag in store, and once other shoppers confirm the same price, credits land in your balance.\n\nSo the people who make the data better are the people who pay least to use it. Weekly and monthly limits apply, and a contribution only pays once per product per area per week — the caps exist so the rewards go to shoppers rather than to whoever scans fastest.\n\n— — —\n\nAider la liste met des crédits dans votre compte.\n\nNumériser un reçu coûte un crédit, parce que le lire nous coûte quelque chose de réel. Contribuer vous en redonne : numérisez une étiquette en magasin, et une fois que d'autres clients confirment le même prix, les crédits arrivent à votre solde.\n\nDonc les gens qui améliorent les données sont ceux qui paient le moins pour s'en servir. Des plafonds hebdomadaires et mensuels s'appliquent, et une contribution ne paie qu'une fois par produit, par secteur, par semaine — les plafonds existent pour que ça profite aux acheteurs, pas au plus rapide."
+    },
+    {
+      "id": "d27-story-06",
+      "date": "2026-10-18",
+      "time": "12:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "sticker": "none",
+      "asset": "05-earn-credits/priceback-community-06-story-en.png",
+      "wave": "05-earn-credits",
+      "note": "Three steps, no sticker. Goes in the How it works Highlight."
+    },
+    {
+      "id": "d27-story-06-fr",
+      "date": "2026-10-18",
+      "time": "12:05",
+      "kind": "story",
+      "lang": "fr",
+      "automate": false,
+      "sticker": "none",
+      "asset": "05-earn-credits/priceback-community-06-story-fr.png",
+      "wave": "05-earn-credits",
+      "note": "French half of the How it works Highlight."
+    },
+    {
+      "id": "d29-carousel-15",
+      "date": "2026-10-19",
+      "time": "18:30",
+      "kind": "carousel",
+      "lang": "bi",
+      "automate": false,
+      "wave": "05-earn-credits",
+      "assets": [
+        "05-earn-credits/priceback-community-15-post-en.png",
+        "00-language-notice/priceback-community-divider-to-fr.png",
+        "05-earn-credits/priceback-community-15-post-fr.png"
+      ],
+      "ask": "follow",
+      "tags": [
+        "#shoppingtips",
+        "#consommateurquebec"
+      ],
+      "caption": "Credits arrive when the price is confirmed. Not the second you scan.\n\nWorth being blunt about, because it is the part people are surprised by. A price one person saw is a rumour. A price several people saw independently is worth paying for — and worth showing to everybody else.\n\nSo a contribution sits pending until it is corroborated, then it credits. It is slower. It is also the only version of this that does not reward making things up.\n\n— — —\n\nLes crédits arrivent quand le prix est confirmé. Pas à la seconde du scan.\n\nÇa vaut la peine d'être direct, parce que c'est la partie qui surprend. Un prix vu par une seule personne, c'est une rumeur. Un prix vu par plusieurs, indépendamment, vaut la peine d'être payé — et vaut la peine d'être montré à tout le monde.\n\nDonc une contribution reste en attente jusqu'à corroboration, puis elle crédite. C'est plus lent. C'est aussi la seule version qui ne récompense pas l'invention."
+    },
+    {
+      "id": "h07-story-en",
+      "date": "2026-10-20",
+      "time": "11:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "sticker": "none",
+      "asset": "07-highlight-frames/priceback-community-07-story-en.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: Tips / Astuces. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    },
+    {
+      "id": "h07-story-fr",
+      "date": "2026-10-20",
+      "time": "11:05",
+      "kind": "story",
+      "lang": "fr",
+      "automate": false,
+      "sticker": "none",
+      "asset": "07-highlight-frames/priceback-community-07-story-fr.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: Tips / Astuces. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    },
+    {
+      "id": "h08-story-en",
+      "date": "2026-10-20",
+      "time": "12:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "sticker": "none",
+      "asset": "07-highlight-frames/priceback-community-08-story-en.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: Tips / Astuces. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    },
+    {
+      "id": "h08-story-fr",
+      "date": "2026-10-20",
+      "time": "12:05",
+      "kind": "story",
+      "lang": "fr",
+      "automate": false,
+      "sticker": "none",
+      "asset": "07-highlight-frames/priceback-community-08-story-fr.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: Tips / Astuces. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    },
+    {
+      "id": "h09-story-en",
+      "date": "2026-10-20",
+      "time": "13:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "sticker": "poll",
+      "asset": "07-highlight-frames/priceback-community-09-story-en.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: Tips / Astuces. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    },
+    {
+      "id": "h09-story-fr",
+      "date": "2026-10-20",
+      "time": "13:05",
+      "kind": "story",
+      "lang": "fr",
+      "automate": false,
+      "sticker": "poll",
+      "asset": "07-highlight-frames/priceback-community-09-story-fr.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: Tips / Astuces. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    },
+    {
+      "id": "h12-story-en",
+      "date": "2026-10-21",
+      "time": "11:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "sticker": "none",
+      "asset": "07-highlight-frames/priceback-community-12-story-en.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: Support / Aide. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    },
+    {
+      "id": "h12-story-fr",
+      "date": "2026-10-21",
+      "time": "11:05",
+      "kind": "story",
+      "lang": "fr",
+      "automate": false,
+      "sticker": "none",
+      "asset": "07-highlight-frames/priceback-community-12-story-fr.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: Support / Aide. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    },
+    {
+      "id": "h13-story-en",
+      "date": "2026-10-21",
+      "time": "12:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "sticker": "none",
+      "asset": "07-highlight-frames/priceback-community-13-story-en.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: Support / Aide. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    },
+    {
+      "id": "h13-story-fr",
+      "date": "2026-10-21",
+      "time": "12:05",
+      "kind": "story",
+      "lang": "fr",
+      "automate": false,
+      "sticker": "none",
+      "asset": "07-highlight-frames/priceback-community-13-story-fr.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: Support / Aide. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    },
+    {
+      "id": "h14-story-en",
+      "date": "2026-10-21",
+      "time": "13:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "sticker": "none",
+      "asset": "07-highlight-frames/priceback-community-14-story-en.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: Support / Aide. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    },
+    {
+      "id": "h14-story-fr",
+      "date": "2026-10-21",
+      "time": "13:05",
+      "kind": "story",
+      "lang": "fr",
+      "automate": false,
+      "sticker": "none",
+      "asset": "07-highlight-frames/priceback-community-14-story-fr.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: Support / Aide. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    },
+    {
+      "id": "h15-story-en",
+      "date": "2026-10-22",
+      "time": "11:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "sticker": "none",
+      "asset": "07-highlight-frames/priceback-community-15-story-en.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: FAQ. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    },
+    {
+      "id": "h15-story-fr",
+      "date": "2026-10-22",
+      "time": "11:05",
+      "kind": "story",
+      "lang": "fr",
+      "automate": false,
+      "sticker": "none",
+      "asset": "07-highlight-frames/priceback-community-15-story-fr.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: FAQ. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    },
+    {
+      "id": "h16-story-en",
+      "date": "2026-10-22",
+      "time": "12:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "sticker": "none",
+      "asset": "07-highlight-frames/priceback-community-16-story-en.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: FAQ. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    },
+    {
+      "id": "h16-story-fr",
+      "date": "2026-10-22",
+      "time": "12:05",
+      "kind": "story",
+      "lang": "fr",
+      "automate": false,
+      "sticker": "none",
+      "asset": "07-highlight-frames/priceback-community-16-story-fr.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: FAQ. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    },
+    {
+      "id": "h17-story-en",
+      "date": "2026-10-22",
+      "time": "13:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "sticker": "none",
+      "asset": "07-highlight-frames/priceback-community-17-story-en.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: FAQ. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    },
+    {
+      "id": "h17-story-fr",
+      "date": "2026-10-22",
+      "time": "13:05",
+      "kind": "story",
+      "lang": "fr",
+      "automate": false,
+      "sticker": "none",
+      "asset": "07-highlight-frames/priceback-community-17-story-fr.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: FAQ. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    },
+    {
+      "id": "h10-story-en",
+      "date": "2026-10-23",
+      "time": "11:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "sticker": "question",
+      "asset": "07-highlight-frames/priceback-community-10-story-en.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: Feedback / Vos idées. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    },
+    {
+      "id": "h10-story-fr",
+      "date": "2026-10-23",
+      "time": "11:05",
+      "kind": "story",
+      "lang": "fr",
+      "automate": false,
+      "sticker": "question",
+      "asset": "07-highlight-frames/priceback-community-10-story-fr.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: Feedback / Vos idées. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    },
+    {
+      "id": "h11-story-en",
+      "date": "2026-10-23",
+      "time": "12:00",
+      "kind": "story",
+      "lang": "en",
+      "automate": false,
+      "sticker": "none",
+      "asset": "07-highlight-frames/priceback-community-11-story-en.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: Feedback / Vos idées. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    },
+    {
+      "id": "h11-story-fr",
+      "date": "2026-10-23",
+      "time": "12:05",
+      "kind": "story",
+      "lang": "fr",
+      "automate": false,
+      "sticker": "none",
+      "asset": "07-highlight-frames/priceback-community-11-story-fr.png",
+      "wave": "07-highlight-frames",
+      "note": "Highlight: Feedback / Vos idées. Add it to the tray the same day, while the story is still live - a Highlight assembled from expired stories is an archaeology exercise."
+    }
+  ]
+}
