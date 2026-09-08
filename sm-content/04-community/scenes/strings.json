@@ -35,7 +35,14 @@
     "printers drop accents, so an accented row is the one thing on the paper that",
     "would read as typeset rather than printed. Everything a PERSON writes — kickers,",
     "hooks, sub-lines, captions, the status badge — is fully accented, because that",
-    "is the app speaking, not a receipt."
+    "is the app speaking, not a receipt.",
+    "",
+    "`reserve` is rendered but NOT scheduled: the strongest hooks from HOOKS.md that",
+    "did not fit the run. They carry an `id` (r1..r6) rather than a `seq`, and gate 9",
+    "does not see them - a reserve post has no place in the running order by",
+    "definition, and giving it one would be a lie the folder name tells.",
+    "Everything else applies to them unchanged: same gates, same claim rules, same",
+    "EN/FR parity."
   ],
   "meta": {
     "pack": "04-community",
@@ -91,6 +98,12 @@
       "dir": "07-highlight-frames",
       "en": "The frames that live inside the Highlights",
       "fr": "Les images qui vivent dans les Highlights"
+    },
+    {
+      "n": "08",
+      "dir": "08-reserve",
+      "en": "Rendered and unscheduled - swap-in stock",
+      "fr": "Rendues et non planifiees - stock de remplacement"
     }
   ],
   "coversDir": "06-highlight-covers",
@@ -920,6 +933,189 @@
           "inbox never leaves the device. There is a test that proves it."
         ]
       }
+    ],
+    "reserve": [
+      {
+        "id": "r1",
+        "wave": "08-reserve",
+        "layout": "top",
+        "accent": "arrow",
+        "hookType": "asymmetry",
+        "kicker": "THE ACTUAL GAP",
+        "hook": [
+          "EVERYONE PAYS MORE.",
+          "NOT EVERYONE",
+          "COMPARES NOTES."
+        ],
+        "sub": [
+          "The price increase is universal. The information about it is not,",
+          "and that asymmetry is the only part any of us can attack."
+        ],
+        "rows": [
+          [
+            "ITEM",
+            "__REDACTED__"
+          ],
+          [
+            "ITEM",
+            "__REDACTED__"
+          ]
+        ]
+      },
+      {
+        "id": "r2",
+        "wave": "08-reserve",
+        "layout": "band",
+        "accent": "circle",
+        "hookType": "honest-limit",
+        "kicker": "SAY IT PLAINLY",
+        "hook": [
+          "WE'RE NOT BEATING",
+          "INFLATION.",
+          "WE'RE SPLITTING IT."
+        ],
+        "sub": [
+          "No app beats inflation. What a few thousand people can do is",
+          "notice the same price drop at the same time."
+        ],
+        "rows": [
+          [
+            "ITEM",
+            "__REDACTED__"
+          ],
+          [
+            "ITEM",
+            "__REDACTED__"
+          ],
+          [
+            "ITEM",
+            "__REDACTED__"
+          ]
+        ],
+        "circleRow": 1
+      },
+      {
+        "id": "r3",
+        "wave": "08-reserve",
+        "layout": "bottom",
+        "accent": "leaf",
+        "hookType": "origin",
+        "kicker": "WHO IS BEHIND IT",
+        "hook": [
+          "BUILT BY SOMEONE",
+          "WHO SHOPS",
+          "WHERE YOU SHOP."
+        ],
+        "sub": [
+          "Not a category study. The same aisles, the same receipts, and",
+          "the same annoyance that started the whole thing."
+        ],
+        "rows": [
+          [
+            "BUILT",
+            "CANADA"
+          ],
+          [
+            "SHOPS",
+            "SAME AISLES"
+          ]
+        ]
+      },
+      {
+        "id": "r4",
+        "wave": "08-reserve",
+        "layout": "top",
+        "accent": "checks",
+        "hookType": "you-choose",
+        "kicker": "THE QUEUE",
+        "hook": [
+          "TWO CHAINS DOWN.",
+          "THE THIRD IS",
+          "SOMEBODY'S ANSWER."
+        ],
+        "sub": [
+          "Which store the app learns to read next is decided by where",
+          "people actually shop. That is a comment, not a roadmap."
+        ],
+        "checks": [
+          [
+            "Warehouse club",
+            "live"
+          ],
+          [
+            "Electronics chain",
+            "live"
+          ],
+          [
+            "Home improvement",
+            "soon"
+          ],
+          [
+            "Grocery",
+            "soon"
+          ],
+          [
+            "Yours",
+            "soon"
+          ]
+        ]
+      },
+      {
+        "id": "r5",
+        "wave": "08-reserve",
+        "layout": "bottom",
+        "accent": "status",
+        "hookType": "scale-argument",
+        "kicker": "THE QUIET COST",
+        "hook": [
+          "A PRICE NOBODY",
+          "REPORTS IS A PRICE",
+          "NOBODY CATCHES."
+        ],
+        "sub": [
+          "Every receipt nobody scans is a price change that happened to",
+          "one person and helped no one else at all."
+        ],
+        "rows": [
+          [
+            "REPORTED",
+            "CAUGHT"
+          ],
+          [
+            "UNREPORTED",
+            "GONE"
+          ]
+        ],
+        "circleRow": 1,
+        "statusLabel": "MISSED"
+      },
+      {
+        "id": "r6",
+        "wave": "08-reserve",
+        "layout": "band",
+        "accent": "glyph",
+        "hookType": "the-honest-version",
+        "kicker": "THE OBVIOUS QUESTION",
+        "hook": [
+          "NO, YOU CAN'T",
+          "FARM IT.",
+          "THAT'S THE POINT."
+        ],
+        "sub": [
+          "A contribution pays once it is corroborated, once per product per",
+          "area per week, under weekly and monthly caps."
+        ],
+        "rows": [
+          [
+            "CORROBORATED",
+            "REQUIRED"
+          ],
+          [
+            "PER WEEK",
+            "CAPPED"
+          ]
+        ]
+      }
     ]
   },
   "fr": {
@@ -1597,6 +1793,189 @@
         "sub": [
           "Non. La synchro courriel tourne sur votre téléphone et les données",
           "de reçus ne quittent jamais l'appareil. Un test le prouve."
+        ]
+      }
+    ],
+    "reserve": [
+      {
+        "id": "r1",
+        "wave": "08-reserve",
+        "layout": "top",
+        "accent": "arrow",
+        "hookType": "asymmetry",
+        "kicker": "LE VRAI ÉCART",
+        "hook": [
+          "TOUT LE MONDE PAIE.",
+          "PAS TOUT LE MONDE",
+          "SE PARLE."
+        ],
+        "sub": [
+          "La hausse est universelle. L'information sur la hausse ne l'est",
+          "pas, et c'est le seul écart qu'on puisse attaquer."
+        ],
+        "rows": [
+          [
+            "ARTICLE",
+            "__REDACTED__"
+          ],
+          [
+            "ARTICLE",
+            "__REDACTED__"
+          ]
+        ]
+      },
+      {
+        "id": "r2",
+        "wave": "08-reserve",
+        "layout": "band",
+        "accent": "circle",
+        "hookType": "honest-limit",
+        "kicker": "DISONS-LE FRANCHEMENT",
+        "hook": [
+          "ON NE BAT PAS",
+          "L'INFLATION.",
+          "ON SE LA PARTAGE."
+        ],
+        "sub": [
+          "Aucune app ne bat l'inflation. Ce que quelques milliers de gens",
+          "peuvent faire, c'est voir la même baisse en même temps."
+        ],
+        "rows": [
+          [
+            "ARTICLE",
+            "__REDACTED__"
+          ],
+          [
+            "ARTICLE",
+            "__REDACTED__"
+          ],
+          [
+            "ARTICLE",
+            "__REDACTED__"
+          ]
+        ],
+        "circleRow": 1
+      },
+      {
+        "id": "r3",
+        "wave": "08-reserve",
+        "layout": "bottom",
+        "accent": "leaf",
+        "hookType": "origin",
+        "kicker": "QUI EST DERRIÈRE",
+        "hook": [
+          "BÂTI PAR QUELQU'UN",
+          "QUI MAGASINE",
+          "OÙ VOUS MAGASINEZ."
+        ],
+        "sub": [
+          "Pas une étude de marché. Les mêmes allées, les mêmes reçus, et",
+          "le même agacement qui a tout déclenché."
+        ],
+        "rows": [
+          [
+            "CONCU",
+            "CANADA"
+          ],
+          [
+            "MAGASINE",
+            "MEMES ALLEES"
+          ]
+        ]
+      },
+      {
+        "id": "r4",
+        "wave": "08-reserve",
+        "layout": "top",
+        "accent": "checks",
+        "hookType": "you-choose",
+        "kicker": "LA FILE",
+        "hook": [
+          "DEUX CHAÎNES FAITES.",
+          "LA TROISIÈME EST",
+          "LA RÉPONSE DE QUELQU'UN."
+        ],
+        "sub": [
+          "Le prochain magasin que l'app apprend à lire se décide selon où",
+          "les gens magasinent. C'est un commentaire, pas une feuille de route."
+        ],
+        "checks": [
+          [
+            "Club entrepôt",
+            "live"
+          ],
+          [
+            "Chaîne électronique",
+            "live"
+          ],
+          [
+            "Rénovation",
+            "soon"
+          ],
+          [
+            "Épicerie",
+            "soon"
+          ],
+          [
+            "Le vôtre",
+            "soon"
+          ]
+        ]
+      },
+      {
+        "id": "r5",
+        "wave": "08-reserve",
+        "layout": "bottom",
+        "accent": "status",
+        "hookType": "scale-argument",
+        "kicker": "LE COÛT SILENCIEUX",
+        "hook": [
+          "UN PRIX QUE PERSONNE",
+          "NE SIGNALE EST UN PRIX",
+          "QUE PERSONNE N'ATTRAPE."
+        ],
+        "sub": [
+          "Chaque reçu que personne ne numérise est un changement de prix",
+          "arrivé à une personne et utile à personne d'autre."
+        ],
+        "rows": [
+          [
+            "SIGNALE",
+            "ATTRAPE"
+          ],
+          [
+            "NON SIGNALE",
+            "PERDU"
+          ]
+        ],
+        "circleRow": 1,
+        "statusLabel": "MANQUÉ"
+      },
+      {
+        "id": "r6",
+        "wave": "08-reserve",
+        "layout": "band",
+        "accent": "glyph",
+        "hookType": "the-honest-version",
+        "kicker": "LA QUESTION ÉVIDENTE",
+        "hook": [
+          "NON, ON NE PEUT",
+          "PAS EN ABUSER.",
+          "C'EST VOULU."
+        ],
+        "sub": [
+          "Une contribution paie une fois corroborée, une fois par produit,",
+          "par secteur, par semaine, avec des plafonds mensuels."
+        ],
+        "rows": [
+          [
+            "CORROBORE",
+            "REQUIS"
+          ],
+          [
+            "PAR SEMAINE",
+            "PLAFONNE"
+          ]
         ]
       }
     ]

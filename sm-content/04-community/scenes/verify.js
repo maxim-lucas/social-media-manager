@@ -38,7 +38,7 @@ const { buildStory } = require("./stories");
 const { buildCover } = require("./covers");
 const { PROBE_SIZE } = require("./layout");
 const { scanCopy, checkDisclaimerPairing } = require("./claims");
-const { postFile, storyFile, dividerFile, noticeFile, coverFile, rel } = require("./paths");
+const { postFile, storyFile, dividerFile, noticeFile, reserveFile, coverFile, rel } = require("./paths");
 
 const STRINGS = JSON.parse(fs.readFileSync(path.join(__dirname, "strings.json"), "utf8"));
 const LANGS = ["en", "fr"];
@@ -160,6 +160,12 @@ async function checkFrames() {
     const pack = STRINGS[lang];
     for (const t of pack.posts) {
       await checkFeedFrame(t, postFile(t, lang), `post ${lang}-${t.seq}`, pack.handle);
+    }
+    // Reserve posts get every frame gate a scheduled post gets. They are
+    // unscheduled, not unfinished, and the day one is swapped into the run is
+    // the worst possible day to discover it clips a margin.
+    for (const t of pack.reserve || []) {
+      await checkFeedFrame(t, reserveFile(t, lang), `reserve ${lang}-${t.id}`, pack.handle);
     }
     for (const t of pack.stories) {
       await checkStoryFrame(t, storyFile(t, lang), `story ${lang}-${t.seq}`, pack.handle);
@@ -346,6 +352,9 @@ function checkCopy() {
     for (const t of STRINGS[lang].stories) {
       frames.push({ label: `story ${lang}-${t.seq}`, fields: renderedFields(t), fineprint: t.fineprint });
     }
+    for (const t of STRINGS[lang].reserve || []) {
+      frames.push({ label: `reserve ${lang}-${t.id}`, fields: renderedFields(t), fineprint: t.fineprint });
+    }
   }
   for (const n of STRINGS.notices) {
     frames.push({ label: `notice ${n.seq}-${n.kind}`, fields: renderedFields(n), fineprint: n.fineprint });
@@ -362,8 +371,13 @@ function checkCopy() {
   if (en.posts.length !== fr.posts.length) fail("parity", `post counts differ: en=${en.posts.length} fr=${fr.posts.length}`);
   if (en.stories.length !== fr.stories.length) fail("parity", `story counts differ: en=${en.stories.length} fr=${fr.stories.length}`);
 
+  if ((en.reserve || []).length !== (fr.reserve || []).length) {
+    fail("parity", `reserve counts differ: en=${(en.reserve || []).length} fr=${(fr.reserve || []).length}`);
+  }
+
   const pairs = [
     ["post", en.posts, fr.posts, ["seq", "wave", "layout", "accent", "hookType", "seamDir"]],
+    ["reserve", en.reserve || [], fr.reserve || [], ["id", "wave", "layout", "accent", "hookType"]],
     ["story", en.stories, fr.stories, ["seq", "wave", "scene", "sticker", "seamDir"]],
   ];
   for (const [kind, a, b, keys] of pairs) {
@@ -409,6 +423,10 @@ function checkOrder() {
   for (const d of STRINGS.dividers) {
     if (!waveOrder.includes(d.wave)) fail("order", `divider ${d.id}: wave "${d.wave}" is not declared`);
   }
+  // Reserve posts are deliberately absent from this gate. They have no seq,
+  // because a post that is not in the running order must not claim a place in
+  // it - the numbering is only worth checking if it only ever describes things
+  // that are actually going out.
   for (const t of STRINGS.en.posts) record("post", t.seq, t.wave, `post ${t.seq}`);
   for (const t of STRINGS.en.stories) record("story", t.seq, t.wave, `story ${t.seq}`);
 
@@ -443,7 +461,7 @@ async function main() {
   await checkCovers();
 
   const nAssets =
-    LANGS.length * (STRINGS.en.posts.length + STRINGS.en.stories.length) +
+    LANGS.length * (STRINGS.en.posts.length + STRINGS.en.stories.length + (STRINGS.en.reserve || []).length) +
     STRINGS.notices.length +
     STRINGS.dividers.length +
     STRINGS.covers.length;

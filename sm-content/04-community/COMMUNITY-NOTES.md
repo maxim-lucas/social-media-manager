@@ -1,7 +1,8 @@
 # The community pack — what it is and how to change it
 
-Built 2026-09-07. **72 assets**: 14 feed posts × 2 languages, 16 story frames × 2
-languages, 2 bilingual notice frames, 2 carousel dividers, 8 Highlight covers.
+Built 2026-09-07. **84 assets**: 14 feed posts × 2 languages, 16 story frames × 2
+languages, 6 unscheduled reserve posts × 2 languages, 2 bilingual notice frames,
+2 carousel dividers, 8 Highlight covers. Plus six Reel scripts.
 Rendered deterministically from SVG scenes — a copy change is a re-render, not a
 rebuild.
 
@@ -30,9 +31,17 @@ Six waves, numbered in the order they go out, each in its own folder:
 | `04-crowd-power/` | One receipt is a story; a thousand is data. More of us means fewer people find out too late. |
 | `05-earn-credits/` | Helping the list pays — and it pays on *confirmation*, not on submission. |
 | `07-highlight-frames/` | The eleven frames that live **inside** the Highlights: Tips, Feedback, Support, FAQ. |
+| `08-reserve/` | Six more posts, rendered and **unscheduled** — swap-in stock from [`HOOKS.md`](HOOKS.md). |
 
 `06-highlight-covers/` is not in the sequence. Those are uploaded once, from a
 phone, and never posted. Read [`HIGHLIGHTS.md`](HIGHLIGHTS.md).
+
+`08-reserve/` is filed by **id** (`r1`…`r6`), never by `seq`, and gate 9 does not
+see it. A post that is not in the running order must not claim a place in it —
+the numbering is only worth checking if it only ever describes things that are
+actually going out. Every other gate applies to reserve posts unchanged: they are
+unscheduled, not unfinished, and the day one is swapped into the run is the worst
+possible day to find out it clips a margin.
 
 `07-highlight-frames/` **is** posted — a Highlight can only hold a story that
 went out — but it is not part of the argument. It is furniture: the eleven
@@ -169,8 +178,9 @@ Three things are new:
 ## Changing it
 
 ```bash
-node sm-content/04-community/scenes/render.js            # all 72 assets (~2 min)
+node sm-content/04-community/scenes/render.js            # all 84 assets (~2 min)
 node sm-content/04-community/scenes/verify.js            # nine gates - must exit 0
+node scripts/check-copy.js --pack=04-community           # claims: art, captions, Reels
 node scripts/publish-due.js --pack=04-community --check  # the schedule
 node scripts/publish-due.js --pack=04-community --print  # the run as an agenda
 ```
@@ -272,6 +282,30 @@ reads three big lobes with serrations instead of eleven equal spikes. Every
 Bézier in `LEAF_PATH` is load-bearing. Related: at 150 px an *outlined* maple
 leaf is not a leaf either, because an outline gives every point the same weight
 as the empty space between them. It is filled, large and faint.
+
+---
+
+## Reels
+
+[`REEL-SCRIPTS.md`](REEL-SCRIPTS.md) — six shot lists, EN and FR, shootable on a
+phone using this pack's own PNGs as cuts. Shot lists, not footage.
+
+The reason a carousel pack ships Reel scripts at all: **a carousel is served to
+people who already follow the account; a Reel is served to people who do not.**
+For a launch whose entire problem is that nobody has heard of this, that is the
+whole difference. R1 (the inflation hook) and R2 (the store list, the only follow
+ask) are the two to shoot first.
+
+The scripts are gated, not just written. `scripts/check-copy.js` reads what a
+Reel **burns on screen** and what its presenter **says out loud** through the
+same `claims.js` the art and the captions use, checks that every frame a shot
+cuts to still exists under the name it is cited by, and applies the pairing rule
+to video: a Reel naming a retailer must cut to a frame that renders the
+non-affiliation line, because a caption disclaimer does not survive the
+screenshot of a Reel. R2 is the one that needs it, and shot 1 carries it.
+
+Reels can never be automated in any pack — trending audio is picked inside
+Instagram at post time, which is the same reason stories cannot be.
 
 ---
 

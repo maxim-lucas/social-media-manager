@@ -19,7 +19,7 @@ const { CANVAS } = require("./tokens");
 const { buildPost, buildDivider } = require("./posts");
 const { buildStory } = require("./stories");
 const { buildCover } = require("./covers");
-const { postFile, storyFile, dividerFile, noticeFile, coverFile, rel } = require("./paths");
+const { postFile, storyFile, dividerFile, noticeFile, reserveFile, coverFile, rel } = require("./paths");
 
 const STRINGS = JSON.parse(fs.readFileSync(path.join(__dirname, "strings.json"), "utf8"));
 
@@ -28,7 +28,7 @@ const argVal = (name, dflt) => {
   const hit = args.find((a) => a.startsWith(`--${name}=`));
   return hit ? hit.split("=")[1] : dflt;
 };
-const only = argVal("only", "all"); // all | posts | stories | notices | dividers | covers
+const only = argVal("only", "all"); // all | posts | stories | reserve | notices | dividers | covers
 const langFilter = argVal("lang", "all"); // all | en | fr
 const dumpSvg = args.includes("--svg");
 
@@ -130,6 +130,13 @@ async function main() {
     if (want("posts")) {
       for (const t of pack.posts) {
         const out = postFile(t, lang);
+        made.push([rel(out), await write(await buildPost(t, pack.handle), out, CANVAS.post, path.basename(out))]);
+      }
+    }
+
+    if (want("reserve")) {
+      for (const t of pack.reserve || []) {
+        const out = reserveFile(t, lang);
         made.push([rel(out), await write(await buildPost(t, pack.handle), out, CANVAS.post, path.basename(out))]);
       }
     }

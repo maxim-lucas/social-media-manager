@@ -138,7 +138,7 @@ caption, from one string in `schedule.json`. See
 | Script | Needs | Runs |
 | --- | --- | --- |
 | `scripts/publish-due.js --check` | Node only | CI, on every PR touching the pack |
-| `scripts/check-copy.js` | Node only | CI — the claim gate, over art copy *and* captions |
+| `scripts/check-copy.js` | Node only | CI — the claim gate, over art copy, captions *and* Reel scripts |
 | `sm-content/evergreen/scenes/verify.js` | sharp + Roboto fonts | locally, after any copy change |
 
 The visual gates are not run in CI on purpose. `render.js` resolves fonts

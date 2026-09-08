@@ -135,6 +135,18 @@ still live.
 
 ---
 
+## If a slot needs replacing
+
+`08-reserve/` holds six rendered, gated, unscheduled posts — the strongest hooks
+from [`HOOKS.md`](HOOKS.md) that did not fit. Swap one in when a post
+underperforms, when a date moves, or when the run needs a fifth week. They are
+filed by id (`r1`…`r6`), not by running order, precisely so that swapping one in
+is an edit to `schedule.json` and nothing else.
+
+Add the slot with `kind: "carousel"`, `lang: "bi"`, and the three slides in the
+usual order — English, divider, French. `--check` will tell you if you forgot the
+divider.
+
 ## When this run ends
 
 Do not extend it. The shared-predicament register borrows its energy from the

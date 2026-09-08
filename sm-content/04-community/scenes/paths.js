@@ -32,9 +32,12 @@ const dividerFile = (d) => path.join(ROOT, d.wave, `${PREFIX}-divider-${d.id}.pn
 // languages. A `-en` and a `-fr` copy of a frame whose subject IS the pairing
 // would be two files saying the same thing in the same two languages.
 const noticeFile = (n) => path.join(ROOT, n.wave, `${PREFIX}-${n.seq}-${n.kind}.png`);
+// A reserve post is filed by ID, never by seq. It has no place in the running
+// order by definition, and giving it a number would be a lie the filename tells.
+const reserveFile = (t, lang) => path.join(ROOT, t.wave, `${PREFIX}-${t.id}-post-${lang}.png`);
 const coverFile = (c, coversDir) => path.join(ROOT, coversDir, `${PREFIX}-cover-${c.id}-${c.slug}.png`);
 
 /** Repo-relative, forward-slashed — for logs, notes and schedule.json `asset`. */
 const rel = (p) => path.relative(ROOT, p).split(path.sep).join("/");
 
-module.exports = { ROOT, PREFIX, postFile, storyFile, dividerFile, noticeFile, coverFile, rel };
+module.exports = { ROOT, PREFIX, postFile, storyFile, dividerFile, noticeFile, reserveFile, coverFile, rel };

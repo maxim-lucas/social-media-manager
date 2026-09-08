@@ -13,9 +13,9 @@ Output assets from Cowork session `cse_01QJzpqDCPqZ4HAHmNa7UfXK`
 | `stories/` | 10 | 1080×1920 story sequence, 5 frames each — EN + FR (`priceback-stories-{en,fr}-01..05.png`) |
 | `teaser/` | 20 | The **pre-launch** pack — see below. Its own folder, its own renderer |
 | `evergreen/` | 38 | The **permanent** pack — 9 feed posts + 10 story frames, EN + FR, store-agnostic. Its own folder, its own renderer, its own 14-day schedule |
-| `04-community/` | 72 | The **recruiting** pack — 14 bilingual carousel posts, 16 story pairs (5 in the run, 11 living inside the Highlights), the bilingual language notice, 2 carousel dividers and 8 Highlight covers. Its own folder, renderer and 24-day run |
+| `04-community/` | 84 | The **recruiting** pack — 14 bilingual carousel posts, 16 story pairs (5 in the run, 11 living inside the Highlights), 6 unscheduled reserve pairs, the bilingual language notice, 2 carousel dividers, 8 Highlight covers and 6 Reel scripts. Its own folder, renderer and 24-day run |
 
-Total: 38 launch + 20 teaser + 38 evergreen + 72 community = 168 assets.
+Total: 38 launch + 20 teaser + 38 evergreen + 84 community = 180 assets.
 
 ## Running order
 

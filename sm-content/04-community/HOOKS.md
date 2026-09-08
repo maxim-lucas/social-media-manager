@@ -62,8 +62,26 @@ are built to run indefinitely for exactly that reason.
 
 ## Forty more, ready to render
 
-Each is EN / FR, in the register above. Ones marked **·** are the strongest and
-would be the next four to render.
+Each is EN / FR, in the register above. Ones marked **·** were the strongest,
+and **six of them are now rendered** into `08-reserve/` — unscheduled stock, past
+every gate, ready to swap into the run the day a post underperforms or a fifth
+week is needed. The rest are still copy.
+
+Reserve, in `08-reserve/`, by id:
+
+| id | Hook | Register |
+| --- | --- | --- |
+| `r1` | EVERYONE PAYS MORE. / NOT EVERYONE / COMPARES NOTES. | shared predicament |
+| `r2` | WE'RE NOT BEATING / INFLATION. / WE'RE SPLITTING IT. | shared predicament |
+| `r3` | BUILT BY SOMEONE / WHO SHOPS / WHERE YOU SHOP. | made here |
+| `r4` | TWO CHAINS DOWN. / THE THIRD IS / SOMEBODY'S ANSWER. | the list |
+| `r5` | A PRICE NOBODY / REPORTS IS A PRICE / NOBODY CATCHES. | the crowd |
+| `r6` | NO, YOU CAN'T / FARM IT. / THAT'S THE POINT. | credits |
+
+`r4` is worth reading as a compliance example: it makes the store argument using
+**categories** — warehouse club, electronics chain, home improvement — and so
+names nobody and needs no disclaimer. That is the evergreen pack's trick borrowed
+back, and it is the version to reach for when a frame has no room for fine print.
 
 ### Shared predicament — the core register
 
