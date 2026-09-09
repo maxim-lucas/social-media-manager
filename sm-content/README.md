@@ -30,7 +30,9 @@ from now on.
 | 01 | `teaser/` | Withholds. Names nothing. | The eleven days before launch |
 | 02 | `reels/ carousels/ statics/ stories/` | Explains the launch. | Launch week |
 | 03 | `evergreen/` | Describes the mechanic, store-agnostically. | Rotates forever |
-| 04 | `04-community/` | Recruits: solidarity, made-in-Canada, the growing store list, earning credits. | Mon 21 Sep → Mon 19 Oct 2026, then hand back to `evergreen/` |
+| 04 | `04-community/` | Recruits: solidarity, made-in-Canada, the growing store list, earning credits. | Mon 21 Sep → Fri 23 Oct 2026, then hand back to `evergreen/` |
+| 05 | `05-highlights/` | Answers. The ten-Highlight tray somebody opens **after** they follow: how it works, stores one at a time, earning, plans, the app. | Mon 26 Oct 2026 onward — edited, never retired |
+| — | `brand/` | Not a pack. The reusable graphics every pack imports: the mark, the leaf, the palette, the type ramp, Instagram's geometry, the cover icons. | Permanent |
 
 Inside `04-community/` the same idea goes one level deeper: its wave folders are
 numbered `00`…`06` in publish order, and each asset's filename carries a global

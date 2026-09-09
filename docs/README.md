@@ -19,6 +19,9 @@ guidance from the thing it governs is how the two drift.
 
 | | |
 | --- | --- |
+| The reusable graphics every pack imports | [`../sm-content/brand/`](../sm-content/brand/) |
+| The Highlight tray — ten trays, their covers and how to build them | [`../sm-content/05-highlights/HIGHLIGHTS.md`](../sm-content/05-highlights/HIGHLIGHTS.md) |
+| The product facts marketing copy is allowed to rely on | [`../sm-content/05-highlights/facts.json`](../sm-content/05-highlights/facts.json) |
 | The current content pack, its gates and its 14-day run | [`../sm-content/evergreen/`](../sm-content/evergreen/) |
 | The hook system — the reusable part | [`../sm-content/evergreen/HOOK-BANK.md`](../sm-content/evergreen/HOOK-BANK.md) |
 | The schedule (single source of truth for captions) | [`../sm-content/evergreen/schedule.json`](../sm-content/evergreen/schedule.json) |

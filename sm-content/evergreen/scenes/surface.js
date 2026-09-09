@@ -303,25 +303,12 @@ function ghostHeader({ x, y, w, seed = 12 }) {
   return out.join("\n");
 }
 
-// ── The mark ────────────────────────────────────────────────────────────────
-// Ported 1:1 from the app's src/components/BrandMark.js (GLYPH_PATHS, 0 0 48 48
-// grid): a receipt with a torn bottom edge whose contents are a falling price
-// line resolving into a down-right arrowhead. Kept in sync by hand — there is
-// no build step between an Expo app and an SVG renderer — so if the app's glyph
-// changes, change it here too. verify.js checks the path count, not the shape.
-const GLYPH_PATHS = [
-  "M13 9 H35 V34 L32 37 L29 34 L26 37 L23 34 L20 37 L17 34 L14 37 L13 36 Z",
-  "M17 16 L21.5 20.5 L25.5 17 L31 27",
-  "M31 27 L27.4 26 M31 27 L31.7 23.2",
-];
-
-function glyph({ x, y, size = 48, stroke = C.emerald, width = 2.6, glowOn = false }) {
-  const s = size / 48;
-  return `<g transform="translate(${r2(x)} ${r2(y)}) scale(${r2(s)})" fill="none" stroke="${stroke}"
-        stroke-width="${r2(width / s)}" stroke-linecap="round" stroke-linejoin="round"${
-    glowOn ? ' filter="url(#glow)"' : ""
-  }>${GLYPH_PATHS.map((d) => `<path d="${d}"/>`).join("")}</g>`;
-}
+// ── The mark ──────────────────────────────────────────────────────────
+// Ported 1:1 from the app's src/components/BrandMark.js and now living in
+// ../../brand/mark.js — one copy for every pack, kept in sync with the app by
+// hand, and gated by brand/verify-brand.js. `watermark()` comes with it: the
+// mark at one strength, specified as a contrast rather than as an alpha.
+const { GLYPH_PATHS, glyph, watermark } = require("../../brand/mark");
 
 // Footer lockup: mark, wordmark, handle. Every frame carries it — this pack is
 // the permanent voice, so unlike the teaser it is allowed to sign its work.
@@ -352,6 +339,7 @@ module.exports = {
   ghostRows,
   ghostHeader,
   glyph,
+  watermark,
   lockup,
   ADV,
   monoWidth,

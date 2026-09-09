@@ -23,7 +23,7 @@
 //   seam     the bilingual signpost, pinned as the FIRST frame of every
 //            Highlight. See HIGHLIGHTS.md.
 
-const { CANVAS, SAFE, STICKER_BAND, C, FADE, TYPE, GRID, MONO, SANS } = require("./tokens");
+const { CANVAS, SAFE, STICKER_BAND, C, FADE, TYPE, GRID, MONO, SANS, DISPLAY } = require("./tokens");
 const {
   defs,
   field,
@@ -38,10 +38,13 @@ const {
   leaf,
   finePrint,
   seamChevrons,
+  progressReplica,
+  watermark,
   r2,
   ADV,
 } = require("./surface");
 const { hookBlock, subBlock, fitSize, rowsBlock, circleMark, checkRow } = require("./layout");
+const { WATERMARK } = require("../../brand/mark");
 
 const { w: W, h: H } = CANVAS.story;
 const M = GRID.margin;
@@ -150,7 +153,7 @@ async function buildStory(t, handle) {
   });
   // The mark and leaf scenes hang a large emblem above the type, so their copy
   // starts lower. Every other scene opens at 420.
-  const kickerY = t.scene === "mark" || t.scene === "leaf" ? 620 : 420;
+  const kickerY = t.scene === "mark" || t.scene === "leaf" || t.scene === "frmark" ? 620 : 420;
   const kicker = text(t.kicker, {
     x: X,
     y: kickerY,
@@ -170,6 +173,10 @@ async function buildStory(t, handle) {
     colW: TEXT_COL,
     token: heavy ? "hook" : "hookXl",
     min: 52,
+    // Bilingual frames set the French line full weight and the English under it
+    // dimmed, at the same size. A frame whose whole subject is that this account
+    // is in two languages cannot itself be in one.
+    ops: t.hookOps,
   });
 
   const parts = [field(W, H)];
@@ -192,27 +199,57 @@ async function buildStory(t, handle) {
   if (t.scene === "mark") {
     parts.push(glyph({ x: X, y: 330, size: 168, stroke: C.emerald, width: 2.9, glowOn: true }));
   } else if (t.scene === "leaf") {
-    parts.push(leaf({ x: X, y: 320, size: 196, fill: C.leaf, op: 0.9 }));
+    // 260, not the 196 this used to be. The leaf grew a stem, so at a given box
+    // width the BODY is now about three quarters of what the old stemless blob
+    // filled. Same box, smaller leaf — the number had to follow the shape.
+    parts.push(leaf({ x: X, y: 300, size: 260, fill: C.leaf, op: 0.9 }));
   } else if (t.scene === "seam") {
-    // The signpost frame. The chevrons ARE the content — they sit where a hook's
-    // sibling image would, at a size that reads from the Highlight tray.
-    parts.push(seamChevrons({ cx: X + COL / 2, cy: 1090, w: 190, gap: 92, dir: t.seamDir || "down", width: 15 }));
+    // The intro frame, pinned first in every Highlight.
+    //
+    // It used to carry chevrons and the instruction "keep tapping". That is an
+    // instruction rather than information: it asks a francophone to spend an
+    // unknown number of taps on a language they do not read, on the word of an
+    // account they have just met. The replica of Instagram's own progress bar
+    // SHOWS them where the French half starts instead, and the real bar is on
+    // screen a few hundred pixels above it, so nothing has to explain it.
+    parts.push(
+      progressReplica({ x: X, y: 980, w: COL, segments: t.segments || 8, frAt: t.frAt || 4, label: t.frLabel || "FR" }),
+      // Right, never down. A story is TAPPED FORWARD; a chevron pointing down
+      // tells the reader to do the one thing that will not reach the French.
+      seamChevrons({ cx: X + COL / 2, cy: 1300, w: 170, gap: 84, dir: t.seamDir || "right", width: 15 })
+    );
+  } else if (t.scene === "frmark") {
+    // The card the intro points at: the start of the French half, inside the
+    // same Highlight. Two letters at full size, which is the most that reads
+    // from a tray and the one piece of type that needs no translation.
+    parts.push(
+      text("FR", {
+        x: X,
+        y: 560,
+        size: 300,
+        weight: 900,
+        family: DISPLAY,
+        tracking: -14,
+        fill: C.emeraldGlow,
+        op: 0.96,
+        bleed: false,
+      }),
+      seamChevrons({ cx: X + COL / 2, cy: 1300, w: 170, gap: 84, dir: t.seamDir || "right", width: 15 })
+    );
   } else if (!heavy) {
     // A frame with no strip has ~570px of dead field between its hook and the
     // sticker band. Left empty it reads as an unfinished slide, and the sticker
     // does not fill it because the sticker sits BELOW it. So the mark is blown
-    // up as a watermark — brand at a glance, deliberately faint enough that a
-    // poll or question dropped on top of it stays the loudest thing on screen.
-    const gs = 460;
-    parts.push(
-      `<g opacity="0.09">${glyph({
-        x: W / 2 - gs / 2,
-        y: STICKER_BAND.y - gs - 70,
-        size: gs,
-        stroke: C.emeraldGlow,
-        width: 2.4,
-      })}</g>`
-    );
+    // up as a watermark — brand at a glance, and still quiet enough that a poll
+    // or question dropped on top of it stays the loudest thing on screen.
+    //
+    // This used to be `<g opacity="0.09">` written by hand here. Measured on the
+    // shipped PNGs that was a luminance delta of 19 over the field: findable on
+    // a monitor in a dark room, gone on a phone in daylight. It now comes from
+    // brand/mark.js, where the strength is specified as a CONTRAST and the alpha
+    // is solved from it — and gate 10 asserts the rendered result.
+    const gs = WATERMARK.onField.size;
+    parts.push(watermark({ x: W / 2 - gs / 2, y: STICKER_BAND.y - gs - 70, on: "field" }));
   }
 
   if (hasFine) {

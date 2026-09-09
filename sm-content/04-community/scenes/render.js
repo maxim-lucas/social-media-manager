@@ -1,7 +1,7 @@
 // Community pack — renderer. Scenes in, PNGs out.
 //
 //   node sm-content/04-community/scenes/render.js              # everything
-//   node sm-content/04-community/scenes/render.js --only=covers
+//   node sm-content/04-community/scenes/render.js --only=stories
 //   node sm-content/04-community/scenes/render.js --only=posts --lang=en --svg
 //
 // A copy change is a re-render, not a rebuild: edit strings.json and run this.
@@ -18,8 +18,7 @@ const sharp = require("sharp");
 const { CANVAS } = require("./tokens");
 const { buildPost, buildDivider } = require("./posts");
 const { buildStory } = require("./stories");
-const { buildCover } = require("./covers");
-const { postFile, storyFile, dividerFile, noticeFile, reserveFile, coverFile, rel } = require("./paths");
+const { postFile, storyFile, dividerFile, noticeFile, reserveFile, rel } = require("./paths");
 
 const STRINGS = JSON.parse(fs.readFileSync(path.join(__dirname, "strings.json"), "utf8"));
 
@@ -28,7 +27,7 @@ const argVal = (name, dflt) => {
   const hit = args.find((a) => a.startsWith(`--${name}=`));
   return hit ? hit.split("=")[1] : dflt;
 };
-const only = argVal("only", "all"); // all | posts | stories | reserve | notices | dividers | covers
+const only = argVal("only", "all"); // all | posts | stories | reserve | notices | dividers
 const langFilter = argVal("lang", "all"); // all | en | fr
 const dumpSvg = args.includes("--svg");
 
@@ -101,15 +100,34 @@ async function write(svgStr, outPath, { w, h }, label) {
       .toBuffer()
   );
 
-  let buf = await pipeline()
-    .png({ palette: true, colours: 128, dither: 1.0, compressionLevel: 9, effort: 10 })
-    .toBuffer();
+  // A LADDER, not a switch. The first version of this guard fell straight from
+  // 128 colours to truecolour, which is correct but expensive: the made-in-Canada
+  // frames went from about 240 kB to 1.1 MB each to rescue one emerald stroke.
+  //
+  // 256 is the rung between. The problem was never that a palette cannot hold
+  // this artwork — it is that four ramps (dark field, warm paper, brick leaf,
+  // brand emerald) do not fit in 128 entries, and the quantiser spends them
+  // where the PIXELS are rather than where the MEANING is. Doubling the budget
+  // fixes the frames that are merely crowded and leaves truecolour for the ones
+  // that genuinely are not reproducible.
+  const encode = (opts) => pipeline().png({ compressionLevel: 9, effort: 10, ...opts }).toBuffer();
+  const kept = (got) => Math.round((got / referenceGreen) * 100);
+
+  let buf = await encode({ palette: true, colours: 128, dither: 1.0 });
   let mode = "128";
 
-  const got = await peakGreen(buf);
-  if (referenceGreen > 20 && got < referenceGreen * GREEN_FLOOR) {
-    buf = await pipeline().png({ palette: false, compressionLevel: 9, effort: 10 }).toBuffer();
-    mode = `truecolour (128 kept only ${Math.round((got / referenceGreen) * 100)}% of the green)`;
+  if (referenceGreen > 20) {
+    let got = await peakGreen(buf);
+    if (got < referenceGreen * GREEN_FLOOR) {
+      const at128 = kept(got);
+      buf = await encode({ palette: true, colours: 256, dither: 1.0 });
+      got = await peakGreen(buf);
+      mode = `256 (128 kept only ${at128}% of the green)`;
+      if (got < referenceGreen * GREEN_FLOOR) {
+        buf = await encode({ palette: false });
+        mode = `truecolour (256 still kept only ${kept(got)}% of the green)`;
+      }
+    }
   }
 
   const meta = await sharp(buf).metadata();
@@ -169,13 +187,6 @@ async function main() {
         rel(out),
         await write(await buildDivider(d, STRINGS.en.handle), out, CANVAS.carousel, path.basename(out)),
       ]);
-    }
-  }
-
-  if (want("covers")) {
-    for (const c of STRINGS.covers) {
-      const out = coverFile(c, STRINGS.coversDir);
-      made.push([rel(out), await write(await buildCover(c), out, CANVAS.cover, path.basename(out))]);
     }
   }
 

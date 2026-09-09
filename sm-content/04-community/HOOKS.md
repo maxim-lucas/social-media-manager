@@ -74,7 +74,7 @@ Reserve, in `08-reserve/`, by id:
 | `r1` | EVERYONE PAYS MORE. / NOT EVERYONE / COMPARES NOTES. | shared predicament |
 | `r2` | WE'RE NOT BEATING / INFLATION. / WE'RE SPLITTING IT. | shared predicament |
 | `r3` | BUILT BY SOMEONE / WHO SHOPS / WHERE YOU SHOP. | made here |
-| `r4` | TWO CHAINS DOWN. / THE THIRD IS / SOMEBODY'S ANSWER. | the list |
+| `r4` | ONE CHAIN DOWN. / THE NEXT ONE IS / SOMEBODY'S ANSWER. | the list |
 | `r5` | A PRICE NOBODY / REPORTS IS A PRICE / NOBODY CATCHES. | the crowd |
 | `r6` | NO, YOU CAN'T / FARM IT. / THAT'S THE POINT. | credits |
 
@@ -122,13 +122,18 @@ back, and it is the version to reach for when a frame has no room for fine print
 | EN | FR |
 | --- | --- |
 | **·** COSTCO WAS / THE START. / NOT THE POINT. *(rendered, post 09)* | COSTCO ÉTAIT / LE DÉBUT. / PAS LE BUT. |
+| ONE STORE. / READ PROPERLY. / MORE ARE COMING. *(rendered, story 04)* | UN MAGASIN. / BIEN LU. / D'AUTRES SUIVENT. |
 | WHICH STORE / SHOULD WE / READ NEXT? *(rendered, post 10)* | QUEL MAGASIN / ON DEVRAIT / LIRE ENSUITE? |
 | A STORE IS NOT / A CHECKBOX. / IT IS A LANGUAGE. *(rendered, post 11)* | UN MAGASIN, / C'EST PAS UNE CASE. / C'EST UNE LANGUE. |
-| **·** TWO CHAINS DOWN. / THE THIRD IS / SOMEBODY'S ANSWER. | DEUX CHAÎNES FAITES. / LA TROISIÈME EST / LA RÉPONSE DE QUELQU'UN. |
+| **·** ONE CHAIN DOWN. / THE NEXT ONE IS / SOMEBODY'S ANSWER. | UNE DE FAITE. / LA PROCHAINE EST / LA RÉPONSE DE QUELQU'UN. |
 | YOUR STORE / ISN'T ON THE LIST / YET. | VOTRE MAGASIN / N'EST PAS ENCORE / SUR LA LISTE. |
 | NEW STORES / GET ANNOUNCED / HERE FIRST. | LES NOUVEAUX MAGASINS / S'ANNONCENT / ICI D'ABORD. |
 | WE ADD STORES / SLOWLY / ON PURPOSE. | ON AJOUTE DES MAGASINS / LENTEMENT. / VOLONTAIREMENT. |
 
+> **What is live is stated once**, in `../05-highlights/facts.json`, read off
+> the app's **origin/main** and nothing else. A working tree sitting on
+> `development` is how this pack shipped *TWO DOWN* with one store live.
+>
 > Any hook in this section that names a chain drags the disclaimer with it —
 > `fineprint` on the frame, in the same language, or verify.js gate 7 fails the
 > build. That is not a formality: `legal/MARKETING_CLAIMS.md` names "a claim
@@ -168,9 +173,10 @@ back, and it is the version to reach for when a frame has no room for fine print
 
 | Frame | Copy |
 | --- | --- |
-| Rendered notice | LE FRANÇAIS / SUIT TOUJOURS. — French first, English dimmed under it |
+| Rendered intro | LE FRANÇAIS SUIT. / FRENCH FOLLOWS. — bilingual on the face, French full weight, English dimmed under it |
 | Divider to FR | LA SUITE EN FRANÇAIS → FRANÇAIS |
-| Divider to EN | FIN DE LA PARTIE FRANÇAISE → ENGLISH |
+| Divider to EN | LA SUITE EN ANGLAIS → ENGLISH |
+| FR card | LE FRANÇAIS / COMMENCE ICI. — the frame the intro's progress bar points at |
 | Unrendered | LE FRANÇAIS / N'EST PAS / EN OPTION. |
 | Unrendered | ON NE TRADUIT PAS / APRÈS COUP. | 
 

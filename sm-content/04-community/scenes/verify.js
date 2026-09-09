@@ -12,17 +12,20 @@
 //   5 Fonts          Roboto, Roboto Black and Roboto Mono resolved — measured
 //   6 Copy           compliance + EN/FR parity, read off strings.json
 //   7 Disclaimer     a frame naming a retailer renders the non-affiliation line
-//   8 Cover circle   every cover's ink survives Instagram's circular crop
-//   9 Publish order  seq is a gap-free 01..N and the waves run in order
+//   8 Publish order  seq is a gap-free 01..N and the waves run in order
 //
-// Gates 2 and 8 cannot be done by luminance. A hook is near-white on a
+// The covers this pack used to gate now live in 05-highlights/, with a stricter
+// gate than the one that was here: this one only had a floor on total ink, and
+// a floor cannot see that eight icons are eight different sizes.
+//
+// Gate 2 cannot be done by luminance. A hook is near-white on a
 // near-black field — but the paper strip is ALSO near-white and is decoration,
 // so no threshold separates them. Instead every scene is re-rendered in
 // "content" mode, which suppresses the field, the paper, the torn edges, the
 // ghost rows and the cover's disc; content is then exactly the non-transparent
 // pixels and both checks become alpha tests with no judgement in them.
 //
-// Gates 7 and 9 are STRUCTURAL, not textual, and that is the point of having
+// Gates 7 and 8 are STRUCTURAL, not textual, and that is the point of having
 // them. A regex can see the word "Costco"; only a structural check can see that
 // the frame carrying it forgot its disclaimer, or that wave 03 was scheduled
 // before wave 02.
@@ -31,14 +34,13 @@ const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
 
-const { CANVAS, SAFE, COVER, STICKER_BAND, HOOK_ZONE, DISPLAY, SANS, MONO } = require("./tokens");
+const { CANVAS, SAFE, STICKER_BAND, HOOK_ZONE, DISPLAY, SANS, MONO } = require("./tokens");
 const { setMode } = require("./surface");
 const { buildPost, buildDivider } = require("./posts");
 const { buildStory } = require("./stories");
-const { buildCover } = require("./covers");
 const { PROBE_SIZE } = require("./layout");
 const { scanCopy, checkDisclaimerPairing } = require("./claims");
-const { postFile, storyFile, dividerFile, noticeFile, reserveFile, coverFile, rel } = require("./paths");
+const { postFile, storyFile, dividerFile, noticeFile, reserveFile, rel } = require("./paths");
 
 const STRINGS = JSON.parse(fs.readFileSync(path.join(__dirname, "strings.json"), "utf8"));
 const LANGS = ["en", "fr"];
@@ -190,56 +192,6 @@ async function checkFrames() {
   }
 }
 
-// ── Gate 8 — the cover survives the circle ──────────────────────────────────
-// Instagram crops a cover to a centred square and masks it to a circle. Ink
-// outside the safe circle is ink the tray will not show — and because the crop
-// happens on the phone, silently, there is no other moment this can be caught.
-async function checkCovers() {
-  const canvas = CANVAS.cover;
-  const { cx, cy } = COVER.safe;
-  const rSafe = COVER.safe.d / 2;
-
-  for (const c of STRINGS.covers) {
-    const label = `cover ${c.id}-${c.slug}`;
-    if (!(await existsAtSize(coverFile(c, STRINGS.coversDir), canvas, label))) continue;
-
-    const map = await contentMap(() => buildCover(c), canvas);
-
-    let outside = 0;
-    let at = null;
-    let inside = 0;
-    for (let y = 0; y < canvas.h; y++) {
-      for (let x = 0; x < canvas.w; x++) {
-        if (map.data[y * canvas.w + x] <= ALPHA_MIN) continue;
-        const d = Math.hypot(x - cx, y - cy);
-        if (d > rSafe) {
-          outside++;
-          if (!at) at = [x, y];
-        } else {
-          inside++;
-        }
-      }
-    }
-    if (outside > STRAY) {
-      fail("cover-circle", `${label}: ${outside}px of icon outside the safe circle (e.g. ${at}) — the tray will crop it`);
-    }
-    // An icon technically inside the circle but tiny is the other way to fail
-    // this: the tray shows roughly 1/45th of these pixels, so a small icon is an
-    // empty circle.
-    //
-    // 8000 is measured. The first attempt at it was 20000, guessed, and it
-    // failed the arrow and the bulb — both of which read perfectly at 161px when
-    // actually looked at. Across the eight covers the ink runs from 10248px (the
-    // arrow: three strokes, the lightest thing in the set by construction) to
-    // about 60000px (the filled "FR"). The floor sits below the lightest icon
-    // that has been inspected at tray size, which is the only kind of evidence
-    // that means anything for a gate about legibility.
-    if (inside < 8000) {
-      fail("cover-circle", `${label}: only ${inside}px of icon — too little ink to read at 161px in the Highlight tray`);
-    }
-  }
-}
-
 // ── Gate 5 — fonts ──────────────────────────────────────────────────────────
 // librsvg substitutes a missing font SILENTLY. A machine without Roboto Mono
 // renders the whole pack in something else and nothing errors, so the only
@@ -324,7 +276,7 @@ async function checkFonts() {
 }
 
 // ── Gate 6 — copy, and gate 7 — the disclaimer pairing ──────────────────────
-const SKIP_PATHS = /(^_readme|\._readme|\.stickerCopy$|storesLiveNote|^waves|^meta|^covers)/;
+const SKIP_PATHS = /(^_readme|\._readme|\.stickerCopy$|storesLiveNote|^waves|^meta)/;
 
 /** Every string a frame RENDERS — not its operator notes. */
 function renderedFields(t) {
@@ -385,7 +337,7 @@ function checkCopy() {
       for (const k of keys) {
         if (a[i][k] !== b[i][k]) fail("parity", `${kind} ${a[i].seq}: ${k} differs (en=${a[i][k]} fr=${b[i][k]})`);
       }
-      for (const k of ["rows", "checks", "steps", "ballot", "sub", "hook", "fineprint"]) {
+      for (const k of ["rows", "checks", "steps", "ballot", "sub", "subOps", "hook", "hookOps", "fineprint"]) {
         const la = a[i][k] ? a[i][k].length : 0;
         const lb = b[i][k] ? b[i][k].length : 0;
         if (la !== lb) fail("parity", `${kind} ${a[i].seq}: ${k} has ${la} entries in en, ${lb} in fr`);
@@ -458,13 +410,11 @@ async function main() {
   checkCopy();
   checkOrder();
   await checkFrames();
-  await checkCovers();
 
   const nAssets =
     LANGS.length * (STRINGS.en.posts.length + STRINGS.en.stories.length + (STRINGS.en.reserve || []).length) +
     STRINGS.notices.length +
-    STRINGS.dividers.length +
-    STRINGS.covers.length;
+    STRINGS.dividers.length;
 
   if (warnings.length) {
     console.log("warnings:");
@@ -476,7 +426,7 @@ async function main() {
     failures.forEach((f) => console.error(`  x ${f}`));
     process.exit(1);
   }
-  console.log(`verify OK — ${nAssets} assets, 9 gates, 0 failures, ${warnings.length} warnings.`);
+  console.log(`verify OK — ${nAssets} assets, 8 gates, 0 failures, ${warnings.length} warnings.`);
 }
 
 main().catch((e) => {

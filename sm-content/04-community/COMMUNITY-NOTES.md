@@ -1,8 +1,12 @@
 # The community pack — what it is and how to change it
 
-Built 2026-09-07. **84 assets**: 14 feed posts × 2 languages, 16 story frames × 2
-languages, 6 unscheduled reserve posts × 2 languages, 2 bilingual notice frames,
-2 carousel dividers, 8 Highlight covers. Plus six Reel scripts.
+Built 2026-09-07, corrected 2026-09-09. **77 assets**: 14 feed posts × 2
+languages, 16 story frames × 2 languages, 6 unscheduled reserve posts × 2
+languages, 3 bilingual furniture frames, 2 carousel dividers. Plus six Reel
+scripts.
+
+The eight Highlight covers moved to [`../05-highlights/`](../05-highlights/),
+which owns the tray end to end — see [`HIGHLIGHTS.md`](HIGHLIGHTS.md).
 Rendered deterministically from SVG scenes — a copy change is a re-render, not a
 rebuild.
 
@@ -33,8 +37,8 @@ Six waves, numbered in the order they go out, each in its own folder:
 | `07-highlight-frames/` | The eleven frames that live **inside** the Highlights: Tips, Feedback, Support, FAQ. |
 | `08-reserve/` | Six more posts, rendered and **unscheduled** — swap-in stock from [`HOOKS.md`](HOOKS.md). |
 
-`06-highlight-covers/` is not in the sequence. Those are uploaded once, from a
-phone, and never posted. Read [`HIGHLIGHTS.md`](HIGHLIGHTS.md).
+The covers are no longer here. A tray is furniture and this pack is a dated run,
+so they moved to `../05-highlights/`. Read [`HIGHLIGHTS.md`](HIGHLIGHTS.md).
 
 `08-reserve/` is filed by **id** (`r1`…`r6`), never by `seq`, and gate 9 does not
 see it. A post that is not in the running order must not claim a place in it —
@@ -285,6 +289,38 @@ as the empty space between them. It is filled, large and faint.
 
 ---
 
+## Three more, found later and worth the same space
+
+**A marketing claim read from the wrong git branch.** Post 09 and story 04
+shipped ticking **both** Costco and Best Buy as live, under the hook *"TWO
+DOWN"*. On the app's `origin/main` — the branch that becomes an APK — Best Buy
+is in `LAB_STORE_PARSERS`, which in a store build behaves as if the parser were
+not there. The facts had been read out of a working tree sitting on
+`development`, which was a store ahead. *Nothing about the frame looked wrong,
+and nothing in this repo could have known.* What is live is now stated once, in
+`../05-highlights/facts.json`, with the branch and the date it was checked, and
+that pack's gate 10 fails the build on a frame that disagrees with it.
+
+**A privacy answer about a feature that does not ship.** Story 17 answered *"do
+you see my email?"* with *"receipt data from your inbox never leaves the
+device."* That is true of **Gmail** — which ships disabled, with Google's
+restricted-scope verification not started and the app rendering a "Coming soon"
+card. The provider that actually ships is **Outlook**, and the app's own
+`receiptSyncService.js` says *"Outlook receipts are Microsoft data and keep
+syncing normally."* The most reassuring sentence in the pack was the false one.
+
+**A maple leaf built from curves is still a star.** The first `LEAF_PATH` was
+eleven Bézier bumps with no stem, and its comment argued that curvature was what
+stopped it reading as a star. The diagnosis was wrong. What separates a leaf from
+a star is **three lobes divided by two deep sinuses per side**, with *shallow*
+serrations on each lobe — when the notches are as deep as the points are long,
+the eye counts eleven equal rays no matter how they are drawn. And a maple leaf
+without a petiole reads as an ornament. The replacement is straight segments
+between eleven points and twelve notches, plus a stem, drawn and corrected four
+times against renders at 420 / 161 / 64 px.
+
+---
+
 ## Reels
 
 [`REEL-SCRIPTS.md`](REEL-SCRIPTS.md) — six shot lists, EN and FR, shootable on a
@@ -314,11 +350,10 @@ Instagram at post time, which is the same reason stories cannot be.
 - **The run is dated.** `schedule.json` starts Mon 21 Sep 2026, the day after the
   evergreen fortnight ends. Shifting it means editing the dates there and nothing
   else — the order lives in the filenames.
-- **Wave 03 claims two live stores.** That matches `STORE_PARSERS` in the app's
-  `src/services/receiptParsers/index.js` as of 2026-09-07: Costco and Best Buy
-  have dedicated readers; everything else falls through to the generic parser,
-  which is not the same claim. When store three ships, tick it in `strings.json`
-  in **both** languages and re-render post 09 and story 04.
+- **Wave 03 names ONE live store.** What is live is stated once, in
+  `../05-highlights/facts.json`, read off the app's **origin/main** — the branch
+  that becomes an APK. Do not read it from a working tree. When a store ships,
+  update that file, re-render, and check post 09, story 04 and reserve `r4`.
 - **Highlights are phone work.** They cannot be created from desktop web or the
   Graph API. Ten minutes, once. `HIGHLIGHTS.md` step by step.
 - **This register expires.** A shared-predicament hook borrows its energy from
