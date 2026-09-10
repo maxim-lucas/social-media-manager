@@ -111,15 +111,30 @@ Gratuit · Canada
 iPhone*, *Download for Android*, *How it works*. This beats a link-in-bio
 service, which adds a tap and loses people. Category: **Shopping & Retail**.
 
-**Four Story highlights**, covers taken from the 9:16 frames:
-`How it works` · `Real claims` · `Stores` · `FAQ`
+**Ten Story highlights**, built and documented in
+[`sm-content/05-highlights/HIGHLIGHTS.md`](../sm-content/05-highlights/HIGHLIGHTS.md):
+
+`How it works` · `Stores` · `Earn` · `Plans` · `The app` · `Tips` · `FAQ` ·
+`Support` · `About` · `Feedback`
 
 The `Stores` highlight is the one to keep current — it is where someone checks
 whether their store is supported, and it is the only place the store list may be
-named, because a highlight can be edited the day the list changes.
+named, because a highlight can be edited the day the list changes. It runs **one
+store per frame**, and what is live is stated once, in
+[`facts.json`](../sm-content/05-highlights/facts.json), read off the app's
+`origin/main`.
+
+**Every highlight is bilingual end to end** — intro, English, an FR card, French
+— rather than there being a separate French one. A French-only drawer duplicates
+the back half of every other tray and leaves all of them still opening in
+English. The intro frame draws a replica of Instagram's own progress bar with the
+French half lit, so a francophone can see where the French starts instead of
+being told to keep tapping.
 
 > Highlights **cannot** be created from desktop web or through the Graph API.
-> Instagram mobile app only: post the frame as a Story, then highlight it.
+> Instagram mobile app only: post the frame as a Story, then highlight it. An
+> archived story can be added to any number of Highlights, which is why the two
+> bilingual signpost frames are posted once and reused across all ten.
 
 ---
 

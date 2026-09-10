@@ -1,0 +1,140 @@
+{
+  "_readme": [
+    "Every product fact this pack's copy depends on, in one place, with the file on",
+    "the app's PRODUCTION branch it came from and the date it was checked.",
+    "",
+    "── The rule this file exists to enforce ─────────────────────────────────────",
+    "",
+    "COPY DESCRIBES origin/main ONLY. Not a development branch, not a feature",
+    "flagged off, not anything that has not shipped in an official APK. The app's",
+    "`development` branch is normally ahead of production by a store or a feature,",
+    "and marketing that reads the wrong branch ships a claim the app cannot honour.",
+    "",
+    "That is not hypothetical. The 04-community pack shipped `TWO DOWN` and ticked",
+    "both Costco and Best Buy as live, sourced from a working tree that happened to",
+    "be on `development`. On origin/main, Best Buy is still in LAB_STORE_PARSERS,",
+    "which in a store build behaves as if the parser were not there at all.",
+    "",
+    "── How to use it ───────────────────────────────────────────────────────────",
+    "",
+    "Store rows are read by scenes/render.js and turned into the ticked list, so a",
+    "store's status is stated ONCE. verify.js gate 12 fails the build if a frame",
+    "names a store as live that is not live here.",
+    "",
+    "When something changes in the app: update this file, re-render, and check the",
+    "frames it touched. Do not edit a checklist in strings.json by hand."
+  ],
+
+  "checkedOn": "2026-09-09",
+  "branch": "origin/main",
+
+  "stores": {
+    "_source": "src/services/receiptParsers/index.js — STORE_PARSERS and LAB_STORE_PARSERS; src/constants/stores.js — the enabled flag",
+    "_note": [
+      "`live` means a DEDICATED receipt parser in a store build. Everything else",
+      "falls through to the generic parser, which reads a total but not the store's",
+      "own line-item layout — a different claim, and not one to make.",
+      "Detection is broader than support: receiptParsingShared.js recognises about",
+      "twenty retailers by name. Recognising a receipt is not reading it."
+    ],
+    "live": ["Costco"],
+    "coming": ["Best Buy"]
+  },
+
+  "credits": {
+    "_source": "shared/pricing.config.js",
+    "startingGrant": 75,
+    "startingGrantNote": "A one-time lifetime grant, not a monthly reset. FREE_TIER_SCANS_PER_MONTH is 0.",
+    "scanCost": 1,
+    "neverExpire": true,
+    "dropChargePerDollar": 15,
+    "dropChargeNote": "Charged when a verified drop is DETECTED, not when the claim is filed. Do not write 'charged on successful claims only' — the app's own tagline says that and the code does not."
+  },
+
+  "referral": {
+    "_source": "backend/repos/referralsRepo.js, backend/referral.js, shared/pricing.config.js",
+    "codeFormat": "PB-XXXXXX",
+    "referrerCredits": 15,
+    "refereeCredits": 15,
+    "paysOn": "the friend's first purchase — a credit pack or a subscription",
+    "notes": [
+      "NOT on sign-up, and NOT on their first scan. The app's own invite screen says",
+      "'their first receipt scan unlocks the reward' and that string is wrong.",
+      "A free trial does not count until it converts.",
+      "The code is redeemable ONLY during sign-up, once per person, ever.",
+      "There is no deep link — the friend types the code. Do not write 'tap the link'.",
+      "No cap on how many people one person can invite."
+    ]
+  },
+
+  "contribution": {
+    "_source": "backend/repos/tagCreditsRepo.js, backend/config/defaults.js",
+    "rewardCredits": 1,
+    "weeklyCap": 5,
+    "monthlyCap": 15,
+    "verifiersRequired": 3,
+    "verifyWindowDays": 14,
+    "notes": [
+      "Credit is DEFERRED until three distinct users independently observe the same",
+      "price. Only tags that show a saving are eligible.",
+      "One payout per product, per warehouse-or-province, per calendar week.",
+      "There is NO contributor tier, reputation, level or leaderboard. Caps are flat",
+      "for everyone — so 'the more you give the more you get' is true only in the",
+      "sense that contributions offset what you would otherwise spend."
+    ]
+  },
+
+  "subscription": {
+    "_source": "shared/pricing.config.js SUBS, backend/subscriptionGate.js",
+    "name": "Unlimited",
+    "tiers": 1,
+    "billing": ["monthly", "annual"],
+    "annualNote": "Annual is ten times the monthly price — twelve months for the price of ten.",
+    "includes": [
+      "unlimited receipt scans",
+      "no per-drop charge",
+      "email sync",
+      "priority price checking",
+      "PDF export of claims"
+    ],
+    "exemptFromCreditCharges": true,
+    "priceRule": "NEVER PRINT A PRICE. Not on art, not in a caption. claims.js bans currency figures and percentages, and the reason is in the pack notes: a printed price outlives the price it prints. The app README still says $12/mo, which has been wrong for months."
+  },
+
+  "emailSync": {
+    "_source": "config/profiles/common.js, src/screens/EmailSyncScreen.js, src/services/receiptSyncService.js",
+    "live": ["Outlook"],
+    "notLive": ["Gmail"],
+    "gmailNote": "gmailSyncEnabled is false on origin/main. gmail.readonly is a Google RESTRICTED scope and the OAuth verification has not started, so the app renders a 'Coming soon' card. DO NOT MENTION GMAIL.",
+    "privacyNote": [
+      "The 'receipt data never leaves your device' guarantee is GMAIL-ONLY and Gmail",
+      "is not live. receiptSyncService.js:147 — 'Outlook receipts are Microsoft data",
+      "and keep syncing normally.' A frame claiming inbox data stays on the phone is",
+      "false for the provider that actually ships. 04-community story 17 said exactly",
+      "that and has been rewritten.",
+      "What IS true: the scope is read-only, we extract the receipt and not the",
+      "mailbox, and the app never sends mail."
+    ],
+    "lookbackDays": 90
+  },
+
+  "features": {
+    "_source": "src/services/priceService.js, notificationService.js, ClaimAssistantScreen.js, receiptScanQueue.js, storageService.js",
+    "shipped": [
+      "automatic price watching over parsed receipt line items",
+      "two claim-deadline reminders — one early, one just before the window shuts",
+      "claim assistant: an email draft, or a script to read at the desk",
+      "offline scan queue that drains when signal returns",
+      "per-store launch notifications you can subscribe to",
+      "nine separate notification categories",
+      "English and French throughout, enforced by a test",
+      "a savings streak, counted in weeks"
+    ],
+    "notShipped": [
+      "home-screen widgets",
+      "user-curated watchlists — watching is automatic",
+      "a currency setting — CAD is hardcoded",
+      "any credit or reward from badges or streaks; they are cosmetic and device-local"
+    ]
+  }
+}

@@ -58,9 +58,9 @@ recurrence behind it.
 | # | Time | Shot | On screen | Voice |
 | --- | --- | --- | --- | --- |
 | 1 | 0.0–1.5 | Hard cut onto `03-stores-growing/…-09-post-en.png`. No motion. | **COSTCO WAS THE START.** | "Costco was the start. It was never the point." |
-| 2 | 1.5–5.0 | Slow pan down the frame to the ticked list. | — | "Two chains have a reader built for the way they print a receipt." |
+| 2 | 1.5–5.0 | Slow pan down the frame to the ticked list. | — | "One chain has a reader built for the way it prints a receipt." |
 | 3 | 5.0–9.0 | Real receipts fanned on the table, several chains, faces of the totals turned away. | — | "Every chain formats differently. Each one is real work, not a switch we flip." |
-| 4 | 9.0–12.0 | Back to the frame, the two empty checkboxes filling the shot. | — | "The list only grows in one direction." |
+| 4 | 9.0–12.0 | Back to the frame, the empty checkboxes filling the shot. | — | "The list only grows in one direction." |
 | 5 | 12.0–15.0 | Hold on the empty boxes. | **NEW STORES GET ANNOUNCED HERE FIRST** · **@priceback.ca** | "And new stores get announced here first." |
 
 > **This Reel names a retailer, so the non-affiliation line has to be visible in

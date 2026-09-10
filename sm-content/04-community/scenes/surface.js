@@ -1,8 +1,14 @@
 // Community pack — SVG primitives: a strip of thermal paper on a dark field.
 //
-// Copied from evergreen/scenes/surface.js and extended at the bottom. The copy
-// is the repo convention, not an oversight: each pack owns its surface so that
-// a tweak in one pack can never silently re-render another pack's PNGs.
+// Copied from evergreen/scenes/surface.js and extended at the bottom. Each pack
+// owns its SURFACE — the strip, the tear, the grain, the scene composition — so
+// that a tweak in one pack can never silently re-render another pack's PNGs.
+//
+// What it no longer owns is the mark, the leaf, the palette and the type ramp.
+// Those come from ../../brand, because they are facts about the product rather
+// than choices about this pack, and keeping four copies of them is exactly how
+// the mark ended up drawn at two different strengths. brand/verify-brand.js
+// carries the safety property the duplication used to.
 //
 // Every scene is one SVG string rendered to PNG by sharp/librsvg. Anything
 // librsvg does not support (CSS layout, webfonts, blend modes beyond the basic
@@ -11,9 +17,11 @@
 // All randomness is seeded. A copy change must not reshuffle every torn edge
 // and produce a spurious diff on all 38 assets.
 //
-// Self-contained on purpose. It would be a two-line change to import the
-// teaser pack's paper.js instead, and then a copy tweak in the teaser would
-// silently re-render this pack. Each pack owns its own surface.
+// The surface is still self-contained on purpose. It would be a two-line change
+// to import the teaser pack's paper.js instead, and then a copy tweak in the
+// teaser would silently re-render this pack. Shared primitives are shared
+// BECAUSE a difference in them would be a defect; a shared surface would only
+// mean four packs that look alike, which is the opposite of the point.
 
 const { C, FADE, SANS, MONO, TYPE } = require("./tokens");
 
@@ -307,25 +315,24 @@ function ghostHeader({ x, y, w, seed = 12 }) {
   return out.join("\n");
 }
 
-// ── The mark ────────────────────────────────────────────────────────────────
-// Ported 1:1 from the app's src/components/BrandMark.js (GLYPH_PATHS, 0 0 48 48
-// grid): a receipt with a torn bottom edge whose contents are a falling price
-// line resolving into a down-right arrowhead. Kept in sync by hand — there is
-// no build step between an Expo app and an SVG renderer — so if the app's glyph
-// changes, change it here too. verify.js checks the path count, not the shape.
-const GLYPH_PATHS = [
-  "M13 9 H35 V34 L32 37 L29 34 L26 37 L23 34 L20 37 L17 34 L14 37 L13 36 Z",
-  "M17 16 L21.5 20.5 L25.5 17 L31 27",
-  "M31 27 L27.4 26 M31 27 L31.7 23.2",
-];
+// ── The mark ──────────────────────────────────────────────────────────
+// Ported 1:1 from the app's src/components/BrandMark.js and now living in
+// ../../brand/mark.js — one copy for every pack, kept in sync with the app by
+// hand, and gated by brand/verify-brand.js. `watermark()` comes with it: the
+// mark at the one strength, solved from a contrast rather than written as an
+// alpha. See brand/README.md § the watermark for what that fixes.
+const { GLYPH_PATHS, glyph, watermark: brandWatermark } = require("../../brand/mark");
 
-function glyph({ x, y, size = 48, stroke = C.emerald, width = 2.6, glowOn = false }) {
-  const s = size / 48;
-  return `<g transform="translate(${r2(x)} ${r2(y)}) scale(${r2(s)})" fill="none" stroke="${stroke}"
-        stroke-width="${r2(width / s)}" stroke-linecap="round" stroke-linejoin="round"${
-    glowOn ? ' filter="url(#glow)"' : ""
-  }>${GLYPH_PATHS.map((d) => `<path d="${d}"/>`).join("")}</g>`;
-}
+// The watermark can be switched off for one render. verify.js's watermark gate
+// measures the mark by DIFFERENCE — it renders each frame with and without, and
+// the largest per-pixel luminance change between the two IS the contrast the
+// spec is written in. Sampling a fixed region instead would mean guessing where
+// the glyph is and hoping no copy ever moves over it.
+let WATERMARK_ON = true;
+const setWatermark = (on) => {
+  WATERMARK_ON = on;
+};
+const watermark = (opts) => (WATERMARK_ON ? brandWatermark(opts) : "");
 
 // Footer lockup: mark, wordmark, handle. Every frame carries it — this pack is
 // the permanent voice, so unlike the teaser it is allowed to sign its work.
@@ -356,6 +363,8 @@ module.exports = {
   ghostRows,
   ghostHeader,
   glyph,
+  watermark,
+  setWatermark,
   lockup,
   ADV,
   monoWidth,
@@ -371,40 +380,10 @@ module.exports = {
 
 const { COVER } = require("./tokens");
 
-// ── The leaf ────────────────────────────────────────────────────────────────
-// A STYLISED maple leaf on a 0 0 100 100 grid, deliberately not the flag's.
-//
-// Two reasons it is not the real one, and they agree. Visually: the eleven-point
-// flag leaf loses its lobes below about 80px, and this mark has to survive a
-// 161px Highlight circle and a grid thumbnail. Legally: an emblem that reads as
-// the official flag on a commercial frame invites the "official endorsement"
-// reading, which is exactly the impression a made-in-Canada claim must not
-// create. This one is recognisably a leaf and recognisably a drawing.
-//
-// The colour is C.leaf, a muted brick — not #FF0000. Pure red beside emerald on
-// a near-black field vibrates on an OLED phone, and it is also the colour that
-// makes a graphic look like a flag rather than like a brand.
-const LEAF_PATH =
-  "M50 5 C53 19 57 27 63 25 L59 36 C68 33 76 27 80 23 L76 38 C85 35 92 33 97 31 " +
-  "L86 44 C92 46 96 48 98 50 L77 60 C81 64 83 68 85 72 L61 68 C61 74 63 79 65 85 " +
-  "L52 77 L54 95 L46 95 L48 77 L35 85 C37 79 39 74 39 68 L15 72 C17 68 19 64 23 60 " +
-  "L2 50 C4 48 8 46 14 44 L3 31 C8 33 15 35 24 38 L20 23 C24 27 32 33 41 36 " +
-  "L37 25 C43 27 47 19 50 5 Z";
-
-// Two straight-line versions of this shape were drawn and thrown away first, and
-// the reason is the whole lesson: a maple leaf built from straight segments
-// between evenly-spaced points is a STAR. What makes the silhouette read as a
-// leaf is the curve BETWEEN the points — the lobes bulge outward and the
-// notches cut back in, so the eye reads three big lobes with serrations rather
-// than eleven equal spikes. Every C in this path is load-bearing.
-
-function leaf({ x, y, size = 120, fill = C.leaf, op = 0.95, stroke = null, width = 3 }) {
-  const s = size / 100;
-  return `<g transform="translate(${r2(x)} ${r2(y)}) scale(${r2(s)})">
-    <path d="${LEAF_PATH}" fill="${stroke ? "none" : fill}" fill-opacity="${stroke ? 0 : op}"${
-    stroke ? ` stroke="${stroke}" stroke-opacity="${op}" stroke-width="${r2(width / s)}" stroke-linejoin="round"` : ""
-  }/></g>`;
-}
+// ── The leaf ──────────────────────────────────────────────────────────
+// One copy for every pack, in ../../brand/leaf.js, with the two reasons it is
+// not the flag's leaf and the reason every curve in it is load-bearing.
+const { leaf, LEAF_PATH } = require("../../brand/leaf");
 
 // ── The fine print, on the art ──────────────────────────────────────────────
 // Not a styling choice. legal/MARKETING_CLAIMS.md names the exact failure mode
@@ -461,6 +440,67 @@ function seamChevrons({ cx, cy, w = 96, gap = 46, stroke = C.emerald, width = 11
   return `<g>${one(0, op)}${one(gap, op * 0.4)}</g>`;
 }
 
+// ── The story progress bar, redrawn ──────────────────────────────────────
+//
+// The problem this solves. Every Highlight on this account runs
+//
+//     intro  ->  English  ->  the FR card  ->  French
+//
+// and a francophone who opens one and sees English has to be told, in frame
+// one, where the French is. The old frame told them to "keep tapping", which is
+// an instruction, not information: it asks a reader to spend an unknown number
+// of taps on a language they do not read, on the word of an account they have
+// just met.
+//
+// So the frame SHOWS them instead. Instagram draws one segment per frame across
+// the top of a story, and it is on screen about sixty pixels above this. A
+// replica of that bar, with the French half lit and the FR card marked, is read
+// without a caption because the reader is already looking at the real one.
+//
+// Proportions are IG's (see brand/ig.js PROGRESS_BAR) but the scale is not: at
+// the real 6px height this reads as a hairline rule rather than as the thing it
+// is pointing at. Drawn at a height that is legible mid-frame and a gap that
+// keeps the segment count countable, which is the property that matters — a
+// reader should be able to see that the French half is HALF, not a footnote.
+function progressReplica({ x, y, w, segments = 8, frAt = 4, h = 22, gap = 13, label = "FR" }) {
+  const segW = (w - gap * (segments - 1)) / segments;
+  const out = [];
+  for (let i = 0; i < segments; i++) {
+    const sx = x + i * (segW + gap);
+    // Segment 0 is where the reader is standing. Everything from the FR card
+    // on is lit, because that is the half being pointed at; the English
+    // segments between are dim, which is what makes the pointing legible.
+    const here = i === 0;
+    const french = i >= frAt;
+    const fill = here || french ? C.emerald : C.inkOnField;
+    const op = here ? 0.95 : french ? 0.8 : 0.28;
+    out.push(
+      `<rect x="${r2(sx)}" y="${r2(y)}" width="${r2(segW)}" height="${h}" rx="${h / 2}" fill="${fill}" fill-opacity="${op}"/>`
+    );
+  }
+
+  // The marker. A tick under the seam plus two letters, so the bar names the
+  // card rather than merely colouring it.
+  const mx = x + frAt * (segW + gap) + segW / 2;
+  out.push(
+    `<path d="M ${r2(mx)} ${r2(y + h + 10)} L ${r2(mx - 11)} ${r2(y + h + 30)} L ${r2(mx + 11)} ${r2(
+      y + h + 30
+    )} Z" fill="${C.emerald}" fill-opacity="0.9"/>`,
+    text(label, {
+      x: mx,
+      y: y + h + 68,
+      size: TYPE.kicker.size + 8,
+      weight: 500,
+      tracking: 5,
+      family: MONO,
+      fill: C.emerald,
+      op: 0.95,
+      anchor: "middle",
+    })
+  );
+  return out.join("\n");
+}
+
 // ── The Highlight cover ground ──────────────────────────────────────────────
 // The cover is authored on the full 1080x1920 canvas because that is what the
 // picker accepts cleanly, but only a centred circle survives IG's crop chain
@@ -505,4 +545,4 @@ function coverDisc({ ring = true } = {}) {
   }`;
 }
 
-Object.assign(module.exports, { leaf, LEAF_PATH, finePrint, seamChevrons, coverDisc });
+Object.assign(module.exports, { leaf, LEAF_PATH, finePrint, seamChevrons, coverDisc, progressReplica });

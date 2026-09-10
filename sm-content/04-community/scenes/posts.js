@@ -39,11 +39,13 @@ const {
   leaf,
   finePrint,
   seamChevrons,
+  watermark,
   r2,
   monoWidth,
   ADV,
 } = require("./surface");
 const { hookBlock, subBlock, fitSize, rowsBlock, circleMark, fallArrow, checkRow } = require("./layout");
+const { WATERMARK } = require("../../brand/mark");
 
 const { w: W, h: H } = CANVAS.post;
 const M = GRID.margin;
@@ -218,17 +220,15 @@ function stripContent(t, s) {
   if (t.accent === "glyph") {
     // Stamped, not placed: rotated off-axis and hung low, the way a "PAID" stamp
     // lands on a real receipt.
-    const gs = 172;
-    const gx = x + w / 2 - gs / 2;
-    const gy = s.y + s.h - gs - 78;
+    //
+    // This was drawn at FULL opacity — a luminance delta of about 139 against
+    // the paper, louder than the print it sits under, while the same mark on a
+    // story frame was drawn at 0.09 and could not be seen at all. Two authors,
+    // both writing an alpha, both meaning "faint". brand/mark.js states the
+    // strength as a contrast instead, so the two are now recognisably one mark.
+    const gs = WATERMARK.onPaper.size;
     out.push(
-      `<g transform="rotate(-7 ${r2(gx + gs / 2)} ${r2(gy + gs / 2)})">${glyph({
-        x: gx,
-        y: gy,
-        size: gs,
-        stroke: C.emeraldDeep,
-        width: 3.1,
-      })}</g>`
+      watermark({ x: x + w / 2 - gs / 2, y: s.y + s.h - gs - 78, on: "paper" })
     );
   }
 
@@ -281,6 +281,9 @@ async function buildPost(t, handle) {
     token: "hookXl",
     min: 52,
     maxH: STRIP_TOP - HOOK_TOP - SUB_GAP - SUB_BUDGET,
+    // Bilingual frames set the French line full weight and the English under it
+    // dimmed, same size. See layout.js hookBlock.
+    ops: t.hookOps,
   });
 
   // ── sub ───────────────────────────────────────────────────────────────────
@@ -302,7 +305,27 @@ async function buildPost(t, handle) {
   // ── the one gesture that lives on the field, not the paper ────────────────
   let gesture = "";
   if (t.accent === "arrow") gesture = fallArrow({ x: W - M - 210, y: 112, w: 180, h: 116, width: 8 });
-  else if (t.accent === "seam") gesture = seamChevrons({ cx: W - M - 62, cy: 132, w: 104, gap: 50, dir: t.seamDir || "down" });
+  else if (t.accent === "seam") {
+    // A chevron pair is not the same SHAPE in both directions, and the frame
+    // that turned these from "down" to "right" found that out from the gate.
+    //
+    //   down    spans cx +/- arm horizontally, cy .. cy + gap + 0.62*arm down
+    //   right   spans cx .. cx + gap + 0.62*arm across, cy +/- arm vertically
+    //
+    // So the position that cleared the margins pointing down put 337px in the
+    // top margin and 548px in the right one pointing right. Anchored to the
+    // safe box instead of to the canvas: the pair's own extent is subtracted
+    // from the margin rather than guessed at.
+    const arm = 52;
+    const gap = 50;
+    gesture = seamChevrons({
+      cx: W - SAFE.post.right - (gap + arm * 0.62) - 8,
+      cy: SAFE.post.top + arm + 12,
+      w: arm * 2,
+      gap,
+      dir: t.seamDir || "right",
+    });
+  }
 
   // ── the non-affiliation line ──────────────────────────────────────────────
   const fine = hasFine ? finePrint(t.fineprint, { x: M, y: FINEPRINT_Y, colW: TEXT_COL }) : "";

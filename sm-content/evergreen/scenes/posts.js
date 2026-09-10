@@ -28,12 +28,14 @@ const {
   ghostRows,
   ghostHeader,
   glyph,
+  watermark,
   lockup,
   r2,
   monoWidth,
   isContentMode,
 } = require("./surface");
 const { hookBlock, subBlock, fitSize, rowsBlock, circleMark, fallArrow, checkRow, REDACTED } = require("./layout");
+const { WATERMARK } = require("../../brand/mark");
 
 const { w: W, h: H } = CANVAS.post;
 const M = GRID.margin;
@@ -172,18 +174,13 @@ function stripContent(t, s) {
   if (t.accent === "glyph") {
     // Stamped, not placed: rotated off-axis and hung under a short rule, the
     // way a "PAID" stamp lands on a real receipt.
-    const gs = 172;
-    const gx = x + w / 2 - gs / 2;
-    const gy = s.y + s.h - gs - 78;
-    out.push(
-      `<g transform="rotate(-7 ${r2(gx + gs / 2)} ${r2(gy + gs / 2)})">${glyph({
-        x: gx,
-        y: gy,
-        size: gs,
-        stroke: C.emeraldDeep,
-        width: 3.1,
-      })}</g>`
-    );
+    //
+    // Drawn at FULL opacity here for a long time — a luminance delta of about
+    // 139 against the paper — while the same mark on a story frame was drawn at
+    // 0.09 and could not be seen at all. Two places, both writing an alpha, both
+    // meaning "faint". brand/mark.js states it as a contrast instead.
+    const gs = WATERMARK.onPaper.size;
+    out.push(watermark({ x: x + w / 2 - gs / 2, y: s.y + s.h - gs - 78, on: "paper" }));
   }
 
   return out.join("\n");

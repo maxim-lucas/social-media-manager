@@ -290,15 +290,12 @@ function circleMark({ cx, cy, rx, ry, rotate = -4, op = 0.9, width = 7, seed = 2
 }
 
 // ── Brand glyph ─────────────────────────────────────────────────────────────
-// Geometry copied from the app's single source of truth,
-// PriceBack/src/components/BrandMark.js (GLYPH_PATHS, viewBox 0 0 48 48).
-// Copied rather than imported: different repo, no build step here. If the mark
-// ever changes it changes there first and this copy follows.
-const GLYPH_PATHS = [
-  "M13 9 H35 V34 L32 37 L29 34 L26 37 L23 34 L20 37 L17 34 L14 37 L13 36 Z",
-  "M17 16 L21.5 20.5 L25.5 17 L31 27",
-  "M31 27 L27.4 26 M31 27 L31.7 23.2",
-];
+// The geometry now lives once, in ../../brand/mark.js, ported from the app's
+// PriceBack/src/components/BrandMark.js (viewBox 0 0 48 48) and gated by
+// brand/verify-brand.js. Only the PATHS are shared: this pack draws the mark as
+// a rubber stamp with a rounded frame and displaced ink, which is its own
+// treatment and stays here. The shape is a fact; the stamp is a choice.
+const { GLYPH_PATHS } = require("../../brand/mark");
 
 // The mark as an emerald rubber stamp: rounded frame, mark inside, rotated
 // off-register, ink unevenly displaced. Glyph only — never the wordmark. The

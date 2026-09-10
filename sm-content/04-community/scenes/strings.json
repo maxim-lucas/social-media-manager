@@ -46,14 +46,23 @@
   ],
   "meta": {
     "pack": "04-community",
-    "built": "2026-09-07",
-    "storesLiveOn": "2026-09-07",
+    "built": "2026-09-08",
+    "storesLiveOn": "2026-09-08",
     "storesLiveNote": [
-      "The ticked stores on post 09 and story 04 claim exactly the stores that have",
-      "a DEDICATED receipt parser in a production build — src/services/receiptParsers/",
-      "index.js, STORE_PARSERS. On 2026-09-07 that is Costco and Best Buy; everything",
-      "else detected falls through to the generic parser, which is not the same claim.",
-      "If store three ships, tick it here in BOTH languages and re-render."
+      "COPY DESCRIBES PRODUCTION ONLY - the app's origin/main, which is what becomes",
+      "an APK. Never a development branch, never a feature that has not shipped.",
+      "",
+      "On 2026-09-08, origin/main src/services/receiptParsers/index.js reads:",
+      "  const STORE_PARSERS     = { costco: parseCostcoReceipt };",
+      "  const LAB_STORE_PARSERS = { bestbuy: parseBestBuyReceipt };",
+      "",
+      "So COSTCO is the one live store and BEST BUY IS COMING. Best Buy is promoted",
+      "on the development branch; in a store build the lab lane is as if it were not",
+      "there, and the receipt falls through to the generic parser - which is not the",
+      "same claim. This pack said 'TWO DOWN' and ticked both for one draft.",
+      "",
+      "When a store ships to origin/main, tick it here in BOTH languages, update",
+      "05-highlights/facts.json, and re-render post 09, story 04 and reserve r4."
     ]
   },
   "waves": [
@@ -106,65 +115,6 @@
       "fr": "Rendues et non planifiees - stock de remplacement"
     }
   ],
-  "coversDir": "06-highlight-covers",
-  "covers": [
-    {
-      "id": "1",
-      "icon": "how",
-      "slug": "how-it-works",
-      "titleEn": "How it works",
-      "titleFr": "Ça marche"
-    },
-    {
-      "id": "2",
-      "icon": "stores",
-      "slug": "stores",
-      "titleEn": "Stores",
-      "titleFr": "Magasins"
-    },
-    {
-      "id": "3",
-      "icon": "faq",
-      "slug": "faq",
-      "titleEn": "FAQ",
-      "titleFr": "FAQ"
-    },
-    {
-      "id": "4",
-      "icon": "tips",
-      "slug": "tips",
-      "titleEn": "Tips",
-      "titleFr": "Astuces"
-    },
-    {
-      "id": "5",
-      "icon": "feedback",
-      "slug": "feedback",
-      "titleEn": "Feedback",
-      "titleFr": "Vos idées"
-    },
-    {
-      "id": "6",
-      "icon": "about",
-      "slug": "about",
-      "titleEn": "About",
-      "titleFr": "À propos"
-    },
-    {
-      "id": "7",
-      "icon": "support",
-      "slug": "support",
-      "titleEn": "Support",
-      "titleFr": "Aide"
-    },
-    {
-      "id": "8",
-      "icon": "french",
-      "slug": "francais",
-      "titleEn": "Français",
-      "titleFr": "Français"
-    }
-  ],
   "notices": [
     {
       "seq": "01",
@@ -172,16 +122,20 @@
       "wave": "00-language-notice",
       "layout": "bottom",
       "accent": "seam",
-      "seamDir": "down",
+      "seamDir": "right",
       "hookType": "promise-of-order",
-      "kicker": "DEUX LANGUES / TWO LANGUAGES",
+      "kicker": "DEUX LANGUES · TWO LANGUAGES",
       "hook": [
-        "LE FRANÇAIS",
-        "SUIT TOUJOURS."
+        "LE FRANÇAIS SUIT.",
+        "FRENCH FOLLOWS."
+      ],
+      "hookOps": [
+        1,
+        0.5
       ],
       "sub": [
         "Chaque publication existe dans les deux langues.",
-        "Every post here exists in both languages. French always follows."
+        "Every post here exists in both languages."
       ],
       "subOps": [
         0.8,
@@ -203,20 +157,59 @@
       "kind": "story",
       "wave": "00-language-notice",
       "scene": "seam",
-      "seamDir": "down",
+      "seamDir": "right",
       "sticker": "none",
-      "kicker": "DEUX LANGUES / TWO LANGUAGES",
+      "segments": 8,
+      "frAt": 4,
+      "frLabel": "FR",
+      "kicker": "DEUX LANGUES · TWO LANGUAGES",
       "hook": [
-        "LE FRANÇAIS",
-        "SUIT TOUJOURS."
+        "LE FRANÇAIS SUIT.",
+        "FRENCH FOLLOWS."
+      ],
+      "hookOps": [
+        1,
+        0.5
       ],
       "sub": [
-        "Chaque Highlight se termine en français.",
-        "Every Highlight ends in French. Keep tapping."
+        "Le français commence au repère FR, à la moitié.",
+        "French starts at the FR marker, halfway through."
       ],
       "subOps": [
         0.8,
         0.48
+      ],
+      "_readme": [
+        "PIN THIS FIRST IN EVERY HIGHLIGHT. The bar drawn across it is a replica of",
+        "Instagram's own story progress bar, with the French half lit and the FR card",
+        "marked, so a francophone can SEE where the French starts instead of being",
+        "told to keep tapping. Set `segments` and `frAt` to match the tray it opens:",
+        "segments = total frames, frAt = the index of the FR card."
+      ]
+    },
+    {
+      "seq": "fr",
+      "kind": "story",
+      "wave": "00-language-notice",
+      "scene": "frmark",
+      "seamDir": "right",
+      "sticker": "none",
+      "kicker": "VERSION FRANÇAISE",
+      "hook": [
+        "LE FRANÇAIS",
+        "COMMENCE ICI."
+      ],
+      "sub": [
+        "La version française commence ici.",
+        "The French version starts here."
+      ],
+      "subOps": [
+        0.8,
+        0.48
+      ],
+      "_readme": [
+        "Drop this in the MIDDLE of every Highlight, between the English frames and",
+        "the French ones. It is the card the intro frame's progress bar points at."
       ]
     }
   ],
@@ -242,7 +235,7 @@
       "id": "to-en",
       "wave": "00-language-notice",
       "seamDir": "right",
-      "over": "FIN DE LA PARTIE FRANÇAISE",
+      "over": "LA SUITE EN ANGLAIS",
       "word": [
         "ENGLISH"
       ],
@@ -471,7 +464,7 @@
           "NOT THE POINT."
         ],
         "sub": [
-          "Two chains have a reader built for their own receipt layout.",
+          "One chain has a reader built for its own receipt layout.",
           "The list grows in one direction, and it gets announced here first."
         ],
         "checks": [
@@ -481,10 +474,6 @@
           ],
           [
             "Best Buy",
-            "live"
-          ],
-          [
-            "More chains",
             "soon"
           ],
           [
@@ -693,9 +682,9 @@
         "sticker": "none",
         "kicker": "SUPPORTED TODAY",
         "hook": [
-          "TWO DOWN.",
-          "THE LIST GROWS",
-          "HERE FIRST."
+          "ONE STORE.",
+          "READ PROPERLY.",
+          "MORE ARE COMING."
         ],
         "checks": [
           [
@@ -704,10 +693,6 @@
           ],
           [
             "Best Buy",
-            "live"
-          ],
-          [
-            "More chains",
             "soon"
           ],
           [
@@ -929,8 +914,8 @@
           "MY EMAIL?"
         ],
         "sub": [
-          "No. Email sync runs on your phone, and receipt data from your",
-          "inbox never leaves the device. There is a test that proves it."
+          "Only to find order receipts. What we keep is the receipt itself:",
+          "what you bought and what you paid. We never send mail from it."
         ]
       }
     ],
@@ -1029,8 +1014,8 @@
         "hookType": "you-choose",
         "kicker": "THE QUEUE",
         "hook": [
-          "TWO CHAINS DOWN.",
-          "THE THIRD IS",
+          "ONE CHAIN DOWN.",
+          "THE NEXT ONE IS",
           "SOMEBODY'S ANSWER."
         ],
         "sub": [
@@ -1044,7 +1029,7 @@
           ],
           [
             "Electronics chain",
-            "live"
+            "soon"
           ],
           [
             "Home improvement",
@@ -1333,7 +1318,7 @@
           "PAS LE BUT."
         ],
         "sub": [
-          "Deux chaînes ont un lecteur bâti pour leur propre format de reçu.",
+          "Une chaîne a un lecteur bâti pour son propre format de reçu.",
           "La liste grandit dans un sens, et ça s'annonce ici en premier."
         ],
         "checks": [
@@ -1343,10 +1328,6 @@
           ],
           [
             "Best Buy",
-            "live"
-          ],
-          [
-            "D'autres chaînes",
             "soon"
           ],
           [
@@ -1555,9 +1536,9 @@
         "sticker": "none",
         "kicker": "PRIS EN CHARGE",
         "hook": [
-          "DEUX DE FAITS.",
-          "LA LISTE GRANDIT",
-          "ICI D'ABORD."
+          "UN MAGASIN.",
+          "BIEN LU.",
+          "D'AUTRES SUIVENT."
         ],
         "checks": [
           [
@@ -1566,10 +1547,6 @@
           ],
           [
             "Best Buy",
-            "live"
-          ],
-          [
-            "D'autres chaînes",
             "soon"
           ],
           [
@@ -1791,8 +1768,8 @@
           "MES COURRIELS?"
         ],
         "sub": [
-          "Non. La synchro courriel tourne sur votre téléphone et les données",
-          "de reçus ne quittent jamais l'appareil. Un test le prouve."
+          "Seulement pour trouver des reçus. Ce qu'on garde, c'est le reçu :",
+          "ce que vous avez acheté et payé. On n'envoie jamais de courriel."
         ]
       }
     ],
@@ -1891,8 +1868,8 @@
         "hookType": "you-choose",
         "kicker": "LA FILE",
         "hook": [
-          "DEUX CHAÎNES FAITES.",
-          "LA TROISIÈME EST",
+          "UNE DE FAITE.",
+          "LA PROCHAINE EST",
           "LA RÉPONSE DE QUELQU'UN."
         ],
         "sub": [
@@ -1906,7 +1883,7 @@
           ],
           [
             "Chaîne électronique",
-            "live"
+            "soon"
           ],
           [
             "Rénovation",

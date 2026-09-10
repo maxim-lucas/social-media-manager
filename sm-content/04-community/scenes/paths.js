@@ -16,9 +16,9 @@
 // the level someone posts an evening at. schedule.json still owns the DATES —
 // this owns the ORDER, and the order is what survives the dates being moved.
 //
-// Covers are not in the sequence and their folder number sorts them last on
-// purpose: they are never posted. They are uploaded once, from a phone, into
-// the Highlight tray.
+// Covers used to live here too. They moved to 05-highlights/, which owns the
+// Highlight tray end to end: this pack is a dated run that retires, and a tray
+// is furniture that does not. See ../HIGHLIGHTS.md.
 
 const path = require("path");
 
@@ -35,9 +35,8 @@ const noticeFile = (n) => path.join(ROOT, n.wave, `${PREFIX}-${n.seq}-${n.kind}.
 // A reserve post is filed by ID, never by seq. It has no place in the running
 // order by definition, and giving it a number would be a lie the filename tells.
 const reserveFile = (t, lang) => path.join(ROOT, t.wave, `${PREFIX}-${t.id}-post-${lang}.png`);
-const coverFile = (c, coversDir) => path.join(ROOT, coversDir, `${PREFIX}-cover-${c.id}-${c.slug}.png`);
 
 /** Repo-relative, forward-slashed — for logs, notes and schedule.json `asset`. */
 const rel = (p) => path.relative(ROOT, p).split(path.sep).join("/");
 
-module.exports = { ROOT, PREFIX, postFile, storyFile, dividerFile, noticeFile, reserveFile, coverFile, rel };
+module.exports = { ROOT, PREFIX, postFile, storyFile, dividerFile, noticeFile, reserveFile, rel };
