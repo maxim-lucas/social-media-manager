@@ -12,7 +12,11 @@ type PublishBody = {
  * Instagram professional account via the Meta Graph API.
  *
  * Body: { message: string, imageUrl: string, platform: "facebook" | "instagram" }
- * Response: { ok: true, platform, postId } | { ok: false, error, message }
+ * Response: { ok: true, platform, postId } | { ok: false, error, message, tokenExpired? }
+ *
+ * tokenExpired is set when Meta's Graph API rejected the request with
+ * OAuthException (code 190) — the page/IG access token is invalid or expired
+ * and must be regenerated; retrying the same request will not help.
  */
 export async function POST(req: NextRequest) {
   let body: PublishBody;
@@ -60,8 +64,14 @@ export async function POST(req: NextRequest) {
   } catch (e) {
     if (e instanceof MetaPublishError) {
       console.warn(`[publish] ${platform} publish failed:`, e.message);
+      const tokenExpired = e.graphCode === 190;
       return NextResponse.json(
-        { ok: false, error: "upstream_failed", message: `Meta ${platform} publish failed: ${e.message}` },
+        {
+          ok: false,
+          error: "upstream_failed",
+          message: `Meta ${platform} publish failed: ${e.message}`,
+          tokenExpired,
+        },
         { status: e.status === 503 ? 503 : 502 },
       );
     }
