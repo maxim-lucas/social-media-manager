@@ -14,6 +14,7 @@ guidance from the thing it governs is how the two drift.
 | --- | --- |
 | [`instagram-playbook.md`](instagram-playbook.md) | **Read this one.** The working playbook — ranking signals, profile setup, cadence, the follow mechanism, bilingual strategy, what to measure, and the claim rules. |
 | [`archive/instagram-launch-playbook-2026-08.html`](archive/instagram-launch-playbook-2026-08.html) | The August 2026 launch playbook, archived verbatim from claude.ai artifact `e9375fa1-99a1-4f30-9165-d9d0d93ae90f`. Superseded, but kept: its ranking-signal and profile detail is still accurate and is where the current playbook came from. |
+| [`material-ideas-to-be-created.md`](material-ideas-to-be-created.md) | **The Price-Drop Guarantee campaign backlog** — every material to create (carousel, Reel, stories, Highlights, store screenshots, ads, Reddit, press), its brief, the mandatory conditions line, the pack's own claim rules (the evergreen gate bans "guarantee"; this pack allows only the program name) and the gates before anything is published. |
 
 ## Where the rest is
 
