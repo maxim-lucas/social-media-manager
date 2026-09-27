@@ -124,6 +124,14 @@ store per frame**, and what is live is stated once, in
 [`facts.json`](../sm-content/05-highlights/facts.json), read off the app's
 `origin/main`.
 
+**Every Highlight's story sequence gets posted in one sitting, one tray at a
+time — never mixed with another tray's frames or an unrelated post.** The exact
+order (and why it survives into the finished Highlight) is in
+[`sm-content/05-highlights/SEQUENCE.md`](../sm-content/05-highlights/SEQUENCE.md);
+each tray folder also holds a numbered, browsable copy of its full content in
+posting order, so the sequence can be checked on GitHub before anything is
+posted by hand.
+
 **Every highlight is bilingual end to end** — intro, English, an FR card, French
 — rather than there being a separate French one. A French-only drawer duplicates
 the back half of every other tray and leaves all of them still opening in

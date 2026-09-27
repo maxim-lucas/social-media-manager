@@ -4,6 +4,12 @@ Ten Highlights, sixty rendered assets, and one structural rule that applies to
 every tray. This file is what you need to put them on the account, plus the
 reasoning, so the next person does not re-litigate it.
 
+**Before building or rebuilding any tray, read [`SEQUENCE.md`](SEQUENCE.md)** —
+the exact posting order per tray, why Instagram's own behavior makes that order
+survive into the Highlight, and where a full numbered copy of each tray's
+content now lives (inside that tray's own folder) so the order can be checked
+on GitHub without cross-referencing this file.
+
 ```bash
 node sm-content/05-highlights/scenes/build-strings.js   # after editing copy or facts.json
 node sm-content/05-highlights/scenes/render.js          # 60 assets
@@ -186,6 +192,10 @@ version shipped with strokes nobody could see.
 
 Highlights **cannot be created from desktop web or the Graph API** — Instagram
 does not expose it. This is phone work, and it is about twenty minutes.
+
+**Post one tray's story sequence in a single sitting, never mixed with another
+tray's or with an unrelated post.** A batch of unrelated frames posted together
+has no argument and reads as noise — see [`SEQUENCE.md`](SEQUENCE.md).
 
 1. AirDrop / email the ten cover PNGs to the phone.
 2. **Day one: post the intro and the FR card, once.** An archived story can
