@@ -381,8 +381,8 @@ module.exports = {
 const { COVER } = require("./tokens");
 
 // ── The leaf ──────────────────────────────────────────────────────────
-// One copy for every pack, in ../../brand/leaf.js, with the two reasons it is
-// not the flag's leaf and the reason every curve in it is load-bearing.
+// One copy for every pack, in ../../brand/leaf.js: the real Canadian leaf,
+// traced from the owner's reference, with how it was built and its two blends.
 const { leaf, LEAF_PATH } = require("../../brand/leaf");
 
 // ── The fine print, on the art ──────────────────────────────────────────────

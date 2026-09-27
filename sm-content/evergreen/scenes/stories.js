@@ -18,9 +18,8 @@
 // sequence and starts feeling like a survey.
 
 const { CANVAS, SAFE, STICKER_BAND, C, FADE, TYPE, GRID, MONO, SANS } = require("./tokens");
-const { defs, field, vignette, strip, text, rule, ghostRows, ghostHeader, glyph, watermark, lockup, r2 } = require("./surface");
+const { defs, field, vignette, strip, text, rule, ghostRows, ghostHeader, glyph, lockup, r2 } = require("./surface");
 const { hookBlock, subBlock, fitSize, rowsBlock, circleMark } = require("./layout");
-const { WATERMARK } = require("../../brand/mark");
 
 const { w: W, h: H } = CANVAS.story;
 const M = GRID.margin;
@@ -141,21 +140,12 @@ async function buildStory(t, handle) {
 
   if (t.scene === "mark") {
     parts.push(glyph({ x: X, y: 330, size: 168, stroke: C.emerald, width: 2.9, glowOn: true }));
-  } else if (!heavy) {
-    // A frame with no strip has ~570px of dead field between its hook and the
-    // sticker band. Left empty it reads as an unfinished slide; the sticker does
-    // not fill it, because the sticker sits *below* it. So the mark is blown up
-    // as a watermark — brand at a glance, and still quiet enough that a poll or
-    // question dropped on top of it stays the loudest thing on screen. Sized and
-    // positioned to stop short of STICKER_BAND.y.
-    //
-    // Was `<g opacity="0.09">`, written here by hand, which measured a luminance
-    // delta of 19 over the field on the shipped PNGs — visible on a monitor,
-    // gone on a phone. brand/mark.js states the strength as a contrast and
-    // solves the alpha from it.
-    const gs = WATERMARK.onField.size;
-    parts.push(watermark({ x: W / 2 - gs / 2, y: STICKER_BAND.y - gs - 70, on: "field" }));
   }
+  // No watermark on the green field. A frame with no strip used to have the mark
+  // blown up in the ~570px between its hook and the sticker band. The owner had
+  // it removed (2026-09-26): the field stays clean, and the lockup below is the
+  // brand on every frame. The receipt STAMP on paper (posts.js, accent "glyph")
+  // is a different element and stays.
 
   parts.push(lockup({ x: X, y: LOCKUP_Y, handle }));
 

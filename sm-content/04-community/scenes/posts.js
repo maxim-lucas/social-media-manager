@@ -106,6 +106,11 @@ function stripContent(t, s) {
     // Rotated, because a watermark set dead square to the frame reads as a
     // background pattern; a few degrees off axis reads as something that was
     // applied to this particular piece of paper.
+    //
+    // Printed INTO the paper rather than laid over it (ground "paper" in
+    // brand/leaf.js): multiplied, so it picks up the strip's own lighting, and
+    // grained like ink. 0.34 under multiply lands about where the old flat 0.19
+    // did in strength, while the grain keeps it from reading as a pink blot.
     const ls = Math.min(w * 0.52, s.h * 0.74);
     const lx = x + w / 2 - ls / 2;
     const ly = s.y + s.h / 2 - ls / 2 + 10;
@@ -115,7 +120,8 @@ function stripContent(t, s) {
         y: ly,
         size: ls,
         fill: C.leaf,
-        op: 0.19,
+        op: 0.34,
+        ground: "paper",
       })}</g>`
     );
   }

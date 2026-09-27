@@ -39,12 +39,10 @@ const {
   finePrint,
   seamChevrons,
   progressReplica,
-  watermark,
   r2,
   ADV,
 } = require("./surface");
 const { hookBlock, subBlock, fitSize, rowsBlock, circleMark, checkRow } = require("./layout");
-const { WATERMARK } = require("../../brand/mark");
 
 const { w: W, h: H } = CANVAS.story;
 const M = GRID.margin;
@@ -202,7 +200,9 @@ async function buildStory(t, handle) {
     // 260, not the 196 this used to be. The leaf grew a stem, so at a given box
     // width the BODY is now about three quarters of what the old stemless blob
     // filled. Same box, smaller leaf — the number had to follow the shape.
-    parts.push(leaf({ x: X, y: 300, size: 260, fill: C.leaf, op: 0.9 }));
+    // The real leaf (brand/leaf.js) kept the box: its stem is longer, and at 260
+    // it still clears the kicker at 620 by about 60px.
+    parts.push(leaf({ x: X, y: 300, size: 260, fill: C.leaf, op: 0.9, ground: "field" }));
   } else if (t.scene === "seam") {
     // The intro frame, pinned first in every Highlight.
     //
@@ -236,21 +236,12 @@ async function buildStory(t, handle) {
       }),
       seamChevrons({ cx: X + COL / 2, cy: 1300, w: 170, gap: 84, dir: t.seamDir || "right", width: 15 })
     );
-  } else if (!heavy) {
-    // A frame with no strip has ~570px of dead field between its hook and the
-    // sticker band. Left empty it reads as an unfinished slide, and the sticker
-    // does not fill it because the sticker sits BELOW it. So the mark is blown
-    // up as a watermark — brand at a glance, and still quiet enough that a poll
-    // or question dropped on top of it stays the loudest thing on screen.
-    //
-    // This used to be `<g opacity="0.09">` written by hand here. Measured on the
-    // shipped PNGs that was a luminance delta of 19 over the field: findable on
-    // a monitor in a dark room, gone on a phone in daylight. It now comes from
-    // brand/mark.js, where the strength is specified as a CONTRAST and the alpha
-    // is solved from it — and gate 10 asserts the rendered result.
-    const gs = WATERMARK.onField.size;
-    parts.push(watermark({ x: W / 2 - gs / 2, y: STICKER_BAND.y - gs - 70, on: "field" }));
   }
+  // No watermark on the green field. A frame with no strip used to have the mark
+  // blown up in the ~570px between its hook and the sticker band. The owner had
+  // it removed (2026-09-26): the field stays clean, and the lockup below is the
+  // brand on every frame. The receipt STAMP on paper (posts.js, accent "glyph")
+  // is a different element and stays.
 
   if (hasFine) {
     parts.push(finePrint(t.fineprint, { x: X, y: FINEPRINT_Y, colW: TEXT_COL }));

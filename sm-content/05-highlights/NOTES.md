@@ -161,7 +161,7 @@ both are generated, and the store frames in particular are derived from
 | 6 Disclaimer | Structural: a frame naming a retailer renders fineprint, and no frame carries one it does not need |
 | 7 Cover circle | Every cover's icon ink is inside the 640 px safe circle, and there is enough of it to read at 161 px |
 | **8 Cover parity** | Every icon fills 86 % ± 2 of the icon box — *a floor cannot see a spread* |
-| **9 Watermark** | The mark is rendered with and without, and the luminance difference must land in `WATERMARK.band` |
+| **9 Watermark** | The green field carries **no** watermark: no emerald ink where the old field mark sat (removed 2026-09-26) |
 | **10 Facts** | No frame calls a store live that `facts.json` does not |
 | **11 Tray** | Every cover has frames behind it, here or via `filledFrom` |
 

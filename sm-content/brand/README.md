@@ -11,7 +11,7 @@ node sm-content/brand/verify-brand.js --update   # re-bless after a deliberate c
 | File | What |
 | --- | --- |
 | [`mark.js`](mark.js) | the PriceBack mark — `GLYPH_PATHS`, `glyph()`, **`watermark()`**, the contrast spec |
-| [`leaf.js`](leaf.js) | the stylised maple leaf |
+| [`leaf.js`](leaf.js) | the real Canadian maple leaf, traced from the owner's reference, with its paper and field blends |
 | [`palette.js`](palette.js) | `C`, `FADE`, and `luminance()` |
 | [`type.js`](type.js) | the three families and the `TYPE` ramp |
 | [`ig.js`](ig.js) | Instagram's geometry — canvases, safe zones, the cover crop chain, the sticker band |
@@ -95,6 +95,12 @@ deltaL = alpha × |luminance(mark) − luminance(ground)|
 **0.218** on the field and **0.245** on paper — and each pack's `verify.js`
 asserts the *rendered* result lands in `WATERMARK.band`. A watermark that
 disappears fails the gate, and so does one that shouts.
+
+**Where it is used now (2026-09-26).** Only on paper: the receipt stamp on the
+`glyph`-accent feed posts. The owner had the watermark removed from the green
+story field, so no story frame calls `watermark({ on: "field" })` any more, and
+the highlights pack's gate 9 asserts the field stays clean. The field spec is
+kept here because the brand fixtures still pin it; nothing renders it.
 
 ---
 
