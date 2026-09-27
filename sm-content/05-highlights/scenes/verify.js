@@ -13,7 +13,7 @@
 //    6 Disclaimer     a frame naming a retailer renders the non-affiliation line
 //    7 Cover circle   every cover's ink survives Instagram's circular crop
 //    8 Cover parity   every icon is the SAME SIZE as the others  [new]
-//    9 Watermark      the mark lands inside its contrast band     [new]
+//    9 Watermark      the green field carries no watermark        [changed]
 //   10 Facts          no frame calls a store live that production does not [new]
 //   11 Tray           every cover has frames behind it            [new]
 //
@@ -32,7 +32,7 @@ const path = require("path");
 const sharp = require("sharp");
 
 const { CANVAS, SAFE, COVER, STICKER_BAND, C, DISPLAY, SANS, MONO } = require("./tokens");
-const { setMode, setWatermark } = require("./surface");
+const { setMode } = require("./surface");
 const { buildStory, HEAVY } = require("./stories");
 const { buildCover } = require("./covers");
 const { PROBE_SIZE } = require("./layout");
@@ -40,7 +40,6 @@ const { scanCopy, checkDisclaimerPairing, namesRetailer } = require("./claims");
 const { storyFile, coverFile, rel } = require("./paths");
 const { geometryBox } = require("../../brand/icons");
 const { WATERMARK } = require("../../brand/mark");
-const { luminance } = require("../../brand/palette");
 
 const STRINGS = JSON.parse(fs.readFileSync(path.join(__dirname, "strings.json"), "utf8"));
 const FACTS = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "facts.json"), "utf8"));
@@ -233,86 +232,60 @@ async function checkCovers() {
   }
 }
 
-// ── Gate 9 — the watermark is there, and is not shouting ────────────────────
+// ── Gate 9 — the green field carries no watermark ───────────────────────────
 //
-// The defect: the same mark was drawn at `opacity 0.09` on story frames and at
-// FULL opacity on feed frames, in two packs, by two authors who both wrote
-// "faint" in the comment above it. Measured, that was a luminance delta of 19
-// against the field and about 139 against paper — one invisible on a phone, one
-// louder than the print it sat under.
+// This gate used to assert the opposite: that the receipt mark blown up in the
+// empty middle of a text-only story landed inside WATERMARK.band. The owner had
+// that watermark removed on 2026-09-26 — the field stays clean, and the lockup
+// is the brand on every frame — so the gate now makes sure it stays removed.
+// It is the cheapest place for it to come back: one `else` branch in
+// stories.js, copied from the evergreen or community pack's history.
 //
-// An alpha is not a strength, so brand/mark.js specifies a CONTRAST and solves
-// the alpha per ground. This gate asserts the RENDERED result, because a spec
-// that is only checked at the point it is written is a spec that drifts the
-// first time somebody passes a custom colour.
-//
-// Measured by difference: each frame is rendered with the watermark and without,
-// and the largest per-pixel luminance change between the two is the contrast.
-// Sampling a fixed region would mean guessing where the glyph is and hoping no
-// copy ever moves over it.
-async function lumMap(svg, w, h) {
+// Measured as GREENNESS, g - (r + b) / 2, over the box the mark used to fill.
+// The field is a near-black green (about 8-12 on that scale); the hook and sub
+// above the box are near-white and grey (about 0-6). The old mark was
+// emeraldGlow at a solved alpha of 0.22, which lifted the box to about 30. The
+// ceiling sits in the gap between the two.
+const WATERMARK_ZONE = (() => {
+  const s = WATERMARK.onField.size;
+  const x = CANVAS.story.w / 2 - s / 2;
+  const y = STICKER_BAND.y - s - 70;
+  return { left: Math.round(x), top: Math.round(y), width: s, height: s };
+})();
+const FIELD_GREEN_CEILING = 20;
+
+async function peakGreenIn(svg, zone) {
   const { data, info } = await sharp(Buffer.from(svg), { density: 72 })
+    .extract(zone)
     .raw()
     .toBuffer({ resolveWithObject: true });
-  const out = new Float32Array(w * h);
-  for (let i = 0, p = 0; i < data.length; i += info.channels, p++) {
-    out[p] = 0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2];
+  let peak = 0;
+  for (let i = 0; i < data.length; i += info.channels) {
+    const g = data[i + 1] - (data[i] + data[i + 2]) / 2;
+    if (g > peak) peak = g;
   }
-  return out;
+  return peak;
 }
 
-/** Which frames carry a watermark: the ones with no strip and no emblem. */
-const carriesWatermark = (t) => !HEAVY.has(t.scene) && t.scene !== "mark";
+/** The frames that used to carry the field watermark: no strip, no emblem. */
+const hadWatermark = (t) => !HEAVY.has(t.scene) && t.scene !== "mark";
 
 async function checkWatermark() {
-  const { w, h } = CANVAS.story;
-  const [lo, hi] = WATERMARK.band;
-  // One frame per distinct scene is enough — the watermark is drawn at one size
-  // in one place, so a second frame of the same scene measures the same pixels.
+  // One frame per distinct scene per language: the zone is fixed, and what can
+  // put ink in it is the scene's code, not its copy.
   const seen = new Set();
+  for (const { t, label, lang } of everyFrame()) {
+    const key = `${t.scene}/${lang}`;
+    if (!hadWatermark(t) || seen.has(key)) continue;
+    seen.add(key);
 
-  for (const { t, label } of everyFrame()) {
-    if (!carriesWatermark(t) || seen.has(t.scene)) continue;
-    seen.add(t.scene);
-
-    const withWm = await lumMap(await buildStory(t, STRINGS.meta.handle), w, h);
-    setWatermark(false);
-    let without;
-    try {
-      without = await lumMap(await buildStory(t, STRINGS.meta.handle), w, h);
-    } finally {
-      setWatermark(true);
-    }
-
-    let peak = 0;
-    for (let i = 0; i < withWm.length; i++) {
-      const d = Math.abs(withWm[i] - without[i]);
-      if (d > peak) peak = d;
-    }
-
-    if (peak < lo) {
+    const peak = await peakGreenIn(await buildStory(t, STRINGS.meta.handle), WATERMARK_ZONE);
+    if (peak > FIELD_GREEN_CEILING) {
       fail(
         "watermark",
-        `${label} (scene "${t.scene}"): the mark reads at only deltaL ${peak.toFixed(1)} over its ground, ` +
-          `below the band ${lo}-${hi} — that is the strength that was invisible on a phone`
+        `${label} (scene "${t.scene}"): emerald ink at greenness ${peak.toFixed(0)} where the old field ` +
+          `watermark sat (ceiling ${FIELD_GREEN_CEILING}) — the green field must stay clean`
       );
-    } else if (peak > hi) {
-      fail(
-        "watermark",
-        `${label} (scene "${t.scene}"): the mark reads at deltaL ${peak.toFixed(1)}, above the band ${lo}-${hi} — ` +
-          `a watermark must not be the loudest thing on the frame`
-      );
-    }
-  }
-
-  // And the spec itself still solves to something sane on both grounds.
-  for (const [ground, colour, base] of [
-    ["field", WATERMARK.onField.colour, C.field],
-    ["paper", WATERMARK.onPaper.colour, C.paper],
-  ]) {
-    const spread = Math.abs(luminance(colour) - luminance(base));
-    if (spread < WATERMARK.deltaL) {
-      fail("watermark", `the spec asks for deltaL ${WATERMARK.deltaL} on ${ground}, but that ground offers only ${spread.toFixed(0)}`);
     }
   }
 }

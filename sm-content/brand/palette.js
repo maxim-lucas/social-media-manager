@@ -32,11 +32,13 @@ const C = {
 
   bar: "#171512",
 
-  // The leaf. A muted brick red, NOT the flag's #FF0000 — pure red next to
-  // emerald on a near-black field vibrates on an OLED phone, and it also stops
-  // the frame reading as an official mark, which it must not. See leaf.js.
-  leaf: "#c0392b",
-  leafDeep: "#8e2a20",
+  // The leaf. The Canadian flag's red, picked by the owner over the brick
+  // (#c0392b) this used to be, after seeing both on the real frames
+  // (2026-09-26). Not the pure #FF0000 the flag is sometimes quoted as: that
+  // one vibrates beside emerald on an OLED phone. leafDeep is the shadow end of
+  // the leaf's own gradient, not a second accent. See leaf.js.
+  leaf: "#d52b1e",
+  leafDeep: "#8f1a12",
 };
 
 // How faded a given line of print is. Named rather than numbered so a frame

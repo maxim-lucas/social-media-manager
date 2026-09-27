@@ -163,12 +163,14 @@ different subject, and a fourth look would read as a fourth product.
 Three things are new:
 
 - **The leaf.** The one non-emerald element in the whole system, and it appears
-  only on the two made-in-Canada frames. It is a *stylised* maple leaf, not the
-  flag's: the eleven-point flag leaf loses its lobes below about 80 px, and an
-  emblem that reads as the official flag on a commercial frame invites the
-  "official endorsement" reading — exactly the impression a made-in-Canada claim
-  must not create. Its colour is a muted brick, never `#FF0000`, which vibrates
-  next to emerald on an OLED phone.
+  only on the made-in-Canada frames. **Since 2026-09-26 it is the real Canadian
+  maple leaf**, traced from the owner's reference and blended into each ground
+  (printed into the receipt paper; shaded and softly glowing on the story field),
+  in the flag's red `#d52b1e`. It replaced a deliberately *stylised* brick leaf,
+  drawn that way to avoid an "official endorsement" reading; the owner saw that
+  trade-off stated on a side-by-side prototype and chose the real leaf in
+  Canadian red. Still never `#FF0000`, which vibrates next to emerald on an OLED
+  phone. See `../brand/leaf.js` for how the outline was built.
 - **The seam chevrons.** Two, never one or three: one reads as a scroll hint the
   eye skips, three reads as a loading spinner. Direction is authored per frame,
   because a carousel is swiped sideways and a story is read downward — a divider
