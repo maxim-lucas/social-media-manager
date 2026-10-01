@@ -18,8 +18,8 @@ const sharp = require("sharp");
 
 const { CANVAS } = require("./tokens");
 const { buildStory } = require("./stories");
-const { buildCover } = require("./covers");
-const { storyFile, coverFile, rel } = require("./paths");
+const { buildCover, OPTIONS } = require("./covers");
+const { storyFile, coverFile, optionFile, rel } = require("./paths");
 
 const STRINGS = JSON.parse(fs.readFileSync(path.join(__dirname, "strings.json"), "utf8"));
 
@@ -143,6 +143,10 @@ async function main() {
   if (want("covers")) {
     for (const c of STRINGS.covers) {
       const out = coverFile(c);
+      made.push([rel(out), await write(await buildCover(c), out, CANVAS.cover, path.basename(out))]);
+    }
+    for (const c of OPTIONS) {
+      const out = optionFile(c);
       made.push([rel(out), await write(await buildCover(c), out, CANVAS.cover, path.basename(out))]);
     }
   }
