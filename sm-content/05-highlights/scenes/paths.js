@@ -27,7 +27,9 @@ const storyFile = (tray, t, lang) =>
 
 const coverFile = (c) => path.join(ROOT, "covers", `${PREFIX}-cover-${c.order}-${c.id}.png`);
 
+const optionFile = (c) => path.join(ROOT, "covers", "options", `${PREFIX}-cover-${c.order}-${c.id}.png`);
+
 /** Repo-relative, forward-slashed — for logs, notes and schedule.json `asset`. */
 const rel = (p) => path.relative(ROOT, p).split(path.sep).join("/");
 
-module.exports = { ROOT, PREFIX, storyFile, coverFile, rel };
+module.exports = { ROOT, PREFIX, storyFile, coverFile, optionFile, rel };

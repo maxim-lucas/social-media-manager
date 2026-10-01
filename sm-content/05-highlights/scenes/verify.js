@@ -38,7 +38,7 @@ const { buildCover } = require("./covers");
 const { PROBE_SIZE } = require("./layout");
 const { scanCopy, checkDisclaimerPairing, namesRetailer } = require("./claims");
 const { storyFile, coverFile, rel } = require("./paths");
-const { geometryBox } = require("../../brand/icons");
+const { geometryBox, ICONS } = require("../../brand/icons");
 const { WATERMARK } = require("../../brand/mark");
 
 const STRINGS = JSON.parse(fs.readFileSync(path.join(__dirname, "strings.json"), "utf8"));
@@ -218,6 +218,9 @@ async function checkCovers() {
     // the fill brand/icons.js solved for. The band is tight on purpose: this is
     // arithmetic, not taste, and anything outside it means the normalisation did
     // not run rather than that a designer disagreed.
+    // Filled-art icons (the leaf) are sized by their own `size`, not the line-icon
+    // fill, so there is no fill to assert; gate 7 still bounds their ink.
+    if (ICONS[c.icon].art) continue;
     const geom = await geometryBox(c.icon);
     const s = (COVER.icon * COVER.iconFill - COVER.iconStroke) / Math.max(geom.w, geom.h);
     const drawn = Math.max(geom.w, geom.h) * s + COVER.iconStroke;

@@ -81,13 +81,13 @@ this left-to-right order.
 | --- | --- | --- | --- | --- |
 | 1 | falling price arrow | **How it works** | **Ça marche** | The mechanic: a price you paid is not always final · what it takes · the three steps |
 | 2 | storefront, awning | **Stores** | **Magasins** | **One store per frame** — Costco (live) · Best Buy (not yet) · yours? |
-| 3 | coin with a plus | **Earn** | **Gagner** | Credits come back two ways: invite somebody, or scan a shelf tag. Includes what stops people gaming it |
-| 4 | infinity | **Plans** | **Forfaits** | What a credit is · what spends one · what Unlimited changes · what it opens · paid yearly |
+| 3 | coin with a dollar sign (option: coin with the maple leaf) | **Earn** | **Gagner** | Credits come back two ways: invite somebody, or scan a shelf tag. Includes what stops people gaming it |
+| 4 | plan card: star + ticked rows | **Plans** | **Forfaits** | What a credit is · what spends one · what Unlimited changes · what it opens · paid yearly |
 | 5 | sliders | **The app** | **L'app** | Price watching · two reminders · the claim assistant · Outlook sync · offline · what you can set |
 | 6 | bulb | **Tips** | **Astuces** | 04-community **07 · 08 · 09**, plus "scan it in the parking lot" |
 | 7 | ? in a circle | **FAQ** | **FAQ** | 04-community **15 · 16 · 17**, plus "what if I threw out the receipt?" |
 | 8 | life ring | **Support** | **Aide** | 04-community **12 · 13 · 14** |
-| 9 | the PriceBack mark | **About** | **À propos** | 04-community **03** (made here), plus what it will not do |
+| 9 | the maple leaf (option: leaf with the PriceBack mark) | **About** | **À propos** | 04-community **03** (made here), plus what it will not do |
 | 10 | speech bubble | **Feedback** | **Vos idées** | 04-community **10 · 11** |
 
 Trays 6–10 are filled from `04-community`. That is declared in `strings.json` as

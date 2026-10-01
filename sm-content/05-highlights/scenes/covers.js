@@ -81,4 +81,12 @@ ${body}
 </svg>`;
 }
 
-module.exports = { buildCover, W, H };
+// Alternatives awaiting a choice. Rendered to covers/options/ by render.js and
+// never counted by verify.js or listed in strings.json: promoting one means
+// pointing the tray's `icon` at it (brand/icons.js) and deleting the rest.
+const OPTIONS = [
+  { order: "03", id: "earn-leaf-coin", icon: "earnLeaf" },
+  { order: "09", id: "about-leaf-mark", icon: "aboutMark" },
+];
+
+module.exports = { buildCover, OPTIONS, W, H };

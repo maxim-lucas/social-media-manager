@@ -37,6 +37,7 @@ const sharp = require("sharp");
 const { C } = require("./palette");
 const { GLYPH_PATHS } = require("./mark");
 const { COVER } = require("./ig");
+const { leaf } = require("./leaf");
 
 const r2 = (n) => Math.round(n * 100) / 100;
 const GRID = 48;
@@ -76,22 +77,36 @@ const ICONS = {
     ],
   },
 
-  // Earn — a credit arriving. A coin with a plus through it: the one shape that
-  // says "you gained one of these" without naming a currency, which matters,
-  // because a credit is not money and the copy is careful never to imply it is.
+  // Earn — a coin, face-on, with a dollar sign. The first version was a coin
+  // with a plus through it and nobody read it as money: at 161px it was a
+  // "+" button. A stack of coins was tried next and read as a DATABASE. A
+  // face-on coin with a bold "$" is the one shape that says "money" in half a
+  // second. The cost: "$" implies currency, and a credit is not money — the copy
+  // is careful never to imply it is. `earnLeaf` below is the neutral alternative.
   earn: {
-    circles: [[24, 24, 19, false]],
-    paths: ["M24 15 V33", "M15 24 H33"],
+    circles: [
+      [24, 24, 20, false],
+      [24, 24, 15, false],
+    ],
+    label: { s: "$", size: 26, dy: 9, weight: 900, display: true },
   },
 
-  // Plans — the infinity loop, because the tier this Highlight argues for is
-  // called Unlimited and that is the only word on it that never changes. A price
-  // would have been the obvious icon and is the one thing that must not be
-  // drawn: a printed figure outlives the price it prints.
+  // Plans — ONE plan card: a star badge, then a ticked list of what is included.
+  // The infinity loop it replaces only meant something to someone who already
+  // knew the top tier was called Unlimited. A row of three pricing cards was
+  // drawn first and read as a row of buildings; a single ticked card is the
+  // shape people already know from every pricing page. Still no price on it — a
+  // printed figure outlives the price it prints.
   plans: {
     paths: [
-      "M24 24 C20 14 12 11 7 16 C2 21 2 27 7 32 C12 37 20 34 24 24 " +
-        "C28 14 36 11 41 16 C46 21 46 27 41 32 C36 37 28 34 24 24 Z",
+      "M10 3 H38 A3 3 0 0 1 41 6 V43 A3 3 0 0 1 38 46 H10 A3 3 0 0 1 7 43 V6 A3 3 0 0 1 10 3 Z",
+      "M24 7 L25.53 10.9 L29.71 11.15 L26.47 13.8 L27.53 17.85 L24 15.6 L20.47 17.85 L21.53 13.8 L18.29 11.15 L22.47 10.9 Z",
+      "M12 25 L14.5 27.5 L18.5 22.5",
+      "M23 25 H36",
+      "M12 32 L14.5 34.5 L18.5 29.5",
+      "M23 32 H36",
+      "M12 39 L14.5 41.5 L18.5 36.5",
+      "M23 39 H36",
     ],
   },
 
@@ -139,11 +154,12 @@ const ICONS = {
     ],
   },
 
-  // About — the app's own mark. The only cover that is the product rather than a
-  // symbol for a subject, and the reason it needed no redrawing: it was never
-  // the wrong shape, only the wrong size (62% of its box). Normalisation is the
-  // whole fix.
-  about: { paths: GLYPH_PATHS },
+  // About — the Canadian maple leaf, the same one on the posts. It replaced the
+  // app's own receipt mark, which is already on every frame's lockup. An `art`
+  // icon is drawn from FILLED shapes, not strokes, and is sized by `size`
+  // rather than by COVER.iconFill: a filled leaf carries far more weight than a
+  // line icon of the same bounding box, so the same fill would look enormous.
+  about: { art: "leaf", size: 500 },
 
   // Support — a life ring. A headset would say "call centre", which this is not,
   // and an envelope would collide with Feedback.
@@ -165,6 +181,11 @@ const ICONS = {
       "M29.66 29.66 L38.14 38.14",
     ],
   },
+
+  // ── Options — rendered to covers/options/, never into the tray set ─────────
+  // Alternatives awaiting a choice; each is named in OPTIONS in scenes/covers.js.
+  aboutMark: { art: "leafMark", size: 500 },
+  earnLeaf: { art: "coinLeaf", size: 378 },
 };
 
 // ── Measurement ─────────────────────────────────────────────────────────────
@@ -200,6 +221,12 @@ async function geometryBox(name, { width = COVER.iconStroke } = {}) {
 
   const spec = ICONS[name];
   if (!spec) throw new Error(`no icon named "${name}"`);
+  // Filled art has no stroke geometry to probe; its box is its own size.
+  if (spec.art) {
+    const box = { w: spec.size, h: spec.size, cx: GRID / 2, cy: GRID / 2 };
+    bboxCache.set(key, box);
+    return box;
+  }
   const s = PROBE / GRID;
 
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${PROBE}" height="${PROBE}">
@@ -243,6 +270,39 @@ async function geometryBox(name, { width = COVER.iconStroke } = {}) {
   return box;
 }
 
+/** Filled-art icons: the maple leaf, alone or with the mark, or struck on a coin. */
+function drawArt(spec, { cx, cy }) {
+  const L = spec.size;
+  const leafAt = (size, x, y) => leaf({ x: x - size / 2, y: y - size / 2, size, ground: "field", op: 1 });
+
+  // The leaf's stem hangs below its blade, so the box is nudged down to centre
+  // the blade, which is what the eye reads.
+  if (spec.art === "leaf") return leafAt(L, cx, cy + 8);
+
+  if (spec.art === "leafMark") {
+    // The PriceBack mark in cream, centred on the blade. The glyph's ink centre
+    // is (24,23) on its 48 grid.
+    const sc = 320 / 48;
+    const bladeY = cy + 8 - L / 2 + L * 0.55;
+    const mark =
+      `<g transform="translate(${r2(cx - 24 * sc)} ${r2(bladeY - 23 * sc)}) scale(${r2(sc)})" fill="none" ` +
+      `stroke="${C.paper}" stroke-width="${r2(20 / sc)}" stroke-linecap="round" stroke-linejoin="round">` +
+      GLYPH_PATHS.map((d) => `<path d="${d}"/>`).join("") +
+      `</g>`;
+    return leafAt(L, cx, cy + 8) + mark;
+  }
+
+  if (spec.art === "coinLeaf") {
+    // A coin like `earn`, with the leaf struck on it in place of the "$".
+    const R = L / 2 - COVER.iconStroke / 2;
+    const ring = (r) =>
+      `<circle cx="${cx}" cy="${cy}" r="${r2(r)}" fill="none" stroke="${C.emeraldGlow}" stroke-width="${COVER.iconStroke}"/>`;
+    return ring(R) + ring(R * 0.75) + leafAt(R * 1.2, cx, cy + 6);
+  }
+
+  throw new Error(`unknown art "${spec.art}"`);
+}
+
 /**
  * One icon, normalised to fill `box` and centred on (cx, cy).
  *
@@ -255,6 +315,7 @@ async function drawIcon(
 ) {
   const spec = ICONS[name];
   if (!spec) throw new Error(`no icon named "${name}"`);
+  if (spec.art) return drawArt(spec, { cx, cy });
   const geom = await geometryBox(name, { width });
 
   // Solve for the scale that lands the FINISHED icon — geometry plus one stroke
