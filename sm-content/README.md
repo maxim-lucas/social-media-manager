@@ -13,6 +13,7 @@ Output assets from Cowork session `cse_01QJzpqDCPqZ4HAHmNa7UfXK`
 | `stories/` | 10 | 1080×1920 story sequence, 5 frames each — EN + FR (`priceback-stories-{en,fr}-01..05.png`) |
 | `teaser/` | 20 | The **pre-launch** pack — see below. Its own folder, its own renderer |
 | `evergreen/` | 38 | The **permanent** pack — 9 feed posts + 10 story frames, EN + FR, store-agnostic. Its own folder, its own renderer, its own 14-day schedule |
+| `06-launch/` | 20 | The **we're live** post — two 5-slide carousels (EN on the ink field, FR on emerald), published together on IG + FB, 2026-10-02. Its own renderer and 7 gates |
 | `04-community/` | 84 | The **recruiting** pack — 14 bilingual carousel posts, 16 story pairs (5 in the run, 11 living inside the Highlights), 6 unscheduled reserve pairs, the bilingual language notice, 2 carousel dividers, 8 Highlight covers and 6 Reel scripts. Its own folder, renderer and 24-day run |
 
 Total: 38 launch + 20 teaser + 38 evergreen + 84 community = 180 assets.
@@ -32,6 +33,7 @@ from now on.
 | 03 | `evergreen/` | Describes the mechanic, store-agnostically. | Rotates forever |
 | 04 | `04-community/` | Recruits: solidarity, made-in-Canada, the growing store list, earning credits. | Mon 21 Sep → Fri 23 Oct 2026, then hand back to `evergreen/` |
 | 05 | `05-highlights/` | Answers. The ten-Highlight tray somebody opens **after** they follow: how it works, stores one at a time, earning, plans, the app. | Mon 26 Oct 2026 onward — edited, never retired |
+| 06 | `06-launch/` | Announces. The first post on the account: live on both stores, 75 welcome credits, scan, claim, follow. | Fri 2 Oct 2026, once — then pinned |
 | — | `brand/` | Not a pack. The reusable graphics every pack imports: the mark, the leaf, the palette, the type ramp, Instagram's geometry, the cover icons. | Permanent |
 
 Inside `04-community/` the same idea goes one level deeper: its wave folders are
