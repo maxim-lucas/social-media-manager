@@ -21,6 +21,7 @@ always has.
 | `stories/` | `stories/POSTING-ORDER/` | Numeric filename order — one **story sequence**, EN block then FR block |
 | `statics/` | `statics/POSTING-ORDER/` | Numeric filename order — 3 independent single posts, EN/FR paired per colourway |
 | `reels/` | `reels/POSTING-ORDER/` | The two languages, in the order `ASSET-PACK-NOTES.md` lists them |
+| `06-launch/` | `06-launch/POSTING-ORDER/` | `06-launch/post.json` — EN post then FR post, same minute |
 | `04-community/08-reserve/` | *(none)* | Deliberately unordered — a swap-in pool, not a run. See `CALENDAR.md`. |
 
 A slot with no pre-rendered asset (a poll-result screenshot, a Reel shot on the

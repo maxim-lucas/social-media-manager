@@ -1,0 +1,285 @@
+{
+  "_readme": [
+    "The launch posts' copy: TWO separate carousels, one English and one French,",
+    "published at the same time (owner's call, 2026-10-02). Five slides each, so each",
+    "language gets a single-language caption - the playbook's rule for separate posts.",
+    "",
+    "Every number here is checked against production on 2026-10-02 - see",
+    "../LAUNCH-NOTES.md 'Facts this post depends on'. Edit, then re-run",
+    "scenes/render.js and scenes/verify.js."
+  ],
+  "en": [
+    {
+      "n": 1,
+      "scene": "cover",
+      "kicker": "NOW LIVE IN CANADA",
+      "hook": [
+        "THE WAIT",
+        "IS OVER."
+      ],
+      "sub": [
+        "PriceBack is live on the App Store and",
+        "Google Play. Free to download."
+      ],
+      "paper": [
+        "THIS RECEIPT MIGHT",
+        "STILL OWE YOU MONEY."
+      ],
+      "swipe": "SWIPE TO SEE HOW →",
+      "alt": "PriceBack launch announcement. The wait is over: PriceBack is live on the App Store and Google Play, free to download. A receipt reads: this receipt might still owe you money. Swipe to see how."
+    },
+    {
+      "n": 2,
+      "scene": "free",
+      "kicker": "STEP 01 · FREE",
+      "hook": [
+        "FREE TO",
+        "DOWNLOAD."
+      ],
+      "sub": [
+        "Create your account and we add 75 free credits.",
+        "One credit scans one receipt."
+      ],
+      "rows": [
+        [
+          "PRICEBACK APP",
+          "FREE"
+        ],
+        [
+          "WELCOME CREDITS",
+          "+75"
+        ],
+        [
+          "YOU PAY TO START",
+          "NOTHING"
+        ]
+      ],
+      "fine": [
+        "Welcome credits are given once per account."
+      ],
+      "alt": "Step 1: free to download. Create your account and get 75 free welcome credits; one credit scans one receipt. Welcome credits are given once per account."
+    },
+    {
+      "n": 3,
+      "scene": "scan",
+      "kicker": "STEP 02 · SCAN",
+      "hook": [
+        "SCAN YOUR",
+        "FIRST RECEIPT."
+      ],
+      "sub": [
+        "Snap a photo. PriceBack reads every line",
+        "and keeps watching those prices for you."
+      ],
+      "rows": [
+        [
+          "ITEM",
+          "WATCHING"
+        ],
+        [
+          "ITEM",
+          "WATCHING"
+        ],
+        [
+          "ITEM",
+          "WATCHING"
+        ]
+      ],
+      "alt": "Step 2: scan your first receipt. Snap a photo and PriceBack reads every line, then keeps watching those prices for you."
+    },
+    {
+      "n": 4,
+      "scene": "claim",
+      "kicker": "STEP 03 · GET IT BACK",
+      "hook": [
+        "PRICE",
+        "DROPPED?"
+      ],
+      "accent": "CLAIM THE DIFFERENCE.",
+      "sub": [
+        "We alert you when something you bought gets",
+        "cheaper, then help you ask the store for it."
+      ],
+      "rows": [
+        [
+          "YOU PAID",
+          ""
+        ],
+        [
+          "PRICE TODAY",
+          ""
+        ],
+        [
+          "DIFFERENCE",
+          "YOURS TO CLAIM"
+        ]
+      ],
+      "alt": "Step 3: price dropped? Claim the difference. PriceBack alerts you when something you bought gets cheaper, then helps you ask the store for the difference."
+    },
+    {
+      "n": 5,
+      "scene": "cta",
+      "kicker": "YOUR MOVE",
+      "hook": [
+        "DOWNLOAD.",
+        "SCAN. FOLLOW."
+      ],
+      "checks": [
+        [
+          "Download PriceBack",
+          "link in bio"
+        ],
+        [
+          "Scan your first receipt",
+          "we watch the prices for you"
+        ],
+        [
+          "Follow @priceback.ca",
+          "new stores are announced here first"
+        ]
+      ],
+      "fine": [
+        "Supported today: Costco receipts, with more stores coming.",
+        "PriceBack is an independent app, not affiliated with any retailer."
+      ],
+      "alt": "Your move: download PriceBack (link in bio), scan your first receipt, and follow @priceback.ca, where new stores are announced first. Supported today: Costco receipts, with more stores coming. PriceBack is an independent app, not affiliated with any retailer."
+    }
+  ],
+  "fr": [
+    {
+      "n": 1,
+      "scene": "cover",
+      "kicker": "MAINTENANT DISPONIBLE AU CANADA",
+      "hook": [
+        "L’ATTENTE EST",
+        "TERMINÉE."
+      ],
+      "sub": [
+        "PriceBack est disponible sur l’App Store",
+        "et Google Play. Téléchargement gratuit."
+      ],
+      "paper": [
+        "CE REÇU POURRAIT ENCORE",
+        "VOUS DEVOIR DE L’ARGENT."
+      ],
+      "swipe": "GLISSEZ POUR VOIR →",
+      "alt": "Lancement de PriceBack. L’attente est terminée : PriceBack est disponible sur l’App Store et Google Play, téléchargement gratuit. Un reçu indique : ce reçu pourrait encore vous devoir de l’argent. Glissez pour voir comment."
+    },
+    {
+      "n": 2,
+      "scene": "free",
+      "kicker": "ÉTAPE 01 · GRATUIT",
+      "hook": [
+        "TÉLÉCHARGEMENT",
+        "GRATUIT."
+      ],
+      "sub": [
+        "Créez votre compte et nous ajoutons 75 crédits gratuits.",
+        "Un crédit = un reçu scanné."
+      ],
+      "rows": [
+        [
+          "APPLICATION PRICEBACK",
+          "GRATUITE"
+        ],
+        [
+          "CRÉDITS DE BIENVENUE",
+          "+75"
+        ],
+        [
+          "VOUS PAYEZ POUR COMMENCER",
+          "RIEN"
+        ]
+      ],
+      "fine": [
+        "Les crédits de bienvenue sont offerts une seule fois par compte."
+      ],
+      "alt": "Étape 1 : téléchargement gratuit. Créez votre compte et nous ajoutons 75 crédits de bienvenue gratuits; un crédit = un reçu scanné. Les crédits de bienvenue sont offerts une seule fois par compte."
+    },
+    {
+      "n": 3,
+      "scene": "scan",
+      "kicker": "ÉTAPE 02 · SCANNEZ",
+      "hook": [
+        "SCANNEZ VOTRE",
+        "PREMIER REÇU."
+      ],
+      "sub": [
+        "Prenez une photo. PriceBack lit chaque ligne",
+        "et continue de surveiller ces prix pour vous."
+      ],
+      "rows": [
+        [
+          "ARTICLE",
+          "SURVEILLÉ"
+        ],
+        [
+          "ARTICLE",
+          "SURVEILLÉ"
+        ],
+        [
+          "ARTICLE",
+          "SURVEILLÉ"
+        ]
+      ],
+      "alt": "Étape 2 : scannez votre premier reçu. Prenez une photo; PriceBack lit chaque ligne et continue de surveiller ces prix pour vous."
+    },
+    {
+      "n": 4,
+      "scene": "claim",
+      "kicker": "ÉTAPE 03 · RÉCUPÉREZ",
+      "hook": [
+        "LE PRIX",
+        "A BAISSÉ ?"
+      ],
+      "accent": "RÉCLAMEZ LA DIFFÉRENCE.",
+      "sub": [
+        "On vous avertit quand un article acheté baisse de prix,",
+        "puis on vous aide à réclamer la différence au magasin."
+      ],
+      "rows": [
+        [
+          "VOUS AVEZ PAYÉ",
+          ""
+        ],
+        [
+          "PRIX AUJOURD’HUI",
+          ""
+        ],
+        [
+          "DIFFÉRENCE",
+          "À RÉCLAMER"
+        ]
+      ],
+      "alt": "Étape 3 : le prix a baissé ? Réclamez la différence. PriceBack vous avertit quand un article acheté baisse de prix, puis vous aide à réclamer la différence au magasin."
+    },
+    {
+      "n": 5,
+      "scene": "cta",
+      "kicker": "À VOUS DE JOUER",
+      "hook": [
+        "TÉLÉCHARGEZ.",
+        "SCANNEZ. SUIVEZ."
+      ],
+      "checks": [
+        [
+          "Téléchargez PriceBack",
+          "lien dans la bio"
+        ],
+        [
+          "Scannez votre premier reçu",
+          "on surveille les prix pour vous"
+        ],
+        [
+          "Suivez @priceback.ca",
+          "les nouveaux magasins sont annoncés ici en premier"
+        ]
+      ],
+      "fine": [
+        "Pris en charge aujourd’hui : les reçus Costco, avec d’autres magasins à venir.",
+        "PriceBack est une application indépendante qui n’est affiliée à aucun détaillant."
+      ],
+      "alt": "À vous de jouer : téléchargez PriceBack (lien dans la bio), scannez votre premier reçu et suivez @priceback.ca, où les nouveaux magasins sont annoncés en premier. Pris en charge aujourd’hui : les reçus Costco, avec d’autres magasins à venir. PriceBack est une application indépendante qui n’est affiliée à aucun détaillant."
+    }
+  ]
+}
