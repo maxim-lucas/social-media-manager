@@ -14,6 +14,7 @@ Output assets from Cowork session `cse_01QJzpqDCPqZ4HAHmNa7UfXK`
 | `teaser/` | 20 | The **pre-launch** pack — see below. Its own folder, its own renderer |
 | `evergreen/` | 38 | The **permanent** pack — 9 feed posts + 10 story frames, EN + FR, store-agnostic. Its own folder, its own renderer, its own 14-day schedule |
 | `06-launch/` | 20 | The **we're live** post — two 5-slide carousels (EN on the ink field, FR on emerald), published together on IG + FB, 2026-10-02. Its own renderer and 7 gates |
+| `07-costco-toolkit/` | 82 | The **Costco toolkit** pack — 7 how-to carousels (toolkit, scan a receipt, claim a drop, price tag, community, price codes, habits), each EN + FR, 5–7 slides. **Designs only, not posted; `price-codes` is on HOLD** until the Price tag translator ships. Its own renderer and 10 gates — see `07-costco-toolkit/TOOLKIT-NOTES.md` |
 | `04-community/` | 84 | The **recruiting** pack — 14 bilingual carousel posts, 16 story pairs (5 in the run, 11 living inside the Highlights), 6 unscheduled reserve pairs, the bilingual language notice, 2 carousel dividers, 8 Highlight covers and 6 Reel scripts. Its own folder, renderer and 24-day run |
 
 Total: 38 launch + 20 teaser + 38 evergreen + 84 community = 180 assets.

@@ -1,0 +1,333 @@
+{
+  "_readme": [
+    "The Costco-toolkit run: seven carousels, each published as an English post and a",
+    "French post one minute apart (EN first, FR second), Instagram + Facebook.",
+    "Captions are final text. Instagram's carousel API takes JPEG only, so the .jpg",
+    "files ship; the .png files are masters. NOTHING HERE HAS BEEN POSTED.",
+    "Posts with a `holdUntil` must wait for that app release."
+  ],
+  "account": "@priceback.ca",
+  "assetBase": "https://raw.githubusercontent.com/maxim-lucas/social-media-manager/master/sm-content/07-costco-toolkit/posts/",
+  "posts": [
+    {
+      "id": "toolkit-en",
+      "order": 1,
+      "lang": "en",
+      "slides": [
+        "toolkit/toolkit-en-01.jpg",
+        "toolkit/toolkit-en-02.jpg",
+        "toolkit/toolkit-en-03.jpg",
+        "toolkit/toolkit-en-04.jpg",
+        "toolkit/toolkit-en-05.jpg",
+        "toolkit/toolkit-en-06.jpg",
+        "toolkit/toolkit-en-07.jpg"
+      ],
+      "altText": [
+        "Your Costco toolkit. PriceBack: price drops, deal codes and price tags, free to download. Swipe for the five tools.",
+        "Tool 1: scan your receipts. Snap a photo of your Costco receipt and every item gets watched. One scan costs one credit.",
+        "Tool 2: price drop alerts. When something you bought gets cheaper, you get an alert.",
+        "Tool 3: claim the difference. The Claim Assistant prepares your receipt, proof of the new price and an in-store checklist.",
+        "Tool 4: decode the price tag. Scan a shelf tag and see what kind of deal it is. Example: a price ending in .97 usually means a corporate markdown.",
+        "Tool 5: share what you see. Scan a shelf tag and help shoppers near you spot real savings. Only savings tags can earn credit, up to a weekly cap.",
+        "Your move: download PriceBack (link in bio), scan your Costco receipts, and follow @priceback.ca, where new stores are announced first."
+      ],
+      "instagramCaption": "Everything you need for your next Costco run, in one free app 🛒\n\nFive tools, swipe to see them 👇\n🧾 Scan your receipts, and every item gets watched\n🔔 Get an alert when a price drops\n💸 Claim the difference with the Claim Assistant\n🏷️ Decode the price tag: what kind of deal is it?\n🤝 Share what you see and help shoppers near you\n\n📲 Download link in bio.\n\n💬 Which tool do you want a deep dive on? Tell us in the comments.\n📤 Send this to your Costco shopping buddy.\n\nFree to download. Each receipt scan uses 1 credit. Price-adjustment terms are set by each retailer. PriceBack is an independent app, not affiliated with Costco or any retailer.\n\n#PriceBack #Costco #CostcoCanada #SaveMoney #CanadianDeals",
+      "facebookCaption": "Everything you need for your next Costco run, in one free app 🛒\n\nFive tools, swipe to see them 👇\n🧾 Scan your receipts, and every item gets watched\n🔔 Get an alert when a price drops\n💸 Claim the difference with the Claim Assistant\n🏷️ Decode the price tag: what kind of deal is it?\n🤝 Share what you see and help shoppers near you\n\n📲 Download free:\niPhone: https://apps.apple.com/ca/app/priceback/id6795860374\nAndroid: https://play.google.com/store/apps/details?id=com.priceback\n\n💬 Which tool do you want a deep dive on? Tell us in the comments.\n📤 Send this to your Costco shopping buddy.\n\nFree to download. Each receipt scan uses 1 credit. Price-adjustment terms are set by each retailer. PriceBack is an independent app, not affiliated with Costco or any retailer.\n\n#PriceBack #Costco"
+    },
+    {
+      "id": "toolkit-fr",
+      "order": 1,
+      "lang": "fr",
+      "slides": [
+        "toolkit/toolkit-fr-01.jpg",
+        "toolkit/toolkit-fr-02.jpg",
+        "toolkit/toolkit-fr-03.jpg",
+        "toolkit/toolkit-fr-04.jpg",
+        "toolkit/toolkit-fr-05.jpg",
+        "toolkit/toolkit-fr-06.jpg",
+        "toolkit/toolkit-fr-07.jpg"
+      ],
+      "altText": [
+        "Votre boîte à outils Costco. PriceBack: baisses de prix, codes de prix et étiquettes, téléchargement gratuit. Glissez pour voir les cinq outils.",
+        "Outil 1: scannez vos reçus. Prenez votre reçu Costco en photo et chaque article est surveillé. Un scan coûte un crédit.",
+        "Outil 2: alertes de baisse de prix. Quand un article que vous avez acheté baisse de prix, vous recevez une alerte.",
+        "Outil 3: réclamez la différence. L’assistant de réclamation prépare votre reçu, la preuve du nouveau prix et une liste de vérification en magasin.",
+        "Outil 4: décodez l’étiquette. Scannez une étiquette en rayon et voyez de quel type d’aubaine il s’agit. Exemple: un prix qui se termine par ,97 signifie souvent un rabais corporatif.",
+        "Outil 5: partagez ce que vous voyez. Scannez une étiquette et aidez les clients près de vous à repérer les rabais. Seul un rabais peut rapporter un crédit, avec un plafond hebdomadaire.",
+        "À vous de jouer: téléchargez PriceBack (lien dans la bio), scannez vos reçus Costco et suivez @priceback.ca, où les nouveaux magasins sont annoncés en premier."
+      ],
+      "instagramCaption": "Tout ce qu’il vous faut pour votre prochaine visite chez Costco, dans une seule application gratuite 🛒\n\nCinq outils, glissez pour les voir 👇\n🧾 Scannez vos reçus, et chaque article est surveillé\n🔔 Recevez une alerte quand un prix baisse\n💸 Réclamez la différence avec l’assistant de réclamation\n🏷️ Décodez l’étiquette: quel type d’aubaine est-ce?\n🤝 Partagez ce que vous voyez et aidez les clients près de vous\n\n📲 Lien de téléchargement dans la bio.\n\n💬 Sur quel outil voulez-vous un guide complet? Dites-le-nous en commentaire.\n📤 Envoyez cette publication à votre complice des courses chez Costco.\n\nTéléchargement gratuit. Chaque reçu scanné utilise 1 crédit. Les conditions d'ajustement de prix sont fixées par chaque détaillant. PriceBack est une application indépendante, non affiliée à Costco ni à aucun détaillant.\n\n#PriceBack #Costco #CostcoQuébec #Économies #BonsPlans",
+      "facebookCaption": "Tout ce qu’il vous faut pour votre prochaine visite chez Costco, dans une seule application gratuite 🛒\n\nCinq outils, glissez pour les voir 👇\n🧾 Scannez vos reçus, et chaque article est surveillé\n🔔 Recevez une alerte quand un prix baisse\n💸 Réclamez la différence avec l’assistant de réclamation\n🏷️ Décodez l’étiquette: quel type d’aubaine est-ce?\n🤝 Partagez ce que vous voyez et aidez les clients près de vous\n\n📲 Téléchargement gratuit :\niPhone : https://apps.apple.com/ca/app/priceback/id6795860374\nAndroid : https://play.google.com/store/apps/details?id=com.priceback\n\n💬 Sur quel outil voulez-vous un guide complet? Dites-le-nous en commentaire.\n📤 Envoyez cette publication à votre complice des courses chez Costco.\n\nTéléchargement gratuit. Chaque reçu scanné utilise 1 crédit. Les conditions d'ajustement de prix sont fixées par chaque détaillant. PriceBack est une application indépendante, non affiliée à Costco ni à aucun détaillant.\n\n#PriceBack #Costco"
+    },
+    {
+      "id": "scan-receipt-en",
+      "order": 2,
+      "lang": "en",
+      "slides": [
+        "scan-receipt/scan-receipt-en-01.jpg",
+        "scan-receipt/scan-receipt-en-02.jpg",
+        "scan-receipt/scan-receipt-en-03.jpg",
+        "scan-receipt/scan-receipt-en-04.jpg",
+        "scan-receipt/scan-receipt-en-05.jpg"
+      ],
+      "altText": [
+        "How to scan a receipt in three steps. No typing, no spreadsheets, just a photo. Your Costco receipt is worth watching.",
+        "Step 1: open PriceBack, tap Scan Receipt and allow the camera when asked.",
+        "Step 2: fit the full receipt in the frame. Lay it flat, avoid glare and keep every line in view.",
+        "Step 3: done. PriceBack reads every line, saves the items and prices to your receipts and keeps watching them. A scan costs one credit.",
+        "Your move: download PriceBack (link in bio), scan a receipt (welcome credits cover your first scans), and follow @priceback.ca, where new stores are announced first."
+      ],
+      "instagramCaption": "Your Costco receipt is worth more than you think 🧾\n\nHow to scan one in 3 steps 👇\n1️⃣ Open PriceBack and tap Scan Receipt\n2️⃣ Fit the full receipt in the frame, flat and glare-free\n3️⃣ We read every line, save it, and keep watching the prices\n\n📲 Download link in bio.\n\n💬 How many receipts are sitting in your drawer right now? Be honest.\n📤 Send this to the friend who keeps every receipt.\n\nFree to download. Each receipt scan uses 1 credit. Price-adjustment terms are set by each retailer. PriceBack is an independent app, not affiliated with Costco or any retailer.\n\n#PriceBack #Costco #SaveMoney #HowTo #CanadianDeals",
+      "facebookCaption": "Your Costco receipt is worth more than you think 🧾\n\nHow to scan one in 3 steps 👇\n1️⃣ Open PriceBack and tap Scan Receipt\n2️⃣ Fit the full receipt in the frame, flat and glare-free\n3️⃣ We read every line, save it, and keep watching the prices\n\n📲 Download free:\niPhone: https://apps.apple.com/ca/app/priceback/id6795860374\nAndroid: https://play.google.com/store/apps/details?id=com.priceback\n\n💬 How many receipts are sitting in your drawer right now? Be honest.\n📤 Send this to the friend who keeps every receipt.\n\nFree to download. Each receipt scan uses 1 credit. Price-adjustment terms are set by each retailer. PriceBack is an independent app, not affiliated with Costco or any retailer.\n\n#PriceBack #Costco"
+    },
+    {
+      "id": "scan-receipt-fr",
+      "order": 2,
+      "lang": "fr",
+      "slides": [
+        "scan-receipt/scan-receipt-fr-01.jpg",
+        "scan-receipt/scan-receipt-fr-02.jpg",
+        "scan-receipt/scan-receipt-fr-03.jpg",
+        "scan-receipt/scan-receipt-fr-04.jpg",
+        "scan-receipt/scan-receipt-fr-05.jpg"
+      ],
+      "altText": [
+        "Comment scanner un reçu en trois étapes. Rien à taper, aucun tableur, juste une photo. Votre reçu Costco mérite d’être surveillé.",
+        "Étape 1: ouvrez PriceBack, touchez Scanner un reçu et autorisez la caméra à la demande.",
+        "Étape 2: cadrez le reçu en entier. À plat, sans reflet, avec chaque ligne dans le cadre.",
+        "Étape 3: terminé. PriceBack lit chaque ligne, enregistre les articles et les prix dans vos reçus et continue de les surveiller. Un scan coûte un crédit.",
+        "À vous de jouer: téléchargez PriceBack (lien dans la bio), scannez un reçu (les crédits de bienvenue couvrent vos premiers scans) et suivez @priceback.ca, où les nouveaux magasins sont annoncés en premier."
+      ],
+      "instagramCaption": "Votre reçu Costco vaut plus que vous le pensez 🧾\n\nComment en scanner un en 3 étapes 👇\n1️⃣ Ouvrez PriceBack et touchez Scanner un reçu\n2️⃣ Cadrez le reçu en entier, à plat et sans reflet\n3️⃣ On lit chaque ligne, on l’enregistre et on continue de surveiller les prix\n\n📲 Lien de téléchargement dans la bio.\n\n💬 Combien de reçus dorment dans votre tiroir en ce moment? Soyez honnête.\n📤 Envoyez cette publication à l’ami qui garde tous ses reçus.\n\nTéléchargement gratuit. Chaque reçu scanné utilise 1 crédit. Les conditions d'ajustement de prix sont fixées par chaque détaillant. PriceBack est une application indépendante, non affiliée à Costco ni à aucun détaillant.\n\n#PriceBack #Costco #Économies #Truc #BonsPlans",
+      "facebookCaption": "Votre reçu Costco vaut plus que vous le pensez 🧾\n\nComment en scanner un en 3 étapes 👇\n1️⃣ Ouvrez PriceBack et touchez Scanner un reçu\n2️⃣ Cadrez le reçu en entier, à plat et sans reflet\n3️⃣ On lit chaque ligne, on l’enregistre et on continue de surveiller les prix\n\n📲 Téléchargement gratuit :\niPhone : https://apps.apple.com/ca/app/priceback/id6795860374\nAndroid : https://play.google.com/store/apps/details?id=com.priceback\n\n💬 Combien de reçus dorment dans votre tiroir en ce moment? Soyez honnête.\n📤 Envoyez cette publication à l’ami qui garde tous ses reçus.\n\nTéléchargement gratuit. Chaque reçu scanné utilise 1 crédit. Les conditions d'ajustement de prix sont fixées par chaque détaillant. PriceBack est une application indépendante, non affiliée à Costco ni à aucun détaillant.\n\n#PriceBack #Costco"
+    },
+    {
+      "id": "claim-drop-en",
+      "order": 3,
+      "lang": "en",
+      "slides": [
+        "claim-drop/claim-drop-en-01.jpg",
+        "claim-drop/claim-drop-en-02.jpg",
+        "claim-drop/claim-drop-en-03.jpg",
+        "claim-drop/claim-drop-en-04.jpg",
+        "claim-drop/claim-drop-en-05.jpg",
+        "claim-drop/claim-drop-en-06.jpg"
+      ],
+      "altText": [
+        "How to claim a price drop, from alert to refund request in four steps. The price fell after you paid. The store decides on each adjustment.",
+        "Step 1: get the alert. PriceBack spots a lower price on something you bought and tells you.",
+        "Step 2: open the Claim Assistant. Tap the alert and your receipt, the new price and the amount you're owed are ready.",
+        "Step 3: visit the store desk. Costco warehouse adjustments are asked for in person. Show your receipt in the app and proof of the new price at Customer Service.",
+        "Step 4: ask for the difference. Request the adjustment on your original payment method. The store decides.",
+        "Claim before the window closes: scan your receipts, keep alerts on (we remind you before the window closes) and follow @priceback.ca, where new stores are announced first."
+      ],
+      "instagramCaption": "The price dropped after you paid. Here's how to ask for the difference 💸\n\nFrom alert to refund request 👇\n🔔 Get the alert when something you bought gets cheaper\n📲 Open the Claim Assistant: receipt, new price and amount, ready\n🏬 Costco warehouse adjustments are asked for in person. Show your receipt in the app at Customer Service\n🙋 Ask for the difference on your original payment method. The store decides\n\n📲 Download link in bio.\n\n💬 Ever claimed a price adjustment? Tell us how it went.\n📤 Send this to someone who just made a big purchase.\n\nCostco warehouse price adjustments are requested in person, and the store decides on each one. Free to download. Each receipt scan uses 1 credit. Price-adjustment terms are set by each retailer. PriceBack is an independent app, not affiliated with Costco or any retailer.\n\n#PriceBack #Costco #PriceAdjustment #SaveMoney #HowTo",
+      "facebookCaption": "The price dropped after you paid. Here's how to ask for the difference 💸\n\nFrom alert to refund request 👇\n🔔 Get the alert when something you bought gets cheaper\n📲 Open the Claim Assistant: receipt, new price and amount, ready\n🏬 Costco warehouse adjustments are asked for in person. Show your receipt in the app at Customer Service\n🙋 Ask for the difference on your original payment method. The store decides\n\n📲 Download free:\niPhone: https://apps.apple.com/ca/app/priceback/id6795860374\nAndroid: https://play.google.com/store/apps/details?id=com.priceback\n\n💬 Ever claimed a price adjustment? Tell us how it went.\n📤 Send this to someone who just made a big purchase.\n\nCostco warehouse price adjustments are requested in person, and the store decides on each one. Free to download. Each receipt scan uses 1 credit. Price-adjustment terms are set by each retailer. PriceBack is an independent app, not affiliated with Costco or any retailer.\n\n#PriceBack #Costco"
+    },
+    {
+      "id": "claim-drop-fr",
+      "order": 3,
+      "lang": "fr",
+      "slides": [
+        "claim-drop/claim-drop-fr-01.jpg",
+        "claim-drop/claim-drop-fr-02.jpg",
+        "claim-drop/claim-drop-fr-03.jpg",
+        "claim-drop/claim-drop-fr-04.jpg",
+        "claim-drop/claim-drop-fr-05.jpg",
+        "claim-drop/claim-drop-fr-06.jpg"
+      ],
+      "altText": [
+        "Comment réclamer une baisse de prix, de l’alerte à la demande de remboursement en quatre étapes. Le prix a baissé après votre achat. Le magasin décide de chaque ajustement.",
+        "Étape 1: recevez l’alerte. PriceBack repère un prix plus bas sur un article que vous avez acheté et vous prévient.",
+        "Étape 2: ouvrez l’assistant de réclamation. Touchez l’alerte et votre reçu, le nouveau prix et le montant qu’on vous doit sont prêts.",
+        "Étape 3: passez au comptoir. À l’entrepôt Costco, l’ajustement se demande en personne. Montrez votre reçu dans l’application et la preuve du nouveau prix au service à la clientèle.",
+        "Étape 4: demandez la différence. Demandez l’ajustement sur votre mode de paiement original. Le magasin décide.",
+        "Réclamez avant la fin du délai: scannez vos reçus, gardez les alertes (on vous rappelle avant la fin du délai) et suivez @priceback.ca, où les nouveaux magasins sont annoncés en premier."
+      ],
+      "instagramCaption": "Le prix a baissé après votre achat. Voici comment demander la différence 💸\n\nDe l’alerte à la demande de remboursement 👇\n🔔 Recevez l’alerte quand un article acheté baisse de prix\n📲 Ouvrez l’assistant de réclamation: reçu, nouveau prix et montant, prêts\n🏬 À l’entrepôt Costco, l’ajustement se demande en personne. Montrez votre reçu dans l’application au service à la clientèle\n🙋 Demandez la différence sur votre mode de paiement original. Le magasin décide\n\n📲 Lien de téléchargement dans la bio.\n\n💬 Déjà réclamé un ajustement de prix? Racontez-nous comment ça s’est passé.\n📤 Envoyez cette publication à quelqu’un qui vient de faire un gros achat.\n\nÀ l’entrepôt Costco, les ajustements de prix se demandent en personne, et le magasin décide de chacun. Téléchargement gratuit. Chaque reçu scanné utilise 1 crédit. Les conditions d'ajustement de prix sont fixées par chaque détaillant. PriceBack est une application indépendante, non affiliée à Costco ni à aucun détaillant.\n\n#PriceBack #Costco #AjustementDePrix #Économies #Truc",
+      "facebookCaption": "Le prix a baissé après votre achat. Voici comment demander la différence 💸\n\nDe l’alerte à la demande de remboursement 👇\n🔔 Recevez l’alerte quand un article acheté baisse de prix\n📲 Ouvrez l’assistant de réclamation: reçu, nouveau prix et montant, prêts\n🏬 À l’entrepôt Costco, l’ajustement se demande en personne. Montrez votre reçu dans l’application au service à la clientèle\n🙋 Demandez la différence sur votre mode de paiement original. Le magasin décide\n\n📲 Téléchargement gratuit :\niPhone : https://apps.apple.com/ca/app/priceback/id6795860374\nAndroid : https://play.google.com/store/apps/details?id=com.priceback\n\n💬 Déjà réclamé un ajustement de prix? Racontez-nous comment ça s’est passé.\n📤 Envoyez cette publication à quelqu’un qui vient de faire un gros achat.\n\nÀ l’entrepôt Costco, les ajustements de prix se demandent en personne, et le magasin décide de chacun. Téléchargement gratuit. Chaque reçu scanné utilise 1 crédit. Les conditions d'ajustement de prix sont fixées par chaque détaillant. PriceBack est une application indépendante, non affiliée à Costco ni à aucun détaillant.\n\n#PriceBack #Costco"
+    },
+    {
+      "id": "price-tag-en",
+      "order": 4,
+      "lang": "en",
+      "slides": [
+        "price-tag/price-tag-en-01.jpg",
+        "price-tag/price-tag-en-02.jpg",
+        "price-tag/price-tag-en-03.jpg",
+        "price-tag/price-tag-en-04.jpg",
+        "price-tag/price-tag-en-05.jpg"
+      ],
+      "altText": [
+        "How to scan a price tag. Snap the shelf tag and PriceBack reads the SKU, price and savings for you.",
+        "Step 1: find a tag on the shelf. Any Costco shelf tag works, and savings tags can earn credit.",
+        "Step 2: frame the whole tag. Include the SKU, avoid glare and keep the digits sharp.",
+        "Step 3: check and submit. Review what was read, add the end date of a savings tag, then submit.",
+        "Your move: download PriceBack (link in bio), snap a shelf tag (savings tags can earn credit once verified, up to a weekly cap) and follow @priceback.ca, where new stores are announced first."
+      ],
+      "instagramCaption": "A Costco shelf tag is full of clues. Let PriceBack read it for you 🏷️\n\nHow to scan a price tag 👇\n1️⃣ Find a tag on the shelf\n2️⃣ Frame the whole tag: SKU, price, no glare\n3️⃣ Check what was read, add the end date of a savings tag, submit\n\n📲 Download link in bio.\n\n💬 What's the best deal you've spotted on a shelf lately?\n📤 Send this to your Costco shopping buddy.\n\nOnly savings tags can earn credit, up to a weekly cap. Free to download. Each receipt scan uses 1 credit. Price-adjustment terms are set by each retailer. PriceBack is an independent app, not affiliated with Costco or any retailer.\n\n#PriceBack #Costco #CostcoCanada #SaveMoney #HowTo",
+      "facebookCaption": "A Costco shelf tag is full of clues. Let PriceBack read it for you 🏷️\n\nHow to scan a price tag 👇\n1️⃣ Find a tag on the shelf\n2️⃣ Frame the whole tag: SKU, price, no glare\n3️⃣ Check what was read, add the end date of a savings tag, submit\n\n📲 Download free:\niPhone: https://apps.apple.com/ca/app/priceback/id6795860374\nAndroid: https://play.google.com/store/apps/details?id=com.priceback\n\n💬 What's the best deal you've spotted on a shelf lately?\n📤 Send this to your Costco shopping buddy.\n\nOnly savings tags can earn credit, up to a weekly cap. Free to download. Each receipt scan uses 1 credit. Price-adjustment terms are set by each retailer. PriceBack is an independent app, not affiliated with Costco or any retailer.\n\n#PriceBack #Costco"
+    },
+    {
+      "id": "price-tag-fr",
+      "order": 4,
+      "lang": "fr",
+      "slides": [
+        "price-tag/price-tag-fr-01.jpg",
+        "price-tag/price-tag-fr-02.jpg",
+        "price-tag/price-tag-fr-03.jpg",
+        "price-tag/price-tag-fr-04.jpg",
+        "price-tag/price-tag-fr-05.jpg"
+      ],
+      "altText": [
+        "Comment scanner une étiquette. Photographiez l’étiquette en rayon et PriceBack lit le SKU, le prix et le rabais pour vous.",
+        "Étape 1: trouvez une étiquette en rayon. Toute étiquette Costco convient, et un rabais peut rapporter un crédit.",
+        "Étape 2: cadrez toute l’étiquette. Incluez le SKU, évitez les reflets et gardez les chiffres nets.",
+        "Étape 3: vérifiez et envoyez. Vérifiez la lecture, ajoutez la date de fin d’un rabais, puis envoyez.",
+        "À vous de jouer: téléchargez PriceBack (lien dans la bio), photographiez une étiquette (un rabais vérifié peut rapporter un crédit, avec un plafond hebdomadaire) et suivez @priceback.ca, où les nouveaux magasins sont annoncés en premier."
+      ],
+      "instagramCaption": "Une étiquette Costco est pleine d’indices. Laissez PriceBack la lire pour vous 🏷️\n\nComment scanner une étiquette 👇\n1️⃣ Trouvez une étiquette en rayon\n2️⃣ Cadrez toute l’étiquette: SKU, prix, sans reflet\n3️⃣ Vérifiez la lecture, ajoutez la date de fin d’un rabais, envoyez\n\n📲 Lien de téléchargement dans la bio.\n\n💬 Quelle est la meilleure aubaine que vous avez repérée en rayon dernièrement?\n📤 Envoyez cette publication à votre complice des courses chez Costco.\n\nSeul un rabais peut rapporter un crédit, plafond hebdomadaire. Téléchargement gratuit. Chaque reçu scanné utilise 1 crédit. Les conditions d'ajustement de prix sont fixées par chaque détaillant. PriceBack est une application indépendante, non affiliée à Costco ni à aucun détaillant.\n\n#PriceBack #Costco #CostcoQuébec #Économies #Truc",
+      "facebookCaption": "Une étiquette Costco est pleine d’indices. Laissez PriceBack la lire pour vous 🏷️\n\nComment scanner une étiquette 👇\n1️⃣ Trouvez une étiquette en rayon\n2️⃣ Cadrez toute l’étiquette: SKU, prix, sans reflet\n3️⃣ Vérifiez la lecture, ajoutez la date de fin d’un rabais, envoyez\n\n📲 Téléchargement gratuit :\niPhone : https://apps.apple.com/ca/app/priceback/id6795860374\nAndroid : https://play.google.com/store/apps/details?id=com.priceback\n\n💬 Quelle est la meilleure aubaine que vous avez repérée en rayon dernièrement?\n📤 Envoyez cette publication à votre complice des courses chez Costco.\n\nSeul un rabais peut rapporter un crédit, plafond hebdomadaire. Téléchargement gratuit. Chaque reçu scanné utilise 1 crédit. Les conditions d'ajustement de prix sont fixées par chaque détaillant. PriceBack est une application indépendante, non affiliée à Costco ni à aucun détaillant.\n\n#PriceBack #Costco"
+    },
+    {
+      "id": "community-en",
+      "order": 5,
+      "lang": "en",
+      "slides": [
+        "community/community-en-01.jpg",
+        "community/community-en-02.jpg",
+        "community/community-en-03.jpg",
+        "community/community-en-04.jpg",
+        "community/community-en-05.jpg"
+      ],
+      "altText": [
+        "Share with the community. One photo of a shelf tag helps every PriceBack shopper near you. Your photo is someone's deal.",
+        "Step 1: snap a shelf tag with the price tag scanner. Frame the SKU and price.",
+        "Step 2: it joins the price pool. Your tag is added anonymously to the shared price pool for your area, which helps nearby shoppers.",
+        "Step 3: shoppers confirm it. When enough shoppers confirm the same savings it counts as verified, and a savings tag earns one credit, up to a weekly cap.",
+        "Your move: download PriceBack (link in bio), snap a shelf tag to help your neighbours, and follow @priceback.ca, where new stores are announced first. Only savings tags can earn credit, up to a weekly cap."
+      ],
+      "instagramCaption": "Your photo of a shelf tag could be someone else's best deal this week 🤝\n\nHow sharing with the community works 👇\n📸 Snap a shelf tag with the price tag scanner\n🔒 It's added anonymously to the price pool for your area\n✅ When enough shoppers confirm the same savings, it's verified, and a savings tag earns 1 credit\n\n📲 Download link in bio.\n\n💬 What would you like to see priced in your warehouse? Tell us in the comments.\n📤 Send this to a neighbour who shops at Costco.\n\nOnly savings tags can earn credit, up to a weekly cap. Free to download. Each receipt scan uses 1 credit. Price-adjustment terms are set by each retailer. PriceBack is an independent app, not affiliated with Costco or any retailer.\n\n#PriceBack #Costco #CostcoCanada #Community #SaveMoney",
+      "facebookCaption": "Your photo of a shelf tag could be someone else's best deal this week 🤝\n\nHow sharing with the community works 👇\n📸 Snap a shelf tag with the price tag scanner\n🔒 It's added anonymously to the price pool for your area\n✅ When enough shoppers confirm the same savings, it's verified, and a savings tag earns 1 credit\n\n📲 Download free:\niPhone: https://apps.apple.com/ca/app/priceback/id6795860374\nAndroid: https://play.google.com/store/apps/details?id=com.priceback\n\n💬 What would you like to see priced in your warehouse? Tell us in the comments.\n📤 Send this to a neighbour who shops at Costco.\n\nOnly savings tags can earn credit, up to a weekly cap. Free to download. Each receipt scan uses 1 credit. Price-adjustment terms are set by each retailer. PriceBack is an independent app, not affiliated with Costco or any retailer.\n\n#PriceBack #Costco"
+    },
+    {
+      "id": "community-fr",
+      "order": 5,
+      "lang": "fr",
+      "slides": [
+        "community/community-fr-01.jpg",
+        "community/community-fr-02.jpg",
+        "community/community-fr-03.jpg",
+        "community/community-fr-04.jpg",
+        "community/community-fr-05.jpg"
+      ],
+      "altText": [
+        "Partagez avec la communauté. Une photo d’étiquette aide tous les clients PriceBack près de chez vous. Votre photo est l’aubaine de quelqu’un.",
+        "Étape 1: photographiez une étiquette avec Scanner une étiquette. Cadrez le SKU et le prix.",
+        "Étape 2: elle rejoint la base de prix. Votre étiquette s’ajoute anonymement à la base communautaire de votre région, ce qui aide les clients à proximité.",
+        "Étape 3: d’autres la confirment. Quand assez de clients confirment le même rabais, il est considéré comme vérifié, et une étiquette de rabais rapporte un crédit, avec un plafond hebdomadaire.",
+        "À vous de jouer: téléchargez PriceBack (lien dans la bio), photographiez une étiquette pour aider vos voisins et suivez @priceback.ca, où les nouveaux magasins sont annoncés en premier. Seul un rabais peut rapporter un crédit, avec un plafond hebdomadaire."
+      ],
+      "instagramCaption": "Votre photo d’une étiquette pourrait être la meilleure aubaine d’un autre client cette semaine 🤝\n\nComment fonctionne le partage avec la communauté 👇\n📸 Photographiez une étiquette avec Scanner une étiquette\n🔒 Elle s’ajoute anonymement à la base de prix de votre région\n✅ Quand assez de clients confirment le même rabais, il est vérifié, et une étiquette de rabais rapporte 1 crédit\n\n📲 Lien de téléchargement dans la bio.\n\n💬 Quel produit aimeriez-vous voir au prix dans votre entrepôt? Dites-le-nous en commentaire.\n📤 Envoyez cette publication à un voisin qui magasine chez Costco.\n\nSeul un rabais peut rapporter un crédit, plafond hebdomadaire. Téléchargement gratuit. Chaque reçu scanné utilise 1 crédit. Les conditions d'ajustement de prix sont fixées par chaque détaillant. PriceBack est une application indépendante, non affiliée à Costco ni à aucun détaillant.\n\n#PriceBack #Costco #CostcoQuébec #Communauté #Économies",
+      "facebookCaption": "Votre photo d’une étiquette pourrait être la meilleure aubaine d’un autre client cette semaine 🤝\n\nComment fonctionne le partage avec la communauté 👇\n📸 Photographiez une étiquette avec Scanner une étiquette\n🔒 Elle s’ajoute anonymement à la base de prix de votre région\n✅ Quand assez de clients confirment le même rabais, il est vérifié, et une étiquette de rabais rapporte 1 crédit\n\n📲 Téléchargement gratuit :\niPhone : https://apps.apple.com/ca/app/priceback/id6795860374\nAndroid : https://play.google.com/store/apps/details?id=com.priceback\n\n💬 Quel produit aimeriez-vous voir au prix dans votre entrepôt? Dites-le-nous en commentaire.\n📤 Envoyez cette publication à un voisin qui magasine chez Costco.\n\nSeul un rabais peut rapporter un crédit, plafond hebdomadaire. Téléchargement gratuit. Chaque reçu scanné utilise 1 crédit. Les conditions d'ajustement de prix sont fixées par chaque détaillant. PriceBack est une application indépendante, non affiliée à Costco ni à aucun détaillant.\n\n#PriceBack #Costco"
+    },
+    {
+      "id": "best-of-money-en",
+      "order": 6,
+      "lang": "en",
+      "slides": [
+        "best-of-money/best-of-money-en-01.jpg",
+        "best-of-money/best-of-money-en-02.jpg",
+        "best-of-money/best-of-money-en-03.jpg",
+        "best-of-money/best-of-money-en-04.jpg",
+        "best-of-money/best-of-money-en-05.jpg",
+        "best-of-money/best-of-money-en-06.jpg"
+      ],
+      "altText": [
+        "Get the most from your budget. Four easy habits for a smarter warehouse run: small habits, fewer missed price drops.",
+        "Habit 1: scan every receipt. A receipt you scan is a receipt PriceBack can watch; a receipt in a drawer is not. A scan costs one credit.",
+        "Habit 2: keep alerts on. Price drops have a deadline, and PriceBack reminds you before it closes.",
+        "Habit 3: read the price ending. Check the last digits before you buy: .97 or .00 can mean a markdown, and a star means the item won't be restocked.",
+        "Habit 4: check before you buy. Scan a product barcode to see the last known price in your area and compare it with the tag.",
+        "Small habits: download PriceBack (link in bio), start with one receipt, and follow @priceback.ca, where new stores are announced first."
+      ],
+      "instagramCaption": "Four small habits that put your money to work at Costco 💪\n\nSwipe for the habits 👇\n🧾 Scan every receipt, so it can be watched\n🔔 Keep alerts on: price drops have a deadline\n🔍 Read the price ending before you buy\n📲 Check the last known price with a barcode scan\n\n📲 Download link in bio.\n\n💬 Which habit are you adding first? Tell us in the comments.\n📤 Send this to the friend who loves a good deal.\n\nPrice endings are a common shopper rule of thumb, not a promise. Check the tag. Free to download. Each receipt scan uses 1 credit. Price-adjustment terms are set by each retailer. PriceBack is an independent app, not affiliated with Costco or any retailer.\n\n#PriceBack #Costco #CostcoCanada #SaveMoney #MoneySavingTips",
+      "facebookCaption": "Four small habits that put your money to work at Costco 💪\n\nSwipe for the habits 👇\n🧾 Scan every receipt, so it can be watched\n🔔 Keep alerts on: price drops have a deadline\n🔍 Read the price ending before you buy\n📲 Check the last known price with a barcode scan\n\n📲 Download free:\niPhone: https://apps.apple.com/ca/app/priceback/id6795860374\nAndroid: https://play.google.com/store/apps/details?id=com.priceback\n\n💬 Which habit are you adding first? Tell us in the comments.\n📤 Send this to the friend who loves a good deal.\n\nPrice endings are a common shopper rule of thumb, not a promise. Check the tag. Free to download. Each receipt scan uses 1 credit. Price-adjustment terms are set by each retailer. PriceBack is an independent app, not affiliated with Costco or any retailer.\n\n#PriceBack #Costco"
+    },
+    {
+      "id": "best-of-money-fr",
+      "order": 6,
+      "lang": "fr",
+      "slides": [
+        "best-of-money/best-of-money-fr-01.jpg",
+        "best-of-money/best-of-money-fr-02.jpg",
+        "best-of-money/best-of-money-fr-03.jpg",
+        "best-of-money/best-of-money-fr-04.jpg",
+        "best-of-money/best-of-money-fr-05.jpg",
+        "best-of-money/best-of-money-fr-06.jpg"
+      ],
+      "altText": [
+        "Tirez le maximum de votre budget. Quatre habitudes simples pour une visite à l’entrepôt plus futée: petites habitudes, moins de baisses de prix ratées.",
+        "Habitude 1: scannez chaque reçu. Un reçu scanné est un reçu que PriceBack peut surveiller; un reçu au fond d’un tiroir, non. Un scan coûte un crédit.",
+        "Habitude 2: gardez les alertes. Une baisse de prix a une date limite, et PriceBack vous rappelle avant sa fin.",
+        "Habitude 3: lisez la fin du prix. Vérifiez les derniers chiffres avant d’acheter: un ,97 ou un ,00 peut signaler un rabais, et une étoile signale un article qui ne sera plus réapprovisionné.",
+        "Habitude 4: vérifiez avant d’acheter. Scannez le code-barres d’un produit pour voir le dernier prix connu dans votre région et comparez-le à l’étiquette.",
+        "Petites habitudes: téléchargez PriceBack (lien dans la bio), commencez avec un reçu et suivez @priceback.ca, où les nouveaux magasins sont annoncés en premier."
+      ],
+      "instagramCaption": "Quatre petites habitudes pour faire travailler votre argent chez Costco 💪\n\nGlissez pour voir les habitudes 👇\n🧾 Scannez chaque reçu, pour qu’il soit surveillé\n🔔 Gardez les alertes: une baisse de prix a une date limite\n🔍 Lisez la fin du prix avant d’acheter\n📲 Vérifiez le dernier prix connu avec un scan de code-barres\n\n📲 Lien de téléchargement dans la bio.\n\n💬 Quelle habitude allez-vous adopter en premier? Dites-le-nous en commentaire.\n📤 Envoyez cette publication à l’ami qui adore une bonne aubaine.\n\nLes fins de prix sont un repère courant des clients, pas une promesse. Vérifiez l’étiquette. Téléchargement gratuit. Chaque reçu scanné utilise 1 crédit. Les conditions d'ajustement de prix sont fixées par chaque détaillant. PriceBack est une application indépendante, non affiliée à Costco ni à aucun détaillant.\n\n#PriceBack #Costco #CostcoQuébec #Économies #Astuces",
+      "facebookCaption": "Quatre petites habitudes pour faire travailler votre argent chez Costco 💪\n\nGlissez pour voir les habitudes 👇\n🧾 Scannez chaque reçu, pour qu’il soit surveillé\n🔔 Gardez les alertes: une baisse de prix a une date limite\n🔍 Lisez la fin du prix avant d’acheter\n📲 Vérifiez le dernier prix connu avec un scan de code-barres\n\n📲 Téléchargement gratuit :\niPhone : https://apps.apple.com/ca/app/priceback/id6795860374\nAndroid : https://play.google.com/store/apps/details?id=com.priceback\n\n💬 Quelle habitude allez-vous adopter en premier? Dites-le-nous en commentaire.\n📤 Envoyez cette publication à l’ami qui adore une bonne aubaine.\n\nLes fins de prix sont un repère courant des clients, pas une promesse. Vérifiez l’étiquette. Téléchargement gratuit. Chaque reçu scanné utilise 1 crédit. Les conditions d'ajustement de prix sont fixées par chaque détaillant. PriceBack est une application indépendante, non affiliée à Costco ni à aucun détaillant.\n\n#PriceBack #Costco"
+    },
+    {
+      "id": "price-codes-en",
+      "order": 7,
+      "lang": "en",
+      "holdUntil": "price-tag-translator (PR #389 — on main, NOT in store build v3.0.3)",
+      "slides": [
+        "price-codes/price-codes-en-01.jpg",
+        "price-codes/price-codes-en-02.jpg",
+        "price-codes/price-codes-en-03.jpg",
+        "price-codes/price-codes-en-04.jpg",
+        "price-codes/price-codes-en-05.jpg",
+        "price-codes/price-codes-en-06.jpg",
+        "price-codes/price-codes-en-07.jpg"
+      ],
+      "altText": [
+        "Costco price codes. Read the price ending: the last digits on a Costco tag often hint at what kind of deal it is. What do 14.97, 8.00 and 6.49 mean? Swipe to decode.",
+        "Code 1: a price ending in .97 usually means a corporate markdown, a price cut set by head office.",
+        "Code 2: a price ending in .00 usually means a manager markdown: returns, floor models or last units the store wants gone.",
+        "Code 3: a price ending in .88 usually means a store clearance, a deeper cut than usual.",
+        "Code 4: a price ending in .X9, like .49, .79 or .19, usually means a brand promotion rather than a Costco discount. Compare it with the regular price.",
+        "Code 5: a star on the tag usually means the item won't be restocked once it's gone. Shoppers call it the Death Star. It is not a discount by itself.",
+        "Try it yourself: open the Price tag translator in PriceBack (it works without internet), type the price you see, tick the star if there is one, and follow @priceback.ca, where new stores are announced first."
+      ],
+      "instagramCaption": "The last digits on a Costco price tag are a code 🔍\n\nWhat shoppers say each ending usually means 👇\n💰 .97 → corporate markdown\n🧑‍💼 .00 → manager markdown\n🏷️ .88 → store clearance\n📣 .X9 (.49, .79, .19…) → a brand's promo, not Costco's\n⭐ A star (*) → the item won't be restocked\n\n📲 Download link in bio.\n\n💬 Which code have you spotted most? Tell us in the comments.\n📤 Send this to the friend who always finds the deals.\n\nPrice endings are a common shopper rule of thumb, not a promise. Check the tag. Free to download. Each receipt scan uses 1 credit. Price-adjustment terms are set by each retailer. PriceBack is an independent app, not affiliated with Costco or any retailer.\n\n#PriceBack #Costco #CostcoCanada #CostcoFinds #SaveMoney",
+      "facebookCaption": "The last digits on a Costco price tag are a code 🔍\n\nWhat shoppers say each ending usually means 👇\n💰 .97 → corporate markdown\n🧑‍💼 .00 → manager markdown\n🏷️ .88 → store clearance\n📣 .X9 (.49, .79, .19…) → a brand's promo, not Costco's\n⭐ A star (*) → the item won't be restocked\n\n📲 Download free:\niPhone: https://apps.apple.com/ca/app/priceback/id6795860374\nAndroid: https://play.google.com/store/apps/details?id=com.priceback\n\n💬 Which code have you spotted most? Tell us in the comments.\n📤 Send this to the friend who always finds the deals.\n\nPrice endings are a common shopper rule of thumb, not a promise. Check the tag. Free to download. Each receipt scan uses 1 credit. Price-adjustment terms are set by each retailer. PriceBack is an independent app, not affiliated with Costco or any retailer.\n\n#PriceBack #Costco"
+    },
+    {
+      "id": "price-codes-fr",
+      "order": 7,
+      "lang": "fr",
+      "holdUntil": "price-tag-translator (PR #389 — on main, NOT in store build v3.0.3)",
+      "slides": [
+        "price-codes/price-codes-fr-01.jpg",
+        "price-codes/price-codes-fr-02.jpg",
+        "price-codes/price-codes-fr-03.jpg",
+        "price-codes/price-codes-fr-04.jpg",
+        "price-codes/price-codes-fr-05.jpg",
+        "price-codes/price-codes-fr-06.jpg",
+        "price-codes/price-codes-fr-07.jpg"
+      ],
+      "altText": [
+        "Codes de prix Costco. Lisez la fin du prix: les derniers chiffres d’une étiquette Costco indiquent souvent le type d’aubaine. Que signifient 14,97, 8,00 et 6,49? Glissez pour décoder.",
+        "Code 1: un prix qui se termine par ,97 signifie souvent un rabais corporatif, une réduction fixée par le siège social.",
+        "Code 2: un prix qui se termine par ,00 signifie souvent un rabais du gérant: retours, modèles d’exposition ou dernières unités que le magasin veut écouler.",
+        "Code 3: un prix qui se termine par ,88 signifie souvent une liquidation en magasin, un rabais plus profond que d’habitude.",
+        "Code 4: un prix qui se termine par ,X9, comme ,49, ,79 ou ,19, signifie souvent une promotion de la marque plutôt qu’un rabais Costco. Comparez-la au prix régulier.",
+        "Code 5: une étoile sur l’étiquette signifie souvent que l’article ne sera plus réapprovisionné une fois épuisé. Les habitués parlent de l’étoile de la mort. Ce n’est pas un rabais en soi.",
+        "Essayez-le: ouvrez le Traducteur d’étiquettes dans PriceBack (il fonctionne sans internet), entrez le prix affiché, cochez l’étoile s’il y en a une et suivez @priceback.ca, où les nouveaux magasins sont annoncés en premier."
+      ],
+      "instagramCaption": "Les derniers chiffres d’une étiquette Costco sont un code 🔍\n\nCe que chaque fin de prix signifie souvent, selon les clients 👇\n💰 ,97 → rabais corporatif\n🧑‍💼 ,00 → rabais gérant\n🏷️ ,88 → liquidation en magasin\n📣 ,X9 (,49 ,79 ,19…) → une promo de la marque, pas de Costco\n⭐ Une étoile (*) → l’article ne sera plus réapprovisionné\n\n📲 Lien de téléchargement dans la bio.\n\n💬 Quel code avez-vous le plus souvent repéré? Dites-le-nous en commentaire.\n📤 Envoyez cette publication à l’ami qui trouve toujours les aubaines.\n\nLes fins de prix sont un repère courant des clients, pas une promesse. Vérifiez l’étiquette. Téléchargement gratuit. Chaque reçu scanné utilise 1 crédit. Les conditions d'ajustement de prix sont fixées par chaque détaillant. PriceBack est une application indépendante, non affiliée à Costco ni à aucun détaillant.\n\n#PriceBack #Costco #CostcoQuébec #Aubaines #Économies",
+      "facebookCaption": "Les derniers chiffres d’une étiquette Costco sont un code 🔍\n\nCe que chaque fin de prix signifie souvent, selon les clients 👇\n💰 ,97 → rabais corporatif\n🧑‍💼 ,00 → rabais gérant\n🏷️ ,88 → liquidation en magasin\n📣 ,X9 (,49 ,79 ,19…) → une promo de la marque, pas de Costco\n⭐ Une étoile (*) → l’article ne sera plus réapprovisionné\n\n📲 Téléchargement gratuit :\niPhone : https://apps.apple.com/ca/app/priceback/id6795860374\nAndroid : https://play.google.com/store/apps/details?id=com.priceback\n\n💬 Quel code avez-vous le plus souvent repéré? Dites-le-nous en commentaire.\n📤 Envoyez cette publication à l’ami qui trouve toujours les aubaines.\n\nLes fins de prix sont un repère courant des clients, pas une promesse. Vérifiez l’étiquette. Téléchargement gratuit. Chaque reçu scanné utilise 1 crédit. Les conditions d'ajustement de prix sont fixées par chaque détaillant. PriceBack est une application indépendante, non affiliée à Costco ni à aucun détaillant.\n\n#PriceBack #Costco"
+    }
+  ]
+}
