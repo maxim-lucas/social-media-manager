@@ -1,0 +1,69 @@
+type,item,product,size,sameday_saving,sameday_end,in_flyer,detail
+end_date,3663109,Corona Cero Non Alc Beer,28 x 330 ml,8.00,2026-10-20,False,"price_tag_scan AB,BC,MB,ON,SK: ends 2026-10-18 in DB vs 2026-10-20 on Same-Day"
+end_date,2118631,"Frito-Lay Variety Pack (Lay's, Doritos, Ruffles, Cheetos)",54 x 28 g,5.00,2026-10-18,False,"price_tag_scan AB,BC,MB,SK: ends 2026-10-25 in DB vs 2026-10-18 on Same-Day"
+end_date,1800150,Ardent Mills Gluten Free Flour,2 kg,4.00,2026-10-25,False,price_tag_scan ON: ends 2026-10-23 in DB vs 2026-10-25 on Same-Day
+end_date,3449587,Winix C610 4-Stage Air Purifier With WiFi & Plasmawave Technology,1 each,40.00,2026-10-25,False,"price_tag_scan AB,BC,MB,ON,QC,SK: ends 2026-10-18 in DB vs 2026-10-25 on Same-Day"
+end_date,2047881,Liquid I.V. Creamsicle Electrolyte Drink Mix,30 x 16 g,10.00,2026-10-25,False,price_tag_scan ON: ends 2026-10-31 in DB vs 2026-10-25 on Same-Day
+end_date,2964545,Finish Jet Dry Quantum Rinse Aid,1.12 L,4.00,2026-10-25,True,price_tag_scan ON: ends 2026-10-21 in DB vs 2026-10-25 on Same-Day
+end_date,2047885,Liquid I.V. Mango Pineapple & Raspberry Lemonade Sugar-Free Hydration Multiplier Drink Mix,30 ct,10.00,2026-10-25,True,price_tag_scan ON: ends 2026-10-23 in DB vs 2026-10-25 on Same-Day
+end_date,2062406,Delici Cookie Butter Mousse,454 g,3.00,2026-11-01,True,"flyer AB,BC,MB,NB,NL,NS,NT,NU,ON,PE,QC,SK,YT: ends 2026-10-25 in DB vs 2026-11-01 on Same-Day"
+end_date,2062406,Delici Cookie Butter Mousse,454 g,3.00,2026-11-01,True,"price_tag_scan AB,BC,MB,ON,SK: ends 2026-10-25 in DB vs 2026-11-01 on Same-Day"
+end_date,2027032,Contigo West Loop 16 oz Stainless Steel Travel Mug,2 ct,6.00,2026-10-25,True,price_tag_scan ON: ends 2026-10-29 in DB vs 2026-10-25 on Same-Day
+end_date,1477487,McCafé Autumn Blend K-Cup Coffee Pods,80 ct,12.00,2026-10-25,True,price_tag_scan ON: ends 2026-10-23 in DB vs 2026-10-25 on Same-Day
+saving,2091237,"Samsung Galaxy Book 6 Laptop, Intel Core 5 315, 8 GB RAM, 256 GB SSD",14 in,250.00,2026-10-25,True,"flyer AB,BC,MB,NB,NL,NS,NT,NU,ON,PE,QC,SK,YT: saving 150.00 in DB vs 250.00 on Same-Day"
+saving,2091237,"Samsung Galaxy Book 6 Laptop, Intel Core 5 315, 8 GB RAM, 256 GB SSD",14 in,250.00,2026-10-25,True,scrape QC: saving 150.00 in DB vs 250.00 on Same-Day
+no_saving_on_sameday,453777,General Mills Cinnamon Toast Crunch Whole grain,1300 g,,,False,Same-Day shows no saving end date
+no_saving_on_sameday,1413727,Fleecy Plus Fabric Softener,4.5 L,,,False,Same-Day shows no saving end date
+no_saving_on_sameday,3862780,Palmolive Advanced Dish Liquid,4.27 L,,,False,Same-Day shows no saving end date
+no_saving_on_sameday,1912639,Cheerios Jumbo Gluten Free Multi Grain Cereal Multigrain,1.22 kg,,,False,Same-Day shows no saving end date
+no_saving_on_sameday,3337754,Royal Asia Vegetable Spring Rolls,50 ct,,,False,Same-Day shows no saving end date
+no_saving_on_sameday,1788908,Quaker Yogourt Granola Bars Whole grain,40 x 35 g,,,False,Same-Day shows no saving end date
+no_saving_on_sameday,5302575,RXBAR Protein Bar Variety Pack,14 x 52 g,,,False,Same-Day shows no saving end date
+no_saving_on_sameday,1891948,ACE Bakery All Butter Mini Cheese Croissant,560 g,,,False,Same-Day shows no saving end date
+receipt_no_end_date,366500,Softsoap Soothing Aloe Vera Moisturizing Hand Soap,2 x 2.36 L,3.50,2026-10-25,True,"receipt_ocr ON,QC: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,937319,Lysol Advanced Toilet Bowl Cleaner,4 x 946 ml,3.00,2026-10-25,True,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,36155,Yellow Potato,10 lb,1.50,2026-10-18,False,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-18"
+receipt_no_end_date,1210029,MINH Pork Egg Rolls,16 ct,4.00,2026-10-25,True,"receipt_ocr ON: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,1359722,KFI Butter Chicken Sauce,2 x 650 ml,2.00,2026-10-25,True,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,628368,Listerine Ultraclean Mouthwash,2 x 1.5 L,4.00,2026-10-25,True,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,170600,Hellmann’s Real Mayonnaise Trans fat-free,1.8 L,2.50,2026-10-18,False,"receipt_ocr ON: no end date in DB, Same-Day says 2026-10-18"
+receipt_no_end_date,5056000,Fresh Italian Tiramisu,6 ct,3.00,2026-10-18,False,"receipt_ocr ON,QC: no end date in DB, Same-Day says 2026-10-18"
+receipt_no_end_date,1154953,Kirkland Signature Marble Cheddar Cheese,1.15 kg,4.00,2026-10-25,True,"receipt_ocr ON,QC: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,402498,Bridor Pre-Proofed Butter Croissant,30 x 70 g,4.00,2026-10-18,False,"receipt_ocr ON: no end date in DB, Same-Day says 2026-10-18"
+receipt_no_end_date,1424970,Cashmere Premium 2-Ply Bathroom Tissue,40 ct,5.50,2026-10-25,True,"receipt_ocr ON: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,1208941,Lotus Biscoff Biscoff Caramelised Biscuits,4 x 8.8 oz,3.00,2026-10-25,True,"receipt_ocr ON: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,1696237,Ruffles Regular Trans fat-free,612 g,2.00,2026-10-25,True,"receipt_ocr ON,QC: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,1474938,Colgate Sensitive Pro-Relief Repair and Prevent Toothpaste,4 x 120 ml,4.00,2026-10-25,True,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,2446056,Scotties Premium Facial Tissue,21 ct,6.00,2026-10-18,False,"receipt_ocr ON,QC: no end date in DB, Same-Day says 2026-10-18"
+receipt_no_end_date,2743223,Cadbury Dairy Milk Chocolate Bar Minis,45 x 18 g,4.00,2026-10-25,True,"receipt_ocr ON,QC: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,1940193,Assorted Reusable Cutlery,1 each,4.00,2026-10-18,False,"receipt_ocr ON: no end date in DB, Same-Day says 2026-10-18"
+receipt_no_end_date,1959104,HOTO Flexi Cordless Spin Scrubber,1 each,20.00,2026-10-18,False,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-18"
+receipt_no_end_date,2417309,"Dawn Platinum Plus Powerwash Dish Spray, Fresh Clean, 1 Sprayer & 2 Refills",1 set,3.50,2026-10-25,True,"receipt_ocr ON: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,2628215,"Purex Cold Water 4-in-1 Ultra Concentrated Laundry Detergent, 250 Loads",7.5 L,5.00,2026-10-25,False,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,1938002,HOTO Cordless Glue Gun HFE0006CS,1 each,10.00,2026-10-18,False,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-18"
+receipt_no_end_date,2037930,Govee Table Lamp 2 Pro with JBL Sound,1 each,40.00,2026-10-20,False,"price_tag_scan QC: no end date in DB, Same-Day says 2026-10-20"
+receipt_no_end_date,1170833,Agropur 9% White Fromage Allegro,500 g,2.00,2026-10-18,False,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-18"
+receipt_no_end_date,195047,Sensible Portions Garden Veggie Straws,475 g,2.00,2026-10-18,False,"receipt_ocr ON,QC: no end date in DB, Same-Day says 2026-10-18"
+receipt_no_end_date,1722180,Assorted Gourmet Salami,3 x 375 g,5.00,2026-10-18,False,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-18"
+receipt_no_end_date,1708072,Lysol Advanced Disinfecting Wipes,5 x 110 ct,6.00,2026-10-25,True,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,67237,Cantaloupe,1 ct,2.00,2026-10-18,False,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-18"
+receipt_no_end_date,1744809,Dog Delights Beef Tendersticks Dog Treats,600 g,4.00,2026-10-25,True,"receipt_ocr ON: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,2507482,Tide Advanced Power Ultra Concentrated Liquid Laundry Detergent With Oxi,157 fl oz,5.00,2026-10-25,True,"receipt_ocr ON: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,1833033,Downy April Fresh Ultra Liquid Fabric Conditioner,4.35 L,4.00,2026-10-18,False,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-18"
+receipt_no_end_date,1774179,Downy Unstopables Ocean Mist In-wash Scent Booster Beads,1.13 kg,5.00,2026-10-18,False,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-18"
+receipt_no_end_date,1853751,OxiClean Max Efficiency Versatile Stain Remover,5.25 kg,5.00,2026-10-25,True,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,1874356,Puravida Fire Roasted Root Vegetables Zero cholesterol,1.8 kg,4.00,2026-10-25,True,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,1717599,Bounty P24 Plus Select-A-Size Paper Towels,12 ct,6.50,2026-10-25,True,"receipt_ocr ON,QC: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,3226088,Gain 146 Wash Loads HE Liquid Detergent,163 fl oz,4.50,2026-10-25,True,"receipt_ocr ON: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,2047885,Liquid I.V. Mango Pineapple & Raspberry Lemonade Sugar-Free Hydration Multiplier Drink Mix,30 ct,10.00,2026-10-25,True,"receipt_ocr ON: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,2040562,"Lolë Men's Fleece Zip-Up Hoodie with Zipper Arm Pocket, Large",1 each,7.00,2026-10-25,True,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,2040561,"Lolë Men's Fleece Zip-Up Hoodie with Zipper Arm Pocket, M",1 each,7.00,2026-10-25,True,"receipt_ocr ON: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,1985321,Mobile Warming Chaussettes chauffantes,1 each,10.00,2026-10-25,True,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,2888521,"Sierra Designs Women’s Full Zip Polar Fleece Jacket, Medium",1 each,5.00,2026-10-25,True,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,1896543,"GAP Fleece Jogger, L",1 pair,5.00,2026-10-18,False,"receipt_ocr ON: no end date in DB, Same-Day says 2026-10-18"
+receipt_no_end_date,2373477,Herbal Essences Rose Hips Shampoo,2 x 961 ml,5.00,2026-10-25,True,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,1896304,KitchenAid 4-Piece Oven Mitt & Potholder Set,1 set,5.00,2026-10-25,True,"receipt_ocr ON: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,2071606,GODIVA Masterpiece Assorted Dark & Milk Chocolates,421 g,6.00,2026-10-25,True,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,2053438,Nobel Men’s 3-in-1 Body Wash,3 x 946 ml,5.00,2026-10-25,True,"receipt_ocr QC: no end date in DB, Same-Day says 2026-10-25"
+receipt_no_end_date,1983952,"Buffalo David Bitton Bonded Wire-Free Bra, L",2 ct,6.00,2026-10-18,False,"receipt_ocr ON: no end date in DB, Same-Day says 2026-10-18"
+receipt_no_end_date,1983951,"Buffalo David Bitton Bonded Wire-Free Bra, M",2 ct,6.00,2026-10-18,False,"receipt_ocr ON: no end date in DB, Same-Day says 2026-10-18"

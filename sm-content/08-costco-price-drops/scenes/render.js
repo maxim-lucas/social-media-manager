@@ -6,7 +6,7 @@
 //   node sm-content/08-costco-price-drops/scenes/render.js weeks/2026-10-16.json drinks   one carousel
 //
 // A week file holds `carousels`: one per category, one item per slide (always), written to
-// posts/<week>/<carousel>/<nn>-<item>-<lang>.png in slide order.
+// posts/<week>/<lang>/<carousel>/<nn>-<item>.png in slide order.
 //
 // Unlike the other packs this one renders HTML in headless Chromium (Playwright), not SVG through
 // sharp: the posts are built around a product photograph and a shelf tag, which is layout work
@@ -58,7 +58,7 @@ const L = {
     pitch: "Scan your Costco receipt. We tell you when the price drops.",
     free: "Free on iPhone and Android",
     fine: (d, where) =>
-      `Price seen at Costco ${where ? `in ${where}` : "Canada"}, ${dateLong("en", d)}. Adjustment terms are set by the retailer. ` +
+      `Price seen at Costco ${where || "Canada"}, ${dateLong("en", d)}. Adjustment terms are set by the retailer. ` +
       "PriceBack is an independent app, not affiliated with Costco.",
   },
   fr: {
@@ -77,7 +77,7 @@ const L = {
     pitch: "Scannez votre reçu Costco. On vous avertit si le prix baisse.",
     free: "Gratuit sur iPhone et Android",
     fine: (d, where) =>
-      `Prix relevé chez Costco ${where ? `au ${where}` : "Canada"} le ${dateLong("fr", d)}. Les conditions d'ajustement sont fixées par le détaillant. ` +
+      `Prix relevé chez Costco ${where || "Canada"} le ${dateLong("fr", d)}. Les conditions d'ajustement sont fixées par le détaillant. ` +
       "PriceBack est une application indépendante, non affiliée à Costco.",
   },
 };
@@ -318,6 +318,10 @@ async function storeBadges(page, lang) {
 const PROV = {
   en: { AB: "Alberta", BC: "B.C.", MB: "Manitoba", NB: "New Brunswick", NL: "Newfoundland and Labrador", NS: "Nova Scotia",
         ON: "Ontario", PE: "P.E.I.", QC: "Quebec", SK: "Saskatchewan", NT: "the N.W.T.", NU: "Nunavut", YT: "Yukon" },
+  // French names carry their preposition: "en Ontario et au Québec".
+  fr: { AB: "en Alberta", BC: "en Colombie-Britannique", MB: "au Manitoba", NB: "au Nouveau-Brunswick", NL: "à Terre-Neuve-et-Labrador",
+        NS: "en Nouvelle-Écosse", ON: "en Ontario", PE: "à l'Île-du-Prince-Édouard", QC: "au Québec", SK: "en Saskatchewan",
+        NT: "aux T.N.-O.", NU: "au Nunavut", YT: "au Yukon" },
 };
 const national = (prov) => !prov || prov === "all";
 function itemLangs(item) {
@@ -328,9 +332,13 @@ function itemLangs(item) {
 const langsFor = (p) => ["en", "fr"].filter((l) => p.items.every((sku) => itemLangs(DATA.items[sku]).includes(l)));
 function regionName(lang, prov) {
   if (national(prov)) return null;
-  if (lang === "fr") return prov.length === 1 && prov[0] === "QC" ? "Québec" : prov.join(", ");
-  const names = prov.map((c) => PROV.en[c] || c);
-  return names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}` : names[0];
+  // Past three provinces the full names push the fine print into the download row, so use codes.
+  const short = prov.length > 3;
+  const names = short ? prov : prov.map((c) => PROV[lang][c] || c);
+  const and = lang === "fr" ? "et" : "and";
+  const list = names.length > 1 ? `${names.slice(0, -1).join(", ")} ${and} ${names[names.length - 1]}` : names[0];
+  if (lang === "fr") return short ? `dans ces provinces : ${list}` : list;
+  return `in ${list}`;
 }
 
 // drops.json lists posts; a week file lists carousels, expanded here into one single-item slide each.
@@ -342,7 +350,7 @@ function allPosts() {
       layout: "single",
       category: c.category,
       items: [sku],
-      file: path.join(WEEK, c.id, `${String(i + 1).padStart(2, "0")}-${sku}`),
+      file: (lang) => path.join(WEEK, lang, c.id, `${String(i + 1).padStart(2, "0")}-${sku}`),
     }))
   );
 }
@@ -360,7 +368,8 @@ function allPosts() {
   for (const p of posts)
     for (const lang of langsFor(p)) {
       await page.setContent(post(lang, p, photos, badges[lang]), { waitUntil: "load" });
-      const file = path.join(OUT, `${p.file}-${lang}.png`);
+      // Week carousels: one folder per language, so EN and FR never mix (Monica, 2026-10-15).
+      const file = typeof p.file === "function" ? path.join(OUT, `${p.file(lang)}.png`) : path.join(OUT, `${p.file}-${lang}.png`);
       fs.mkdirSync(path.dirname(file), { recursive: true });
       await page.screenshot({ path: file });
       console.log(path.relative(process.cwd(), file));
