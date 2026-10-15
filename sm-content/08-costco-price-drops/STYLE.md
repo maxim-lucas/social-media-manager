@@ -54,6 +54,11 @@ PriceBack. **One item per image, always. A category is a carousel** (Monica, 202
    EN and FR; a Quebec-only saving in FR; a saving only outside Quebec in EN. The renderer applies this per slide,
    and the fine print names the provinces when the saving is regional (province codes past three).
 3. **Group into categories**, one carousel each, 3 to 6 items, food first.
+   To post the week as **one carousel per language** instead (Monica, 2026-10-15), add
+   `"feeds": {"en": [category ids…], "fr": [category ids…]}` to the week file: the renderer then writes
+   `posts/<week>/<lang>/00-cover.png` (hook, the six biggest savings one per brand, swipe cue) followed by every
+   item of those categories that goes out in that language, with carousel dots in the red band on every slide.
+   Keep each carousel at 20 slides or fewer (Instagram's limit).
 4. **Photos come from Same-Day, nothing else.** Product pages redirect automated visits, so search
    `sameday.costco.ca/store/costco-canada/search/<item number or name>` and take the packshot from the matching
    tile, then save it as `scenes/.cache/<item number>.jpg` with the `sameday` id in the week file. Check every

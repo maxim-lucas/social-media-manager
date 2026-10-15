@@ -534,5 +534,18 @@
         "2597730"
       ]
     }
-  ]
+  ],
+  "feeds": {
+    "en": [
+      "grocery",
+      "fridge-pantry",
+      "health-home",
+      "care"
+    ],
+    "fr": [
+      "grocery",
+      "quebec",
+      "health-home"
+    ]
+  }
 }

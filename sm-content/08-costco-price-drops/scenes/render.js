@@ -57,6 +57,14 @@ const L = {
     claimMany: "Claim the difference.",
     pitch: "Scan your Costco receipt. We tell you when the price drops.",
     free: "Free on iPhone and Android",
+    kick: "NOT IN THE FLYER",
+    head: (n) => `${n} secret Costco\nprice drops`,
+    sub: (d) => `Valid until ${d}. Swipe to see them all.`,
+    swipe: "SWIPE",
+    until: "THIS WEEK",
+    coverFine: (a, b) =>
+      `Prices seen at Costco between ${dateShortCase("en", a)} and ${dateLong("en", b)}. Each slide names its provinces. ` +
+      "Adjustment terms are set by the retailer. PriceBack is an independent app, not affiliated with Costco.",
     fine: (d, where) =>
       `Price seen at Costco ${where || "Canada"}, ${dateLong("en", d)}. Adjustment terms are set by the retailer. ` +
       "PriceBack is an independent app, not affiliated with Costco.",
@@ -76,6 +84,14 @@ const L = {
     claimMany: "Réclamez la différence.",
     pitch: "Scannez votre reçu Costco. On vous avertit si le prix baisse.",
     free: "Gratuit sur iPhone et Android",
+    kick: "PAS DANS LA CIRCULAIRE",
+    head: (n) => `${n} baisses de prix\nsecrètes chez Costco`,
+    sub: (d) => `Jusqu'au ${d}. Glissez pour les voir.`,
+    swipe: "GLISSEZ",
+    until: "CETTE SEMAINE",
+    coverFine: (a, b) =>
+      `Prix relevés chez Costco entre le ${dateShortCase("fr", a)} et le ${dateLong("fr", b)}. Chaque image indique ses provinces. ` +
+      "Les conditions d'ajustement sont fixées par le détaillant. PriceBack est une application indépendante, non affiliée à Costco.",
     fine: (d, where) =>
       `Prix relevé chez Costco ${where || "Canada"} le ${dateLong("fr", d)}. Les conditions d'ajustement sont fixées par le détaillant. ` +
       "PriceBack est une application indépendante, non affiliée à Costco.",
@@ -100,6 +116,11 @@ function dateShort(lang, iso) {
     .replace(".", "")
     .toUpperCase();
 }
+// "Oct 8" / "8 octobre", for running text.
+const dateShortCase = (lang, iso) =>
+  new Date(iso + "T12:00:00Z").toLocaleDateString(lang === "fr" ? "fr-CA" : "en-CA", {
+    day: "numeric", month: lang === "fr" ? "long" : "short", timeZone: "UTC",
+  }).replace(".", "");
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 // ── Product photos ──────────────────────────────────────────────────────────
@@ -192,7 +213,43 @@ function post(lang, p, photos, badges) {
     ${body}
     ${promo}
     <div class="disc">${esc(t.fine(seen, regionName(lang, items[0][1].provinces)))}</div>
-    <div class="claim"><div class="a">${claim}</div>${stores}</div>
+    <div class="claim"><div class="a">${claim}</div>${stores}${dots(p.dots)}</div>
+  </div></body></html>`;
+}
+
+// Carousel dots in the red band, so the post reads as "there is more, swipe" in the feed.
+function dots(d) {
+  if (!d) return "";
+  return `<div class="dots">${Array.from({ length: d.n }, (_, i) => `<i${i === d.i ? ' class="on"' : ""}></i>`).join("")}</div>`;
+}
+
+// The first slide of a feed carousel: the hook, a grid of the biggest savings, and the swipe cue.
+function cover(lang, f, photos, badges) {
+  const t = L[lang];
+  const items = f.items.map((sku) => [sku, DATA.items[sku]]);
+  // The six biggest savings, one per brand so the grid shows six different products.
+  const brands = new Set();
+  const top = [...items].sort((a, b) => b[1].off - a[1].off)
+    .filter(([, i]) => !brands.has(i.tag.en[0]) && brands.add(i.tag.en[0])).slice(0, 6);
+  const exp = items.map(([, i]) => i.exp).sort()[0];
+  const seen = items.map(([, i]) => i.seen).sort();
+  const grid = top
+    .map(([sku, item]) => `<div class="cell"><div class="photo" style="background-image:url('${photos[sku]}')"></div>
+      <div class="mini${money(lang, item.off, true).length > 4 ? " long" : ""}">-${money(lang, item.off, true)}</div></div>`)
+    .join("");
+  const stores = `<div class="stores"><img src="${badges.apple}"><img src="${badges.google}"></div>`;
+  return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>${CSS}</style></head><body>
+  <div class="post ${lang} s cover">
+    <div class="band"><div class="t">COSTCO <span>${t.drops}</span></div><div class="c">${t.until}<br>${t.exp} ${dateShort(lang, exp)}</div></div>
+    <div class="stripe"></div>
+    <div class="kick">${t.kick}</div>
+    <div class="head">${esc(t.head(items.length)).replace("\n", "<br>")}</div>
+    <div class="grid">${grid}</div>
+    <div class="sub">${esc(t.sub(dateShortCase(lang, exp)))}<span class="sw">${t.swipe} &rarr;</span></div>
+    <div class="promo"><div class="pb"><img src="${MARK}">PriceBack</div>
+      <div class="pitch">${esc(t.pitch)}<br><span>${esc(t.free)}</span></div></div>
+    <div class="disc">${esc(t.coverFine(seen[0], seen[seen.length - 1]))}</div>
+    <div class="claim"><div class="a">${t.paidMany}<br><b>${t.claimMany}</b></div>${stores}${dots(f.dots)}</div>
   </div></body></html>`;
 }
 
@@ -242,6 +299,19 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
 .stores{display:flex;flex-direction:column;gap:12px;align-items:flex-end;flex:none}
 .stores img{height:62px;width:200px;object-fit:contain;object-position:right;display:block}
 .g .promo{top:1040px}
+.dots{position:absolute;left:0;right:0;bottom:14px;display:flex;justify-content:center;align-items:center;gap:10px}
+.dots i{width:12px;height:12px;border-radius:6px;background:rgba(255,255,255,.45)}
+.dots i.on{width:34px;background:#fff}
+.kick{position:absolute;left:60px;top:196px;background:var(--yel);color:#111;font-weight:900;font-size:40px;letter-spacing:2px;padding:4px 16px;transform:rotate(-1.5deg)}
+.head{position:absolute;left:60px;right:60px;top:262px;color:var(--blue);font-weight:900;font-size:92px;line-height:1;letter-spacing:-2px;white-space:nowrap}
+.fr .head{font-size:76px}
+.grid{position:absolute;left:60px;right:60px;top:470px;height:460px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:16px}
+.cell{position:relative;border:2px solid #e5e7eb;border-radius:10px;background:#fff}
+.cell .photo{left:14px;right:14px;top:14px;bottom:14px}
+.mini{position:absolute;right:-8px;top:-10px;width:92px;height:92px;border-radius:50%;background:var(--red);color:#fff;border:4px solid #fff;box-shadow:0 8px 18px rgba(0,0,0,.22);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:30px;transform:rotate(-10deg);white-space:nowrap}
+.mini.long{font-size:24px}
+.sub{position:absolute;left:60px;right:60px;top:950px;display:flex;align-items:center;justify-content:space-between;font-size:30px;font-weight:800;color:#111}
+.sw{background:var(--blue);color:#fff;font-size:26px;letter-spacing:2px;padding:10px 20px;border-radius:30px;flex:none}
 `;
 
 // Crop the white margin off a packshot so every product fills its frame the same way.
@@ -342,7 +412,24 @@ function regionName(lang, prov) {
 }
 
 // drops.json lists posts; a week file lists carousels, expanded here into one single-item slide each.
+// A week file with `feeds` instead posts one carousel per language: a hook cover, then every item of the
+// listed categories that goes out in that language, with carousel dots (Monica, 2026-10-15).
+function feedPosts() {
+  return Object.entries(DATA.feeds).flatMap(([lang, ids]) => {
+    const slides = ids.flatMap((id) => {
+      const c = DATA.carousels.find((x) => x.id === id);
+      return c.items.filter((sku) => itemLangs(DATA.items[sku]).includes(lang)).map((sku) => ({ id, category: c.category, sku }));
+    });
+    const n = slides.length + 1;
+    const coverPost = { id: "cover", cover: true, lang, items: slides.map((s) => s.sku), dots: { i: 0, n }, file: () => path.join(WEEK, lang, "00-cover") };
+    return [coverPost, ...slides.map((s, i) => ({
+      id: s.id, layout: "single", lang, category: s.category, items: [s.sku], dots: { i: i + 1, n },
+      file: () => path.join(WEEK, lang, `${String(i + 1).padStart(2, "0")}-${s.sku}`),
+    }))];
+  });
+}
 function allPosts() {
+  if (DATA.feeds) return feedPosts();
   if (!DATA.carousels) return DATA.posts.map((p) => ({ ...p, file: p.id }));
   return DATA.carousels.flatMap((c) =>
     c.items.map((sku, i) => ({
@@ -366,8 +453,9 @@ function allPosts() {
   for (const p of posts)
     for (const sku of p.items) if (!photos[sku]) photos[sku] = await trimmed(page, await productPhoto(sku, DATA.items[sku]));
   for (const p of posts)
-    for (const lang of langsFor(p)) {
-      await page.setContent(post(lang, p, photos, badges[lang]), { waitUntil: "load" });
+    for (const lang of p.lang ? [p.lang] : langsFor(p)) {
+      const html = p.cover ? cover(lang, p, photos, badges[lang]) : post(lang, p, photos, badges[lang]);
+      await page.setContent(html, { waitUntil: "load" });
       // Week carousels: one folder per language, so EN and FR never mix (Monica, 2026-10-15).
       const file = typeof p.file === "function" ? path.join(OUT, `${p.file(lang)}.png`) : path.join(OUT, `${p.file}-${lang}.png`);
       fs.mkdirSync(path.dirname(file), { recursive: true });
