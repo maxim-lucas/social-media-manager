@@ -9,7 +9,7 @@ Ten items picked earlier were dropped because they are in the Flipp flyer: Tosti
 Windex, Purex, Bertolli, Brownstone croutons, Honey Nut Cheerios, Maynards, C4 and Air Wick.
 
 Posted as **two carousels**, one per language (Monica, 2026-10-15). Each opens with a hook cover
-(`00-cover.png`: "16 secret Costco price drops" / "11 baisses de prix secrètes chez Costco", the six biggest savings,
+(`00-cover.png`: "Hidden savings" tag, "16 secret Costco price drops" / "11 baisses de prix secrètes chez Costco", the six biggest savings,
 a swipe cue) and every slide carries carousel dots in the red band.
 
 | Carousel | Slides | Items in order (saving) |

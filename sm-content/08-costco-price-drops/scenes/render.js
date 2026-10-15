@@ -57,7 +57,7 @@ const L = {
     claimMany: "Claim the difference.",
     pitch: "Scan your Costco receipt. We tell you when the price drops.",
     free: "Free on iPhone and Android",
-    kick: "NOT IN THE FLYER",
+    kick: "HIDDEN SAVINGS",
     head: (n) => `${n} secret Costco\nprice drops`,
     sub: (d) => `Valid until ${d}. Swipe to see them all.`,
     swipe: "SWIPE",
@@ -84,7 +84,7 @@ const L = {
     claimMany: "Réclamez la différence.",
     pitch: "Scannez votre reçu Costco. On vous avertit si le prix baisse.",
     free: "Gratuit sur iPhone et Android",
-    kick: "PAS DANS LA CIRCULAIRE",
+    kick: "AUBAINES CACHÉES",
     head: (n) => `${n} baisses de prix\nsecrètes chez Costco`,
     sub: (d) => `Jusqu'au ${d}. Glissez pour les voir.`,
     swipe: "GLISSEZ",
@@ -292,13 +292,15 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
 .claim .a b{background:#fff;color:var(--red);padding:0 10px;font-weight:900}
 .pb{display:flex;align-items:center;gap:12px;font-weight:900;font-size:28px;background:#fff;color:#0d3d28;padding:12px 18px;border-radius:14px;white-space:nowrap}
 .pb img{width:40px;height:40px;border-radius:10px}
-.promo{position:absolute;left:60px;right:60px;top:1030px;height:86px;display:flex;align-items:center;gap:22px;border-top:2px solid #e5e7eb;padding-top:14px}
-.promo .pb{background:#0d3d28;color:#fff;flex:none}
-.promo .pitch{font-size:24px;font-weight:700;color:#111;line-height:1.3;white-space:nowrap}
-.promo .pitch span{color:#0d3d28;font-weight:800}
+.promo{position:absolute;left:40px;right:40px;top:1024px;height:98px;display:flex;align-items:center;gap:22px;background:#0d3d28;border-radius:18px;padding:0 24px;box-shadow:0 10px 24px rgba(13,61,40,.28)}
+.promo .pb{background:transparent;color:#fff;flex:none;padding:0;font-size:40px;gap:14px;letter-spacing:-.5px}
+.promo .pb img{width:62px;height:62px;border-radius:14px;box-shadow:0 0 0 3px rgba(255,255,255,.18)}
+.promo .pitch{font-size:22px;font-weight:700;color:#fff;line-height:1.35;white-space:nowrap;border-left:2px solid rgba(255,255,255,.25);padding-left:22px}
+.promo .pitch span{color:#7fe0a8;font-weight:800}
+.fr .promo .pitch{font-size:20px}
 .stores{display:flex;flex-direction:column;gap:12px;align-items:flex-end;flex:none}
 .stores img{height:62px;width:200px;object-fit:contain;object-position:right;display:block}
-.g .promo{top:1040px}
+.g .promo{top:1034px}
 .dots{position:absolute;left:0;right:0;bottom:14px;display:flex;justify-content:center;align-items:center;gap:10px}
 .dots i{width:12px;height:12px;border-radius:6px;background:rgba(255,255,255,.45)}
 .dots i.on{width:34px;background:#fff}
