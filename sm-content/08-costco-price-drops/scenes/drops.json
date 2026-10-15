@@ -1,0 +1,32 @@
+{
+  "_note": "Source of every number on the art. One entry per shelf tag, copied from the tag (or from the app's verified price points). `sameday` is the product id in the sameday.costco.ca URL; render.js pulls the product photo from that page. Edit here, then re-render.",
+  "seenOn": "2026-06-22",
+  "items": {
+    "2777078": {
+      "sameday": "94874016",
+      "tag": { "en": ["Catit Creamy Bitz", "assorted cat treats", "Pack of 24"], "fr": ["Catit Creamy Bitz", "gâteries pour chats", "Paquet de 24"] },
+      "regular": 19.99, "off": 6.00, "price": 13.99, "exp": "2026-06-28"
+    },
+    "1460350": {
+      "sameday": "24328881",
+      "tag": { "en": ["Rao's marinara sauce", "2 × 770 mL"], "fr": ["Sauce marinara Rao's", "2 × 770 mL"] },
+      "regular": 15.99, "off": 4.00, "price": 11.99, "exp": "2026-07-05"
+    },
+    "680": {
+      "sameday": "21114866",
+      "image": 0,
+      "tag": { "en": ["Kraft cheese slices", "1.25 kg"], "fr": ["Tranches de fromage", "Kraft 1,25 kg"] },
+      "regular": 9.99, "off": 2.00, "price": 7.99, "exp": "2026-07-05"
+    },
+    "1700958": {
+      "sameday": "30015615",
+      "tag": { "en": ["Systane Ultra", "eye drops", "3 × 10 mL"], "fr": ["Systane Ultra", "gouttes oculaires", "3 × 10 mL"] },
+      "regular": 23.99, "off": 5.00, "price": 18.99, "exp": "2026-07-05"
+    }
+  },
+  "posts": [
+    { "id": "pet-catit", "layout": "single", "category": { "en": "Pet", "fr": "Animaux" }, "items": ["2777078"] },
+    { "id": "pantry-raos-kraft", "layout": "category", "category": { "en": "Pantry", "fr": "Épicerie" }, "items": ["1460350", "680"] },
+    { "id": "health-systane", "layout": "single", "category": { "en": "Health", "fr": "Santé" }, "items": ["1700958"] }
+  ]
+}

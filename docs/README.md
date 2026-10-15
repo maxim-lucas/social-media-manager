@@ -20,6 +20,7 @@ guidance from the thing it governs is how the two drift.
 
 | | |
 | --- | --- |
+| **The house style for new posts** — Costco price drops, how to make one | [`../sm-content/08-costco-price-drops/STYLE.md`](../sm-content/08-costco-price-drops/STYLE.md) |
 | The reusable graphics every pack imports | [`../sm-content/brand/`](../sm-content/brand/) |
 | The Highlight tray — ten trays, their covers and how to build them | [`../sm-content/05-highlights/HIGHLIGHTS.md`](../sm-content/05-highlights/HIGHLIGHTS.md) |
 | **The posting-order rule for every tray, and why Instagram's own behavior makes it stick** | [`../sm-content/05-highlights/SEQUENCE.md`](../sm-content/05-highlights/SEQUENCE.md) |
