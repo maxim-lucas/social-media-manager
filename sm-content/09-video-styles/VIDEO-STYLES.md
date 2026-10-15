@@ -34,9 +34,9 @@ These come from the packs and the playbook, and apply to every style above:
 
 ## Missing: what still needs to be brought in
 
-- **The cartoon-style videos.** None of the project's repos, branches or shared files contain them. Upload the
-  exported video files (and any project or source files from the tool they were made in) and they go in
-  `cartoon/` here with a short note on how they were made.
+- **The cartoon-style videos' source.** None of the project's repos, branches or shared files contain it. Their
+  HTML scenes, covers, character and background assets, scripts and notes go in `cartoon/` here, so the style can be
+  re-made. The rendered videos themselves stay out of the repo.
 - **The hook Reel's source.** `ASSET-PACK-NOTES.md` says it renders from HTML scenes (`scenes/strings.json`, `hook1`
   and `hook2`) with gates `bounds.py`, `motion.py` and `verify.py`. Those were built in Cowork session
   `cse_01QJzpqDCPqZ4HAHmNa7UfXK` and never committed. Only the two MP4s are here, so the hook can't be re-cut
