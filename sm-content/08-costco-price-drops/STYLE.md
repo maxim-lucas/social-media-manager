@@ -10,7 +10,7 @@ PriceBack. **One item per image, always. A category is a carousel** (Monica, 202
 
 | | |
 | --- | --- |
-| Weekly carousels | [`posts/<week>/<category>/`](posts): `<nn>-<item>-<lang>.png`, 1080×1350, in slide order |
+| Weekly carousels | [`posts/<week>/<lang>/<category>/`](posts): `<nn>-<item>.png`, 1080×1350, in slide order. EN and FR never share a folder |
 | Data | [`scenes/weeks/<week>.json`](scenes/weeks): one file per week, every number copied from the database. [`scenes/drops.json`](scenes/drops.json) holds the first three samples |
 | Render | `node sm-content/08-costco-price-drops/scenes/render.js weeks/2026-10-16.json [carousel]` (needs Playwright) |
 | Product photos | Costco Same-Day packshots, cached in `scenes/.cache/<item>.jpg` (gitignored) |
@@ -43,10 +43,22 @@ PriceBack. **One item per image, always. A category is a carousel** (Monica, 202
    posting date. Keep an item only when every province carries the same regular and sale price. Copy `regular`,
    `price`, `exp` (earliest `valid_until`), `seen` (latest `observed_at`) and the province list into
    `weeks/<posting date>.json`; `off` is `regular − price`.
+   **Hidden savings only** (Monica, 2026-10-15): the point is savings that are *not* in the official Costco flyer.
+   Drop every item that has a price point with source type `flyer` or appears in the flyer
+   (flipp.com/search/costco; check Flipp *before* rendering, through `backflipp.wishabi.com/flipp/items/search?q=costco&postal_code=…` and `/flipp/flyers/<id>`). Use the Same-Day weekly savings collection
+   (`sameday.costco.ca/store/costco-canada/collections/rc-weekly-savings`) to find more savings, and cross-check
+   each item's saving and "Ends" date on its Same-Day product page against the database. Post only items where
+   both agree; list every disagreement with the Same-Day date in the week's `Same-Day-vs-database.md` so the
+   database can be corrected. Same-Day prices are Instacart prices: compare the saving, never the price.
 2. **Languages follow the provinces** (Monica, 2026-10-15): a national saving (`"provinces": "all"`) goes out in
    EN and FR; a Quebec-only saving in FR; a saving only outside Quebec in EN. The renderer applies this per slide,
-   and the fine print names the provinces when the saving is regional.
+   and the fine print names the provinces when the saving is regional (province codes past three).
 3. **Group into categories**, one carousel each, 3 to 6 items, food first.
+   To post the week as **one carousel per language** instead (Monica, 2026-10-15), add
+   `"feeds": {"en": [category ids…], "fr": [category ids…]}` to the week file: the renderer then writes
+   `posts/<week>/<lang>/00-cover.png` (hook, the six biggest savings one per brand, swipe cue) followed by every
+   item of those categories that goes out in that language, with carousel dots in the red band on every slide.
+   Keep each carousel at 20 slides or fewer (Instagram's limit).
 4. **Photos come from Same-Day, nothing else.** Product pages redirect automated visits, so search
    `sameday.costco.ca/store/costco-canada/search/<item number or name>` and take the packshot from the matching
    tile, then save it as `scenes/.cache/<item number>.jpg` with the `sameday` id in the week file. Check every
