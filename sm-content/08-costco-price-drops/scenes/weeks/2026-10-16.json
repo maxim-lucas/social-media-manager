@@ -1,0 +1,552 @@
+{
+ "_note": "Week of 2026-10-16. Every price, saving, date and province list comes from the PriceBack database (priceback.price_points, Costco, on sale, valid until at least 2026-10-21, one price across every province). Same-Day is used for packshots only. provinces: \"all\" = national (EN + FR).",
+ "source": "priceback.price_points, pulled 2026-10-15",
+ "items": {
+  "1154953": {
+   "sameday": "21115064",
+   "tag": {
+    "en": [
+     "Kirkland Signature",
+     "marble cheddar",
+     "1.15 kg"
+    ],
+    "fr": [
+     "Kirkland Signature",
+     "cheddar marbré",
+     "1,15 kg"
+    ]
+   },
+   "regular": 15.99,
+   "off": 4.0,
+   "price": 11.99,
+   "exp": "2026-10-25",
+   "seen": "2026-10-14",
+   "provinces": "all"
+  },
+  "1208941": {
+   "sameday": "22059691",
+   "tag": {
+    "en": [
+     "Lotus Biscoff",
+     "caramelised biscuits",
+     "4 × 250 g"
+    ],
+    "fr": [
+     "Biscuits caramélisés",
+     "Lotus Biscoff",
+     "4 × 250 g"
+    ]
+   },
+   "regular": 11.99,
+   "off": 3.0,
+   "price": 8.99,
+   "exp": "2026-10-25",
+   "seen": "2026-10-14",
+   "provinces": "all"
+  },
+  "1210029": {
+   "sameday": "20050604",
+   "tag": {
+    "en": [
+     "Minh pork egg rolls",
+     "16 ct"
+    ],
+    "fr": [
+     "Pâtés impériaux",
+     "au porc Minh",
+     "16 unités"
+    ]
+   },
+   "regular": 13.99,
+   "off": 4.0,
+   "price": 9.99,
+   "exp": "2026-10-25",
+   "seen": "2026-10-14",
+   "provinces": "all"
+  },
+  "1328403": {
+   "sameday": "81868178",
+   "tag": {
+    "en": [
+     "Yupik natural",
+     "cocoa powder",
+     "700 g"
+    ],
+    "fr": [
+     "Poudre de cacao",
+     "naturelle Yupik",
+     "700 g"
+    ]
+   },
+   "regular": 23.99,
+   "off": 5.0,
+   "price": 18.99,
+   "exp": "2026-10-25",
+   "seen": "2026-10-13",
+   "provinces": "all"
+  },
+  "1359722": {
+   "sameday": "21017355",
+   "tag": {
+    "en": [
+     "KFI butter",
+     "chicken sauce",
+     "2 × 650 mL"
+    ],
+    "fr": [
+     "Sauce poulet au beurre",
+     "KFI",
+     "2 × 650 mL"
+    ]
+   },
+   "regular": 9.99,
+   "off": 2.0,
+   "price": 7.99,
+   "exp": "2026-10-25",
+   "seen": "2026-10-14",
+   "provinces": "all"
+  },
+  "1373299": {
+   "sameday": "21132500",
+   "tag": {
+    "en": [
+     "Campbell's Simply",
+     "no-salt chicken broth",
+     "6 × 946 mL"
+    ],
+    "fr": [
+     "Bouillon de poulet",
+     "Campbell's sans sel ajouté",
+     "6 × 946 mL"
+    ]
+   },
+   "regular": 11.99,
+   "off": 2.5,
+   "price": 9.49,
+   "exp": "2026-10-25",
+   "seen": "2026-10-14",
+   "provinces": "all"
+  },
+  "1412124": {
+   "sameday": "17966999",
+   "tag": {
+    "en": [
+     "Quaker quick oats",
+     "5 kg"
+    ],
+    "fr": [
+     "Gruau rapide Quaker",
+     "5 kg"
+    ]
+   },
+   "regular": 11.99,
+   "off": 3.0,
+   "price": 8.99,
+   "exp": "2026-10-25",
+   "seen": "2026-10-14",
+   "provinces": "all"
+  },
+  "1477487": {
+   "sameday": "25627301",
+   "tag": {
+    "en": [
+     "McCafé Premium Roast",
+     "or Autumn Blend coffee"
+    ],
+    "fr": [
+     "Café McCafé",
+     "Premium Roast ou Autumn Blend"
+    ]
+   },
+   "regular": 54.99,
+   "off": 12.0,
+   "price": 42.99,
+   "exp": "2026-10-23",
+   "seen": "2026-10-09",
+   "provinces": "all"
+  },
+  "1494819": {
+   "sameday": "23621874",
+   "tag": {
+    "en": [
+     "InnoFoods almond",
+     "fruit crunch cereal",
+     "900 g"
+    ],
+    "fr": [
+     "Céréales InnoFoods",
+     "amandes et fruits",
+     "900 g"
+    ]
+   },
+   "regular": 14.99,
+   "off": 3.0,
+   "price": 11.99,
+   "exp": "2026-10-25",
+   "seen": "2026-10-14",
+   "provinces": "all"
+  },
+  "1696237": {
+   "sameday": "22806343",
+   "tag": {
+    "en": [
+     "Ruffles",
+     "original chips",
+     "612 g"
+    ],
+    "fr": [
+     "Croustilles Ruffles",
+     "originales",
+     "612 g"
+    ]
+   },
+   "regular": 7.99,
+   "off": 2.0,
+   "price": 5.99,
+   "exp": "2026-10-25",
+   "seen": "2026-10-14",
+   "provinces": "all"
+  },
+  "1759": {
+   "sameday": "21021560",
+   "tag": {
+    "en": [
+     "Tetley Orange Pekoe",
+     "tea bags",
+     "300 ct"
+    ],
+    "fr": [
+     "Thé Orange Pekoe",
+     "Tetley",
+     "300 sachets"
+    ]
+   },
+   "regular": 13.99,
+   "off": 3.0,
+   "price": 10.99,
+   "exp": "2026-10-25",
+   "seen": "2026-10-14",
+   "provinces": "all"
+  },
+  "1874356": {
+   "sameday": "63629429",
+   "tag": {
+    "en": [
+     "Puravida fire-roasted",
+     "root vegetables",
+     "1.8 kg"
+    ],
+    "fr": [
+     "Légumes-racines grillés",
+     "Puravida",
+     "1,8 kg"
+    ]
+   },
+   "regular": 18.99,
+   "off": 4.0,
+   "price": 14.99,
+   "exp": "2026-10-25",
+   "seen": "2026-10-14",
+   "provinces": "all"
+  },
+  "1933211": {
+   "sameday": "80912975",
+   "tag": {
+    "en": [
+     "Witor's assorted",
+     "Italian chocolates",
+     "1 kg"
+    ],
+    "fr": [
+     "Chocolats italiens",
+     "assortis Witor's",
+     "1 kg"
+    ]
+   },
+   "regular": 19.99,
+   "off": 5.0,
+   "price": 14.99,
+   "exp": "2026-10-25",
+   "seen": "2026-10-14",
+   "provinces": "all"
+  },
+  "1979118": {
+   "sameday": "133548399",
+   "tag": {
+    "en": [
+     "Nestea iced tea",
+     "40 × 200 mL"
+    ],
+    "fr": [
+     "Thé glacé Nestea",
+     "40 × 200 mL"
+    ]
+   },
+   "regular": 17.99,
+   "off": 4.0,
+   "price": 13.99,
+   "exp": "2026-10-25",
+   "seen": "2026-10-13",
+   "provinces": "all"
+  },
+  "2026940": {
+   "sameday": "104671942",
+   "tag": {
+    "en": [
+     "Three Farmers ranch",
+     "protein snack mix",
+     "510 g"
+    ],
+    "fr": [
+     "Mélange collation",
+     "protéiné Three Farmers",
+     "510 g"
+    ]
+   },
+   "regular": 13.99,
+   "off": 4.0,
+   "price": 9.99,
+   "exp": "2026-10-25",
+   "seen": "2026-10-14",
+   "provinces": "all"
+  },
+  "2042206": {
+   "sameday": "128227096",
+   "tag": {
+    "en": [
+     "Celebrations assorted",
+     "mini chocolates",
+     "750 g"
+    ],
+    "fr": [
+     "Mini chocolats",
+     "assortis Celebrations",
+     "750 g"
+    ]
+   },
+   "regular": 19.99,
+   "off": 4.0,
+   "price": 15.99,
+   "exp": "2026-10-25",
+   "seen": "2026-10-14",
+   "provinces": "all"
+  },
+  "2071606": {
+   "sameday": "129670436",
+   "tag": {
+    "en": [
+     "Godiva Masterpieces",
+     "assorted chocolates",
+     "421 g"
+    ],
+    "fr": [
+     "Chocolats assortis",
+     "Godiva Masterpieces",
+     "421 g"
+    ]
+   },
+   "regular": 18.99,
+   "off": 6.0,
+   "price": 12.99,
+   "exp": "2026-10-25",
+   "seen": "2026-10-14",
+   "provinces": "all"
+  },
+  "2255333": {
+   "sameday": "128970341",
+   "tag": {
+    "en": [
+     "Vytashot",
+     "wellness shots",
+     "12 × 60 mL"
+    ],
+    "fr": [
+     "Vytashot",
+     "shots bien-être",
+     "12 × 60 mL"
+    ]
+   },
+   "regular": 19.99,
+   "off": 5.0,
+   "price": 14.99,
+   "exp": "2026-10-25",
+   "seen": "2026-10-14",
+   "provinces": "all"
+  },
+  "2768077": {
+   "sameday": "73991291",
+   "tag": {
+    "en": [
+     "Cedar Valley sea salt",
+     "pita chips",
+     "760 g"
+    ],
+    "fr": [
+     "Croustilles pita",
+     "au sel Cedar Valley",
+     "760 g"
+    ]
+   },
+   "regular": 11.99,
+   "off": 3.0,
+   "price": 8.99,
+   "exp": "2026-10-25",
+   "seen": "2026-10-14",
+   "provinces": "all"
+  },
+  "301572": {
+   "sameday": "16984125",
+   "tag": {
+    "en": [
+     "Sabatasso's gluten-free",
+     "four-cheese pizza",
+     "992 g"
+    ],
+    "fr": [
+     "Pizza sans gluten",
+     "4 fromages Sabatasso's",
+     "992 g"
+    ]
+   },
+   "regular": 17.99,
+   "off": 4.0,
+   "price": 13.99,
+   "exp": "2026-10-25",
+   "seen": "2026-10-14",
+   "provinces": "all"
+  },
+  "438342": {
+   "sameday": "21021324",
+   "tag": {
+    "en": [
+     "Wholly Guacamole",
+     "organic minis",
+     "12 × 57 g"
+    ],
+    "fr": [
+     "Wholly Guacamole",
+     "minis biologiques",
+     "12 × 57 g"
+    ]
+   },
+   "regular": 15.99,
+   "off": 4.0,
+   "price": 11.99,
+   "exp": "2026-10-25",
+   "seen": "2026-10-14",
+   "provinces": "all"
+  },
+  "4440923": {
+   "sameday": "125470908",
+   "tag": {
+    "en": [
+     "SimplyProtein crispy",
+     "snack bars",
+     "16 × 40 g"
+    ],
+    "fr": [
+     "Barres croquantes",
+     "SimplyProtein",
+     "16 × 40 g"
+    ]
+   },
+   "regular": 19.99,
+   "off": 5.0,
+   "price": 14.99,
+   "exp": "2026-10-25",
+   "seen": "2026-10-14",
+   "provinces": "all"
+  },
+  "680": {
+   "sameday": "21114866",
+   "tag": {
+    "en": [
+     "Kraft Singles",
+     "cheese slices",
+     "1.25 kg"
+    ],
+    "fr": [
+     "Tranches de fromage",
+     "Kraft Singles",
+     "1,25 kg"
+    ]
+   },
+   "regular": 9.99,
+   "off": 2.0,
+   "price": 7.99,
+   "exp": "2026-10-25",
+   "seen": "2026-10-13",
+   "provinces": "all"
+  }
+ },
+ "carousels": [
+  {
+   "id": "frozen-fridge",
+   "category": {
+    "en": "Frozen & fridge",
+    "fr": "Surgelés et frigo"
+   },
+   "items": [
+    "1210029",
+    "301572",
+    "1874356",
+    "438342",
+    "1154953",
+    "680"
+   ]
+  },
+  {
+   "id": "drinks",
+   "category": {
+    "en": "Drinks",
+    "fr": "Boissons"
+   },
+   "items": [
+    "1477487",
+    "2255333",
+    "1979118",
+    "1759"
+   ]
+  },
+  {
+   "id": "pantry",
+   "category": {
+    "en": "Pantry",
+    "fr": "Garde-manger"
+   },
+   "items": [
+    "1328403",
+    "1412124",
+    "1494819",
+    "1373299",
+    "1359722"
+   ]
+  },
+  {
+   "id": "chocolate",
+   "category": {
+    "en": "Chocolate",
+    "fr": "Chocolat"
+   },
+   "items": [
+    "2071606",
+    "1933211",
+    "2042206"
+   ]
+  },
+  {
+   "id": "snacks",
+   "category": {
+    "en": "Snacks",
+    "fr": "Collations"
+   },
+   "items": [
+    "4440923",
+    "2026940",
+    "1208941",
+    "2768077",
+    "1696237"
+   ]
+  }
+ ]
+}

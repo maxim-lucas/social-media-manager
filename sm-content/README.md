@@ -15,6 +15,8 @@ Output assets from Cowork session `cse_01QJzpqDCPqZ4HAHmNa7UfXK`
 | `evergreen/` | 38 | The **permanent** pack — 9 feed posts + 10 story frames, EN + FR, store-agnostic. Its own folder, its own renderer, its own 14-day schedule |
 | `06-launch/` | 20 | The **we're live** post — two 5-slide carousels (EN on the ink field, FR on emerald), published together on IG + FB, 2026-10-02. Its own renderer and 7 gates |
 | `07-costco-toolkit/` | 82 | The **Costco toolkit** pack — 7 how-to carousels (toolkit, scan a receipt, claim a drop, price tag, community, price codes, habits), each EN + FR, 5–7 slides. **Designs only, not posted; `price-codes` is on HOLD** until the Price tag translator ships. Its own renderer and 10 gates — see `07-costco-toolkit/TOOLKIT-NOTES.md` |
+| `08-costco-price-drops/` | 6 | **The house style for new content.** Costco price drops: clean product photo, recreated Costco shelf tag, Costco red/blue/white, "claim the difference" band. One product or one category per post, EN + FR. Data-driven renderer — see `08-costco-price-drops/STYLE.md` |
+| `09-video-styles/` | — | **Every video style in one index**: the hook Reel, the cartoon videos, the scripted Reels, and the Price Forecast and Shelf Street concepts, with where each one's files live and what's still missing. See `09-video-styles/VIDEO-STYLES.md` |
 | `04-community/` | 84 | The **recruiting** pack — 14 bilingual carousel posts, 16 story pairs (5 in the run, 11 living inside the Highlights), 6 unscheduled reserve pairs, the bilingual language notice, 2 carousel dividers, 8 Highlight covers and 6 Reel scripts. Its own folder, renderer and 24-day run |
 
 Total: 38 launch + 20 teaser + 38 evergreen + 84 community = 180 assets.
@@ -35,6 +37,7 @@ from now on.
 | 04 | `04-community/` | Recruits: solidarity, made-in-Canada, the growing store list, earning credits. | Mon 21 Sep → Fri 23 Oct 2026, then hand back to `evergreen/` |
 | 05 | `05-highlights/` | Answers. The ten-Highlight tray somebody opens **after** they follow: how it works, stores one at a time, earning, plans, the app. | Mon 26 Oct 2026 onward — edited, never retired |
 | 06 | `06-launch/` | Announces. The first post on the account: live on both stores, 75 welcome credits, scan, claim, follow. | Fri 2 Oct 2026, once — then pinned |
+| 08 | `08-costco-price-drops/` | Shows real Costco price drops and tells people who paid full price to claim the difference. **The main style for new posts.** | From 2026-10-15, as drops are found |
 | — | `brand/` | Not a pack. The reusable graphics every pack imports: the mark, the leaf, the palette, the type ramp, Instagram's geometry, the cover icons. | Permanent |
 
 Inside `04-community/` the same idea goes one level deeper: its wave folders are
