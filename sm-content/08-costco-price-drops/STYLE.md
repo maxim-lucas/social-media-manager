@@ -45,7 +45,7 @@ PriceBack. **One item per image, always. A category is a carousel** (Monica, 202
    `weeks/<posting date>.json`; `off` is `regular − price`.
    **Hidden savings only** (Monica, 2026-10-15): the point is savings that are *not* in the official Costco flyer.
    Drop every item that has a price point with source type `flyer` or appears in the flyer
-   (flipp.com/search/costco). Use the Same-Day weekly savings collection
+   (flipp.com/search/costco; check Flipp *before* rendering, through `backflipp.wishabi.com/flipp/items/search?q=costco&postal_code=…` and `/flipp/flyers/<id>`). Use the Same-Day weekly savings collection
    (`sameday.costco.ca/store/costco-canada/collections/rc-weekly-savings`) to find more savings, and cross-check
    each item's saving and "Ends" date on its Same-Day product page against the database. Post only items where
    both agree; list every disagreement with the Same-Day date in the week's `Same-Day-vs-database.md` so the

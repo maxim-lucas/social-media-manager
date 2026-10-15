@@ -1,5 +1,5 @@
 {
-  "_note": "Week of 2026-10-17: hidden savings. Not in the Costco flyer: no DB price point with source type flyer and not in the flyer import; every item is in Same-Day weekly savings with the same saving and the same end date (Oct 25) as the DB. Prices, savings, dates and provinces come from priceback.price_points (price_tag_scan). Same-Day is used for packshots and the date cross-check only.",
+  "_note": "Week of 2026-10-17: hidden savings. Not in the Costco flyer: no DB price point with source type flyer, and not in any Costco flyer on Flipp (flyers 8187325, 8187148, 8187149, Oct 12 to 18, checked 2026-10-15). Every item is in Same-Day weekly savings with the same saving and the same end date (Oct 25) as the DB. Prices, savings, dates and provinces come from priceback.price_points (price_tag_scan). Same-Day is used for packshots and the date check only.",
   "source": "priceback.price_points, pulled 2026-10-15; cross-checked with sameday.costco.ca rc-weekly-savings 2026-10-15",
   "items": {
     "1763195": {
@@ -50,54 +50,6 @@
         "QC"
       ]
     },
-    "374190": {
-      "sameday": "21018350",
-      "tag": {
-        "en": [
-          "Tostitos",
-          "medium salsa",
-          "2 × 1.21 L"
-        ],
-        "fr": [
-          "Tostitos",
-          "salsa moyenne",
-          "2 × 1,21 L"
-        ]
-      },
-      "regular": 12.49,
-      "off": 3.0,
-      "price": 9.49,
-      "exp": "2026-10-25",
-      "seen": "2026-10-13",
-      "provinces": [
-        "ON",
-        "QC"
-      ]
-    },
-    "252": {
-      "sameday": "17877789",
-      "tag": {
-        "en": [
-          "Lea & Perrins",
-          "Worcestershire sauce",
-          "568 mL"
-        ],
-        "fr": [
-          "Lea & Perrins",
-          "sauce Worcestershire",
-          "568 mL"
-        ]
-      },
-      "regular": 6.99,
-      "off": 2.0,
-      "price": 4.99,
-      "exp": "2026-10-25",
-      "seen": "2026-10-13",
-      "provinces": [
-        "ON",
-        "QC"
-      ]
-    },
     "324143": {
       "sameday": "21019920",
       "tag": {
@@ -120,62 +72,6 @@
       "provinces": [
         "ON",
         "QC"
-      ]
-    },
-    "690349": {
-      "sameday": "17873971",
-      "tag": {
-        "en": [
-          "Windex",
-          "glass cleaner",
-          "5 L + 950 mL"
-        ],
-        "fr": [
-          "Windex",
-          "nettoyant à vitres",
-          "5 L + 950 mL"
-        ]
-      },
-      "regular": 18.99,
-      "off": 5.0,
-      "price": 13.99,
-      "exp": "2026-10-25",
-      "seen": "2026-10-14",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "ON",
-        "QC",
-        "SK"
-      ]
-    },
-    "2628214": {
-      "sameday": "105912689",
-      "tag": {
-        "en": [
-          "Purex",
-          "After the Rain detergent",
-          "7.5 L"
-        ],
-        "fr": [
-          "Purex",
-          "détergent Après la pluie",
-          "7,5 L"
-        ]
-      },
-      "regular": 22.99,
-      "off": 5.0,
-      "price": 17.99,
-      "exp": "2026-10-25",
-      "seen": "2026-10-14",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "ON",
-        "QC",
-        "SK"
       ]
     },
     "1964076": {
@@ -438,52 +334,6 @@
         "ON"
       ]
     },
-    "142372": {
-      "sameday": "20573339",
-      "tag": {
-        "en": [
-          "Bertolli",
-          "extra light olive oil",
-          "3 L"
-        ],
-        "fr": [
-          "Bertolli",
-          "huile d'olive extra légère",
-          "3 L"
-        ]
-      },
-      "regular": 28.99,
-      "off": 6.0,
-      "price": 22.99,
-      "exp": "2026-10-25",
-      "seen": "2026-10-13",
-      "provinces": [
-        "ON"
-      ]
-    },
-    "1858254": {
-      "sameday": "66843396",
-      "tag": {
-        "en": [
-          "Brownstone",
-          "croutons",
-          "737 g"
-        ],
-        "fr": [
-          "Brownstone",
-          "croûtons",
-          "737 g"
-        ]
-      },
-      "regular": 6.49,
-      "off": 2.0,
-      "price": 4.49,
-      "exp": "2026-10-25",
-      "seen": "2026-10-13",
-      "provinces": [
-        "ON"
-      ]
-    },
     "525": {
       "sameday": "21018497",
       "tag": {
@@ -503,86 +353,6 @@
       "price": 12.99,
       "exp": "2026-10-25",
       "seen": "2026-10-09",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "ON",
-        "SK"
-      ]
-    },
-    "1134668": {
-      "sameday": "21019747",
-      "tag": {
-        "en": [
-          "Honey Nut Cheerios",
-          "cereal",
-          "1.51 kg"
-        ],
-        "fr": [
-          "Cheerios miel et noix",
-          "céréales",
-          "1,51 kg"
-        ]
-      },
-      "regular": 9.99,
-      "off": 2.0,
-      "price": 7.99,
-      "exp": "2026-10-25",
-      "seen": "2026-10-14",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "ON",
-        "SK"
-      ]
-    },
-    "2546201": {
-      "sameday": "57463437",
-      "tag": {
-        "en": [
-          "Maynards",
-          "fun-size candy",
-          "150 treats"
-        ],
-        "fr": [
-          "Maynards",
-          "bonbons format collation",
-          "150 friandises"
-        ]
-      },
-      "regular": 23.99,
-      "off": 5.0,
-      "price": 18.99,
-      "exp": "2026-10-25",
-      "seen": "2026-10-14",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "SK"
-      ]
-    },
-    "2069787": {
-      "sameday": "127855957",
-      "tag": {
-        "en": [
-          "C4",
-          "Jolly Rancher energy drinks",
-          "18 × 473 mL"
-        ],
-        "fr": [
-          "C4",
-          "boissons énergisantes Jolly Rancher",
-          "18 × 473 mL"
-        ]
-      },
-      "regular": 29.99,
-      "off": 6.0,
-      "price": 23.99,
-      "exp": "2026-10-25",
-      "seen": "2026-10-14",
       "provinces": [
         "AB",
         "BC",
@@ -672,33 +442,6 @@
         "SK"
       ]
     },
-    "1316244": {
-      "sameday": "82101415",
-      "tag": {
-        "en": [
-          "Air Wick",
-          "warmer + 9 oil refills",
-          "1 + 9"
-        ],
-        "fr": [
-          "Air Wick",
-          "diffuseur + 9 recharges",
-          "1 + 9"
-        ]
-      },
-      "regular": 24.99,
-      "off": 5.0,
-      "price": 19.99,
-      "exp": "2026-10-25",
-      "seen": "2026-10-14",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "ON",
-        "SK"
-      ]
-    },
     "2597730": {
       "sameday": "30015744",
       "tag": {
@@ -737,35 +480,22 @@
       "items": [
         "1763195",
         "2941712",
-        "374190",
-        "252",
         "324143"
       ]
     },
     {
-      "id": "home",
+      "id": "health-home",
       "category": {
-        "en": "Hidden home deals",
-        "fr": "Aubaines maison cachées"
+        "en": "Health & home",
+        "fr": "Santé et maison"
       },
       "items": [
-        "690349",
-        "2628214",
-        "1964076",
-        "943404"
-      ]
-    },
-    {
-      "id": "health",
-      "category": {
-        "en": "Hidden health deals",
-        "fr": "Aubaines santé cachées"
-      },
-      "items": [
-        "324855",
         "2001954",
         "1800076",
-        "2777815"
+        "2777815",
+        "324855",
+        "943404",
+        "1964076"
       ]
     },
     {
@@ -780,29 +510,15 @@
       ]
     },
     {
-      "id": "pantry",
+      "id": "fridge-pantry",
       "category": {
-        "en": "Hidden pantry deals",
-        "fr": "Aubaines garde-manger cachées"
+        "en": "Fridge & pantry",
+        "fr": "Frigo et garde-manger"
       },
       "items": [
         "10390",
         "425877",
-        "142372",
-        "1858254",
-        "525",
-        "1134668"
-      ]
-    },
-    {
-      "id": "treats",
-      "category": {
-        "en": "Hidden treats",
-        "fr": "Gâteries cachées"
-      },
-      "items": [
-        "2546201",
-        "2069787"
+        "525"
       ]
     },
     {
@@ -815,7 +531,6 @@
         "682140",
         "2155800",
         "1853310",
-        "1316244",
         "2597730"
       ]
     }
