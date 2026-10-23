@@ -6,7 +6,7 @@
 //   node sm-content/08-costco-price-drops/scenes/render.js weeks/2026-10-16.json drinks   one carousel
 //
 // A week file holds `carousels`: one per category, one item per slide (always), written to
-// posts/<week>/<carousel>/<nn>-<item>-<lang>.png in slide order.
+// posts/<week>/<lang>/<carousel>/<nn>-<item>.png in slide order.
 //
 // Unlike the other packs this one renders HTML in headless Chromium (Playwright), not SVG through
 // sharp: the posts are built around a product photograph and a shelf tag, which is layout work
@@ -57,8 +57,16 @@ const L = {
     claimMany: "Claim the difference.",
     pitch: "Scan your Costco receipt. We tell you when the price drops.",
     free: "Free on iPhone and Android",
+    kick: "HIDDEN SAVINGS",
+    head: (n) => `${n} secret Costco\nprice drops`,
+    sub: (d) => `Valid until ${d}. Swipe to see them all.`,
+    swipe: "SWIPE",
+    until: "THIS WEEK",
+    coverFine: (a, b) =>
+      `Prices seen at Costco between ${dateShortCase("en", a)} and ${dateLong("en", b)}. Each slide names its provinces. ` +
+      "Adjustment terms are set by the retailer. PriceBack is an independent app, not affiliated with Costco.",
     fine: (d, where) =>
-      `Price seen at Costco ${where ? `in ${where}` : "Canada"}, ${dateLong("en", d)}. Adjustment terms are set by the retailer. ` +
+      `Price seen at Costco ${where || "Canada"}, ${dateLong("en", d)}. Adjustment terms are set by the retailer. ` +
       "PriceBack is an independent app, not affiliated with Costco.",
   },
   fr: {
@@ -76,8 +84,16 @@ const L = {
     claimMany: "Réclamez la différence.",
     pitch: "Scannez votre reçu Costco. On vous avertit si le prix baisse.",
     free: "Gratuit sur iPhone et Android",
+    kick: "AUBAINES CACHÉES",
+    head: (n) => `${n} baisses de prix\nsecrètes chez Costco`,
+    sub: (d) => `Jusqu'au ${d}. Glissez pour les voir.`,
+    swipe: "GLISSEZ",
+    until: "CETTE SEMAINE",
+    coverFine: (a, b) =>
+      `Prix relevés chez Costco entre le ${dateShortCase("fr", a)} et le ${dateLong("fr", b)}. Chaque image indique ses provinces. ` +
+      "Les conditions d'ajustement sont fixées par le détaillant. PriceBack est une application indépendante, non affiliée à Costco.",
     fine: (d, where) =>
-      `Prix relevé chez Costco ${where ? `au ${where}` : "Canada"} le ${dateLong("fr", d)}. Les conditions d'ajustement sont fixées par le détaillant. ` +
+      `Prix relevé chez Costco ${where || "Canada"} le ${dateLong("fr", d)}. Les conditions d'ajustement sont fixées par le détaillant. ` +
       "PriceBack est une application indépendante, non affiliée à Costco.",
   },
 };
@@ -100,6 +116,11 @@ function dateShort(lang, iso) {
     .replace(".", "")
     .toUpperCase();
 }
+// "Oct 8" / "8 octobre", for running text.
+const dateShortCase = (lang, iso) =>
+  new Date(iso + "T12:00:00Z").toLocaleDateString(lang === "fr" ? "fr-CA" : "en-CA", {
+    day: "numeric", month: lang === "fr" ? "long" : "short", timeZone: "UTC",
+  }).replace(".", "");
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 // ── Product photos ──────────────────────────────────────────────────────────
@@ -192,7 +213,43 @@ function post(lang, p, photos, badges) {
     ${body}
     ${promo}
     <div class="disc">${esc(t.fine(seen, regionName(lang, items[0][1].provinces)))}</div>
-    <div class="claim"><div class="a">${claim}</div>${stores}</div>
+    <div class="claim"><div class="a">${claim}</div>${stores}${dots(p.dots)}</div>
+  </div></body></html>`;
+}
+
+// Carousel dots in the red band, so the post reads as "there is more, swipe" in the feed.
+function dots(d) {
+  if (!d) return "";
+  return `<div class="dots">${Array.from({ length: d.n }, (_, i) => `<i${i === d.i ? ' class="on"' : ""}></i>`).join("")}</div>`;
+}
+
+// The first slide of a feed carousel: the hook, a grid of the biggest savings, and the swipe cue.
+function cover(lang, f, photos, badges) {
+  const t = L[lang];
+  const items = f.items.map((sku) => [sku, DATA.items[sku]]);
+  // The six biggest savings, one per brand so the grid shows six different products.
+  const brands = new Set();
+  const top = [...items].sort((a, b) => b[1].off - a[1].off)
+    .filter(([, i]) => !brands.has(i.tag.en[0]) && brands.add(i.tag.en[0])).slice(0, 6);
+  const exp = items.map(([, i]) => i.exp).sort()[0];
+  const seen = items.map(([, i]) => i.seen).sort();
+  const grid = top
+    .map(([sku, item]) => `<div class="cell"><div class="photo" style="background-image:url('${photos[sku]}')"></div>
+      <div class="mini${money(lang, item.off, true).length > 4 ? " long" : ""}">-${money(lang, item.off, true)}</div></div>`)
+    .join("");
+  const stores = `<div class="stores"><img src="${badges.apple}"><img src="${badges.google}"></div>`;
+  return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>${CSS}</style></head><body>
+  <div class="post ${lang} s cover">
+    <div class="band"><div class="t">COSTCO <span>${t.drops}</span></div><div class="c">${t.until}<br>${t.exp} ${dateShort(lang, exp)}</div></div>
+    <div class="stripe"></div>
+    <div class="kick">${t.kick}</div>
+    <div class="head">${esc(t.head(items.length)).replace("\n", "<br>")}</div>
+    <div class="grid">${grid}</div>
+    <div class="sub">${esc(t.sub(dateShortCase(lang, exp)))}<span class="sw">${t.swipe} &rarr;</span></div>
+    <div class="promo"><div class="pb"><img src="${MARK}">PriceBack</div>
+      <div class="pitch">${esc(t.pitch)}<br><span>${esc(t.free)}</span></div></div>
+    <div class="disc">${esc(t.coverFine(seen[0], seen[seen.length - 1]))}</div>
+    <div class="claim"><div class="a">${t.paidMany}<br><b>${t.claimMany}</b></div>${stores}${dots(f.dots)}</div>
   </div></body></html>`;
 }
 
@@ -235,13 +292,28 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
 .claim .a b{background:#fff;color:var(--red);padding:0 10px;font-weight:900}
 .pb{display:flex;align-items:center;gap:12px;font-weight:900;font-size:28px;background:#fff;color:#0d3d28;padding:12px 18px;border-radius:14px;white-space:nowrap}
 .pb img{width:40px;height:40px;border-radius:10px}
-.promo{position:absolute;left:60px;right:60px;top:1030px;height:86px;display:flex;align-items:center;gap:22px;border-top:2px solid #e5e7eb;padding-top:14px}
-.promo .pb{background:#0d3d28;color:#fff;flex:none}
-.promo .pitch{font-size:24px;font-weight:700;color:#111;line-height:1.3;white-space:nowrap}
-.promo .pitch span{color:#0d3d28;font-weight:800}
+.promo{position:absolute;left:40px;right:40px;top:1024px;height:98px;display:flex;align-items:center;gap:22px;background:#0d3d28;border-radius:18px;padding:0 24px;box-shadow:0 10px 24px rgba(13,61,40,.28)}
+.promo .pb{background:transparent;color:#fff;flex:none;padding:0;font-size:40px;gap:14px;letter-spacing:-.5px}
+.promo .pb img{width:62px;height:62px;border-radius:14px;box-shadow:0 0 0 3px rgba(255,255,255,.18)}
+.promo .pitch{font-size:22px;font-weight:700;color:#fff;line-height:1.35;white-space:nowrap;border-left:2px solid rgba(255,255,255,.25);padding-left:22px}
+.promo .pitch span{color:#7fe0a8;font-weight:800}
+.fr .promo .pitch{font-size:20px}
 .stores{display:flex;flex-direction:column;gap:12px;align-items:flex-end;flex:none}
 .stores img{height:62px;width:200px;object-fit:contain;object-position:right;display:block}
-.g .promo{top:1040px}
+.g .promo{top:1034px}
+.dots{position:absolute;left:0;right:0;bottom:14px;display:flex;justify-content:center;align-items:center;gap:10px}
+.dots i{width:12px;height:12px;border-radius:6px;background:rgba(255,255,255,.45)}
+.dots i.on{width:34px;background:#fff}
+.kick{position:absolute;left:60px;top:196px;background:var(--yel);color:#111;font-weight:900;font-size:40px;letter-spacing:2px;padding:4px 16px;transform:rotate(-1.5deg)}
+.head{position:absolute;left:60px;right:60px;top:262px;color:var(--blue);font-weight:900;font-size:92px;line-height:1;letter-spacing:-2px;white-space:nowrap}
+.fr .head{font-size:76px}
+.grid{position:absolute;left:60px;right:60px;top:470px;height:460px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:16px}
+.cell{position:relative;border:2px solid #e5e7eb;border-radius:10px;background:#fff}
+.cell .photo{left:14px;right:14px;top:14px;bottom:14px}
+.mini{position:absolute;right:-8px;top:-10px;width:92px;height:92px;border-radius:50%;background:var(--red);color:#fff;border:4px solid #fff;box-shadow:0 8px 18px rgba(0,0,0,.22);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:30px;transform:rotate(-10deg);white-space:nowrap}
+.mini.long{font-size:24px}
+.sub{position:absolute;left:60px;right:60px;top:950px;display:flex;align-items:center;justify-content:space-between;font-size:30px;font-weight:800;color:#111}
+.sw{background:var(--blue);color:#fff;font-size:26px;letter-spacing:2px;padding:10px 20px;border-radius:30px;flex:none}
 `;
 
 // Crop the white margin off a packshot so every product fills its frame the same way.
@@ -318,6 +390,10 @@ async function storeBadges(page, lang) {
 const PROV = {
   en: { AB: "Alberta", BC: "B.C.", MB: "Manitoba", NB: "New Brunswick", NL: "Newfoundland and Labrador", NS: "Nova Scotia",
         ON: "Ontario", PE: "P.E.I.", QC: "Quebec", SK: "Saskatchewan", NT: "the N.W.T.", NU: "Nunavut", YT: "Yukon" },
+  // French names carry their preposition: "en Ontario et au Québec".
+  fr: { AB: "en Alberta", BC: "en Colombie-Britannique", MB: "au Manitoba", NB: "au Nouveau-Brunswick", NL: "à Terre-Neuve-et-Labrador",
+        NS: "en Nouvelle-Écosse", ON: "en Ontario", PE: "à l'Île-du-Prince-Édouard", QC: "au Québec", SK: "en Saskatchewan",
+        NT: "aux T.N.-O.", NU: "au Nunavut", YT: "au Yukon" },
 };
 const national = (prov) => !prov || prov === "all";
 function itemLangs(item) {
@@ -328,13 +404,34 @@ function itemLangs(item) {
 const langsFor = (p) => ["en", "fr"].filter((l) => p.items.every((sku) => itemLangs(DATA.items[sku]).includes(l)));
 function regionName(lang, prov) {
   if (national(prov)) return null;
-  if (lang === "fr") return prov.length === 1 && prov[0] === "QC" ? "Québec" : prov.join(", ");
-  const names = prov.map((c) => PROV.en[c] || c);
-  return names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}` : names[0];
+  // Past three provinces the full names push the fine print into the download row, so use codes.
+  const short = prov.length > 3;
+  const names = short ? prov : prov.map((c) => PROV[lang][c] || c);
+  const and = lang === "fr" ? "et" : "and";
+  const list = names.length > 1 ? `${names.slice(0, -1).join(", ")} ${and} ${names[names.length - 1]}` : names[0];
+  if (lang === "fr") return short ? `dans ces provinces : ${list}` : list;
+  return `in ${list}`;
 }
 
 // drops.json lists posts; a week file lists carousels, expanded here into one single-item slide each.
+// A week file with `feeds` instead posts one carousel per language: a hook cover, then every item of the
+// listed categories that goes out in that language, with carousel dots (Monica, 2026-10-15).
+function feedPosts() {
+  return Object.entries(DATA.feeds).flatMap(([lang, ids]) => {
+    const slides = ids.flatMap((id) => {
+      const c = DATA.carousels.find((x) => x.id === id);
+      return c.items.filter((sku) => itemLangs(DATA.items[sku]).includes(lang)).map((sku) => ({ id, category: c.category, sku }));
+    });
+    const n = slides.length + 1;
+    const coverPost = { id: "cover", cover: true, lang, items: slides.map((s) => s.sku), dots: { i: 0, n }, file: () => path.join(WEEK, lang, "00-cover") };
+    return [coverPost, ...slides.map((s, i) => ({
+      id: s.id, layout: "single", lang, category: s.category, items: [s.sku], dots: { i: i + 1, n },
+      file: () => path.join(WEEK, lang, `${String(i + 1).padStart(2, "0")}-${s.sku}`),
+    }))];
+  });
+}
 function allPosts() {
+  if (DATA.feeds) return feedPosts();
   if (!DATA.carousels) return DATA.posts.map((p) => ({ ...p, file: p.id }));
   return DATA.carousels.flatMap((c) =>
     c.items.map((sku, i) => ({
@@ -342,7 +439,7 @@ function allPosts() {
       layout: "single",
       category: c.category,
       items: [sku],
-      file: path.join(WEEK, c.id, `${String(i + 1).padStart(2, "0")}-${sku}`),
+      file: (lang) => path.join(WEEK, lang, c.id, `${String(i + 1).padStart(2, "0")}-${sku}`),
     }))
   );
 }
@@ -358,9 +455,11 @@ function allPosts() {
   for (const p of posts)
     for (const sku of p.items) if (!photos[sku]) photos[sku] = await trimmed(page, await productPhoto(sku, DATA.items[sku]));
   for (const p of posts)
-    for (const lang of langsFor(p)) {
-      await page.setContent(post(lang, p, photos, badges[lang]), { waitUntil: "load" });
-      const file = path.join(OUT, `${p.file}-${lang}.png`);
+    for (const lang of p.lang ? [p.lang] : langsFor(p)) {
+      const html = p.cover ? cover(lang, p, photos, badges[lang]) : post(lang, p, photos, badges[lang]);
+      await page.setContent(html, { waitUntil: "load" });
+      // Week carousels: one folder per language, so EN and FR never mix (Monica, 2026-10-15).
+      const file = typeof p.file === "function" ? path.join(OUT, `${p.file(lang)}.png`) : path.join(OUT, `${p.file}-${lang}.png`);
       fs.mkdirSync(path.dirname(file), { recursive: true });
       await page.screenshot({ path: file });
       console.log(path.relative(process.cwd(), file));
