@@ -180,6 +180,18 @@ async function productPhoto(sku, item) {
   fs.mkdirSync(CACHE, { recursive: true });
   const file = path.join(CACHE, `${sku}.jpg`);
   if (fs.existsSync(file)) return file;
+  // 1st choice: the product-images R2 bucket, through the PriceBack API (Maxim, 2026-10-26: the savings harvest copies
+  // every Same-Day packshot there as costco/<item #>). No Same-Day id needed. PRICEBACK_API overrides the host.
+  try {
+    const api = (process.env.PRICEBACK_API || "https://priceback-production.up.railway.app").replace(/\/+$/, "");
+    const img = await get(`${api}/api/product-images/costco/${sku}`);
+    if (img.length > 1000 && (img[0] === 0xff || img[0] === 0x89 || img.slice(8, 12).toString() === "WEBP")) {
+      fs.writeFileSync(file, img);
+      return file;
+    }
+  } catch (e) {
+    if (!item.sameday) throw new Error(`sku ${sku}: no photo in R2 (${e.message}) and no sameday id. Save it to scenes/.cache/${sku}.jpg by hand.`);
+  }
   const page = (await get(`https://sameday.costco.ca/store/costco-canada/products/${item.sameday}`)).toString("utf8");
   if (/\/login\?next=/.test(page) && page.length < 2000) {
     throw new Error(`sku ${sku}: sameday page ${item.sameday} needs a login. Save the photo to scenes/.cache/${sku}.jpg by hand.`);
@@ -414,7 +426,9 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
 
 // Crop the white margin off a packshot so every product fills its frame the same way.
 async function trimmed(page, file) {
-  const src = "data:image/jpeg;base64," + fs.readFileSync(file).toString("base64");
+  const buf = fs.readFileSync(file);
+  const mime = buf[0] === 0x89 ? "image/png" : buf.slice(8, 12).toString() === "WEBP" ? "image/webp" : "image/jpeg";
+  const src = `data:${mime};base64,` + buf.toString("base64");
   return page.evaluate(async (src) => {
     const img = new Image();
     img.src = src;

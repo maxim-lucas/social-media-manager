@@ -6,12 +6,16 @@ province strips and slide order are final for review.
 
 ## To finish on your computer
 
-1. For each item, find its Same-Day id (search `sameday.costco.ca/store/costco-canada/search/<item #>`, STYLE.md
-   step 4) and put it in `"sameday"` in the week file, or save the photo as `scenes/.cache/<item #>.jpg`.
-2. Check the Flipp flyer (STYLE.md step 1). These were **not** checked, which is why the covers say "price drops",
-   not "hidden savings". If you want the hidden-savings angle, drop any item found in the flyer.
-3. Render without `--draft`: `node sm-content/08-costco-price-drops/scenes/render.js weeks/<file>.json`. The finals
-   land in `posts/`.
+Photos now come straight from the **product-images R2 bucket** (`costco/<item #>`, filled by the savings harvest)
+through the PriceBack API, with Same-Day as a fallback, so no ids or manual saving are needed. From the repo root:
+
+```
+bash sm-content/08-costco-price-drops/scenes/render-2026-10-27.sh
+```
+
+That writes every final, with photos, to `posts/2026-10-27-*/` and re-renders the receipt-scan carousel. Any item
+missing from R2 stops the run and names itself; add its `"sameday"` id or save `scenes/.cache/<item #>.jpg`.
+Check the Flipp flyer before calling any of these "hidden" savings (STYLE.md step 1): the covers say "price drops".
 
 ## The carousels, in posting order
 

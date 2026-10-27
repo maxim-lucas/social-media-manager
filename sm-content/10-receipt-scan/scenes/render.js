@@ -39,6 +39,12 @@ const T = {
       "Item number, name and price, top to bottom. These are the prices PriceBack keeps watching for a drop.",
       "Subtotal, tax and total. That is where your photo can stop.",
     ],
+    missT: "Missed items =\nmissed price drops",
+    missB: "PriceBack can only watch the lines in your photo. Get every item, from the header down to the total.",
+    missEdge: "YOUR PHOTO ENDS HERE",
+    missTag: (n) => `−$${n} drop missed`,
+    missCard: "This week, the Van Houtte coffee dropped $13 and the Chefman kettle dropped $10. Off the photo, no alert.",
+    missFine: "Example receipt for illustration only. Drops seen at Costco on Oct 27, 2026. Adjustment terms are set by the retailer. PriceBack is an independent app, not affiliated with Costco.",
     skipT: "Skip the payment part",
     skipB: "Card type, approval codes, everything under the total: PriceBack doesn't need it. Leave it out of the frame.",
     notNeeded: "NOT NEEDED",
@@ -65,6 +71,12 @@ const T = {
       "Numéro, nom et prix de chaque article, de haut en bas. Ce sont les prix que PriceBack surveille.",
       "Sous-total, taxes et total. Votre photo peut s'arrêter là.",
     ],
+    missT: "Article manqué =\nbaisse de prix manquée",
+    missB: "PriceBack ne surveille que les lignes de votre photo. Prenez chaque article, de l'en-tête jusqu'au total.",
+    missEdge: "VOTRE PHOTO S'ARRÊTE ICI",
+    missTag: (n) => `baisse de ${n} $ manquée`,
+    missCard: "Cette semaine, le café Van Houtte a baissé de 13 $ et la bouilloire Chefman de 10 $. Hors de la photo, aucune alerte.",
+    missFine: "Reçu d'exemple, à titre d'illustration. Baisses relevées chez Costco le 27 octobre 2026. Les conditions d'ajustement sont fixées par le détaillant. PriceBack est une application indépendante, non affiliée à Costco.",
     skipT: "Oubliez la partie paiement",
     skipB: "Type de carte, codes d'autorisation, tout ce qui suit le total : PriceBack n'en a pas besoin. Laissez-le hors du cadre.",
     notNeeded: "PAS NÉCESSAIRE",
@@ -86,14 +98,14 @@ const T = {
 // The example receipt. Items are real products from this week's drops, prices drawn as an example.
 const ITEMS = [
   ["1254041", "BURRATA", "17.99"],
-  ["266556", "VH HOUSE BLEND", "52.99"],
   ["2061560", "SKOULAKIS STRIPS", "49.99"],
   ["1405731", "GIA BASMATI", "39.99"],
-  ["2023352", "CHEFMAN KETTLE", "39.99"],
+  ["266556", "VH HOUSE BLEND", "52.99", 13],
+  ["2023352", "CHEFMAN KETTLE", "39.99", 10],
 ];
 const fr2 = (lang, s) => (lang === "fr" ? s.replace(".", ",") : s);
 
-function receipt(lang, { zones = false, focus = null, payment = "show", w = 440, cls = "" } = {}) {
+function receipt(lang, { zones = false, focus = null, payment = "show", w = 440, cls = "", cut = null } = {}) {
   const r = T[lang].r;
   const z = (k, html) => `<div class="z ${k}${zones ? " on" : ""}${focus && focus !== k ? " dim" : ""}${focus === k ? " focus" : ""}">${
     zones ? `<b class="zn">${{ head: 1, items: 2, totals: 3 }[k]}</b>` : ""}${html}</div>`;
@@ -101,18 +113,20 @@ function receipt(lang, { zones = false, focus = null, payment = "show", w = 440,
   return `<div class="rc ${cls}" style="width:${w}px">
     <div class="ex">EXAMPLE</div>
     ${z("head", `<div class="c big">COSTCO</div><div class="c">WHOLESALE</div><div class="c">WAREHOUSE #000</div><div class="c sm">${lang === "fr" ? "27/10/2026 · CAISSE 4" : "10/27/2026 · REG 4"}</div>`)}
-    ${z("items", ITEMS.map(([n, d, p]) => `<div class="l"><span>${n} ${d}</span><span>${fr2(lang, p)}</span></div>`).join(""))}
+    ${z("items", ITEMS.map(([n, d, p, drop], i) => (cut === i ? `<div class="edge"><span>${T[lang].missEdge}</span></div>` : "") +
+      `<div class="l${cut !== null && i >= cut ? " miss" : ""}"><span>${n} ${d}</span><span>${fr2(lang, p)}</span>${
+        cut !== null && i >= cut && drop ? `<em class="mt">${T[lang].missTag(drop)}</em>` : ""}</div>`).join(""))}
     ${z("totals", `<div class="l"><span>${r.sub}</span><span>${fr2(lang, "200.95")}</span></div><div class="l"><span>${r.tax}</span><span>${fr2(lang, "8.12")}</span></div><div class="l t"><span>${r.total}</span><span>${fr2(lang, "209.07")}</span></div>`)}
     ${payment === "hide" ? "" : `<div class="z pay${payment === "cross" ? " x" : ""}">${pay}${payment === "cross" ? `<i class="nn">${T[lang].notNeeded}</i>` : ""}</div>`}
   </div>`;
 }
 
-function frame(lang, i, n, body, { end = false } = {}) {
+function frame(lang, i, n, body, { end = false, fine = null } = {}) {
   const t = T[lang];
   const dots = Array.from({ length: n }, (_, k) => `<i${k === i ? ' class="on"' : ""}></i>`).join("");
   return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>${css(lang)}</style></head><body>
   <div class="post">${body}
-    ${end ? "" : `<div class="fine">${t.fine}</div>`}
+    ${end ? "" : `<div class="fine">${fine || t.fine}</div>`}
     <div class="foot"><div class="pb"><img src="${MARK}">PriceBack</div><div class="dots">${dots}</div>
       ${end ? "" : `<div class="bd"><img src="${BADGE[lang].apple}"><img src="${BADGE[lang].google}"></div>`}</div>
   </div></body></html>`;
@@ -133,6 +147,9 @@ function slides(lang) {
      <div class="csub">${t.coverSub}</div>`,
     step(lang, 0),
     step(lang, 1),
+    { fine: t.missFine, body: `<div class="num warn">!</div><div class="h2 two">${t.missT.replace("\n", "<br>")}</div><div class="p low">${t.missB}</div>
+     <div class="stage miss">${receipt(lang, { payment: "hide", w: 560, cut: 3 })}</div>
+     <div class="mcard">${t.missCard}</div>` },
     step(lang, 2),
     `<div class="num x">✕</div><div class="h2">${t.skipT}</div><div class="p">${t.skipB}</div>
      <div class="stage">${receipt(lang, { payment: "cross", w: 520 })}</div>`,
@@ -149,7 +166,8 @@ function slides(lang) {
     <div class="cta">${t.endCta}</div>
     <div class="eb"><img src="${BADGE[lang].apple}"><img src="${BADGE[lang].google}"></div>`;
   const n = list.length + 1;
-  return [...list.map((b, i) => frame(lang, i, n, b)), frame(lang, n - 1, n, end, { end: true })];
+  return [...list.map((b, i) => (typeof b === "string" ? frame(lang, i, n, b) : frame(lang, i, n, b.body, { fine: b.fine }))),
+    frame(lang, n - 1, n, end, { end: true })];
 }
 
 function css(lang) {
@@ -177,6 +195,19 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif;ba
 .l{display:flex;justify-content:space-between;font-size:20px;line-height:1.45;white-space:nowrap;gap:16px}
 .l.t{font-weight:900;font-size:24px;border-top:2px dashed #8b8478;margin-top:4px;padding-top:4px}
 .pay{color:#6b665d}
+.num.warn{background:${c.ink}}
+.h2.two{top:62px;font-size:${lang === "fr" ? 50 : 56}px}
+.p.low{top:250px}
+.stage.miss{top:400px}
+.l.miss{opacity:.35;position:relative;line-height:2.1}
+.l.miss span{filter:blur(1.6px)}
+.l .mt{position:absolute;right:-150px;top:50%;transform:translateY(-50%) rotate(-3deg);opacity:1;font-style:normal;font-family:Arial;font-weight:900;font-size:20px;white-space:nowrap;background:${c.ink};color:#fff;padding:5px 12px;border-radius:8px;filter:none}
+.l.miss:has(.mt){opacity:1}.l.miss:has(.mt) span{opacity:.35}
+.edge{position:relative;margin:10px -40px;border-top:5px dashed ${c.accent};height:0}
+.edge span{position:absolute;left:50%;top:-17px;transform:translateX(-50%);background:${c.accent};color:#fff;font-family:Arial;font-weight:900;font-size:18px;letter-spacing:2px;padding:4px 14px;border-radius:20px;white-space:nowrap}
+.miss .rc{margin-left:-120px}
+.miss .z.totals{opacity:.35}
+.mcard{position:absolute;left:70px;right:70px;top:985px;background:${c.chip};color:#fff;border-radius:20px;padding:22px 30px;font-size:${lang === "fr" ? 27 : 29}px;line-height:1.35;font-weight:700}
 .pay.x{background:repeating-linear-gradient(-45deg,rgba(120,120,120,.10) 0 12px,rgba(120,120,120,.20) 12px 24px);border:4px dashed #8a958f}
 .pay.x .l{text-decoration:line-through;opacity:.6;justify-content:center}
 .pay .nn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-6deg);background:#59645e;color:#fff;font-family:Arial;font-style:normal;font-weight:900;font-size:28px;letter-spacing:3px;padding:6px 16px;border-radius:8px;white-space:nowrap}
