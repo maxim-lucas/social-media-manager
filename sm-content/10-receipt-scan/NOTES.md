@@ -12,6 +12,9 @@ Built 2026-10-27. **Designs for review, not posted.** An 8-slide carousel, EN on
 7. Keep it straight: straight and flat ✓, tilted ✗, upside down ✗, folded ✗, header cut off ✗, glare ✗
 8. Follow @priceback.ca + download, the plans line and both store badges
 
+**Stories** (1080×1920, `posts/stories/<lang>/`): cover, missed items, keep it straight, follow. Top 260 px and
+bottom 320 px left clear for Instagram. This is the design's second and last use.
+
 Render: `node sm-content/10-receipt-scan/scenes/render.js` → `posts/<lang>/receipt-scan-<lang>-NN.png`.
 
 **Supersedes** the "fit the full receipt in the frame" advice in `07-costco-toolkit/posts/scan-receipt` (never

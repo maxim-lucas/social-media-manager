@@ -124,12 +124,12 @@ function receipt(lang, { zones = false, focus = null, payment = "show", w = 440,
 function frame(lang, i, n, body, { end = false, fine = null } = {}) {
   const t = T[lang];
   const dots = Array.from({ length: n }, (_, k) => `<i${k === i ? ' class="on"' : ""}></i>`).join("");
-  return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>${css(lang)}</style></head><body>
-  <div class="post">${body}
+  return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>${css(lang)}${STORY_CSS(lang)}</style></head><body>
+  <div class="story"><div class="post">${body}
     ${end ? "" : `<div class="fine">${fine || t.fine}</div>`}
     <div class="foot"><div class="pb"><img src="${MARK}">PriceBack</div><div class="dots">${dots}</div>
       ${end ? "" : `<div class="bd"><img src="${BADGE[lang].apple}"><img src="${BADGE[lang].google}"></div>`}</div>
-  </div></body></html>`;
+  </div></div></body></html>`;
 }
 
 const step = (lang, k) => {
@@ -144,7 +144,7 @@ function slides(lang) {
   const list = [
     `<div class="kick">${t.kick}</div><div class="h1">${t.head.replace("\n", "<br>")}</div>
      <div class="stage cover">${receipt(lang, { zones: true, payment: "cross", w: 520 })}</div>
-     <div class="csub">${t.coverSub}</div>`,
+     <div class="csub">${STORY ? t.coverSub.replace(/(Swipe|Glissez) →/, lang === "fr" ? "Touchez →" : "Tap →") : t.coverSub}</div>`,
     step(lang, 0),
     step(lang, 1),
     { fine: t.missFine, body: `<div class="num warn">!</div><div class="h2 two">${t.missT.replace("\n", "<br>")}</div><div class="p low">${t.missB}</div>
@@ -243,6 +243,14 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif;ba
 .eb{position:absolute;left:0;right:0;top:1010px;display:flex;justify-content:center;gap:30px}.eb img{height:100px;width:auto}`;
 }
 
+// Stories (1080×1920): the same frames on a taller field. The top 260 px stay clear for Instagram's progress bar
+// and account row, the bottom 320 px for the reply bar; carousel dots are hidden (a story has its own bar).
+const STORY_FRAMES = [0, 3, 6, 7]; // cover, missed items, keep it straight, follow
+const STORY_CSS = (lang) => (STORY ? `body{height:1920px}.story{width:1080px;height:1920px;padding-top:260px;
+  background:linear-gradient(180deg,${THEME[lang].field},${THEME[lang].field2})}.dots{display:none}
+  .story::after{content:"";position:absolute;left:0;right:0;top:1610px;height:310px;background:${THEME[lang].field2}}` : "");
+let STORY = false;
+
 let BADGE;
 (async () => {
   BADGE = {
@@ -260,6 +268,18 @@ let BADGE;
     for (let i = 0; i < s.length; i++) {
       await page.setContent(s[i], { waitUntil: "load" });
       const f = path.join(OUT, lang, `receipt-scan-${lang}-${String(i + 1).padStart(2, "0")}.png`);
+      await page.screenshot({ path: f });
+      console.log(path.relative(process.cwd(), f));
+    }
+  }
+  STORY = true;
+  await page.setViewportSize({ width: 1080, height: 1920 });
+  for (const lang of ["en", "fr"]) {
+    const s = slides(lang);
+    fs.mkdirSync(path.join(OUT, "stories", lang), { recursive: true });
+    for (const [k, i] of STORY_FRAMES.entries()) {
+      await page.setContent(s[i], { waitUntil: "load" });
+      const f = path.join(OUT, "stories", lang, `receipt-scan-story-${lang}-${String(k + 1).padStart(2, "0")}.png`);
       await page.screenshot({ path: f });
       console.log(path.relative(process.cwd(), f));
     }
