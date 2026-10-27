@@ -1,0 +1,200 @@
+{
+  "_note": "Grocery savings by type, with the province strip (every province with a Costco, the ones where the saving was seen filled in). Each item has one saving everywhere it was seen and an end date of Nov 1 or later. Flipp flyer check not done (blocked from this workspace).",
+  "source": "priceback.price_points (price_tag_scan, verified), pulled 2026-10-27 09:40 UTC",
+  "provinceStrip": true,
+  "endSlide": true,
+  "copy": {
+    "en": {
+      "kick": "GROCERY DROPS BY PROVINCE",
+      "head": "Dairy & cheese\non sale at Costco",
+      "sub": "Find your province on every slide.",
+      "until": "DAIRY & CHEESE"
+    },
+    "fr": {
+      "kick": "ÉPICERIE PAR PROVINCE",
+      "head": "Produits laitiers\nen rabais chez Costco",
+      "sub": "Votre province sur chaque image.",
+      "until": "PRODUITS LAITIERS"
+    }
+  },
+  "items": {
+    "1254041": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Bella Casara",
+          "burrata cheese"
+        ],
+        "fr": [
+          "Bella Casara",
+          "fromage burrata"
+        ]
+      },
+      "regular": 17.99,
+      "off": 4.0,
+      "price": 13.99,
+      "exp": "2026-11-22",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    },
+    "1057620": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Santa Lucia",
+          "ricotta cheese"
+        ],
+        "fr": [
+          "Santa Lucia",
+          "fromage ricotta"
+        ]
+      },
+      "regular": 16.99,
+      "off": 4.0,
+      "price": 12.99,
+      "exp": "2026-11-08",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ]
+    },
+    "2252203": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Castle Cheese",
+          "poutine topping"
+        ],
+        "fr": [
+          "Castle Cheese",
+          "fromage à poutine"
+        ]
+      },
+      "regular": 18.99,
+      "off": 4.0,
+      "price": 14.99,
+      "exp": "2026-11-08",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ]
+    },
+    "397312": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Bothwell Squeak'rs",
+          "white cheddar curds",
+          "1 kg"
+        ],
+        "fr": [
+          "Bothwell Squeak'rs",
+          "fromage en grains",
+          "cheddar blanc · 1 kg"
+        ]
+      },
+      "regular": 16.49,
+      "off": 3.5,
+      "price": 12.99,
+      "exp": "2026-11-01",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ]
+    },
+    "83013": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Saputo",
+          "pizza mozzarella"
+        ],
+        "fr": [
+          "Saputo",
+          "mozzarella à pizza"
+        ]
+      },
+      "regular": 15.99,
+      "off": 3.5,
+      "price": 12.49,
+      "exp": "2026-11-01",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ]
+    },
+    "1919267": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Verka",
+          "dahi yogurt 3.25%",
+          "4 kg"
+        ],
+        "fr": [
+          "Verka",
+          "yogourt dahi 3,25 %",
+          "4 kg"
+        ]
+      },
+      "regular": 13.99,
+      "off": 3.0,
+      "price": 10.99,
+      "exp": "2026-11-08",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC"
+      ]
+    }
+  },
+  "carousels": [
+    {
+      "id": "grocery",
+      "category": {
+        "en": "Dairy & cheese",
+        "fr": "Produits laitiers"
+      },
+      "items": [
+        "1254041",
+        "1057620",
+        "2252203",
+        "397312",
+        "83013",
+        "1919267"
+      ]
+    }
+  ],
+  "feeds": {
+    "en": [
+      "grocery"
+    ],
+    "fr": [
+      "grocery"
+    ]
+  }
+}

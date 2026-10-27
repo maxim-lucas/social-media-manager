@@ -1,0 +1,204 @@
+{
+  "_note": "Grocery savings by type, with the province strip (every province with a Costco, the ones where the saving was seen filled in). Each item has one saving everywhere it was seen and an end date of Nov 1 or later. Flipp flyer check not done (blocked from this workspace).",
+  "source": "priceback.price_points (price_tag_scan, verified), pulled 2026-10-27 09:40 UTC",
+  "provinceStrip": true,
+  "endSlide": true,
+  "copy": {
+    "en": {
+      "kick": "GROCERY DROPS BY PROVINCE",
+      "head": "Frozen & meat\non sale at Costco",
+      "sub": "Find your province on every slide.",
+      "until": "FROZEN & MEAT"
+    },
+    "fr": {
+      "kick": "ÉPICERIE PAR PROVINCE",
+      "head": "Surgelés et viandes\nen rabais chez Costco",
+      "sub": "Votre province sur chaque image.",
+      "until": "SURGELÉS ET VIANDES"
+    }
+  },
+  "items": {
+    "2061560": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Skoulakis",
+          "seasoned beef sirloin",
+          "steak strips, frozen"
+        ],
+        "fr": [
+          "Skoulakis",
+          "lanières de surlonge",
+          "de bœuf assaisonnées"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10.0,
+      "price": 39.99,
+      "exp": "2026-11-08",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ]
+    },
+    "8888116": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Fennec Foods",
+          "frozen green peas"
+        ],
+        "fr": [
+          "Fennec Foods",
+          "petits pois surgelés"
+        ]
+      },
+      "regular": 39.99,
+      "off": 10.0,
+      "price": 29.99,
+      "exp": "2026-11-08",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ]
+    },
+    "3026860": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "DOM Specialty",
+          "frozen basa fillets"
+        ],
+        "fr": [
+          "DOM Specialty",
+          "filets de basa surgelés"
+        ]
+      },
+      "regular": 43.99,
+      "off": 9.0,
+      "price": 34.99,
+      "exp": "2026-11-08",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ]
+    },
+    "2068876": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "European Quality Meats",
+          "Texas homestyle",
+          "chicken burgers"
+        ],
+        "fr": [
+          "European Quality Meats",
+          "burgers de poulet",
+          "Texas maison"
+        ]
+      },
+      "regular": 39.99,
+      "off": 8.0,
+      "price": 31.99,
+      "exp": "2026-11-01",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ]
+    },
+    "1850681": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Don Miguel",
+          "mini chicken tacos"
+        ],
+        "fr": [
+          "Don Miguel",
+          "mini tacos au poulet"
+        ]
+      },
+      "regular": 18.99,
+      "off": 5.0,
+      "price": 13.99,
+      "exp": "2026-11-22",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    },
+    "638854": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Bibigo",
+          "mini chicken wontons"
+        ],
+        "fr": [
+          "Bibigo",
+          "mini wontons au poulet"
+        ]
+      },
+      "regular": 16.49,
+      "off": 3.5,
+      "price": 12.99,
+      "exp": "2026-11-01",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ]
+    }
+  },
+  "carousels": [
+    {
+      "id": "grocery",
+      "category": {
+        "en": "Frozen & meat",
+        "fr": "Surgelés et viandes"
+      },
+      "items": [
+        "2061560",
+        "8888116",
+        "3026860",
+        "2068876",
+        "1850681",
+        "638854"
+      ]
+    }
+  ],
+  "feeds": {
+    "en": [
+      "grocery"
+    ],
+    "fr": [
+      "grocery"
+    ]
+  }
+}

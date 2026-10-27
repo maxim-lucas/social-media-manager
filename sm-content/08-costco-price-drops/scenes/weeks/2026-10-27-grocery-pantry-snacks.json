@@ -1,0 +1,202 @@
+{
+  "_note": "Grocery savings by type, with the province strip (every province with a Costco, the ones where the saving was seen filled in). Each item has one saving everywhere it was seen and an end date of Nov 1 or later. Flipp flyer check not done (blocked from this workspace).",
+  "source": "priceback.price_points (price_tag_scan, verified), pulled 2026-10-27 09:40 UTC",
+  "provinceStrip": true,
+  "endSlide": true,
+  "copy": {
+    "en": {
+      "kick": "GROCERY DROPS BY PROVINCE",
+      "head": "Pantry & snacks\non sale at Costco",
+      "sub": "Find your province on every slide.",
+      "until": "PANTRY & SNACKS"
+    },
+    "fr": {
+      "kick": "ÉPICERIE PAR PROVINCE",
+      "head": "Garde-manger\nen rabais chez Costco",
+      "sub": "Votre province sur chaque image.",
+      "until": "GARDE-MANGER"
+    }
+  },
+  "items": {
+    "1405731": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Gia",
+          "Indian basmati rice"
+        ],
+        "fr": [
+          "Gia",
+          "riz basmati indien"
+        ]
+      },
+      "regular": 39.99,
+      "off": 10.0,
+      "price": 29.99,
+      "exp": "2026-11-08",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ]
+    },
+    "2688395": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Quest",
+          "protein chips, nacho",
+          "14 × 32 g"
+        ],
+        "fr": [
+          "Quest",
+          "croustilles protéinées",
+          "nacho · 14 × 32 g"
+        ]
+      },
+      "regular": 36.99,
+      "off": 8.0,
+      "price": 28.99,
+      "exp": "2026-11-01",
+      "seen": "2026-10-27",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ]
+    },
+    "1637304": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Forty Creek",
+          "BBQ sauce"
+        ],
+        "fr": [
+          "Forty Creek",
+          "sauce BBQ"
+        ]
+      },
+      "regular": 29.99,
+      "off": 7.0,
+      "price": 22.99,
+      "exp": "2026-11-08",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NL",
+        "ON",
+        "QC"
+      ]
+    },
+    "1699199": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Golden Island",
+          "Korean BBQ pork bites",
+          "12 × 42 g"
+        ],
+        "fr": [
+          "Golden Island",
+          "bouchées de porc BBQ",
+          "coréen · 12 × 42 g"
+        ]
+      },
+      "regular": 21.99,
+      "off": 7.0,
+      "price": 14.99,
+      "exp": "2026-11-01",
+      "seen": "2026-10-27",
+      "provinces": [
+        "BC",
+        "QC"
+      ]
+    },
+    "1331706": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Nestlé",
+          "Turtles original",
+          "milk chocolate"
+        ],
+        "fr": [
+          "Nestlé",
+          "Turtles original",
+          "chocolat au lait"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5.0,
+      "price": 19.99,
+      "exp": "2026-11-01",
+      "seen": "2026-10-27",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ]
+    },
+    "1422488": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Quaker",
+          "instant oatmeal variety",
+          "2.45 kg"
+        ],
+        "fr": [
+          "Quaker",
+          "gruau instantané variété",
+          "2,45 kg"
+        ]
+      },
+      "regular": 17.99,
+      "off": 4.0,
+      "price": 13.99,
+      "exp": "2026-11-08",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ]
+    }
+  },
+  "carousels": [
+    {
+      "id": "grocery",
+      "category": {
+        "en": "Pantry & snacks",
+        "fr": "Garde-manger"
+      },
+      "items": [
+        "1405731",
+        "2688395",
+        "1637304",
+        "1699199",
+        "1331706",
+        "1422488"
+      ]
+    }
+  ],
+  "feeds": {
+    "en": [
+      "grocery"
+    ],
+    "fr": [
+      "grocery"
+    ]
+  }
+}
