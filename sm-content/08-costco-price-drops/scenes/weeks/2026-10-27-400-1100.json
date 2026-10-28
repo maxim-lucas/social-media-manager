@@ -1,5 +1,5 @@
 {
-  "_note": "Tier: items with a regular price of $400 to $1,100, on sale with an end date, from the PriceBack database. Excluded: jewellery (14KT pendant: Costco never adjusts jewellery), items with no end date (price points, not drops), a receipt-OCR lamb leg. Base shelf price shown where provinces add an environmental fee. Flipp flyer check NOT done (blocked from this workspace).",
+  "_note": "Tier: items with a regular price of $400 to $1,100, on sale with an end date, from the PriceBack database. Excluded: jewellery (14KT pendant: Costco never adjusts jewellery), items with no end date (price points, not drops), a receipt-OCR lamb leg. Base shelf price shown where provinces add an environmental fee. Flipp flyer check NOT done (blocked from this workspace). Dropped for want of a photo in R2 (2026-10-27): 2085632, 2061788, 2085631, 9500765.",
   "source": "priceback.price_points (price_tag_scan, verified), pulled 2026-10-27 09:40 UTC",
   "copy": {
     "en": {
@@ -78,29 +78,6 @@
         "SK"
       ]
     },
-    "2085632": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Serta",
-          "Five Star hybrid mattress"
-        ],
-        "fr": [
-          "Serta",
-          "matelas hybride Five Star"
-        ]
-      },
-      "regular": 779.99,
-      "off": 180.0,
-      "price": 599.99,
-      "exp": "2026-11-01",
-      "seen": "2026-10-27",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB"
-      ]
-    },
     "2286550": {
       "sameday": null,
       "tag": {
@@ -128,57 +105,6 @@
         "ON",
         "QC",
         "SK"
-      ]
-    },
-    "2061788": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "LG",
-          "dishwasher, 3rd rack",
-          "24 in. stainless"
-        ],
-        "fr": [
-          "LG",
-          "lave-vaisselle, 3e panier",
-          "24 po inox"
-        ]
-      },
-      "regular": 699.99,
-      "off": 150.0,
-      "price": 549.99,
-      "exp": "2026-11-22",
-      "seen": "2026-10-27",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "ON"
-      ]
-    },
-    "2085631": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Serta",
-          "hybrid mattress",
-          "queen"
-        ],
-        "fr": [
-          "Serta",
-          "matelas hybride",
-          "grand lit"
-        ]
-      },
-      "regular": 679.99,
-      "off": 150.0,
-      "price": 529.99,
-      "exp": "2026-11-01",
-      "seen": "2026-10-27",
-      "provinces": [
-        "AB",
-        "MB",
-        "ON"
       ]
     },
     "3125330": {
@@ -240,32 +166,6 @@
         "ON",
         "QC",
         "SK"
-      ]
-    },
-    "9500765": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "LG",
-          "QNED7S Mini-LED 4K TV",
-          "65 in."
-        ],
-        "fr": [
-          "LG",
-          "téléviseur QNED7S",
-          "4K mini-DEL · 65 po"
-        ]
-      },
-      "regular": 694.99,
-      "off": 100.0,
-      "price": 594.99,
-      "exp": "2026-11-22",
-      "seen": "2026-10-27",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "ON"
       ]
     },
     "9500755": {
@@ -427,13 +327,9 @@
       "items": [
         "2074900",
         "6688065",
-        "2085632",
         "2286550",
-        "2061788",
-        "2085631",
         "3125330",
         "3125120",
-        "9500765",
         "9500755",
         "8786558",
         "1993899",

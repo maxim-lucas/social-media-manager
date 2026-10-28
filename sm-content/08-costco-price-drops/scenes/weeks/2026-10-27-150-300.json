@@ -1,5 +1,5 @@
 {
-  "_note": "Tier: regular price $150 to $300. Excluded: Mysa thermostat (two conflicting sale prices, NB/NS), Ninja Crispi BC (end date 2027-03-05 looks wrong), items with no end date.",
+  "_note": "Tier: regular price $150 to $300. Excluded: Mysa thermostat (two conflicting sale prices, NB/NS), Ninja Crispi BC (end date 2027-03-05 looks wrong), items with no end date. Dropped for want of a photo in R2 (2026-10-27): 2075015. Dropped 1983676 (Weiser lock): R2 holds a placeholder icon, not a packshot.",
   "source": "priceback.price_points (price_tag_scan, verified), pulled 2026-10-27 09:40 UTC",
   "copy": {
     "en": {
@@ -103,60 +103,6 @@
         "SK"
       ]
     },
-    "2075015": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Jolie",
-          "filtered showerhead"
-        ],
-        "fr": [
-          "Jolie",
-          "pomme de douche filtrante"
-        ]
-      },
-      "regular": 199.99,
-      "off": 40.0,
-      "price": 159.99,
-      "exp": "2026-11-01",
-      "seen": "2026-10-27",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "ON"
-      ]
-    },
-    "1983676": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Weiser",
-          "electronic lock + handle"
-        ],
-        "fr": [
-          "Weiser",
-          "serrure électronique",
-          "+ poignée"
-        ]
-      },
-      "regular": 179.99,
-      "off": 40.0,
-      "price": 139.99,
-      "exp": "2026-11-22",
-      "seen": "2026-10-27",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "NB",
-        "NL",
-        "NS",
-        "ON",
-        "QC",
-        "SK"
-      ]
-    },
     "2555706": {
       "sameday": null,
       "tag": {
@@ -200,8 +146,6 @@
         "2823916",
         "3826302",
         "2523327",
-        "2075015",
-        "1983676",
         "2555706"
       ]
     }

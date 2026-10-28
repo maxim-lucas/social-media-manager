@@ -1,0 +1,17 @@
+{
+  "_note": "Flash drop: Samsung QN80H, item 5708165. priceback.price_points (price_tag_scan), pulled 2026-10-27 22:10 ET: $600 off valid 2026-10-26 to 2026-10-26, then $500 off valid 2026-10-27 to 2026-10-29, in AB BC MB NB NL NS ON QC (not seen in SK). Base shelf price 1794.99 (ON, NB, QC base); some provinces add an environmental fee, the saving is identical. Post by Oct 28 so the $500 claim window is still open.",
+  "source": "priceback.price_points (price_tag_scan, verified), pulled 2026-10-27",
+  "flash": {
+    "sku": "5708165",
+    "tag": {"en": ["Samsung", "QN80H 4K Neo QLED TV"], "fr": ["Samsung", "téléviseur QN80H 4K Neo QLED"]},
+    "regular": 1794.99,
+    "steps": [
+      {"from": "2026-10-26", "to": "2026-10-26", "off": 600, "price": 1194.99},
+      {"from": "2026-10-27", "to": "2026-10-29", "off": 500, "price": 1294.99}
+    ],
+    "seen": "2026-10-27",
+    "provinces": ["AB", "BC", "MB", "NB", "NL", "NS", "ON", "QC"]
+  },
+  "fineNote": {"en": "Base shelf price; some provinces add an environmental fee at the register, the saving is the same.",
+               "fr": "Prix de base; certaines provinces ajoutent des écofrais à la caisse, l'économie est la même."}
+}

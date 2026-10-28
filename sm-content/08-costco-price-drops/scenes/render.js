@@ -37,7 +37,7 @@ const args = process.argv.slice(2).filter((a) => a !== "--draft");
 const DRAFT = process.argv.includes("--draft");
 const dataFile = args[0] && args[0].endsWith(".json") ? args.shift() : "drops.json";
 const DATA = JSON.parse(fs.readFileSync(path.resolve(__dirname, dataFile), "utf8"));
-const WEEK = DATA.carousels ? path.basename(dataFile, ".json") : null;
+const WEEK = DATA.carousels || DATA.flash ? path.basename(dataFile, ".json") : null;
 const MARK = "data:image/png;base64," + fs.readFileSync(path.join(__dirname, "mark.png")).toString("base64");
 // The official App Store and Google Play badges, shared with the launch pack. Unaltered artwork.
 const BADGES = path.join(ROOT, "..", "06-launch", "badges");
@@ -309,6 +309,72 @@ function endSlide(lang, f, badges) {
   </div></body></html>`;
 }
 
+// The flash drop (Monica, 2026-10-27): one item whose saving changed day to day, shown as a timeline, so the
+// post says what catching a drop on the day is worth. `flash` in the week file; one post (and one story) per language.
+const FL = {
+  en: {
+    head: (a, b) => `${a} off for one day.<br>Then ${b} off.`,
+    only: "ONE DAY ONLY", gone: "OVER", now: "NOW",
+    range: (a, b) => (a === b ? dateShort("en", a) : `${dateShort("en", a)} TO ${dateShort("en", b).replace(/^[A-Z]+ /, "")}`),
+    msg: (x) => `Caught it on the day? ${x} more to claim. PriceBack alerts you the day a price drops.`,
+    claim: (n, d) => `Claim the ${n} difference by ${d}.`,
+  },
+  fr: {
+    head: (a, b) => `${a} de rabais pour une journée.<br>Puis ${b}.`,
+    only: "UNE SEULE JOURNÉE", gone: "TERMINÉ", now: "EN COURS",
+    range: (a, b) => (a === b ? dateShort("fr", a) : `DU ${dateShort("fr", a).split(" ")[0]} AU ${dateShort("fr", b)}`),
+    msg: (x) => `Vous l'aviez vue le jour même ? ${x} de plus à réclamer. PriceBack vous avertit le jour où le prix baisse.`,
+    claim: (n, d) => `Réclamez la différence de ${n} d'ici le ${d}.`,
+  },
+};
+function flash(lang, f, photo, badges, story = false) {
+  const t = L[lang], x = FL[lang];
+  const [a, b] = f.steps;
+  const m = (n) => money(lang, n, true);
+  const step = (s, cls, chip, label) => `<div class="fs ${cls}"><div class="fd">${label}</div>
+    <div class="fo">-${m(s.off)}</div><div class="fp">${num(lang, s.price)}</div><i class="chip">${chip}</i></div>`;
+  return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>${CSS}${FLASH_CSS}${story ? STORY_FLASH : ""}</style></head><body>
+  <div class="${story ? "st " : ""}wrap"><div class="post ${lang} s note flash">
+    <div class="band"><div class="t">COSTCO <span>${t.drop}</span></div><div class="c">TV<br>${t.exp} ${dateShort(lang, b.to)}</div></div>
+    <div class="stripe"></div>
+    <div class="fh">${x.head(m(a.off), m(b.off))}</div>
+    <div class="photo fl" style="background-image:url('${photo}')"></div>
+    <div class="fname">${f.sku} · ${esc(f.tag[lang].join(" ")).toUpperCase()} · <s>${num(lang, f.regular)}</s></div>
+    <div class="fsteps">${step(a, "gone", x.gone, `${x.only} · ${x.range(a.from, a.to)}`)}${step(b, "now", x.now, x.range(b.from, b.to))}</div>
+    <div class="fmsg">${esc(x.msg(m(a.off - b.off)))}</div>
+    <div class="promo"><div class="pb"><img src="${MARK}">PriceBack</div>
+      <div class="pitch">${esc(t.pitch)}<br><span>${esc(t.free)}</span></div></div>
+    <div class="disc">${esc(t.fine(f.seen, regionName(lang, f.provinces)))}</div>
+    <div class="claim"><div class="a">${t.paid(f.regular)}<br><b>${x.claim(m(b.off), dateShortCase(lang, b.to))}</b></div>
+      <div class="stores"><img src="${badges.apple}"><img src="${badges.google}"></div></div>
+  </div></div></body></html>`;
+}
+const FLASH_CSS = `
+.fh{position:absolute;left:60px;right:60px;top:186px;color:var(--blue);font-weight:900;font-size:64px;line-height:1.02;letter-spacing:-1.5px}
+.fr .fh{font-size:54px}
+.photo.fl{left:150px;right:150px;top:340px;height:300px}
+.fname{position:absolute;left:60px;right:60px;top:652px;text-align:center;font-family:"Times New Roman",Georgia,serif;font-size:26px;color:#111;letter-spacing:.5px}
+.fname s{color:#6b7280}
+.fsteps{position:absolute;left:60px;right:60px;top:700px;display:flex;gap:28px}
+.fs{position:relative;flex:1;height:224px;border-radius:12px;padding:18px 24px;font-family:"Times New Roman",Georgia,serif;box-shadow:0 14px 30px rgba(0,0,0,.14)}
+.fs.gone{background:#f3f4f6;color:#6b7280;border:3px dashed #c3c7cd;box-shadow:none}
+.fs.now{background:var(--yel);color:#111;border:3px solid #111;transform:rotate(-1.5deg)}
+.fd{font-family:Arial,sans-serif;font-weight:900;font-size:20px;letter-spacing:1.5px}
+.fo{font-size:92px;font-weight:700;letter-spacing:-2px;line-height:1.05;margin-top:6px;white-space:nowrap}
+.fr .fo{font-size:84px}
+.gone .fo{text-decoration:line-through;text-decoration-thickness:6px}
+.fp{font-size:30px}
+.chip{position:absolute;right:16px;top:-18px;font-style:normal;font-family:Arial,sans-serif;font-weight:900;font-size:20px;letter-spacing:2px;padding:6px 14px;border-radius:20px;color:#fff;background:var(--red)}
+.gone .chip{background:#6b7280}
+.fmsg{position:absolute;left:60px;right:60px;top:944px;text-align:center;font-size:26px;font-weight:800;color:#111;line-height:1.3}
+.fr .fmsg{font-size:23px}
+.flash .promo{top:1022px}
+.flash .disc{font-size:13px;line-height:1.25;bottom:176px}
+.fr.flash .fmsg{top:938px}
+`;
+// Story: the same post centred on a 1080×1920 blue field, top 260 px and bottom 300 px left clear for Instagram.
+const STORY_FLASH = `body{height:1920px}.st{width:1080px;height:1920px;padding-top:270px;background:linear-gradient(180deg,#005DAA,#004a88)}`;
+
 // The first slide of a feed carousel: the hook, a grid of the biggest savings, and the swipe cue.
 function cover(lang, f, photos, badges) {
   const t = L[lang];
@@ -556,6 +622,26 @@ function allPosts() {
 }
 
 (async () => {
+  if (DATA.flash) {
+    const browser = await chromium.launch();
+    const page = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
+    await page.setContent("<html><body></body></html>");
+    const badges = { en: await storeBadges(page, "en"), fr: await storeBadges(page, "fr") };
+    const f = DATA.flash;
+    const photo = await trimmed(page, await productPhoto(f.sku, f));
+    for (const story of [false, true]) {
+      if (story) await page.setViewportSize({ width: 1080, height: 1920 });
+      for (const lang of itemLangs(f)) {
+        await page.setContent(flash(lang, f, photo, badges[lang], story), { waitUntil: "load" });
+        const file = path.join(OUT, WEEK, lang, `${story ? "story-" : ""}${f.sku}.png`);
+        fs.mkdirSync(path.dirname(file), { recursive: true });
+        await page.screenshot({ path: file });
+        console.log(path.relative(process.cwd(), file));
+      }
+    }
+    await browser.close();
+    return;
+  }
   const posts = allPosts().filter((p) => !only || p.id === only);
   if (!posts.length) throw new Error(`no post or carousel "${only}" in ${dataFile}`);
   const browser = await chromium.launch();
