@@ -48,8 +48,25 @@
     const v = K.win(t, a, b, 0.22, 0.18), e = $(id); e.style.opacity = v; e.style.transform = `translateY(${(1 - v) * -12}px)`;
   });
 
+  // Channel glyphs for the end band: simple shapes in each platform's colour, no trademark artwork.
+  const GLYPH = {
+    Instagram: '<svg viewBox="0 0 64 64"><defs><linearGradient id="ig" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#f9a43a"/><stop offset=".5" stop-color="#e1306c"/><stop offset="1" stop-color="#7b3fe4"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="url(#ig)"/><rect x="14" y="14" width="36" height="36" rx="11" fill="none" stroke="#fff" stroke-width="4.5"/><circle cx="32" cy="32" r="8.5" fill="none" stroke="#fff" stroke-width="4.5"/><circle cx="43" cy="21" r="2.6" fill="#fff"/></svg>',
+    Facebook: '<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="#1877f2"/><path d="M35 52V35h6l1-7h-7v-4c0-2 .7-3.4 3.6-3.4H42v-6.2c-.7-.1-3-.3-5.6-.3-5.6 0-9.4 3.4-9.4 9.6V28h-6v7h6v17z" fill="#fff"/></svg>',
+    TikTok: '<svg viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#111"/><path d="M36 14h6c.5 4.6 3.6 7.8 8 8.2v6.2c-3 0-5.7-.9-8-2.5V39a11 11 0 1 1-11-11c.7 0 1.4.1 2 .2v6.4a5 5 0 1 0 3 4.6z" fill="#25f4ee" transform="translate(-1.5 -1.5)"/><path d="M36 14h6c.5 4.6 3.6 7.8 8 8.2v6.2c-3 0-5.7-.9-8-2.5V39a11 11 0 1 1-11-11c.7 0 1.4.1 2 .2v6.4a5 5 0 1 0 3 4.6z" fill="#fe2c55" transform="translate(1.5 1.5)"/><path d="M36 14h6c.5 4.6 3.6 7.8 8 8.2v6.2c-3 0-5.7-.9-8-2.5V39a11 11 0 1 1-11-11c.7 0 1.4.1 2 .2v6.4a5 5 0 1 0 3 4.6z" fill="#fff"/></svg>',
+    YouTube: '<svg viewBox="0 0 64 64"><rect y="10" width="64" height="44" rx="13" fill="#ff0000"/><path d="M26 22l17 10-17 10z" fill="#fff"/></svg>',
+  };
+  K.outroInit = () => {
+    document.querySelectorAll("#outro .handles > div").forEach((d) => {
+      if (d.querySelector("svg")) return;
+      const b = d.querySelector("b"), sp = d.querySelector("span");
+      d.innerHTML = (GLYPH[b.textContent.trim()] || "") + `<p>${b.outerHTML}${sp.outerHTML}</p>`;
+    });
+  };
+  let outroReady = false;
   K.outro = (t, t0) => {
-    const v = K.eo(K.lin(t, t0 + 0.15, t0 + 0.6)); $("outro").style.opacity = v; $("outro").style.transform = `scale(${0.96 + 0.04 * v})`;
+    if (!outroReady) { K.outroInit(); outroReady = true; }
+    const v = K.eo(K.lin(t, t0 + 0.1, t0 + 0.6)); $("outro").style.opacity = Math.min(1, v * 1.6); $("outro").style.transform = `translateY(${(1 - v) * 420}px)`;
+    const f = $("fine"); if (f) f.classList.toggle("band", v > 0.6);
   };
 
   // Thermal-paper texture tile (data URL) and a zigzag cut edge for a receipt's ends.

@@ -1,13 +1,16 @@
 // pdf-scene.js — the "get your Costco receipt as a PDF" tutorial, one scene per OS.
 // A scene page sets window.PDF_OS = "android" | "ios", loads scene-kit.js, costco-screens.js and this file.
 //
-// Structure (Maxim, 2026-10-28): a separate intro card (presenter voice, no phone) → chime → 4 steps on one
-// full-size phone → outro that tells the other OS what to use and points to its version.
+// Structure (Maxim, 2026-10-28): an intro card (presenter voice, no phone) that also tells the other OS what to use
+// and points to its version, up front, because viewers on the other OS leave in the first seconds → chime →
+// 5 steps on one full-size phone → the end band.
 //   1 Open your receipts       Account → Orders & Purchases
 //   2 Online or warehouse?     both tabs highlighted: costco.ca orders / in-store purchases — PriceBack reads both
 //   3 Save it as a PDF         Android: View Receipt → Print Receipt → Save as PDF → Save
 //                              iPhone:  View Receipt → Print Receipt → Share → Save to Files → Save
 //   4 Upload it to PriceBack   Upload file → Downloads (Android) / Recents (iPhone) → tap the PDF
+//   5 Start tracking           the review screen (store, items, totals, dates) → Start Tracking
+// No "Saved to Downloads" toast step: it was the same screen again and read as a glitch (Maxim).
 // Android uses costco.ca in the browser (the Android Costco app blocks PDF export); iPhone uses the Costco app.
 (function () {
   const OS = window.PDF_OS, IOS = OS === "ios";
@@ -35,27 +38,34 @@
     home: appHome, account: appAccount,
     orders: shell(ordersBody(OY, "Online")), warehouse: shell(ordersBody(OY, "warehouse")), receipt: shell(ordersBody(OY, "warehouse")) + receiptModal(),
     print: iosPrint(), share: iosShare(), save: iosSave(),
-    pb: pbScan(false), pick: iosPicker(), busy: pbScan(true),
+    pb: pbScan(false), pick: iosPicker(), busy: pbScan(true), review: pbReview(),
   } : {
     home: webTop() + webSite(335) + ph(53, 860, 380, 130, "#ececec") + ph(473, 860, 380, 130, "#ececec") + ph(35, 1178, 821, 350, "#f3dcdf") + ph(35, 1668, 821, 260, "#dfe5e3"),
     account: webMenu,
     orders: shell(ordersBody(OY, "Online")), warehouse: shell(ordersBody(OY, "warehouse")), receipt: shell(ordersBody(OY, "warehouse")) + receiptModal(),
-    print: printScreen(), save: downloadsScreen("save"), saved: downloadsScreen("save") + `<div class="toast">Saved to Downloads</div>`,
-    pb: pbScan(false), pick: downloadsScreen("pick"), busy: pbScan(true),
+    print: printScreen(), save: downloadsScreen("save"),
+    pb: pbScan(false), pick: downloadsScreen("pick"), busy: pbScan(true), review: pbReview(),
   };
 
   // ── timeline ─────────────────────────────────────────────────────────────
-  const P = { intro: [0, 3.6], h1: [3.75, 6.7], h2: [6.7, 11.2], h3: [11.2, 17.3], h4: [17.3, 22.4], outro: 22.4 };
-  const VIEW = [445, OY + 620 + 335], WTAB = [351, OY + 208], OTAB = [132, OY + 208];
-  const SEQ = IOS
-    ? [["home", 0], ["account", 4.95], ["orders", 6.35], ["warehouse", 10.05], ["receipt", 11.95], ["print", 13.25], ["share", 14.55], ["save", 15.85], ["pb", 17.45], ["pick", 19.0], ["busy", 20.45]]
-    : [["home", 0], ["account", 4.95], ["orders", 6.35], ["warehouse", 10.05], ["receipt", 11.95], ["print", 13.25], ["save", 14.75], ["saved", 16.35], ["pb", 17.45], ["pick", 19.0], ["busy", 20.45]];
-  const TAPS = IOS
-    ? [[4.55, 445, 1862], [5.95, 445, 666], [9.6, ...WTAB], [11.5, ...VIEW], [12.8, 690, 412], [14.1, 676, 176], [15.4, 445, 1185], [16.7, 800, 206], [18.55, 662, 1292], [20.0, 180, 535]]
-    : [[4.55, 660, 400], [5.95, 430, 660], [9.6, ...WTAB], [11.5, ...VIEW], [12.8, 690, 412], [14.3, 720, 1851], [15.9, 765, 1870], [18.55, 662, 1292], [20.0, 243, 870]];
-  const STEPS = IOS
-    ? [["s1", 4.2, 5.7], ["s2", 5.7, 6.7], ["s3", 11.25, 12.55], ["s4", 12.55, 13.85], ["s5", 13.85, 15.15], ["s6", 15.15, 17.3], ["s7", 18.2, 19.5], ["s8", 19.5, 20.5], ["s9", 20.5, 22.4]]
-    : [["s1", 4.2, 5.7], ["s2", 5.7, 6.7], ["s3", 11.25, 12.55], ["s4", 12.55, 14.05], ["s5", 14.05, 15.65], ["s6", 15.65, 17.3], ["s7", 18.2, 19.5], ["s8", 19.5, 20.5], ["s9", 20.5, 22.4]];
+  // Every time below is relative to its step, so a step can grow or shrink without touching the others.
+  const L3 = IOS ? 5.5 : 5.3;
+  const P = { intro: [0, 7.2], h1: [7.2, 10.1], h2: [10.1, 13.6] };
+  P.h3 = [13.6, 13.6 + L3]; P.h4 = [P.h3[1], P.h3[1] + 4.6]; P.h5 = [P.h4[1], P.h4[1] + 3.5]; P.outro = P.h5[1];
+  window.PDF_P = P;
+  const [h1, h2, h3, h4, h5] = [P.h1[0], P.h2[0], P.h3[0], P.h4[0], P.h5[0]];
+  const VIEW = [445, OY + 620 + 335], WTAB = [351, OY + 208];
+  const SEQ = [["home", 0], ["account", h1 + 1.2], ["orders", h1 + 2.6], ["warehouse", h2 + 2.85], ["receipt", h3 + 0.75], ["print", h3 + 2.05],
+    ...(IOS ? [["share", h3 + 3.25], ["save", h3 + 4.45]] : [["save", h3 + 3.55]]),
+    ["pb", h4 + 0.15], ["pick", h4 + 1.7], ["busy", h4 + 3.15], ["review", h5]];
+  const TAPS = [[h1 + 0.8, ...(IOS ? [445, 1862] : [660, 400])], [h1 + 2.2, ...(IOS ? [445, 666] : [430, 660])], [h2 + 2.4, ...WTAB],
+    [h3 + 0.3, ...VIEW], [h3 + 1.6, 690, 412],
+    ...(IOS ? [[h3 + 2.8, 676, 176], [h3 + 4.0, 445, 1185], [h3 + 5.0, 800, 206]] : [[h3 + 3.1, 720, 1851], [h3 + 4.7, 765, 1870]]),
+    [h4 + 1.25, 662, 1292], [h4 + 2.7, ...(IOS ? [180, 535] : [243, 870])], [h5 + 2.55, 445, 1752]];
+  const STEPS = [["s1", h1 + 0.45, h1 + 1.95], ["s2", h1 + 1.95, P.h1[1]],
+    ...(IOS ? [["s3", h3 + 0.05, h3 + 1.35], ["s4", h3 + 1.35, h3 + 2.55], ["s5", h3 + 2.55, h3 + 3.75], ["s6", h3 + 3.75, P.h3[1]]]
+            : [["s3", h3 + 0.05, h3 + 1.35], ["s4", h3 + 1.35, h3 + 2.85], ["s5", h3 + 2.85, h3 + 4.45], ["s6", h3 + 4.45, P.h3[1]]]),
+    ["s7", h4 + 0.9, h4 + 2.2], ["s8", h4 + 2.2, h4 + 3.2], ["s9", h4 + 3.2, P.h4[1]], ["s10", h5 + 0.2, h5 + 2.1], ["s11", h5 + 2.1, P.outro]];
   const S = 0.5, X = (1080 - (891 * S + 24)) / 2, Y = 486;
   const scr = (x, y) => [X + 12 + x * S, Y + 12 + y * S];
 
@@ -63,9 +73,12 @@
     KIT.camera(t);
     const ob = eo(lin(t, P.outro, P.outro + 0.5)), ib = 1 - eo(lin(t, P.intro[1] - 0.2, P.intro[1] + 0.3));
     $("cam").style.filter = `blur(${Math.max(12 * ob, 10 * ib)}px) brightness(${1 - 0.2 * Math.max(ob, ib)})`;
-    // intro card: its own moment, then out of the way
+    // intro card: its own moment, then out of the way; the other-OS card lands under it as the presenter says it
     const ic = eo(lin(t, 0.1, 0.5)) * (1 - eo(lin(t, P.intro[1] - 0.25, P.intro[1] + 0.1)));
     Object.assign($("intro").style, { opacity: ic, transform: `translateY(${(1 - ic) * -30}px) scale(${0.97 + 0.03 * ic})` });
+    const oc = eo(lin(t, 2.95, 3.35)) * (1 - eo(lin(t, P.intro[1] - 0.25, P.intro[1] + 0.1)));
+    const pop = 1 + 0.05 * Math.sin(Math.PI * lin(t, 3.2, 3.6));
+    Object.assign($("other").style, { opacity: oc, transform: `translateY(${(1 - oc) * 40}px) scale(${pop})` });
     // phone
     const inP = eo(lin(t, P.intro[1], P.intro[1] + 0.45)) * (1 - lin(t, P.outro - 0.1, P.outro + 0.3));
     const phn = $("ph"); Object.assign(phn.style, { left: X + "px", top: Y + (1 - inP) * 60 + "px", opacity: inP });
@@ -85,7 +98,7 @@
     for (const [id, a, b] of STEPS) $(id).classList.toggle("on", t >= a && t < b);
 
     // step 2: both receipt types highlighted on the phone, explained beside it
-    const ch = eo(lin(t, P.h2[0] + 0.2, P.h2[0] + 0.5)) * (1 - lin(t, 9.45, 9.7));
+    const ch = eo(lin(t, P.h2[0] + 0.2, P.h2[0] + 0.5)) * (1 - lin(t, h2 + 2.1, h2 + 2.35));
     const [ox, oy] = scr(35, OY + 160), [wx] = scr(229, OY + 160);
     Object.assign($("bOn").style, { left: ox - 4 + "px", top: oy - 4 + "px", width: 194 * S + 8 + "px", height: 96 * S + 8 + "px", opacity: ch });
     Object.assign($("bWh").style, { left: wx - 4 + "px", top: oy - 4 + "px", width: 244 * S + 8 + "px", height: 96 * S + 8 + "px", opacity: ch });
@@ -94,10 +107,8 @@
       Object.assign($(id).style, { opacity: v, transform: `translateY(${(1 - v) * 16}px)` });
     });
 
-    KIT.heads(t, [["h1", ...P.h1], ["h2", ...P.h2], ["h3", ...P.h3], ["h4", ...P.h4]]);
+    KIT.heads(t, [["h1", ...P.h1], ["h2", ...P.h2], ["h3", ...P.h3], ["h4", ...P.h4], ["h5", ...P.h5]]);
     KIT.outro(t, P.outro);
-    const o = eo(lin(t, P.outro + 0.4, P.outro + 0.8));
-    Object.assign($("other").style, { opacity: o, transform: `translateY(${(1 - o) * 24}px)` });
     KIT.grain(Math.round(t * 30));
   };
 
@@ -105,7 +116,6 @@
     await KIT.fontsReady(["500 40px R", "700 40px R", "900 40px R"]);
     KIT.drawSurface($("surface"));
     $("s").innerHTML = Object.entries(SC).map(([k, h]) => `<div class="sc" id="sc_${k}">${h}</div>`).join("");
-    document.querySelector("#other b").innerHTML = icon("compass", 36, "#fff");
     await Promise.all([...document.images].map((i) => (i.complete ? 1 : new Promise((r) => (i.onload = i.onerror = r)))));
     window.frame(0);
   })();

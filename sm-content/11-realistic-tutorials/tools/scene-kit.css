@@ -30,14 +30,23 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#6f6a63;font-fam
 .photo .inner{position:absolute;inset:0}
 .x{position:absolute;right:10px;top:10px;width:52px;height:52px;border-radius:26px;background:var(--red);color:#fff;font-weight:900;font-size:32px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.35)}
 .lab{display:block;margin:14px auto 0;width:max-content;padding:8px 20px;border-radius:999px;background:var(--paper);color:var(--ink);font-weight:900;font-size:27px;box-shadow:0 6px 16px rgba(0,0,0,.3)}
-#outro{position:absolute;left:60px;top:520px;width:960px;padding:46px 72px 50px;border-radius:44px;background:rgba(246,240,229,.97);box-shadow:0 20px 60px rgba(0,0,0,.4);opacity:0}
-.brand{display:flex;align-items:center;gap:18px;width:740px}.brand img{height:72px}.brand span{font-weight:900;font-size:50px;color:var(--ink);letter-spacing:-1px}
-.brand i{font-style:normal;font-weight:700;font-size:22px;letter-spacing:3px;color:var(--emd);margin-left:4px}
-#outro h2{width:740px;font-weight:900;font-size:56px;color:var(--ink);letter-spacing:-1px;margin-top:34px}
-.handles{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px;margin-top:24px;width:740px}
-.handles div{background:#fff;border-radius:20px;padding:14px 22px;border:2px solid rgba(13,61,40,.12)}
-.handles b{display:block;font-weight:700;font-size:28px;color:var(--ink)}.handles span{font-weight:700;font-size:23px;color:var(--emd)}
-.next{margin-top:28px;font-weight:700;font-size:29px;color:var(--ink);width:740px}.next em{font-style:normal;color:var(--emd)}
+/* End band (Maxim, 2026-10-28): the bottom half of the frame, like the newest end screens: a light band over the
+   scene, big brand row, big headline, the four channels as large tiles, the next tutorial. Text stays inside the
+   story safe zone (y 250–1600, x 96–880); the band itself runs to the bottom edge. */
+#outro{position:absolute;left:0;top:840px;width:1080px;height:1080px;padding:52px 96px 0;border-radius:56px 56px 0 0;background:var(--paper);box-shadow:0 -18px 60px rgba(0,0,0,.35);opacity:0}
+#outro:before{content:"";position:absolute;left:0;right:0;top:0;height:10px;border-radius:56px 56px 0 0;background:var(--em)}
+.brand{display:flex;align-items:center;gap:20px;width:784px}.brand img{height:84px}.brand span{font-weight:900;font-size:58px;color:var(--ink);letter-spacing:-1px}
+.brand i{font-style:normal;font-weight:900;font-size:24px;letter-spacing:3px;color:#fff;background:var(--ink);padding:8px 16px;border-radius:10px;margin-left:8px}
+#outro h2{width:784px;font-weight:900;font-size:82px;line-height:1;color:var(--ink);letter-spacing:-2px;margin-top:30px}
+.handles{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px;width:784px}
+.handles div{display:flex;align-items:center;gap:18px;background:#fff;border-radius:24px;padding:16px 18px;border:2px solid rgba(13,61,40,.12);box-shadow:0 4px 12px rgba(13,61,40,.08)}
+.handles svg{flex:none;width:64px;height:64px}
+.handles p{margin:0}.handles b{display:block;font-weight:900;font-size:32px;color:var(--ink);line-height:1.1}.handles span{display:block;font-weight:700;font-size:27px;color:var(--emd)}
+.next{margin-top:34px;width:784px;padding:22px 26px 24px;border-radius:24px;background:var(--ink);color:#fff}
+.next:before{content:"NEXT TUTORIAL";display:block;width:max-content;font-weight:900;font-size:22px;letter-spacing:3px;color:var(--ink);background:#6ee7b7;padding:6px 12px;border-radius:8px;margin-bottom:12px}
+.next em{display:block;font-style:normal;color:#fff;font-weight:900;font-size:44px;line-height:1.1}
+.next em:first-letter{text-transform:uppercase}
+#fine.band{background:none;color:#4b5563;text-shadow:none}
 #fine{position:absolute;left:96px;top:1530px;width:784px;padding:6px 12px;border-radius:12px;background:rgba(12,10,8,.42);color:rgba(255,255,255,.96);font-weight:500;font-size:21px;line-height:1.3;text-shadow:0 1px 4px rgba(0,0,0,.7)}
 /* Costco shelf tag, as recreated in 08-costco-price-drops (the house style's one styling exception) */
 .ptag{position:absolute;background:#fff;border:2px solid #d4d4d4;font-family:Serif,"Times New Roman",serif;color:#111;padding:18px 30px 14px;width:760px}

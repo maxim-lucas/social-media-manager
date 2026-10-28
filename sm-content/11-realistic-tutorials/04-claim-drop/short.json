@@ -5,8 +5,8 @@
   "w": 1080,
   "h": 1920,
   "fps": 30,
-  "dur": 14.9,
-  "maxDur": 15,
+  "dur": 19.4,
+  "maxDur": 30,
   "scene": "scene.html",
   "voice": {
     "name": "af_heart",
@@ -22,15 +22,15 @@
       "text": "PriceBack shows what you're owed."
     },
     {
-      "at": 5.45,
+      "at": 4.95,
       "text": "Bought in the warehouse? Claim in person, with your receipt in the app."
     },
     {
-      "at": 9.1,
-      "text": "Bought online? Send the ready-made email."
+      "at": 8.35,
+      "text": "Bought on costco.ca? Tap Send Email. PriceBack writes it for you, so just hit send."
     },
     {
-      "at": 11.25,
+      "at": 13.75,
       "text": "Claim before the deadline. We remind you twice."
     }
   ],

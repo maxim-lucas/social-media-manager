@@ -5,7 +5,7 @@
   "w": 1080,
   "h": 1920,
   "fps": 30,
-  "dur": 28.2,
+  "dur": 29.7,
   "maxDur": 30,
   "scene": "scene.html",
   "voice": {
@@ -15,39 +15,43 @@
   "vo": [
     {
       "at": 0.2,
+      "text": "iPhone: get your Costco receipt as a PDF.",
       "voice": "am_michael",
-      "speed": 1.05,
-      "text": "On iPhone? Save your Costco receipt as a PDF."
+      "speed": 1.1
     },
     {
-      "at": 3.95,
+      "at": 3.1,
+      "text": "On Android? Use costco.ca, and see our Android video.",
+      "voice": "am_michael",
+      "speed": 1.1
+    },
+    {
+      "at": 7.3500000000000005,
       "text": "Tap Account, then Orders and Purchases."
     },
     {
-      "at": 6.85,
+      "at": 10.25,
       "text": "Pick Online or warehouse. PriceBack reads both."
     },
     {
-      "at": 11.35,
+      "at": 13.75,
       "text": "View the receipt, tap Print Receipt, then Share, and Save to Files."
     },
     {
-      "at": 17.45,
+      "at": 19.25,
       "text": "In PriceBack, tap Upload file, and pick the PDF from Recents."
     },
     {
-      "at": 22.7,
-      "voice": "am_michael",
-      "speed": 1.05,
-      "text": "On Android? Use costco.ca in your browser, and watch our Android version."
+      "at": 23.85,
+      "text": "Check the details, then tap Start Tracking."
     }
   ],
   "sfx": [
     {
-      "at": 3.55
+      "at": 7.05
     },
     {
-      "at": 22.35
+      "at": 27.15
     }
   ],
   "music": {

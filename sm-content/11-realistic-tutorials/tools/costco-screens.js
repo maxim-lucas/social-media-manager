@@ -168,6 +168,35 @@ const pbScan = (overlay) => {
     A(170, 820, `<div style="width:551px;padding:50px 40px;border-radius:30px;background:#fff;text-align:center"><div id="spin" style="width:96px;height:96px;margin:0 auto;border-radius:48px;border:10px solid #d1fae5;border-top-color:${PBG}"></div><div style="font-weight:700;font-size:38px;margin-top:30px">Processing receipt…</div></div>`);
   return h;
 };
+// PriceBack's review step after a PDF is read (ScanScreen step 1, simplified): scan.reviewNew, scan.heroEyebrow,
+// scan.heroTitle, the store row, Online / Warehouse Purchase, Items (n), Summary, Purchase Date / Watch Until,
+// scan.startTracking. Fake receipt: Oct 20, 2026, two items, $92.98; watch until purchase + 30 days.
+const pbReview = () => {
+  const card = (y, h, inner) => A(26, y, `<div style="width:839px;height:${h}px;background:#fff;border-radius:30px;border:2px solid #e8ece9;padding:28px 34px;box-sizing:border-box">${inner}</div>`);
+  const lab = (t) => `<div style="font-size:23px;font-weight:700;letter-spacing:2px;color:#6b7280">${t}</div>`;
+  const row = (l, r, st = "") => `<div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;font-size:32px;${st}"><span>${l}</span><span>${r}</span></div>`;
+  return `<div class="a" style="left:0;top:0;width:891px;height:2000px;background:#f4f6f5"></div>` + status(false) +
+    A(26, 165, `<div style="width:72px;height:72px;border:2px solid #ddd;border-radius:20px;background:#fff;display:flex;align-items:center;justify-content:center">${icon("back", 40, "#333")}</div>`) +
+    T(0, 182, "Confirm receipt", "width:891px;text-align:center;font-weight:700;font-size:40px") +
+    A(26, 280, `<div style="width:839px;height:470px;border-radius:44px;background:linear-gradient(135deg,#0d3d28,#062618);padding:36px 36px;box-sizing:border-box;color:#fff">
+      <div style="font-size:21px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,.55)">STEP 2 OF 2 · CONFIRM DETAILS</div>
+      <div style="font-weight:900;font-size:46px;line-height:1.12;margin-top:10px;letter-spacing:-1px">Make sure this matches your receipt</div>
+      <div style="margin-top:24px;display:flex;align-items:center;gap:20px;background:rgba(255,255,255,.1);border-radius:26px;padding:18px 20px">
+        <div style="width:70px;height:70px;border-radius:18px;background:#fff;display:flex;align-items:center;justify-content:center">${icon("store", 42, "#0d3d28")}</div>
+        <div style="flex:1"><div style="font-weight:900;font-size:34px">Costco</div><div style="font-size:26px;color:rgba(255,255,255,.7)">Oct 20, 2026 · 30-day window</div></div>
+        <div style="padding:10px 18px;border-radius:999px;background:rgba(255,255,255,.16);font-weight:700;font-size:26px">Change ›</div></div>
+      <div style="margin-top:20px;display:flex;gap:10px;background:rgba(255,255,255,.08);border-radius:22px;padding:8px;font-size:28px;font-weight:700">
+        <div style="flex:1;text-align:center;padding:14px 0;color:rgba(255,255,255,.75)">Online</div>
+        <div style="flex:1;text-align:center;padding:14px 0;border-radius:16px;background:${PBG}">Warehouse Purchase</div></div></div>`) +
+    card(780, 370, lab("ITEMS (2)") + RC.items.map(([n, d, p]) => `<div style="display:flex;justify-content:space-between;align-items:center;margin-top:22px;padding-bottom:20px;border-bottom:2px solid #f0f2f1">
+      <div><div style="font-weight:700;font-size:34px">${d}</div><div style="font-size:24px;color:#6b7280;margin-top:4px">#${n} · QTY 1</div></div><div style="font-weight:700;font-size:36px">$${p}</div></div>`).join("")) +
+    card(1180, 290, lab("SUMMARY") + row("Subtotal", "$" + RC.sub, "color:#555") + row("Tax (HST/GST)", "$" + RC.tax, "color:#555") +
+      row("<b>Total</b>", "<b>$" + RC.total + "</b>", "border-top:2px solid #eee;padding-top:14px;font-size:36px")) +
+    card(1500, 150, `<div style="display:flex;gap:30px"><div style="flex:1">${lab("PURCHASE DATE")}<div style="font-weight:700;font-size:34px;margin-top:10px">Oct 20, 2026</div></div>
+      <div style="flex:1">${lab("WATCH UNTIL")}<div style="font-weight:700;font-size:34px;margin-top:10px">Nov 19, 2026</div></div></div>`) +
+    A(26, 1690, `<div id="startBtn" style="width:839px;height:124px;border-radius:32px;background:${PBG};color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:42px;box-shadow:0 8px 20px rgba(16,185,129,.35)">Start Tracking 🚀</div>`) +
+    T(0, 1850, "Re-scan", "width:891px;text-align:center;font-size:32px;color:#555;font-weight:700");
+};
 const pickerScreen = () => `<div class="a" style="left:0;top:0;width:891px;height:2000px;background:#f8f8f8"></div>` + status(false) +
   A(40, 170, icon("menu", 50, "#444")) + T(130, 166, "Recent", "font-size:48px") +
   T(52, 300, "Files", "font-size:30px;color:#555") +

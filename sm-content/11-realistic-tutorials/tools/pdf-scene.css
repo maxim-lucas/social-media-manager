@@ -21,6 +21,8 @@
 .k b{display:inline-flex;align-items:center;gap:14px;padding:12px 26px 12px 12px;border-radius:999px;background:var(--ink);color:#fff;font-weight:900;font-size:32px;box-shadow:0 8px 22px rgba(0,0,0,.35)}
 .k b i{font-style:normal;padding:6px 14px;border-radius:999px;background:#fff;color:var(--ink);font-size:26px}
 .k.both b{background:var(--em)}
-#other{position:absolute;left:96px;top:1270px;width:784px;padding:22px 28px;border-radius:24px;background:rgba(246,240,229,.97);box-shadow:0 10px 28px rgba(0,0,0,.32);opacity:0;display:flex;align-items:center;gap:20px}
-#other b{flex:none;width:62px;height:62px;border-radius:31px;background:var(--ink);color:#fff;font-size:30px;display:flex;align-items:center;justify-content:center}
-#other div{font-weight:900;font-size:33px;color:var(--ink);line-height:1.15}#other span{display:block;font-weight:700;font-size:27px;color:var(--emd);margin-top:4px}
+/* the other OS: under the intro card, said by the presenter in the first seconds (Maxim, 2026-10-28) */
+#other{position:absolute;left:96px;top:1070px;width:784px;padding:26px 34px 28px;border-radius:32px;background:var(--ink);box-shadow:0 16px 44px rgba(0,0,0,.42);opacity:0;color:#fff}
+#other .os{background:#fff;color:var(--ink)}
+#other .ot{font-weight:900;font-size:44px;line-height:1.1;margin-top:6px}
+#other span{display:block;font-weight:700;font-size:30px;color:#6ee7b7;margin-top:10px}
