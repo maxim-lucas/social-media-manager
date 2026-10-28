@@ -12,10 +12,12 @@ const fs = require("fs");
 const SR = 48000;
 const secs = Number(process.argv[2] || 45);
 const out = process.argv[3] || "bed.wav";
+const HOLD = Number(process.argv[4] || 4); // seconds of held tonic at the end (end card)
+const BPM_ARG = Number(process.argv[5] || 84);
 const N = Math.ceil(secs * SR);
 const L = new Float32Array(N), R = new Float32Array(N);
 
-const BPM = 84, BEAT = 60 / BPM, BAR = 4 * BEAT;
+const BPM = BPM_ARG, BEAT = 60 / BPM, BAR = 4 * BEAT;
 const mtof = (m) => 440 * Math.pow(2, (m - 69) / 12);
 // Voicings (MIDI). Bass root is separate.
 const PROG = [
@@ -73,7 +75,7 @@ function shaker(t0, amp, pan) {
 }
 
 const bars = Math.ceil(secs / BAR);
-const endHold = secs - 4.0; // last ~4 s: one held tonic chord for the end card
+const endHold = secs - HOLD; // the last HOLD s: one held tonic chord for the end card
 for (let b = 0; b < bars; b++) {
   const t = b * BAR;
   if (t >= endHold) break;
@@ -92,8 +94,8 @@ for (let b = 0; b < bars; b++) {
 }
 // Final tonic.
 const tEnd = Math.max(0, endHold);
-[48, 55, 60, 64, 67, 72].forEach((m, k) => addNote(tEnd + k * 0.03, 3.2, mtof(m), 0.07, -0.4 + k * 0.16, "ep"));
-addNote(tEnd, 3.2, mtof(36), 0.15, 0, "bass");
+[48, 55, 60, 64, 67, 72].forEach((m, k) => addNote(tEnd + k * 0.03, Math.max(1.6, HOLD - 0.8), mtof(m), 0.07, -0.4 + k * 0.16, "ep"));
+addNote(tEnd, Math.max(1.6, HOLD - 0.8), mtof(36), 0.15, 0, "bass");
 
 // Fade in/out and write 16-bit stereo WAV.
 let peak = 0;

@@ -67,9 +67,9 @@ body{background:#fff;font-family:M,monospace;color:#1b1b1b}
 <div class="c">WAREHOUSE #000 · EXAMPLE CITY</div><div class="c">000 EXAMPLE ROAD</div>
 <div class="ex">EXAMPLE · NOT A REAL RECEIPT</div>
 <div class="c">MEMBER 000000000000</div><div class="hr"></div>
-${ITEMS.map(([n, d, p]) => row(`${n.padEnd(8, "\u00a0")}${d}`, m(p))).join("")}
+<div id="z-items"></div>${ITEMS.map(([n, d, p]) => row(`${n.padEnd(8, "\u00a0")}${d}`, m(p))).join("")}<div id="z-itemsEnd"></div>
 <div class="hr"></div>
-${row("SUBTOTAL", m(sub), "b")}${row("TAX", m(tax))}${row("**** TOTAL", m(total), "b")}
+<div id="z-totals"></div>${row("SUBTOTAL", m(sub), "b")}${row("TAX", m(tax))}${row("**** TOTAL", m(total), "b")}<div id="z-totalsEnd"></div>
 <div class="gap"></div>
 ${row("VISA ************0000", m(total))}${row("APPROVED · AUTH 000000", "")}${row("CHANGE", "0.00")}
 <div class="gap"></div><div class="c">TOTAL NUMBER OF ITEMS SOLD = ${ITEMS.length}</div>
@@ -96,7 +96,17 @@ ${row("VISA ************0000", m(total))}${row("APPROVED · AUTH 000000", "")}${
   await (await p.$(".rc")).screenshot({ path: path.join(out, "receipt-example.png") });
   const cutY = await p.evaluate(() => { const rc = document.querySelector(".rc").getBoundingClientRect(); return Math.round(document.getElementById("cut").getBoundingClientRect().top - rc.top); });
   const fullH = await p.$eval(".rc", (e) => Math.round(e.getBoundingClientRect().height));
-  fs.writeFileSync(path.join(out, "receipt-example.json"), JSON.stringify({ width: 1200, height: fullH, keepTo: cutY, note: "Everything above keepTo is what the scan should capture (top of the receipt down to the register date line). Below it: QR code, membership offer, ad: left out. The member line is part of the header, at the top, as on a real Costco receipt." }, null, 2));
+  // Section bounds in PNG pixels, for videos that highlight the receipt's parts. The markers have no height,
+  // so the picture is unchanged.
+  const zones = await p.evaluate(() => {
+    const top = document.querySelector(".rc").getBoundingClientRect().top;
+    const y = (id) => Math.round(document.getElementById(id).getBoundingClientRect().top - top);
+    return { itemsTop: y("z-items"), itemsEnd: y("z-itemsEnd"), totalsTop: y("z-totals"), totalsEnd: y("z-totalsEnd") };
+  });
+  fs.writeFileSync(path.join(out, "receipt-example.json"), JSON.stringify({ width: 1200, height: fullH, keepTo: cutY, zones, note: "Everything above keepTo is what the scan should capture (top of the receipt down to the register date line). Below it: QR code, membership offer, ad: left out. The member line is part of the header, at the top, as on a real Costco receipt." }, null, 2));
+  // The same numbers as a script, so a scene opened from disk (no fetch on file://) can load them.
+  const meta = JSON.parse(fs.readFileSync(path.join(out, "receipt-example.json"), "utf8"));
+  fs.writeFileSync(path.join(out, "receipt-example.js"), `window.RECEIPT = ${JSON.stringify(meta)};\n`);
   await p.setContent(html("80mm"));
   await p.evaluate(() => Promise.all(["400", "700"].map((w) => document.fonts.load(w + " 30px M"))));
   const hMm = Math.ceil((await p.$eval(".rc", (e) => e.getBoundingClientRect().height)) / 3.7795) + 2;

@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<!--
+  01 · How to scan your Costco receipt — one scene, one receipt, every rule on it.
+  A phone camera looks down at the example receipt on a kitchen table. The same receipt is edited for each
+  group of rules: KEEP (top · every item · totals) → LEAVE OUT (QR codes · offers · ads, folded under, then
+  scanned) → MAY BE DECLINED (the same receipt as four bad photos) → follow card.
+  Rendered by tools/short.mjs: window.frame(t) is pure, so any frame renders on its own.
+-->
+<script src="receipt/receipt-example.js"></script>
+<style>
+@font-face{font-family:R;font-weight:500;src:url(../tools/node_modules/@fontsource/roboto/files/roboto-latin-500-normal.woff2)}
+@font-face{font-family:R;font-weight:700;src:url(../tools/node_modules/@fontsource/roboto/files/roboto-latin-700-normal.woff2)}
+@font-face{font-family:R;font-weight:900;src:url(../tools/node_modules/@fontsource/roboto/files/roboto-latin-900-normal.woff2)}
+:root{--ink:#0d3d28;--paper:#f6f0e5;--em:#10b981;--emd:#047857;--red:#d52b1e}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#6f6a63;font-family:R,sans-serif}
+.abs{position:absolute}
+#cam{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:hidden}
+#world{position:absolute;left:-60px;top:-90px;width:1200px;height:2100px;transform-origin:600px 1066px}
+#surface{position:absolute;left:0;top:0;width:1200px;height:2100px}
+/* receipt: top part (kept) + bottom flap (folds under). Shadow on the wrapper follows both. */
+#rcWrap{position:absolute;filter:drop-shadow(0 16px 18px rgba(35,20,8,.38)) drop-shadow(0 2px 2px rgba(35,20,8,.45))}
+#rc{position:absolute;left:0;top:0;transform-style:preserve-3d;perspective:1800px}
+.part{position:absolute;left:0;background-repeat:no-repeat;overflow:hidden}
+.paper{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply}
+#flap{transform-origin:50% 0;backface-visibility:hidden}
+#flapBack{transform-origin:50% 0;backface-visibility:hidden;background:#e9e3d6}
+.zone{position:absolute;border-radius:10px;border:4px solid var(--em);background:rgba(16,185,129,.16);opacity:0}
+.zone.out{border:4px dashed var(--red);background:rgba(213,43,30,.16)}
+.pill{position:absolute;display:inline-flex;align-items:center;gap:12px;padding:8px 22px 8px 8px;border-radius:999px;
+  background:var(--em);color:#fff;font-weight:900;font-size:30px;white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,.3);opacity:0}
+.pill b{width:44px;height:44px;border-radius:22px;background:#fff;color:var(--emd);display:inline-flex;align-items:center;justify-content:center;font-size:26px;font-weight:900}
+.pill.red{background:var(--red)}.pill.red b{color:var(--red)}
+.pill.ink{background:var(--paper);color:var(--ink);padding:10px 24px}
+/* head card */
+.head{position:absolute;left:96px;top:262px;width:784px;padding:20px 28px 22px;border-radius:26px;background:rgba(246,240,229,.96);
+  box-shadow:0 10px 30px rgba(0,0,0,.32);opacity:0}
+.head h1{font-weight:900;font-size:52px;line-height:1.04;letter-spacing:-1px;color:var(--ink)}
+.head p{font-weight:700;font-size:29px;line-height:1.25;color:var(--emd);margin-top:8px}
+/* viewfinder */
+.br{position:absolute;width:64px;height:64px;border-color:var(--em);border-style:solid;border-width:0;filter:drop-shadow(0 0 6px rgba(16,185,129,.5))}
+#scanline{position:absolute;height:6px;border-radius:3px;background:linear-gradient(90deg,transparent,#34d399 15%,#a7f3d0 50%,#34d399 85%,transparent);
+  box-shadow:0 0 24px 8px rgba(52,211,153,.55);opacity:0}
+/* declined grid */
+.cell{position:absolute;width:245px;opacity:0}
+.photo{position:relative;width:245px;height:420px;border-radius:22px;overflow:hidden;border:6px solid #fff;box-shadow:0 14px 34px rgba(0,0,0,.45);background-size:cover}
+.photo .inner{position:absolute;inset:0}
+.x{position:absolute;right:10px;top:10px;width:52px;height:52px;border-radius:26px;background:var(--red);color:#fff;font-weight:900;font-size:32px;
+  display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.35)}
+.lab{display:block;margin:14px auto 0;width:max-content;padding:8px 20px;border-radius:999px;background:var(--paper);color:var(--ink);font-weight:900;font-size:27px;box-shadow:0 6px 16px rgba(0,0,0,.3)}
+/* outro */
+#outro{position:absolute;left:60px;top:520px;width:960px;padding:46px 72px 50px;border-radius:44px;background:rgba(246,240,229,.97);box-shadow:0 20px 60px rgba(0,0,0,.4);opacity:0}
+.brand{display:flex;align-items:center;gap:18px;width:740px}.brand img{height:72px}.brand span{font-weight:900;font-size:50px;color:var(--ink);letter-spacing:-1px}
+.brand i{font-style:normal;font-weight:700;font-size:22px;letter-spacing:3px;color:var(--emd);margin-left:4px}
+#outro h2{width:740px;font-weight:900;font-size:56px;color:var(--ink);letter-spacing:-1px;margin-top:34px}
+.handles{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px;margin-top:24px;width:740px}
+.handles div{background:#fff;border-radius:20px;padding:14px 22px;border:2px solid rgba(13,61,40,.12)}
+.handles b{display:block;font-weight:700;font-size:28px;color:var(--ink)}.handles span{font-weight:700;font-size:23px;color:var(--emd)}
+.next{margin-top:28px;font-weight:700;font-size:29px;color:var(--ink);width:740px}
+.next em{font-style:normal;color:var(--emd)}
+#fine{position:absolute;left:96px;top:1546px;width:784px;color:rgba(255,255,255,.95);font-weight:500;font-size:22px;line-height:1.3;text-shadow:0 1px 6px rgba(0,0,0,.85)}
+#grain{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:.07;mix-blend-mode:overlay;pointer-events:none}
+#light{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 85% 70% at 38% 40%,rgba(255,244,220,.10),rgba(0,0,0,0) 60%),radial-gradient(ellipse 120% 95% at 50% 48%,rgba(0,0,0,0) 55%,rgba(10,5,0,.42) 100%)}
+</style></head>
+<body>
+<div id="cam">
+  <div id="world">
+    <canvas id="surface" width="1200" height="2100"></canvas>
+    <div id="rcWrap"><div id="rc">
+      <div id="top" class="part"><div class="paper"></div></div>
+      <div id="flapBack" class="part"></div>
+      <div id="flap" class="part"><div class="paper"></div></div>
+      <div id="zTop" class="zone"></div><div id="zItems" class="zone"></div><div id="zTotals" class="zone"></div><div id="zOut" class="zone out"></div>
+      <div id="pTop" class="pill" data-text><b>1</b>Top</div>
+      <div id="pItems" class="pill" data-text><b>2</b>Every item</div>
+      <div id="pTotals" class="pill" data-text><b>3</b>Totals</div>
+      <div id="pOut" class="pill red" data-text><b>✕</b>Leave out</div>
+    </div></div>
+  </div>
+  <div id="light"></div>
+</div>
+
+<!-- viewfinder (screen space, like the phone's scanner) -->
+<div id="vf"><div class="br" id="b0"></div><div class="br" id="b1"></div><div class="br" id="b2"></div><div class="br" id="b3"></div><div id="scanline"></div></div>
+<div id="pReady" class="pill" data-text style="left:0;top:0"><b>✓</b>Ready to scan</div>
+
+<!-- declined: the same receipt, four bad photos -->
+<div id="grid">
+  <div class="cell" id="c0"><div class="photo"><div class="inner"></div><div class="x">✕</div></div><span class="lab" data-text>Blurry</span></div>
+  <div class="cell" id="c1"><div class="photo"><div class="inner"></div><div class="x">✕</div></div><span class="lab" data-text>Too dark</span></div>
+  <div class="cell" id="c2"><div class="photo"><div class="inner"></div><div class="x">✕</div></div><span class="lab" data-text>Tilted or cut off</span></div>
+  <div class="cell" id="c3"><div class="photo"><div class="inner"></div><div class="x">✕</div></div><span class="lab" data-text>Total only</span></div>
+</div>
+
+<div class="head" id="h0" data-text><h1>Scanning your Costco receipt?</h1><p>Here’s what the scan needs.</p></div>
+<div class="head" id="h1" data-text><h1>Keep these 3 parts</h1><p>Top · every item · totals</p></div>
+<div class="head" id="h2" data-text><h1>Leave out the bottom</h1><p>QR codes · membership offers · ads</p></div>
+<div class="head" id="h3" data-text><h1>These may be declined</h1><p>To keep price-drop alerts accurate. Just scan again.</p></div>
+
+<div id="outro">
+  <div class="brand" data-text><img src="../../08-costco-price-drops/scenes/mark.png"><span>PriceBack</span><i>TUTORIAL</i></div>
+  <h2 data-text>Follow for more tips</h2>
+  <div class="handles" data-text>
+    <div><b>Instagram</b><span>@priceback.ca</span></div><div><b>Facebook</b><span>@priceback.ca</span></div>
+    <div><b>TikTok</b><span>@priceback</span></div><div><b>YouTube</b><span>@priceback</span></div>
+  </div>
+  <div class="next" data-text>Next: <em>how to scan a shelf price tag</em></div>
+</div>
+
+<div id="fine" data-text>Example receipt. PriceBack is an independent app, not affiliated with Costco.</div>
+<canvas id="grain" width="540" height="960"></canvas>
+
+<script>
+const R = window.RECEIPT, Z = R.zones, IMG = "receipt/receipt-example.png";
+const S = 0.43;                                   // receipt scale on screen
+const RW = R.width * S, RH = R.height * S, KEEP = R.keepTo * S;
+const RX = (1080 - RW) / 2 + 60, RY = 425 + 90;   // world coords (world is offset -60,-90)
+const $ = (id) => document.getElementById(id);
+
+// ── seeded noise ──────────────────────────────────────────────────────────
+function rng(seed) { let s = seed >>> 0 || 1; return () => ((s = Math.imul(s ^ (s >>> 15), 2246822507) ^ Math.imul(s ^ (s >>> 13), 3266489909), (s ^= s >>> 16) >>> 0) / 4294967296); }
+function valueNoise(w, h, cell, seed) {
+  const r = rng(seed), gw = Math.ceil(w / cell) + 2, gh = Math.ceil(h / cell) + 2, g = new Float32Array(gw * gh);
+  for (let i = 0; i < g.length; i++) g[i] = r();
+  return (x, y) => {
+    const fx = x / cell, fy = y / cell, xi = Math.floor(fx), yi = Math.floor(fy), tx = fx - xi, ty = fy - yi;
+    const sx = tx * tx * (3 - 2 * tx), sy = ty * ty * (3 - 2 * ty);
+    const m = (v, n) => ((v % n) + n) % n, x0 = m(xi, gw), x1 = m(xi + 1, gw), y0 = m(yi, gh), y1 = m(yi + 1, gh);
+    const a = g[y0 * gw + x0], b = g[y0 * gw + x1], c = g[y1 * gw + x0], d = g[y1 * gw + x1];
+    return a + (b - a) * sx + (c - a) * sy + (a - b - c + d) * sx * sy;
+  };
+}
+
+// ── plain matte surface: neutral warm grey, soft light from the upper left, no pattern ──
+// Only a ±1.5-level dither is added, so the gradient does not band once the video is compressed.
+function drawSurface() {
+  const cv = $("surface"), cx = cv.getContext("2d"), w = cv.width, h = cv.height, im = cx.createImageData(w, h), r = rng(31);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    const dx = (x - w * 0.38) / w, dy = (y - h * 0.36) / h, d = Math.sqrt(dx * dx * 1.3 + dy * dy);
+    const k = 1.0 - 0.38 * Math.min(1, d * 1.25);
+    const n = (r() - 0.5) * 3;
+    const i = (y * w + x) * 4;
+    im.data[i] = 168 * k + n; im.data[i + 1] = 162 * k + n; im.data[i + 2] = 154 * k + n; im.data[i + 3] = 255;
+  }
+  cx.putImageData(im, 0, 0);
+}
+
+// ── thermal-paper texture tile ──────────────────────────────────────────
+function paperTile() {
+  const c = document.createElement("canvas"); c.width = c.height = 256;
+  const cx = c.getContext("2d"), im = cx.createImageData(256, 256), r = rng(77), n = valueNoise(256, 256, 18, 78);
+  for (let i = 0; i < 256 * 256; i++) {
+    const x = i % 256, y = (i / 256) | 0, v = 236 + 14 * n(x, y) + (r() - 0.5) * 16;
+    im.data[i * 4] = v + 4; im.data[i * 4 + 1] = v + 2; im.data[i * 4 + 2] = v - 2; im.data[i * 4 + 3] = 255;
+  }
+  cx.putImageData(im, 0, 0); return c.toDataURL();
+}
+
+// zigzag cut edge for the paper's ends
+function zig(top, bottom, w, h, teeth = 46, d = 5) {
+  const pts = [];
+  if (top) for (let i = 0; i <= teeth; i++) pts.push(`${(i / teeth) * w}px ${i % 2 ? d : 0}px`); else pts.push(`0px 0px`, `${w}px 0px`);
+  if (bottom) for (let i = teeth; i >= 0; i--) pts.push(`${(i / teeth) * w}px ${h - (i % 2 ? d : 0)}px`); else pts.push(`${w}px ${h}px`, `0px ${h}px`);
+  return `polygon(${pts.join(",")})`;
+}
+
+// ── layout ──────────────────────────────────────────────────────────────
+function layout(tile) {
+  const wrap = $("rcWrap"); wrap.style.left = RX + "px"; wrap.style.top = RY + "px";
+  const rc = $("rc"); rc.style.width = RW + "px"; rc.style.height = RH + "px";
+  const part = (el, y0, y1, edgeTop, edgeBottom) => {
+    el.style.top = y0 + "px"; el.style.width = RW + "px"; el.style.height = (y1 - y0) + "px";
+    el.style.backgroundImage = `url(${IMG})`; el.style.backgroundSize = `${RW}px ${RH}px`; el.style.backgroundPosition = `0 ${-y0}px`;
+    el.style.clipPath = zig(edgeTop, edgeBottom, RW, y1 - y0);
+  };
+  part($("top"), 0, KEEP, true, false);
+  part($("flap"), KEEP, RH, false, true);
+  const fb = $("flapBack"); fb.style.top = KEEP + "px"; fb.style.width = RW + "px"; fb.style.height = (RH - KEEP) + "px"; fb.style.clipPath = zig(false, true, RW, RH - KEEP);
+  for (const id of ["top", "flap"]) {
+    const p = $(id).querySelector(".paper");
+    p.style.background = `linear-gradient(90deg,rgba(0,0,0,.07),rgba(0,0,0,0) 9%,rgba(0,0,0,0) 90%,rgba(0,0,0,.09)),url(${tile})`;
+    p.style.backgroundSize = "auto, 256px 256px";
+  }
+  const box = (id, y0, y1) => { const e = $(id); e.style.left = "-10px"; e.style.width = RW + 20 + "px"; e.style.top = y0 - 6 + "px"; e.style.height = y1 - y0 + 12 + "px"; };
+  box("zTop", 0, Z.itemsTop * S - 4); box("zItems", Z.itemsTop * S + 2, Z.itemsEnd * S + 2); box("zTotals", Z.totalsTop * S - 2, KEEP); box("zOut", KEEP + 8, RH - 4);
+  const pill = (id, y) => { const e = $(id); e.style.left = "-150px"; e.style.top = y + "px"; };
+  pill("pTop", 6); pill("pItems", Z.itemsTop * S + 14); pill("pTotals", Z.totalsTop * S + 6); pill("pOut", KEEP + 30);
+
+  // declined: three upright photos, then a wide close-up of the totals only
+  const pos = [[96, 446], [364, 446], [632, 446], [96, 966]];
+  pos.forEach(([x, y], i) => { const c = $("c" + i); c.style.left = x + "px"; c.style.top = y + "px"; });
+  const surfURL = $("surface").toDataURL("image/jpeg", 0.92);
+  document.querySelectorAll(".photo").forEach((p, i) => {
+    p.style.backgroundImage = `url(${surfURL})`; p.style.backgroundPosition = `${-140 - i * 210}px ${-260 - i * 170}px`; p.style.backgroundSize = "1200px 2100px";
+  });
+  const inner = (i) => $("c" + i).querySelector(".inner");
+  const s = 0.153, w = R.width * s, h = R.height * s, PW = 233;
+  const rcImg = (st) => `<div style="position:absolute;${st};width:${w}px;height:${h}px;background:url(${IMG}) 0 0/${w}px ${h}px;filter:drop-shadow(0 5px 7px rgba(30,15,5,.4))"></div>`;
+  inner(0).innerHTML = rcImg(`left:${(PW - w) / 2}px;top:14px`); inner(0).style.filter = "blur(3.5px)";
+  inner(1).innerHTML = rcImg(`left:${(PW - w) / 2}px;top:14px`); inner(1).style.filter = "brightness(.3) contrast(.85) saturate(.6)";
+  inner(1).insertAdjacentHTML("beforeend", `<div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 45% at 70% 30%,rgba(0,0,0,.55),transparent 70%)"></div>`);
+  const s2 = 0.24, w2 = R.width * s2, h2 = R.height * s2;
+  inner(2).innerHTML = `<div style="position:absolute;left:${(PW - w2) / 2 + 34}px;top:-140px;width:${w2}px;height:${h2}px;background:url(${IMG}) 0 0/${w2}px ${h2}px;transform:rotate(-17deg);filter:drop-shadow(0 6px 8px rgba(30,15,5,.4))"></div>`;
+  // total only: wide close-up, nothing but SUBTOTAL / TAX / TOTAL in frame
+  const c3 = $("c3"), ph3 = c3.querySelector(".photo"), s3 = 0.62, y0 = (Z.totalsTop - 40) * s3, y1 = (Z.totalsEnd + 30) * s3;
+  c3.style.width = "784px"; ph3.style.width = "784px"; ph3.style.height = Math.round(y1 - y0) + "px"; ph3.style.background = "#fbfaf6";
+  const x3 = ph3.querySelector(".x"); c3.appendChild(x3); Object.assign(x3.style, { right: "-16px", top: "-18px" });
+  inner(3).innerHTML = `<div style="position:absolute;left:${(772 - R.width * s3) / 2}px;top:${-y0}px;width:${R.width * s3}px;height:${R.height * s3}px;background:url(${IMG}) 0 0/${R.width * s3}px ${R.height * s3}px"></div>`;
+}
+
+// ── animation helpers ───────────────────────────────────────────────────
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const lin = (t, a, b) => clamp((t - a) / (b - a));
+const eo = (x) => 1 - Math.pow(1 - x, 3);                    // ease out
+const eio = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+const win = (t, a, b, fi = 0.25, fo = 0.25) => Math.min(lin(t, a, a + fi), 1 - lin(t, b - fo, b)); // 0→1→0 window
+const T = { h0: [0.15, 1.75], h1: [1.75, 5.45], h2: [5.45, 8.25], h3: [8.25, 12.3], outro: 12.3 };
+
+const grain = $("grain"), gcx = grain.getContext("2d"), gim = gcx.createImageData(540, 960);
+function drawGrain(f) {
+  const r = rng(1000 + f);
+  for (let i = 0; i < gim.data.length; i += 4) { const v = r() * 255; gim.data[i] = gim.data[i + 1] = gim.data[i + 2] = v; gim.data[i + 3] = 255; }
+  gcx.putImageData(gim, 0, 0);
+}
+
+function brackets(x0, y0, x1, y1, op) {
+  const L = 64, W = 7;
+  const set = (id, l, t, bt, br, bb, bl) => { const e = $(id); e.style.left = l + "px"; e.style.top = t + "px"; e.style.borderWidth = `${bt}px ${br}px ${bb}px ${bl}px`; e.style.opacity = op; e.style.borderRadius = "10px"; };
+  set("b0", x0, y0, W, 0, 0, W); set("b1", x1 - L, y0, W, W, 0, 0); set("b2", x0, y1 - L, 0, 0, W, W); set("b3", x1 - L, y1 - L, 0, W, W, 0);
+}
+
+window.frame = (t) => {
+  // camera: a phone held over the table — slow push-in and a little hand drift
+  const dx = 4.5 * Math.sin(t * 1.3) + 2.2 * Math.sin(t * 2.9 + 1), dy = 3.5 * Math.sin(t * 1.05 + 2) + 1.6 * Math.sin(t * 3.3);
+  const rot = 0.18 * Math.sin(t * 0.7), zoom = 1.0 + 0.012 * t;
+  const blurOutro = 14 * eo(lin(t, T.outro, T.outro + 0.5)), blurGrid = 6 * eo(lin(t, T.h3[0], T.h3[0] + 0.4)) * (1 - lin(t, T.outro, T.outro + 0.01));
+  $("world").style.transform = `translate(${dx}px,${dy}px) rotate(${rot}deg) scale(${zoom})`;
+  $("cam").style.filter = `blur(${Math.max(blurGrid, blurOutro)}px) brightness(${1 - 0.25 * lin(t, T.h3[0], T.h3[0] + 0.4) * (t < T.outro ? 1 : 0) - 0.3 * lin(t, T.outro, T.outro + 0.5)})`;
+
+  // the receipt lands on the table
+  const land = eo(lin(t, 0, 0.9));
+  $("rcWrap").style.transform = `translate(0,${(1 - land) * 140}px) rotate(${(1 - land) * -4}deg)`;
+  $("rcWrap").style.opacity = lin(t, 0, 0.2);
+
+  // KEEP
+  const zIn = (a) => eo(lin(t, a, a + 0.35)) * (1 - lin(t, 6.2, 6.6));
+  [["zTop", "pTop", 2.0], ["zItems", "pItems", 2.85], ["zTotals", "pTotals", 3.7]].forEach(([z, p, a]) => {
+    const k = zIn(a), enter = eo(lin(t, a, a + 0.35)); $(z).style.opacity = k; $(z).style.transform = `scale(${0.97 + 0.03 * enter})`;
+    $(p).style.opacity = k; $(p).style.transform = `translateX(${(1 - enter) * 30}px)`;
+  });
+  // LEAVE OUT: mark the bottom, then fold it under
+  const o = eo(lin(t, 5.55, 5.9)) * (1 - lin(t, 6.25, 6.45));
+  $("zOut").style.opacity = o; $("pOut").style.opacity = o; $("pOut").style.transform = `translateX(${(1 - eo(lin(t, 5.55, 5.9))) * 30}px)`;
+  const fold = eio(lin(t, 6.3, 7.0));
+  $("flap").style.transform = `rotateX(${-fold * 90}deg)`; $("flap").style.opacity = 1 - lin(fold, 0.85, 1); $("flapBack").style.display = "none";
+  $("flap").style.filter = `brightness(${1 - 0.45 * fold})`;
+
+  // viewfinder: hugs the whole receipt, then the kept part, then scans it
+  const sx = (x) => x - 60 + dx, sy = (y) => y - 90 + dy;
+  const full = [sx(RX) - 26, sy(RY) - 26, sx(RX + RW) + 26, sy(RY + RH) + 26];
+  const kept = [sx(RX) - 26, sy(RY) - 26, sx(RX + RW) + 26, sy(RY + KEEP) + 30];
+  const k = eio(lin(t, 7.05, 7.4));
+  const bx = full.map((v, i) => v + (kept[i] - v) * k);
+  const vfOp = 0.85 * lin(t, 0.5, 0.9) * (1 - lin(t, T.h3[0], T.h3[0] + 0.25));
+  brackets(bx[0], bx[1], bx[2], bx[3], vfOp);
+  const sc = lin(t, 7.4, 8.0), sl = $("scanline");
+  sl.style.left = bx[0] + 12 + "px"; sl.style.width = bx[2] - bx[0] - 24 + "px"; sl.style.top = bx[1] + 10 + sc * (bx[3] - bx[1] - 20) + "px";
+  sl.style.opacity = win(t, 7.4, 8.05, 0.08, 0.12);
+  const ready = eo(lin(t, 7.95, 8.15)) * (1 - lin(t, T.h3[0], T.h3[0] + 0.2));
+  const pr = $("pReady"); pr.style.opacity = ready; pr.style.left = 540 - 150 + "px"; pr.style.top = kept[3] + 22 + "px"; pr.style.transform = `scale(${0.9 + 0.1 * ready})`;
+
+  // DECLINED: the same receipt as four bad photos
+  for (let i = 0; i < 4; i++) {
+    const a = T.h3[0] + 0.1 + i * 0.14, kk = eo(lin(t, a, a + 0.35)) * (1 - lin(t, T.outro - 0.05, T.outro + 0.25));
+    const c = $("c" + i); c.style.opacity = kk; c.style.transform = `translateY(${(1 - kk) * 40}px) scale(${0.94 + 0.06 * kk}) rotate(${[-1.5, 1.2, -0.8, 1.6][i] * kk}deg)`;
+    c.querySelector(".x").style.transform = `scale(${eo(lin(t, a + 0.35, a + 0.6))})`;
+  }
+
+  // head cards
+  [["h0", T.h0], ["h1", T.h1], ["h2", T.h2], ["h3", T.h3]].forEach(([id, [a, b]]) => {
+    const v = win(t, a, b, 0.22, 0.18); const e = $(id); e.style.opacity = v; e.style.transform = `translateY(${(1 - v) * -12}px)`;
+  });
+  // outro
+  const ov = eo(lin(t, T.outro + 0.15, T.outro + 0.6)); $("outro").style.opacity = ov; $("outro").style.transform = `scale(${0.96 + 0.04 * ov})`;
+  drawGrain(Math.round(t * 30));
+};
+
+window.ready = (async () => {
+  await Promise.all(["500", "700", "900"].map((w) => document.fonts.load(`${w} 40px R`)));
+  if (!document.fonts.check("900 40px R")) throw new Error("Roboto did not load");
+  await new Promise((res, rej) => { const i = new Image(); i.onload = res; i.onerror = () => rej(new Error("receipt image missing")); i.src = IMG; });
+  drawSurface();
+  layout(paperTile());
+  await Promise.all([...document.images].map((i) => (i.complete ? 1 : new Promise((r) => (i.onload = i.onerror = r)))));
+  window.frame(0);
+})();
+</script>
+</body></html>
