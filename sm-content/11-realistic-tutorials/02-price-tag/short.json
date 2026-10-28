@@ -1,0 +1,45 @@
+{
+  "id": "tutorial-02-price-tag",
+  "title": "How to scan a Costco price tag",
+  "lang": "en",
+  "w": 1080,
+  "h": 1920,
+  "fps": 30,
+  "dur": 14.9,
+  "maxDur": 15,
+  "scene": "scene.html",
+  "voice": {
+    "name": "af_heart",
+    "speed": 1.08
+  },
+  "vo": [
+    {
+      "at": 0.15,
+      "text": "Scanning a Costco price tag?"
+    },
+    {
+      "at": 2.0,
+      "text": "Frame the whole tag, with the item number and every price."
+    },
+    {
+      "at": 5.55,
+      "text": "Glare, blur, or a cut-off tag won't read. And only savings tags are kept."
+    },
+    {
+      "at": 10.2,
+      "text": "Savings tags earn credit once three shoppers confirm."
+    },
+    {
+      "at": 13.35,
+      "text": "Follow for more tips."
+    }
+  ],
+  "music": {
+    "gainDb": -17,
+    "duckDb": 9,
+    "hold": 2.0,
+    "bpm": 92
+  },
+  "targetLufs": -14,
+  "truePeak": -1.5
+}
