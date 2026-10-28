@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<!-- 05b · IPHONE — get your Costco receipt as a PDF. Built by tools/pdf-scene.js (see its header). -->
+<link rel="stylesheet" href="../tools/scene-kit.css">
+<link rel="stylesheet" href="../tools/pdf-scene.css">
+<script>window.PDF_OS = "ios";</script>
+<script src="../tools/scene-kit.js"></script>
+<script src="../tools/costco-screens.js"></script>
+</head>
+<body>
+<div id="cam"><div id="world"><canvas id="surface" width="1200" height="2100"></canvas></div><div id="light"></div></div>
+<div class="phone" id="ph"><div class="view"><div class="scr" id="s"></div><div class="tap" id="tap"></div></div></div>
+<div class="hl" id="bOn"></div><div class="hl" id="bWh"></div>
+
+<div id="intro" data-text><div class="os"><i style="background:#0a84ff"></i>IPHONE</div><h1>No paper receipt? Get the PDF</h1><p>Use the Costco app</p><small>On Android? Use costco.ca in your browser.</small></div>
+
+<div class="head" id="h1" data-text><div class="os"><i style="background:#0a84ff"></i>IPHONE</div><h1>1 · Open your receipts</h1><p><span class="st" id="s1">Account</span> → <span class="st" id="s2">Orders &amp; Purchases</span></p></div>
+<div class="head" id="h2" data-text><div class="os"><i style="background:#0a84ff"></i>IPHONE</div><h1>2 · Online or warehouse?</h1><p>Pick the receipt you need. PriceBack reads both.</p></div>
+<div class="head" id="h3" data-text><div class="os"><i style="background:#0a84ff"></i>IPHONE</div><h1>3 · Save it as a PDF</h1><p><span class="st" id="s3">View Receipt</span> → <span class="st" id="s4">Print Receipt</span> → <span class="st" id="s5">Share</span> → <span class="st" id="s6">Save to Files</span></p></div>
+<div class="head" id="h4" data-text><div class="os"><i style="background:#0a84ff"></i>IPHONE</div><h1>4 · Upload it to PriceBack</h1><p><span class="st" id="s7">Upload file</span> → <span class="st" id="s8">Recents</span> → <span class="st" id="s9">tap the PDF</span></p></div>
+
+<div class="k" id="kOn" style="top:1105px" data-text><b><i>Online</i>costco.ca orders</b></div>
+<div class="k" id="kWh" style="top:1195px" data-text><b><i>warehouse</i>in-store purchases</b></div>
+<div class="k both" id="kBoth" style="top:1285px" data-text><b>✓ PriceBack reads both</b></div>
+
+<div id="outro">
+  <div class="brand" data-text><img src="../../08-costco-price-drops/scenes/mark.png"><span>PriceBack</span><i>TUTORIAL</i></div>
+  <h2 data-text>Follow for more tips</h2>
+  <div class="handles" data-text>
+    <div><b>Instagram</b><span>@priceback.ca</span></div><div><b>Facebook</b><span>@priceback.ca</span></div>
+    <div><b>TikTok</b><span>@priceback</span></div><div><b>YouTube</b><span>@priceback</span></div>
+  </div>
+</div>
+<div id="other" data-text><b></b><div>On Android? Use costco.ca in your browser.<span>The app can’t save PDFs there. Watch the Android version.</span></div></div>
+<div id="fine" data-text>Example account and receipt; screens simplified. PriceBack is an independent app, not affiliated with Costco.</div>
+<canvas id="grain" width="540" height="960"></canvas>
+<script src="../tools/pdf-scene.js"></script>
+</body></html>

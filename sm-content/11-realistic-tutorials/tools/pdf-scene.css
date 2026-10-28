@@ -1,0 +1,26 @@
+/* pdf-scene.css — layout for the receipt-PDF tutorials (05a Android, 05b iPhone). */
+.phone{position:absolute;border-radius:66px;background:#111;padding:12px;box-shadow:0 26px 60px rgba(0,0,0,.45),inset 0 0 0 2px #2a2a2a;opacity:0}
+.view{position:relative;overflow:hidden;border-radius:54px;background:#fff}
+.scr{position:absolute;left:0;top:0;width:891px;height:2000px;transform-origin:0 0}
+.sc{position:absolute;inset:0;background:#f7f7f7;opacity:0;font-family:R,sans-serif;color:#222;overflow:hidden}
+.a{position:absolute}
+.tap{position:absolute;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:60px;background:rgba(255,255,255,.55);border:6px solid rgba(16,185,129,.95);box-shadow:0 0 0 10px rgba(16,185,129,.25);opacity:0}
+.os{display:inline-flex;align-items:center;gap:10px;padding:6px 16px;border-radius:999px;background:var(--ink);color:#fff;font-weight:900;font-size:24px;letter-spacing:2px;margin-bottom:10px}
+.os i{width:14px;height:14px;border-radius:7px}
+.head p .st{padding:0 6px;border-radius:8px;white-space:nowrap}.head p .st.on{background:var(--em);color:#fff}
+.toast{position:absolute;left:50%;top:1640px;transform:translateX(-50%);padding:22px 36px;border-radius:40px;background:#333;color:#fff;font-size:32px;white-space:nowrap}
+/* intro: its own card, nothing else on screen */
+#intro{position:absolute;left:96px;top:640px;width:784px;padding:44px 44px 46px;border-radius:40px;background:rgba(246,240,229,.97);box-shadow:0 20px 60px rgba(0,0,0,.4);opacity:0}
+#intro .os{font-size:28px;padding:8px 20px}
+#intro h1{font-weight:900;font-size:70px;line-height:1.02;letter-spacing:-1.5px;color:var(--ink);margin-top:8px}
+#intro p{font-weight:700;font-size:34px;color:var(--emd);margin-top:20px;line-height:1.25}
+#intro small{display:block;margin-top:18px;padding-top:16px;border-top:2px solid rgba(13,61,40,.14);font-weight:700;font-size:28px;color:#4b5563}
+/* step 2: the two receipt types */
+.hl{position:absolute;border:5px solid var(--em);border-radius:10px;box-shadow:0 0 0 6px rgba(16,185,129,.25);opacity:0}
+.k{position:absolute;left:150px;opacity:0;white-space:nowrap}
+.k b{display:inline-flex;align-items:center;gap:14px;padding:12px 26px 12px 12px;border-radius:999px;background:var(--ink);color:#fff;font-weight:900;font-size:32px;box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.k b i{font-style:normal;padding:6px 14px;border-radius:999px;background:#fff;color:var(--ink);font-size:26px}
+.k.both b{background:var(--em)}
+#other{position:absolute;left:96px;top:1270px;width:784px;padding:22px 28px;border-radius:24px;background:rgba(246,240,229,.97);box-shadow:0 10px 28px rgba(0,0,0,.32);opacity:0;display:flex;align-items:center;gap:20px}
+#other b{flex:none;width:62px;height:62px;border-radius:31px;background:var(--ink);color:#fff;font-size:30px;display:flex;align-items:center;justify-content:center}
+#other div{font-weight:900;font-size:33px;color:var(--ink);line-height:1.15}#other span{display:block;font-weight:700;font-size:27px;color:var(--emd);margin-top:4px}

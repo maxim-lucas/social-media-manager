@@ -1,39 +1,27 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
-<!--
-  05a · ANDROID — No paper receipt? Get it from Costco as a PDF, then upload it to PriceBack.
-  Android uses costco.ca in the browser: the Android Costco app blocks PDF export (Maxim, 2026-10-28).
-  One full-size phone throughout. Steps (Maxim's screenshots): Account → Orders & Purchases → warehouse →
-  View Receipt → Print Receipt → Save as PDF → Save (Downloads). PriceBack: Upload file → Downloads → tap the PDF →
-  "Processing receipt…". Ends by pointing iPhone users to the iPhone version (05b).
-  Screens: tools/costco-screens.js (simplified, no logo, fake account and receipt, real products).
--->
+<!-- 05a · ANDROID — get your Costco receipt as a PDF. Built by tools/pdf-scene.js (see its header). -->
 <link rel="stylesheet" href="../tools/scene-kit.css">
+<link rel="stylesheet" href="../tools/pdf-scene.css">
+<script>window.PDF_OS = "android";</script>
 <script src="../tools/scene-kit.js"></script>
 <script src="../tools/costco-screens.js"></script>
-<style>
-.phone{position:absolute;border-radius:66px;background:#111;padding:12px;box-shadow:0 26px 60px rgba(0,0,0,.45),inset 0 0 0 2px #2a2a2a;opacity:0}
-.view{position:relative;overflow:hidden;border-radius:54px;background:#fff}
-.scr{position:absolute;left:0;top:0;width:891px;height:2000px;transform-origin:0 0}
-.sc{position:absolute;inset:0;background:#f7f7f7;opacity:0;font-family:R,sans-serif;color:#222;overflow:hidden}
-.a{position:absolute}
-.tap{position:absolute;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:60px;background:rgba(255,255,255,.55);border:6px solid rgba(16,185,129,.95);box-shadow:0 0 0 10px rgba(16,185,129,.25);opacity:0}
-.os{display:inline-flex;align-items:center;gap:10px;padding:6px 16px;border-radius:999px;background:var(--ink);color:#fff;font-weight:900;font-size:24px;letter-spacing:2px;margin-bottom:10px}
-.os i{width:14px;height:14px;border-radius:7px;background:#3ddc84}
-.head p .st{padding:0 6px;border-radius:8px;white-space:nowrap}.head p .st.on{background:var(--em);color:#fff}
-.toast{position:absolute;left:50%;top:1640px;transform:translateX(-50%);padding:22px 36px;border-radius:40px;background:#333;color:#fff;font-size:32px;white-space:nowrap}
-#other{position:absolute;left:96px;top:1290px;width:784px;padding:22px 28px;border-radius:24px;background:rgba(246,240,229,.97);box-shadow:0 10px 28px rgba(0,0,0,.32);opacity:0;display:flex;align-items:center;gap:20px}
-#other b{flex:none;width:62px;height:62px;border-radius:31px;background:var(--ink);color:#fff;font-size:30px;display:flex;align-items:center;justify-content:center}
-#other div{font-weight:900;font-size:34px;color:var(--ink);line-height:1.15}#other span{display:block;font-weight:700;font-size:27px;color:var(--emd);margin-top:4px}
-</style></head>
+</head>
 <body>
 <div id="cam"><div id="world"><canvas id="surface" width="1200" height="2100"></canvas></div><div id="light"></div></div>
 <div class="phone" id="ph"><div class="view"><div class="scr" id="s"></div><div class="tap" id="tap"></div></div></div>
+<div class="hl" id="bOn"></div><div class="hl" id="bWh"></div>
 
-<div class="head" id="h0" data-text><div class="os"><i></i>ANDROID</div><h1>No paper receipt? Get the PDF</h1><p>Use costco.ca in your browser</p></div>
-<div class="head" id="h1" data-text><div class="os"><i></i>ANDROID</div><h1>1 · Open the receipt</h1><p><span class="st" id="s1">Account</span> → <span class="st" id="s2">Orders &amp; Purchases</span> → <span class="st" id="s3">warehouse</span> → <span class="st" id="s4">View Receipt</span></p></div>
-<div class="head" id="h2" data-text><div class="os"><i></i>ANDROID</div><h1>2 · Save it as a PDF</h1><p><span class="st" id="s5">Print Receipt</span> → <span class="st" id="s6">Save as PDF</span> → <span class="st" id="s7">Save</span></p></div>
-<div class="head" id="h3" data-text><div class="os"><i></i>ANDROID</div><h1>3 · Upload it to PriceBack</h1><p><span class="st" id="s8">Upload file</span> → <span class="st" id="s9">Downloads</span> → <span class="st" id="s10">tap the PDF</span></p></div>
+<div id="intro" data-text><div class="os"><i style="background:#3ddc84"></i>ANDROID</div><h1>No paper receipt? Get the PDF</h1><p>Use costco.ca in your browser</p><small>On iPhone? Use the Costco app.</small></div>
+
+<div class="head" id="h1" data-text><div class="os"><i style="background:#3ddc84"></i>ANDROID</div><h1>1 · Open your receipts</h1><p><span class="st" id="s1">Account</span> → <span class="st" id="s2">Orders &amp; Purchases</span></p></div>
+<div class="head" id="h2" data-text><div class="os"><i style="background:#3ddc84"></i>ANDROID</div><h1>2 · Online or warehouse?</h1><p>Pick the receipt you need. PriceBack reads both.</p></div>
+<div class="head" id="h3" data-text><div class="os"><i style="background:#3ddc84"></i>ANDROID</div><h1>3 · Save it as a PDF</h1><p><span class="st" id="s3">View Receipt</span> → <span class="st" id="s4">Print Receipt</span> → <span class="st" id="s5">Save as PDF</span> → <span class="st" id="s6">Save</span></p></div>
+<div class="head" id="h4" data-text><div class="os"><i style="background:#3ddc84"></i>ANDROID</div><h1>4 · Upload it to PriceBack</h1><p><span class="st" id="s7">Upload file</span> → <span class="st" id="s8">Downloads</span> → <span class="st" id="s9">tap the PDF</span></p></div>
+
+<div class="k" id="kOn" style="top:1105px" data-text><b><i>Online</i>costco.ca orders</b></div>
+<div class="k" id="kWh" style="top:1195px" data-text><b><i>warehouse</i>in-store purchases</b></div>
+<div class="k both" id="kBoth" style="top:1285px" data-text><b>✓ PriceBack reads both</b></div>
 
 <div id="outro">
   <div class="brand" data-text><img src="../../08-costco-price-drops/scenes/mark.png"><span>PriceBack</span><i>TUTORIAL</i></div>
@@ -43,71 +31,8 @@
     <div><b>TikTok</b><span>@priceback</span></div><div><b>YouTube</b><span>@priceback</span></div>
   </div>
 </div>
-<div id="other" data-text><b></b><div>On an iPhone?<span>Watch the iPhone version of this tutorial.</span></div></div>
+<div id="other" data-text><b></b><div>On an iPhone? Use the Costco app.<span>Watch the iPhone version of this tutorial.</span></div></div>
 <div id="fine" data-text>Example account and receipt; screens simplified. PriceBack is an independent app, not affiliated with Costco.</div>
 <canvas id="grain" width="540" height="960"></canvas>
-
-<script>
-const { $, lin, eo, eio, win } = KIT;
-const SC = {
-  home: webTop() + webSite(335) + ph(53, 860, 380, 130, "#ececec") + ph(473, 860, 380, 130, "#ececec") + ph(35, 1178, 821, 350, "#f3dcdf") + ph(35, 1668, 821, 260, "#dfe5e3"),
-  menu: webTop() + webSite(335) + `<div class="a" style="left:0;top:265px;width:891px;height:1735px;background:rgba(0,0,0,.5)"></div>` +
-    `<div class="a" style="left:198px;top:265px;width:693px;height:1735px;background:#fff"></div>` + T(233, 318, "Hello, Sam!", "font-weight:900;font-size:40px") + A(808, 310, icon("x", 52, "#333")) +
-    ph(233, 384, 108, 68, "#2b2b2b", 6) + T(368, 382, "Executive Member", "font-weight:900;font-size:32px") + T(368, 428, "Member Since 2023", "font-size:32px") +
-    [["person", "Account Home"], ["box", "Orders &amp; Purchases"], ["list", "Account Details"], ["renew", "Renew Membership"], ["pin", "Address Book"], ["wallet", "Costco Wallet"], ["list", "Lists"], ["gear", "Preferences"], ["out", "Sign Out"]]
-      .map(([k, l], i) => `<div class="a" style="left:198px;top:${508 + i * 101}px;width:693px;height:101px;border-top:2px solid #e5e5e5"></div>` + A(234, 532 + i * 101, `<div style="display:flex;gap:26px;align-items:center;font-size:32px">${icon(k, 44, RED)}${l}</div>`)).join(""),
-  orders: webTop() + webSite(265) + ordersBody(820, "Online"),
-  warehouse: webTop() + webSite(265) + ordersBody(820, "warehouse"),
-  receipt: webTop() + webSite(265) + ordersBody(820, "warehouse") + receiptModal(),
-  print: printScreen(),
-  save: downloadsScreen("save"),
-  saved: downloadsScreen("save") + `<div class="toast">Saved to Downloads</div>`,
-  pb: pbScan(false), pick: downloadsScreen("pick"), busy: pbScan(true),
-};
-// [screen, from]
-const SEQ = [["home", 0], ["menu", 5.0], ["orders", 6.45], ["warehouse", 8.3], ["receipt", 9.95], ["print", 11.4], ["save", 13.25], ["saved", 14.9], ["pb", 16.0], ["pick", 17.75], ["busy", 19.45]];
-// [t, x, y] in screen coords (891 × 2000)
-const TAPS = [[4.55, 660, 400], [6.0, 430, 660], [7.85, 351, 1032], [9.5, 445, 1830], [10.95, 690, 412], [12.8, 720, 1851], [14.45, 765, 1870], [17.3, 662, 1292], [19.0, 243, 870]];
-const P = { h0: [0.05, 3.1], h1: [3.1, 10.6], h2: [10.6, 15.7], h3: [15.7, 22.5], outro: 22.5 };
-const STEPS = [["s1", 4.2, 5.8], ["s2", 5.8, 7.6], ["s3", 7.6, 9.3], ["s4", 9.3, 10.6], ["s5", 10.7, 12.6], ["s6", 12.6, 14.2], ["s7", 14.2, 15.7], ["s8", 16.6, 17.6], ["s9", 17.6, 18.8], ["s10", 18.8, 22.5]];
-const S = 0.5, X = (1080 - (891 * S + 24)) / 2, Y = 486;
-
-window.frame = (t) => {
-  KIT.camera(t);
-  const ob = eo(lin(t, P.outro, P.outro + 0.5));
-  $("cam").style.filter = `blur(${12 * ob}px) brightness(${1 - 0.2 * ob})`;
-  const inP = eo(lin(t, 0.25, 0.75)) * (1 - lin(t, P.outro - 0.1, P.outro + 0.3));
-  const ph = $("ph"); Object.assign(ph.style, { left: X + "px", top: Y + (1 - inP) * 50 + "px", opacity: inP });
-  Object.assign(ph.querySelector(".view").style, { width: 891 * S + "px", height: 2000 * S + "px" });
-  ph.querySelector(".scr").style.transform = `scale(${S})`;
-
-  SEQ.forEach(([k, a], i) => {
-    const b = i + 1 < SEQ.length ? SEQ[i + 1][1] : 1e9, e = $("sc_" + k);
-    e.style.opacity = i === 0 ? 1 - lin(t, b, b + 0.25) : Math.min(lin(t, a, a + 0.25), 1 - lin(t, b, b + 0.25));
-    e.style.transform = `translateX(${(1 - lin(t, a, a + 0.25)) * (i ? 40 : 0)}px)`;
-  });
-  const tp = $("tap"); tp.style.opacity = 0;
-  for (const [a, x, y] of TAPS) if (t >= a - 0.05 && t <= a + 0.5) {
-    const k = lin(t, a - 0.05, a + 0.45);
-    Object.assign(tp.style, { left: x * S + "px", top: y * S + "px", opacity: Math.sin(k * Math.PI), transform: `scale(${(0.6 + 0.6 * k) * S / 0.46})` });
-  }
-  const sp = document.querySelector("#sc_busy #spin"); if (sp) sp.style.transform = `rotate(${t * 400}deg)`;
-  for (const [id, a, b] of STEPS) $(id).classList.toggle("on", t >= a && t < b);
-
-  KIT.heads(t, [["h0", ...P.h0], ["h1", ...P.h1], ["h2", ...P.h2], ["h3", ...P.h3]]);
-  KIT.outro(t, P.outro);
-  const o = eo(lin(t, P.outro + 0.5, P.outro + 0.9));
-  Object.assign($("other").style, { opacity: o, transform: `translateY(${(1 - o) * 24}px)` });
-  KIT.grain(Math.round(t * 30));
-};
-
-window.ready = (async () => {
-  await KIT.fontsReady(["500 40px R", "700 40px R", "900 40px R"]);
-  KIT.drawSurface($("surface"));
-  $("s").innerHTML = Object.entries(SC).map(([k, h]) => `<div class="sc" id="sc_${k}">${h}</div>`).join("");
-  document.querySelector("#other b").innerHTML = icon("compass", 36, "#fff");
-  await Promise.all([...document.images].map((i) => (i.complete ? 1 : new Promise((r) => (i.onload = i.onerror = r)))));
-  window.frame(0);
-})();
-</script>
+<script src="../tools/pdf-scene.js"></script>
 </body></html>

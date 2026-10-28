@@ -25,7 +25,16 @@ const A = (x, y, html, st = "") => `<div class="a" style="left:${x}px;top:${y}px
 const T = (x, y, txt, st = "") => A(x, y, txt, `white-space:nowrap;${st}`);
 
 // ── status bars ────────────────────────────────────────────────────────────
-const status = (dark) => {
+// Status bar: Android style by default; set window.IOS = true before building for the iPhone look.
+const status = (dark) => (window.IOS ? iosStatus(dark) : androidStatus(dark));
+const iosStatus = (dark) => {
+  const c = dark ? "#fff" : "#111";
+  return T(84, 44, "4:05", `font-weight:700;font-size:40px;color:${c}`) +
+    A(330, 30, `<div style="width:232px;height:68px;border-radius:34px;background:#000"></div>`) +
+    A(668, 52, `<div style="display:flex;gap:6px;align-items:flex-end">${[10, 15, 20, 26].map((h) => `<i style="display:inline-block;width:8px;height:${h}px;background:${c};border-radius:2px"></i>`).join("")}
+      <i style="display:inline-block;width:58px;height:28px;border:3px solid ${c};border-radius:9px;position:relative;margin-left:22px;opacity:.9"><i style="position:absolute;left:3px;top:3px;bottom:3px;width:38px;background:${c};border-radius:4px"></i></i></div>`);
+};
+const androidStatus = (dark) => {
   const c = dark ? "#fff" : "#111";
   return T(76, 48, "4:05", `font-weight:700;font-size:40px;color:${c}`) +
     A(660, 56, `<div style="display:flex;gap:16px;align-items:center">${[10, 16, 22, 28].map((h) => `<i style="display:inline-block;width:7px;height:${h}px;background:${c};border-radius:2px;align-self:flex-end"></i>`).join("")}
@@ -167,3 +176,42 @@ const pickerScreen = () => `<div class="a" style="left:0;top:0;width:891px;heigh
     <div><div style="font-size:36px">Orders &amp; Purchases | Costco.pdf</div><div style="font-size:28px;color:#777;margin-top:6px">Just now</div></div></div>`) +
   [560, 730, 900].map((y) => A(30, y, `<div style="width:831px;height:150px;background:#fff;border-radius:22px;opacity:.6;display:flex;align-items:center;gap:28px;padding:0 30px"><div style="width:70px;height:70px;background:#e5e5e5;border-radius:8px"></div><div style="width:360px;height:26px;background:#e5e5e5;border-radius:6px"></div></div>`)).join("");
 
+
+// ── iPhone: print screen, share sheet, Save to Files, and the Files picker (system UI, simplified) ──
+const IOSB = "#0a7aff", IOSBG = "#f2f2f7";
+const iosRow = (y, left, right = "", st = "") => A(30, y, `<div style="width:831px;height:104px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 34px;font-size:36px;${st}">${left}<span style="color:#8e8e93">${right}</span></div>`);
+const pdfThumb = (w, h) => `<div style="width:${w}px;height:${h}px;background:#fff;border:1px solid #d1d1d6;box-shadow:0 2px 6px rgba(0,0,0,.12);overflow:hidden"><div style="transform:scale(${w / 751});transform-origin:0 0">${receiptPage()}</div></div>`;
+const iosShareIcon = (col = IOSB, s = 52) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${col}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M6 11H5v10h14V11h-1"/></svg>`;
+const iosPrint = () => `<div class="a" style="left:0;top:0;width:891px;height:2000px;background:${IOSBG}"></div>` + status(false) +
+  T(40, 160, "Cancel", `font-size:38px;color:${IOSB}`) + T(0, 158, "Options", "width:891px;text-align:center;font-weight:700;font-size:38px") +
+  A(650, 150, iosShareIcon()) + T(740, 160, "Print", `font-weight:700;font-size:38px;color:${IOSB}`) +
+  `<div class="a" style="left:30px;top:270px;width:831px;height:210px;border-radius:24px;overflow:hidden">` + `</div>` +
+  A(30, 270, `<div style="width:831px;border-radius:24px;overflow:hidden">
+    <div style="height:104px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 34px;font-size:36px;border-bottom:1px solid #e5e5ea">Printer<span style="color:#8e8e93">No Printer Selected ›</span></div>
+    <div style="height:104px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 34px;font-size:36px">1 Copy<span style="display:inline-flex;border-radius:16px;background:#eeeef0;padding:8px 26px;gap:44px;font-size:40px">−<i style="font-style:normal">+</i></span></div></div>`) +
+  A(110, 600, pdfThumb(330, 480)) + A(470, 600, `<div style="width:310px;height:480px;background:#fff;border:1px solid #d1d1d6;box-shadow:0 2px 6px rgba(0,0,0,.12);display:flex;align-items:flex-start;justify-content:center;padding-top:40px;font-size:13px;color:#555">Thank You!<br>Please Come Again</div>`) +
+  T(250, 1100, "Page 1", "font-size:28px;color:#8e8e93") + T(580, 1100, "Page 2", "font-size:28px;color:#8e8e93");
+const iosShare = () => iosPrint() + `<div class="a" style="left:0;top:0;width:891px;height:2000px;background:rgba(0,0,0,.35)"></div>` +
+  A(0, 560, `<div style="width:891px;height:1440px;background:${IOSBG};border-radius:40px 40px 0 0"></div>`) +
+  A(40, 600, `<div style="display:flex;gap:26px;align-items:center"><div style="width:96px;height:120px;background:#fff;border:1px solid #d1d1d6;display:flex;align-items:center;justify-content:center;color:#e53935;font-weight:900;font-size:22px">PDF</div>
+    <div><div style="font-size:34px;font-weight:600">Orders &amp; Purchases | Costco</div><div style="font-size:28px;color:#8e8e93;margin-top:6px">PDF Document · 88 KB</div></div></div>`) +
+  A(808, 610, `<div style="width:56px;height:56px;border-radius:28px;background:#e3e3e8;display:flex;align-items:center;justify-content:center;font-size:30px;color:#8e8e93">✕</div>`) +
+  A(40, 780, `<div style="display:flex;gap:44px">${["AirDrop", "Messages", "Mail", "Notes"].map((l) => `<div style="width:150px;text-align:center"><div style="width:132px;height:132px;margin:0 auto;border-radius:32px;background:#d9d9de"></div><div style="font-size:26px;margin-top:12px">${l}</div></div>`).join("")}</div>`) +
+  A(30, 1020, `<div style="width:831px;border-radius:24px;overflow:hidden;background:#fff">${[["Copy", "⧉"], ["Save to Files", "folder"], ["Print", "print"], ["Add to Reading List", "◎"]].map(([l, k]) =>
+    `<div style="height:110px;display:flex;align-items:center;justify-content:space-between;padding:0 34px;font-size:36px;border-bottom:1px solid #e5e5ea">${l}<span style="color:#111">${I[k] ? icon(k, 46, "#111") : `<span style="font-size:36px">${k}</span>`}</span></div>`).join("")}</div>`);
+const iosSave = () => `<div class="a" style="left:0;top:0;width:891px;height:2000px;background:rgba(0,0,0,.35)"></div>` +
+  A(0, 130, `<div style="width:891px;height:1870px;background:#fff;border-radius:40px 40px 0 0"></div>`) +
+  T(40, 182, "Cancel", `font-size:38px;color:${IOSB}`) + T(0, 180, "On My iPhone", "width:891px;text-align:center;font-weight:700;font-size:38px") + T(770, 182, "Save", `font-weight:700;font-size:38px;color:${IOSB}`) +
+  A(40, 270, `<div style="width:811px;height:80px;border-radius:20px;background:#eeeef0;display:flex;align-items:center;gap:16px;padding:0 22px;font-size:34px;color:#8e8e93">${icon("search", 38, "#8e8e93")}Search</div>`) +
+  [[400, "Downloads"], [700, "Documents"]].map(([x, l], i) => A(i === 0 ? 120 : 470, 420, `<div style="width:300px;text-align:center"><div style="width:220px;height:170px;margin:0 auto;border-radius:22px;background:${i === 0 ? "#8fc3ff" : "#cfe4ff"};position:relative"><div style="position:absolute;left:0;top:-18px;width:100px;height:40px;border-radius:14px 14px 0 0;background:${i === 0 ? "#8fc3ff" : "#cfe4ff"}"></div></div><div style="font-size:30px;margin-top:16px">${l}</div><div style="font-size:24px;color:#8e8e93">${i === 0 ? "3 items" : "12 items"}</div></div>`)).join("") +
+  `<div class="a" style="left:0;top:1640px;width:891px;height:360px;background:#f9f9fb;border-top:1px solid #e5e5ea"></div>` +
+  A(40, 1680, `<div style="display:flex;gap:26px;align-items:center"><div style="width:90px;height:112px;background:#fff;border:1px solid #d1d1d6;display:flex;align-items:center;justify-content:center;color:#e53935;font-weight:900;font-size:20px">PDF</div>
+    <div><div style="font-size:34px;font-weight:600">Orders &amp; Purchases | Costco</div><div style="font-size:28px;color:#8e8e93;margin-top:8px">Tags</div></div></div>`);
+const iosPicker = () => `<div class="a" style="left:0;top:0;width:891px;height:2000px;background:rgba(0,0,0,.35)"></div>` +
+  A(0, 130, `<div style="width:891px;height:1870px;background:#fff;border-radius:40px 40px 0 0"></div>`) +
+  T(40, 182, "Cancel", `font-size:38px;color:${IOSB}`) + T(0, 180, "Recents", "width:891px;text-align:center;font-weight:700;font-size:38px") +
+  A(40, 270, `<div style="width:811px;height:80px;border-radius:20px;background:#eeeef0;display:flex;align-items:center;gap:16px;padding:0 22px;font-size:34px;color:#8e8e93">${icon("search", 38, "#8e8e93")}Search</div>`) +
+  A(70, 420, `<div style="display:flex;gap:50px">${[0, 1, 2].map((i) => `<div style="width:220px;text-align:center"><div style="width:180px;height:230px;margin:0 auto;border:1px solid #d1d1d6;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.1);${i ? "opacity:.45" : ""};display:flex;align-items:center;justify-content:center;color:#e53935;font-weight:900;font-size:24px">${i ? "" : "PDF"}</div>
+    <div style="font-size:26px;margin-top:14px;${i ? "opacity:0" : ""}">Orders &amp; Purchases | Costco</div><div style="font-size:22px;color:#8e8e93;margin-top:4px;${i ? "opacity:0" : ""}">Today · 88 KB</div></div>`).join("")}</div>`) +
+  `<div class="a" style="left:0;top:1800px;width:891px;height:200px;background:#f9f9fb;border-top:1px solid #e5e5ea"></div>` +
+  [["Recents", 0], ["Shared", 1], ["Browse", 2]].map(([l, i]) => A(60 + i * 280, 1826, `<div style="width:220px;text-align:center;font-size:26px;color:${i === 0 ? IOSB : "#8e8e93"}">${icon(i === 0 ? "receipt" : i === 1 ? "person" : "folder", 48, i === 0 ? IOSB : "#8e8e93")}<div>${l}</div></div>`)).join("");
