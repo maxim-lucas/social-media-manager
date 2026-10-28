@@ -14,6 +14,8 @@
 .conf{position:absolute;display:flex;align-items:center;gap:16px;opacity:0}
 .conf i{width:62px;height:62px;border-radius:31px;background:var(--em);display:flex;align-items:center;justify-content:center;color:#fff;font-style:normal;font-weight:900;font-size:34px;box-shadow:0 6px 14px rgba(0,0,0,.3);border:4px solid #fff}
 .conf span{margin-left:8px;font-weight:900;font-size:32px;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+.deal{position:absolute;left:96px;width:784px;padding:18px 26px 20px;border-radius:22px;background:#dbeafe;color:#1d4ed8;box-shadow:0 10px 26px rgba(0,0,0,.3);opacity:0;border:3px solid #fff}
+.deal b{display:block;font-weight:900;font-size:40px}.deal span{display:block;font-weight:700;font-size:26px;margin-top:6px;line-height:1.25}
 .credit{position:absolute;padding:12px 26px;border-radius:999px;background:var(--em);color:#fff;font-weight:900;font-size:40px;box-shadow:0 8px 22px rgba(0,0,0,.35);opacity:0;border:4px solid #fff}
 </style></head>
 <body>
@@ -40,13 +42,13 @@
   <div class="cell" id="c3"><div class="photo"><div class="inner"></div><div class="x">✕</div></div><span class="lab" data-text>No savings: not kept</span></div>
 </div>
 
-<div class="credit" id="credit" data-text>+1 credit</div>
-<div class="conf" id="conf" data-text><i>✓</i><i>✓</i><i>✓</i><span>3 shoppers confirm</span></div>
+<div class="credit" id="credit" data-text>+ free credit</div>
+<div class="deal" id="deal" data-text><b>↘ Good deal · Instant savings</b><span>This item is on sale right now — the instant savings make it a good deal.</span></div>
 
-<div class="head" id="h0" data-text><h1>Scanning a Costco price tag?</h1><p>Here’s how to get it read.</p></div>
+<div class="head" id="h0" data-text><h1>Good deal, or not?</h1><p>Scan the Costco price tag to find out.</p></div>
 <div class="head" id="h1" data-text><h1>Frame the whole tag</h1><p>Item number · savings · end date · price</p></div>
 <div class="head" id="h2" data-text><h1>These won’t be kept</h1><p>Retake glare, blur or a cut-off tag. Only savings tags count.</p></div>
-<div class="head" id="h3" data-text><h1>Savings tags earn credit</h1><p>Once 3 shoppers confirm the same price · capped weekly</p></div>
+<div class="head" id="h3" data-text><h1>Earn free credits</h1><p>Savings tags can earn free credits. Conditions apply.</p></div>
 
 <div id="outro">
   <div class="brand" data-text><img src="../../08-costco-price-drops/scenes/mark.png"><span>PriceBack</span><i>TUTORIAL</i></div>
@@ -55,7 +57,7 @@
     <div><b>Instagram</b><span>@priceback.ca</span></div><div><b>Facebook</b><span>@priceback.ca</span></div>
     <div><b>TikTok</b><span>@priceback</span></div><div><b>YouTube</b><span>@priceback</span></div>
   </div>
-  <div class="next" data-text>Next: <em>Price Checker, scan a barcode</em></div>
+  <div class="next" data-text>Next: <em>claim a price drop</em></div>
 </div>
 <div id="fine" data-text>Real Costco shelf tag, seen Oct 27, 2026. PriceBack is an independent app, not affiliated with Costco.</div>
 <canvas id="grain" width="540" height="960"></canvas>
@@ -73,7 +75,7 @@ const tagHTML = (savings = true) => savings
      <div class="big" style="margin-top:22px">${TAG.regular}</div><div class="paper"></div>`;
 
 const TX = 160 + 60, TY = 690 + 90;          // tag position in world coords (world is offset -60,-90)
-const P = { h0: [0.15, 1.85], h1: [1.85, 5.5], h2: [5.5, 10.15], h3: [10.15, 13.2], outro: 13.2 };
+const P = { h0: [0.1, 2.45], h1: [2.45, 6.25], h2: [6.25, 10.0], h3: [10.0, 13.35], outro: 13.35 };
 let TAGH = 0;
 
 function layout(surfURL) {
@@ -124,20 +126,23 @@ window.frame = (t) => {
   $("tagWrap").style.opacity = lin(t, 0, 0.2);
 
   // FRAME THE WHOLE TAG
-  [["zNum", "pNum", 2.0], ["zSave", "pSave", 2.8], ["zPrice", "pPrice", 3.6]].forEach(([z, p, a]) => {
-    const enter = eo(lin(t, a, a + 0.35)), k = enter * (1 - lin(t, 5.1, 5.45));
+  [["zNum", "pNum", 2.6], ["zSave", "pSave", 3.1], ["zPrice", "pPrice", 3.6]].forEach(([z, p, a]) => {
+    const enter = eo(lin(t, a, a + 0.35)), k = enter * (1 - lin(t, 4.85, 5.1));
     $(z).style.opacity = k; $(z).style.transform = `scale(${0.97 + 0.03 * enter})`;
     if (z === "zSave") { $("zSave2").style.opacity = k; $("zSave2").style.transform = $(z).style.transform; }
     $(p).style.opacity = k; $(p).style.transform = `translateY(${(1 - enter) * 16}px)`;
   });
   const sx = (x) => x - 60 + dx, sy = (y) => y - 90 + dy;
   const wide = [110, 470, 970, 1500], tight = [sx(TX) - 30, sy(TY) - 40, sx(TX + 760) + 30, sy(TY + TAGH) + 36];
-  const k = eio(lin(t, 4.2, 4.6)), bx = wide.map((v, i) => v + (tight[i] - v) * k);
+  const k = eio(lin(t, 4.1, 4.45)), bx = wide.map((v, i) => v + (tight[i] - v) * k);
   KIT.brackets(bx[0], bx[1], bx[2], bx[3], 0.85 * lin(t, 0.5, 0.9) * (1 - lin(t, P.h2[0], P.h2[0] + 0.25)));
-  const sc = lin(t, 4.6, 5.15), sl = $("scanline");
-  Object.assign(sl.style, { left: bx[0] + 12 + "px", width: bx[2] - bx[0] - 24 + "px", top: bx[1] + 10 + sc * (bx[3] - bx[1] - 20) + "px", opacity: win(t, 4.6, 5.2, 0.08, 0.12) });
-  const ready = eo(lin(t, 5.1, 5.3)) * (1 - lin(t, P.h2[0] + 0.05, P.h2[0] + 0.3));
+  const sc = lin(t, 4.45, 4.95), sl = $("scanline");
+  Object.assign(sl.style, { left: bx[0] + 12 + "px", width: bx[2] - bx[0] - 24 + "px", top: bx[1] + 10 + sc * (bx[3] - bx[1] - 20) + "px", opacity: win(t, 4.45, 5.0, 0.08, 0.12) });
+  const ready = eo(lin(t, 4.95, 5.15)) * (1 - lin(t, 5.3, 5.5));
   Object.assign($("pReady").style, { opacity: ready, left: "390px", top: tight[3] + 26 + "px", transform: `scale(${0.9 + 0.1 * ready})` });
+  // the verdict the app shows after the scan (DealBadge: tier "good", signal "instant_savings" for this tag)
+  const dv = eo(lin(t, 5.35, 5.65)) * (1 - lin(t, P.h2[0], P.h2[0] + 0.2));
+  Object.assign($("deal").style, { opacity: dv, top: tight[3] + 30 + "px", transform: `translateY(${(1 - dv) * 30}px)` });
 
   // WON'T BE KEPT
   for (let i = 0; i < 4; i++) {
@@ -148,10 +153,7 @@ window.frame = (t) => {
 
   // EARN CREDIT
   const cr = eo(lin(t, P.h3[0] + 0.45, P.h3[0] + 0.75)) * (1 - lin(t, P.outro, P.outro + 0.2));
-  Object.assign($("credit").style, { opacity: cr, left: sx(TX + 760) - 300 + "px", top: sy(TY) - 46 + "px", transform: `scale(${0.7 + 0.3 * cr}) rotate(${4 * cr}deg)` });
-  const cf = eo(lin(t, P.h3[0] + 0.9, P.h3[0] + 1.2)) * (1 - lin(t, P.outro, P.outro + 0.2));
-  Object.assign($("conf").style, { opacity: cf, left: "150px", top: sy(TY + TAGH) + 70 + "px" });
-  $("conf").querySelectorAll("i").forEach((e, j) => (e.style.transform = `scale(${eo(lin(t, P.h3[0] + 0.9 + j * 0.18, P.h3[0] + 1.15 + j * 0.18))})`));
+  Object.assign($("credit").style, { opacity: cr, left: sx(TX + 760) - 330 + "px", top: sy(TY) - 92 + "px", transform: `scale(${0.7 + 0.3 * cr}) rotate(${4 * cr}deg)` });
 
   KIT.heads(t, [["h0", ...P.h0], ["h1", ...P.h1], ["h2", ...P.h2], ["h3", ...P.h3]]);
   KIT.outro(t, P.outro);

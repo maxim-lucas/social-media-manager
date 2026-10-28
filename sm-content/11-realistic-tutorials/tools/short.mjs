@@ -160,6 +160,7 @@ function gates(file, vo, textLog) {
 // ── main ──────────────────────────────────────────────────────────────────
 if (STILLS) { await frames(); process.exit(0); }
 const vo = await voice();
+if (vo.some((x) => !x.ok) && !process.argv.includes("--force")) { console.error("voice does not fit its sections: fix timings first (or --force)"); process.exit(2); }
 const fr = await frames();
 const audio = mix(vo);
 const outDir = path.join(dir, "out");

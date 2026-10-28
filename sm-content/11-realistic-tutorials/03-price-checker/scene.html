@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<!--
+  03 · Price Checker: scan a barcode before you buy — one scene, one product box.
+  App facts (priceback src/screens/BarcodeScanScreen.js, i18n barcode.*): Unlimited feature; never spends a credit;
+  shows the last known price in your area (or another province) and when it was seen; a warehouse can be picked;
+  manual entry only when the barcode can't be read. Formats: UPC, EAN, Code 128.
+  Real product and price: Gia Indian basmati rice, $29.99, seen at Costco 2026-10-27 (same source as video 02).
+  The barcode is drawn without digits: no verified UPC for that product is on file, so none is shown.
+-->
+<link rel="stylesheet" href="../tools/scene-kit.css">
+<script src="../tools/scene-kit.js"></script>
+<style>
+#boxWrap{position:absolute;filter:drop-shadow(0 22px 26px rgba(30,20,10,.38)) drop-shadow(0 2px 3px rgba(30,20,10,.4))}
+#box{position:absolute;left:0;top:0;width:820px;height:900px;border-radius:6px;background:#c9a47a}
+#box .tex{position:absolute;inset:0;border-radius:6px}
+#label{position:absolute;left:170px;top:300px;width:480px;height:300px;background:#fbfaf6;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,.18)}
+#bars{position:absolute;left:40px;top:40px;width:400px;height:220px;display:flex;align-items:stretch}
+#bars i{display:block;height:100%;background:#151515}
+#bars i.g{height:108%}
+#laser{position:absolute;height:5px;background:#ff3b30;box-shadow:0 0 18px 6px rgba(255,59,48,.55);border-radius:3px;opacity:0}
+#card{position:absolute;left:96px;width:784px;padding:30px 36px 32px;border-radius:30px;background:rgba(246,240,229,.98);box-shadow:0 18px 50px rgba(0,0,0,.42);opacity:0}
+#card .k{display:inline-flex;align-items:center;gap:10px;padding:6px 16px;border-radius:999px;background:var(--ink);color:#fff;font-weight:900;font-size:24px;letter-spacing:.5px}
+#card .nm{font-weight:900;font-size:40px;color:var(--ink);margin-top:18px;letter-spacing:-.5px}
+#card .lk{font-weight:700;font-size:28px;color:var(--emd);margin-top:20px}
+#card .pr{font-weight:900;font-size:110px;color:var(--ink);letter-spacing:-3px;line-height:1;margin-top:4px}
+#card .sn{font-weight:700;font-size:28px;color:#4b5563;margin-top:6px}
+#card .wh{margin-top:20px;padding-top:18px;border-top:2px solid rgba(13,61,40,.12);font-weight:700;font-size:27px;color:var(--ink)}
+.tip{position:absolute;left:96px;width:784px;display:flex;align-items:center;gap:18px;padding:18px 24px;border-radius:24px;background:rgba(246,240,229,.97);box-shadow:0 10px 28px rgba(0,0,0,.32);opacity:0}
+.tip b{flex:none;width:58px;height:58px;border-radius:29px;background:var(--em);color:#fff;font-size:30px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.tip div{font-weight:900;font-size:32px;color:var(--ink);line-height:1.15}.tip div span{display:block;font-weight:700;font-size:25px;color:var(--emd);margin-top:4px}
+</style></head>
+<body>
+<div id="cam">
+  <div id="world">
+    <canvas id="surface" width="1200" height="2100"></canvas>
+    <div id="boxWrap"><div id="box"><div class="tex"></div><div id="label"><div id="bars"></div></div></div></div>
+  </div>
+  <div id="light"></div>
+</div>
+<div id="vf"><div class="br" id="b0"></div><div class="br" id="b1"></div><div class="br" id="b2"></div><div class="br" id="b3"></div><div id="scanline"></div></div>
+<div id="laser"></div>
+<div id="pFound" class="pill" data-text><b>✓</b>Barcode read</div>
+
+<div id="card" data-text>
+  <span class="k">PRICE CHECKER</span>
+  <div class="nm">Gia Indian basmati rice</div>
+  <div class="lk">Last known price in your area</div>
+  <div class="pr">$29.99</div>
+  <div class="sn">Seen Oct 27, 2026</div>
+  <div class="wh">Pick a warehouse to see its prices</div>
+</div>
+
+<div class="tip" id="t0" data-text><b>⌨</b><div>Can’t scan it?<span>Type the barcode number instead</span></div></div>
+<div class="tip" id="t1" data-text><b>i</b><div>New item?<span>It may have no price on record yet</span></div></div>
+<div class="tip" id="t2" data-text><b>✓</b><div>Included with Unlimited<span>No credits used</span></div></div>
+
+<div class="head" id="h0" data-text><h1>Check a price before you buy</h1><p>Scan the product’s barcode.</p></div>
+<div class="head" id="h1" data-text><h1>Scan the barcode</h1><p>Scan → Price Checker · UPC, EAN or Code 128</p></div>
+<div class="head" id="h2" data-text><h1>See the last known price</h1><p>In your area, and when it was seen</p></div>
+<div class="head" id="h3" data-text><h1>Good to know</h1><p>Compare it with the shelf tag before you buy.</p></div>
+
+<div id="outro">
+  <div class="brand" data-text><img src="../../08-costco-price-drops/scenes/mark.png"><span>PriceBack</span><i>TUTORIAL</i></div>
+  <h2 data-text>Follow for more tips</h2>
+  <div class="handles" data-text>
+    <div><b>Instagram</b><span>@priceback.ca</span></div><div><b>Facebook</b><span>@priceback.ca</span></div>
+    <div><b>TikTok</b><span>@priceback</span></div><div><b>YouTube</b><span>@priceback</span></div>
+  </div>
+  <div class="next" data-text>Next: <em>claim a price drop</em></div>
+</div>
+<div id="fine" data-text>Example lookup: price seen at Costco on Oct 27, 2026. PriceBack is an independent app, not affiliated with Costco.</div>
+<canvas id="grain" width="540" height="960"></canvas>
+
+<script>
+const { $, lin, eo, eio, win, rng } = KIT;
+const BX = 130 + 60, BY = 520 + 90;            // box in world coords
+const P = { h0: [0.15, 1.8], h1: [1.8, 5.6], h2: [5.6, 10.2], h3: [10.2, 12.95], outro: 12.95 };
+
+function kraft() {
+  const c = document.createElement("canvas"); c.width = 410; c.height = 450;
+  const cx = c.getContext("2d"), im = cx.createImageData(c.width, c.height), r = rng(55);
+  for (let y = 0; y < c.height; y++) for (let x = 0; x < c.width; x++) {
+    const i = (y * c.width + x) * 4, fib = (r() - 0.5) * 16 + Math.sin(y * 0.9 + r() * 2) * 2;
+    im.data[i] = 201 + fib; im.data[i + 1] = 164 + fib * 0.9; im.data[i + 2] = 122 + fib * 0.7; im.data[i + 3] = 255;
+  }
+  cx.putImageData(im, 0, 0); return c.toDataURL();
+}
+function bars() {
+  // 95 modules with EAN guard bars; the data bars are noise, so nothing real is encoded.
+  const r = rng(808), mods = [];
+  const put = (s, g) => [...s].forEach((b) => mods.push({ on: b === "1", g }));
+  put("101", 1); for (let i = 0; i < 42; i++) mods.push({ on: r() < 0.5 }); put("01010", 1);
+  for (let i = 0; i < 42; i++) mods.push({ on: r() < 0.5 }); put("101", 1);
+  const w = 400 / 95;
+  $("bars").innerHTML = mods.map((m) => `<i class="${m.g ? "g" : ""}" style="width:${w}px;background:${m.on ? "#151515" : "transparent"}"></i>`).join("");
+}
+
+function layout() {
+  Object.assign($("boxWrap").style, { left: BX + "px", top: BY + "px" });
+  $("box").querySelector(".tex").style.background = `linear-gradient(90deg,rgba(0,0,0,.10),rgba(0,0,0,0) 12%,rgba(0,0,0,0) 85%,rgba(0,0,0,.14)),url(${kraft()}) 0 0/410px 450px`;
+  bars();
+  $("card").style.top = "470px";
+  [1000, 1124, 1248].forEach((y, i) => ($("t" + i).style.top = y + "px"));
+}
+
+window.frame = (t) => {
+  const { dx, dy } = KIT.camera(t);
+  const dim = lin(t, P.h2[0], P.h2[0] + 0.4), blurOut = 14 * eo(lin(t, P.outro, P.outro + 0.5));
+  $("cam").style.filter = `blur(${Math.max(6 * eo(dim), blurOut)}px) brightness(${1 - 0.28 * dim - 0.2 * lin(t, P.outro, P.outro + 0.5)})`;
+  const land = eo(lin(t, 0, 0.9));
+  $("boxWrap").style.transform = `translate(0,${(1 - land) * 150}px) rotate(${-1 - (1 - land) * 3}deg)`;
+  $("boxWrap").style.opacity = lin(t, 0, 0.2);
+
+  // SCAN THE BARCODE: brackets close in on the label, the laser sweeps, the code is read
+  const sx = (x) => x - 60 + dx, sy = (y) => y - 90 + dy;
+  const L = [sx(BX + 170 + 40) - 24, sy(BY + 300 + 40) - 30, sx(BX + 170 + 440) + 24, sy(BY + 300 + 260) + 34];
+  const wide = [110, 470, 970, 1500], k = eio(lin(t, 2.2, 2.7)), bx = wide.map((v, i) => v + (L[i] - v) * k);
+  KIT.brackets(bx[0], bx[1], bx[2], bx[3], 0.85 * lin(t, 0.5, 0.9) * (1 - lin(t, P.h2[0], P.h2[0] + 0.25)));
+  const ls = (Math.sin((t - 2.7) * 5.2) + 1) / 2, lop = win(t, 2.75, 4.9, 0.15, 0.15);
+  Object.assign($("laser").style, { left: L[0] + 10 + "px", width: L[2] - L[0] - 20 + "px", top: L[1] + 20 + ls * (L[3] - L[1] - 40) + "px", opacity: lop });
+  const f = eo(lin(t, 4.85, 5.1)) * (1 - lin(t, P.h2[0], P.h2[0] + 0.2));
+  Object.assign($("pFound").style, { opacity: f, left: "370px", top: L[3] + 24 + "px", transform: `scale(${0.9 + 0.1 * f})` });
+
+  // RESULT
+  const c = eo(lin(t, P.h2[0] + 0.15, P.h2[0] + 0.6)) * (1 - lin(t, P.h3[0] - 0.05, P.h3[0] + 0.25));
+  Object.assign($("card").style, { opacity: c, transform: `translateY(${(1 - c) * 80}px)` });
+  // GOOD TO KNOW: the three conditions on one screen, the price card moved up behind them
+  for (let i = 0; i < 3; i++) {
+    const a = P.h3[0] + 0.2 + i * 0.22, v = eo(lin(t, a, a + 0.35)) * (1 - lin(t, P.outro, P.outro + 0.2));
+    Object.assign($("t" + i).style, { opacity: v, transform: `translateY(${(1 - v) * 30}px)` });
+  }
+  const cardBack = eo(lin(t, P.h3[0] + 0.05, P.h3[0] + 0.35)) * (1 - lin(t, P.outro, P.outro + 0.2));
+  if (t > P.h3[0]) Object.assign($("card").style, { opacity: cardBack, transform: `translateY(0) scale(${1 - 0.0 * cardBack})`, top: "450px" });
+  else $("card").style.top = "470px";
+
+  KIT.heads(t, [["h0", ...P.h0], ["h1", ...P.h1], ["h2", ...P.h2], ["h3", ...P.h3]]);
+  KIT.outro(t, P.outro);
+  KIT.grain(Math.round(t * 30));
+};
+
+window.ready = (async () => {
+  await KIT.fontsReady(["500 40px R", "700 40px R", "900 40px R"]);
+  KIT.drawSurface($("surface"));
+  layout();
+  await Promise.all([...document.images].map((i) => (i.complete ? 1 : new Promise((r) => (i.onload = i.onerror = r)))));
+  window.frame(0);
+})();
+</script>
+</body></html>

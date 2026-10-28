@@ -15,22 +15,22 @@
   "vo": [
     {
       "at": 0.15,
-      "text": "Scanning a Costco price tag?"
+      "text": "Good deal, or not? Scan the price tag."
     },
     {
-      "at": 2.0,
-      "text": "Frame the whole tag, with the item number and every price."
+      "at": 2.55,
+      "text": "Frame the whole tag. PriceBack tells you if it's a good deal."
     },
     {
-      "at": 5.55,
-      "text": "Glare, blur, or a cut-off tag won't read. And only savings tags are kept."
+      "at": 6.3,
+      "text": "Retake glare or blur. Regular prices aren't kept."
     },
     {
-      "at": 10.2,
-      "text": "Savings tags earn credit once three shoppers confirm."
+      "at": 10.05,
+      "text": "Savings tags can earn free credits. Conditions apply."
     },
     {
-      "at": 13.35,
+      "at": 13.45,
       "text": "Follow for more tips."
     }
   ],
