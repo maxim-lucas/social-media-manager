@@ -1,0 +1,504 @@
+{
+  "_note": "Tier: regular price under $150, non-food (groceries are in the province carousels). The 15 biggest savings with one price everywhere (spread under $3), an end date at least Nov 1, and a clear product name.",
+  "source": "priceback.price_points (price_tag_scan, verified), pulled 2026-10-27 09:40 UTC",
+  "copy": {
+    "en": {
+      "kick": "UNDER $150",
+      "head": "{n} Costco drops\nunder $150",
+      "sub": "Some end {d}. Swipe to see them all.",
+      "until": "UNDER $150"
+    },
+    "fr": {
+      "kick": "MOINS DE 150 $",
+      "head": "{n} baisses Costco\nà moins de 150 $",
+      "sub": "Certaines finissent le {d}. Glissez.",
+      "until": "MOINS DE 150 $"
+    }
+  },
+  "items": {
+    "1891711": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "De'Longhi",
+          "Nespresso",
+          "espresso machine"
+        ],
+        "fr": [
+          "De'Longhi",
+          "machine Nespresso",
+          "espresso"
+        ]
+      },
+      "regular": 129.99,
+      "off": 30.0,
+      "price": 99.99,
+      "exp": "2026-11-08",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    },
+    "1671616": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "DeWalt",
+          "wet/dry vacuum"
+        ],
+        "fr": [
+          "DeWalt",
+          "aspirateur eau/poussière"
+        ]
+      },
+      "regular": 99.99,
+      "off": 20.0,
+      "price": 79.99,
+      "exp": "2026-11-01",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    },
+    "1770258": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "StriVectin",
+          "SD Plus",
+          "moisturizing cream"
+        ],
+        "fr": [
+          "StriVectin",
+          "crème hydratante SD Plus"
+        ]
+      },
+      "regular": 89.99,
+      "off": 20.0,
+      "price": 69.99,
+      "exp": "2026-11-22",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    },
+    "2063435": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Urbanista",
+          "Buenos Aires",
+          "ANC headphones"
+        ],
+        "fr": [
+          "Urbanista",
+          "écouteurs Buenos Aires",
+          "à réduction de bruit"
+        ]
+      },
+      "regular": 99.99,
+      "off": 20.0,
+      "price": 79.99,
+      "exp": "2026-11-22",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    },
+    "3214662": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Lasko",
+          "tower heater",
+          "32 in."
+        ],
+        "fr": [
+          "Lasko",
+          "radiateur tour",
+          "32 po"
+        ]
+      },
+      "regular": 69.99,
+      "off": 20.0,
+      "price": 49.99,
+      "exp": "2026-11-22",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    },
+    "1889820": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Lightica",
+          "Leo LED pendant light"
+        ],
+        "fr": [
+          "Lightica",
+          "suspension DEL Leo"
+        ]
+      },
+      "regular": 99.99,
+      "off": 20.0,
+      "price": 79.99,
+      "exp": "2026-11-05",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    },
+    "3872278": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Dreame",
+          "Glint high-speed",
+          "hair dryer"
+        ],
+        "fr": [
+          "Dreame",
+          "séchoir Glint",
+          "haute vitesse"
+        ]
+      },
+      "regular": 89.99,
+      "off": 20.0,
+      "price": 69.99,
+      "exp": "2026-11-01",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    },
+    "2200101": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Gluckstein Studio",
+          "Berkley sheet set",
+          "queen · 6 pieces"
+        ],
+        "fr": [
+          "Gluckstein Studio",
+          "ensemble de draps Berkley",
+          "grand lit · 6 pièces"
+        ]
+      },
+      "regular": 59.99,
+      "off": 15.0,
+      "price": 44.99,
+      "exp": "2026-11-22",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    },
+    "3011020": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Rowenta",
+          "handheld steamer"
+        ],
+        "fr": [
+          "Rowenta",
+          "défroisseur à main"
+        ]
+      },
+      "regular": 59.99,
+      "off": 15.0,
+      "price": 44.99,
+      "exp": "2026-11-22",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    },
+    "1517853": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Crest",
+          "3D Whitestrips",
+          "Vivid White · 20 + 20"
+        ],
+        "fr": [
+          "Crest",
+          "3D Whitestrips",
+          "Vivid White · 20 + 20"
+        ]
+      },
+      "regular": 59.99,
+      "off": 15.0,
+      "price": 44.99,
+      "exp": "2026-11-01",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "PE",
+        "QC"
+      ]
+    },
+    "2670056": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Philips Sonicare",
+          "DiamondClean brush heads"
+        ],
+        "fr": [
+          "Philips Sonicare",
+          "têtes DiamondClean"
+        ]
+      },
+      "regular": 59.99,
+      "off": 12.0,
+      "price": 47.99,
+      "exp": "2026-11-22",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    },
+    "1999873": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Tide",
+          "Professional powder",
+          "226 loads"
+        ],
+        "fr": [
+          "Tide",
+          "poudre Professional",
+          "226 brassées"
+        ]
+      },
+      "regular": 46.99,
+      "off": 11.0,
+      "price": 35.99,
+      "exp": "2026-11-08",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ]
+    },
+    "1938087": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Infinity",
+          "rechargeable flashlight",
+          "10,000 lumens"
+        ],
+        "fr": [
+          "Infinity",
+          "lampe de poche",
+          "rechargeable · 10 000 lm"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10.0,
+      "price": 39.99,
+      "exp": "2026-11-08",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    },
+    "2023352": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Chefman",
+          "stainless steel kettle"
+        ],
+        "fr": [
+          "Chefman",
+          "bouilloire",
+          "acier inoxydable"
+        ]
+      },
+      "regular": 39.99,
+      "off": 10.0,
+      "price": 29.99,
+      "exp": "2026-11-22",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    },
+    "2204752": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Cesar",
+          "wet dog food pâté variety",
+          "48 × 100 g"
+        ],
+        "fr": [
+          "Cesar",
+          "pâté pour chiens, variété",
+          "48 × 100 g"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10.0,
+      "price": 39.99,
+      "exp": "2026-11-08",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    }
+  },
+  "carousels": [
+    {
+      "id": "tier",
+      "category": {
+        "en": "Under $150",
+        "fr": "Moins de 150 $"
+      },
+      "items": [
+        "1891711",
+        "1671616",
+        "1770258",
+        "2063435",
+        "3214662",
+        "1889820",
+        "3872278",
+        "2200101",
+        "3011020",
+        "1517853",
+        "2670056",
+        "1999873",
+        "1938087",
+        "2023352",
+        "2204752"
+      ]
+    }
+  ],
+  "feeds": {
+    "en": [
+      "tier"
+    ],
+    "fr": [
+      "tier"
+    ]
+  },
+  "endSlide": true
+}

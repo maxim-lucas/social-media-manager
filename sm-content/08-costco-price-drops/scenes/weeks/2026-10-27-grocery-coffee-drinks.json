@@ -1,0 +1,225 @@
+{
+  "_note": "Grocery savings by type, with the province strip (every province with a Costco, the ones where the saving was seen filled in). Each item has one saving everywhere it was seen and an end date of Nov 1 or later. Flipp flyer check not done (blocked from this workspace).",
+  "source": "priceback.price_points (price_tag_scan, verified), pulled 2026-10-27 09:40 UTC",
+  "provinceStrip": true,
+  "endSlide": true,
+  "copy": {
+    "en": {
+      "kick": "GROCERY DROPS BY PROVINCE",
+      "head": "Coffee & drinks\non sale at Costco",
+      "sub": "Find your province on every slide.",
+      "until": "COFFEE & DRINKS"
+    },
+    "fr": {
+      "kick": "ÉPICERIE PAR PROVINCE",
+      "head": "Café et boissons\nen rabais chez Costco",
+      "sub": "Votre province sur chaque image.",
+      "until": "CAFÉ ET BOISSONS"
+    }
+  },
+  "items": {
+    "266556": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Van Houtte",
+          "Original House Blend coffee"
+        ],
+        "fr": [
+          "Van Houtte",
+          "café Mélange maison"
+        ]
+      },
+      "regular": 52.99,
+      "off": 13.0,
+      "price": 39.99,
+      "exp": "2026-11-22",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    },
+    "1477487": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "McCafé",
+          "Premium Roast or",
+          "Autumn Blend coffee"
+        ],
+        "fr": [
+          "McCafé",
+          "café Premium Roast",
+          "ou Autumn Blend"
+        ]
+      },
+      "regular": 54.99,
+      "off": 12.0,
+      "price": 42.99,
+      "exp": "2026-11-01",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    },
+    "297676": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Starbucks",
+          "Caffè Verona or",
+          "Holiday Blend coffee"
+        ],
+        "fr": [
+          "Starbucks",
+          "café Caffè Verona",
+          "ou Holiday Blend"
+        ]
+      },
+      "regular": 48.99,
+      "off": 10.0,
+      "price": 38.99,
+      "exp": "2026-11-22",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    },
+    "2450137": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Budweiser Zero",
+          "non-alcoholic beer",
+          "30 × 355 mL"
+        ],
+        "fr": [
+          "Budweiser Zero",
+          "bière sans alcool",
+          "30 × 355 mL"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6.0,
+      "price": 23.99,
+      "exp": "2026-11-08",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    },
+    "1079435": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Evian",
+          "natural spring water"
+        ],
+        "fr": [
+          "Evian",
+          "eau de source naturelle"
+        ]
+      },
+      "regular": 31.99,
+      "off": 7.0,
+      "price": 24.99,
+      "exp": "2026-11-08",
+      "seen": "2026-10-27",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ]
+    },
+    "2023372": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Cove",
+          "prebiotic soda",
+          "variety pack"
+        ],
+        "fr": [
+          "Cove",
+          "soda prébiotique",
+          "emballage variété"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6.0,
+      "price": 23.99,
+      "exp": "2026-11-01",
+      "seen": "2026-10-27",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ]
+    }
+  },
+  "carousels": [
+    {
+      "id": "grocery",
+      "category": {
+        "en": "Coffee & drinks",
+        "fr": "Café et boissons"
+      },
+      "items": [
+        "266556",
+        "1477487",
+        "297676",
+        "2450137",
+        "1079435",
+        "2023372"
+      ]
+    }
+  ],
+  "feeds": {
+    "en": [
+      "grocery"
+    ],
+    "fr": [
+      "grocery"
+    ]
+  },
+  "fineNote": {
+    "en": "Base shelf price; deposits and provincial fees are added at the register, the saving is the same.",
+    "fr": "Prix de base; la consigne et les frais provinciaux s'ajoutent à la caisse, l'économie est la même."
+  }
+}
