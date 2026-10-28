@@ -52,6 +52,20 @@
     const v = K.eo(K.lin(t, t0 + 0.15, t0 + 0.6)); $("outro").style.opacity = v; $("outro").style.transform = `scale(${0.96 + 0.04 * v})`;
   };
 
+  // Thermal-paper texture tile (data URL) and a zigzag cut edge for a receipt's ends.
+  K.paperTile = () => {
+    const c = document.createElement("canvas"); c.width = c.height = 256;
+    const cx = c.getContext("2d"), im = cx.createImageData(256, 256), r = K.rng(77);
+    for (let i = 0; i < 256 * 256; i++) { const v = 238 + (r() - 0.5) * 18; im.data[i * 4] = v + 4; im.data[i * 4 + 1] = v + 2; im.data[i * 4 + 2] = v - 2; im.data[i * 4 + 3] = 255; }
+    cx.putImageData(im, 0, 0); return c.toDataURL();
+  };
+  K.zig = (top, bottom, w, h, teeth = 46, d = 5) => {
+    const pts = [];
+    if (top) for (let i = 0; i <= teeth; i++) pts.push(`${(i / teeth) * w}px ${i % 2 ? d : 0}px`); else pts.push(`0px 0px`, `${w}px 0px`);
+    if (bottom) for (let i = teeth; i >= 0; i--) pts.push(`${(i / teeth) * w}px ${h - (i % 2 ? d : 0)}px`); else pts.push(`${w}px ${h}px`, `0px ${h}px`);
+    return `polygon(${pts.join(",")})`;
+  };
+
   K.fontsReady = async (fams) => {
     await Promise.all(fams.map((f) => document.fonts.load(f)));
     for (const f of fams) if (!document.fonts.check(f)) throw new Error("font did not load: " + f);

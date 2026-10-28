@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<!--
+  04 · Got a price-drop alert? How to claim it — one scene, the example receipt from video 01.
+  Real drop: Van Houtte Original House Blend coffee, item 266556, $52.99 → $39.99 (−$13.00), saving ends 2026-11-22,
+  seen 2026-10-27 in AB BC MB NB NL NS ON QC SK (08-costco-price-drops/scenes/weeks/2026-10-27-grocery-coffee-drinks.json).
+  The receipt is the fake one (dated 10/20/2026), so the claim deadline is the earlier of purchase + 30 days and the
+  saving's end: Nov 19, 2026.
+  App copy: push dropSummary.*, claim.youreOwed/was/now, claim.checklist*, claim.emailWarehouseBlockedBody (in person),
+  claim.receiptPreferred, notif.expiryWarnTitle / notif.expiryFinalTitle.
+-->
+<link rel="stylesheet" href="../tools/scene-kit.css">
+<script src="../tools/scene-kit.js"></script>
+<script src="../01-scan-receipt/receipt/receipt-example.js"></script>
+<style>
+#rcWrap{position:absolute;filter:drop-shadow(0 16px 18px rgba(35,20,8,.38)) drop-shadow(0 2px 2px rgba(35,20,8,.45))}
+#rc{position:absolute;left:0;top:0;background-repeat:no-repeat}
+#rc .paper{position:absolute;inset:0;mix-blend-mode:multiply;pointer-events:none}
+.notif{position:absolute;left:96px;width:784px;padding:22px 24px;border-radius:30px;background:rgba(250,250,250,.97);box-shadow:0 16px 40px rgba(0,0,0,.4);display:flex;gap:18px;opacity:0}
+.notif img{width:64px;height:64px;border-radius:14px;flex:none}
+.notif .tt{font-weight:900;font-size:30px;color:#111}.notif .bd{font-weight:500;font-size:26px;color:#333;line-height:1.3;margin-top:4px}
+.notif .ap{font-weight:700;font-size:21px;color:#6b7280;letter-spacing:.5px;margin-bottom:4px}
+.owed{position:absolute;left:96px;width:784px;padding:24px 32px 26px;border-radius:28px;background:rgba(246,240,229,.98);box-shadow:0 14px 40px rgba(0,0,0,.4);opacity:0}
+.owed .nm{font-weight:900;font-size:34px;color:var(--ink)}
+.owed .wn{display:flex;gap:26px;margin-top:10px;font-weight:700;font-size:30px;color:#4b5563}.owed .wn s{color:#9ca3af}.owed .wn b{color:var(--ink)}
+.owed .yo{margin-top:14px;font-weight:700;font-size:28px;color:var(--emd)}.owed .yo b{display:block;font-weight:900;font-size:88px;color:var(--ink);letter-spacing:-2px;line-height:1}
+.list{position:absolute;left:96px;width:784px;padding:26px 30px;border-radius:28px;background:rgba(246,240,229,.98);box-shadow:0 14px 40px rgba(0,0,0,.4);opacity:0}
+.li{display:flex;align-items:center;gap:18px;padding:12px 0;opacity:0}
+.li b{flex:none;width:52px;height:52px;border-radius:26px;background:var(--em);color:#fff;font-size:28px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.li div{font-weight:900;font-size:31px;color:var(--ink);line-height:1.2}
+.rem{position:absolute;left:96px;width:784px;padding:18px 24px;border-radius:24px;background:rgba(250,250,250,.97);box-shadow:0 12px 30px rgba(0,0,0,.35);display:flex;gap:16px;align-items:center;opacity:0}
+.rem img{width:52px;height:52px;border-radius:12px;flex:none}.rem div{font-weight:900;font-size:29px;color:#111;line-height:1.2}.rem span{display:block;font-weight:500;font-size:23px;color:#4b5563;margin-top:2px}
+.by{position:absolute;left:96px;padding:12px 26px;border-radius:999px;background:var(--ink);color:#fff;font-weight:900;font-size:32px;opacity:0;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+</style></head>
+<body>
+<div id="cam">
+  <div id="world">
+    <canvas id="surface" width="1200" height="2100"></canvas>
+    <div id="rcWrap"><div id="rc"><div class="paper"></div><div id="zLine" class="zone"></div></div></div>
+  </div>
+  <div id="light"></div>
+</div>
+
+<div class="notif" id="notif" data-text><img src="../../08-costco-price-drops/scenes/mark.png"><div><div class="ap">PRICEBACK · now</div><div class="tt">Your daily price-drop summary</div><div class="bd">1 of your watched items dropped in price today. Open PriceBack to claim your refund.</div></div></div>
+
+<div class="owed" id="owed" data-text>
+  <div class="nm">Van Houtte House Blend coffee</div>
+  <div class="wn"><span>Was <s>$52.99</s></span><span>Now <b>$39.99</b></span></div>
+  <div class="yo">You’re owed<b>$13.00</b></div>
+</div>
+
+<div class="list" id="list">
+  <div class="li" data-text><b>✓</b><div>Go to the warehouse’s customer service desk</div></div>
+  <div class="li" data-text><b>✓</b><div>Show your receipt in the PriceBack app</div></div>
+  <div class="li" data-text><b>✓</b><div>Ask for the $13.00 back on your original payment</div></div>
+</div>
+
+<div class="rem" id="r0" data-text><img src="../../08-costco-price-drops/scenes/mark.png"><div>$13.00 to claim before it expires<span>We remind you before the window closes…</span></div></div>
+<div class="rem" id="r1" data-text><img src="../../08-costco-price-drops/scenes/mark.png"><div>Last day to claim $13.00 at Costco<span>…and again on the last day.</span></div></div>
+<div class="by" id="by" data-text>Claim by Nov 19, 2026</div>
+
+<div class="head" id="h0" data-text><h1>Got a price-drop alert?</h1><p>Here’s how to claim it.</p></div>
+<div class="head" id="h1" data-text><h1>See what you’re owed</h1><p>The item, the new price, the difference.</p></div>
+<div class="head" id="h2" data-text><h1>Claim it in person</h1><p>Costco warehouse adjustments are requested at the desk.</p></div>
+<div class="head" id="h3" data-text><h1>Don’t miss the deadline</h1><p>Costco decides each claim.</p></div>
+
+<div id="outro">
+  <div class="brand" data-text><img src="../../08-costco-price-drops/scenes/mark.png"><span>PriceBack</span><i>TUTORIAL</i></div>
+  <h2 data-text>Follow for more tips</h2>
+  <div class="handles" data-text>
+    <div><b>Instagram</b><span>@priceback.ca</span></div><div><b>Facebook</b><span>@priceback.ca</span></div>
+    <div><b>TikTok</b><span>@priceback</span></div><div><b>YouTube</b><span>@priceback</span></div>
+  </div>
+  <div class="next" data-text>Next: <em>scan a receipt the right way</em></div>
+</div>
+<div id="fine" data-text>Example receipt; drop seen at Costco Oct 27, 2026. Adjustment terms are set by the retailer. PriceBack is an independent app, not affiliated with Costco.</div>
+<canvas id="grain" width="540" height="960"></canvas>
+
+<script>
+const { $, lin, eo, eio, win } = KIT;
+const R = window.RECEIPT, Z = R.zones, IMG = "../01-scan-receipt/receipt/receipt-example.png";
+const S = 0.43, RW = R.width * S, RH = R.height * S, RX = (1080 - RW) / 2 + 60, RY = 425 + 90;
+const ROW = (Z.itemsEnd - Z.itemsTop) / 20, LINE = 2;                 // coffee is the third item line
+const LY0 = (Z.itemsTop + ROW * LINE) * S, LY1 = (Z.itemsTop + ROW * (LINE + 1)) * S;
+const P = { h0: [0.1, 2.6], h1: [2.6, 6.3], h2: [6.3, 10.3], h3: [10.3, 13.25], outro: 13.25 };
+
+function layout() {
+  Object.assign($("rcWrap").style, { left: RX + "px", top: RY + "px" });
+  Object.assign($("rc").style, { width: RW + "px", height: RH + "px", backgroundImage: `url(${IMG})`, backgroundSize: `${RW}px ${RH}px`, clipPath: KIT.zig(true, true, RW, RH) });
+  const p = $("rc").querySelector(".paper");
+  p.style.background = `linear-gradient(90deg,rgba(0,0,0,.07),rgba(0,0,0,0) 9%,rgba(0,0,0,0) 90%,rgba(0,0,0,.09)),url(${KIT.paperTile()})`; p.style.backgroundSize = "auto, 256px 256px";
+  Object.assign($("zLine").style, { left: "-8px", width: RW + 16 + "px", top: LY0 - 4 + "px", height: LY1 - LY0 + 8 + "px", borderRadius: "6px", borderWidth: "3px" });
+  $("notif").style.top = "440px"; $("owed").style.top = "1150px"; $("list").style.top = "470px";
+  $("r0").style.top = "470px"; $("r1").style.top = "610px"; $("by").style.top = "770px";
+}
+
+window.frame = (t) => {
+  // camera: handheld drift, then a push-in on the coffee line while we read what's owed
+  const { dx, dy } = KIT.camera(t);
+  const zin = eio(lin(t, P.h1[0], P.h1[0] + 0.8)) * (1 - eio(lin(t, P.h2[0] - 0.1, P.h2[0] + 0.5)));
+  const fx = RX + RW / 2, fy = RY + (LY0 + LY1) / 2;          // focus point in world coords
+  const z = 1 + 0.62 * zin, tx = (600 - fx) * zin * 0.9, ty = (720 - fy) * zin * 1.0;
+  $("world").style.transformOrigin = `${fx}px ${fy}px`;
+  $("world").style.transform = `translate(${dx + tx}px,${dy + ty}px) scale(${(1 + 0.012 * t) * z})`;
+  const dim = eo(lin(t, P.h2[0], P.h2[0] + 0.4)), blurOut = 14 * eo(lin(t, P.outro, P.outro + 0.5));
+  $("cam").style.filter = `blur(${Math.max(7 * dim, blurOut)}px) brightness(${1 - 0.28 * dim - 0.15 * lin(t, P.outro, P.outro + 0.5)})`;
+  const land = eo(lin(t, 0, 0.9));
+  $("rcWrap").style.transform = `translate(0,${(1 - land) * 140}px) rotate(${(1 - land) * -4}deg)`; $("rcWrap").style.opacity = lin(t, 0, 0.2);
+
+  // the alert drops in
+  const n = eo(lin(t, 0.5, 0.85)) * (1 - lin(t, P.h1[0] - 0.1, P.h1[0] + 0.15));
+  Object.assign($("notif").style, { opacity: n, transform: `translateY(${(1 - n) * -60}px)` });
+
+  // what you're owed: the line lights up, the card shows was / now / difference
+  const zl = eo(lin(t, P.h1[0] + 0.5, P.h1[0] + 0.8)) * (1 - lin(t, P.h2[0] - 0.1, P.h2[0] + 0.1));
+  $("zLine").style.opacity = zl;
+  const ow = eo(lin(t, P.h1[0] + 0.9, P.h1[0] + 1.25)) * (1 - lin(t, P.h2[0] - 0.1, P.h2[0] + 0.15));
+  Object.assign($("owed").style, { opacity: ow, transform: `translateY(${(1 - ow) * 50}px)` });
+
+  // in person: the checklist, one line at a time
+  const L = eo(lin(t, P.h2[0] + 0.2, P.h2[0] + 0.5)) * (1 - lin(t, P.h3[0] - 0.05, P.h3[0] + 0.2));
+  Object.assign($("list").style, { opacity: L, transform: `translateY(${(1 - L) * 40}px)` });
+  $("list").querySelectorAll(".li").forEach((e, i) => {
+    const v = eo(lin(t, P.h2[0] + 0.5 + i * 0.5, P.h2[0] + 0.8 + i * 0.5)); e.style.opacity = v; e.style.transform = `translateY(${(1 - v) * 14}px)`;
+  });
+
+  // the deadline: two reminders, the date
+  [["r0", 0.25], ["r1", 0.75]].forEach(([id, d]) => {
+    const v = eo(lin(t, P.h3[0] + d, P.h3[0] + d + 0.35)) * (1 - lin(t, P.outro, P.outro + 0.2));
+    Object.assign($(id).style, { opacity: v, transform: `translateY(${(1 - v) * -40}px)` });
+  });
+  const b = eo(lin(t, P.h3[0] + 1.3, P.h3[0] + 1.6)) * (1 - lin(t, P.outro, P.outro + 0.2));
+  Object.assign($("by").style, { opacity: b, transform: `scale(${0.85 + 0.15 * b})` });
+
+  KIT.heads(t, [["h0", ...P.h0], ["h1", ...P.h1], ["h2", ...P.h2], ["h3", ...P.h3]]);
+  KIT.outro(t, P.outro);
+  KIT.grain(Math.round(t * 30));
+};
+
+window.ready = (async () => {
+  await KIT.fontsReady(["500 40px R", "700 40px R", "900 40px R"]);
+  await new Promise((res, rej) => { const i = new Image(); i.onload = res; i.onerror = () => rej(new Error("receipt image missing")); i.src = IMG; });
+  KIT.drawSurface($("surface"));
+  layout();
+  await Promise.all([...document.images].map((i) => (i.complete ? 1 : new Promise((r) => (i.onload = i.onerror = r)))));
+  window.frame(0);
+})();
+</script>
+</body></html>
