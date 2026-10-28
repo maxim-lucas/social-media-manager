@@ -1,0 +1,6 @@
+{
+  "width": 1200,
+  "height": 2386,
+  "keepTo": 1555,
+  "note": "Everything above keepTo is what the scan should capture (header to the date line). Below it: membership, QR code, ad: left out."
+}

@@ -1,0 +1,9 @@
+# Rendered output and generated media stay out of the repo (same rule as the other packs).
+tools/node_modules/
+tools/package-lock.json
+*/build/
+*/previz/
+*/out/
+*/audio/
+*/footage/
+*/screens/
