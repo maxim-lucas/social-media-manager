@@ -43,7 +43,7 @@ voice, the captions and the outro are redone.
 
 ## The series
 
-**Format (Maxim, 2026-10-28):** every video is **15 s or less**, straight to the point, fully rendered with no
+**Format (Maxim, 2026-10-28):** every video is **15 s or less** (the PDF how-to: 30 s or less), straight to the point, fully rendered with no
 outside input: **one scene, one visual** (the example receipt, the real tag), edited for each rule, with the rules
 **grouped by type on one screen** (keep / leave out / declined …). Neutral matte surface, no patterned backgrounds.
 Built with `tools/short.mjs` (scene → frames → voice → mix → 8 gates, ≤15 s enforced) and `tools/scene-kit.*`.
@@ -55,7 +55,7 @@ Voice: Kokoro-82M v1.0 "af_heart", local and free (`tools/voice.mjs`).
 | 02 | Good deal, or not? Scan the price tag | **Rendered, 14.9 s, gates pass** | `02-price-tag/out/` |
 | 03 | Price Checker (barcode) | **On hold** (Maxim, 2026-10-28) — scene built | `03-price-checker/` |
 | 04 | Got a price-drop alert? How to claim it | **Rendered, 14.9 s, gates pass** | `04-claim-drop/out/` |
-| 05 | Get your Costco receipt as a PDF (app or costco.ca) | **Waiting for Maxim's screenshots** — do not start before | — |
+| 05 | No paper receipt? Get it from Costco as a PDF (≤30 s by Maxim) | **Rendered, 26.6 s, gates pass** — from Maxim's screenshots: iPhone = Costco app, Android = costco.ca in the browser (the Android app blocks PDF export) | `05-receipt-pdf/out/` |
 
 Rules learned along the way: the "good deal or not" verdict belongs to the price-tag scanner (the app's DealBadge),
 not the barcode Price Checker. Tag credits are worded "Savings tags can earn free credits. Conditions apply." —

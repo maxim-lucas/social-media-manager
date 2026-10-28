@@ -1,0 +1,53 @@
+{
+  "id": "tutorial-05-receipt-pdf",
+  "title": "No paper receipt? Get it from Costco as a PDF",
+  "lang": "en",
+  "w": 1080,
+  "h": 1920,
+  "fps": 30,
+  "dur": 26.6,
+  "maxDur": 30,
+  "scene": "scene.html",
+  "voice": {
+    "name": "af_heart",
+    "speed": 1.08
+  },
+  "vo": [
+    {
+      "at": 0.05,
+      "text": "Lost your Costco receipt? Save it as a PDF."
+    },
+    {
+      "at": 3.1,
+      "text": "On iPhone, use the Costco app. On Android, use costco.ca in your browser."
+    },
+    {
+      "at": 7.75,
+      "text": "Tap Account, then Orders and Purchases."
+    },
+    {
+      "at": 10.3,
+      "text": "Open the warehouse tab, and view the receipt."
+    },
+    {
+      "at": 13.5,
+      "text": "Tap Print Receipt, then save it as a PDF."
+    },
+    {
+      "at": 18.4,
+      "text": "In PriceBack, tap Upload file, and pick the PDF."
+    },
+    {
+      "at": 24.4,
+      "text": "Follow for more tips."
+    }
+  ],
+  "music": {
+    "gainDb": -17,
+    "duckDb": 9,
+    "hold": 2.2,
+    "bpm": 92
+  },
+  "targetLufs": -14,
+  "truePeak": -1.5
+}
