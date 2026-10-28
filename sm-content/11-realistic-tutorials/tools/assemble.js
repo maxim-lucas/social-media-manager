@@ -168,4 +168,4 @@ fs.writeFileSync(path.join(B, "timeline.json"), JSON.stringify({
   vo: voPlaced.map((v) => ({ id: v.id, at: +v.at.toFixed(3), len: +v.len.toFixed(3), shotEnd: +v.shotEnd.toFixed(3) })),
   missing, final: path.relative(dir, final),
 }, null, 2));
-console.log(`assembled ${path.relative(dir, final)} · ${total}s · placeholders: ${missing.join(", ") || "none"} · VO lines: ${voPlaced.length}/${shots.filter((s) => s.vo).length}`);
+console.log(`assembled ${path.relative(dir, final)} · ${total}s · placeholders: ${missing.join(", ") || "none"} · VO lines: ${voPlaced.length}/${shots.filter((s) => s.vo).length + (spec.endcard.vo ? 1 : 0)}`);
