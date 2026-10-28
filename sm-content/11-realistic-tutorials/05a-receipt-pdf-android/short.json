@@ -1,0 +1,49 @@
+{
+  "id": "tutorial-05a-receipt-pdf-android",
+  "title": "Android: get your Costco receipt as a PDF",
+  "lang": "en",
+  "w": 1080,
+  "h": 1920,
+  "fps": 30,
+  "dur": 25.8,
+  "maxDur": 30,
+  "scene": "scene.html",
+  "voice": {
+    "name": "af_heart",
+    "speed": 1.08
+  },
+  "vo": [
+    {
+      "at": 0.05,
+      "text": "On Android? Get your Costco receipt as a PDF."
+    },
+    {
+      "at": 3.15,
+      "text": "In your browser, open costco.ca. Tap Account, then Orders and Purchases."
+    },
+    {
+      "at": 7.85,
+      "text": "Open the warehouse tab, and view the receipt."
+    },
+    {
+      "at": 10.7,
+      "text": "Tap Print Receipt, choose Save as PDF, then Save."
+    },
+    {
+      "at": 15.8,
+      "text": "In PriceBack, tap Upload file, and pick the PDF from Downloads."
+    },
+    {
+      "at": 22.7,
+      "text": "On an iPhone? Watch our iPhone version."
+    }
+  ],
+  "music": {
+    "gainDb": -17,
+    "duckDb": 9,
+    "hold": 2.4,
+    "bpm": 92
+  },
+  "targetLufs": -14,
+  "truePeak": -1.5
+}
