@@ -55,11 +55,11 @@ voice, the captions and the outro are redone.
 ### 01 · How to scan your Costco receipt (built: see `01-scan-receipt/SCRIPT.md`)
 
 Hook (standing on a chair to fit the whole receipt) → focus on the header, every item and the totals → QR codes,
-the membership barcode and the ads at the bottom stay out → flat, good light, phone straight above → real
+membership offers and ads at the bottom stay out → flat, good light, phone straight above → real
 scan → **what gets declined**: blurry or dark photos, and a photo of the total alone ("there are no items to
 watch") → real decline screen → the payoff: PriceBack watches every item and alerts on a verified drop → outro.
-Every receipt frame runs from the header down to the date line under the item count, so both are always
-captured; neither is ever named.
+Every receipt frame runs from the header (with the member line, which sits at the top on a real Costco receipt)
+down to the date line under the item count, so both are always captured; neither is ever named.
 
 ### 02 · How to scan a shelf price tag
 
@@ -103,7 +103,7 @@ build live in both stores.
 ### 06 · Upload a receipt from your photos or a file
 
 Photo library, PDF or email file (`scan.gallery`, `scan.uploadFile`), with the same rule as 01: header, every
-item, totals; QR codes, membership barcode and ads left out of the image; total-only images are declined.
+item, totals; QR codes, membership offers and ads left out of the image; total-only images are declined.
 
 ## Credits (Higgsfield, priced 2026-10-28 with `get_cost`)
 
@@ -129,6 +129,6 @@ The account holds **1.1 credits** today, so no AI footage has been generated yet
 3. **Totals-only photos:** today they're refused as *unreadable* (no credit) or stopped at review with *No items
    detected*, depending on how they read. If you want one clear message for this case, that's an app change; the
    video's S6c recording shows whichever message the build gives.
-4. **In-app wording:** the unreadable message says "retake the photo with the **whole receipt** flat and well
-   lit", and the scan screen says "**Snap** your whole receipt". Both contradict this video (header to totals,
-   leave the bottom out; scan, not snap). Worth aligning the strings before the video ships.
+4. **In-app wording:** aligned in priceback PR #501 (EN + FR, app and push copy): scan, not snap; top of the
+   receipt with every item and the totals; QR codes, membership offers and ads at the bottom not needed. The
+   wording never says "stop at the total", because Costco prints the purchase date below the totals.

@@ -34,9 +34,8 @@ const total = Math.round((sub + tax) * 100) / 100;
 const m = (n) => n.toFixed(2);
 
 
-// A barcode and a QR-shaped block that encode nothing: deterministic noise with the right look.
+// A QR-shaped block that encodes nothing: deterministic noise with the right look.
 let seed = 42; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
-const BARS = Array.from({ length: 70 }, (_, i) => `<i style="width:${1 + Math.floor(rnd() * 3)}px;margin-right:${1 + Math.floor(rnd() * 3)}px"></i>`).join("");
 const QR = (() => {
   const n = 25, cells = [];
   const finder = (r, c) => [[0, 0], [0, n - 7], [n - 7, 0]].some(([fr, fc]) => {
@@ -61,13 +60,13 @@ body{background:#fff;font-family:M,monospace;color:#1b1b1b}
 .ex{margin:.6em 0;border:1px dashed #1b1b1b;padding:.25em;text-align:center;font-weight:700}
 .l{display:flex;justify-content:space-between;gap:1em}.l span:first-child{white-space:nowrap;overflow:hidden}
 .hr{border-top:1px dashed #1b1b1b;margin:.55em 0}.gap{height:.8em}
-.bars{display:flex;justify-content:center;height:3.2em;margin:.4em 0}.bars i{display:block;height:100%;background:#1b1b1b}
 .qrrow{display:flex;gap:1em;align-items:center;justify-content:center}.qr{display:grid;grid-template-columns:repeat(25,1fr);width:7.5em;height:7.5em}.qr i{background:#1b1b1b}.qr b{background:transparent}.qrt{font-size:.85em}
 .ad{border:2px solid #1b1b1b;padding:.5em;text-align:center;font-weight:700;font-size:1.15em}.ad span{font-weight:400;font-size:.8em}
 </style></head><body><div class="rc">
 <div class="c b big">COSTCO</div><div class="c b">WHOLESALE</div>
 <div class="c">WAREHOUSE #000 · EXAMPLE CITY</div><div class="c">000 EXAMPLE ROAD</div>
-<div class="ex">EXAMPLE · NOT A REAL RECEIPT</div><div class="hr"></div>
+<div class="ex">EXAMPLE · NOT A REAL RECEIPT</div>
+<div class="c">MEMBER 000000000000</div><div class="hr"></div>
 ${ITEMS.map(([n, d, p]) => row(`${n.padEnd(8, "\u00a0")}${d}`, m(p))).join("")}
 <div class="hr"></div>
 ${row("SUBTOTAL", m(sub), "b")}${row("TAX", m(tax))}${row("**** TOTAL", m(total), "b")}
@@ -77,10 +76,10 @@ ${row("VISA ************0000", m(total))}${row("APPROVED · AUTH 000000", "")}${
 <div class="c" id="dateline">10/20/2026 14:32 000 0 0000 000</div>
 <div id="cut"></div>
 <div class="gap"></div><div class="hr"></div>
-<div class="c">OP# 000 &nbsp; MEMBER 000000000000</div>
-<div class="bars">${BARS}</div>
+<div class="c">OP# 000</div>
 <div class="c b">THANK YOU! PLEASE COME AGAIN</div><div class="gap"></div>
 <div class="qrrow"><div class="qr">${QR}</div><div class="qrt">TELL US HOW WE DID.<br>SCAN TO TAKE A SHORT SURVEY.</div></div>
+<div class="gap"></div><div class="ad">MEMBERSHIP OFFER<br><span>ASK AT THE MEMBERSHIP COUNTER</span></div>
 <div class="gap"></div><div class="ad">SAVE MORE THIS WEEK<br><span>SEE IN-WAREHOUSE SAVINGS</span></div>
 <div class="gap"></div><div class="c">EXAMPLE · NOT A REAL RECEIPT</div>
 </div></body></html>`;
@@ -97,7 +96,7 @@ ${row("VISA ************0000", m(total))}${row("APPROVED · AUTH 000000", "")}${
   await (await p.$(".rc")).screenshot({ path: path.join(out, "receipt-example.png") });
   const cutY = await p.evaluate(() => { const rc = document.querySelector(".rc").getBoundingClientRect(); return Math.round(document.getElementById("cut").getBoundingClientRect().top - rc.top); });
   const fullH = await p.$eval(".rc", (e) => Math.round(e.getBoundingClientRect().height));
-  fs.writeFileSync(path.join(out, "receipt-example.json"), JSON.stringify({ width: 1200, height: fullH, keepTo: cutY, note: "Everything above keepTo is what the scan should capture (header to the date line). Below it: membership, QR code, ad: left out." }, null, 2));
+  fs.writeFileSync(path.join(out, "receipt-example.json"), JSON.stringify({ width: 1200, height: fullH, keepTo: cutY, note: "Everything above keepTo is what the scan should capture (top of the receipt down to the register date line). Below it: QR code, membership offer, ad: left out. The member line is part of the header, at the top, as on a real Costco receipt." }, null, 2));
   await p.setContent(html("80mm"));
   await p.evaluate(() => Promise.all(["400", "700"].map((w) => document.fonts.load(w + " 30px M"))));
   const hMm = Math.ceil((await p.$eval(".rc", (e) => e.getBoundingClientRect().height)) / 3.7795) + 2;

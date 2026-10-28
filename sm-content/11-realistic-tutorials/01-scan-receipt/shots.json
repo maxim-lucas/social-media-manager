@@ -48,7 +48,7 @@
       "type": "footage",
       "beat": "The three parts",
       "keyframe": "Top-down close shot of the supplied example receipt lying flat on a light oak table. A woman's hand with a simple ring points at the very top of the receipt, the store header block.",
-      "motion": "The index finger slides slowly down the receipt: pauses at the header, glides down the long column of item lines, pauses at the totals, and stops just under the date line, above the barcode. Locked-off overhead camera, soft daylight.",
+      "motion": "The index finger slides slowly down the receipt: pauses at the header, glides down the long column of item lines, pauses at the totals, and stops just under the date line, above the QR code. Locked-off overhead camera, soft daylight.",
       "model": "kling3_0",
       "genDur": 6,
       "trimIn": 0,
@@ -75,18 +75,18 @@
       "id": "S3",
       "dur": 5.5,
       "type": "footage",
-      "beat": "Leave out the bottom: membership, QR code, ads",
-      "keyframe": "Close-up of two hands holding the bottom of the supplied example receipt over a light oak table: the membership barcode, the square QR code and the boxed ad at the very bottom are visible.",
-      "motion": "The hands fold the bottom section underneath, creasing just below the date line, so the membership barcode, the QR code and the ad disappear behind the receipt. Slow, deliberate, natural hand motion. Locked-off camera.",
+      "beat": "Leave out the bottom: QR codes, membership offers, ads",
+      "keyframe": "Close-up of two hands holding the bottom of the supplied example receipt over a light oak table: the square QR code, the boxed membership offer and the boxed ad at the very bottom are visible.",
+      "motion": "The hands fold the bottom section underneath, creasing just below the date line, so the QR code, the membership offer and the ad disappear behind the receipt. Slow, deliberate, natural hand motion. Locked-off camera.",
       "model": "kling3_0",
       "genDur": 6,
       "trimIn": 0.2,
       "vo": {
         "at": 0.2,
-        "text": "QR codes, the membership barcode and the ads at the bottom can stay out of the shot."
+        "text": "QR codes, membership offers and ads at the bottom can stay out of the shot."
       },
       "caption": {
-        "text": "Leave out: QR codes · membership · ads",
+        "text": "Leave out: QR codes · offers · ads",
         "style": "pill",
         "at": 0.5,
         "until": 5.4
@@ -125,7 +125,7 @@
       "dur": 4,
       "type": "screen",
       "beat": "Real app: scan",
-      "screen": "Screen recording from a real phone, scanning a PRINTOUT of receipt/receipt-example.pdf (never a real receipt): Scan receipt tab → Scan a receipt → the document scanner frames the receipt from the header down to the date line under TOTAL NUMBER OF ITEMS SOLD, with the fold hiding the membership barcode, QR code and ad → capture. 6–8 s raw, portrait, Do Not Disturb on.",
+      "screen": "Screen recording from a real phone, scanning a PRINTOUT of receipt/receipt-example.pdf (never a real receipt): Scan receipt tab → Scan a receipt → the document scanner frames the receipt from the header down to the date line under TOTAL NUMBER OF ITEMS SOLD, with the fold hiding the QR code, membership offer and ad → capture. 6–8 s raw, portrait, Do Not Disturb on.",
       "src": "screens/S5-scan.mp4",
       "trimIn": 0,
       "vo": {
@@ -259,7 +259,7 @@
     "pdf": "receipt/receipt-example.pdf",
     "rule": "Fake by construction: warehouse #000, member 000000000000, card 0000, auth 000000, EXAMPLE line in the header. No real user data may appear in any shot or recording."
   },
-  "framingRule": "Every receipt shot and the screen recording frame the receipt from the header down to the date line under TOTAL NUMBER OF ITEMS SOLD (receipt/receipt-example.json keepTo). The item count and the date are always inside the frame but are never named in VO or captions. Membership barcode, QR code and ads are always outside it.",
+  "framingRule": "Every receipt shot and the screen recording frame the receipt from the top (header and member line) down to the date line under TOTAL NUMBER OF ITEMS SOLD (receipt/receipt-example.json keepTo). The item count and the date are always inside the frame but are never named in VO or captions. QR codes, membership offers and ads at the bottom are always outside it. On a real Costco receipt the member line is the last header line, at the top (priceback src/services/receiptHeader.js).",
   "voice": {
     "engine": "kokoro-82M int8 (local)",
     "id": 1,

@@ -1,6 +1,6 @@
 {
   "width": 1200,
-  "height": 2386,
-  "keepTo": 1555,
-  "note": "Everything above keepTo is what the scan should capture (header to the date line). Below it: membership, QR code, ad: left out."
+  "height": 2476,
+  "keepTo": 1611,
+  "note": "Everything above keepTo is what the scan should capture (top of the receipt down to the register date line). Below it: QR code, membership offer, ad: left out. The member line is part of the header, at the top, as on a real Costco receipt."
 }
