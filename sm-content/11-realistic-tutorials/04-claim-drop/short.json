@@ -19,19 +19,19 @@
     },
     {
       "at": 2.75,
-      "text": "PriceBack shows the item, the new price, and what you're owed."
+      "text": "PriceBack shows what you're owed."
     },
     {
-      "at": 6.4,
-      "text": "At the warehouse, go to customer service and show your receipt in the app."
+      "at": 5.45,
+      "text": "Bought in the warehouse? Claim in person, with your receipt in the app."
     },
     {
-      "at": 10.4,
+      "at": 9.1,
+      "text": "Bought online? Send the ready-made email."
+    },
+    {
+      "at": 11.25,
       "text": "Claim before the deadline. We remind you twice."
-    },
-    {
-      "at": 13.4,
-      "text": "Follow for more tips."
     }
   ],
   "music": {

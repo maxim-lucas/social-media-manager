@@ -98,7 +98,13 @@ function mix(vo) {
   const bed = path.join(dir, "audio/bed.wav");
   execFileSync("node", [path.join(HERE, "music.js"), String(DUR + 0.2), bed, String(spec.music.hold ?? 2.2), String(spec.music.bpm ?? 92)], { stdio: "ignore" });
   const mixWav = path.join(B, "mix.wav");
-  const inputs = ["-i", bed, ...vo.flatMap((v) => ["-i", v.file])];
+  // Optional sound cues, e.g. a soft two-note chime between the intro and the steps: "sfx": [{ "at": 3.3 }]
+  const sfx = (spec.sfx || []).map((x, k) => {
+    const f = path.join(B, `sfx-${k}.wav`);
+    ff(["-f", "lavfi", "-i", "aevalsrc='0.32*sin(2*PI*1318.5*t)*exp(-7*t)+0.22*sin(2*PI*1975.5*(t-0.09))*exp(-7*(t-0.09))*gte(t,0.09)':s=48000:d=0.9", "-ac", "2", f]);
+    return { at: x.at, file: f };
+  });
+  const inputs = ["-i", bed, ...vo.flatMap((v) => ["-i", v.file]), ...sfx.flatMap((x) => ["-i", x.file])];
   let fc = `[0:a]aformat=sample_rates=48000:channel_layouts=stereo,atrim=0:${DUR},volume=${spec.music.gainDb}dB[mus];`;
   vo.forEach((v, k) => {
     const ms = Math.round(v.at * 1000);
@@ -106,7 +112,8 @@ function mix(vo) {
   });
   fc += `${vo.map((_, k) => `[v${k}]`).join("")}amix=inputs=${vo.length}:normalize=0,apad=whole_dur=${DUR}[vo];`;
   fc += `[vo]asplit[vo1][key];[mus][key]sidechaincompress=threshold=0.02:ratio=${(spec.music.duckDb / 1.5).toFixed(1)}:attack=40:release=400[duck];`;
-  fc += `[duck][vo1]amix=inputs=2:normalize=0,afade=t=out:st=${(DUR - 0.5).toFixed(2)}:d=0.5,atrim=0:${DUR}[out]`;
+  sfx.forEach((x, k) => { const ms = Math.round(x.at * 1000); fc += `[${vo.length + 1 + k}:a]adelay=${ms}|${ms},volume=-6dB[x${k}];`; });
+  fc += `[duck][vo1]${sfx.map((_, k) => `[x${k}]`).join("")}amix=inputs=${2 + sfx.length}:normalize=0,afade=t=out:st=${(DUR - 0.5).toFixed(2)}:d=0.5,atrim=0:${DUR}[out]`;
   ff([...inputs, "-filter_complex", fc, "-map", "[out]", "-ar", "48000", "-ac", "2", mixWav]);
   const target = `I=${spec.targetLufs}:TP=${spec.truePeak}:LRA=11`;
   const meas = sh(`ffmpeg -hide_banner -i "${mixWav}" -af loudnorm=${target}:print_format=json -f null - 2>&1`);
@@ -129,7 +136,8 @@ function gates(file, vo, textLog) {
   gate("format", v && v.width === W && v.height === H && Math.abs(fps - FPS) < 0.01 && v.codec_name === "h264" && v.profile === "High" && v.pix_fmt === "yuv420p" && a && +a.sample_rate === 48000 && a.channels === 2 && faststart,
     `${v?.width}x${v?.height} ${fps}fps ${v?.codec_name} ${v?.profile} ${v?.pix_fmt} · ${a?.codec_name} ${a?.sample_rate} ${a?.channels}ch · faststart ${faststart}`);
   const dur = +p.format.duration;
-  gate("length", dur <= (spec.maxDur ?? 15) + 0.02 && Math.abs(dur - DUR) < 0.08, `${dur.toFixed(2)} s (cap ${spec.maxDur ?? 15} s)`);
+  const CAP = Math.min(spec.maxDur ?? 15, 30); // Maxim, 2026-10-28: 30 s is the hard maximum for every video
+  gate("length", dur <= CAP + 0.02 && Math.abs(dur - DUR) < 0.08, `${dur.toFixed(2)} s (cap ${CAP} s)`);
   const lo = sh(`ffmpeg -hide_banner -nostats -i "${file}" -af ebur128=peak=true -f null - 2>&1`);
   const I = +lo.match(/I:\s+(-?[\d.]+) LUFS/g).pop().match(/-?[\d.]+/)[0];
   const TP = +lo.match(/Peak:\s+(-?[\d.]+) dBFS/g).pop().match(/-?[\d.]+/)[0];
