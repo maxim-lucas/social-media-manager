@@ -56,7 +56,7 @@ Voice: Kokoro-82M v1.0 "af_heart", local and free (`tools/voice.mjs`).
 | 03 | Price Checker (barcode) | **On hold** (Maxim, 2026-10-28) — scene built | `03-price-checker/` |
 | 04 | Got a price-drop alert? How to claim it — warehouse (in person, receipt in the app) and costco.ca (ready-made claim email) on one screen | **Rendered, 14.9 s, gates pass** | `04-claim-drop/out/` |
 | 05a | Android: get your Costco receipt as a PDF (costco.ca in the browser; the Android app blocks PDF export) | **Rendered, 28.2 s, gates pass** | `05a-receipt-pdf-android/out/` |
-| 05b | iPhone: get your Costco receipt as a PDF (Costco app; Share → Save to Files) | Rendering | `05b-receipt-pdf-iphone/out/` |
+| 05b | iPhone: get your Costco receipt as a PDF (Costco app; Share → Save to Files) | **Rendered, 28.2 s, gates pass** | `05b-receipt-pdf-iphone/out/` |
 | 06 | Locked price drop: unlock to see and claim it | Proposed as its own video; waiting for Maxim | — |
 
 Rules learned along the way: the "good deal or not" verdict belongs to the price-tag scanner (the app's DealBadge),
