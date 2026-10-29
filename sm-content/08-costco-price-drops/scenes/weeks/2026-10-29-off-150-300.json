@@ -1,0 +1,179 @@
+{
+  "_note": "Tier by SAVING amount (Monica, 2026-10-29: always by saving, never by item price; groceries excepted). Every number from priceback.price_points, pulled 2026-10-29. Photos: R2 product-images, or costco.ca packshots where R2 had none (1737269, 2048848, 1815053, 2085632/2085631, 2061788). 5708165 (Samsung QN80H) is already published: never redo.",
+  "source": "priceback.price_points, pulled 2026-10-29",
+  "copy": {
+    "en": {
+      "kick": "PRICE DROPS",
+      "head": "{n} Costco drops of\n$150 to $300",
+      "sub": "Some end {d}. Swipe to see them all.",
+      "until": "$150 TO $300 OFF"
+    }
+  },
+  "fineNote": {
+    "en": "Base shelf price; some provinces add an environmental fee at the register, the saving is the same.",
+    "fr": "Prix de base; certaines provinces ajoutent des écofrais à la caisse, l'économie est la même."
+  },
+  "endSlide": true,
+  "items": {
+    "6688065": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "TCL",
+          "M8L Pro Mini-LED 4K TV",
+          "65 in."
+        ],
+        "fr": [
+          "TCL",
+          "téléviseur M8L Pro",
+          "4K mini-DEL · 65 po"
+        ]
+      },
+      "regular": 994.99,
+      "off": 250.0,
+      "price": 744.99,
+      "exp": "2026-11-22",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    },
+    "2085632": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Serta",
+          "Five Star hybrid mattress",
+          "14 in."
+        ],
+        "fr": [
+          "Serta",
+          "matelas hybride Five Star",
+          "14 po"
+        ]
+      },
+      "regular": 779.99,
+      "off": 180.0,
+      "price": 599.99,
+      "exp": "2026-11-01",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ]
+    },
+    "2085631": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Serta",
+          "Five Star hybrid mattress",
+          "queen · 14 in."
+        ],
+        "fr": [
+          "Serta",
+          "matelas hybride Five Star",
+          "grand lit · 14 po"
+        ]
+      },
+      "regular": 679.99,
+      "off": 150.0,
+      "price": 529.99,
+      "exp": "2026-11-01",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "MB",
+        "ON",
+        "SK"
+      ]
+    },
+    "2061788": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "LG",
+          "dishwasher, 3rd rack",
+          "24 in. stainless"
+        ],
+        "fr": [
+          "LG",
+          "lave-vaisselle, 3e panier",
+          "24 po inox"
+        ]
+      },
+      "regular": 699.99,
+      "off": 150.0,
+      "price": 549.99,
+      "exp": "2026-11-22",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "SK"
+      ]
+    },
+    "2286550": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Dyson",
+          "HP10 air purifier"
+        ],
+        "fr": [
+          "Dyson",
+          "purificateur d'air HP10"
+        ]
+      },
+      "regular": 649.99,
+      "off": 150.0,
+      "price": 499.99,
+      "exp": "2026-11-08",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    }
+  },
+  "carousels": [
+    {
+      "id": "tier",
+      "category": {
+        "en": "$150 to $300 off",
+        "fr": "Rabais 150 $ à 300 $"
+      },
+      "items": [
+        "6688065",
+        "2085632",
+        "2085631",
+        "2061788",
+        "2286550"
+      ]
+    }
+  ],
+  "feeds": {
+    "en": [
+      "tier"
+    ]
+  }
+}

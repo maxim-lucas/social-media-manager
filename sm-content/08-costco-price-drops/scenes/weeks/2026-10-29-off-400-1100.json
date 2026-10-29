@@ -1,0 +1,115 @@
+{
+  "_note": "Tier by SAVING amount (Monica, 2026-10-29: always by saving, never by item price; groceries excepted). Every number from priceback.price_points, pulled 2026-10-29. Photos: R2 product-images, or costco.ca packshots where R2 had none (1737269, 2048848, 1815053, 2085632/2085631, 2061788). 5708165 (Samsung QN80H) is already published: never redo.",
+  "source": "priceback.price_points, pulled 2026-10-29",
+  "copy": {
+    "en": {
+      "kick": "BIGGEST SAVINGS",
+      "head": "{n} Costco drops of\n$400 to $1,100",
+      "sub": "Some end {d}. Swipe to see them all.",
+      "until": "$400 TO $1,100 OFF"
+    }
+  },
+  "fineNote": {
+    "en": "Base shelf price; some provinces add an environmental fee at the register, the saving is the same.",
+    "fr": "Prix de base; certaines provinces ajoutent des écofrais à la caisse, l'économie est la même."
+  },
+  "endSlide": true,
+  "items": {
+    "1737269": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Generac",
+          "Guardian 25 kW home",
+          "standby generator"
+        ],
+        "fr": [
+          "Generac",
+          "génératrice de secours",
+          "Guardian 25 kW"
+        ]
+      },
+      "regular": 8999.99,
+      "off": 1000.0,
+      "price": 7999.99,
+      "exp": "2026-11-08",
+      "seen": "2026-10-29",
+      "provinces": [
+        "ON"
+      ]
+    },
+    "2082745": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Asus",
+          "Vivobook laptop",
+          "15.6 in. · 16 GB · 512 GB"
+        ],
+        "fr": [
+          "Asus",
+          "portable Vivobook",
+          "15,6 po · 16 Go · 512 Go"
+        ]
+      },
+      "regular": 1249.99,
+      "off": 400.0,
+      "price": 849.99,
+      "exp": "2026-11-29",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    },
+    "2048848": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "EBGO",
+          "Tread fat-tire e-bike",
+          "26 in."
+        ],
+        "fr": [
+          "EBGO",
+          "vélo électrique Tread",
+          "26 po"
+        ]
+      },
+      "regular": 1999.99,
+      "off": 400.0,
+      "price": 1599.99,
+      "exp": "2026-11-01",
+      "seen": "2026-10-29",
+      "provinces": [
+        "ON"
+      ]
+    }
+  },
+  "carousels": [
+    {
+      "id": "tier",
+      "category": {
+        "en": "$400 to $1,100 off",
+        "fr": "Rabais 400 $ à 1 100 $"
+      },
+      "items": [
+        "1737269",
+        "2082745",
+        "2048848"
+      ]
+    }
+  ],
+  "feeds": {
+    "en": [
+      "tier"
+    ]
+  }
+}

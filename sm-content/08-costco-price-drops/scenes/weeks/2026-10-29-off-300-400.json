@@ -1,0 +1,91 @@
+{
+  "_note": "Tier by SAVING amount (Monica, 2026-10-29: always by saving, never by item price; groceries excepted). Every number from priceback.price_points, pulled 2026-10-29. Photos: R2 product-images, or costco.ca packshots where R2 had none (1737269, 2048848, 1815053, 2085632/2085631, 2061788). 5708165 (Samsung QN80H) is already published: never redo.",
+  "source": "priceback.price_points, pulled 2026-10-29",
+  "copy": {
+    "en": {
+      "kick": "BIG SAVINGS",
+      "head": "{n} Costco drops of\n$300 to $400",
+      "sub": "Some end {d}. Swipe to see them all.",
+      "until": "$300 TO $400 OFF"
+    }
+  },
+  "fineNote": {
+    "en": "Base shelf price; some provinces add an environmental fee at the register, the saving is the same.",
+    "fr": "Prix de base; certaines provinces ajoutent des écofrais à la caisse, l'économie est la même."
+  },
+  "endSlide": true,
+  "items": {
+    "2074900": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "HP",
+          "OmniBook 3 laptop",
+          "14 in."
+        ],
+        "fr": [
+          "HP",
+          "portable OmniBook 3",
+          "14 po"
+        ]
+      },
+      "regular": 799.99,
+      "off": 300.0,
+      "price": 499.99,
+      "exp": "2026-11-29",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ]
+    },
+    "1815053": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "GE",
+          "27 in. laundry centre",
+          "washer 4.4 + dryer 5.9 cu. ft."
+        ],
+        "fr": [
+          "GE",
+          "centre de lavage 27 po",
+          "laveuse 4,4 + sécheuse 5,9 pi³"
+        ]
+      },
+      "regular": 1299.99,
+      "off": 300.0,
+      "price": 999.99,
+      "exp": "2026-11-01",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB"
+      ]
+    }
+  },
+  "carousels": [
+    {
+      "id": "tier",
+      "category": {
+        "en": "$300 to $400 off",
+        "fr": "Rabais 300 $ à 400 $"
+      },
+      "items": [
+        "2074900",
+        "1815053"
+      ]
+    }
+  ],
+  "feeds": {
+    "en": [
+      "tier"
+    ]
+  }
+}
