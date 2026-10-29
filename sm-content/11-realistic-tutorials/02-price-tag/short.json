@@ -1,0 +1,45 @@
+{
+  "id": "tutorial-02-price-tag",
+  "title": "How to scan a Costco price tag",
+  "lang": "en",
+  "w": 1080,
+  "h": 1920,
+  "fps": 30,
+  "dur": 14.9,
+  "maxDur": 15,
+  "scene": "scene.html",
+  "voice": {
+    "name": "af_heart",
+    "speed": 1.08
+  },
+  "vo": [
+    {
+      "at": 0.15,
+      "text": "Good deal, or not? Scan the price tag."
+    },
+    {
+      "at": 2.55,
+      "text": "Frame the whole tag. PriceBack tells you if it's a good deal."
+    },
+    {
+      "at": 6.3,
+      "text": "Retake glare or blur. Regular prices aren't kept."
+    },
+    {
+      "at": 10.05,
+      "text": "Savings tags can earn free credits. Conditions apply."
+    },
+    {
+      "at": 13.45,
+      "text": "Follow for more tips."
+    }
+  ],
+  "music": {
+    "gainDb": -17,
+    "duckDb": 9,
+    "hold": 2.0,
+    "bpm": 92
+  },
+  "targetLufs": -14,
+  "truePeak": -1.5
+}

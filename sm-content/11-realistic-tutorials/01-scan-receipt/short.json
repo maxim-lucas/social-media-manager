@@ -1,0 +1,45 @@
+{
+  "id": "tutorial-01-scan-receipt",
+  "title": "How to scan your Costco receipt",
+  "lang": "en",
+  "w": 1080,
+  "h": 1920,
+  "fps": 30,
+  "dur": 14.4,
+  "maxDur": 15,
+  "scene": "scene.html",
+  "voice": {
+    "name": "af_heart",
+    "speed": 1.05
+  },
+  "vo": [
+    {
+      "at": 0.2,
+      "text": "Scanning a Costco receipt?"
+    },
+    {
+      "at": 1.85,
+      "text": "Keep the top, every item, and the totals in the frame."
+    },
+    {
+      "at": 5.42,
+      "text": "The QR codes, offers and ads can stay out."
+    },
+    {
+      "at": 8.3,
+      "text": "Blurry, dark, tilted, or total-only photos may be declined."
+    },
+    {
+      "at": 12.4,
+      "text": "Follow PriceBack for more tips."
+    }
+  ],
+  "music": {
+    "gainDb": -17,
+    "duckDb": 9,
+    "hold": 2.2,
+    "bpm": 92
+  },
+  "targetLufs": -14,
+  "truePeak": -1.5
+}

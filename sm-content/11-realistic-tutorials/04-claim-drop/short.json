@@ -1,0 +1,45 @@
+{
+  "id": "tutorial-04-claim-drop",
+  "title": "Got a price-drop alert? How to claim it",
+  "lang": "en",
+  "w": 1080,
+  "h": 1920,
+  "fps": 30,
+  "dur": 19.4,
+  "maxDur": 30,
+  "scene": "scene.html",
+  "voice": {
+    "name": "af_heart",
+    "speed": 1.08
+  },
+  "vo": [
+    {
+      "at": 0.1,
+      "text": "Got a price-drop alert? Here's how to claim it."
+    },
+    {
+      "at": 2.75,
+      "text": "PriceBack shows what you're owed."
+    },
+    {
+      "at": 4.95,
+      "text": "Bought in the warehouse? Claim in person, with your receipt in the app."
+    },
+    {
+      "at": 8.35,
+      "text": "Bought on costco.ca? Tap Send Email. PriceBack writes it for you, so just hit send."
+    },
+    {
+      "at": 13.75,
+      "text": "Claim before the deadline. We remind you twice."
+    }
+  ],
+  "music": {
+    "gainDb": -17,
+    "duckDb": 9,
+    "hold": 2.0,
+    "bpm": 92
+  },
+  "targetLufs": -14,
+  "truePeak": -1.5
+}

@@ -1,0 +1,45 @@
+{
+  "id": "tutorial-03-price-checker",
+  "title": "Price Checker: scan a barcode before you buy",
+  "lang": "en",
+  "w": 1080,
+  "h": 1920,
+  "fps": 30,
+  "dur": 14.8,
+  "maxDur": 15,
+  "scene": "scene.html",
+  "voice": {
+    "name": "af_heart",
+    "speed": 1.08
+  },
+  "vo": [
+    {
+      "at": 0.15,
+      "text": "Checking a price before you buy?"
+    },
+    {
+      "at": 1.9,
+      "text": "Open the Price Checker and scan the product's barcode."
+    },
+    {
+      "at": 5.7,
+      "text": "You'll see the last known price in your area, and when it was seen."
+    },
+    {
+      "at": 10.3,
+      "text": "Included with Unlimited. No credits used."
+    },
+    {
+      "at": 13.1,
+      "text": "Follow for more tips."
+    }
+  ],
+  "music": {
+    "gainDb": -17,
+    "duckDb": 9,
+    "hold": 2.0,
+    "bpm": 92
+  },
+  "targetLufs": -14,
+  "truePeak": -1.5
+}

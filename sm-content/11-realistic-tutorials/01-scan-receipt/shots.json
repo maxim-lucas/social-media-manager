@@ -1,0 +1,294 @@
+{
+  "id": "01-scan-receipt",
+  "title": "How to scan your Costco receipt",
+  "appTutorialId": "firstReceipt",
+  "lang": "en",
+  "fps": 30,
+  "w": 1080,
+  "h": 1920,
+  "xfade": 0.25,
+  "factsCheckedOn": "2026-10-28 against priceback origin/main 3b8e3ba",
+  "character": {
+    "name": "Megan",
+    "refPrompt": "Photorealistic candid photo, vertical 9:16. A Canadian woman in her early thirties, shoulder-length wavy brown hair, light natural makeup, oatmeal cable-knit sweater, jeans. Standing in a bright, lived-in suburban kitchen with white shaker cabinets, butcher-block counter, a fruit bowl and a kettle. Soft daylight from a window on the left. Shot on a phone at eye level, natural skin texture, no retouching, no text, no logos.",
+    "refModel": "nano_banana_pro",
+    "refRes": "2k"
+  },
+  "style": "Photorealistic, handheld phone-camera look, natural daylight, real skin texture, shallow depth of field, subtle grain. No on-image text overlays, no brand logos, no readable signage. Every receipt on screen is the supplied EXAMPLE receipt (receipt/receipt-example.png) and nothing else: never a real member receipt.",
+  "shots": [
+    {
+      "id": "S1",
+      "dur": 4.5,
+      "type": "footage",
+      "beat": "Hook: the common mistake",
+      "keyframe": "Megan stands on a wooden kitchen chair, arm stretched high, holding her phone face-down over a very long store receipt that runs across the butcher-block counter and trails down onto the floor. She squints at the phone screen, slightly comic effort. Medium-wide, eye level, daylight kitchen.",
+      "motion": "She leans a little further and wobbles on the chair, the long receipt curls off the counter edge. Handheld camera, gentle push-in. Natural, light comedy, no exaggeration.",
+      "model": "kling3_0",
+      "genDur": 5,
+      "trimIn": 0.2,
+      "vo": {
+        "at": 0.35,
+        "text": "Scanning a Costco receipt? You don't need the whole thing."
+      },
+      "caption": {
+        "text": "You don't need\nthe whole receipt",
+        "style": "title",
+        "at": 0.4,
+        "until": 4.4
+      },
+      "finePrint": true,
+      "refs": [
+        "receipt",
+        "character"
+      ]
+    },
+    {
+      "id": "S2",
+      "dur": 5,
+      "type": "footage",
+      "beat": "The three parts",
+      "keyframe": "Top-down close shot of the supplied example receipt lying flat on a light oak table. A woman's hand with a simple ring points at the very top of the receipt, the store header block.",
+      "motion": "The index finger slides slowly down the receipt: pauses at the header, glides down the long column of item lines, pauses at the totals, and stops just under the date line, above the QR code. Locked-off overhead camera, soft daylight.",
+      "model": "kling3_0",
+      "genDur": 6,
+      "trimIn": 0,
+      "vo": {
+        "at": 0.3,
+        "text": "Focus on the top with the warehouse, every item, and the totals."
+      },
+      "caption": {
+        "text": "① Header   ② Every item   ③ Totals",
+        "style": "steps",
+        "at": 0.5,
+        "until": 4.9,
+        "reveal": [
+          0.6,
+          1.7,
+          2.9
+        ]
+      },
+      "refs": [
+        "receipt"
+      ]
+    },
+    {
+      "id": "S3",
+      "dur": 5.5,
+      "type": "footage",
+      "beat": "Leave out the bottom: QR codes, membership offers, ads",
+      "keyframe": "Close-up of two hands holding the bottom of the supplied example receipt over a light oak table: the square QR code, the boxed membership offer and the boxed ad at the very bottom are visible.",
+      "motion": "The hands fold the bottom section underneath, creasing just below the date line, so the QR code, the membership offer and the ad disappear behind the receipt. Slow, deliberate, natural hand motion. Locked-off camera.",
+      "model": "kling3_0",
+      "genDur": 6,
+      "trimIn": 0.2,
+      "vo": {
+        "at": 0.2,
+        "text": "QR codes, membership offers and ads at the bottom can stay out of the shot."
+      },
+      "caption": {
+        "text": "Leave out: QR codes · offers · ads",
+        "style": "pill",
+        "at": 0.5,
+        "until": 5.4
+      },
+      "refs": [
+        "receipt"
+      ]
+    },
+    {
+      "id": "S4",
+      "dur": 5,
+      "type": "footage",
+      "beat": "Flat, lit, straight",
+      "keyframe": "Over-the-shoulder shot: Megan holds her phone flat and parallel above a long receipt laid straight on a plain light table beside a bright window. The top of the receipt points away from her. Soft even daylight, no harsh shadows.",
+      "motion": "She smooths the receipt flat with one hand, then raises the phone straight above it and holds steady. Subtle handheld drift, slow push-in.",
+      "model": "kling3_0",
+      "genDur": 6,
+      "trimIn": 0,
+      "vo": {
+        "at": 0.25,
+        "text": "Lay it flat in good light. Hold your phone straight above it."
+      },
+      "caption": {
+        "text": "Flat · good light · straight above",
+        "style": "pill",
+        "at": 0.5,
+        "until": 4.9
+      },
+      "refs": [
+        "receipt",
+        "character"
+      ]
+    },
+    {
+      "id": "S5",
+      "dur": 4,
+      "type": "screen",
+      "beat": "Real app: scan",
+      "screen": "Screen recording from a real phone, scanning a PRINTOUT of receipt/receipt-example.pdf (never a real receipt): Scan receipt tab → Scan a receipt → the document scanner frames the receipt from the header down to the date line under TOTAL NUMBER OF ITEMS SOLD, with the fold hiding the QR code, membership offer and ad → capture. 6–8 s raw, portrait, Do Not Disturb on.",
+      "src": "screens/S5-scan.mp4",
+      "trimIn": 0,
+      "vo": {
+        "at": 0.2,
+        "text": "Check that every item is in the frame, then scan."
+      },
+      "caption": {
+        "text": "Every item in the frame",
+        "style": "pill",
+        "at": 0.4,
+        "until": 3.9
+      }
+    },
+    {
+      "id": "S6a",
+      "dur": 4.75,
+      "type": "footage",
+      "beat": "What gets declined (1/2)",
+      "keyframe": "Phone-screen point of view looking down at a receipt on a glossy kitchen counter at night under a bright ceiling light: a white glare hotspot washes out the middle of the receipt, the phone's own shadow falls across it.",
+      "motion": "Slight handheld shake, the glare hotspot slides across the paper. Slightly underexposed, realistic bad photo conditions.",
+      "model": "kling3_0",
+      "genDur": 5,
+      "trimIn": 0,
+      "vo": {
+        "at": 0.15,
+        "text": "To keep every alert accurate, blurry, dark or cropped photos may be declined."
+      },
+      "caption": {
+        "text": "Blurry or dark\nmay be declined",
+        "style": "warn",
+        "at": 0.3,
+        "until": 4.65
+      },
+      "refs": [
+        "receipt"
+      ]
+    },
+    {
+      "id": "S6b",
+      "dur": 4.75,
+      "type": "footage",
+      "beat": "What gets declined: a photo of the total only",
+      "keyframe": "Over-the-shoulder close shot: a hand holds a phone very close to the supplied example receipt so that the phone camera view shows ONLY the totals block (SUBTOTAL, TAX, TOTAL). The header and the item lines are outside the phone frame.",
+      "motion": "The hand taps the phone to take the photo of the totals alone. Slight handheld movement. Realistic, everyday.",
+      "model": "kling3_0",
+      "trimIn": 0,
+      "refs": [
+        "receipt"
+      ],
+      "vo": {
+        "at": 0.15,
+        "text": "A photo of just the total won’t be accepted either. There are no items to watch."
+      },
+      "caption": {
+        "text": "Total only: declined",
+        "style": "warn",
+        "at": 0.3,
+        "until": 4.65
+      },
+      "genDur": 5
+    },
+    {
+      "id": "S6c",
+      "dur": 3.75,
+      "type": "screen",
+      "beat": "Real app: the decline",
+      "screen": "Screen recording from a real phone: photograph ONLY the totals block of the printed example receipt, submit, and record what the app shows when it refuses it. 5–6 s raw, portrait, Do Not Disturb on. Today a totals-only photo is refused either as unreadable or at review as No items detected, depending on how it reads; record whichever the current build shows, or wait for a dedicated totals-only message if one is added.",
+      "src": "screens/S6c-declined.mp4",
+      "trimIn": 0,
+      "vo": {
+        "at": 0.15,
+        "text": "If a photo is declined, simply scan the full receipt again."
+      },
+      "caption": {
+        "text": "Declined: scan the full receipt again",
+        "style": "pill",
+        "at": 0.3,
+        "until": 3.65
+      }
+    },
+    {
+      "id": "S7",
+      "dur": 6,
+      "type": "footage",
+      "beat": "Payoff",
+      "keyframe": "A few days later: Megan pushes a flat cart down a wide warehouse-club aisle with tall steel pallet racking, bulk boxes and bright overhead lights. Concrete floor. No brand logos, no readable signs. She glances at her phone, which has just lit up with a notification.",
+      "motion": "She stops the cart, reads the notification, and a small pleased smile spreads. Handheld follow shot, slight push-in to her face. Natural shopper behaviour.",
+      "model": "kling3_0",
+      "genDur": 7,
+      "trimIn": 0,
+      "vo": {
+        "at": 0.3,
+        "text": "From there, PriceBack watches every item and alerts you when a verified price drop comes up."
+      },
+      "caption": {
+        "text": "PriceBack watches every item",
+        "style": "pill",
+        "at": 0.5,
+        "until": 5.9
+      },
+      "refs": [
+        "character"
+      ]
+    }
+  ],
+  "endcard": {
+    "dur": 5,
+    "kind": "tutorial-outro",
+    "head": "Scan only what counts:\nheader, items, totals.",
+    "nextLabel": "Next tutorial",
+    "next": "How to scan a shelf price tag",
+    "more": "Every tutorial is in the app: Profile → Tutorials",
+    "follow": "Follow for more tips",
+    "fine": "PriceBack is an independent app, not affiliated with Costco. Adjustment terms are set by the retailer.",
+    "vo": {
+      "at": 0.6,
+      "text": "Follow PriceBack for more tips, and catch the next tutorial."
+    }
+  },
+  "finePrint": "PriceBack is an independent app, not affiliated with Costco.",
+  "music": {
+    "file": "audio/bed.wav",
+    "gainDb": -19,
+    "duckDb": 9
+  },
+  "voDir": "audio/vo",
+  "targetLufs": -14,
+  "truePeak": -1.5,
+  "receipt": {
+    "png": "receipt/receipt-example.png",
+    "pdf": "receipt/receipt-example.pdf",
+    "rule": "Fake by construction: warehouse #000, member 000000000000, card 0000, auth 000000, EXAMPLE line in the header. No real user data may appear in any shot or recording."
+  },
+  "framingRule": "Every receipt shot and the screen recording frame the receipt from the top (header and member line) down to the date line under TOTAL NUMBER OF ITEMS SOLD (receipt/receipt-example.json keepTo). The item count and the date are always inside the frame but are never named in VO or captions. QR codes, membership offers and ads at the bottom are always outside it. On a real Costco receipt the member line is the last header line, at the top (priceback src/services/receiptHeader.js).",
+  "voice": {
+    "engine": "kokoro-82M int8 (local)",
+    "id": 1,
+    "name": "Bella",
+    "speed": 0.95
+  },
+  "social": {
+    "handle": "@priceback.ca",
+    "networks": [
+      {
+        "name": "Instagram",
+        "handle": "@priceback.ca",
+        "verified": "priceback src/constants/socialLinks.js"
+      },
+      {
+        "name": "Facebook",
+        "handle": "@priceback.ca",
+        "verified": "priceback src/constants/socialLinks.js"
+      },
+      {
+        "name": "TikTok",
+        "handle": "@priceback",
+        "verified": "owner, 2026-10-28 (tiktok.com/@priceback)"
+      },
+      {
+        "name": "YouTube",
+        "handle": "@priceback",
+        "verified": "priceback src/constants/tutorials.js"
+      }
+    ]
+  }
+}
