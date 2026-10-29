@@ -7,6 +7,12 @@
       "head": "{n} Costco drops of\n$150 to $300",
       "sub": "Some end {d}. Swipe to see them all.",
       "until": "$150 TO $300 OFF"
+    },
+    "fr": {
+      "kick": "BAISSES DE PRIX",
+      "head": "{n} baisses Costco\nde 150 $ à 300 $",
+      "sub": "Certaines finissent le {d}. Glissez.",
+      "until": "RABAIS 150 $ À 300 $"
     }
   },
   "fineNote": {
@@ -173,6 +179,9 @@
   ],
   "feeds": {
     "en": [
+      "tier"
+    ],
+    "fr": [
       "tier"
     ]
   }

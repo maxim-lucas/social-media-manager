@@ -134,7 +134,7 @@ function money(lang, n, round = false) {
   let s = round && Number.isInteger(n) ? String(n) : n.toFixed(2);
   // 1,100 / 1 100 past four digits (French uses a narrow no-break space, as Costco Québec does).
   const [i, d] = s.split(".");
-  const g = i.length > 3 ? i.replace(/\B(?=(\d{3})+$)/g, lang === "fr" ? "\u202f" : ",") : i;
+  const g = i.length > 3 ? i.replace(/\B(?=(\d{3})+$)/g, lang === "fr" ? "\u00a0" : ",") : i;
   s = d ? `${g}.${d}` : g;
   return lang === "fr" ? `${s.replace(".", ",")} $` : `$${s}`;
 }
@@ -244,7 +244,7 @@ function post(lang, p, photos, badges) {
     const [sku, item] = items[0];
     body = `<div class="photo hero" style="background-image:url('${photos[sku]}')"></div>
       <div class="burst"><div class="x${money(lang, item.off, true).length > 4 ? " long" : ""}">-${money(lang, item.off, true)}</div><div class="y">${t.off}</div></div>
-      ${tag(lang, sku, item)}${DATA.provinceStrip ? strip(lang, item.provinces) : ""}`;
+      ${tag(lang, sku, item)}${DATA.provinceStrip !== false ? strip(lang, item.provinces) : ""}`;
   } else {
     const w = items.length === 2 ? 465 : 300;
     const gap = (1080 - 90 - w * items.length) / (items.length - 1);
@@ -265,7 +265,7 @@ function post(lang, p, photos, badges) {
   const stores = `<div class="stores"><img src="${badges.apple}"><img src="${badges.google}"></div>`;
   return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>${CSS}
     .card .ptag .name{min-height:${items.length > 2 ? 76 : 60}px}</style></head><body>
-  <div class="post ${lang} ${single ? "s" : "g"}${single && DATA.provinceStrip ? " prov" : ""}${DATA.fineNote ? " note" : ""}">
+  <div class="post ${lang} ${single ? "s" : "g"}${single && DATA.provinceStrip !== false ? " prov" : ""}${DATA.fineNote ? " note" : ""}">
     <div class="band"><div class="t">COSTCO <span>${single ? t.drop : t.drops}</span></div><div class="c">${right}</div></div>
     <div class="stripe"></div>
     ${body}
@@ -572,10 +572,10 @@ const PROV = {
         NT: "aux T.N.-O.", NU: "au Nunavut", YT: "au Yukon" },
 };
 const national = (prov) => !prov || prov === "all";
-function itemLangs(item) {
-  if (national(item.provinces)) return ["en", "fr"];
-  if (item.provinces.length === 1 && item.provinces[0] === "QC") return ["fr"];
-  return item.provinces.includes("QC") ? ["en", "fr"] : ["en"];
+// English and French always carry the exact same offers (Monica, 2026-10-29). Language is never chosen by
+// province; where a saving is available is shown by the province strip under the product, on every slide.
+function itemLangs() {
+  return ["en", "fr"];
 }
 const langsFor = (p) => ["en", "fr"].filter((l) => p.items.every((sku) => itemLangs(DATA.items[sku]).includes(l)));
 function regionName(lang, prov) {
