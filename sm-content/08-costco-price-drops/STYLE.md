@@ -50,10 +50,13 @@ PriceBack. **One item per image, always. A category is a carousel** (Monica, 202
    each item's saving and "Ends" date on its Same-Day product page against the database. Post only items where
    both agree; list every disagreement with the Same-Day date in the week's `Same-Day-vs-database.md` so the
    database can be corrected. Same-Day prices are Instacart prices: compare the saving, never the price.
-2. **Languages follow the provinces** (Monica, 2026-10-15): a national saving (`"provinces": "all"`) goes out in
-   EN and FR; a Quebec-only saving in FR; a saving only outside Quebec in EN. The renderer applies this per slide,
-   and the fine print names the provinces when the saving is regional (province codes past three).
-3. **Group into categories**, one carousel each, 3 to 6 items, food first.
+2. **English and French carry the exact same offers** (Monica, 2026-10-29; replaces "languages follow the
+   provinces"). Language is never chosen by province, even for a saving seen only in Alberta or only in Quebec.
+   Every product gets **one post**, never one per province, with the **province strip under the product photo**:
+   every province with a Costco, the ones where the saving was seen filled in, the rest greyed and struck through.
+3. **Group deals by saving range, then product category, then location** (Monica, 2026-10-29; full rule in `../../RULES-README.md`). Location: Costco warehouses or Business Centre, never mixed without where-to-buy on the post; the strip shows Business-Centre-only provinces in yellow. Saving ranges: $400–$1,100 off, $300–$400 off, $150–$300 off, under
+   $150 off, never by the item's price. **Groceries are the exception**: by type (coffee & drinks, frozen & meat,
+   dairy & cheese, pantry & snacks…). Within a carousel, slides run from the biggest saving to the smallest.
    To post the week as **one carousel per language** instead (Monica, 2026-10-15), add
    `"feeds": {"en": [category ids…], "fr": [category ids…]}` to the week file: the renderer then writes
    `posts/<week>/<lang>/00-cover.png` (hook, the six biggest savings one per brand, swipe cue) followed by every

@@ -1,0 +1,148 @@
+{
+  "_note": "Grouped by SAVING range, then PRODUCT CATEGORY, then LOCATION (Monica, 2026-10-29). All items here are sold at Costco warehouses; provinces seen only at a Costco Business Centre are yellow on the strip with a legend. EN and FR carry the same offers. Numbers from priceback.price_points, pulled 2026-10-29. 5708165 is published: never redo.",
+  "source": "priceback.price_points, pulled 2026-10-29",
+  "copy": {
+    "en": {
+      "kick": "UP TO $100 OFF",
+      "head": "Health & beauty:\n{n} Costco drops",
+      "sub": "Some end {d}. Swipe to see them all.",
+      "until": "WAREHOUSES"
+    },
+    "fr": {
+      "kick": "JUSQU'À 100 $ DE RABAIS",
+      "head": "Santé et beauté :\n{n} baisses Costco",
+      "sub": "Certaines finissent le {d}. Glissez.",
+      "until": "ENTREPÔTS"
+    }
+  },
+  "fineNote": {
+    "en": "Base shelf price; some provinces add an environmental fee at the register, the saving is the same.",
+    "fr": "Prix de base; certaines provinces ajoutent des écofrais à la caisse, l'économie est la même."
+  },
+  "endSlide": true,
+  "items": {
+    "1993899": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Shark",
+          "CryoGlow LED face mask",
+          "+ under-eye cooling"
+        ],
+        "fr": [
+          "Shark",
+          "CryoGlow masque DEL",
+          "+ compresse froide yeux"
+        ]
+      },
+      "regular": 499.99,
+      "off": 100.0,
+      "price": 399.99,
+      "exp": "2026-11-22",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Health & beauty",
+        "fr": "Santé et beauté"
+      }
+    },
+    "2823916": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Kala",
+          "portable red light"
+        ],
+        "fr": [
+          "Kala",
+          "lumière rouge portative"
+        ]
+      },
+      "regular": 299.99,
+      "off": 60.0,
+      "price": 239.99,
+      "exp": "2026-11-08",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Health & beauty",
+        "fr": "Santé et beauté"
+      }
+    },
+    "1770258": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "StriVectin",
+          "SD Plus",
+          "moisturizing cream"
+        ],
+        "fr": [
+          "StriVectin",
+          "crème hydratante SD Plus"
+        ]
+      },
+      "regular": 89.99,
+      "off": 20.0,
+      "price": 69.99,
+      "exp": "2026-11-22",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Health & beauty",
+        "fr": "Santé et beauté"
+      }
+    }
+  },
+  "carousels": [
+    {
+      "id": "tier",
+      "category": {
+        "en": "Health & beauty",
+        "fr": "Santé et beauté"
+      },
+      "items": [
+        "1993899",
+        "2823916",
+        "1770258"
+      ]
+    }
+  ],
+  "feeds": {
+    "en": [
+      "tier"
+    ],
+    "fr": [
+      "tier"
+    ]
+  }
+}

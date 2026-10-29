@@ -1,12 +1,18 @@
 {
-  "_note": "Tier by SAVING amount (Monica, 2026-10-29: always by saving, never by item price; groceries excepted). Every number from priceback.price_points, pulled 2026-10-29. Photos: R2 product-images, or costco.ca packshots where R2 had none (1737269, 2048848, 1815053, 2085632/2085631, 2061788). 5708165 (Samsung QN80H) is already published: never redo.",
+  "_note": "Grouped by SAVING range, then PRODUCT CATEGORY, then LOCATION (Monica, 2026-10-29). All items here are sold at Costco warehouses; provinces seen only at a Costco Business Centre are yellow on the strip with a legend. EN and FR carry the same offers. Numbers from priceback.price_points, pulled 2026-10-29. 5708165 is published: never redo.",
   "source": "priceback.price_points, pulled 2026-10-29",
   "copy": {
     "en": {
-      "kick": "PRICE DROPS",
+      "kick": "$150 TO $300 OFF",
       "head": "{n} Costco drops of\n$150 to $300",
       "sub": "Some end {d}. Swipe to see them all.",
-      "until": "$150 TO $300 OFF"
+      "until": "WAREHOUSES"
+    },
+    "fr": {
+      "kick": "RABAIS DE 150 $ À 300 $",
+      "head": "{n} baisses Costco\nde 150 $ à 300 $",
+      "sub": "Certaines finissent le {d}. Glissez.",
+      "until": "ENTREPÔTS"
     }
   },
   "fineNote": {
@@ -44,7 +50,12 @@
         "ON",
         "QC",
         "SK"
-      ]
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Electronics",
+        "fr": "Électronique"
+      }
     },
     "2085632": {
       "sameday": null,
@@ -70,33 +81,12 @@
         "BC",
         "MB",
         "SK"
-      ]
-    },
-    "2085631": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Serta",
-          "Five Star hybrid mattress",
-          "queen · 14 in."
-        ],
-        "fr": [
-          "Serta",
-          "matelas hybride Five Star",
-          "grand lit · 14 po"
-        ]
-      },
-      "regular": 679.99,
-      "off": 150.0,
-      "price": 529.99,
-      "exp": "2026-11-01",
-      "seen": "2026-10-29",
-      "provinces": [
-        "AB",
-        "MB",
-        "ON",
-        "SK"
-      ]
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Mattresses",
+        "fr": "Matelas"
+      }
     },
     "2061788": {
       "sameday": null,
@@ -123,7 +113,12 @@
         "MB",
         "ON",
         "SK"
-      ]
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Appliances",
+        "fr": "Électroménagers"
+      }
     },
     "2286550": {
       "sameday": null,
@@ -152,7 +147,43 @@
         "ON",
         "QC",
         "SK"
-      ]
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Home & kitchen",
+        "fr": "Maison et cuisine"
+      }
+    },
+    "2085631": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Serta",
+          "Five Star hybrid mattress",
+          "queen · 14 in."
+        ],
+        "fr": [
+          "Serta",
+          "matelas hybride Five Star",
+          "grand lit · 14 po"
+        ]
+      },
+      "regular": 679.99,
+      "off": 150.0,
+      "price": 529.99,
+      "exp": "2026-11-01",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "MB",
+        "ON",
+        "SK"
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Mattresses",
+        "fr": "Matelas"
+      }
     }
   },
   "carousels": [
@@ -165,14 +196,17 @@
       "items": [
         "6688065",
         "2085632",
-        "2085631",
         "2061788",
-        "2286550"
+        "2286550",
+        "2085631"
       ]
     }
   ],
   "feeds": {
     "en": [
+      "tier"
+    ],
+    "fr": [
       "tier"
     ]
   }

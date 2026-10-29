@@ -134,7 +134,7 @@ function money(lang, n, round = false) {
   let s = round && Number.isInteger(n) ? String(n) : n.toFixed(2);
   // 1,100 / 1 100 past four digits (French uses a narrow no-break space, as Costco Québec does).
   const [i, d] = s.split(".");
-  const g = i.length > 3 ? i.replace(/\B(?=(\d{3})+$)/g, lang === "fr" ? "\u202f" : ",") : i;
+  const g = i.length > 3 ? i.replace(/\B(?=(\d{3})+$)/g, lang === "fr" ? "\u00a0" : ",") : i;
   s = d ? `${g}.${d}` : g;
   return lang === "fr" ? `${s.replace(".", ",")} $` : `$${s}`;
 }
@@ -237,14 +237,14 @@ function post(lang, p, photos, badges) {
   const total = items.reduce((s, [, i]) => s + i.off, 0);
   const firstExp = items.map(([, i]) => i.exp).sort()[0];
   const right = single
-    ? `${esc(p.category[lang]).toUpperCase()}<br>${t.exp} ${dateShort(lang, firstExp)}`
+    ? `${esc((items[0][1].cat || p.category)[lang]).toUpperCase()}<br>${t.exp} ${dateShort(lang, firstExp)}`
     : `${esc(p.category[lang]).toUpperCase()}<br>${t.totalOff(total)}`;
   let body;
   if (single) {
     const [sku, item] = items[0];
     body = `<div class="photo hero" style="background-image:url('${photos[sku]}')"></div>
       <div class="burst"><div class="x${money(lang, item.off, true).length > 4 ? " long" : ""}">-${money(lang, item.off, true)}</div><div class="y">${t.off}</div></div>
-      ${tag(lang, sku, item)}${DATA.provinceStrip ? strip(lang, item.provinces) : ""}`;
+      ${tag(lang, sku, item)}${DATA.provinceStrip !== false ? strip(lang, item.provinces, item.bizOnly || []) : ""}`;
   } else {
     const w = items.length === 2 ? 465 : 300;
     const gap = (1080 - 90 - w * items.length) / (items.length - 1);
@@ -265,12 +265,14 @@ function post(lang, p, photos, badges) {
   const stores = `<div class="stores"><img src="${badges.apple}"><img src="${badges.google}"></div>`;
   return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>${CSS}
     .card .ptag .name{min-height:${items.length > 2 ? 76 : 60}px}</style></head><body>
-  <div class="post ${lang} ${single ? "s" : "g"}${single && DATA.provinceStrip ? " prov" : ""}${DATA.fineNote ? " note" : ""}">
+  <div class="post ${lang} ${single ? "s" : "g"}${single && DATA.provinceStrip !== false ? " prov" : ""}${single && (items[0][1].bizOnly || []).length ? " bzp" : ""}${DATA.fineNote ? " note" : ""}">
     <div class="band"><div class="t">COSTCO <span>${single ? t.drop : t.drops}</span></div><div class="c">${right}</div></div>
     <div class="stripe"></div>
     ${body}
     ${promo}
-    <div class="disc">${esc(t.fine(seen, regionName(lang, items[0][1].provinces)))}</div>
+    <div class="disc">${esc(t.fine(seen, regionName(lang, items[0][1].provinces)))}${single && (items[0][1].bizOnly || []).length ? esc(lang === "fr"
+      ? ` Aussi relevé dans les centres d'affaires Costco seulement : ${items[0][1].bizOnly.join(", ")}.`
+      : ` Also seen at Costco Business Centres only in ${items[0][1].bizOnly.join(", ")}.`) : ""}</div>
     <div class="claim"><div class="a">${claim}</div>${stores}${dots(p.dots)}</div>
   </div></body></html>`;
 }
@@ -278,11 +280,18 @@ function post(lang, p, photos, badges) {
 // The province strip (Monica, 2026-10-27): every province with a Costco warehouse, under the product,
 // the ones where this saving was seen filled in, the rest greyed, so a missing province shows at a glance.
 const STRIP = ["BC", "AB", "SK", "MB", "ON", "QC", "NB", "NS", "PE", "NL"];
-function strip(lang, prov) {
+// Location (Monica, 2026-10-29): Costco warehouses and Costco Business Centres are never mixed without saying
+// where to buy. `bizOnly` lists provinces where the saving was seen only at a Business Centre: those cells are
+// yellow and a legend line says so.
+function strip(lang, prov, bizOnly = []) {
   const on = national(prov) ? STRIP : prov;
   const label = lang === "fr" ? "RELEVÉ EN" : "SEEN IN";
-  return `<div class="strip"><span class="lab">${label}</span>${STRIP.map((c) =>
-    `<i class="${on.includes(c) ? "on" : "off"}">${c}</i>`).join("")}</div>`;
+  const cells = STRIP.map((c) => `<i class="${on.includes(c) ? "on" : bizOnly.includes(c) ? "bz" : "off"}">${c}</i>`).join("");
+  const legend = bizOnly.length
+    ? `<div class="legend"><b class="k on"></b>${lang === "fr" ? "Entrepôts Costco" : "Costco warehouses"}<b class="k bz"></b>${
+        lang === "fr" ? "Centres d'affaires Costco seulement" : "Costco Business Centres only"}</div>`
+    : "";
+  return `<div class="strip"><span class="lab">${label}</span>${cells}</div>${legend}`;
 }
 
 // Carousel dots in the red band, so the post reads as "there is more, swipe" in the feed.
@@ -434,6 +443,12 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
 .strip .lab{font-weight:900;font-size:17px;letter-spacing:1.5px;color:#111;width:86px;line-height:1.1;flex:none}
 .strip i{flex:1;height:52px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:900;font-size:24px;letter-spacing:1px}
 .strip i.on{background:var(--blue);color:#fff;box-shadow:inset 0 -5px 0 var(--red)}
+.strip i.bz{background:var(--yel);color:#111;box-shadow:inset 0 -5px 0 #111}
+.bzp .photo.hero{height:296px}.bzp .strip{top:494px}
+.bzp .promo{top:1010px}.bzp .disc{font-size:14px;line-height:1.25;bottom:176px;left:40px;right:40px}
+.legend{position:absolute;left:146px;right:60px;top:556px;font-size:18px;font-weight:800;color:#111;display:flex;align-items:center;gap:8px}
+.legend .k{display:inline-block;width:22px;height:16px;border-radius:4px;margin-left:10px}.legend .k:first-child{margin-left:0}
+.legend .k.on{background:var(--blue)}.legend .k.bz{background:var(--yel);border:2px solid #111}
 .strip i.off{background:#fff;color:#c3c7cd;border:2px dashed #d4d7dc;text-decoration:line-through}
 .note .promo{top:1016px}.note .disc{font-size:14px;line-height:1.25;left:40px;right:40px;bottom:178px}
 .burst{position:absolute;left:52px;top:640px;width:200px;height:200px;border-radius:50%;background:var(--red);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;transform:rotate(-10deg);box-shadow:0 12px 30px rgba(0,0,0,.25);border:6px solid #fff;text-align:center}
@@ -572,10 +587,10 @@ const PROV = {
         NT: "aux T.N.-O.", NU: "au Nunavut", YT: "au Yukon" },
 };
 const national = (prov) => !prov || prov === "all";
-function itemLangs(item) {
-  if (national(item.provinces)) return ["en", "fr"];
-  if (item.provinces.length === 1 && item.provinces[0] === "QC") return ["fr"];
-  return item.provinces.includes("QC") ? ["en", "fr"] : ["en"];
+// English and French always carry the exact same offers (Monica, 2026-10-29). Language is never chosen by
+// province; where a saving is available is shown by the province strip under the product, on every slide.
+function itemLangs() {
+  return ["en", "fr"];
 }
 const langsFor = (p) => ["en", "fr"].filter((l) => p.items.every((sku) => itemLangs(DATA.items[sku]).includes(l)));
 function regionName(lang, prov) {
