@@ -1,5 +1,5 @@
 {
-  "_note": "Grocery savings by type, with the province strip (every province with a Costco, the ones where the saving was seen filled in). Each item has one saving everywhere it was seen and an end date of Nov 1 or later. Flipp flyer check not done (blocked from this workspace).",
+  "_note": "Grocery savings by type, with the province strip (every province with a Costco, the ones where the saving was seen filled in). Each item has one saving everywhere it was seen and an end date of Nov 1 or later. Flipp flyer check not done (blocked from this workspace). Removed 1699199: seen only at Costco Business Centres. Location split 2026-10-29: provinces seen only at Business Centres shown yellow (bizOnly).",
   "source": "priceback.price_points (price_tag_scan, verified), pulled 2026-10-27 09:40 UTC",
   "provinceStrip": true,
   "endSlide": true,
@@ -36,11 +36,13 @@
       "exp": "2026-11-08",
       "seen": "2026-10-27",
       "provinces": [
-        "AB",
-        "BC",
-        "MB",
         "ON",
         "QC"
+      ],
+      "bizOnly": [
+        "AB",
+        "BC",
+        "MB"
       ]
     },
     "2688395": {
@@ -68,7 +70,8 @@
         "NS",
         "ON",
         "QC"
-      ]
+      ],
+      "bizOnly": []
     },
     "1637304": {
       "sameday": null,
@@ -88,36 +91,14 @@
       "exp": "2026-11-08",
       "seen": "2026-10-27",
       "provinces": [
-        "AB",
-        "BC",
-        "MB",
         "NL",
         "ON",
         "QC"
-      ]
-    },
-    "1699199": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Golden Island",
-          "Korean BBQ pork bites",
-          "12 × 42 g"
-        ],
-        "fr": [
-          "Golden Island",
-          "bouchées de porc BBQ",
-          "coréen · 12 × 42 g"
-        ]
-      },
-      "regular": 21.99,
-      "off": 7.0,
-      "price": 14.99,
-      "exp": "2026-11-01",
-      "seen": "2026-10-27",
-      "provinces": [
+      ],
+      "bizOnly": [
+        "AB",
         "BC",
-        "QC"
+        "MB"
       ]
     },
     "1331706": {
@@ -145,7 +126,8 @@
         "NS",
         "ON",
         "QC"
-      ]
+      ],
+      "bizOnly": []
     },
     "1422488": {
       "sameday": null,
@@ -171,7 +153,8 @@
         "BC",
         "MB",
         "SK"
-      ]
+      ],
+      "bizOnly": []
     }
   },
   "carousels": [
@@ -185,7 +168,6 @@
         "1405731",
         "2688395",
         "1637304",
-        "1699199",
         "1331706",
         "1422488"
       ]

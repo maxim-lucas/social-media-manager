@@ -54,7 +54,7 @@ PriceBack. **One item per image, always. A category is a carousel** (Monica, 202
    provinces"). Language is never chosen by province, even for a saving seen only in Alberta or only in Quebec.
    Every product gets **one post**, never one per province, with the **province strip under the product photo**:
    every province with a Costco, the ones where the saving was seen filled in, the rest greyed and struck through.
-3. **Group deals by the SAVING amount** (Monica, 2026-10-29): $400–$1,100 off, $300–$400 off, $150–$300 off, under
+3. **Group deals by saving range, then product category, then location** (Monica, 2026-10-29; full rule in `../../RULES-README.md`). Location: Costco warehouses or Business Centre, never mixed without where-to-buy on the post; the strip shows Business-Centre-only provinces in yellow. Saving ranges: $400–$1,100 off, $300–$400 off, $150–$300 off, under
    $150 off, never by the item's price. **Groceries are the exception**: by type (coffee & drinks, frozen & meat,
    dairy & cheese, pantry & snacks…). Within a carousel, slides run from the biggest saving to the smallest.
    To post the week as **one carousel per language** instead (Monica, 2026-10-15), add

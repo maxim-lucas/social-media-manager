@@ -1,0 +1,293 @@
+{
+  "_note": "Grouped by SAVING range, then PRODUCT CATEGORY, then LOCATION (Monica, 2026-10-29). All items here are sold at Costco warehouses; provinces seen only at a Costco Business Centre are yellow on the strip with a legend. EN and FR carry the same offers. Numbers from priceback.price_points, pulled 2026-10-29. 5708165 is published: never redo.",
+  "source": "priceback.price_points, pulled 2026-10-29",
+  "copy": {
+    "en": {
+      "kick": "UP TO $100 OFF",
+      "head": "Electronics:\n{n} Costco drops",
+      "sub": "Some end {d}. Swipe to see them all.",
+      "until": "WAREHOUSES"
+    },
+    "fr": {
+      "kick": "JUSQU'À 100 $ DE RABAIS",
+      "head": "Électronique :\n{n} baisses Costco",
+      "sub": "Certaines finissent le {d}. Glissez.",
+      "until": "ENTREPÔTS"
+    }
+  },
+  "fineNote": {
+    "en": "Base shelf price; some provinces add an environmental fee at the register, the saving is the same.",
+    "fr": "Prix de base; certaines provinces ajoutent des écofrais à la caisse, l'économie est la même."
+  },
+  "endSlide": true,
+  "items": {
+    "1858512": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Acer",
+          "Nitro gaming desktop"
+        ],
+        "fr": [
+          "Acer",
+          "ordinateur de jeu Nitro"
+        ]
+      },
+      "regular": 1799.99,
+      "off": 100.0,
+      "price": 1699.99,
+      "exp": "2026-11-08",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Electronics",
+        "fr": "Électronique"
+      }
+    },
+    "2051814": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "JBL",
+          "PartyBox speaker 120"
+        ],
+        "fr": [
+          "JBL",
+          "haut-parleur de fête 120"
+        ]
+      },
+      "regular": 499.99,
+      "off": 100.0,
+      "price": 399.99,
+      "exp": "2026-11-22",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Electronics",
+        "fr": "Électronique"
+      }
+    },
+    "3125330": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "MSI",
+          "Modern A15 AI+ laptop",
+          "15.6 in. · 16 GB · 512 GB"
+        ],
+        "fr": [
+          "MSI",
+          "portable Modern A15 AI+",
+          "15,6 po · 16 Go · 512 Go"
+        ]
+      },
+      "regular": 999.99,
+      "off": 100.0,
+      "price": 899.99,
+      "exp": "2026-11-30",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Electronics",
+        "fr": "Électronique"
+      }
+    },
+    "3125120": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "MSI",
+          "Modern 15 laptop",
+          "Core 5 · 16 GB · 512 GB"
+        ],
+        "fr": [
+          "MSI",
+          "portable Modern 15",
+          "Core 5 · 16 Go · 512 Go"
+        ]
+      },
+      "regular": 999.99,
+      "off": 100.0,
+      "price": 899.99,
+      "exp": "2026-11-30",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Electronics",
+        "fr": "Électronique"
+      }
+    },
+    "8786558": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Hisense",
+          "QD65SR QLED 4K TV",
+          "58 in."
+        ],
+        "fr": [
+          "Hisense",
+          "téléviseur QD65SR",
+          "QLED 4K · 58 po"
+        ]
+      },
+      "regular": 524.99,
+      "off": 100.0,
+      "price": 424.99,
+      "exp": "2026-11-22",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Electronics",
+        "fr": "Électronique"
+      }
+    },
+    "9500755": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "LG",
+          "QNED7S Mini-LED 4K TV",
+          "55 in."
+        ],
+        "fr": [
+          "LG",
+          "téléviseur QNED7S",
+          "4K mini-DEL · 55 po"
+        ]
+      },
+      "regular": 594.99,
+      "off": 100.0,
+      "price": 494.99,
+      "exp": "2026-11-22",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Electronics",
+        "fr": "Électronique"
+      }
+    },
+    "2060809": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "HP",
+          "OmniBook X Flip 2-in-1",
+          "16 in. touch · Core Ultra 7"
+        ],
+        "fr": [
+          "HP",
+          "OmniBook X Flip 2 en 1",
+          "16 po tactile · Core Ultra 7"
+        ]
+      },
+      "regular": 1799.99,
+      "off": 100.0,
+      "price": 1699.99,
+      "exp": "2026-11-08",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "BC",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Electronics",
+        "fr": "Électronique"
+      }
+    }
+  },
+  "carousels": [
+    {
+      "id": "tier",
+      "category": {
+        "en": "Electronics",
+        "fr": "Électronique"
+      },
+      "items": [
+        "1858512",
+        "2051814",
+        "3125330",
+        "3125120",
+        "8786558",
+        "9500755",
+        "2060809"
+      ]
+    }
+  ],
+  "feeds": {
+    "en": [
+      "tier"
+    ],
+    "fr": [
+      "tier"
+    ]
+  }
+}

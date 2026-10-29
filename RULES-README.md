@@ -10,8 +10,17 @@ wins; when Monica gives a new rule, add it here in the same change.
 
 Deal posts are real Costco price drops with product photos. They matter more than how-to content.
 
-- **Group deals by the SAVING amount, never by the item's price** (2026-10-29). The intervals: $400 to $1,100 off,
-  $300 to $400 off, $150 to $300 off, under $150 off. A $1,000 saving on an $8,999 item goes in the top tier.
+- **The goal of every deal post is to attract the most clients and potential users.**
+- **Categorize deals by three things, in this order** (2026-10-29):
+  1. **Saving range**, never the item's price: $400 to $1,100 off, $300 to $400 off, $150 to $300 off, under $150
+     off. A $1,000 saving on an $8,999 item goes in the top range.
+  2. **Product category** (electronics, home & kitchen, health & beauty, appliances…). A category gets its own
+     carousel when it has 3 items or more in its range; smaller ones stay together in their range's carousel, and
+     every slide names the product's category in the top band.
+  3. **Location: Costco warehouses or Costco Business Centre.** Never mix the two in the same slides unless every
+     product post says where to buy. On the province strip, blue = seen at Costco warehouses, yellow = seen only
+     at Costco Business Centres (with a legend line), grey = not seen. An item sold only at Business Centres goes
+     in a Business Centre carousel, never in a warehouse one.
 - **Groceries are the exception**: grouped by type (coffee & drinks, frozen & meat, dairy & cheese, pantry &
   snacks…), not by saving.
 - **English and French always carry the exact same offers** (2026-10-29). Never choose a language by province,

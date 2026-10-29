@@ -1,18 +1,18 @@
 {
-  "_note": "Tier by SAVING amount (Monica, 2026-10-29: always by saving, never by item price; groceries excepted). Every number from priceback.price_points, pulled 2026-10-29. Photos: R2 product-images, or costco.ca packshots where R2 had none (1737269, 2048848, 1815053, 2085632/2085631, 2061788). 5708165 (Samsung QN80H) is already published: never redo.",
+  "_note": "Grouped by SAVING range, then PRODUCT CATEGORY, then LOCATION (Monica, 2026-10-29). All items here are sold at Costco warehouses; provinces seen only at a Costco Business Centre are yellow on the strip with a legend. EN and FR carry the same offers. Numbers from priceback.price_points, pulled 2026-10-29. 5708165 is published: never redo.",
   "source": "priceback.price_points, pulled 2026-10-29",
   "copy": {
     "en": {
-      "kick": "BIGGEST SAVINGS",
+      "kick": "$400 TO $1,100 OFF",
       "head": "{n} Costco drops of\n$400 to $1,100",
       "sub": "Some end {d}. Swipe to see them all.",
-      "until": "$400 TO $1,100 OFF"
+      "until": "WAREHOUSES"
     },
     "fr": {
-      "kick": "TRÈS GROS RABAIS",
+      "kick": "RABAIS DE 400 $ À 1 100 $",
       "head": "{n} baisses Costco\nde 400 $ à 1 100 $",
       "sub": "Certaines finissent le {d}. Glissez.",
-      "until": "RABAIS 400 $ À 1 100 $"
+      "until": "ENTREPÔTS"
     }
   },
   "fineNote": {
@@ -42,7 +42,12 @@
       "seen": "2026-10-29",
       "provinces": [
         "ON"
-      ]
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Home & garden",
+        "fr": "Maison et jardin"
+      }
     },
     "2082745": {
       "sameday": null,
@@ -73,7 +78,12 @@
         "ON",
         "QC",
         "SK"
-      ]
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Electronics",
+        "fr": "Électronique"
+      }
     },
     "2048848": {
       "sameday": null,
@@ -96,7 +106,12 @@
       "seen": "2026-10-29",
       "provinces": [
         "ON"
-      ]
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Sports & outdoors",
+        "fr": "Sports et plein air"
+      }
     }
   },
   "carousels": [

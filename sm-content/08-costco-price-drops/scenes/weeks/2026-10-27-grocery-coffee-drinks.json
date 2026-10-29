@@ -1,5 +1,5 @@
 {
-  "_note": "Grocery savings by type, with the province strip (every province with a Costco, the ones where the saving was seen filled in). Each item has one saving everywhere it was seen and an end date of Nov 1 or later. Flipp flyer check not done (blocked from this workspace).",
+  "_note": "Grocery savings by type, with the province strip (every province with a Costco, the ones where the saving was seen filled in). Each item has one saving everywhere it was seen and an end date of Nov 1 or later. Flipp flyer check not done (blocked from this workspace). Location split 2026-10-29: provinces seen only at Business Centres shown yellow (bizOnly).",
   "source": "priceback.price_points (price_tag_scan, verified), pulled 2026-10-27 09:40 UTC",
   "provinceStrip": true,
   "endSlide": true,
@@ -45,7 +45,8 @@
         "ON",
         "QC",
         "SK"
-      ]
+      ],
+      "bizOnly": []
     },
     "1477487": {
       "sameday": null,
@@ -76,7 +77,8 @@
         "ON",
         "QC",
         "SK"
-      ]
+      ],
+      "bizOnly": []
     },
     "297676": {
       "sameday": null,
@@ -107,7 +109,8 @@
         "ON",
         "QC",
         "SK"
-      ]
+      ],
+      "bizOnly": []
     },
     "2450137": {
       "sameday": null,
@@ -138,7 +141,8 @@
         "ON",
         "QC",
         "SK"
-      ]
+      ],
+      "bizOnly": []
     },
     "1079435": {
       "sameday": null,
@@ -158,11 +162,13 @@
       "exp": "2026-11-08",
       "seen": "2026-10-27",
       "provinces": [
-        "AB",
-        "BC",
-        "MB",
         "ON",
         "QC"
+      ],
+      "bizOnly": [
+        "AB",
+        "BC",
+        "MB"
       ]
     },
     "2023372": {
@@ -190,7 +196,8 @@
         "NS",
         "ON",
         "QC"
-      ]
+      ],
+      "bizOnly": []
     }
   },
   "carousels": [

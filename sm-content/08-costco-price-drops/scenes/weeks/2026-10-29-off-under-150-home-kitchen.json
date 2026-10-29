@@ -1,0 +1,222 @@
+{
+  "_note": "Grouped by SAVING range, then PRODUCT CATEGORY, then LOCATION (Monica, 2026-10-29). All items here are sold at Costco warehouses; provinces seen only at a Costco Business Centre are yellow on the strip with a legend. EN and FR carry the same offers. Numbers from priceback.price_points, pulled 2026-10-29. 5708165 is published: never redo.",
+  "source": "priceback.price_points, pulled 2026-10-29",
+  "copy": {
+    "en": {
+      "kick": "UP TO $100 OFF",
+      "head": "Home & kitchen:\n{n} Costco drops",
+      "sub": "Some end {d}. Swipe to see them all.",
+      "until": "WAREHOUSES"
+    },
+    "fr": {
+      "kick": "JUSQU'À 100 $ DE RABAIS",
+      "head": "Maison et cuisine :\n{n} baisses Costco",
+      "sub": "Certaines finissent le {d}. Glissez.",
+      "until": "ENTREPÔTS"
+    }
+  },
+  "fineNote": {
+    "en": "Base shelf price; some provinces add an environmental fee at the register, the saving is the same.",
+    "fr": "Prix de base; certaines provinces ajoutent des écofrais à la caisse, l'économie est la même."
+  },
+  "endSlide": true,
+  "items": {
+    "2785602": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Shark",
+          "Clean Sense vacuum"
+        ],
+        "fr": [
+          "Shark",
+          "aspirateur Clean Sense"
+        ]
+      },
+      "regular": 379.99,
+      "off": 100.0,
+      "price": 279.99,
+      "exp": "2026-11-22",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Home & kitchen",
+        "fr": "Maison et cuisine"
+      }
+    },
+    "294577": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Eurodib",
+          "commercial meat slicer",
+          "10 in."
+        ],
+        "fr": [
+          "Eurodib",
+          "trancheuse commerciale",
+          "10 po"
+        ]
+      },
+      "regular": 499.99,
+      "off": 100.0,
+      "price": 399.99,
+      "exp": "2026-11-01",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "MB",
+        "NL",
+        "SK"
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Home & kitchen",
+        "fr": "Maison et cuisine"
+      }
+    },
+    "3826302": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Ninja",
+          "Deluxe kitchen system",
+          "Auto-IQ"
+        ],
+        "fr": [
+          "Ninja",
+          "système de cuisine Deluxe",
+          "Auto-IQ"
+        ]
+      },
+      "regular": 199.99,
+      "off": 50.0,
+      "price": 149.99,
+      "exp": "2026-11-22",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Home & kitchen",
+        "fr": "Maison et cuisine"
+      }
+    },
+    "2523327": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Panasonic",
+          "inverter microwave",
+          "1.3 cu. ft. stainless"
+        ],
+        "fr": [
+          "Panasonic",
+          "micro-ondes à onduleur",
+          "1,3 pi³ inox"
+        ]
+      },
+      "regular": 199.99,
+      "off": 40.0,
+      "price": 159.99,
+      "exp": "2026-11-01",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Home & kitchen",
+        "fr": "Maison et cuisine"
+      }
+    },
+    "1891711": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "De'Longhi",
+          "Nespresso",
+          "espresso machine"
+        ],
+        "fr": [
+          "De'Longhi",
+          "machine Nespresso",
+          "espresso"
+        ]
+      },
+      "regular": 129.99,
+      "off": 30.0,
+      "price": 99.99,
+      "exp": "2026-11-08",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Home & kitchen",
+        "fr": "Maison et cuisine"
+      }
+    }
+  },
+  "carousels": [
+    {
+      "id": "tier",
+      "category": {
+        "en": "Home & kitchen",
+        "fr": "Maison et cuisine"
+      },
+      "items": [
+        "2785602",
+        "294577",
+        "3826302",
+        "2523327",
+        "1891711"
+      ]
+    }
+  ],
+  "feeds": {
+    "en": [
+      "tier"
+    ],
+    "fr": [
+      "tier"
+    ]
+  }
+}

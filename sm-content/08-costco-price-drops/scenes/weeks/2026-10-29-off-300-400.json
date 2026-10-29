@@ -1,18 +1,18 @@
 {
-  "_note": "Tier by SAVING amount (Monica, 2026-10-29: always by saving, never by item price; groceries excepted). Every number from priceback.price_points, pulled 2026-10-29. Photos: R2 product-images, or costco.ca packshots where R2 had none (1737269, 2048848, 1815053, 2085632/2085631, 2061788). 5708165 (Samsung QN80H) is already published: never redo.",
+  "_note": "Grouped by SAVING range, then PRODUCT CATEGORY, then LOCATION (Monica, 2026-10-29). All items here are sold at Costco warehouses; provinces seen only at a Costco Business Centre are yellow on the strip with a legend. EN and FR carry the same offers. Numbers from priceback.price_points, pulled 2026-10-29. 5708165 is published: never redo.",
   "source": "priceback.price_points, pulled 2026-10-29",
   "copy": {
     "en": {
-      "kick": "BIG SAVINGS",
+      "kick": "$300 TO $400 OFF",
       "head": "{n} Costco drops of\n$300 to $400",
       "sub": "Some end {d}. Swipe to see them all.",
-      "until": "$300 TO $400 OFF"
+      "until": "WAREHOUSES"
     },
     "fr": {
-      "kick": "GROS RABAIS",
+      "kick": "RABAIS DE 300 $ À 400 $",
       "head": "{n} baisses Costco\nde 300 $ à 400 $",
       "sub": "Certaines finissent le {d}. Glissez.",
-      "until": "RABAIS 300 $ À 400 $"
+      "until": "ENTREPÔTS"
     }
   },
   "fineNote": {
@@ -21,6 +21,34 @@
   },
   "endSlide": true,
   "items": {
+    "1815053": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "GE",
+          "27 in. laundry centre",
+          "washer 4.4 + dryer 5.9 cu. ft."
+        ],
+        "fr": [
+          "GE",
+          "centre de lavage 27 po",
+          "laveuse 4,4 + sécheuse 5,9 pi³"
+        ]
+      },
+      "regular": 1299.99,
+      "off": 300.0,
+      "price": 999.99,
+      "exp": "2026-11-01",
+      "seen": "2026-10-29",
+      "provinces": [
+        "AB"
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Appliances",
+        "fr": "Électroménagers"
+      }
+    },
     "2074900": {
       "sameday": null,
       "tag": {
@@ -50,30 +78,12 @@
         "ON",
         "QC",
         "SK"
-      ]
-    },
-    "1815053": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "GE",
-          "27 in. laundry centre",
-          "washer 4.4 + dryer 5.9 cu. ft."
-        ],
-        "fr": [
-          "GE",
-          "centre de lavage 27 po",
-          "laveuse 4,4 + sécheuse 5,9 pi³"
-        ]
-      },
-      "regular": 1299.99,
-      "off": 300.0,
-      "price": 999.99,
-      "exp": "2026-11-01",
-      "seen": "2026-10-29",
-      "provinces": [
-        "AB"
-      ]
+      ],
+      "bizOnly": [],
+      "cat": {
+        "en": "Electronics",
+        "fr": "Électronique"
+      }
     }
   },
   "carousels": [
@@ -84,8 +94,8 @@
         "fr": "Rabais 300 $ à 400 $"
       },
       "items": [
-        "2074900",
-        "1815053"
+        "1815053",
+        "2074900"
       ]
     }
   ],
