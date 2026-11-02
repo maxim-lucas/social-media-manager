@@ -18,7 +18,8 @@ const MARK = (c = "#fff") => `<svg viewBox="0 0 48 48" fill="none" stroke="${c}"
 
 const T = {
   en: {
-    free: "FREE APP",
+    free: "FREE DOWNLOAD",
+    model: "Free to download, with a trial. When PriceBack finds you a price drop, a small part of it covers our fees.",
     h1: "Paid full price?", h2: "Get money back.",
     rcHead: "RECEIPT CHECK", rcItem: "65\" OLED TV", rcPaid: "PAID", rcPaidV: "$1,994.99", rcNow: "NOW", rcNowV: "$1,494.99", rcDrop: "PRICE DROP", rcDropV: "-$500.00",
     stamp1: "$500", stamp2: "BACK",
@@ -27,13 +28,14 @@ const T = {
     stores: ["Best Buy", "Home Depot", "Rona", "Sport Chek"],
     src: "Real Costco price drop, Oct 2026",
     urgent: "Sales end fast. Don’t miss yours.",
-    scan: "SCAN NOW", scan2: "Free on iPhone & Android",
+    scan: "SCAN NOW", scan2: "Free download · iPhone & Android",
     fine: "Real example: Samsung 65\" S85H OLED TV at Costco, $1,994.99 → $1,494.99 (Sep 28 – Oct 25, 2026). Refunds follow each store’s price adjustment policy (Costco: within 30 days, while the lower price is in effect). PriceBack is not affiliated with any store.",
     ck: "Waiting for your order?",
     cfine: "Real example: 65\" OLED TV at Costco, Oct 2026. Refunds follow each store’s policy. PriceBack is not affiliated with any store.",
   },
   fr: {
-    free: "APPLI GRATUITE",
+    free: "TÉLÉCHARGEMENT GRATUIT",
+    model: "Téléchargement gratuit, avec essai. Quand PriceBack vous trouve une baisse de prix, une petite part couvre nos frais.",
     h1: "Payé le plein prix ?", h2: "Récupérez la différence.",
     rcHead: "VÉRIF. DE REÇU", rcItem: "TÉLÉ OLED 65 PO", rcPaid: "PAYÉ", rcPaidV: "1 994,99 $", rcNow: "MAINTENANT", rcNowV: "1 494,99 $", rcDrop: "BAISSE", rcDropV: "-500,00 $",
     stamp1: "500 $", stamp2: "REMIS",
@@ -42,7 +44,7 @@ const T = {
     stores: ["Best Buy", "Home Depot", "Rona", "Sport Chek"],
     src: "Vraie baisse chez Costco, oct. 2026",
     urgent: "Les rabais finissent vite. Ne ratez pas le vôtre.",
-    scan: "SCANNEZ", scan2: "Gratuit sur iPhone et Android",
+    scan: "SCANNEZ", scan2: "Téléchargement gratuit · iPhone et Android",
     fine: "Exemple réel : téléviseur OLED Samsung 65 po S85H chez Costco, 1 994,99 $ → 1 494,99 $ (28 sept. – 25 oct. 2026). Les remboursements suivent la politique d’ajustement de prix de chaque magasin (Costco : dans les 30 jours, pendant que le prix réduit est en vigueur). PriceBack n’est affilié à aucun magasin.",
     ck: "Vous attendez votre commande ?",
     cfine: "Exemple réel : téléviseur OLED 65 po chez Costco, oct. 2026. Les remboursements suivent la politique de chaque magasin. PriceBack n’est affilié à aucun magasin.",
@@ -141,7 +143,7 @@ html{font-size:${wIn / 100}in}
   <div class="cta"><div class="s1">← ${t.scan}</div><div class="s2">${t.scan2}</div>
     <div class="badges"><img src="${APPLE}"><img src="${GP[lang]}"></div>
     <div class="url">priceback.ca</div></div></div>
-<div class="fine">${t.fine}</div>
+<div class="fine">${t.model} ${t.fine}</div>
 </div></div></body></html>`;
 }
 
@@ -153,8 +155,8 @@ html{font-size:${wIn / 100}in}
 .page{width:${W}in;height:${H}in}
 .inner{inset:calc(${BLEED}in + 7rem) calc(${BLEED}in + 7.5rem) calc(${BLEED}in + 5.5rem)}
 .top{display:flex;justify-content:space-between;align-items:center}
-.top .brand{font-size:6.4rem}
-.top .pill{font-size:3.2rem;padding:1.3rem 2.8rem;background:var(--yellow);color:#03130c}
+.top .brand{font-size:${lang === "fr" ? 5.6 : 6.4}rem}
+.top .pill{font-size:${lang === "fr" ? 2.35 : 3.2}rem;letter-spacing:${lang === "fr" ? ".03em" : ".08em"};padding:1.3rem ${lang === "fr" ? 2 : 2.8}rem;background:var(--yellow);color:#03130c}
 .kick{margin-top:5rem;font-weight:800;color:var(--mint);font-size:5.6rem;white-space:nowrap}
 .h1{font-size:13rem;margin-top:1.6rem}.h2{font-size:13rem;margin-top:.6rem}
 .proof{display:flex;align-items:center;gap:3rem;margin-top:3.6rem}
@@ -184,7 +186,7 @@ html{font-size:${wIn / 100}in}
   <div class="cta"><div class="s1">${t.scan}</div><div class="s2">${t.scan2}</div>
   <div class="badges"><img src="${APPLE}"><img src="${GP[lang]}"></div></div></div>
 <div class="stores"><span><b>✓ Costco</b> · ${t.soon} Best Buy, Home Depot, Rona, Sport Chek</span></div>
-<div class="fine">${t.cfine}</div>
+<div class="fine">${t.model} ${t.cfine}</div>
 </div></div></body></html>`;
 }
 

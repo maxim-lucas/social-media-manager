@@ -2,6 +2,8 @@
 
 **Design (v2, after Monica's review):** PriceBack green, not the Costco look. Hook "Paid full price? / Get money back." (FR "Payé le plein prix ? / Récupérez la différence."), hero **$500 BACK** from a real Costco drop (Samsung 65" OLED TV, $1,994.99 → $1,494.99, Sep 28 – Oct 25, 2026, confirmed in the database), a store strip (Costco now; Best Buy, Home Depot, Rona, Sport Chek coming soon, matching `src/constants/stores.js`), an urgency line and one big QR card. The App Store and Google Play badges are cropped to their artwork and set to one height. The counter card adds "Waiting for your order?".
 
+**Pricing wording (Monica, 2026-11-02):** the app is not free. Say "free download" only, never "free app" or "free". Every piece carries the fine print "Free to download, with a trial. When PriceBack finds you a price drop, a small part of it covers our fees." (FR "Téléchargement gratuit, avec essai. Quand PriceBack vous trouve une baisse de prix, une petite part couvre nos frais.").
+
 EN and FR are in separate folders. Every file includes a 0.125" bleed on every side; text stays at least 0.3" inside the trim.
 
 | File | Trim size | Where it goes | QR source tag |
