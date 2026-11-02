@@ -1,5 +1,5 @@
-// Priceback print posters: public poster (11x17, 8.5x11) + counter stand card (4x6), EN + FR.
-// node posters.js <outdir>
+// PriceBack print posters v2: 11x17, 8.5x11 public posters and a 4x6 counter stand card, EN + FR.
+// node sm-content/12-print-posters/render.js [outdir]   (gp-*-trim.png = Google badges with their transparent margin cropped, so both store badges share one height)
 const fs = require("fs");
 const path = require("path");
 const QR = require("qrcode");
@@ -7,176 +7,189 @@ const { chromium } = require("playwright");
 
 const OUT = process.argv[2] || path.join(__dirname, "out");
 const BADGES = path.join(__dirname, "../06-launch/badges");
-const b64 = (f, mime) => `data:${mime};base64,${fs.readFileSync(path.join(BADGES, f)).toString("base64")}`;
-const APPLE = b64("app-store-en.svg", "image/svg+xml");
-const GP = { en: b64("google-play-en.png", "image/png"), fr: b64("google-play-fr.png", "image/png") };
-const BLEED = 0.125; // in
+const HERE = __dirname;
+const b64 = (f, mime) => `data:${mime};base64,${fs.readFileSync(f).toString("base64")}`;
+const APPLE = b64(path.join(BADGES, "app-store-en.svg"), "image/svg+xml");
+const GP = { en: b64(path.join(HERE, "gp-en-trim.png"), "image/png"), fr: b64(path.join(HERE, "gp-fr-trim.png"), "image/png") };
+const BLEED = 0.125;
 
-const MARK = `<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+const MARK = (c = "#fff") => `<svg viewBox="0 0 48 48" fill="none" stroke="${c}" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
 <path d="M13 9 H35 V34 L32 37 L29 34 L26 37 L23 34 L20 37 L17 34 L14 37 L13 36 Z"/><path d="M17 16 L21.5 20.5 L25.5 17 L31 27"/><path d="M31 27 L27.4 26 M31 27 L31.7 23.2"/></svg>`;
 
 const T = {
   en: {
-    kicker: "Shopped at Costco lately?",
-    h1: "Costco may owe you", h2: "MONEY.",
-    tagTop: "SAME ITEM · 2 WEEKS LATER", paid: "YOU PAID", regp: "19.99", off: "-6.00", reg: "PRICE AT REGISTER", now: "13.99",
-    burst1: "$6", burst2: "BACK",
-    sub: "Prices drop after you buy.<br>PriceBack tells you when to <b>claim the difference.</b>",
-    steps: ["Scan your receipt", "We watch every price", "Claim the difference"],
-    scan: "SCAN ME", cScan: "SCAN ME · FREE APP", cta1: "Download it free", cta2: "iPhone & Android",
-    fine: "Example for illustration. Price adjustments are Costco’s policy: claim while the lower price is in effect, within 30 days of purchase. PriceBack is not affiliated with Costco.",
-    cKicker: "Waiting for your order?", cSub: "Snap your Costco receipt. PriceBack tells you when a price drops, so you can claim the difference.",
-    cCta: "Scan to get PriceBack · free",
-    cFine: "Price adjustments are Costco’s policy, within 30 days of purchase. PriceBack is not affiliated with Costco.",
+    free: "FREE APP",
+    h1: "Paid full price?", h2: "Get money back.",
+    rcHead: "RECEIPT CHECK", rcItem: "65\" OLED TV", rcPaid: "PAID", rcPaidV: "$1,994.99", rcNow: "NOW", rcNowV: "$1,494.99", rcDrop: "PRICE DROP", rcDropV: "-$500.00",
+    stamp1: "$500", stamp2: "BACK",
+    sub: "Stores drop prices after you buy.<br><b>PriceBack spots it and tells you when to claim it.</b>",
+    now: "Works at", soon: "Soon:",
+    stores: ["Best Buy", "Home Depot", "Rona", "Sport Chek"],
+    src: "Real Costco price drop, Oct 2026",
+    urgent: "Sales end fast. Don’t miss yours.",
+    scan: "SCAN NOW", scan2: "Free on iPhone & Android",
+    fine: "Real example: Samsung 65\" S85H OLED TV at Costco, $1,994.99 → $1,494.99 (Sep 28 – Oct 25, 2026). Refunds follow each store’s price adjustment policy (Costco: within 30 days, while the lower price is in effect). PriceBack is not affiliated with any store.",
+    ck: "Waiting for your order?",
+    cfine: "Real example: 65\" OLED TV at Costco, Oct 2026. Refunds follow each store’s policy. PriceBack is not affiliated with any store.",
   },
   fr: {
-    kicker: "Vous magasinez chez Costco ?",
-    h1: "Costco vous doit peut-être", h2: "DE L’ARGENT.",
-    tagTop: "MÊME ARTICLE · 2 SEMAINES PLUS TARD", paid: "PAYÉ", regp: "19,99", off: "-6,00", reg: "PRIX À LA CAISSE", now: "13,99",
-    burst1: "6 $", burst2: "REMIS",
-    sub: "Les prix baissent après l’achat.<br>PriceBack vous dit quand <b>réclamer la différence.</b>",
-    steps: ["Scannez votre reçu", "On surveille chaque prix", "Réclamez la différence"],
-    scan: "SCANNEZ-MOI", cScan: "SCANNEZ · APPLI GRATUITE", cta1: "Téléchargez-la gratuitement", cta2: "iPhone et Android",
-    fine: "Exemple à titre indicatif. Les ajustements de prix relèvent de la politique de Costco : à réclamer pendant que le prix réduit est en vigueur, dans les 30 jours suivant l’achat. PriceBack n’est pas affilié à Costco.",
-    cKicker: "Vous attendez votre commande ?", cSub: "Photographiez votre reçu Costco. PriceBack vous avertit quand un prix baisse pour réclamer la différence.",
-    cCta: "Scannez pour obtenir PriceBack · gratuit",
-    cFine: "Les ajustements de prix relèvent de la politique de Costco, dans les 30 jours suivant l’achat. PriceBack n’est pas affilié à Costco.",
+    free: "APPLI GRATUITE",
+    h1: "Payé le plein prix ?", h2: "Récupérez la différence.",
+    rcHead: "VÉRIF. DE REÇU", rcItem: "TÉLÉ OLED 65 PO", rcPaid: "PAYÉ", rcPaidV: "1 994,99 $", rcNow: "MAINTENANT", rcNowV: "1 494,99 $", rcDrop: "BAISSE", rcDropV: "-500,00 $",
+    stamp1: "500 $", stamp2: "REMIS",
+    sub: "Les magasins baissent leurs prix après votre achat.<br><b>PriceBack le repère et vous dit quand réclamer.</b>",
+    now: "Fonctionne chez", soon: "Bientôt :",
+    stores: ["Best Buy", "Home Depot", "Rona", "Sport Chek"],
+    src: "Vraie baisse chez Costco, oct. 2026",
+    urgent: "Les rabais finissent vite. Ne ratez pas le vôtre.",
+    scan: "SCANNEZ", scan2: "Gratuit sur iPhone et Android",
+    fine: "Exemple réel : téléviseur OLED Samsung 65 po S85H chez Costco, 1 994,99 $ → 1 494,99 $ (28 sept. – 25 oct. 2026). Les remboursements suivent la politique d’ajustement de prix de chaque magasin (Costco : dans les 30 jours, pendant que le prix réduit est en vigueur). PriceBack n’est affilié à aucun magasin.",
+    ck: "Vous attendez votre commande ?",
+    cfine: "Exemple réel : téléviseur OLED 65 po chez Costco, oct. 2026. Les remboursements suivent la politique de chaque magasin. PriceBack n’est affilié à aucun magasin.",
   },
 };
 
-const BASE_CSS = `
+const CSS = `
 @page{margin:0}
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--blue:#005DAA;--red:#E31837;--yellow:#FFF200;--ink:#111;--green:#10b981;--greenD:#047857}
-html,body{background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-body{font-family:Inter,"Inter Display",Arial,sans-serif;color:var(--ink)}
-.page{position:relative;overflow:hidden;background:#fff;display:flex;flex-direction:column}
-.serif{font-family:"Liberation Serif","Times New Roman",serif}
-.brand{display:flex;align-items:center;gap:.5em;font-weight:900;letter-spacing:-.02em}
-.tile{width:1.6em;height:1.6em;border-radius:.4em;background:linear-gradient(160deg,#10b981,#0e9f70);display:flex;align-items:center;justify-content:center}
+:root{--bg1:#04140d;--bg2:#0b3a26;--mint:#2ee59d;--green:#10b981;--yellow:#ffd43b;--paper:#f7f2e8;--ink:#14110d;--red:#e5383b}
+html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:var(--bg1)}
+body{font-family:"Inter Display",Inter,Arial,sans-serif;color:#fff}
+.page{position:relative;overflow:hidden;
+  background:radial-gradient(90% 55% at 85% 30%,rgba(46,229,157,.22),transparent 70%),radial-gradient(70% 40% at 0% 100%,rgba(16,185,129,.18),transparent 70%),linear-gradient(170deg,#0d4a30 0%,#072a1b 45%,#03130c 100%)}
+.inner{position:absolute;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:.45em;font-weight:900;letter-spacing:-.02em;color:#fff}
+.tile{width:1.5em;height:1.5em;border-radius:.36em;background:linear-gradient(160deg,#10b981,#0a8f62);display:flex;align-items:center;justify-content:center;box-shadow:0 .1em .3em rgba(0,0,0,.35)}
 .tile svg{width:78%;height:78%}
-.qrbox{background:#fff;border-radius:.6rem;display:flex;align-items:center;justify-content:center}
-.qrbox svg{display:block;width:100%;height:100%}
-.tag{background:#fff;box-shadow:0 .5rem 1.4rem rgba(0,0,0,.22);border:1px solid #ddd}
-.hl{background:var(--yellow);padding:0 .12em}
-.burst{position:absolute;border-radius:50%;background:var(--red);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;box-shadow:0 .4rem 1rem rgba(0,0,0,.25);border:.25rem solid #fff}
-.badges{display:flex;align-items:center;gap:.6rem}
+.pill{display:inline-flex;align-items:center;font-weight:800;letter-spacing:.08em;border-radius:99em;white-space:nowrap}
+.h1{font-weight:900;line-height:.98;letter-spacing:-.035em;white-space:nowrap;color:#fff}
+.h2{font-weight:900;line-height:.98;letter-spacing:-.035em;white-space:nowrap;color:var(--yellow)}
+.receipt{position:relative;background:linear-gradient(180deg,#fffdf8,var(--paper) 60%,#ece4d4);color:var(--ink);font-family:"JetBrains Mono",monospace;
+  box-shadow:0 1.2rem 3rem rgba(0,0,0,.55);transform:rotate(-4deg);
+  --zz:1.6rem;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - var(--zz)),95% 100%,90% calc(100% - var(--zz)),85% 100%,80% calc(100% - var(--zz)),75% 100%,70% calc(100% - var(--zz)),65% 100%,60% calc(100% - var(--zz)),55% 100%,50% calc(100% - var(--zz)),45% 100%,40% calc(100% - var(--zz)),35% 100%,30% calc(100% - var(--zz)),25% 100%,20% calc(100% - var(--zz)),15% 100%,10% calc(100% - var(--zz)),5% 100%,0 calc(100% - var(--zz)))}
+.receipt .hd{text-align:center;font-weight:800;letter-spacing:.14em;border-bottom:.3rem dashed #8a8273}
+.receipt .ln{display:flex;justify-content:space-between;gap:1em;white-space:nowrap}
+.receipt .strike{text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:.12em}
+.receipt .drop{border-top:.3rem dashed #8a8273;font-weight:800}
+.receipt .drop b{background:var(--yellow);padding:0 .2em}
+.stamp{position:absolute;border-radius:50%;background:var(--mint);color:#03130c;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;
+  box-shadow:0 .8rem 2rem rgba(0,0,0,.45),inset 0 0 0 .5rem rgba(3,19,12,.15);transform:rotate(12deg);font-family:"Inter Display",Inter,sans-serif;letter-spacing:-.03em}
+.stamp .a{line-height:.9}.stamp .b{letter-spacing:.06em}
+.sub{color:rgba(235,250,243,.92);line-height:1.3;font-weight:500}
+.sub b{color:#fff;font-weight:800}
+.stores{display:flex;flex-wrap:wrap;align-items:center;justify-content:center}
+.chip{display:inline-flex;align-items:center;font-weight:800;border-radius:99em;white-space:nowrap}
+.chip.now{background:var(--mint);color:#03130c}
+.chip.soon{border:.25rem solid rgba(255,255,255,.55);color:#fff}
+.lbl{font-weight:700;color:rgba(235,250,243,.75);text-transform:uppercase;letter-spacing:.1em}
+.card{background:#fff;color:var(--ink);display:flex;align-items:center;box-shadow:0 1.4rem 3.4rem rgba(0,0,0,.5)}
+.qr svg{display:block;width:100%;height:100%}
+.badges{display:flex;align-items:center}
 .badges img{display:block}
+.fine{color:rgba(225,240,233,.62);line-height:1.3;text-align:center}
 `;
 
-// Poster: 1rem = 1% of trim width. Bleed added around trim; safe zone 0.35in inside trim.
-function poster(lang, wIn, hIn, qrSvg, url) {
+function poster(lang, wIn, hIn, qr) {
   const t = T[lang];
+  const tall = hIn / wIn > 1.4;
   const W = wIn + 2 * BLEED, H = hIn + 2 * BLEED;
-  const tall = hIn / wIn > 1.4; // 11x17
-  return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>${BASE_CSS}
+  return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>${CSS}
 html{font-size:${wIn / 100}in}
 .page{width:${W}in;height:${H}in}
-.inner{position:absolute;inset:${BLEED}in;display:flex;flex-direction:column}
-.top{background:var(--blue);margin:-${BLEED}in -${BLEED}in 0;padding:calc(${BLEED}in + ${tall ? 4.4 : 3.2}rem) calc(${BLEED}in + 5.5rem) ${tall ? 3.8 : 2.8}rem;border-bottom:1.4rem solid var(--red);color:#fff}
-.kick{font-weight:800;font-size:${lang === "fr" ? 5.2 : 5.6}rem;letter-spacing:.01em;text-transform:uppercase;line-height:1;white-space:nowrap}
-.head{padding:${tall ? 6.5 : 3.4}rem 5.5rem 0}
-.h1{font-weight:900;color:var(--blue);font-size:${lang === "fr" ? 6.5 : 8}rem;line-height:1;letter-spacing:-.03em;white-space:nowrap}
-.h2{display:inline-block;white-space:nowrap;margin-top:3.2rem;font-weight:900;color:#fff;background:var(--red);font-size:${lang === "fr" ? (tall ? 14.6 : 13) : (tall ? 20 : 17)}rem;line-height:.92;letter-spacing:-.04em;padding:.06em .16em .1em;transform:rotate(-2deg);transform-origin:left center}
-.mid{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;position:relative;padding:0 5.5rem}
-.fit{position:relative;transform-origin:center center}
-.tag{width:60rem;padding:2.6rem 3.6rem 1.6rem;transform:rotate(-3deg);margin-left:8rem}
-.tag .t0{font-family:Inter;font-weight:800;white-space:nowrap;font-size:${lang === "fr" ? 2 : 2.4}rem;letter-spacing:.08em;color:#666}
-.tag .row{display:flex;justify-content:space-between;align-items:center;margin-top:1.6rem;font-size:5.4rem}
-.tag .off{display:flex;justify-content:flex-end;font-size:5.4rem;margin-top:.4rem}
-.tag .rule{border-top:.35rem solid #111;margin-top:1.4rem}
-.tag .reg{text-align:right;font-family:Inter;font-weight:700;font-size:2.2rem;letter-spacing:.06em;margin-top:.8rem}
-.tag .now{text-align:right;font-weight:700;font-size:18rem;line-height:.95;letter-spacing:-.03em}
-.strike{position:relative}
-.strike:after{content:"";position:absolute;left:-.05em;right:-.05em;top:52%;border-top:.09em solid var(--red);transform:rotate(-8deg)}
-.burst{width:24rem;height:24rem;left:0;bottom:-2rem;transform:rotate(-10deg)}
-.burst .a{font-size:${lang === "fr" ? 8.6 : 10}rem;line-height:.9;letter-spacing:-.03em}
-.burst .b{font-size:3.6rem;letter-spacing:.06em}
-.sub{padding:${tall ? 1 : 0}rem 4rem ${tall ? 2.4 : 1.4}rem;text-align:center;white-space:nowrap;font-size:${lang === "fr" ? 3.2 : 3.5}rem;line-height:1.3;font-weight:500;color:#222}
-.sub b{font-weight:800;color:var(--blue)}
-.steps{display:flex;justify-content:center;gap:2.6rem;padding:${tall ? 5 : 2.6}rem 5.5rem ${tall ? 4 : 2.2}rem}
-.step{display:flex;align-items:center;gap:1.2rem;font-weight:800;font-size:${lang === "fr" ? 2.55 : 2.8}rem;color:var(--blue)}
-.step i{font-style:normal;flex:none;width:4.6rem;height:4.6rem;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:2.8rem}
-.bottom{background:var(--red);margin:0 -${BLEED}in -${BLEED}in;padding:${tall ? 5 : 4}rem calc(${BLEED}in + 5.5rem) calc(${BLEED}in + ${tall ? 3.6 : 2.6}rem);color:#fff;display:flex;gap:5rem;align-items:center}
-.qrwrap{position:relative;flex:none}
-.qrbox{width:${tall ? 31 : 26}rem;height:${tall ? 31 : 26}rem;padding:2.4rem;border-radius:2rem}
-.scan{position:absolute;left:50%;top:-3.4rem;transform:translateX(-50%);background:var(--yellow);color:#111;font-weight:900;font-size:3rem;letter-spacing:.06em;padding:.9rem 2.2rem;border-radius:5rem;white-space:nowrap;box-shadow:0 .3rem .8rem rgba(0,0,0,.2)}
+.inner{inset:calc(${BLEED}in + ${tall ? 6 : 4.6}rem) calc(${BLEED}in + 6rem) calc(${BLEED}in + ${tall ? 4.4 : 3.4}rem);justify-content:space-between}
+.top{display:flex;justify-content:space-between;align-items:center}
+.top .brand{font-size:5.2rem}
+.top .pill{font-size:2.6rem;padding:1.1rem 2.4rem;background:var(--yellow);color:#03130c}
+.h1{font-size:12.4rem}.h2{font-size:12.4rem;margin-top:.8rem}
+.hero{display:flex;align-items:center;gap:4rem;justify-content:center}
+.big{position:relative;flex:none;text-align:center;line-height:.8;color:var(--mint);font-weight:900;letter-spacing:-.05em}
+.big .n{font-size:${tall ? 25 : 22}rem;text-shadow:0 1rem 3rem rgba(0,0,0,.35)}
+.big .b{display:inline-block;margin-top:1.2rem;font-size:${tall ? 5.6 : 4.8}rem;letter-spacing:.14em;color:#03130c;background:var(--mint);padding:.6rem 2.4rem;border-radius:99em}
+.slip{background:linear-gradient(180deg,#fffdf8,var(--paper));color:var(--ink);font-family:"JetBrains Mono",monospace;transform:rotate(3deg);box-shadow:0 1rem 2.6rem rgba(0,0,0,.5);
+  padding:${tall ? 3 : 2.4}rem ${tall ? 3.2 : 2.8}rem ${tall ? 4.4 : 3.6}rem;font-size:${tall ? 2.9 : 2.6}rem;line-height:1.55;white-space:nowrap;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 1.4rem),92% 100%,84% calc(100% - 1.4rem),76% 100%,68% calc(100% - 1.4rem),60% 100%,52% calc(100% - 1.4rem),44% 100%,36% calc(100% - 1.4rem),28% 100%,20% calc(100% - 1.4rem),12% 100%,4% calc(100% - 1.4rem),0 100%)}
+.slip .it{font-weight:800}
+.slip .st{text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:.14em;color:#6b6457}
+.slip .nw b{background:var(--yellow);padding:0 .25em}
+.slip .src{margin-top:1rem;font-size:.7em;color:#6b6457;font-family:Inter,sans-serif;font-weight:600;white-space:normal;max-width:12em;line-height:1.25}
+.sub{text-align:center;font-size:${tall ? 3.7 : 3.3}rem}
+.stores{gap:1.2rem;flex-wrap:nowrap}
+.lbl{font-size:2.2rem;white-space:nowrap}
+.chip{font-size:${tall ? 2.6 : 2.35}rem;padding:.8rem 1.9rem}
+.urgent{text-align:center;font-weight:800;color:var(--yellow);font-size:${tall ? 3.6 : 3.2}rem;margin-bottom:-${tall ? 1.4 : 1.8}rem}
+.card{border-radius:3.2rem;padding:${tall ? 3 : 2.4}rem;gap:${tall ? 4 : 3.4}rem}
+.qr{width:${tall ? 31 : 25}rem;height:${tall ? 31 : 25}rem;flex:none}
 .cta{flex:1;min-width:0}
-.cta .brand{font-size:5.6rem;color:#fff}
-.cta .c1{font-weight:900;font-size:${lang === "fr" ? 6 : 6.8}rem;line-height:1;letter-spacing:-.02em;margin-top:${tall ? 2.4 : 1.6}rem}
-.cta .c2{font-weight:600;font-size:3.3rem;margin-top:1rem;opacity:.95}
-.cta .badges{margin-top:${tall ? 3 : 2.2}rem}
-.cta .badges img.a{height:6.4rem}
-.cta .badges img.g{height:9.4rem;margin:-1.5rem 0}
-.cta .url{margin-top:${tall ? 2.4 : 1.6}rem;font-weight:700;font-size:2.8rem;opacity:.9}
-.fine{position:absolute;left:5.5rem;right:5.5rem;bottom:0;text-align:center;font-size:${Math.max(1.35, 6.5 / 72 / (wIn / 100))}rem;color:#555;line-height:1.3}
-.finewrap{position:relative;height:${tall ? 5 : 4.4}rem}
+.cta .s1{font-weight:900;font-size:${tall ? 9.4 : 8.2}rem;letter-spacing:-.03em;line-height:1;color:#03130c;white-space:nowrap}
+.cta .s2{font-weight:700;font-size:${tall ? 3.3 : 3}rem;color:#334;margin-top:1.4rem;white-space:nowrap}
+.badges{gap:1.6rem;margin-top:${tall ? 3 : 2.2}rem}
+.badges img{height:${tall ? 6.6 : 5.6}rem;width:auto}
+.cta .url{font-weight:800;font-size:${tall ? 2.8 : 2.5}rem;color:var(--green);margin-top:${tall ? 2.4 : 1.8}rem}
+.fine{font-size:${Math.max(1.3, 6 / 72 / (wIn / 100))}rem;margin-top:-${tall ? 1 : 1.6}rem}
 </style></head><body><div class="page"><div class="inner">
-<div class="top"><div class="kick">${t.kicker}</div></div>
+<div class="top"><div class="brand"><span class="tile">${MARK()}</span>PriceBack</div><div class="pill">${t.free}</div></div>
 <div class="head"><div class="h1">${t.h1}</div><div class="h2">${t.h2}</div></div>
-<div class="mid"><div class="fit">
-  <div class="tag serif"><div class="t0">${t.tagTop}</div>
-    <div class="row"><span style="font-family:Inter;font-weight:700;font-size:.6em;letter-spacing:.04em">${t.paid}</span><span style="flex:1"></span><span class="strike">${t.regp}</span><span class="hl" style="margin-left:.5em">${t.off}</span></div>
-    <div class="rule"></div><div class="reg">${t.reg}</div><div class="now">${t.now}</div></div>
-  <div class="burst"><div class="a">${t.burst1}</div><div class="b">${t.burst2}</div></div>
-</div></div>
-<div class="sub">${t.sub}</div>
-<div class="finewrap"><div class="fine">${t.fine}</div></div>
-<div class="bottom">
-  <div class="qrwrap"><div class="scan">${t.scan} ↓</div><div class="qrbox">${qrSvg}</div></div>
-  <div class="cta"><div class="brand"><span class="tile">${MARK}</span>PriceBack</div>
-    <div class="c1">${t.cta1}</div><div class="c2">${t.cta2}</div>
-    <div class="badges"><img class="a" src="${APPLE}"><img class="g" src="${GP[lang]}"></div>
-    <div class="url">priceback.ca</div></div>
+<div class="hero">
+  <div class="big"><div class="n">${t.stamp1}</div><div class="b">${t.stamp2}</div></div>
+  <div class="slip"><div class="it">${t.rcItem}</div><div class="st">${t.rcPaidV}</div><div class="nw">→ <b>${t.rcNowV}</b></div><div class="src">${t.src}</div></div>
 </div>
+<div class="sub">${t.sub}</div>
+<div class="stores"><span class="chip now">✓ Costco</span><span class="lbl">${t.soon}</span>${t.stores.map((x) => `<span class="chip soon">${x}</span>`).join("")}</div>
+<div class="urgent">${t.urgent}</div>
+<div class="card"><div class="qr">${qr}</div>
+  <div class="cta"><div class="s1">← ${t.scan}</div><div class="s2">${t.scan2}</div>
+    <div class="badges"><img src="${APPLE}"><img src="${GP[lang]}"></div>
+    <div class="url">priceback.ca</div></div></div>
+<div class="fine">${t.fine}</div>
 </div></div></body></html>`;
 }
 
-// Counter card for a 4x6 acrylic L/T stand. 1rem = 1% of trim width (4in).
-function counter(lang, wIn, hIn, qrSvg, url) {
+function counter(lang, wIn, hIn, qr) {
   const t = T[lang];
   const W = wIn + 2 * BLEED, H = hIn + 2 * BLEED;
-  return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>${BASE_CSS}
+  return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>${CSS}
 html{font-size:${wIn / 100}in}
 .page{width:${W}in;height:${H}in}
-.inner{position:absolute;inset:${BLEED}in;display:flex;flex-direction:column}
-.top{background:var(--blue);margin:-${BLEED}in -${BLEED}in 0;padding:calc(${BLEED}in + 4.6rem) calc(${BLEED}in + 7rem) 3.8rem;border-bottom:2rem solid var(--red);color:#fff}
-.kick{font-weight:800;font-size:6.4rem;line-height:1.08;text-transform:uppercase;white-space:nowrap}
-.head{padding:4.4rem 7rem 0;position:relative}
-.h1{font-weight:900;color:var(--blue);font-size:${lang === "fr" ? 6.6 : 8.3}rem;line-height:1;letter-spacing:-.03em;white-space:nowrap}
-.h2{display:inline-block;white-space:nowrap;margin-top:3.6rem;font-weight:900;color:#fff;background:var(--red);font-size:${lang === "fr" ? 13.4 : 17.5}rem;line-height:.92;letter-spacing:-.04em;padding:.06em .16em .1em;transform:rotate(-2deg);transform-origin:left center}
-.burst{width:25rem;height:25rem;right:6rem;top:${lang === "fr" ? 25 : 23}rem;transform:rotate(10deg)}
-.burst .a{font-size:${lang === "fr" ? 8.4 : 9.6}rem;line-height:.9;letter-spacing:-.03em}
-.burst .b{font-size:3.6rem;letter-spacing:.05em}
-.sub{padding:3.6rem 7rem 0;font-size:${lang === "fr" ? 3.9 : 4.2}rem;line-height:1.28;font-weight:600;color:#222}
-.mid{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:8rem 0 2rem}
-.qrwrap{position:relative}
-.qrbox{width:50rem;height:50rem;padding:3.6rem;border:.9rem solid var(--red);border-radius:3.5rem}
-.scan{position:absolute;left:50%;top:-5rem;transform:translateX(-50%);background:var(--yellow);color:#111;font-weight:900;font-size:${lang === "fr" ? 3.9 : 4.4}rem;letter-spacing:.05em;padding:1.2rem 3.6rem;border-radius:6rem;white-space:nowrap;box-shadow:0 .3rem .8rem rgba(0,0,0,.2)}
-.bottom{background:var(--red);margin:2rem -${BLEED}in -${BLEED}in;padding:3.6rem calc(${BLEED}in + 7rem) calc(${BLEED}in + 4rem);color:#fff}
-.row1{display:flex;align-items:center;justify-content:space-between}
-.bottom .brand{font-size:6.8rem}
-.badges img.a{height:7.6rem}
-.badges img.g{height:11.2rem;margin:-1.8rem -.9rem -1.8rem 0}
-.badges{flex-direction:column;align-items:flex-end;gap:.6rem}
-.cta{font-weight:800;font-size:${lang === "fr" ? 3.9 : 4.3}rem;margin-top:2.4rem}
-.url{font-weight:600;font-size:3.2rem;opacity:.9;margin-top:.4rem}
-.fine{margin-top:2rem;font-size:2.1rem;line-height:1.3;opacity:.92}
+.inner{inset:calc(${BLEED}in + 7rem) calc(${BLEED}in + 7.5rem) calc(${BLEED}in + 5.5rem)}
+.top{display:flex;justify-content:space-between;align-items:center}
+.top .brand{font-size:6.4rem}
+.top .pill{font-size:3.2rem;padding:1.3rem 2.8rem;background:var(--yellow);color:#03130c}
+.kick{margin-top:5rem;font-weight:800;color:var(--mint);font-size:5.6rem;white-space:nowrap}
+.h1{font-size:13rem;margin-top:1.6rem}.h2{font-size:13rem;margin-top:.6rem}
+.proof{display:flex;align-items:center;gap:3rem;margin-top:3.6rem}
+.proof .stamp{position:relative;transform:rotate(-8deg);width:23rem;height:23rem;flex:none}
+.proof .stamp .a{font-size:${lang === "fr" ? 7.4 : 8.4}rem}.proof .stamp .b{font-size:3.4rem}
+.proof .txt{font-size:4.4rem;line-height:1.25;font-weight:600;color:rgba(235,250,243,.92)}
+.proof .txt b{color:#fff;font-weight:800}
+.mid{flex:1;min-height:0}
+.card{border-radius:4rem;padding:3.6rem;gap:4rem}
+.qr{flex:none;width:40rem;height:40rem}
+.cta{flex:1;min-width:0;display:flex;flex-direction:column}
+.cta .s1{font-weight:900;font-size:${lang === "fr" ? 8.4 : 9.6}rem;letter-spacing:-.03em;line-height:1;color:#03130c}
+.cta .s2{font-weight:700;font-size:3.4rem;color:#334;margin-top:1.4rem;line-height:1.2}
+.badges{flex-direction:column;align-items:flex-start;gap:1.8rem;margin-top:2.6rem}
+.badges img{height:7.4rem;width:auto}
+.fine{font-size:2.2rem;margin-top:2.4rem}
+.stores{margin-top:2.8rem;font-size:3rem;font-weight:700;color:rgba(235,250,243,.85);text-align:center;justify-content:center}
+.stores b{color:var(--mint)}
 </style></head><body class="counter"><div class="page"><div class="inner">
-<div class="top"><div class="kick">${t.cKicker}</div></div>
-<div class="head"><div class="h1">${t.h1}</div><div class="h2">${t.h2}</div></div>
-<div class="mid"><div class="qrwrap"><div class="scan">${t.cScan} ↓</div><div class="qrbox">${qrSvg}</div></div></div>
-<div class="bottom">
-  <div class="row1"><div class="brand"><span class="tile">${MARK}</span>PriceBack</div>
-  <div class="badges"><img class="a" src="${APPLE}"><img class="g" src="${GP[lang]}"></div></div>
-  <div class="fine">${t.cFine}</div>
-</div>
+<div class="top"><div class="brand"><span class="tile">${MARK()}</span>PriceBack</div><div class="pill">${t.free}</div></div>
+<div class="kick">${t.ck}</div>
+<div class="h1">${t.h1}</div><div class="h2">${t.h2}</div>
+<div class="proof"><div class="stamp"><div class="a">${t.stamp1}</div><div class="b">${t.stamp2}</div></div>
+  <div class="txt">${lang === "fr" ? "Vrai exemple : une télé OLED 65 po a baissé de <b>500 $</b> après l’achat." : "Real example: a 65″ OLED TV dropped <b>$500</b> after people bought it."}</div></div>
+<div class="mid"></div>
+<div class="card"><div class="qr">${qr}</div>
+  <div class="cta"><div class="s1">${t.scan}</div><div class="s2">${t.scan2}</div>
+  <div class="badges"><img src="${APPLE}"><img src="${GP[lang]}"></div></div></div>
+<div class="stores"><span><b>✓ Costco</b> · ${t.soon} Best Buy, Home Depot, Rona, Sport Chek</span></div>
+<div class="fine">${t.cfine}</div>
 </div></div></body></html>`;
 }
 
 const qrSvg = async (url) =>
-  (await QR.toString(url, { type: "svg", errorCorrectionLevel: "M", margin: 0, color: { dark: "#000000", light: "#ffffff" } }))
-    .replace(/width="\d+" height="\d+"/, "");
+  (await QR.toString(url, { type: "svg", errorCorrectionLevel: "M", margin: 0, color: { dark: "#03130c", light: "#ffffff" } })).replace(/width="\d+" height="\d+"/, "");
 
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
@@ -187,36 +200,46 @@ const qrSvg = async (url) =>
     jobs.push({ name: `PriceBack-counter-4x6-${lang}`, fn: counter, w: 4, h: 6, src: `counter-${lang}`, lang });
   }
   const browser = await chromium.launch();
-  const only = process.env.ONLY;
   for (const j of jobs) {
-    if (only && !j.name.includes(only)) continue;
+    if (process.env.ONLY && !j.name.includes(process.env.ONLY)) continue;
     const url = `https://priceback.ca/app?s=${j.src}`;
-    const html = j.fn(j.lang, j.w, j.h, await qrSvg(url), url);
+    const html = j.fn(j.lang, j.w, j.h, await qrSvg(url));
     fs.writeFileSync(path.join(OUT, `${j.name}.html`), html);
     const W = j.w + 2 * BLEED, H = j.h + 2 * BLEED;
     const page = await browser.newPage({ viewport: { width: Math.round(W * 96), height: Math.round(H * 96) }, deviceScaleFactor: 300 / 96 });
     await page.setContent(html, { waitUntil: "load" });
     await page.evaluate(() => document.fonts.ready);
     const info = await page.evaluate(() => {
-      const fit = document.querySelector(".fit"), mid = document.querySelector(".mid");
-      for (const el of document.querySelectorAll(".kick,.h1,.h2")) {
-        const max = el.parentElement.clientWidth - parseFloat(getComputedStyle(el.parentElement).paddingLeft) - parseFloat(getComputedStyle(el.parentElement).paddingRight);
-        const w = el.scrollWidth;
+      const inner = document.querySelector(".inner");
+      const avail = (el) => { const cs = getComputedStyle(el.parentElement); return el.parentElement.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight); };
+      for (const el of document.querySelectorAll(".h1,.h2,.kick,.stores,.cta .s1,.cta .s2,.sub")) {
+        const max = avail(el); const w = el.scrollWidth;
         if (w > max) el.style.fontSize = parseFloat(getComputedStyle(el).fontSize) * (max / w) * 0.985 + "px";
       }
-      const cq = document.querySelector(".counter .qrbox");
-      if (cq) { const m = document.querySelector(".mid"); const avail = m.clientHeight - parseFloat(getComputedStyle(m).paddingTop) - parseFloat(getComputedStyle(m).paddingBottom); const sz = Math.min(avail, m.clientWidth * 0.66); cq.style.width = cq.style.height = sz + "px"; }
-      let s = null;
-      if (fit) { s = Math.min(1.3, (mid.clientHeight * 0.9) / fit.offsetHeight, (mid.clientWidth * 0.98) / fit.offsetWidth); fit.style.transform = `scale(${s})`; }
-      const inner = document.querySelector(".inner");
-      const over = [...inner.querySelectorAll("*")].filter((e) => { const r = e.getBoundingClientRect(), p = document.querySelector(".page").getBoundingClientRect(); return r.right > p.right + 1 || r.bottom > p.bottom + 1; }).map((e) => e.className).slice(0, 5);
-      return { s, over, midH: mid.clientHeight };
+      const hero = document.querySelector(".hero");
+      if (hero) { const max = hero.parentElement.clientWidth; const w = hero.scrollWidth; if (w > max * 0.98) hero.style.zoom = (max * 0.98 / w).toFixed(3); }
+      // keep both headline lines the same size
+      const h1 = document.querySelector(".h1"), h2 = document.querySelector(".h2");
+      const fs = Math.min(parseFloat(getComputedStyle(h1).fontSize), parseFloat(getComputedStyle(h2).fontSize));
+      h1.style.fontSize = h2.style.fontSize = fs + "px";
+      const out = {};
+      const fit = document.querySelector(".fit");
+      if (fit) {
+        const mid = document.querySelector(".mid");
+        const s = Math.min(1.25, (mid.clientHeight * 0.86) / fit.offsetHeight, (mid.clientWidth * 0.62) / fit.offsetWidth);
+        fit.style.transform = `translateX(-6%) scale(${s})`; out.s = +s.toFixed(2);
+      }
+      const cq = document.querySelector(".counter .qr");
+      if (cq) { const mid = document.querySelector(".mid"); const add = Math.max(0, mid.clientHeight - 8); const sz = Math.min(cq.clientWidth + add, document.querySelector(".card").clientWidth * 0.52); cq.style.width = cq.style.height = sz + "px"; out.qr = sz; }
+      const page = document.querySelector(".page").getBoundingClientRect();
+      out.over = [...inner.querySelectorAll("*")].filter((e) => { const r = e.getBoundingClientRect(); return r.bottom > page.bottom - 2 || r.right > page.right + 1; }).map((e) => e.className).slice(0, 5);
+      const m = document.querySelector(".mid"); out.spare = m ? m.clientHeight : null; out.gaps = [...inner.children].map((e, i, a) => i ? Math.round(e.getBoundingClientRect().top - a[i - 1].getBoundingClientRect().bottom) : 0).join(",");
+      return out;
     });
-    console.log(j.name, JSON.stringify(info));
     await page.pdf({ path: path.join(OUT, `${j.name}.pdf`), width: `${W}in`, height: `${H}in`, printBackground: true, pageRanges: "1" });
     await page.screenshot({ path: path.join(OUT, `${j.name}.png`), clip: { x: 0, y: 0, width: W * 96, height: H * 96 } });
     await page.close();
-    console.log(j.name, url);
+    console.log(j.name, JSON.stringify(info));
   }
   await browser.close();
 })();
