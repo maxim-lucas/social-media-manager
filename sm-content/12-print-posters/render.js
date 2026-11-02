@@ -29,10 +29,11 @@ const T = {
     stores: ["Best Buy", "Home Depot", "Rona", "Sport Chek"],
     src: "Real Costco drops, Oct 2026",
     urgent: "Sales end fast. Don’t miss yours.",
+    cScan: "SCAN ME ↓", grocery: "Groceries too. Small drops add up every week.",
     scan: "SCAN NOW", scan2: "Free download · iPhone & Android",
     fine: "Real example: Samsung 65\" S85H OLED TV at Costco (regular $1,994.99): $600 off for 2 days, then $500 off, Oct 2026. Refunds follow each store’s price adjustment policy (Costco: within 30 days, while the lower price is in effect). PriceBack is not affiliated with any store.",
     ck: "Waiting for your order?",
-    cfine: "Real example: 65\" OLED TV at Costco, $600 off for 2 days then $500 off, Oct 2026. Refunds follow each store’s policy. PriceBack is not affiliated with any store.",
+    cfine: "Works at Costco; Best Buy, Home Depot, Rona and Sport Chek coming soon. Refunds follow each store’s policy. PriceBack is not affiliated with any store.",
   },
   fr: {
     free: "TÉLÉCHARGEMENT GRATUIT",
@@ -46,10 +47,11 @@ const T = {
     stores: ["Best Buy", "Home Depot", "Rona", "Sport Chek"],
     src: "Vraies baisses chez Costco, oct. 2026",
     urgent: "Les rabais finissent vite. Ne ratez pas le vôtre.",
+    cScan: "SCANNEZ-MOI ↓", grocery: "L’épicerie aussi. Les petites baisses s’additionnent chaque semaine.",
     scan: "SCANNEZ", scan2: "Téléchargement gratuit · iPhone et Android",
     fine: "Exemple réel : téléviseur OLED Samsung 65 po S85H chez Costco (prix régulier 1 994,99 $) : 600 $ de rabais pendant 2 jours, puis 500 $, oct. 2026. Les remboursements suivent la politique d’ajustement de prix de chaque magasin (Costco : dans les 30 jours, pendant que le prix réduit est en vigueur). PriceBack n’est affilié à aucun magasin.",
     ck: "Vous attendez votre commande ?",
-    cfine: "Exemple réel : téléviseur OLED 65 po chez Costco, 600 $ de rabais pendant 2 jours puis 500 $, oct. 2026. Les remboursements suivent la politique de chaque magasin. PriceBack n’est affilié à aucun magasin.",
+    cfine: "Fonctionne chez Costco; Best Buy, Home Depot, Rona et Sport Chek bientôt. Les remboursements suivent la politique de chaque magasin. PriceBack n’est affilié à aucun magasin.",
   },
 };
 
@@ -105,13 +107,13 @@ html{font-size:${wIn / 100}in}
 .top{display:flex;justify-content:space-between;align-items:center}
 .top .brand{font-size:5.2rem}
 .top .pill{font-size:2.6rem;padding:1.1rem 2.4rem;background:var(--yellow);color:#03130c}
-.h1{font-size:12.4rem}.h2{font-size:12.4rem;margin-top:.8rem}
+.h1{font-size:${tall ? 12.4 : 11}rem}.h2{font-size:${tall ? 12.4 : 11}rem;margin-top:.8rem}
 .hero{display:flex;align-items:center;gap:4rem;justify-content:center}
 .big{position:relative;flex:none;text-align:center;line-height:.8;color:var(--mint);font-weight:900;letter-spacing:-.05em}
-.big .n{font-size:${tall ? 25 : 22}rem;text-shadow:0 1rem 3rem rgba(0,0,0,.35)}
+.big .n{font-size:${tall ? 25 : 18}rem;text-shadow:0 1rem 3rem rgba(0,0,0,.35)}
 .big .b{display:inline-block;margin-top:1.2rem;font-size:${tall ? 5.6 : 4.8}rem;letter-spacing:.14em;color:#03130c;background:var(--mint);padding:.6rem 2.4rem;border-radius:99em}
 .slip{background:linear-gradient(180deg,#fffdf8,var(--paper));color:var(--ink);font-family:"JetBrains Mono",monospace;transform:rotate(3deg);box-shadow:0 1rem 2.6rem rgba(0,0,0,.5);
-  padding:${tall ? 3 : 2.4}rem ${tall ? 3.2 : 2.8}rem ${tall ? 4.4 : 3.6}rem;font-size:${tall ? 2.9 : 2.6}rem;line-height:1.55;white-space:nowrap;
+  padding:${tall ? 3 : 2}rem ${tall ? 3.2 : 2.6}rem ${tall ? 4.4 : 3.2}rem;font-size:${tall ? 2.9 : 2.6}rem;line-height:1.55;white-space:nowrap;
   clip-path:polygon(0 0,100% 0,100% calc(100% - 1.4rem),92% 100%,84% calc(100% - 1.4rem),76% 100%,68% calc(100% - 1.4rem),60% 100%,52% calc(100% - 1.4rem),44% 100%,36% calc(100% - 1.4rem),28% 100%,20% calc(100% - 1.4rem),12% 100%,4% calc(100% - 1.4rem),0 100%)}
 .slip .it{font-weight:800}
 .slip .st{text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:.14em;color:#6b6457}
@@ -122,19 +124,20 @@ html{font-size:${wIn / 100}in}
 .slip .ln2.dim span{color:#6b6457}
 .slip .src{margin-top:1rem;font-size:.7em;color:#6b6457;font-family:Inter,sans-serif;font-weight:600;white-space:normal;max-width:12em;line-height:1.25}
 .sub{text-align:center;white-space:nowrap;font-size:${tall ? 3.9 : 3.5}rem}
+.groc{margin-top:${tall ? 1.6 : 1.1}rem;font-weight:800;color:var(--mint)}
 .stores{gap:1.2rem;flex-wrap:nowrap}
 .lbl{font-size:2.2rem;white-space:nowrap}
 .chip{font-size:${tall ? 2.6 : 2.35}rem;padding:.8rem 1.9rem}
-.urgent{text-align:center;font-weight:800;color:var(--yellow);font-size:${tall ? 3.6 : 3.2}rem;margin-bottom:-${tall ? 1.4 : 1.8}rem}
-.card{border-radius:3.2rem;padding:${tall ? 3 : 2.4}rem;gap:${tall ? 4 : 3.4}rem}
-.qr{width:${tall ? 31 : 25}rem;height:${tall ? 31 : 25}rem;flex:none}
+.urgent{text-align:center;font-weight:800;color:var(--yellow);font-size:${tall ? 3.6 : 3.2}rem;margin-bottom:-${tall ? 1.4 : 0.8}rem}
+.card{border-radius:3.2rem;padding:${tall ? 3 : 2}rem;gap:${tall ? 4 : 3.4}rem}
+.qr{width:${tall ? 31 : 22}rem;height:${tall ? 31 : 22}rem;flex:none}
 .cta{flex:1;min-width:0}
-.cta .s1{font-weight:900;font-size:${tall ? 9.4 : 8.2}rem;letter-spacing:-.03em;line-height:1;color:#03130c;white-space:nowrap}
+.cta .s1{font-weight:900;font-size:${tall ? 9.4 : 7}rem;letter-spacing:-.03em;line-height:1;color:#03130c;white-space:nowrap}
 .cta .s2{font-weight:700;font-size:${tall ? 3.3 : 3}rem;color:#334;margin-top:1.4rem;white-space:nowrap}
-.badges{gap:1.6rem;margin-top:${tall ? 3 : 2.2}rem}
+.badges{gap:1.6rem;margin-top:${tall ? 3 : 1.6}rem}
 .badges img{height:${tall ? 6.6 : 5.6}rem;width:auto}
-.cta .url{font-weight:800;font-size:${tall ? 2.8 : 2.5}rem;color:var(--green);margin-top:${tall ? 2.4 : 1.8}rem}
-.fine{font-size:${Math.max(1.3, 6 / 72 / (wIn / 100))}rem;margin-top:-${tall ? 1 : 1.6}rem}
+.cta .url{font-weight:800;font-size:${tall ? 2.8 : 2.5}rem;color:var(--green);margin-top:${tall ? 2.4 : 1.2}rem}
+.fine{font-size:${Math.max(1.3, 6 / 72 / (wIn / 100))}rem;margin-top:-${tall ? 1 : 0.6}rem}
 </style></head><body><div class="page"><div class="inner">
 <div class="top"><div class="brand"><span class="tile">${MARK()}</span>PriceBack</div><div class="pill">${t.free}</div></div>
 <div class="head"><div class="h1">${t.h1}</div><div class="h2">${t.h2}</div></div>
@@ -142,7 +145,7 @@ html{font-size:${wIn / 100}in}
   <div class="big"><div class="n">${t.stamp1}</div><div class="b">${t.stamp2}</div></div>
   <div class="slip"><div class="it">${t.rcItem}</div><div class="ln2"><b>${t.d1}</b><span>${t.d1l}</span></div><div class="ln2 dim"><b>${t.d2}</b><span>${t.d2l}</span></div><div class="src">${t.src}</div></div>
 </div>
-<div class="sub">${t.sub}</div>
+<div class="sub">${t.sub}<div class="groc">${t.grocery}</div></div>
 <div class="stores"><span class="chip now">✓ Costco</span><span class="lbl">${t.soon}</span>${t.stores.map((x) => `<span class="chip soon">${x}</span>`).join("")}</div>
 <div class="urgent">${t.urgent}</div>
 <div class="card"><div class="qr">${qr}</div>
@@ -153,45 +156,37 @@ html{font-size:${wIn / 100}in}
 </div></div></body></html>`;
 }
 
+// Counter sign: its own minimal layout for a 4x6 acrylic stand read at arm's length by people waiting.
+// Three things only: the waiting hook, the money hook, one huge QR.
 function counter(lang, wIn, hIn, qr) {
   const t = T[lang];
   const W = wIn + 2 * BLEED, H = hIn + 2 * BLEED;
   return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>${CSS}
 html{font-size:${wIn / 100}in}
 .page{width:${W}in;height:${H}in}
-.inner{inset:calc(${BLEED}in + 7rem) calc(${BLEED}in + 7.5rem) calc(${BLEED}in + 5.5rem)}
-.top{display:flex;justify-content:space-between;align-items:center}
-.top .brand{font-size:${lang === "fr" ? 5.6 : 6.4}rem}
-.top .pill{font-size:${lang === "fr" ? 2.35 : 3.2}rem;letter-spacing:${lang === "fr" ? ".03em" : ".08em"};padding:1.3rem ${lang === "fr" ? 2 : 2.8}rem;background:var(--yellow);color:#03130c}
-.kick{margin-top:5rem;font-weight:800;color:var(--mint);font-size:5.6rem;white-space:nowrap}
-.h1{font-size:13rem;margin-top:1.6rem}.h2{font-size:13rem;margin-top:.6rem}
-.proof{display:flex;align-items:center;gap:3rem;margin-top:3.6rem}
-.proof .stamp{position:relative;transform:rotate(-8deg);width:23rem;height:23rem;flex:none}
-.proof .stamp .a{font-size:${lang === "fr" ? 7.4 : 8.4}rem}.proof .stamp .b{font-size:3.4rem}
-.proof .txt{font-size:4.4rem;line-height:1.25;font-weight:600;color:rgba(235,250,243,.92)}
-.proof .txt b{color:#fff;font-weight:800}
-.mid{flex:1;min-height:0}
-.card{border-radius:4rem;padding:3.6rem;gap:4rem}
-.qr{flex:none;width:40rem;height:40rem}
-.cta{flex:1;min-width:0;display:flex;flex-direction:column}
-.cta .s1{font-weight:900;font-size:${lang === "fr" ? 8.4 : 9.6}rem;letter-spacing:-.03em;line-height:1;color:#03130c}
-.cta .s2{font-weight:700;font-size:3.4rem;color:#334;margin-top:1.4rem;line-height:1.2}
-.badges{flex-direction:column;align-items:flex-start;gap:1.8rem;margin-top:2.6rem}
-.badges img{height:7.4rem;width:auto}
-.fine{font-size:2.2rem;margin-top:2.4rem}
-.stores{margin-top:2.8rem;font-size:3rem;font-weight:700;color:rgba(235,250,243,.85);text-align:center;justify-content:center}
-.stores b{color:var(--mint)}
-</style></head><body class="counter"><div class="page"><div class="inner">
-<div class="top"><div class="brand"><span class="tile">${MARK()}</span>PriceBack</div><div class="pill">${t.free}</div></div>
-<div class="kick">${t.ck}</div>
-<div class="h1">${t.h1}</div><div class="h2">${t.h2}</div>
-<div class="proof"><div class="stamp"><div class="a">${t.stamp1}</div><div class="b">${t.stamp2}</div></div>
-  <div class="txt">${lang === "fr" ? "Une télé a baissé de <b>600 $</b> pendant 2 jours. Personne ne l’a vu. <b>PriceBack, oui.</b>" : "A TV dropped <b>$600</b> for 2 days. Nobody saw it. <b>PriceBack did.</b>"}</div></div>
-<div class="mid"></div>
-<div class="card"><div class="qr">${qr}</div>
-  <div class="cta"><div class="s1">${t.scan}</div><div class="s2">${t.scan2}</div>
-  <div class="badges"><img src="${APPLE}"><img src="${GP[lang]}"></div></div></div>
-<div class="stores"><span><b>✓ Costco</b> · ${t.soon} Best Buy, Home Depot, Rona, Sport Chek</span></div>
+.band{position:absolute;left:0;right:0;top:0;height:calc(${BLEED}in + 19rem);background:var(--yellow);color:#03130c;display:flex;align-items:flex-end;justify-content:center;padding-bottom:4.4rem}
+.band .k{font-weight:900;font-size:${lang === "fr" ? 5.9 : 7.4}rem;letter-spacing:-.02em;white-space:nowrap}
+.inner{inset:calc(${BLEED}in + 19rem + 5.5rem) calc(${BLEED}in + 7rem) calc(${BLEED}in + 4.6rem);align-items:center;justify-content:space-between;text-align:center}
+.head{width:100%}
+.h1,.h2{font-size:11.6rem}
+.h2{margin-top:.4rem}
+.qwrap{position:relative;margin-top:7rem}
+.qcard{background:#fff;border-radius:4.4rem;padding:4.4rem;box-shadow:0 1.4rem 3.4rem rgba(0,0,0,.5)}
+.qr{width:48rem;height:48rem}
+.tab{position:absolute;left:50%;top:-4.6rem;transform:translateX(-50%);background:var(--mint);color:#03130c;font-weight:900;font-size:${lang === "fr" ? 4.2 : 4.6}rem;letter-spacing:.06em;padding:1.4rem 4rem;border-radius:99em;white-space:nowrap;box-shadow:0 .6rem 1.4rem rgba(0,0,0,.35)}
+.badges{gap:2.4rem;justify-content:center}
+.badges img{height:8.2rem;width:auto}
+.foot{display:flex;align-items:center;justify-content:center;gap:3rem}
+.foot .brand{font-size:6rem}
+.foot .dl{font-weight:800;font-size:3.4rem;color:var(--yellow);white-space:nowrap}
+.fine{font-size:2.15rem}
+</style></head><body class="counter"><div class="page">
+<div class="band"><div class="k">${t.ck}</div></div>
+<div class="inner">
+<div class="head"><div class="h1">${t.h1}</div><div class="h2">${t.h2}</div></div>
+<div class="qwrap"><div class="tab">${t.cScan}</div><div class="qcard"><div class="qr">${qr}</div></div></div>
+<div class="badges"><img src="${APPLE}"><img src="${GP[lang]}"></div>
+<div class="foot"><div class="brand"><span class="tile">${MARK()}</span>PriceBack</div><div class="dl">${t.free}</div></div>
 <div class="fine">${t.model} ${t.cfine}</div>
 </div></div></body></html>`;
 }
@@ -239,7 +234,7 @@ const qrSvg = async (url) =>
         fit.style.transform = `translateX(-6%) scale(${s})`; out.s = +s.toFixed(2);
       }
       const cq = document.querySelector(".counter .qr");
-      if (cq) { const mid = document.querySelector(".mid"); const add = Math.max(0, mid.clientHeight - 8); const sz = Math.min(cq.clientWidth + add, document.querySelector(".card").clientWidth * 0.52); cq.style.width = cq.style.height = sz + "px"; out.qr = sz; autofit(); }
+      if (cq && document.querySelector(".mid")) { const mid = document.querySelector(".mid"); const add = Math.max(0, mid.clientHeight - 8); const sz = Math.min(cq.clientWidth + add, document.querySelector(".card").clientWidth * 0.52); cq.style.width = cq.style.height = sz + "px"; out.qr = sz; autofit(); }
       const page = document.querySelector(".page").getBoundingClientRect();
       out.over = [...inner.querySelectorAll("*")].filter((e) => { const r = e.getBoundingClientRect(); return r.bottom > page.bottom - 2 || r.right > page.right + 1; }).map((e) => e.className).slice(0, 5);
       const m = document.querySelector(".mid"); out.spare = m ? m.clientHeight : null; out.gaps = [...inner.children].map((e, i, a) => i ? Math.round(e.getBoundingClientRect().top - a[i - 1].getBoundingClientRect().bottom) : 0).join(",");
