@@ -18,7 +18,9 @@ const MARK = (c = "#fff") => `<svg viewBox="0 0 48 48" fill="none" stroke="${c}"
 
 const T = {
   en: {
-    free: "FREE DOWNLOAD",
+    free: "FREE DOWNLOAD", tryIt: "TRY IT FREE",
+    pScan2: "Free trial. Then a small share of the drops we find you.",
+    pModel: "Free trial. After the trial, PriceBack keeps a small part of the price drops it finds you, to cover its technology costs.",
     model: "Free to download, with a trial. When PriceBack finds you a price drop, a small part of it covers our fees.",
     h1: "Paid full price?", h2: "Get money back.",
     rcHead: "RECEIPT CHECK", rcItem: "65\" OLED TV", rcPaid: "PAID", rcPaidV: "$1,994.99", rcNow: "NOW", rcNowV: "$1,494.99", rcDrop: "PRICE DROP", rcDropV: "-$500.00",
@@ -36,7 +38,9 @@ const T = {
     cfine: "Works at Costco; Best Buy, Home Depot, Rona and Sport Chek coming soon. Refunds follow each store’s policy. PriceBack is not affiliated with any store.",
   },
   fr: {
-    free: "TÉLÉCHARGEMENT GRATUIT",
+    free: "TÉLÉCHARGEMENT GRATUIT", tryIt: "ESSAI GRATUIT",
+    pScan2: "Essai gratuit. Ensuite, une petite part des baisses qu’on vous trouve.",
+    pModel: "Essai gratuit. Après l’essai, PriceBack garde une petite part des baisses de prix qu’il vous trouve, pour couvrir ses frais technologiques.",
     model: "Téléchargement gratuit, avec essai. Quand PriceBack vous trouve une baisse de prix, une petite part couvre nos frais.",
     h1: "Payé le plein prix ?", h2: "Récupérez la différence.",
     rcHead: "VÉRIF. DE REÇU", rcItem: "TÉLÉ OLED 65 PO", rcPaid: "PAYÉ", rcPaidV: "1 994,99 $", rcNow: "MAINTENANT", rcNowV: "1 494,99 $", rcDrop: "BAISSE", rcDropV: "-500,00 $",
@@ -133,13 +137,13 @@ html{font-size:${wIn / 100}in}
 .qr{width:${tall ? 31 : 22}rem;height:${tall ? 31 : 22}rem;flex:none}
 .cta{flex:1;min-width:0}
 .cta .s1{font-weight:900;font-size:${tall ? 9.4 : 7}rem;letter-spacing:-.03em;line-height:1;color:#03130c;white-space:nowrap}
-.cta .s2{font-weight:700;font-size:${tall ? 3.3 : 3}rem;color:#334;margin-top:1.4rem;white-space:nowrap}
+.cta .s2{font-weight:700;font-size:${tall ? 3.3 : 2.9}rem;color:#334;margin-top:1.2rem;line-height:1.25}
 .badges{gap:1.6rem;margin-top:${tall ? 3 : 1.6}rem}
 .badges img{height:${tall ? 6.6 : 5.6}rem;width:auto}
 .cta .url{font-weight:800;font-size:${tall ? 2.8 : 2.5}rem;color:var(--green);margin-top:${tall ? 2.4 : 1.2}rem}
 .fine{font-size:${Math.max(1.3, 6 / 72 / (wIn / 100))}rem;margin-top:-${tall ? 1 : 0.6}rem}
 </style></head><body><div class="page"><div class="inner">
-<div class="top"><div class="brand"><span class="tile">${MARK()}</span>PriceBack</div><div class="pill">${t.free}</div></div>
+<div class="top"><div class="brand"><span class="tile">${MARK()}</span>PriceBack</div><div class="pill">${t.tryIt}</div></div>
 <div class="head"><div class="h1">${t.h1}</div><div class="h2">${t.h2}</div></div>
 <div class="hero">
   <div class="big"><div class="n">${t.stamp1}</div><div class="b">${t.stamp2}</div></div>
@@ -149,10 +153,10 @@ html{font-size:${wIn / 100}in}
 <div class="stores"><span class="chip now">✓ Costco</span><span class="lbl">${t.soon}</span>${t.stores.map((x) => `<span class="chip soon">${x}</span>`).join("")}</div>
 <div class="urgent">${t.urgent}</div>
 <div class="card"><div class="qr">${qr}</div>
-  <div class="cta"><div class="s1">← ${t.scan}</div><div class="s2">${t.scan2}</div>
+  <div class="cta"><div class="s1">← ${t.scan}</div><div class="s2">${t.pScan2}</div>
     <div class="badges"><img src="${APPLE}"><img src="${GP[lang]}"></div>
     <div class="url">priceback.ca</div></div></div>
-<div class="fine">${t.model} ${t.fine}</div>
+<div class="fine">${t.pModel} ${t.fine}</div>
 </div></div></body></html>`;
 }
 
@@ -215,7 +219,7 @@ const qrSvg = async (url) =>
     const info = await page.evaluate(() => {
       const inner = document.querySelector(".inner");
       const avail = (el) => { const cs = getComputedStyle(el.parentElement); return el.parentElement.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight); };
-      const autofit = () => { for (const el of document.querySelectorAll(".h1,.h2,.kick,.stores,.cta .s1,.cta .s2,.sub")) {
+      const autofit = () => { for (const el of document.querySelectorAll(".h1,.h2,.kick,.stores,.cta .s1,.sub")) {
         const max = avail(el); const w = el.scrollWidth;
         if (w > max) el.style.fontSize = parseFloat(getComputedStyle(el).fontSize) * (max / w) * 0.985 + "px";
       } };
