@@ -117,7 +117,37 @@ Deal posts are real Costco price drops with product photos. They matter more tha
 - Favourite ideas so far: the gift, the lost receipt, the office chairs, the spreadsheet, "the smart one". More
   ideas like these. Direction: "secret" Costco tips (decoding price tags: clearance prices, manager markdowns,
   asterisks) with real before/after prices, and price-tag cheat-sheet posts.
-- Save every video's scenes and sources in this repo so later edits cost less.
+- Save every video's scenes and sources in this repo so later edits cost less, including what was used to create
+  the content (data sources, scripts, masks).
+- **The app on screen must look like a real screen recording of the app, never a render** (2026-11-02). When a
+  recording isn't possible, rebuild the screens from the app's own code (theme, components, strings) with the
+  phone's status bar, touch indicators and real transitions. See `sm-content/12-kickstarter/`.
+- **Exception: the Kickstarter campaign video** (`sm-content/12-kickstarter/`, 2026-11-02). The rules above don't
+  apply to it: it shows real receipts with the printed Costco logo (masked so they belong to nobody) and may run
+  45 s.
+
+## 5b. App demos: screens, receipts and drops (every video and image, 2026-11-02)
+
+The app shown in content is the real app, telling a story that could really have happened. **Never invent or
+simplify; read the app's code for every screen you show.**
+
+- **Real design only.** Every screen is the app's real screen with all its parts, never a summary of it. The
+  receipt confirmation shows the warehouse detection, the purchase date, the item list, the totals and the
+  **Start tracking** button, exactly as the app does.
+- **Shown inside a real phone**: a realistic device body and frame around the screen, so it reads as a phone
+  recording.
+- **One story, consistent end to end.** Every product that gets a price-drop alert comes from a receipt scanned
+  in the same piece. Nothing appears on the Home screen before it was scanned.
+- **The number of products detected always equals the number of item lines on the receipt shown.** The item
+  names are that receipt's real items.
+- **Receipt dates fit the story**: the purchase is recent enough that the drops shown are inside the store's
+  price-adjustment window. No old receipts.
+- **Real prices**: product prices from production (`priceback.price_points`), or else from costco.ca. Real
+  drops only, with their real dates.
+- **Price-drop alerts show realistic time left.** Never a first alert that says "Last day": it suggests the app
+  notifies late.
+- **Narration says the price drops shown are real.**
+- **Everything is committed to GitHub through a pull request**, never straight to `main`.
 
 ## 6. App facts content may use
 

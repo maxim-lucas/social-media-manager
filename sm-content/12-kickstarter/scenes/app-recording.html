@@ -1,0 +1,376 @@
+<!doctype html>
+<!--
+  app-recording.html — the PriceBack app, rebuilt from the app's own code (src/constants/theme.js,
+  HomeScreen, ScanTemplate, ReceiptScanningAnimation, DetailScreen, App.js tab bar, BrandMark,
+  i18n EN strings), animated as an Android screen recording. 360×640 dp at 3× = 1080×1920.
+  window.renderAt(seconds) draws one frame; scenes/render.js screenshots every frame.
+  Data: see ../SOURCES.md (real Costco savings caught by PriceBack, Oct 2026; demo account).
+-->
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:IT4;src:url(assets/fonts/InterTight_400Regular.ttf)}
+@font-face{font-family:IT5;src:url(assets/fonts/InterTight_500Medium.ttf)}
+@font-face{font-family:IT6;src:url(assets/fonts/InterTight_600SemiBold.ttf)}
+@font-face{font-family:IT7;src:url(assets/fonts/InterTight_700Bold.ttf)}
+@font-face{font-family:IT8;src:url(assets/fonts/InterTight_800ExtraBold.ttf)}
+@font-face{font-family:PJ6;src:url(assets/fonts/PlusJakartaSans_600SemiBold.ttf)}
+@font-face{font-family:PJ7;src:url(assets/fonts/PlusJakartaSans_700Bold.ttf)}
+@font-face{font-family:Ion;src:url(assets/fonts/Ionicons.ttf)}
+:root{--bg:#eef5f1;--card:#fff;--alt:#f4f9f6;--ink:#0d3d28;--inkDeep:#062a1a;--sub:#64748b;--muted:#94a3b8;--border:#d8e3dd;--borderL:#e8efea;--accent:#10b981;--accentDeep:#047857;--accentSoft:#dcfce7;--accentInk:#15803d;--lime:#bef264;--limeSoft:#d9f99d}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:360px;height:640px;overflow:hidden;background:#000}
+#phone{position:relative;width:360px;height:640px;overflow:hidden;background:var(--bg);font-family:IT5;color:var(--ink)}
+.i{font-family:Ion;font-style:normal;line-height:1;display:inline-block}
+.screen{position:absolute;left:0;top:0;width:360px;height:640px;overflow:hidden;background:var(--bg)}
+.status{position:absolute;left:0;top:0;right:0;height:24px;display:flex;align-items:center;justify-content:space-between;padding:0 14px 0 18px;font-family:IT6;font-size:12.5px;color:var(--ink);z-index:50}
+.status.dark{color:#fff}
+.navpill{position:absolute;left:50%;bottom:5px;width:108px;height:4px;margin-left:-54px;border-radius:2px;background:rgba(13,61,40,.55);z-index:50}
+.navpill.dark{background:rgba(255,255,255,.7)}
+.body{position:absolute;left:0;right:0;top:24px;bottom:0}
+/* Home */
+.topRow{display:flex;align-items:center;justify-content:space-between;padding:10px 14px}
+.lockup{display:flex;align-items:center;gap:9.5px}
+.tile{width:28px;height:28px;border-radius:6.3px;background:linear-gradient(160deg,#10b981,#047857);display:flex;align-items:center;justify-content:center}
+.word{font-family:IT8;font-size:15px;letter-spacing:-.4px}
+.iconBtn{position:relative;width:36px;height:36px;border-radius:10px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--ink)}
+.badge{position:absolute;top:4px;right:4px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#ef4444;border:1.5px solid var(--bg);color:#fff;font-family:PJ7;font-size:9px;display:flex;align-items:center;justify-content:center}
+.hero{margin:4px 12px 0;border-radius:22px;padding:18px;background:linear-gradient(135deg,var(--ink),var(--inkDeep));color:#fff;position:relative}
+.caps{font-family:PJ6;font-size:9.5px;letter-spacing:1px;text-transform:uppercase}
+.heroAmt{display:flex;align-items:flex-start;margin-top:6px}
+.heroAmt .d{font-family:IT8;font-size:24px;margin:8px 2px 0 0;color:var(--limeSoft)}
+.heroAmt .n{font-family:IT8;font-size:56px;letter-spacing:-2px;line-height:60px}
+.heroAmt .c{font-family:IT8;font-size:24px;margin-top:8px;color:var(--limeSoft)}
+.heroLine{display:flex;align-items:center;gap:8px;margin-top:10px;font-family:IT8;font-size:14px}
+.heroFoot{display:flex;align-items:center;gap:6px;margin-top:12px;padding-top:10px;border-top:.5px solid rgba(255,255,255,.18);font-family:PJ6;font-size:12px;color:rgba(255,255,255,.7)}
+.saved .n2{font-family:IT8;font-size:40px;letter-spacing:-1.8px;line-height:44px}
+.dots{position:absolute;top:18px;right:18px;display:flex;gap:4px}
+.dots i{width:14px;height:3px;border-radius:2px;background:rgba(255,255,255,.25);display:block}
+.dots i.on{background:var(--lime)}
+.spark{margin-top:12px;height:28px}
+.section{padding:0 12px;margin-top:16px}
+.secHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;padding:0 4px}
+.secTitle{font-family:IT7;font-size:15px;letter-spacing:-.3px}
+.secSub{font-family:PJ6;font-size:11px;color:var(--sub);margin-top:2px}
+.secAct{font-family:PJ6;font-size:11px;color:var(--accent)}
+.list{background:#fff;border-radius:16px;padding:0 14px;box-shadow:0 1px 3px rgba(13,61,40,.04)}
+.row{display:flex;align-items:center;gap:10px;padding:14px 0;border-bottom:1px solid var(--borderL)}
+.row:last-child{border-bottom:0}
+.sbadge{width:38px;height:38px;border-radius:10px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.co{width:28px;height:28px;border-radius:7px;background:#E31837;color:#fff;font-weight:900;font-family:Arial,Helvetica,sans-serif;font-size:11.8px;letter-spacing:-.5px;display:flex;align-items:center;justify-content:center}
+.iname{font-family:IT6;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chips{display:flex;align-items:center;gap:6px;margin-top:4px;flex-wrap:wrap}
+.chipD{border-radius:10px;padding:3px 8px;font-family:IT7;font-size:11px}
+.place{font-family:monospace;font-size:11px;color:var(--muted)}
+.right{display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0}
+.sav{font-family:IT8;font-size:14px;color:var(--accent);letter-spacing:-.4px}
+.claim{margin-top:4px;background:var(--ink);color:#fff;border-radius:999px;padding:5px 12px;font-family:PJ7;font-size:11px}
+.price{font-family:monospace;font-size:12px;color:var(--muted)}
+/* tab bar */
+.tabbar{position:absolute;left:0;right:0;bottom:0;height:62px;background:#fff;border-top:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-around;padding-top:8px}
+.tab{display:flex;flex-direction:column;align-items:center;gap:2px;width:56px;position:relative;font-family:PJ6;font-size:10px;color:var(--muted)}
+.tab .i{font-size:20px}
+.tab.on{color:var(--ink);font-family:PJ7}
+.tab.on:before{content:"";position:absolute;top:-10px;width:28px;height:3px;border-radius:2px;background:var(--accent)}
+.fab{width:52px;height:52px;border-radius:18px;background:var(--accent);margin-top:-22px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;box-shadow:0 8px 18px rgba(16,185,129,.45)}
+/* scan */
+.sHead{display:flex;align-items:center;gap:8px;padding:12px 14px 10px}
+.back{width:36px;height:36px;border-radius:10px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px}
+.sTitle{flex:1;text-align:center;font-family:IT7;font-size:14px;letter-spacing:-.2px}
+.cancel{padding:8px;font-family:IT6;font-size:13px;color:var(--sub)}
+.sBody{padding:0 14px;display:flex;flex-direction:column;gap:14px}
+.track{display:flex;padding:4px;gap:2px;background:var(--alt);border:1px solid var(--borderL);border-radius:14px}
+.seg{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 2px;border-radius:10px;font-family:IT6;font-size:11.5px;line-height:14px;color:var(--sub);text-align:center}
+.seg .i{font-size:15px}
+.seg.on{background:#fff;color:var(--ink);font-family:IT7;box-shadow:0 1px 3px rgba(13,61,40,.1)}
+.credits{display:flex;align-items:center;gap:11px;padding:10px 12px;background:#fff;border:1px solid var(--border);border-radius:14px}
+.cIcon{width:34px;height:34px;border-radius:17px;background:rgba(16,185,129,.12);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:17px}
+.cBig{font-family:IT8;font-size:17px;letter-spacing:-.3px}
+.bar{height:4px;border-radius:2px;background:var(--borderL);margin-top:6px;overflow:hidden}
+.bar i{display:block;height:100%;width:100%;background:var(--accent)}
+.capture{border:1.5px dashed var(--border);border-radius:20px;background:#fff;display:flex;flex-direction:column;align-items:center;gap:10px;padding:36px 0}
+.cap{position:relative;width:64px;height:64px;border-radius:20px;background:var(--accentSoft);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:30px}
+.plus{position:absolute;right:6px;bottom:6px;width:22px;height:22px;border-radius:11px;background:var(--accent);border:2px solid #fff;color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center}
+.capL{font-family:IT8;font-size:16px;letter-spacing:-.3px}
+.capS{font-family:IT5;font-size:12.5px;color:var(--sub)}
+.acts{display:flex;gap:8px}
+.act{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:12px 8px;border-radius:12px;background:#fff;border:1px solid var(--border);font-family:IT6;font-size:12.5px}
+.act .i{font-size:16px}
+/* document scanner (system) */
+.cam{position:absolute;inset:0;background:#0b0f0d}
+.camImg{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%) rotate(-1.2deg);width:300px;box-shadow:0 0 40px rgba(0,0,0,.6)}
+.camTop{position:absolute;left:0;right:0;top:24px;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;color:#fff;font-family:Roboto,Arial,sans-serif;font-size:15px}
+.camBottom{position:absolute;left:0;right:0;bottom:0;height:120px;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center}
+.shutterO{width:66px;height:66px;border-radius:33px;border:4px solid #fff;display:flex;align-items:center;justify-content:center}
+.shutterI{width:52px;height:52px;border-radius:26px;background:#fff}
+.camHint{position:absolute;left:50%;top:86px;transform:translateX(-50%);background:rgba(0,0,0,.55);color:#fff;font-family:Roboto,Arial,sans-serif;font-size:13px;padding:6px 14px;border-radius:16px;white-space:nowrap}
+/* scanning */
+.scanWrap{position:absolute;left:0;right:0;top:120px;display:flex;flex-direction:column;align-items:center;gap:22px}
+.stage{position:relative;width:148px;height:148px;display:flex;align-items:center;justify-content:center}
+.glow{position:absolute;width:136px;height:136px;border-radius:68px;background:var(--accent)}
+.stile{position:relative;width:108px;height:108px;border-radius:28px;overflow:hidden;background:linear-gradient(135deg,#1c2622,#0d1714 55%,#161f1b);display:flex;align-items:center;justify-content:center}
+.sline{position:absolute;left:10px;right:10px;top:10px;height:2px;border-radius:2px;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+.stitle{font-family:IT7;font-size:17px;text-align:center}
+.ssub{font-family:monospace;font-size:12px;color:var(--muted);text-align:center;margin-top:6px}
+.sdots{display:flex;gap:7px}
+.sdots i{width:7px;height:7px;border-radius:4px;background:var(--accent);display:block}
+/* confirm */
+.progress{display:flex;gap:6px;padding:0 14px;margin-bottom:8px}
+.progress i{flex:1;height:4px;border-radius:2px;background:var(--accent);display:block}
+.rHero{margin:0 14px;border-radius:18px;padding:16px;background:linear-gradient(135deg,var(--ink),var(--inkDeep));color:#fff}
+.rEye{font-family:PJ7;font-size:10px;letter-spacing:1px;color:var(--lime)}
+.rTitle{font-family:IT8;font-size:18px;letter-spacing:-.4px;margin-top:6px}
+.rStore{display:flex;align-items:center;gap:10px;margin-top:14px;padding:10px;border-radius:14px;background:rgba(255,255,255,.08)}
+.rName{font-family:IT7;font-size:14px}
+.rSub{font-family:PJ6;font-size:11px;color:rgba(255,255,255,.65);margin-top:2px}
+.rChange{font-family:PJ7;font-size:11px;color:var(--lime);padding:5px 9px;border-radius:999px;background:rgba(190,242,100,.12)}
+.card{margin:14px 14px 0;background:#fff;border-radius:16px;padding:16px;box-shadow:0 1px 3px rgba(13,61,40,.04)}
+.cLabel{font-family:PJ6;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--sub);margin-bottom:12px}
+.kv{display:flex;justify-content:space-between;margin-top:8px;font-family:IT5;font-size:13px;color:var(--muted)}
+.kv b{font-family:monospace;font-weight:600;color:var(--ink);font-size:13px}
+.kvT{display:flex;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid var(--borderL)}
+.kvT span{font-family:IT7;font-size:16px}
+.kvT b{font-family:IT8;font-size:18px;color:var(--ink)}
+.itemsHdr{display:flex;justify-content:space-between;align-items:center}
+.save{position:absolute;left:14px;right:14px;bottom:22px;height:50px;border-radius:14px;background:var(--accent);color:#fff;font-family:IT7;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 6px 16px rgba(16,185,129,.3)}
+/* files picker (system) */
+.files{position:absolute;inset:0;background:#fff;font-family:Roboto,Arial,sans-serif;color:#1f1f1f}
+.fTop{position:absolute;left:0;right:0;top:24px;height:56px;display:flex;align-items:center;gap:18px;padding:0 16px;font-size:20px}
+.fChip{display:inline-block;padding:6px 14px;border-radius:8px;border:1px solid #c4c7c5;font-size:13px;margin-right:6px}
+.fGrid{position:absolute;left:16px;right:16px;top:150px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fItem{border-radius:12px;background:#f0f4f9;overflow:hidden}
+.fThumb{height:150px;background:#fff;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;border-bottom:1px solid #e3e3e3}
+.fThumb img{width:96%;margin-top:6px}
+.fName{padding:8px 10px 10px;font-size:12.5px}
+.fMeta{font-size:11px;color:#5f6368;margin-top:2px}
+/* notification (Android heads-up) */
+.notif{position:absolute;left:8px;right:8px;top:30px;border-radius:24px;background:#f3f6f4;box-shadow:0 6px 24px rgba(0,0,0,.18);padding:14px 16px;z-index:60;font-family:Roboto,Arial,sans-serif}
+.nHead{display:flex;align-items:center;gap:8px;font-size:12px;color:#444}
+.nIcon{width:20px;height:20px;border-radius:5px;background:linear-gradient(160deg,#10b981,#047857);display:flex;align-items:center;justify-content:center}
+.nTitle{font-size:14.5px;font-weight:600;color:#1b1b1b;margin-top:8px}
+.nBody{font-size:13.5px;color:#3c3c3c;margin-top:3px}
+/* detail */
+.dItem{font-family:IT8;font-size:18px;letter-spacing:-.4px;line-height:23px}
+.dRow{display:flex;justify-content:space-between;margin-top:10px;font-family:IT5;font-size:13px;color:var(--sub)}
+.dRow b{font-family:IT7;color:var(--ink)}
+.dBig{display:flex;align-items:baseline;gap:6px;margin-top:12px}
+.dBig .v{font-family:IT8;font-size:30px;color:var(--accent);letter-spacing:-1px}
+.step{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
+.sn{width:22px;height:22px;border-radius:11px;background:var(--accentSoft);color:var(--accentInk);font-family:PJ7;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.st{font-family:IT7;font-size:13px;line-height:19px;flex:1}
+.showRcpt{display:flex;align-items:center;gap:6px;margin:0 0 12px 32px;color:var(--accent);font-family:IT6;font-size:13px}
+/* splash */
+.splash{position:absolute;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+/* touch indicator (Android "Show taps") */
+.tap{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:22px;background:rgba(255,255,255,.55);border:1px solid rgba(0,0,0,.12);z-index:80}
+.flash{position:absolute;inset:0;background:#fff;z-index:70}
+</style></head>
+<body><div id="phone"></div>
+<script>
+const G = (name) => String.fromCodePoint({"home":62338,"receipt-outline":62735,"camera":61915,"storefront-outline":62888,"person-outline":62636,"search-outline":62819,"notifications-outline":62591,"checkmark-circle":61982,"time-outline":62942,"chevron-back":61993,"chevron-forward":62011,"images-outline":62354,"document-attach-outline":62124,"ticket-outline":62939,"add":61699,"flash-outline":62234,"lock-closed":62407,"document-text":62131,"folder-outline":62249,"ellipsis-vertical":62164,"close":62026,"receipt":62734,"grid-outline":62294,"pricetag-outline":62699,"language-outline":62378,"barcode-outline":61814,"arrow-back":61735,"menu":62545}[name]);
+const I = (name, style = "") => `<span class="i" style="${style}">${G(name)}</span>`;
+const GLYPH = `<svg width="W" height="W" viewBox="0 0 48 48"><g fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 9 H35 V34 L32 37 L29 34 L26 37 L23 34 L20 37 L17 34 L14 37 L13 36 Z"/><path d="M17 16 L21.5 20.5 L25.5 17 L31 27"/><path d="M31 27 L27.4 26 M31 27 L31.7 23.2"/></g></svg>`;
+const glyph = (w) => GLYPH.replace(/W/g, w);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const ease = (x) => { x = clamp(x); return x < .5 ? 4*x*x*x : 1 - Math.pow(-2*x + 2, 3) / 2; };
+const prog = (t, a, b) => ease((t - a) / (b - a));
+
+// ── Data: real Costco regular prices (prod price_points, 2026-11-02) and real savings (Oct 2026). SOURCES.md
+const ROWS = {
+  tv:   { name: "Samsung QN80H Series 4K UHD Neo QLED TV",           price: 1808.24, save: 600,  chip: ["red", "Claim by Oct 26 · Last day"] },
+  gen:  { name: "Generac Guardian Generator",                         price: 8999.99, save: 1000, chip: ["green", "Claim by Nov 8 · 13d left"] },
+  cof:  { name: "Van Houtte Original House Blend Coffee K-Cup Pods",  price: 52.99,   save: 13,   chip: ["green", "Claim by Nov 21 · 25d left"] },
+  ket:  { name: "Chefman Stainless Steel Kettle",                     price: 39.99,   save: 10,   chip: ["green", "Claim by Nov 18 · 22d left"] },
+};
+const URG = { green: ["#dcfce7", "#15803d"], red: ["#fee2e2", "#991b1b"] };
+const money = (n) => n.toFixed(2);
+
+function status(dark) {
+  return `<div class="status ${dark ? "dark" : ""}"><span>9:41</span><span style="display:flex;gap:5px;align-items:center">
+    <svg width="15" height="11" viewBox="0 0 15 11"><path d="M1 10h2V7H1zM5 10h2V5H5zM9 10h2V3H9zM13 10h2V1h-2z" fill="currentColor"/></svg>
+    <svg width="15" height="11" viewBox="0 0 16 12"><path d="M8 11.5 15.5 3.6A11 11 0 0 0 .5 3.6z" fill="currentColor"/></svg>
+    <svg width="22" height="11" viewBox="0 0 22 11"><rect x=".5" y=".5" width="18" height="10" rx="2.5" fill="none" stroke="currentColor"/><rect x="2" y="2" width="13" height="7" rx="1.2" fill="currentColor"/><rect x="19.5" y="3.5" width="1.5" height="4" rx=".7" fill="currentColor"/></svg>
+  </span></div>`;
+}
+const nav = (dark) => `<div class="navpill ${dark ? "dark" : ""}"></div>`;
+
+function rowHTML(r, drop) {
+  const right = drop
+    ? `<div class="right"><div class="sav">+$${money(r.save)}</div><div class="claim">Claim</div></div>`
+    : `<div class="right"><div class="price">$${money(r.price)}</div></div>`;
+  const chip = drop ? `<span class="chipD" style="background:${URG[r.chip[0]][0]};color:${URG[r.chip[0]][1]}">${r.chip[1]}</span>` : "";
+  return `<div class="row"><div class="sbadge"><div class="co">CO</div></div>
+    <div style="flex:1;min-width:0"><div class="iname">${r.name}</div><div class="chips">${chip}<span class="place">Costco</span></div></div>${right}</div>`;
+}
+
+function home({ drops = [], toClaim = 0, alerts = 0 } = {}) {
+  const order = ["tv", "gen", "cof", "ket"];
+  const sorted = [...order.filter((k) => drops.includes(k)).sort((a, b) => ROWS[b].save - ROWS[a].save), ...order.filter((k) => !drops.includes(k))];
+  const rows = sorted.map((k) => rowHTML(ROWS[k], drops.includes(k))).join("");
+  const n = drops.length;
+  const pending = drops.reduce((s, k) => s + ROWS[k].save, 0);
+  const heroInner = n > 0
+    ? `<div class="dots"><i class="on"></i><i></i></div><div class="caps" style="color:var(--lime)">To claim</div>
+       <div class="heroAmt"><span class="d">$</span><span class="n">${Math.floor(toClaim)}</span><span class="c">.${money(toClaim).split(".")[1]}</span></div>
+       <div class="heroLine">${I("checkmark-circle", "font-size:15px;color:var(--lime)")}<span>${n} price drop${n > 1 ? "s" : ""} · on ${n > 2 ? 3 : n} receipt${n > 1 ? "s" : ""}</span></div>
+       <div class="heroFoot">${I("time-outline", "font-size:13px")}<span><b style="color:var(--lime);font-family:IT8">${drops.includes("tv") ? "Last day" : "22d left"}</b> · Tap for more details</span></div>`
+    : `<div class="caps" style="color:rgba(255,255,255,.55)">Total saved · all-time</div>
+       <div style="display:flex;align-items:baseline;margin-top:4px" class="saved"><span style="font-family:IT7;font-size:22px;color:rgba(255,255,255,.85);letter-spacing:-1px">$</span><span class="n2">0</span><span style="font-family:IT8;font-size:26px;color:rgba(255,255,255,.85)">.00</span></div>`;
+  return `<div class="screen">${status()}<div class="body">
+    <div class="topRow"><div class="lockup"><div class="tile">${glyph(17)}</div><div class="word"><span>Price</span><span style="color:var(--accent)">Back</span></div></div>
+      <div style="display:flex;gap:6px"><div class="iconBtn">${I("search-outline")}</div><div class="iconBtn">${I("notifications-outline")}${alerts ? `<div class="badge">${alerts}</div>` : ""}</div></div></div>
+    <div class="hero">${heroInner}
+      <svg class="spark" width="100%" height="28" viewBox="0 0 300 28" preserveAspectRatio="none"><path d="M0 24 C40 22 60 20 90 21 S150 14 180 15 S240 8 300 4" fill="none" stroke="rgba(167,243,208,.7)" stroke-width="2"/></svg></div>
+    <div class="section"><div class="secHead"><div><div class="secTitle">Products you're tracking</div>
+      <div class="secSub">${n ? `${sorted.length} tracked · ${n} ready to claim · $${money(pending)} pending` : `${sorted.length} tracked · watching every day`}</div></div><div class="secAct">See all → (${sorted.length}) ›</div></div>
+      <div class="list">${rows}</div></div>
+  </div>
+  <div class="tabbar"><div class="tab on">${I("home")}<span>Home</span></div><div class="tab">${I("receipt-outline")}<span>Tracking</span></div>
+    <div class="fab">${I("camera")}</div><div class="tab">${I("storefront-outline")}<span>Stores</span></div><div class="tab">${I("person-outline")}<span>Profile</span></div></div>
+  ${nav()}</div>`;
+}
+
+function scanIntro() {
+  return `<div class="screen">${status()}<div class="body">
+    <div class="sHead"><div class="back">${I("chevron-back")}</div><div class="sTitle">Scan receipt</div><div class="cancel">Cancel</div></div>
+    <div class="sBody">
+      <div class="track"><div class="seg on">${I("receipt-outline")}<span>Receipt</span></div><div class="seg">${I("pricetag-outline")}<span>Price tag</span></div><div class="seg">${I("language-outline")}<span>Price translator</span></div><div class="seg">${I("barcode-outline")}<span>Price Checker</span></div></div>
+      <div class="credits"><div class="cIcon">${I("ticket-outline")}</div><div style="flex:1"><div class="cBig">Unlimited scans</div><div class="bar"><i></i></div></div>${I("chevron-forward", "font-size:15px;color:var(--muted)")}</div>
+      <div class="capture"><div class="cap">${I("receipt-outline")}<div class="plus">${I("add")}</div></div><div class="capL">Scan a receipt</div><div class="capS">Opens the document scanner</div></div>
+      <div class="acts"><div class="act">${I("images-outline")}<span>Photo library</span></div><div class="act">${I("document-attach-outline")}<span>Upload file</span></div></div>
+    </div></div>${nav()}</div>`;
+}
+
+function docScanner(t0, t) {
+  // System document scanner: live view of the paper receipt, edge detection, then capture.
+  const found = clamp((t - t0 - .5) / .4);
+  return `<div class="screen cam">${status(true)}
+    <img class="camImg" src="../sources/receipt-paper-masked.png" style="transform:translate(-50%,-50%) rotate(${(-1.2 + Math.sin(t * 2.2) * .35).toFixed(2)}deg) scale(${(1 + Math.sin(t * 1.7) * .006).toFixed(4)})">
+    <svg style="position:absolute;inset:0;opacity:${found}" width="360" height="640"><polygon points="${[[33, 93], [327, 87], [331, 494], [37, 500]].map((p) => p.join(",")).join(" ")}" fill="rgba(26,115,232,.12)" stroke="#8ab4f8" stroke-width="2.5"/></svg>
+    <div class="camTop"><span>${I("close", "font-size:22px")}</span><span style="font-size:14px;opacity:.9">Auto capture</span><span>${I("flash-outline", "font-size:20px")}</span></div>
+    <div class="camHint" style="opacity:${1 - found}">Position the document in view</div>
+    <div class="camBottom"><div class="shutterO"><div class="shutterI"></div></div></div>${nav(true)}</div>`;
+}
+
+function scanning(t) {
+  const sweep = (t % 1.6) / 1.6;
+  const breathe = (Math.sin(t * 3.4) + 1) / 2;
+  const d = (i) => .35 + .65 * Math.max(0, Math.sin(t * 6 - i * 1.0));
+  return `<div class="screen">${status()}<div class="body">
+    <div class="sHead"><div class="back">${I("chevron-back")}</div><div class="sTitle">Scan receipt</div><div class="cancel">Cancel</div></div>
+    <div class="scanWrap"><div class="stage"><div class="glow" style="opacity:${(.35 + .35 * breathe).toFixed(2)};transform:scale(${(1 + .16 * breathe).toFixed(3)})"></div>
+      <div class="stile">${glyph(56)}<div class="sline" style="transform:translateY(${(sweep * 82).toFixed(1)}px);opacity:${sweep < .08 ? sweep / .08 : sweep > .92 ? (1 - sweep) / .08 : 1}"></div></div></div>
+      <div><div class="stitle">Scanning receipt…</div><div class="ssub">Processing receipt…</div></div>
+      <div class="sdots">${[0, 1, 2].map((i) => `<i style="opacity:${d(i).toFixed(2)}"></i>`).join("")}</div></div>
+  </div>${nav()}</div>`;
+}
+
+function confirm({ date, sub, tax, total }) {
+  return `<div class="screen">${status()}<div class="body">
+    <div class="sHead"><div class="back">${I("chevron-back")}</div><div class="sTitle">Confirm receipt</div><div class="cancel">Cancel</div></div>
+    <div class="progress"><i></i><i></i></div>
+    <div class="rHero"><div class="rEye">STEP 2 OF 2 · CONFIRM DETAILS</div><div class="rTitle">Make sure this matches your receipt</div>
+      <div class="rStore"><div style="width:38px;height:38px;border-radius:10px;background:#E31837;display:flex;align-items:center;justify-content:center"><div class="co" style="width:26px;height:26px;font-size:11px">CO</div></div>
+        <div style="flex:1"><div class="rName">Costco</div><div class="rSub">${date} · 30-day window</div></div><div class="rChange">Change ›</div></div></div>
+    <div class="card"><div class="cLabel">Summary</div>
+      <div class="kv"><span>Subtotal</span><b>$${sub}</b></div><div class="kv"><span>Tax (HST/GST)</span><b>$${tax}</b></div>
+      <div class="kvT"><span>Total</span><b>$${total}</b></div></div>
+    <div class="save">${I("checkmark-circle", "font-size:18px")}<span>Save</span></div>
+  </div>${nav()}</div>`;
+}
+
+function filesPicker() {
+  return `<div class="screen files">${status()}
+    <div class="fTop">${I("menu", "font-size:22px")}<span style="flex:1;font-size:19px">Recent</span>${I("search-outline", "font-size:20px")}${I("ellipsis-vertical", "font-size:20px")}</div>
+    <div style="position:absolute;left:16px;top:96px"><span class="fChip">Images</span><span class="fChip">Documents</span><span class="fChip">Downloads</span></div>
+    <div class="fGrid">
+      <div class="fItem"><div class="fThumb"><img src="../sources/receipt-pdf-masked.png"></div><div class="fName">Costco receipt.pdf<div class="fMeta">274 kB · Jun 28</div></div></div>
+      <div class="fItem" style="opacity:.55"><div class="fThumb" style="background:#e9eef6"></div><div class="fName">Document.pdf<div class="fMeta">88 kB · Jun 12</div></div></div>
+    </div>${nav()}</div>`;
+}
+
+function notification({ urgent, body }) {
+  return `<div class="notif"><div class="nHead"><div class="nIcon">${glyph(13)}</div><span>PriceBack</span><span>·</span><span>now</span></div>
+    <div class="nTitle">${urgent ? "🔴 Last days to claim a price drop" : "🟢 Price drop on a recent purchase"}</div><div class="nBody">${body}</div></div>`;
+}
+
+function detail(scroll) {
+  const r = ROWS.tv;
+  return `<div class="screen">${status()}<div class="body">
+    <div class="sHead" style="background:var(--bg);position:relative;z-index:2"><div class="back">${I("chevron-back")}</div><div class="sTitle">Price drop</div><div style="width:36px"></div></div>
+    <div style="transform:translateY(${-scroll}px)">
+      <div class="card" style="margin-top:4px"><div style="display:flex;gap:10px;align-items:center"><div class="sbadge"><div class="co">CO</div></div><div class="dItem">${r.name}</div></div>
+        <div class="dRow"><span>You paid</span><b>$${money(r.price)}</b></div><div class="dRow"><span>Costco price today</span><b>$${money(r.price - r.save)}</b></div>
+        <div class="dBig"><span class="v">+$${money(r.save)}</span><span style="font-family:IT6;font-size:13px;color:var(--sub)">to claim</span></div>
+        <span class="chipD" style="display:inline-block;margin-top:8px;background:${URG.red[0]};color:${URG.red[1]}">${r.chip[1]}</span></div>
+      <div class="card"><div class="cLabel">How to claim at a Costco warehouse</div>
+        <div class="step"><div class="sn">1</div><div class="st">Go to the Returns counter at any Costco warehouse before the deadline, while the lower price is still running.</div></div>
+        <div class="step"><div class="sn">2</div><div class="st">Show this receipt from the PriceBack app (tap “Show my receipt”), or your paper copy, and ask for a price adjustment.</div></div>
+        <div class="showRcpt">${I("receipt-outline", "font-size:15px")}<span>Show my receipt</span></div>
+        <div class="step"><div class="sn">3</div><div class="st">Costco refunds the difference to your original payment method. The money comes from Costco, not from PriceBack.</div></div>
+        <div class="step"><div class="sn">4</div><div class="st">Once Costco has refunded you, tap “Claimed” so we add it to your savings.</div></div></div>
+    </div></div>${nav()}</div>`;
+}
+
+function splash() {
+  return `<div class="screen splash">${status()}<div style="width:96px;height:96px;border-radius:21.5px;background:linear-gradient(160deg,#10b981,#047857);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(16,185,129,.32)">${glyph(60)}</div>
+    <div style="font-family:IT8;font-size:30px;letter-spacing:-.75px"><span>Price</span><span style="color:var(--accent)">Back</span></div>${nav()}</div>`;
+}
+
+// ── Timeline (seconds). Each entry: [start, end, draw(t)]
+const TAPS = [[3.6, 320, 588], [6.1, 180, 360], [9.7, 180, 554], [14.9, 180, 595], [16.4, 180, 588], [17.6, 268, 398], [19.0, 97, 250], [22.5, 180, 595], [26.9, 180, 80], [32.0, 180, 80], [35.8, 318, 202]];
+const SCRIPT = [
+  [0.0, 4.0, () => home({})],
+  [4.0, 7.0, () => scanIntro()],
+  [7.0, 10.3, (t) => docScanner(7.0, t)],
+  [10.3, 12.4, (t) => scanning(t)],
+  [12.4, 15.3, () => confirm({ date: "Dec 5, 2025", sub: "79.92", tax: "4.03", total: "83.95" })],
+  [15.3, 16.8, () => home({})],
+  [16.8, 18.0, () => scanIntro()],
+  [18.0, 19.4, () => filesPicker()],
+  [19.4, 20.6, (t) => scanning(t)],
+  [20.6, 22.9, () => confirm({ date: "Jun 28, 2025", sub: "304.78", tax: "32.02", total: "336.80" })],
+  [22.9, 27.3, () => home({})],
+  [27.3, 32.4, () => home({ drops: ["cof", "ket"], toClaim: 23, alerts: 2 })],
+  [32.4, 36.2, () => home({ drops: ["tv", "gen", "cof", "ket"], toClaim: 1623, alerts: 4 })],
+  [36.2, 41.6, (t) => detail(Math.round(ease((t - 38.2) / 1.2) * 150))],
+  [41.6, 42.8, () => home({ drops: ["tv", "gen", "cof", "ket"], toClaim: 1623, alerts: 4 })],
+  [42.8, 45.0, () => splash()],
+];
+const NOTIFS = [[24.6, 27.1, { urgent: false, body: "You can save $13.00 · 25d left." }], [29.6, 32.2, { urgent: true, body: "You can save $600.00 · Last day." }]];
+const TRANS = 0.28; // screen push transition (Android: slide in from right)
+
+window.DURATION = 45.0;
+window.renderAt = function (t) {
+  const phone = document.getElementById("phone");
+  const i = SCRIPT.findIndex(([a, b]) => t >= a && t < b);
+  const cur = SCRIPT[i >= 0 ? i : SCRIPT.length - 1];
+  let html = "";
+  const since = t - cur[0];
+  if (i > 0 && since < TRANS && cur[0] !== 12.4 && cur[0] !== 20.6 && cur[0] !== 10.3 && cur[0] !== 19.4 && cur[0] !== 27.3 && cur[0] !== 32.4) {
+    const p = ease(since / TRANS);
+    const prev = SCRIPT[i - 1];
+    html = `<div style="position:absolute;inset:0;transform:translateX(${(-90 * p).toFixed(1)}px)">${prev[2](cur[0] - .001)}</div>
+            <div style="position:absolute;inset:0;transform:translateX(${(360 * (1 - p)).toFixed(1)}px);box-shadow:-8px 0 24px rgba(0,0,0,.12)">${cur[2](t)}</div>`;
+  } else if (cur[0] === 42.8) {
+    const p = clamp(since / .5);
+    html = `<div style="position:absolute;inset:0">${SCRIPT[i - 1][2](t)}</div><div style="position:absolute;inset:0;opacity:${p}">${cur[2](t)}</div>`;
+  } else {
+    html = cur[2](t);
+  }
+  for (const [a, b, n] of NOTIFS) {
+    if (t >= a && t < b) {
+      const inP = ease((t - a) / .35), outP = ease((t - (b - .3)) / .3);
+      html += `<div style="position:absolute;inset:0;transform:translateY(${(-130 * (1 - inP) - 130 * outP).toFixed(1)}px)">${notification(n)}</div>`;
+    }
+  }
+  if (t >= 9.75 && t < 10.05) html += `<div class="flash" style="opacity:${(1 - (t - 9.75) / .3).toFixed(2)}"></div>`;
+  for (const [tt, x, y] of TAPS) {
+    if (t >= tt - .05 && t < tt + .35) {
+      const p = clamp((t - tt + .05) / .4);
+      html += `<div class="tap" style="left:${x}px;top:${y}px;opacity:${(1 - p * .9).toFixed(2)};transform:scale(${(1 + p * .25).toFixed(2)})"></div>`;
+    }
+  }
+  phone.innerHTML = html;
+};
+window.renderAt(Number(new URLSearchParams(location.search).get("t") || 0));
+</script></body></html>
