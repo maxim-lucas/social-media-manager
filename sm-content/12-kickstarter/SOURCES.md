@@ -1,40 +1,45 @@
-# Sources: what the Kickstarter video shows and where it comes from
+# Sources (v2): what the Kickstarter video shows and where it comes from
 
-## Real
+## The story (one consistent demo, RULES §5b)
 
-| On screen | Value | Source |
-| --- | --- | --- |
-| Samsung QN80H Series 4K UHD Neo QLED TV (item 5708165) | **$600 off on Oct 26, 2026** (then $500 off Oct 27–29 and Oct 31–Nov 5) | prod `priceback.savings`, harvested by PriceBack on Oct 27, 2026 |
-| Generac Guardian Generator (item 1737269) | **$1,000 off, Oct 26 – Nov 8, 2026** | prod `priceback.savings`, harvested Oct 27, 2026 |
-| Van Houtte coffee | **$13 off**, seen Oct 27, 2026 | `sm-content/10-receipt-scan/NOTES.md` (real drop used in that pack) |
-| Chefman kettle | **$10 off**, seen Oct 27, 2026 | same |
-| Paper receipt | Costco logo, SUBTOTAL 79.92, TAX 4.03, TOTAL 83.95 (Dec 5, 2025) | `Priceback/__tests__/fixtures/receipts/PXL_20260604_173014846.jpg`, masked by `sources/mask_receipts.py` |
-| PDF receipt | Costco logo, SUBTOTAL 304.78, TAX 32.02, TOTAL 336.80, 06/28/2025 | `Priceback/__tests__/fixtures/receipts/Costco Receipts PDF/G-11.pdf`, masked by the same script |
-| Every label, colour, font, icon and layout | the app's own code | `Priceback/src/…` (see README) |
-| Push copy | "🟢 Price drop on a recent purchase" / "🔴 Last days to claim a price drop" / "You can save {savings} · {daysLeft}." | `Priceback/backend/lib/pushI18n.js` (`verifiedDrop.*`) |
-| Claim steps | "How to claim at a Costco warehouse", steps 1–4 | `Priceback/src/services/i18n.js` (`claimHow.costcoWarehouse1–4`) |
+Empty account → scan a **paper receipt** (Oct 14, 2026, Laval #505, 7 items) → upload a **PDF receipt** (Oct 20,
+2026, 2 items) → PriceBack watches the 9 products → real drops arrive on products from those receipts →
+receipt detail and how to claim.
 
-## Masking (the receipts belong to nobody)
+## Real data
 
-Kept readable: the printed COSTCO WHOLESALE logo, SUBTOTAL / TAX / TOTAL, and the date and time. Everything else
-(warehouse, address, member number, transaction barcode, every item line, card, approval, register and tax
-numbers) is mosaicked at about half the text height, then blurred. The script keeps only listed bands, so a
-word the OCR missed is still blurred. That's how the member number, which the OCR did not detect, got
-caught on 2026-11-02. The unmasked originals stay in the app's fixtures and are never copied here.
+| Product (item #) | Price shown | Real drop shown | Source |
+| --- | --- | --- | --- |
+| Samsung QN80H Series 4K UHD Neo QLED TV (5708165) | $1,808.24 | **$500 off Oct 31 – Nov 5** (alert "5d left"); narration: "after a single day at $600" (Oct 26) | prod `price_points` (price) + `savings` (drops) |
+| Generac Guardian Generator (1737269) | $8,999.99 | **$1,000 off Oct 26 – Nov 8** (alert "13d left") | prod |
+| Van Houtte Original House Blend Coffee K-Cup Pods (266556) | $52.99 | **$13 off**, seen Oct 27 | prod |
+| Chefman Stainless Steel Kettle (2023352) | $39.99 | **$10 off**, seen Oct 27 | prod |
+| Bounty P24 Paper Towels (1717599) | $32.49 | — | prod `price_points` |
+| Kirkland Ultra Clean Laundry Detergent (1845613) | $19.99 | — | prod |
+| Cascade Platinum Plus ActionPacs (1727590) | $29.99 | — | prod |
+| Duracell Power Boost AA (1806358) | $25.99 | — | prod |
+| Charmin Ultra Soft Jumbo Rolls (2633624) | $32.49 | — | prod |
 
-## Prices (real, prod `priceback.price_points`, latest regular price, read 2026-11-02)
+Prices: latest regular price in `priceback.price_points`, read 2026-11-02. Taxes: Quebec (GST 5% + QST 9.975%),
+coffee zero-rated. Paper receipt: $2,009.68 + $293.01 = **$2,302.69**. PDF receipt: $9,032.48 + $1,352.61 =
+**$10,385.09**.
 
-| Product (item #) | Regular | Shown after the drop |
-| --- | --- | --- |
-| Samsung QN80H Series 4K UHD Neo QLED TV (5708165) | $1,808.24 | $1,208.24 (−$600, Oct 26) |
-| Generac Guardian Generator (1737269) | $8,999.99 | $7,999.99 (−$1,000) |
-| Van Houtte Original House Blend Coffee K-Cup Pods (266556) | $52.99 | $39.99 (−$13) |
-| Chefman Stainless Steel Kettle (2023352) | $39.99 | $29.99 (−$10) |
+## App screens (real design, from the app's code)
 
-## Demo data (not real; says nothing about any shopper)
+Home (empty state, tracking list, "To claim" hero), Scan receipt (ScanTemplate), Scanning (ReceiptScanningAnimation),
+**Confirm receipt** (store, Online / Warehouse Purchase, warehouse selector, Items (n) with SKU / QTY / price /
+Add discount, Summary, Purchase Date, Watch Until, **Start Tracking 🚀**), receipt detail (DetailScreen: hero,
+YOU PAID / NOW, Mark as Claimed / Claim instructions, purchase details, How to claim at a Costco warehouse). Push copy
+from `backend/lib/pushI18n.js` (`verifiedDrop.*`, `dropSummary.*`). The document scanner and Files picker are
+Android system screens.
 
-- The account is a demo account: which products it tracks and its purchase dates are illustrative. Prices and
-  savings are real (above).
-- The claim deadlines are derived from those demo purchase dates and the real saving dates.
-- The Kickstarter page says so under the video: *"App screens shown with a demo account; the prices and price
-  drops are real Costco figures from October 2026."*
+## Receipts (visual only)
+
+Real Costco receipts from the app's fixtures (`PXL_20260604_173014846.jpg`, `Costco Receipts PDF/G-10.pdf`), fully
+blurred except the printed COSTCO WHOLESALE logo (Maxim, 2026-11-02: totals and dates hidden so the demo carries
+its own products, total and date). The PDF has 2 item lines, matching its 2 products. Originals never copied here.
+
+## Demo
+
+The account, its purchase dates and the claim deadlines derived from them are a demo. Prices and drops are real.
+The Kickstarter page says so under the video.

@@ -3,10 +3,10 @@
 The video for PriceBack's Kickstarter project page: a **45-second screen recording of the app**, with a 9:16
 cut for Kickstarter's Discovery Mode and a 16:9 cut for the main project video. **Not posted; for review.**
 
-> **Status 2026-11-02: first draft, being redesigned to follow `RULES-README.md` §5b** (real confirm screen
+> **Status 2026-11-02 (v2): rebuilt to follow `RULES-README.md` §5b** (real confirm screen
 > with warehouse/date/items/Start tracking, drops only on products from the scanned receipts, recent receipts,
-> phone frame, realistic days left, narration says the drops are real). The draft renders were removed; nothing
-> here is final.
+> phone frame, realistic days left, narration says the drops are real). Silent renders in `out/`; narration
+> pending approval + voice (SCRIPT.md).
 
 **Exception to `RULES-README.md` (Monica, 2026-11-02): "the rules don't apply to this video."** It shows a real
 Costco receipt with the printed Costco logo, real receipts from the app's test fixtures (masked so they belong to

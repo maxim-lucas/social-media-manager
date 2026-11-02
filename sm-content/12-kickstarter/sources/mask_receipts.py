@@ -1,12 +1,12 @@
 """
 mask_receipts.py — the two real receipts shown in the Kickstarter video, masked so they
-belong to nobody: only the printed COSTCO WHOLESALE logo, the SUBTOTAL / TAX / TOTAL lines
-and the date stay readable. Warehouse, address, member number, barcode, every item line,
+belong to nobody: only the printed COSTCO WHOLESALE logo stays readable (v2, 2026-11-02:
+totals and dates blurred too, so the demo can carry its own products, total and date). Warehouse, address, member number, barcode, every item line,
 card, approval and register numbers are pixelated then blurred (not recoverable).
 
 Inputs (never committed here, they stay in the app's test fixtures):
   PAPER = Priceback/__tests__/fixtures/receipts/PXL_20260604_173014846.jpg   (+ .vision.json word boxes)
-  PDF   = Priceback/__tests__/fixtures/receipts/Costco Receipts PDF/G-11.pdf  (Costco digital receipt)
+  PDF   = Priceback/__tests__/fixtures/receipts/Costco Receipts PDF/G-10.pdf  (Costco digital receipt, 2 items)
 
 Outputs (committed): receipt-paper-masked.png, receipt-pdf-masked.png in this folder.
 
@@ -20,7 +20,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 FIX = os.path.normpath(os.path.join(HERE, "../../../../Priceback/__tests__/fixtures/receipts"))
 PAPER = os.path.join(FIX, "PXL_20260604_173014846.jpg")
 PAPER_OCR = os.path.join(FIX, "PXL_20260604_173014846.vision.json")
-PDF = os.path.join(FIX, "Costco Receipts PDF", "G-11.pdf")
+PDF = os.path.join(FIX, "Costco Receipts PDF", "G-10.pdf")  # 2 item lines = the 2 products shown
 
 KEEP_LINE = re.compile(r"\b(SUB-?TOTAL|TAX|TOTAL)\b|\*\*\*\*", re.I)
 
@@ -88,7 +88,7 @@ def paper():
     totals_bottom = total["yMid"] + total["height"] * 1.1
     W = img.width
     text_h = sorted(w["height"] for w in words)[len(words) // 2]
-    img = keep_only(img, [(0, 0, W, logo_bottom), (0, totals_top, W, totals_bottom)], text_h)
+    img = keep_only(img, [(0, 0, W, logo_bottom)], text_h)
     # Stop just under the TOTAL line: the payment part is never needed for a scan.
     img = img.crop((0, 0, W, int(totals_bottom + 60)))
     out = os.path.join(HERE, "receipt-paper-masked.png")
@@ -112,25 +112,11 @@ def pdf():
         band = lambda w, k=0.9: ((w["y"] - w["height"] * k) * H, (w["y"] + w["height"] * k) * H)
         if pi == 0:
             ws = [w for w in words if w["text"] == "WHOLESALE"][0]
+            end = max(w["y"] for w in words if w["text"] in ("Again", "Come"))
             img = keep_only(img, [(0, 0, W, band(ws)[1])], text_h, strength=2.2)
-            parts.append(img)
+            parts.append(img.crop((0, 0, W, int(end * H) + 80)))
             continue
-        keep = []
-        sub = [w for w in words if w["text"] == "SUBTOTAL"][0]
-        tot = [w for w in words if w["text"] == "TOTAL" and w["y"] > sub["y"]][0]
-        keep.append((0, band(sub)[0], W, band(tot)[1]))
-        # The purchase date + time, never the register numbers after them.
-        for d in [w for w in words if re.fullmatch(r"\d{2}/\d{2}/\d{4}", w["text"])]:
-            tm = [w for w in words if re.fullmatch(r"\d{2}:\d{2}", w["text"]) and abs(w["y"] - d["y"]) < d["height"]]
-            x1 = (tm[0]["xMax"] if tm else d["xMax"]) * W + 6
-            keep.append((d["xMin"] * W - 6, band(d)[0], x1, band(d)[1]))
-        for k in ("Thank", "Please"):
-            for w in [w for w in words if w["text"] == k]:
-                keep.append((0, band(w)[0], W, band(w)[1]))
-        img = keep_only(img, keep, text_h, strength=2.2)
-        first = min(w["y"] - w["height"] for w in words)
-        last = max(b[3] for b in keep) / H
-        parts.append(img.crop((0, max(0, int(first * H) - 30), W, min(H, int(last * H) + 60))))
+        break  # page 2 holds only register footers: not shown
     sheet = Image.new("RGB", (max(p.width for p in parts), sum(p.height for p in parts)), "white")
     y = 0
     for p in parts:

@@ -1,10 +1,12 @@
 <!doctype html>
 <!--
-  app-recording.html — the PriceBack app, rebuilt from the app's own code (src/constants/theme.js,
-  HomeScreen, ScanTemplate, ReceiptScanningAnimation, DetailScreen, App.js tab bar, BrandMark,
-  i18n EN strings), animated as an Android screen recording. 360×640 dp at 3× = 1080×1920.
-  window.renderAt(seconds) draws one frame; scenes/render.js screenshots every frame.
-  Data: see ../SOURCES.md (real Costco savings caught by PriceBack, Oct 2026; demo account).
+  app-recording.html (v2, 2026-11-02) — the PriceBack app rebuilt from the app's own code and played as a phone
+  screen recording, inside a phone body. Follows RULES-README §5b: real screens only (HomeScreen, ScanTemplate,
+  ScanScreen confirm step, ReceiptScanningAnimation, DetailScreen, App.js tab bar, BrandMark, EN strings,
+  backend/lib/pushI18n.js), one consistent story (every alerted product comes from a receipt scanned here),
+  real prices (prod price_points) and real drops (prod savings), realistic days left.
+  ?layout=tall → 1080×1920 (Instagram / Kickstarter Discovery); ?layout=wide → 1920×1080 (Kickstarter main).
+  window.renderAt(seconds) draws one frame. Data and sources: ../SOURCES.md.
 -->
 <html><head><meta charset="utf-8">
 <style>
@@ -16,18 +18,23 @@
 @font-face{font-family:PJ6;src:url(assets/fonts/PlusJakartaSans_600SemiBold.ttf)}
 @font-face{font-family:PJ7;src:url(assets/fonts/PlusJakartaSans_700Bold.ttf)}
 @font-face{font-family:Ion;src:url(assets/fonts/Ionicons.ttf)}
-:root{--bg:#eef5f1;--card:#fff;--alt:#f4f9f6;--ink:#0d3d28;--inkDeep:#062a1a;--sub:#64748b;--muted:#94a3b8;--border:#d8e3dd;--borderL:#e8efea;--accent:#10b981;--accentDeep:#047857;--accentSoft:#dcfce7;--accentInk:#15803d;--lime:#bef264;--limeSoft:#d9f99d}
+:root{--bg:#eef5f1;--alt:#f4f9f6;--ink:#0d3d28;--inkDeep:#062a1a;--sub:#64748b;--muted:#94a3b8;--border:#d8e3dd;--div:#e8efea;--accent:#10b981;--accentDeep:#047857;--accentSoft:#dcfce7;--accentInk:#15803d;--lime:#bef264;--limeSoft:#d9f99d}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{width:360px;height:640px;overflow:hidden;background:#000}
-#phone{position:relative;width:360px;height:640px;overflow:hidden;background:var(--bg);font-family:IT5;color:var(--ink)}
+html,body{overflow:hidden}
+body{background:radial-gradient(120% 90% at 50% 20%,#f7fbf8 0%,#e4f1ea 55%,#d6ebe0 100%)}
+#device{position:absolute;left:50%;top:50%;width:384px;height:784px;margin:-392px 0 0 -192px;border-radius:52px;background:linear-gradient(145deg,#3a3d40,#1b1c1e 40%,#2a2c2e);box-shadow:0 40px 80px rgba(6,42,26,.28),0 8px 18px rgba(6,42,26,.18),inset 0 0 0 1.5px #5a5e62;transform-origin:50% 50%}
+#device:before{content:"";position:absolute;right:-3px;top:150px;width:3px;height:64px;border-radius:0 3px 3px 0;background:#2b2d30}
+#device:after{content:"";position:absolute;right:-3px;top:240px;width:3px;height:110px;border-radius:0 3px 3px 0;background:#2b2d30}
+#phone{position:absolute;left:12px;top:12px;width:360px;height:760px;border-radius:41px;overflow:hidden;background:var(--bg);font-family:IT5;color:var(--ink)}
+.cut{position:absolute;left:50%;top:21px;width:11px;height:11px;margin-left:-5.5px;border-radius:50%;background:#050505;z-index:90;box-shadow:inset 0 0 0 2px #1d2226}
 .i{font-family:Ion;font-style:normal;line-height:1;display:inline-block}
-.screen{position:absolute;left:0;top:0;width:360px;height:640px;overflow:hidden;background:var(--bg)}
-.status{position:absolute;left:0;top:0;right:0;height:24px;display:flex;align-items:center;justify-content:space-between;padding:0 14px 0 18px;font-family:IT6;font-size:12.5px;color:var(--ink);z-index:50}
+.screen{position:absolute;left:0;top:0;width:360px;height:760px;overflow:hidden;background:var(--bg)}
+.status{position:absolute;left:0;top:0;right:0;height:30px;display:flex;align-items:center;justify-content:space-between;padding:4px 26px 0 30px;font-family:IT6;font-size:12.5px;color:var(--ink);z-index:50}
 .status.dark{color:#fff}
-.navpill{position:absolute;left:50%;bottom:5px;width:108px;height:4px;margin-left:-54px;border-radius:2px;background:rgba(13,61,40,.55);z-index:50}
+.navpill{position:absolute;left:50%;bottom:7px;width:108px;height:4px;margin-left:-54px;border-radius:2px;background:rgba(13,61,40,.55);z-index:50}
 .navpill.dark{background:rgba(255,255,255,.7)}
-.body{position:absolute;left:0;right:0;top:24px;bottom:0}
-/* Home */
+.body{position:absolute;left:0;right:0;top:30px;bottom:0;overflow:hidden}
+.scroll{position:absolute;left:0;right:0;top:0}
 .topRow{display:flex;align-items:center;justify-content:space-between;padding:10px 14px}
 .lockup{display:flex;align-items:center;gap:9.5px}
 .tile{width:28px;height:28px;border-radius:6.3px;background:linear-gradient(160deg,#10b981,#047857);display:flex;align-items:center;justify-content:center}
@@ -42,50 +49,52 @@ html,body{width:360px;height:640px;overflow:hidden;background:#000}
 .heroAmt .c{font-family:IT8;font-size:24px;margin-top:8px;color:var(--limeSoft)}
 .heroLine{display:flex;align-items:center;gap:8px;margin-top:10px;font-family:IT8;font-size:14px}
 .heroFoot{display:flex;align-items:center;gap:6px;margin-top:12px;padding-top:10px;border-top:.5px solid rgba(255,255,255,.18);font-family:PJ6;font-size:12px;color:rgba(255,255,255,.7)}
-.saved .n2{font-family:IT8;font-size:40px;letter-spacing:-1.8px;line-height:44px}
 .dots{position:absolute;top:18px;right:18px;display:flex;gap:4px}
 .dots i{width:14px;height:3px;border-radius:2px;background:rgba(255,255,255,.25);display:block}
 .dots i.on{background:var(--lime)}
-.spark{margin-top:12px;height:28px}
+.onboard{margin:16px 12px 0;background:#fff;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:8px;box-shadow:0 1px 3px rgba(13,61,40,.04)}
+.obT{font-family:IT8;font-size:18px;text-align:center;letter-spacing:-.4px}
+.obB{font-family:IT4;font-size:13px;color:var(--sub);text-align:center;line-height:19px}
+.obBtn{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--accent);border-radius:14px;padding:14px;margin-top:6px;color:#fff;font-family:IT7;font-size:14px;box-shadow:0 6px 16px rgba(16,185,129,.3)}
 .section{padding:0 12px;margin-top:16px}
 .secHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;padding:0 4px}
 .secTitle{font-family:IT7;font-size:15px;letter-spacing:-.3px}
 .secSub{font-family:PJ6;font-size:11px;color:var(--sub);margin-top:2px}
 .secAct{font-family:PJ6;font-size:11px;color:var(--accent)}
+.empty{background:#fff;border-radius:16px;padding:18px;text-align:center;font-family:IT5;font-size:13px;color:var(--sub)}
 .list{background:#fff;border-radius:16px;padding:0 14px;box-shadow:0 1px 3px rgba(13,61,40,.04)}
-.row{display:flex;align-items:center;gap:10px;padding:14px 0;border-bottom:1px solid var(--borderL)}
+.row{display:flex;align-items:center;gap:10px;padding:14px 0;border-bottom:1px solid var(--div)}
 .row:last-child{border-bottom:0}
 .sbadge{width:38px;height:38px;border-radius:10px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .co{width:28px;height:28px;border-radius:7px;background:#E31837;color:#fff;font-weight:900;font-family:Arial,Helvetica,sans-serif;font-size:11.8px;letter-spacing:-.5px;display:flex;align-items:center;justify-content:center}
 .iname{font-family:IT6;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .chips{display:flex;align-items:center;gap:6px;margin-top:4px;flex-wrap:wrap}
-.chipD{border-radius:10px;padding:3px 8px;font-family:IT7;font-size:11px}
+.chipD{border-radius:10px;padding:3px 8px;font-family:IT7;font-size:11px;display:inline-block}
+.chipS{border-radius:4px;padding:2px 6px;font-family:PJ7;font-size:10px}
 .place{font-family:monospace;font-size:11px;color:var(--muted)}
 .right{display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0}
 .sav{font-family:IT8;font-size:14px;color:var(--accent);letter-spacing:-.4px}
 .claim{margin-top:4px;background:var(--ink);color:#fff;border-radius:999px;padding:5px 12px;font-family:PJ7;font-size:11px}
 .price{font-family:monospace;font-size:12px;color:var(--muted)}
-/* tab bar */
-.tabbar{position:absolute;left:0;right:0;bottom:0;height:62px;background:#fff;border-top:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-around;padding-top:8px}
+.tabbar{position:absolute;left:0;right:0;bottom:0;height:74px;background:#fff;border-top:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-around;padding-top:8px}
 .tab{display:flex;flex-direction:column;align-items:center;gap:2px;width:56px;position:relative;font-family:PJ6;font-size:10px;color:var(--muted)}
 .tab .i{font-size:20px}
 .tab.on{color:var(--ink);font-family:PJ7}
 .tab.on:before{content:"";position:absolute;top:-10px;width:28px;height:3px;border-radius:2px;background:var(--accent)}
 .fab{width:52px;height:52px;border-radius:18px;background:var(--accent);margin-top:-22px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;box-shadow:0 8px 18px rgba(16,185,129,.45)}
-/* scan */
-.sHead{display:flex;align-items:center;gap:8px;padding:12px 14px 10px}
+.sHead{display:flex;align-items:center;gap:8px;padding:12px 14px 10px;background:var(--bg)}
 .back{width:36px;height:36px;border-radius:10px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px}
 .sTitle{flex:1;text-align:center;font-family:IT7;font-size:14px;letter-spacing:-.2px}
 .cancel{padding:8px;font-family:IT6;font-size:13px;color:var(--sub)}
-.sBody{padding:0 14px;display:flex;flex-direction:column;gap:14px}
-.track{display:flex;padding:4px;gap:2px;background:var(--alt);border:1px solid var(--borderL);border-radius:14px}
+.sBody{padding:0 14px 14px;display:flex;flex-direction:column;gap:14px}
+.track{display:flex;padding:4px;gap:2px;background:var(--alt);border:1px solid var(--div);border-radius:14px}
 .seg{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 2px;border-radius:10px;font-family:IT6;font-size:11.5px;line-height:14px;color:var(--sub);text-align:center}
 .seg .i{font-size:15px}
 .seg.on{background:#fff;color:var(--ink);font-family:IT7;box-shadow:0 1px 3px rgba(13,61,40,.1)}
 .credits{display:flex;align-items:center;gap:11px;padding:10px 12px;background:#fff;border:1px solid var(--border);border-radius:14px}
 .cIcon{width:34px;height:34px;border-radius:17px;background:rgba(16,185,129,.12);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:17px}
 .cBig{font-family:IT8;font-size:17px;letter-spacing:-.3px}
-.bar{height:4px;border-radius:2px;background:var(--borderL);margin-top:6px;overflow:hidden}
+.bar{height:4px;border-radius:2px;background:var(--div);margin-top:6px;overflow:hidden}
 .bar i{display:block;height:100%;width:100%;background:var(--accent)}
 .capture{border:1.5px dashed var(--border);border-radius:20px;background:#fff;display:flex;flex-direction:column;align-items:center;gap:10px;padding:36px 0}
 .cap{position:relative;width:64px;height:64px;border-radius:20px;background:var(--accentSoft);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:30px}
@@ -95,16 +104,14 @@ html,body{width:360px;height:640px;overflow:hidden;background:#000}
 .acts{display:flex;gap:8px}
 .act{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:12px 8px;border-radius:12px;background:#fff;border:1px solid var(--border);font-family:IT6;font-size:12.5px}
 .act .i{font-size:16px}
-/* document scanner (system) */
 .cam{position:absolute;inset:0;background:#0b0f0d}
-.camImg{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%) rotate(-1.2deg);width:300px;box-shadow:0 0 40px rgba(0,0,0,.6)}
-.camTop{position:absolute;left:0;right:0;top:24px;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;color:#fff;font-family:Roboto,Arial,sans-serif;font-size:15px}
-.camBottom{position:absolute;left:0;right:0;bottom:0;height:120px;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center}
+.camImg{position:absolute;left:50%;top:47%;width:296px;box-shadow:0 0 40px rgba(0,0,0,.6)}
+.camTop{position:absolute;left:0;right:0;top:36px;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;color:#fff;font-family:Roboto,Arial,sans-serif;font-size:14px}
+.camBottom{position:absolute;left:0;right:0;bottom:0;height:130px;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center}
 .shutterO{width:66px;height:66px;border-radius:33px;border:4px solid #fff;display:flex;align-items:center;justify-content:center}
 .shutterI{width:52px;height:52px;border-radius:26px;background:#fff}
-.camHint{position:absolute;left:50%;top:86px;transform:translateX(-50%);background:rgba(0,0,0,.55);color:#fff;font-family:Roboto,Arial,sans-serif;font-size:13px;padding:6px 14px;border-radius:16px;white-space:nowrap}
-/* scanning */
-.scanWrap{position:absolute;left:0;right:0;top:120px;display:flex;flex-direction:column;align-items:center;gap:22px}
+.camHint{position:absolute;left:50%;top:92px;transform:translateX(-50%);background:rgba(0,0,0,.55);color:#fff;font-family:Roboto,Arial,sans-serif;font-size:13px;padding:6px 14px;border-radius:16px;white-space:nowrap}
+.scanWrap{position:absolute;left:0;right:0;top:170px;display:flex;flex-direction:column;align-items:center;gap:22px}
 .stage{position:relative;width:148px;height:148px;display:flex;align-items:center;justify-content:center}
 .glow{position:absolute;width:136px;height:136px;border-radius:68px;background:var(--accent)}
 .stile{position:relative;width:108px;height:108px;border-radius:28px;overflow:hidden;background:linear-gradient(135deg,#1c2622,#0d1714 55%,#161f1b);display:flex;align-items:center;justify-content:center}
@@ -113,120 +120,170 @@ html,body{width:360px;height:640px;overflow:hidden;background:#000}
 .ssub{font-family:monospace;font-size:12px;color:var(--muted);text-align:center;margin-top:6px}
 .sdots{display:flex;gap:7px}
 .sdots i{width:7px;height:7px;border-radius:4px;background:var(--accent);display:block}
-/* confirm */
-.progress{display:flex;gap:6px;padding:0 14px;margin-bottom:8px}
+.progress{display:flex;gap:6px;padding:0 14px 8px;background:var(--bg)}
 .progress i{flex:1;height:4px;border-radius:2px;background:var(--accent);display:block}
-.rHero{margin:0 14px;border-radius:18px;padding:16px;background:linear-gradient(135deg,var(--ink),var(--inkDeep));color:#fff}
-.rEye{font-family:PJ7;font-size:10px;letter-spacing:1px;color:var(--lime)}
-.rTitle{font-family:IT8;font-size:18px;letter-spacing:-.4px;margin-top:6px}
-.rStore{display:flex;align-items:center;gap:10px;margin-top:14px;padding:10px;border-radius:14px;background:rgba(255,255,255,.08)}
+.content{padding:12px;display:flex;flex-direction:column;gap:16px}
+.rHero{border-radius:22px;padding:18px;background:linear-gradient(135deg,var(--ink),var(--inkDeep));color:#fff}
+.rEye{font-family:PJ6;font-size:9.5px;letter-spacing:1px;color:rgba(255,255,255,.55)}
+.rTitle{font-family:IT8;font-size:22px;letter-spacing:-.6px;margin-top:4px;line-height:26px}
+.rStore{display:flex;align-items:center;gap:10px;margin-top:14px;padding:12px;border-radius:14px;background:rgba(255,255,255,.06)}
+.rBadge{width:44px;height:44px;border-radius:10px;background:#E31837;display:flex;align-items:center;justify-content:center}
 .rName{font-family:IT7;font-size:14px}
-.rSub{font-family:PJ6;font-size:11px;color:rgba(255,255,255,.65);margin-top:2px}
-.rChange{font-family:PJ7;font-size:11px;color:var(--lime);padding:5px 9px;border-radius:999px;background:rgba(190,242,100,.12)}
-.card{margin:14px 14px 0;background:#fff;border-radius:16px;padding:16px;box-shadow:0 1px 3px rgba(13,61,40,.04)}
-.cLabel{font-family:PJ6;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--sub);margin-bottom:12px}
-.kv{display:flex;justify-content:space-between;margin-top:8px;font-family:IT5;font-size:13px;color:var(--muted)}
-.kv b{font-family:monospace;font-weight:600;color:var(--ink);font-size:13px}
-.kvT{display:flex;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid var(--borderL)}
-.kvT span{font-family:IT7;font-size:16px}
-.kvT b{font-family:IT8;font-size:18px;color:var(--ink)}
-.itemsHdr{display:flex;justify-content:space-between;align-items:center}
-.save{position:absolute;left:14px;right:14px;bottom:22px;height:50px;border-radius:14px;background:var(--accent);color:#fff;font-family:IT7;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 6px 16px rgba(16,185,129,.3)}
-/* files picker (system) */
+.rSub{font-family:PJ6;font-size:11px;color:rgba(255,255,255,.6);margin-top:2px}
+.rChange{font-family:PJ6;font-size:11px;color:#fff;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15)}
+.rSeg{display:flex;gap:6px;margin-top:10px;padding:3px;border-radius:999px;background:rgba(0,0,0,.25)}
+.rSeg span{flex:1;text-align:center;padding:7px 0;border-radius:999px;font-family:PJ6;font-size:12px;color:rgba(255,255,255,.6)}
+.rSeg span.on{background:var(--accent);color:#fff}
+.wh{display:flex;align-items:center;gap:11px;padding:10px 12px;background:#fff;border:1px solid var(--border);border-radius:14px}
+.whI{width:34px;height:34px;border-radius:17px;background:rgba(16,185,129,.12);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:18px;flex-shrink:0}
+.whL{font-family:IT7;font-size:14.5px;letter-spacing:-.2px}
+.whS{font-family:IT5;font-size:12px;color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.whC{display:flex;align-items:center;gap:1px;align-self:flex-start;font-family:IT6;font-size:12px;color:var(--muted)}
+.card{background:#fff;border-radius:16px;padding:14px;box-shadow:0 1px 3px rgba(13,61,40,.04)}
+.cLabel{font-family:PJ6;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--sub)}
+.irow{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--div)}
+.iN{font-family:IT6;font-size:13px}
+.skuTag{background:var(--div);padding:2px 6px;border-radius:4px;color:var(--accent);font-family:PJ7;font-size:10px;letter-spacing:.5px}
+.skuV{font-family:IT5;font-size:12px;color:var(--ink)}
+.qtyL{font-family:PJ6;font-size:11px;color:var(--sub)}
+.qtyV{font-family:IT8;font-size:14px}
+.lAct{display:flex;align-items:center;gap:5px;margin-top:6px;padding:4px 0;color:var(--accent);font-family:IT6;font-size:12px}
+.rm{width:26px;height:26px;display:flex;align-items:center;justify-content:center;color:#dc2626;font-size:16px;flex-shrink:0}
+.addItem{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 0;margin-top:8px;border:1px dashed var(--accent);border-radius:12px;color:var(--accent);font-family:monospace;font-size:13px;font-weight:700}
+.tRow{display:flex;justify-content:space-between;align-items:center;padding-top:10px;margin-top:10px;border-top:1px solid var(--div);font-family:IT5;font-size:13px;color:var(--muted)}
+.tRow b{font-family:monospace;color:var(--ink);font-size:13px}
+.meta{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--div)}
+.meta:last-child{border-bottom:0}
+.metaK{font-family:PJ6;font-size:11px;color:var(--sub)}
+.metaV{font-family:IT6;font-size:13px}
+.btnP{display:flex;align-items:center;justify-content:center;gap:6px;padding:14px 24px;border-radius:14px;background:var(--accent);color:#fff;font-family:IT7;font-size:15px;box-shadow:0 6px 16px rgba(16,185,129,.3)}
 .files{position:absolute;inset:0;background:#fff;font-family:Roboto,Arial,sans-serif;color:#1f1f1f}
-.fTop{position:absolute;left:0;right:0;top:24px;height:56px;display:flex;align-items:center;gap:18px;padding:0 16px;font-size:20px}
+.fTop{position:absolute;left:0;right:0;top:36px;height:56px;display:flex;align-items:center;gap:18px;padding:0 18px;font-size:20px}
 .fChip{display:inline-block;padding:6px 14px;border-radius:8px;border:1px solid #c4c7c5;font-size:13px;margin-right:6px}
-.fGrid{position:absolute;left:16px;right:16px;top:150px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fGrid{position:absolute;left:16px;right:16px;top:156px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .fItem{border-radius:12px;background:#f0f4f9;overflow:hidden}
-.fThumb{height:150px;background:#fff;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;border-bottom:1px solid #e3e3e3}
+.fThumb{height:160px;background:#fff;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;border-bottom:1px solid #e3e3e3}
 .fThumb img{width:96%;margin-top:6px}
 .fName{padding:8px 10px 10px;font-size:12.5px}
 .fMeta{font-size:11px;color:#5f6368;margin-top:2px}
-/* notification (Android heads-up) */
-.notif{position:absolute;left:8px;right:8px;top:30px;border-radius:24px;background:#f3f6f4;box-shadow:0 6px 24px rgba(0,0,0,.18);padding:14px 16px;z-index:60;font-family:Roboto,Arial,sans-serif}
+.notif{position:absolute;left:8px;right:8px;top:38px;border-radius:24px;background:#f3f6f4;box-shadow:0 6px 24px rgba(0,0,0,.18);padding:14px 16px;z-index:60;font-family:Roboto,Arial,sans-serif}
 .nHead{display:flex;align-items:center;gap:8px;font-size:12px;color:#444}
 .nIcon{width:20px;height:20px;border-radius:5px;background:linear-gradient(160deg,#10b981,#047857);display:flex;align-items:center;justify-content:center}
 .nTitle{font-size:14.5px;font-weight:600;color:#1b1b1b;margin-top:8px}
-.nBody{font-size:13.5px;color:#3c3c3c;margin-top:3px}
-/* detail */
-.dItem{font-family:IT8;font-size:18px;letter-spacing:-.4px;line-height:23px}
-.dRow{display:flex;justify-content:space-between;margin-top:10px;font-family:IT5;font-size:13px;color:var(--sub)}
-.dRow b{font-family:IT7;color:var(--ink)}
-.dBig{display:flex;align-items:baseline;gap:6px;margin-top:12px}
-.dBig .v{font-family:IT8;font-size:30px;color:var(--accent);letter-spacing:-1px}
+.nBody{font-size:13.5px;color:#3c3c3c;margin-top:3px;line-height:18px}
+.dHero{border-radius:22px;padding:18px;background:linear-gradient(135deg,var(--accent),var(--accentDeep));color:#fff}
+.dStore{font-family:IT8;font-size:18px;letter-spacing:-.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dEye{font-family:PJ6;font-size:9.5px;letter-spacing:1px;color:rgba(255,255,255,.7)}
+.dNum{font-family:IT8;font-size:34px;letter-spacing:-1px;line-height:38px;margin-top:2px}
+.dAmt{font-family:IT8;font-size:30px;letter-spacing:-1px;line-height:38px;margin-top:2px;color:#d1fae5}
+.cmp{flex:1;border-radius:14px;padding:14px;box-shadow:0 1px 3px rgba(13,61,40,.04)}
+.cmpL{font-family:PJ6;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--sub)}
+.cmpA{font-family:IT8;font-size:22px;letter-spacing:-.6px;margin-top:4px}
+.cmpS{font-family:PJ6;font-size:11px;color:var(--sub);margin-top:2px}
+.sec2{flex:1;padding:12px 0;border-radius:12px;background:#fff;border:1px solid var(--border);text-align:center;font-family:IT6;font-size:13px}
+.drow{display:flex;justify-content:space-between;align-items:center;padding:8px 0}
+.drow span{font-family:PJ6;font-size:11px;color:var(--sub)}
+.drow b{font-family:IT6;font-size:13px;color:var(--ink);font-weight:normal}
+.sLabel{font-family:PJ6;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--sub);margin-bottom:12px}
 .step{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
 .sn{width:22px;height:22px;border-radius:11px;background:var(--accentSoft);color:var(--accentInk);font-family:PJ7;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .st{font-family:IT7;font-size:13px;line-height:19px;flex:1}
-.showRcpt{display:flex;align-items:center;gap:6px;margin:0 0 12px 32px;color:var(--accent);font-family:IT6;font-size:13px}
-/* splash */
+.showR{display:flex;align-items:center;gap:6px;margin:0 0 12px 32px;color:var(--accent);font-family:IT6;font-size:13px}
 .splash{position:absolute;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
-/* touch indicator (Android "Show taps") */
 .tap{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:22px;background:rgba(255,255,255,.55);border:1px solid rgba(0,0,0,.12);z-index:80}
 .flash{position:absolute;inset:0;background:#fff;z-index:70}
 </style></head>
-<body><div id="phone"></div>
+<body><div id="device"><div id="phone"></div><div class="cut"></div></div>
 <script>
-const G = (name) => String.fromCodePoint({"home":62338,"receipt-outline":62735,"camera":61915,"storefront-outline":62888,"person-outline":62636,"search-outline":62819,"notifications-outline":62591,"checkmark-circle":61982,"time-outline":62942,"chevron-back":61993,"chevron-forward":62011,"images-outline":62354,"document-attach-outline":62124,"ticket-outline":62939,"add":61699,"flash-outline":62234,"lock-closed":62407,"document-text":62131,"folder-outline":62249,"ellipsis-vertical":62164,"close":62026,"receipt":62734,"grid-outline":62294,"pricetag-outline":62699,"language-outline":62378,"barcode-outline":61814,"arrow-back":61735,"menu":62545}[name]);
-const I = (name, style = "") => `<span class="i" style="${style}">${G(name)}</span>`;
-const GLYPH = `<svg width="W" height="W" viewBox="0 0 48 48"><g fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 9 H35 V34 L32 37 L29 34 L26 37 L23 34 L20 37 L17 34 L14 37 L13 36 Z"/><path d="M17 16 L21.5 20.5 L25.5 17 L31 27"/><path d="M31 27 L27.4 26 M31 27 L31.7 23.2"/></g></svg>`;
-const glyph = (w) => GLYPH.replace(/W/g, w);
+const LAYOUT = new URLSearchParams(location.search).get("layout") || "tall";
+const W = LAYOUT === "wide" ? 1920 : 1080, H = LAYOUT === "wide" ? 1080 : 1920;
+document.body.style.width = W + "px"; document.body.style.height = H + "px";
+document.getElementById("device").style.transform = `scale(${LAYOUT === "wide" ? 1.27 : 2.3})`;
+
+const GL = {"home":62338,"receipt-outline":62735,"camera":61915,"storefront-outline":62888,"person-outline":62636,"search-outline":62819,"notifications-outline":62591,"checkmark-circle":61982,"time-outline":62942,"chevron-back":61993,"chevron-forward":62011,"images-outline":62354,"document-attach-outline":62124,"ticket-outline":62939,"add":61699,"flash-outline":62234,"close":62026,"pricetag-outline":62699,"language-outline":62378,"barcode-outline":61814,"menu":62545,"ellipsis-vertical":62164,"trash-outline":62966,"cart-outline":61955,"add-circle-outline":61701};
+const I = (n, st = "") => `<span class="i" style="${st}">${String.fromCodePoint(GL[n])}</span>`;
+const glyph = (w) => `<svg width="${w}" height="${w}" viewBox="0 0 48 48"><g fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 9 H35 V34 L32 37 L29 34 L26 37 L23 34 L20 37 L17 34 L14 37 L13 36 Z"/><path d="M17 16 L21.5 20.5 L25.5 17 L31 27"/><path d="M31 27 L27.4 26 M31 27 L31.7 23.2"/></g></svg>`;
 const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
 const ease = (x) => { x = clamp(x); return x < .5 ? 4*x*x*x : 1 - Math.pow(-2*x + 2, 3) / 2; };
-const prog = (t, a, b) => ease((t - a) / (b - a));
+const m2 = (n) => n.toFixed(2);
 
-// ── Data: real Costco regular prices (prod price_points, 2026-11-02) and real savings (Oct 2026). SOURCES.md
-const ROWS = {
-  tv:   { name: "Samsung QN80H Series 4K UHD Neo QLED TV",           price: 1808.24, save: 600,  chip: ["red", "Claim by Oct 26 · Last day"] },
-  gen:  { name: "Generac Guardian Generator",                         price: 8999.99, save: 1000, chip: ["green", "Claim by Nov 8 · 13d left"] },
-  cof:  { name: "Van Houtte Original House Blend Coffee K-Cup Pods",  price: 52.99,   save: 13,   chip: ["green", "Claim by Nov 21 · 25d left"] },
-  ket:  { name: "Chefman Stainless Steel Kettle",                     price: 39.99,   save: 10,   chip: ["green", "Claim by Nov 18 · 22d left"] },
+// ── Story data: real regular prices (prod price_points, 2026-11-02) and real Costco savings (prod savings, Oct 2026).
+const WH = "Laval, QC · #505";
+const PAPER = { date: "Oct 14, 2026", watch: "Nov 13, 2026", sub: 2009.68, tax: 293.01, total: 2302.69, items: [
+  ["tv", "Samsung QN80H Series 4K UHD Neo QLED TV", "5708165", 1808.24],
+  ["ket", "Chefman Stainless Steel Kettle RJ11-18SSD-CACO", "2023352", 39.99],
+  ["cof", "Van Houtte Original House Blend Coffee K-Cup Pods", "266556", 52.99],
+  ["bty", "Bounty P24 Plus Select-A-Size Paper Towels", "1717599", 32.49],
+  ["lau", "Kirkland Signature Ultra Clean Premium Liquid Laundry Detergent", "1845613", 19.99],
+  ["cas", "Cascade Platinum Plus ActionPacs Dishwasher Detergent", "1727590", 29.99],
+  ["dur", "Duracell Power Boost AA Batteries", "1806358", 25.99],
+]};
+const PDF = { date: "Oct 20, 2026", watch: "Nov 19, 2026", sub: 9032.48, tax: 1352.61, total: 10385.09, items: [
+  ["gen", "Generac Guardian Generator", "1737269", 8999.99],
+  ["chm", "Charmin Ultra Soft Toilet Paper Jumbo Rolls", "2633624", 32.49],
+]};
+const NAME = Object.fromEntries([...PAPER.items, ...PDF.items].map(([k, n, s, p]) => [k, { n, p, paper: PAPER.items.some((x) => x[0] === k) }]));
+const SAVE = { gen: 1000, cof: 13, ket: 10, tv: 500 };
+const URG = { green: ["#dcfce7", "#15803d"], yellow: ["#fef3c7", "#92400e"], red: ["#fee2e2", "#991b1b"] };
+// Claim deadlines per home state (the day each alert arrives), from the real saving dates.
+const STATES = {
+  oct26: { gen: ["yellow", "Claim by Nov 8 · 13d left"] },
+  oct27: { gen: ["yellow", "Claim by Nov 8 · 12d left"], cof: ["yellow", "Claim by Nov 13 · 17d left"], ket: ["yellow", "Claim by Nov 13 · 17d left"] },
+  oct31: { gen: ["yellow", "Claim by Nov 8 · 8d left"], cof: ["red", "Claim by Nov 13 · 13d left"], ket: ["red", "Claim by Nov 13 · 13d left"], tv: ["red", "Claim by Nov 5 · 5d left"] },
 };
-const URG = { green: ["#dcfce7", "#15803d"], red: ["#fee2e2", "#991b1b"] };
-const money = (n) => n.toFixed(2);
 
 function status(dark) {
   return `<div class="status ${dark ? "dark" : ""}"><span>9:41</span><span style="display:flex;gap:5px;align-items:center">
     <svg width="15" height="11" viewBox="0 0 15 11"><path d="M1 10h2V7H1zM5 10h2V5H5zM9 10h2V3H9zM13 10h2V1h-2z" fill="currentColor"/></svg>
     <svg width="15" height="11" viewBox="0 0 16 12"><path d="M8 11.5 15.5 3.6A11 11 0 0 0 .5 3.6z" fill="currentColor"/></svg>
-    <svg width="22" height="11" viewBox="0 0 22 11"><rect x=".5" y=".5" width="18" height="10" rx="2.5" fill="none" stroke="currentColor"/><rect x="2" y="2" width="13" height="7" rx="1.2" fill="currentColor"/><rect x="19.5" y="3.5" width="1.5" height="4" rx=".7" fill="currentColor"/></svg>
-  </span></div>`;
+    <svg width="22" height="11" viewBox="0 0 22 11"><rect x=".5" y=".5" width="18" height="10" rx="2.5" fill="none" stroke="currentColor"/><rect x="2" y="2" width="13" height="7" rx="1.2" fill="currentColor"/><rect x="19.5" y="3.5" width="1.5" height="4" rx=".7" fill="currentColor"/></svg></span></div>`;
 }
 const nav = (dark) => `<div class="navpill ${dark ? "dark" : ""}"></div>`;
+const tabbar = () => `<div class="tabbar"><div class="tab on">${I("home")}<span>Home</span></div><div class="tab">${I("receipt-outline")}<span>Tracking</span></div>
+  <div class="fab">${I("camera")}</div><div class="tab">${I("storefront-outline")}<span>Stores</span></div><div class="tab">${I("person-outline")}<span>Profile</span></div></div>`;
+const topRow = (alerts) => `<div class="topRow"><div class="lockup"><div class="tile">${glyph(17)}</div><div class="word"><span>Price</span><span style="color:var(--accent)">Back</span></div></div>
+  <div style="display:flex;gap:6px"><div class="iconBtn">${I("search-outline")}</div><div class="iconBtn">${I("notifications-outline")}${alerts ? `<div class="badge">${alerts}</div>` : ""}</div></div></div>`;
+const savedHero = (spent) => `<div class="caps" style="color:rgba(255,255,255,.55)">Total saved · all-time</div>
+  <div style="display:flex;align-items:baseline;margin-top:4px"><span style="font-family:IT7;font-size:22px;color:rgba(255,255,255,.85);letter-spacing:-1px">$</span><span style="font-family:IT8;font-size:40px;letter-spacing:-1.8px;line-height:44px">0</span><span style="font-family:IT8;font-size:26px;color:rgba(255,255,255,.85)">.00</span></div>
+  ${spent ? `<div style="display:flex;align-items:center;gap:5px;margin-top:8px;font-family:PJ6;font-size:11px;color:rgba(255,255,255,.62)">${I("cart-outline", "font-size:11px;color:rgba(255,255,255,.5)")}<span>Spent in 2026 · $${m2(spent)} · all stores</span></div>` : ""}`;
 
-function rowHTML(r, drop) {
-  const right = drop
-    ? `<div class="right"><div class="sav">+$${money(r.save)}</div><div class="claim">Claim</div></div>`
-    : `<div class="right"><div class="price">$${money(r.price)}</div></div>`;
-  const chip = drop ? `<span class="chipD" style="background:${URG[r.chip[0]][0]};color:${URG[r.chip[0]][1]}">${r.chip[1]}</span>` : "";
-  return `<div class="row"><div class="sbadge"><div class="co">CO</div></div>
-    <div style="flex:1;min-width:0"><div class="iname">${r.name}</div><div class="chips">${chip}<span class="place">Costco</span></div></div>${right}</div>`;
-}
-
-function home({ drops = [], toClaim = 0, alerts = 0 } = {}) {
-  const order = ["tv", "gen", "cof", "ket"];
-  const sorted = [...order.filter((k) => drops.includes(k)).sort((a, b) => ROWS[b].save - ROWS[a].save), ...order.filter((k) => !drops.includes(k))];
-  const rows = sorted.map((k) => rowHTML(ROWS[k], drops.includes(k))).join("");
-  const n = drops.length;
-  const pending = drops.reduce((s, k) => s + ROWS[k].save, 0);
-  const heroInner = n > 0
+// Home (HomeScreen.js). tracked = watched product keys; state = which real drops are live.
+function home({ tracked = [], state = null } = {}) {
+  if (!tracked.length) {
+    return `<div class="screen">${status()}<div class="body">${topRow(0)}
+      <div class="hero">${savedHero(0)}</div>
+      <div class="onboard"><span class="i" style="font-size:36px;color:var(--accent);align-self:center">${String.fromCodePoint(GL["receipt-outline"])}</span><div class="obT">Welcome to PriceBack!</div><div class="obB">Here's how it works in 3 steps:</div><div class="obBtn">${I("camera", "font-size:18px")}<span>Scan Your First Receipt</span></div></div>
+      <div class="section"><div class="secHead"><div class="secTitle">Products you're tracking</div></div><div class="empty">No tracked products yet — scan a receipt to start</div></div>
+    </div>${tabbar()}${nav()}</div>`;
+  }
+  const drops = state ? Object.keys(STATES[state]) : [];
+  const amt = drops.reduce((s, k) => s + SAVE[k], 0);
+  const order = [...tracked].sort((a, b) => {
+    const da = drops.includes(a), db = drops.includes(b);
+    if (da !== db) return da ? -1 : 1;
+    if (da && db) return SAVE[b] - SAVE[a];
+    return (NAME[a].paper ? 0 : 1) - (NAME[b].paper ? 0 : 1);
+  }).slice(0, 6);
+  const rows = order.map((k) => {
+    const d = drops.includes(k) ? STATES[state][k] : null;
+    const pct = d ? Math.round(SAVE[k] / NAME[k].p * 100) : null;
+    return `<div class="row"><div class="sbadge"><div class="co">CO</div></div><div style="flex:1;min-width:0"><div class="iname">${NAME[k].n}</div>
+      <div class="chips">${d ? `<span class="chipS" style="background:var(--accentSoft);color:var(--accentInk)">−${pct}%</span><span class="chipD" style="background:${URG[d[0]][0]};color:${URG[d[0]][1]}">${d[1]}</span>` : ""}<span class="place">Laval</span></div></div>
+      ${d ? `<div class="right"><div class="sav">+$${m2(SAVE[k])}</div><div class="claim">Claim</div></div>` : `<div class="right"><div class="price">$${m2(NAME[k].p)}</div></div>`}</div>`;
+  }).join("");
+  const n = drops.length, recs = new Set(drops.map((k) => NAME[k].paper)).size;
+  const minDays = n ? Math.min(...drops.map((k) => +STATES[state][k][1].match(/(\d+)d left/)[1])) : 0;
+  const hero = n
     ? `<div class="dots"><i class="on"></i><i></i></div><div class="caps" style="color:var(--lime)">To claim</div>
-       <div class="heroAmt"><span class="d">$</span><span class="n">${Math.floor(toClaim)}</span><span class="c">.${money(toClaim).split(".")[1]}</span></div>
-       <div class="heroLine">${I("checkmark-circle", "font-size:15px;color:var(--lime)")}<span>${n} price drop${n > 1 ? "s" : ""} · on ${n > 2 ? 3 : n} receipt${n > 1 ? "s" : ""}</span></div>
-       <div class="heroFoot">${I("time-outline", "font-size:13px")}<span><b style="color:var(--lime);font-family:IT8">${drops.includes("tv") ? "Last day" : "22d left"}</b> · Tap for more details</span></div>`
-    : `<div class="caps" style="color:rgba(255,255,255,.55)">Total saved · all-time</div>
-       <div style="display:flex;align-items:baseline;margin-top:4px" class="saved"><span style="font-family:IT7;font-size:22px;color:rgba(255,255,255,.85);letter-spacing:-1px">$</span><span class="n2">0</span><span style="font-family:IT8;font-size:26px;color:rgba(255,255,255,.85)">.00</span></div>`;
-  return `<div class="screen">${status()}<div class="body">
-    <div class="topRow"><div class="lockup"><div class="tile">${glyph(17)}</div><div class="word"><span>Price</span><span style="color:var(--accent)">Back</span></div></div>
-      <div style="display:flex;gap:6px"><div class="iconBtn">${I("search-outline")}</div><div class="iconBtn">${I("notifications-outline")}${alerts ? `<div class="badge">${alerts}</div>` : ""}</div></div></div>
-    <div class="hero">${heroInner}
-      <svg class="spark" width="100%" height="28" viewBox="0 0 300 28" preserveAspectRatio="none"><path d="M0 24 C40 22 60 20 90 21 S150 14 180 15 S240 8 300 4" fill="none" stroke="rgba(167,243,208,.7)" stroke-width="2"/></svg></div>
-    <div class="section"><div class="secHead"><div><div class="secTitle">Products you're tracking</div>
-      <div class="secSub">${n ? `${sorted.length} tracked · ${n} ready to claim · $${money(pending)} pending` : `${sorted.length} tracked · watching every day`}</div></div><div class="secAct">See all → (${sorted.length}) ›</div></div>
-      <div class="list">${rows}</div></div>
-  </div>
-  <div class="tabbar"><div class="tab on">${I("home")}<span>Home</span></div><div class="tab">${I("receipt-outline")}<span>Tracking</span></div>
-    <div class="fab">${I("camera")}</div><div class="tab">${I("storefront-outline")}<span>Stores</span></div><div class="tab">${I("person-outline")}<span>Profile</span></div></div>
-  ${nav()}</div>`;
+       <div class="heroAmt"><span class="d">$</span><span class="n">${Math.floor(amt)}</span><span class="c">.${m2(amt).split(".")[1]}</span></div>
+       <div class="heroLine">${I("checkmark-circle", "font-size:15px;color:var(--lime)")}<span>${n === 1 ? "1 price drop" : `${n} price drops`} · ${recs === 1 ? "on 1 receipt" : `on ${recs} receipts`}</span></div>
+       <div class="heroFoot">${I("time-outline", "font-size:13px")}<span><b style="color:var(--lime);font-family:IT8">${minDays}d left</b> · Tap for more details</span></div>`
+    : savedHero(PAPER.total + (tracked.includes("gen") ? PDF.total : 0));
+  const sub = n ? `${tracked.length} tracked · ${n} ready to claim · $${m2(amt)} pending` : `Watching ${tracked.length} products for price drops`;
+  return `<div class="screen">${status()}<div class="body">${topRow(n)}
+    <div class="hero">${hero}<svg width="100%" height="28" viewBox="0 0 300 28" preserveAspectRatio="none" style="margin-top:12px"><path d="M0 24 C40 22 60 20 90 21 S150 14 180 15 S240 8 300 4" fill="none" stroke="rgba(167,243,208,.7)" stroke-width="2"/></svg></div>
+    <div class="section"><div class="secHead"><div><div class="secTitle">Products you're tracking</div><div class="secSub">${sub}</div></div><div class="secAct">See all → (${tracked.length}) ›</div></div>
+      <div class="list">${rows}</div></div></div>${tabbar()}${nav()}</div>`;
 }
 
 function scanIntro() {
@@ -241,136 +298,157 @@ function scanIntro() {
 }
 
 function docScanner(t0, t) {
-  // System document scanner: live view of the paper receipt, edge detection, then capture.
-  const found = clamp((t - t0 - .5) / .4);
+  const found = clamp((t - t0 - .6) / .4);
   return `<div class="screen cam">${status(true)}
-    <img class="camImg" src="../sources/receipt-paper-masked.png" style="transform:translate(-50%,-50%) rotate(${(-1.2 + Math.sin(t * 2.2) * .35).toFixed(2)}deg) scale(${(1 + Math.sin(t * 1.7) * .006).toFixed(4)})">
-    <svg style="position:absolute;inset:0;opacity:${found}" width="360" height="640"><polygon points="${[[33, 93], [327, 87], [331, 494], [37, 500]].map((p) => p.join(",")).join(" ")}" fill="rgba(26,115,232,.12)" stroke="#8ab4f8" stroke-width="2.5"/></svg>
-    <div class="camTop"><span>${I("close", "font-size:22px")}</span><span style="font-size:14px;opacity:.9">Auto capture</span><span>${I("flash-outline", "font-size:20px")}</span></div>
+    <img class="camImg" src="../sources/receipt-paper-masked.png" style="transform:translate(-50%,-50%) rotate(${(-1.1 + Math.sin(t * 2.2) * .35).toFixed(2)}deg) scale(${(1 + Math.sin(t * 1.7) * .006).toFixed(4)})">
+    <svg style="position:absolute;left:0;top:0;opacity:${found}" width="360" height="760"><polygon points="35,160 325,153 330,550 40,557" fill="rgba(26,115,232,.12)" stroke="#8ab4f8" stroke-width="2.5"/></svg>
+    <div class="camTop"><span>${I("close", "font-size:22px")}</span><span style="opacity:.9">Auto capture</span><span>${I("flash-outline", "font-size:20px")}</span></div>
     <div class="camHint" style="opacity:${1 - found}">Position the document in view</div>
     <div class="camBottom"><div class="shutterO"><div class="shutterI"></div></div></div>${nav(true)}</div>`;
 }
 
 function scanning(t) {
-  const sweep = (t % 1.6) / 1.6;
-  const breathe = (Math.sin(t * 3.4) + 1) / 2;
-  const d = (i) => .35 + .65 * Math.max(0, Math.sin(t * 6 - i * 1.0));
+  const sweep = (t % 1.6) / 1.6, breathe = (Math.sin(t * 3.4) + 1) / 2;
+  const d = (i) => .35 + .65 * Math.max(0, Math.sin(t * 6 - i));
   return `<div class="screen">${status()}<div class="body">
     <div class="sHead"><div class="back">${I("chevron-back")}</div><div class="sTitle">Scan receipt</div><div class="cancel">Cancel</div></div>
     <div class="scanWrap"><div class="stage"><div class="glow" style="opacity:${(.35 + .35 * breathe).toFixed(2)};transform:scale(${(1 + .16 * breathe).toFixed(3)})"></div>
       <div class="stile">${glyph(56)}<div class="sline" style="transform:translateY(${(sweep * 82).toFixed(1)}px);opacity:${sweep < .08 ? sweep / .08 : sweep > .92 ? (1 - sweep) / .08 : 1}"></div></div></div>
       <div><div class="stitle">Scanning receipt…</div><div class="ssub">Processing receipt…</div></div>
-      <div class="sdots">${[0, 1, 2].map((i) => `<i style="opacity:${d(i).toFixed(2)}"></i>`).join("")}</div></div>
-  </div>${nav()}</div>`;
+      <div class="sdots">${[0, 1, 2].map((i) => `<i style="opacity:${d(i).toFixed(2)}"></i>`).join("")}</div></div></div>${nav()}</div>`;
 }
 
-function confirm({ date, sub, tax, total }) {
+// Confirm receipt (ScanScreen.js step 1). `scroll` is a 0..1 fraction of the content's overflow.
+function confirm(R, frac) {
+  const items = R.items.map(([k, n, sku, p]) => `<div class="irow"><div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px">
+      <div class="iN">${n}</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px"><span class="skuTag">SKU</span><span class="skuV">${sku}</span></div>
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px"><span class="qtyL">QTY</span><span class="qtyV">1</span><span style="color:var(--muted);font-family:PJ6;font-size:11px">·</span><span class="qtyL">$</span><span class="qtyV">${m2(p)}</span></div>
+      <div class="lAct">${I("pricetag-outline", "font-size:13px")}<span>+ Add discount</span></div></div>
+      <div class="rm">${I("close")}</div></div>`).join("");
   return `<div class="screen">${status()}<div class="body">
-    <div class="sHead"><div class="back">${I("chevron-back")}</div><div class="sTitle">Confirm receipt</div><div class="cancel">Cancel</div></div>
-    <div class="progress"><i></i><i></i></div>
-    <div class="rHero"><div class="rEye">STEP 2 OF 2 · CONFIRM DETAILS</div><div class="rTitle">Make sure this matches your receipt</div>
-      <div class="rStore"><div style="width:38px;height:38px;border-radius:10px;background:#E31837;display:flex;align-items:center;justify-content:center"><div class="co" style="width:26px;height:26px;font-size:11px">CO</div></div>
-        <div style="flex:1"><div class="rName">Costco</div><div class="rSub">${date} · 30-day window</div></div><div class="rChange">Change ›</div></div></div>
-    <div class="card"><div class="cLabel">Summary</div>
-      <div class="kv"><span>Subtotal</span><b>$${sub}</b></div><div class="kv"><span>Tax (HST/GST)</span><b>$${tax}</b></div>
-      <div class="kvT"><span>Total</span><b>$${total}</b></div></div>
-    <div class="save">${I("checkmark-circle", "font-size:18px")}<span>Save</span></div>
-  </div>${nav()}</div>`;
+    <div style="position:relative;z-index:2"><div class="sHead"><div class="back">${I("chevron-back")}</div><div class="sTitle">Confirm receipt</div><div class="cancel">Cancel</div></div>
+    <div class="progress"><i></i><i></i></div></div>
+    <div class="scroll" data-frac="${frac}" style="top:70px"><div class="content">
+      <div class="rHero"><div class="rEye">STEP 2 OF 2 · CONFIRM DETAILS</div><div class="rTitle">Make sure this matches your receipt</div>
+        <div class="rStore"><div class="rBadge"><div class="co" style="width:26px;height:26px;font-size:11px">CO</div></div><div style="flex:1"><div class="rName">Costco Wholesale</div><div class="rSub">${R.date} · 30-day window</div></div><div class="rChange">Change ›</div></div>
+        <div class="rSeg"><span>Online</span><span class="on">Warehouse Purchase</span></div></div>
+      <div class="wh"><div class="whI">${I("storefront-outline")}</div><div style="flex:1;min-width:0"><div class="whL">${WH}</div><div class="whS">Tap to change the warehouse for this receipt</div></div><div class="whC"><span>Change</span>${I("chevron-forward", "font-size:15px")}</div></div>
+      <div class="card"><div class="cLabel">Items (${R.items.length})</div>${items}<div class="addItem">${I("add-circle-outline", "font-size:18px")}<span>+ Add Item</span></div></div>
+      <div class="card"><div class="cLabel">Summary</div>
+        <div class="tRow" style="border-top:0;margin-top:6px"><span>Subtotal</span><b>$${m2(R.sub)}</b></div>
+        <div class="tRow"><span>Tax (HST/GST)</span><b>$${m2(R.tax)}</b></div>
+        <div class="tRow"><span style="font-family:IT7;font-size:16px;color:var(--ink)">Total</span><b style="font-family:IT8;font-size:22px;letter-spacing:-.6px">$${m2(R.total)}</b></div></div>
+      <div class="card" style="padding:4px 14px"><div class="meta"><span class="metaK">Purchase Date</span><span class="metaV">${R.date}</span></div><div class="meta"><span class="metaK">Watch Until</span><span class="metaV">${R.watch}</span></div></div>
+      <div class="btnP">Start Tracking 🚀</div><div style="height:30px"></div>
+    </div></div></div>${nav()}</div>`;
 }
 
 function filesPicker() {
   return `<div class="screen files">${status()}
     <div class="fTop">${I("menu", "font-size:22px")}<span style="flex:1;font-size:19px">Recent</span>${I("search-outline", "font-size:20px")}${I("ellipsis-vertical", "font-size:20px")}</div>
-    <div style="position:absolute;left:16px;top:96px"><span class="fChip">Images</span><span class="fChip">Documents</span><span class="fChip">Downloads</span></div>
-    <div class="fGrid">
-      <div class="fItem"><div class="fThumb"><img src="../sources/receipt-pdf-masked.png"></div><div class="fName">Costco receipt.pdf<div class="fMeta">274 kB · Jun 28</div></div></div>
-      <div class="fItem" style="opacity:.55"><div class="fThumb" style="background:#e9eef6"></div><div class="fName">Document.pdf<div class="fMeta">88 kB · Jun 12</div></div></div>
-    </div>${nav()}</div>`;
+    <div style="position:absolute;left:16px;top:104px"><span class="fChip">Images</span><span class="fChip">Documents</span><span class="fChip">Downloads</span></div>
+    <div class="fGrid"><div class="fItem"><div class="fThumb"><img src="../sources/receipt-pdf-masked.png"></div><div class="fName">Costco receipt.pdf<div class="fMeta">162 kB · Oct 20</div></div></div>
+      <div class="fItem" style="opacity:.55"><div class="fThumb" style="background:#e9eef6"></div><div class="fName">Statement.pdf<div class="fMeta">88 kB · Oct 2</div></div></div></div>${nav()}</div>`;
 }
 
-function notification({ urgent, body }) {
-  return `<div class="notif"><div class="nHead"><div class="nIcon">${glyph(13)}</div><span>PriceBack</span><span>·</span><span>now</span></div>
-    <div class="nTitle">${urgent ? "🔴 Last days to claim a price drop" : "🟢 Price drop on a recent purchase"}</div><div class="nBody">${body}</div></div>`;
-}
+const notif = ({ title, body }) => `<div class="notif"><div class="nHead"><div class="nIcon">${glyph(13)}</div><span>PriceBack</span><span>·</span><span>now</span></div><div class="nTitle">${title}</div><div class="nBody">${body}</div></div>`;
 
-function detail(scroll) {
-  const r = ROWS.tv;
+// Receipt detail (DetailScreen.js) for the paper receipt, opened from the TV alert on Oct 31.
+function detail(frac) {
+  const step = (n, s) => `<div class="step"><div class="sn">${n}</div><div class="st">${s}</div></div>`;
   return `<div class="screen">${status()}<div class="body">
-    <div class="sHead" style="background:var(--bg);position:relative;z-index:2"><div class="back">${I("chevron-back")}</div><div class="sTitle">Price drop</div><div style="width:36px"></div></div>
-    <div style="transform:translateY(${-scroll}px)">
-      <div class="card" style="margin-top:4px"><div style="display:flex;gap:10px;align-items:center"><div class="sbadge"><div class="co">CO</div></div><div class="dItem">${r.name}</div></div>
-        <div class="dRow"><span>You paid</span><b>$${money(r.price)}</b></div><div class="dRow"><span>Costco price today</span><b>$${money(r.price - r.save)}</b></div>
-        <div class="dBig"><span class="v">+$${money(r.save)}</span><span style="font-family:IT6;font-size:13px;color:var(--sub)">to claim</span></div>
-        <span class="chipD" style="display:inline-block;margin-top:8px;background:${URG.red[0]};color:${URG.red[1]}">${r.chip[1]}</span></div>
-      <div class="card"><div class="cLabel">How to claim at a Costco warehouse</div>
-        <div class="step"><div class="sn">1</div><div class="st">Go to the Returns counter at any Costco warehouse before the deadline, while the lower price is still running.</div></div>
-        <div class="step"><div class="sn">2</div><div class="st">Show this receipt from the PriceBack app (tap “Show my receipt”), or your paper copy, and ask for a price adjustment.</div></div>
-        <div class="showRcpt">${I("receipt-outline", "font-size:15px")}<span>Show my receipt</span></div>
-        <div class="step"><div class="sn">3</div><div class="st">Costco refunds the difference to your original payment method. The money comes from Costco, not from PriceBack.</div></div>
-        <div class="step"><div class="sn">4</div><div class="st">Once Costco has refunded you, tap “Claimed” so we add it to your savings.</div></div></div>
-    </div></div>${nav()}</div>`;
+    <div class="sHead" style="position:relative;z-index:2"><div class="back">${I("chevron-back")}</div><div class="sTitle">Price drop</div><div class="back" style="color:#dc2626;font-size:16px">${I("trash-outline")}</div></div>
+    <div class="scroll" data-frac="${frac}" style="top:58px"><div class="content" style="gap:12px">
+      <div class="dHero"><div style="display:flex;align-items:center;gap:10px"><div style="width:38px;height:38px;border-radius:10px;background:#E31837;display:flex;align-items:center;justify-content:center"><div class="co" style="width:26px;height:26px;font-size:11px">CO</div></div>
+        <div style="flex:1;min-width:0"><div class="dStore">${WH}</div><div class="dEye">${PAPER.date.toUpperCase()}</div></div></div>
+        <div style="display:flex;align-items:flex-end;margin-top:18px"><div><div class="dEye">PRICE DROPS</div><div class="dNum">3</div></div><div style="flex:1"></div><div style="text-align:right"><div class="dEye">TOTAL PRICE DROP</div><div class="dAmt">+$523.00</div></div></div></div>
+      <div style="display:flex;gap:10px"><div class="cmp" style="background:#fff"><div class="cmpL">You paid</div><div class="cmpA" style="color:var(--muted);text-decoration:line-through">$1808.24</div><div class="cmpS">${PAPER.date}</div></div>
+        <div class="cmp" style="background:var(--accent)"><div class="cmpL" style="color:rgba(255,255,255,.75)">Now</div><div class="cmpA" style="color:#fff">$1308.24</div><div class="cmpS" style="color:rgba(255,255,255,.85)">checked recently</div></div></div>
+      <div style="display:flex;gap:8px"><div class="sec2">✅ Mark as Claimed</div><div class="sec2" style="color:var(--sub);border-color:var(--div)">Claim instructions</div></div>
+      <div class="card" style="padding:8px 16px">
+        <div class="drow"><span>Subtotal</span><b>$${m2(PAPER.sub)}</b></div><div class="drow"><span>Tax (HST/GST)</span><b>$${m2(PAPER.tax)}</b></div>
+        <div class="drow"><span style="color:var(--ink);font-family:PJ7">Total</span><b style="font-family:IT7;font-size:16px">$${m2(PAPER.total)} CAD</b></div>
+        <div class="drow"><span>Purchase Date</span><b>${PAPER.date}</b></div><div class="drow"><span>Scanned on</span><b>${PAPER.date}</b></div>
+        <div class="drow"><span>Adjustment Window</span><b>30 days</b></div><div class="drow"><span>Receipt window ends</span><b style="color:#991b1b">${PAPER.watch}</b></div>
+        <div class="drow"><span>Receipt window: days left</span><b style="color:#991b1b">13 days</b></div></div>
+      <div class="card" style="padding:16px"><div class="sLabel">How to claim at a Costco warehouse</div>
+        ${step(1, "Go to the Returns counter at any Costco warehouse before the deadline, while the lower price is still running.")}
+        ${step(2, "Show this receipt from the PriceBack app (tap “Show my receipt”), or your paper copy, and ask for a price adjustment.")}
+        <div class="showR">${I("receipt-outline", "font-size:15px")}<span>Show my receipt</span></div>
+        ${step(3, "Costco refunds the difference to your original payment method. The money comes from Costco, not from PriceBack.")}
+        ${step(4, "Once Costco has refunded you, tap “Claimed” so we add it to your savings.")}</div>
+      <div style="height:20px"></div></div></div></div>${nav()}</div>`;
 }
 
-function splash() {
-  return `<div class="screen splash">${status()}<div style="width:96px;height:96px;border-radius:21.5px;background:linear-gradient(160deg,#10b981,#047857);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(16,185,129,.32)">${glyph(60)}</div>
-    <div style="font-family:IT8;font-size:30px;letter-spacing:-.75px"><span>Price</span><span style="color:var(--accent)">Back</span></div>${nav()}</div>`;
-}
+const splash = () => `<div class="screen splash">${status()}<div style="width:96px;height:96px;border-radius:21.5px;background:linear-gradient(160deg,#10b981,#047857);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(16,185,129,.32)">${glyph(60)}</div><div style="font-family:IT8;font-size:30px;letter-spacing:-.75px"><span>Price</span><span style="color:var(--accent)">Back</span></div>${nav()}</div>`;
 
-// ── Timeline (seconds). Each entry: [start, end, draw(t)]
-const TAPS = [[3.6, 320, 588], [6.1, 180, 360], [9.7, 180, 554], [14.9, 180, 595], [16.4, 180, 588], [17.6, 268, 398], [19.0, 97, 250], [22.5, 180, 595], [26.9, 180, 80], [32.0, 180, 80], [35.8, 318, 202]];
+// ── Timeline (seconds)
+const ALL7 = PAPER.items.map((x) => x[0]), ALL9 = [...ALL7, ...PDF.items.map((x) => x[0])];
+const f = (t, a, b) => ease((t - a) / (b - a));
 const SCRIPT = [
-  [0.0, 4.0, () => home({})],
-  [4.0, 7.0, () => scanIntro()],
-  [7.0, 10.3, (t) => docScanner(7.0, t)],
-  [10.3, 12.4, (t) => scanning(t)],
-  [12.4, 15.3, () => confirm({ date: "Dec 5, 2025", sub: "79.92", tax: "4.03", total: "83.95" })],
-  [15.3, 16.8, () => home({})],
-  [16.8, 18.0, () => scanIntro()],
-  [18.0, 19.4, () => filesPicker()],
-  [19.4, 20.6, (t) => scanning(t)],
-  [20.6, 22.9, () => confirm({ date: "Jun 28, 2025", sub: "304.78", tax: "32.02", total: "336.80" })],
-  [22.9, 27.3, () => home({})],
-  [27.3, 32.4, () => home({ drops: ["cof", "ket"], toClaim: 23, alerts: 2 })],
-  [32.4, 36.2, () => home({ drops: ["tv", "gen", "cof", "ket"], toClaim: 1623, alerts: 4 })],
-  [36.2, 41.6, (t) => detail(Math.round(ease((t - 38.2) / 1.2) * 150))],
-  [41.6, 42.8, () => home({ drops: ["tv", "gen", "cof", "ket"], toClaim: 1623, alerts: 4 })],
-  [42.8, 45.0, () => splash()],
+  [0.0, 3.0, () => home({})],
+  [3.0, 5.6, () => scanIntro()],
+  [5.6, 8.6, (t) => docScanner(5.6, t)],
+  [8.6, 10.4, (t) => scanning(t)],
+  [10.4, 16.6, (t) => confirm(PAPER, t < 11.6 ? 0 : f(t, 11.6, 15.4))],
+  [16.6, 17.8, () => home({ tracked: ALL7 })],
+  [17.8, 19.0, () => scanIntro()],
+  [19.0, 20.4, () => filesPicker()],
+  [20.4, 21.6, (t) => scanning(t)],
+  [21.6, 24.6, (t) => confirm(PDF, t < 22.3 ? 0 : f(t, 22.3, 23.6))],
+  [24.6, 28.8, () => home({ tracked: ALL9 })],
+  [28.8, 33.0, () => home({ tracked: ALL9, state: "oct26" })],
+  [33.0, 37.2, () => home({ tracked: ALL9, state: "oct27" })],
+  [37.2, 43.4, (t) => detail(t < 39.8 ? 0 : f(t, 39.8, 41.0))],
+  [43.4, 44.2, () => home({ tracked: ALL9, state: "oct31" })],
+  [44.2, 46.0, () => splash()],
 ];
-const NOTIFS = [[24.6, 27.1, { urgent: false, body: "You can save $13.00 · 25d left." }], [29.6, 32.2, { urgent: true, body: "You can save $600.00 · Last day." }]];
-const TRANS = 0.28; // screen push transition (Android: slide in from right)
+const NOTIFS = [
+  [26.2, 28.8, { title: "🟡 Price drop on a recent purchase", body: "You can save $1000.00 · 13d left." }],
+  [30.6, 33.0, { title: "📉 Your daily price-drop summary", body: "2 of your watched items dropped in price today. Open PriceBack to claim your refunds." }],
+  [34.8, 37.2, { title: "🔴 Price drop on a recent purchase", body: "You can save $500.00 · 5d left." }],
+];
+// [time, x, y] in phone dp ("Show taps"); y = "btn" → on the Start Tracking button wherever the scroll left it.
+const TAPS = [[2.5, 180, 343], [5.0, 180, 300], [8.0, 180, 694], [16.1, 180, "btn"], [17.4, 180, 704], [18.6, 268, 425], [19.9, 97, 260], [24.1, 180, "btn"], [28.5, 180, 90], [32.7, 180, 90], [36.9, 180, 90], [39.6, 265, "ci"], [43.1, 32, 52]];
+const NO_SLIDE = new Set([8.6, 10.4, 20.4, 21.6, 28.8, 33.0, 43.4]);
 
-window.DURATION = 45.0;
+window.DURATION = 46.0;
 window.renderAt = function (t) {
   const phone = document.getElementById("phone");
   const i = SCRIPT.findIndex(([a, b]) => t >= a && t < b);
   const cur = SCRIPT[i >= 0 ? i : SCRIPT.length - 1];
-  let html = "";
   const since = t - cur[0];
-  if (i > 0 && since < TRANS && cur[0] !== 12.4 && cur[0] !== 20.6 && cur[0] !== 10.3 && cur[0] !== 19.4 && cur[0] !== 27.3 && cur[0] !== 32.4) {
-    const p = ease(since / TRANS);
-    const prev = SCRIPT[i - 1];
-    html = `<div style="position:absolute;inset:0;transform:translateX(${(-90 * p).toFixed(1)}px)">${prev[2](cur[0] - .001)}</div>
-            <div style="position:absolute;inset:0;transform:translateX(${(360 * (1 - p)).toFixed(1)}px);box-shadow:-8px 0 24px rgba(0,0,0,.12)">${cur[2](t)}</div>`;
-  } else if (cur[0] === 42.8) {
-    const p = clamp(since / .5);
-    html = `<div style="position:absolute;inset:0">${SCRIPT[i - 1][2](t)}</div><div style="position:absolute;inset:0;opacity:${p}">${cur[2](t)}</div>`;
-  } else {
-    html = cur[2](t);
-  }
-  for (const [a, b, n] of NOTIFS) {
-    if (t >= a && t < b) {
-      const inP = ease((t - a) / .35), outP = ease((t - (b - .3)) / .3);
-      html += `<div style="position:absolute;inset:0;transform:translateY(${(-130 * (1 - inP) - 130 * outP).toFixed(1)}px)">${notification(n)}</div>`;
-    }
-  }
-  if (t >= 9.75 && t < 10.05) html += `<div class="flash" style="opacity:${(1 - (t - 9.75) / .3).toFixed(2)}"></div>`;
-  for (const [tt, x, y] of TAPS) {
-    if (t >= tt - .05 && t < tt + .35) {
-      const p = clamp((t - tt + .05) / .4);
-      html += `<div class="tap" style="left:${x}px;top:${y}px;opacity:${(1 - p * .9).toFixed(2)};transform:scale(${(1 + p * .25).toFixed(2)})"></div>`;
-    }
-  }
+  let html;
+  if (i > 0 && since < .28 && !NO_SLIDE.has(cur[0]) && cur[0] !== 44.2) {
+    const p = ease(since / .28), prev = SCRIPT[i - 1];
+    html = `<div style="position:absolute;inset:0;transform:translateX(${(-90 * p).toFixed(1)}px)">${prev[2](cur[0] - .001)}</div><div style="position:absolute;inset:0;transform:translateX(${(360 * (1 - p)).toFixed(1)}px);box-shadow:-8px 0 24px rgba(0,0,0,.12)">${cur[2](t)}</div>`;
+  } else if (cur[0] === 44.2) {
+    html = `<div style="position:absolute;inset:0">${SCRIPT[i - 1][2](t)}</div><div style="position:absolute;inset:0;opacity:${clamp(since / .5)}">${cur[2](t)}</div>`;
+  } else html = cur[2](t);
   phone.innerHTML = html;
+  // scroll: data-frac × the real overflow of the scroll content (layout-measured, like a ScrollView)
+  const scale = phone.getBoundingClientRect().height / 760;
+  for (const s of phone.querySelectorAll(".scroll[data-frac]")) {
+    const over = Math.max(0, s.scrollHeight - (s.parentElement.clientHeight - s.offsetTop));
+    s.style.transform = `translateY(${(-over * Number(s.dataset.frac)).toFixed(1)}px)`;
+  }
+  let extra = "";
+  for (const [a, b, n] of NOTIFS) if (t >= a && t < b) {
+    const inP = ease((t - a) / .35), outP = ease((t - (b - .3)) / .3);
+    extra += `<div style="position:absolute;inset:0;transform:translateY(${(-140 * (1 - inP) - 140 * outP).toFixed(1)}px)">${notif(n)}</div>`;
+  }
+  if (t >= 8.05 && t < 8.35) extra += `<div class="flash" style="opacity:${(1 - (t - 8.05) / .3).toFixed(2)}"></div>`;
+  const pr = phone.getBoundingClientRect();
+  const at = (el) => { const r = el.getBoundingClientRect(); return [(r.left + r.width / 2 - pr.left) / scale, (r.top + r.height / 2 - pr.top) / scale]; };
+  for (let [tt, x, y] of TAPS) {
+    if (!(t >= tt - .05 && t < tt + .35)) continue;
+    if (y === "btn") { const b = phone.querySelector(".btnP"); if (b) [x, y] = at(b); else y = 600; }
+    if (y === "ci") { const b = phone.querySelectorAll(".sec2")[1]; if (b) [x, y] = at(b); else y = 400; }
+    const p = clamp((t - tt + .05) / .4);
+    extra += `<div class="tap" style="left:${x.toFixed(1)}px;top:${y.toFixed(1)}px;opacity:${(1 - p * .9).toFixed(2)};transform:scale(${(1 + p * .25).toFixed(2)})"></div>`;
+  }
+  if (extra) phone.insertAdjacentHTML("beforeend", extra);
 };
 window.renderAt(Number(new URLSearchParams(location.search).get("t") || 0));
 </script></body></html>
