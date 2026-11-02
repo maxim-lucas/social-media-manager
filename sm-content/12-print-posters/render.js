@@ -22,32 +22,34 @@ const T = {
     model: "Free to download, with a trial. When PriceBack finds you a price drop, a small part of it covers our fees.",
     h1: "Paid full price?", h2: "Get money back.",
     rcHead: "RECEIPT CHECK", rcItem: "65\" OLED TV", rcPaid: "PAID", rcPaidV: "$1,994.99", rcNow: "NOW", rcNowV: "$1,494.99", rcDrop: "PRICE DROP", rcDropV: "-$500.00",
-    stamp1: "$500", stamp2: "BACK",
-    sub: "Stores drop prices after you buy.<br><b>PriceBack spots it and tells you when to claim it.</b>",
+    stamp1: "$600", stamp2: "BACK",
+    d1: "-$600", d1l: "2 DAYS ONLY", d2: "-$500", d2l: "AFTER THAT",
+    sub: "Prices drop after you buy, sometimes for only 2 days.<br><b>Nobody sees it. PriceBack does.</b>",
     now: "Works at", soon: "Soon:",
     stores: ["Best Buy", "Home Depot", "Rona", "Sport Chek"],
-    src: "Real Costco price drop, Oct 2026",
+    src: "Real Costco drops, Oct 2026",
     urgent: "Sales end fast. Don’t miss yours.",
     scan: "SCAN NOW", scan2: "Free download · iPhone & Android",
-    fine: "Real example: Samsung 65\" S85H OLED TV at Costco, $1,994.99 → $1,494.99 (Sep 28 – Oct 25, 2026). Refunds follow each store’s price adjustment policy (Costco: within 30 days, while the lower price is in effect). PriceBack is not affiliated with any store.",
+    fine: "Real example: Samsung 65\" S85H OLED TV at Costco (regular $1,994.99): $600 off for 2 days, then $500 off, Oct 2026. Refunds follow each store’s price adjustment policy (Costco: within 30 days, while the lower price is in effect). PriceBack is not affiliated with any store.",
     ck: "Waiting for your order?",
-    cfine: "Real example: 65\" OLED TV at Costco, Oct 2026. Refunds follow each store’s policy. PriceBack is not affiliated with any store.",
+    cfine: "Real example: 65\" OLED TV at Costco, $600 off for 2 days then $500 off, Oct 2026. Refunds follow each store’s policy. PriceBack is not affiliated with any store.",
   },
   fr: {
     free: "TÉLÉCHARGEMENT GRATUIT",
     model: "Téléchargement gratuit, avec essai. Quand PriceBack vous trouve une baisse de prix, une petite part couvre nos frais.",
     h1: "Payé le plein prix ?", h2: "Récupérez la différence.",
     rcHead: "VÉRIF. DE REÇU", rcItem: "TÉLÉ OLED 65 PO", rcPaid: "PAYÉ", rcPaidV: "1 994,99 $", rcNow: "MAINTENANT", rcNowV: "1 494,99 $", rcDrop: "BAISSE", rcDropV: "-500,00 $",
-    stamp1: "500 $", stamp2: "REMIS",
-    sub: "Les magasins baissent leurs prix après votre achat.<br><b>PriceBack le repère et vous dit quand réclamer.</b>",
+    stamp1: "600 $", stamp2: "REMIS",
+    d1: "-600 $", d1l: "2 JOURS SEULEMENT", d2: "-500 $", d2l: "ENSUITE",
+    sub: "Les prix baissent après l’achat, parfois 2 jours seulement.<br><b>Personne ne le voit. PriceBack, oui.</b>",
     now: "Fonctionne chez", soon: "Bientôt :",
     stores: ["Best Buy", "Home Depot", "Rona", "Sport Chek"],
-    src: "Vraie baisse chez Costco, oct. 2026",
+    src: "Vraies baisses chez Costco, oct. 2026",
     urgent: "Les rabais finissent vite. Ne ratez pas le vôtre.",
     scan: "SCANNEZ", scan2: "Téléchargement gratuit · iPhone et Android",
-    fine: "Exemple réel : téléviseur OLED Samsung 65 po S85H chez Costco, 1 994,99 $ → 1 494,99 $ (28 sept. – 25 oct. 2026). Les remboursements suivent la politique d’ajustement de prix de chaque magasin (Costco : dans les 30 jours, pendant que le prix réduit est en vigueur). PriceBack n’est affilié à aucun magasin.",
+    fine: "Exemple réel : téléviseur OLED Samsung 65 po S85H chez Costco (prix régulier 1 994,99 $) : 600 $ de rabais pendant 2 jours, puis 500 $, oct. 2026. Les remboursements suivent la politique d’ajustement de prix de chaque magasin (Costco : dans les 30 jours, pendant que le prix réduit est en vigueur). PriceBack n’est affilié à aucun magasin.",
     ck: "Vous attendez votre commande ?",
-    cfine: "Exemple réel : téléviseur OLED 65 po chez Costco, oct. 2026. Les remboursements suivent la politique de chaque magasin. PriceBack n’est affilié à aucun magasin.",
+    cfine: "Exemple réel : téléviseur OLED 65 po chez Costco, 600 $ de rabais pendant 2 jours puis 500 $, oct. 2026. Les remboursements suivent la politique de chaque magasin. PriceBack n’est affilié à aucun magasin.",
   },
 };
 
@@ -113,9 +115,13 @@ html{font-size:${wIn / 100}in}
   clip-path:polygon(0 0,100% 0,100% calc(100% - 1.4rem),92% 100%,84% calc(100% - 1.4rem),76% 100%,68% calc(100% - 1.4rem),60% 100%,52% calc(100% - 1.4rem),44% 100%,36% calc(100% - 1.4rem),28% 100%,20% calc(100% - 1.4rem),12% 100%,4% calc(100% - 1.4rem),0 100%)}
 .slip .it{font-weight:800}
 .slip .st{text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:.14em;color:#6b6457}
-.slip .nw b{background:var(--yellow);padding:0 .25em}
+.slip .ln2{display:flex;align-items:center;gap:.7em;margin-top:.35em}
+.slip .ln2 b{background:var(--yellow);padding:0 .25em;font-size:1.15em}
+.slip .ln2 span{font-size:.78em;font-weight:700;letter-spacing:.04em}
+.slip .ln2.dim b{background:#e8e0cf}
+.slip .ln2.dim span{color:#6b6457}
 .slip .src{margin-top:1rem;font-size:.7em;color:#6b6457;font-family:Inter,sans-serif;font-weight:600;white-space:normal;max-width:12em;line-height:1.25}
-.sub{text-align:center;font-size:${tall ? 3.7 : 3.3}rem}
+.sub{text-align:center;white-space:nowrap;font-size:${tall ? 3.9 : 3.5}rem}
 .stores{gap:1.2rem;flex-wrap:nowrap}
 .lbl{font-size:2.2rem;white-space:nowrap}
 .chip{font-size:${tall ? 2.6 : 2.35}rem;padding:.8rem 1.9rem}
@@ -134,7 +140,7 @@ html{font-size:${wIn / 100}in}
 <div class="head"><div class="h1">${t.h1}</div><div class="h2">${t.h2}</div></div>
 <div class="hero">
   <div class="big"><div class="n">${t.stamp1}</div><div class="b">${t.stamp2}</div></div>
-  <div class="slip"><div class="it">${t.rcItem}</div><div class="st">${t.rcPaidV}</div><div class="nw">→ <b>${t.rcNowV}</b></div><div class="src">${t.src}</div></div>
+  <div class="slip"><div class="it">${t.rcItem}</div><div class="ln2"><b>${t.d1}</b><span>${t.d1l}</span></div><div class="ln2 dim"><b>${t.d2}</b><span>${t.d2l}</span></div><div class="src">${t.src}</div></div>
 </div>
 <div class="sub">${t.sub}</div>
 <div class="stores"><span class="chip now">✓ Costco</span><span class="lbl">${t.soon}</span>${t.stores.map((x) => `<span class="chip soon">${x}</span>`).join("")}</div>
@@ -180,7 +186,7 @@ html{font-size:${wIn / 100}in}
 <div class="kick">${t.ck}</div>
 <div class="h1">${t.h1}</div><div class="h2">${t.h2}</div>
 <div class="proof"><div class="stamp"><div class="a">${t.stamp1}</div><div class="b">${t.stamp2}</div></div>
-  <div class="txt">${lang === "fr" ? "Vrai exemple : une télé OLED 65 po a baissé de <b>500 $</b> après l’achat." : "Real example: a 65″ OLED TV dropped <b>$500</b> after people bought it."}</div></div>
+  <div class="txt">${lang === "fr" ? "Une télé a baissé de <b>600 $</b> pendant 2 jours. Personne ne l’a vu. <b>PriceBack, oui.</b>" : "A TV dropped <b>$600</b> for 2 days. Nobody saw it. <b>PriceBack did.</b>"}</div></div>
 <div class="mid"></div>
 <div class="card"><div class="qr">${qr}</div>
   <div class="cta"><div class="s1">${t.scan}</div><div class="s2">${t.scan2}</div>
@@ -214,10 +220,11 @@ const qrSvg = async (url) =>
     const info = await page.evaluate(() => {
       const inner = document.querySelector(".inner");
       const avail = (el) => { const cs = getComputedStyle(el.parentElement); return el.parentElement.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight); };
-      for (const el of document.querySelectorAll(".h1,.h2,.kick,.stores,.cta .s1,.cta .s2,.sub")) {
+      const autofit = () => { for (const el of document.querySelectorAll(".h1,.h2,.kick,.stores,.cta .s1,.cta .s2,.sub")) {
         const max = avail(el); const w = el.scrollWidth;
         if (w > max) el.style.fontSize = parseFloat(getComputedStyle(el).fontSize) * (max / w) * 0.985 + "px";
-      }
+      } };
+      autofit();
       const hero = document.querySelector(".hero");
       if (hero) { const max = hero.parentElement.clientWidth; const w = hero.scrollWidth; if (w > max * 0.98) hero.style.zoom = (max * 0.98 / w).toFixed(3); }
       // keep both headline lines the same size
@@ -232,7 +239,7 @@ const qrSvg = async (url) =>
         fit.style.transform = `translateX(-6%) scale(${s})`; out.s = +s.toFixed(2);
       }
       const cq = document.querySelector(".counter .qr");
-      if (cq) { const mid = document.querySelector(".mid"); const add = Math.max(0, mid.clientHeight - 8); const sz = Math.min(cq.clientWidth + add, document.querySelector(".card").clientWidth * 0.52); cq.style.width = cq.style.height = sz + "px"; out.qr = sz; }
+      if (cq) { const mid = document.querySelector(".mid"); const add = Math.max(0, mid.clientHeight - 8); const sz = Math.min(cq.clientWidth + add, document.querySelector(".card").clientWidth * 0.52); cq.style.width = cq.style.height = sz + "px"; out.qr = sz; autofit(); }
       const page = document.querySelector(".page").getBoundingClientRect();
       out.over = [...inner.querySelectorAll("*")].filter((e) => { const r = e.getBoundingClientRect(); return r.bottom > page.bottom - 2 || r.right > page.right + 1; }).map((e) => e.className).slice(0, 5);
       const m = document.querySelector(".mid"); out.spare = m ? m.clientHeight : null; out.gaps = [...inner.children].map((e, i, a) => i ? Math.round(e.getBoundingClientRect().top - a[i - 1].getBoundingClientRect().bottom) : 0).join(",");
