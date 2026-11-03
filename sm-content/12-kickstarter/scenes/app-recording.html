@@ -286,6 +286,11 @@ body{background:radial-gradient(120% 90% at 50% 20%,#f7fbf8 0%,#e4f1ea 55%,#d6eb
 .kb div{background:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:Roboto,Arial,sans-serif;font-size:22px;color:#202124;box-shadow:0 1px 0 rgba(0,0,0,.15)}
 .kb div.fn{background:#d2d5da;font-size:18px}
 .kb div.hit{background:#c8ccd2}
+.claimedB{display:flex;align-items:center;gap:8px;padding:12px;background:var(--accentSoft);border-radius:12px;border:1px solid #bbf7d0;color:var(--accentInk)}
+.claimedB span:not(.i){flex:1;font-family:IT6;font-size:13px}
+.rPrev{margin:8px 0 12px 34px;border-radius:12px;overflow:hidden;background:#fff;border:1px solid var(--border)}
+.rPrev img{width:100%;display:block}
+.polL{margin-top:12px;padding-top:10px;border-top:1px solid var(--div);font-family:monospace;font-size:12px;color:var(--accent)}
 #cap{position:absolute;font-family:IT8;color:var(--ink);letter-spacing:-.4px;line-height:1.16;opacity:0}
 #cap b{color:var(--accent);font-family:IT8}
 </style></head>
@@ -306,7 +311,7 @@ Object.assign(capEl.style, LAYOUT === "wide"
   : { left: "60px", top: "168px", width: "960px", fontSize: "44px", textAlign: "center" });
 const TL = window.TIMELINE || null;  // absent: the v3 timeline plays as it is
 
-const GL = {"pricetag":62698,"scan-outline":62810,"help-circle-outline":62334,"information-circle-outline":62361,"trending-down-outline":62969,"flame-outline":62228,"alert-circle-outline":61716,"bulb-outline":61889,"calendar-outline":61910,"backspace-outline":61781,"close-circle":62027,"home":62338,"receipt-outline":62735,"camera":61915,"storefront-outline":62888,"person-outline":62636,"search-outline":62819,"notifications-outline":62591,"checkmark-circle":61982,"time-outline":62942,"chevron-back":61993,"chevron-forward":62011,"images-outline":62354,"document-attach-outline":62124,"ticket-outline":62939,"add":61699,"flash-outline":62234,"close":62026,"pricetag-outline":62699,"language-outline":62378,"barcode-outline":61814,"menu":62545,"ellipsis-vertical":62164,"trash-outline":62966,"cart-outline":61955,"add-circle-outline":61701};
+const GL = {"chevron-up":62017,"pricetag":62698,"scan-outline":62810,"help-circle-outline":62334,"information-circle-outline":62361,"trending-down-outline":62969,"flame-outline":62228,"alert-circle-outline":61716,"bulb-outline":61889,"calendar-outline":61910,"backspace-outline":61781,"close-circle":62027,"home":62338,"receipt-outline":62735,"camera":61915,"storefront-outline":62888,"person-outline":62636,"search-outline":62819,"notifications-outline":62591,"checkmark-circle":61982,"time-outline":62942,"chevron-back":61993,"chevron-forward":62011,"images-outline":62354,"document-attach-outline":62124,"ticket-outline":62939,"add":61699,"flash-outline":62234,"close":62026,"pricetag-outline":62699,"language-outline":62378,"barcode-outline":61814,"menu":62545,"ellipsis-vertical":62164,"trash-outline":62966,"cart-outline":61955,"add-circle-outline":61701};
 const I = (n, st = "") => `<span class="i" style="${st}">${String.fromCodePoint(GL[n])}</span>`;
 const glyph = (w) => `<svg width="${w}" height="${w}" viewBox="0 0 48 48"><g fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 9 H35 V34 L32 37 L29 34 L26 37 L23 34 L20 37 L17 34 L14 37 L13 36 Z"/><path d="M17 16 L21.5 20.5 L25.5 17 L31 27"/><path d="M31 27 L27.4 26 M31 27 L31.7 23.2"/></g></svg>`;
 const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
@@ -470,7 +475,7 @@ function filesPicker() {
 const notif = ({ title, body }) => `<div class="notif"><div class="nHead"><div class="nIcon">${glyph(13)}</div><span>PriceBack</span><span>·</span><span>now</span></div><div class="nTitle">${title}</div><div class="nBody">${body}</div></div>`;
 
 // Receipt detail (DetailScreen.js) for the TV receipt (PDF, bought Oct 14), opened from its alert on Oct 31.
-function detail(frac) {
+function detail(frac, { receipt = 0, claimed = false, alert = 0 } = {}) {
   const step = (n, s) => `<div class="step"><div class="sn">${n}</div><div class="st">${s}</div></div>`;
   return `<div class="screen">${status()}<div class="body">
     <div class="sHead" style="position:relative;z-index:2"><div class="back">${I("chevron-back")}</div><div class="sTitle">Price drop</div><div class="back" style="color:#dc2626;font-size:16px">${I("trash-outline")}</div></div>
@@ -480,7 +485,8 @@ function detail(frac) {
         <div style="display:flex;align-items:flex-end;margin-top:18px"><div><div class="dEye">PRICE DROPS</div><div class="dNum">1</div></div><div style="flex:1"></div><div style="text-align:right"><div class="dEye">TOTAL PRICE DROP</div><div class="dAmt">+$500.00</div></div></div></div>
       <div style="display:flex;gap:10px"><div class="cmp" style="background:#fff"><div class="cmpL">You paid</div><div class="cmpA" style="color:var(--muted);text-decoration:line-through">$1808.24</div><div class="cmpS">${TVR.date}</div></div>
         <div class="cmp" style="background:var(--accent)"><div class="cmpL" style="color:rgba(255,255,255,.75)">Now</div><div class="cmpA" style="color:#fff">$1308.24</div><div class="cmpS" style="color:rgba(255,255,255,.85)">checked recently</div></div></div>
-      <div style="display:flex;gap:8px"><div class="sec2">✅ Mark as Claimed</div><div class="sec2" style="color:var(--sub);border-color:var(--div)">Claim instructions</div></div>
+      ${claimed ? `<div class="claimedB">${I("checkmark-circle", "font-size:18px")}<span>Refund claimed — $500.00 saved</span></div>`
+        : `<div style="display:flex;gap:8px"><div class="sec2">✅ Mark as Claimed</div><div class="sec2" style="color:var(--sub);border-color:var(--div)">Claim instructions</div></div>`}
       <div class="card" style="padding:8px 16px">
         <div class="drow"><span>Subtotal</span><b>$${m2(TVR.sub)}</b></div><div class="drow"><span>Tax (HST/GST)</span><b>$${m2(TVR.tax)}</b></div>
         <div class="drow"><span style="color:var(--ink);font-family:PJ7">Total</span><b style="font-family:IT7;font-size:16px">$${m2(TVR.total)} CAD</b></div>
@@ -490,10 +496,14 @@ function detail(frac) {
       <div class="card" style="padding:16px"><div class="sLabel">How to claim at a Costco warehouse</div>
         ${step(1, "Go to the Returns counter at any Costco warehouse before the deadline, while the lower price is still running.")}
         ${step(2, "Show this receipt from the PriceBack app (tap “Show my receipt”), or your paper copy, and ask for a price adjustment.")}
-        <div class="showR">${I("receipt-outline", "font-size:15px")}<span>Show my receipt</span></div>
+        <div class="showR">${I(receipt > 0 ? "chevron-up" : "receipt-outline", "font-size:15px")}<span>${receipt > 0 ? "Hide my receipt" : "Show my receipt"}</span></div>
+        ${receipt > 0 ? `<div class="rPrev" style="height:${(520 * receipt).toFixed(0)}px"><img src="../sources/receipt-pdf-masked.png"></div>` : ""}
         ${step(3, "Costco refunds the difference to your original payment method. The money comes from Costco, not from PriceBack.")}
-        ${step(4, "Once Costco has refunded you, tap “Claimed” so we add it to your savings.")}</div>
-      <div style="height:20px"></div></div></div></div>${nav()}</div>`;
+        ${step(4, "Once Costco has refunded you, tap “Claimed” so we add it to your savings.")}
+        <div class="polL">View Official Policy →</div></div>
+      <div style="height:20px"></div></div></div></div>${alert ? `<div class="dim" style="opacity:${alert.toFixed(2)}"></div><div class="dlg" style="opacity:${alert.toFixed(2)};transform:scale(${(.94 + .06 * alert).toFixed(3)})">
+      <div class="dT">Mark as Claimed?</div><div class="dM">This will record $500.00 in savings and remove the price alert.</div>
+      <div class="dB"><span>Cancel</span><span class="yes">Yes, Claimed! ✅</span></div></div>` : ""}${nav()}</div>`;
 }
 
 // Costco profile (CostcoProfileScreen.js): the saved, default warehouse + membership.
@@ -692,6 +702,21 @@ const FILMS = {
     TAPS: [[1.0, 0, "trSeg"], [4.4, 0, "input"], [15.4, 0, "switch"]],
   },
 };
+// Film: claim a price drop (DetailScreen.js): the TV drop of the Kickstarter story, from the alert to the refund.
+FILMS.claim = {
+  PICTURE: 26.0, FLASH: -1, CLOCKRULE: () => "9:44", CHIPS: [], NOTIFS: [], FADE_AT: 24.0,
+  NO_SLIDE: new Set([0.0, 8.0, 14.0, 17.4, 20.4]),
+  SCRIPT: [
+    [0.0, 3.0, () => home({ tracked: ALLR, state: "oct31" })],
+    [3.0, 8.0, (t) => detail(t < 6.8 ? 0 : f(t, 6.8, 7.8))],
+    [8.0, 14.0, (t) => detail(1, { receipt: clamp((t - 10.2) / .45) })],
+    [14.0, 17.4, (t) => detail(1 - f(t, 14.3, 16.4), { receipt: 1 })],
+    [17.4, 20.4, (t) => detail(0, { receipt: 1, alert: clamp((t - 17.4) / .25) * (1 - clamp((t - 20.15) / .2)) })],
+    [20.4, 24.0, () => detail(0, { receipt: 1, claimed: true })],
+    [24.0, 26.0, () => splash()],
+  ],
+  TAPS: [[2.4, 0, "claimBtn"], [6.5, 0, "ci"], [10.0, 0, "showR"], [17.0, 0, "mark"], [19.9, 0, "yes"]],
+};
 const FILM = new URLSearchParams(location.search).get("film") || "kickstarter";
 if (FILMS[FILM]) ({ SCRIPT, NOTIFS, CHIPS, TAPS, NO_SLIDE, FADE_AT, FLASH, CLOCKRULE, PICTURE } = FILMS[FILM]);
 
@@ -761,12 +786,14 @@ function renderPicture(t) {
     if (y === "save") { const b = phone.querySelector(".btnP"); if (b) [x, y] = at(b); else y = 560; }
     const pick = { tagSeg: () => phone.querySelectorAll(".seg")[1], trSeg: () => phone.querySelectorAll(".seg")[2],
       shutter: () => phone.querySelector(".vfShut"), yes: () => phone.querySelector(".dlg .yes"),
-      input: () => phone.querySelector(".qIn"), switch: () => phone.querySelector(".sw") }[y];
+      input: () => phone.querySelector(".qIn"), switch: () => phone.querySelector(".sw"),
+      claimBtn: () => phone.querySelector(".claim"), showR: () => phone.querySelector(".showR"),
+      mark: () => phone.querySelectorAll(".sec2")[0] }[y];
     if (pick) { const b = pick(); if (b) [x, y] = at(b); else y = 400; }
     // the element under the finger shows its pressed state, like a real tap
     if (t < tt + .25) {
       const target = document.elementFromPoint(pr.left + x * scale, pr.top + y * scale);
-      const btn = target && target.closest(".btnP,.obBtn,.capture,.act,.fItem,.notif,.sec2,.fab,.row,.back,.claim");
+      const btn = target && target.closest(".btnP,.obBtn,.capture,.act,.fItem,.notif,.sec2,.fab,.row,.back,.claim,.showR,.seg,.vfShut,.qIn,.dB span");
       if (btn) btn.classList.add("pressed");
     }
     const p = clamp((t - tt + .05) / .4);

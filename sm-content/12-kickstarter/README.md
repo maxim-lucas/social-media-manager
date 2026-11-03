@@ -1,50 +1,47 @@
-# 12 · Kickstarter campaign video (2026-11-02)
+# 12 · Kickstarter video + app feature videos (2026-11-02 → 11-03)
 
-The video for PriceBack's Kickstarter project page: a **45-second screen recording of the app**, with a 9:16
-cut for Kickstarter's Discovery Mode and a 16:9 cut for the main project video. **Not posted; for review.**
+Screen-recording-style videos of the PriceBack app, in a phone frame, voiced in Maxim's own (cloned) voice, each in
+**9:16** (Instagram Reels, Kickstarter Discovery Mode) and **16:9** (Kickstarter main video, YouTube). **Not
+posted; for review.**
 
-> **Status 2026-11-02 (v2): rebuilt to follow `RULES-README.md` §5b** (real confirm screen
-> with warehouse/date/items/Start tracking, drops only on products from the scanned receipts, recent receipts,
-> phone frame, realistic days left, narration says the drops are real). Silent renders in `out/`; narration
-> pending approval + voice (SCRIPT.md).
+| Film | `?film=` | Script | Length | Output |
+| --- | --- | --- | --- | --- |
+| Kickstarter: scan → real drops → claim | `kickstarter` | `SCRIPT.md` | 43.9 s | `out/priceback-kickstarter-{9x16,16x9}-en.mp4` |
+| Scan a price tag | `tag` | `SCRIPT-tag.md` | 22.2 s | `out/priceback-tag-{9x16,16x9}-en.mp4` |
+| The price translator | `translator` | `SCRIPT-translator.md` | — | `out/priceback-translator-{9x16,16x9}-en.mp4` |
+| Claim a price drop | `claim` | `SCRIPT-claim.md` | — | `out/priceback-claim-{9x16,16x9}-en.mp4` |
 
-**Exception to `RULES-README.md` (Monica, 2026-11-02): "the rules don't apply to this video."** It shows a real
-Costco receipt with the printed Costco logo, real receipts from the app's test fixtures (masked so they belong to
-nobody), on-screen app UI only, up to 45 s. Its own rule: **it must look like a real screen recording of the
-app, not a render.**
+**Rules** (`RULES-README.md` §5b, plus Maxim's decisions in each script): the app screens are rebuilt from the
+app's code (layout, styles, real English labels) and must look like a real screen recording; real data (prod
+prices and drops, real tags, real Costco receipts masked to the logo); one consistent story; **voice first, then
+picture** (Maxim validates the voice-over before the video is redone); English first, French on hold; no call
+to action in the voice; captions of every spoken line fill the space beside / above the phone.
 
 ## Files
 
 | Path | What |
 | --- | --- |
-| `scenes/app-recording.html` | The app, rebuilt from the app's code (theme, HomeScreen, ScanTemplate, ReceiptScanningAnimation, DetailScreen, App.js tab bar, BrandMark, EN strings) and animated as an Android screen recording. `renderAt(t)` draws any frame. |
-| `scenes/render.js` | Renders the stills, the 9:16 MP4 and the 16:9 MP4 (headless Chrome + ffmpeg). |
-| `scenes/assets/fonts/` | The app's own fonts: Inter Tight, Plus Jakarta Sans (OFL) and Ionicons (MIT), copied from the app's `node_modules`. |
-| `sources/mask_receipts.py` | Builds the two masked receipts from the app's fixtures. Only the logo, SUBTOTAL/TAX/TOTAL and the date stay readable; everything else is mosaicked and blurred. |
-| `sources/receipt-paper-masked.png`, `sources/receipt-pdf-masked.png` | The masked receipts the video shows. The **originals are never copied here.** |
-| `SOURCES.md` | Every number, where it comes from, and what is demo data. |
-| `SCRIPT.md` | The narration, timed to the recording. |
-| `out/` | Renders: `priceback-kickstarter-9x16.mp4`, `priceback-kickstarter-16x9.mp4`, `stills/`, `contact-sheet.png`. |
+| `scenes/app-recording.html` | The app, rebuilt from its code, animated as an Android screen recording. `?film=` picks the film, `?layout=tall|wide` the format; `renderAt(t)` draws any frame. |
+| `scenes/timeline-<film>.js` | Generated: the picture's time-warp onto the voice + the captions. |
+| `scenes/render.js` | `FILM=<film> node scenes/render.js stills|tall|wide|all` (headless Chrome + ffmpeg); mixes `audio/voiceover-final[-<film>]-en.wav`. |
+| `scenes/assets/fonts/` | The app's fonts: Inter Tight, Plus Jakarta Sans (OFL), Ionicons (MIT). |
+| `sources/` | Masked receipts (`mask_receipts.py`; originals never copied here) and the real shelf-tag photo crop. |
+| `tools/prepare_sample.py` | Voice sample → DeepFilterNet3 denoise → `E:/tools/voice/ref-<tag>.wav` (never committed). |
+| `tools/voiceover.py` | Script lines → voice-over in Maxim's voice (Chatterbox, MIT). Take C = US accent (built-in American voice + voice conversion to Maxim's timbre). Each line is checked word by word by Whisper and re-generated until it matches; each take stores a speaker-similarity score. |
+| `tools/build_timeline.py` | Chosen take → `scenes/timeline-<film>.js` + `audio/voiceover-final[-<film>]-en.wav`. |
+| `tools/install-*.sh` | Local installs on E: (Chatterbox, DeepFilterNet; OpenVoice was rejected). |
+| `VOICE_SAMPLE.md` | How to record a clean voice sample. |
+| `SOURCES.md`, `SCRIPT*.md` | Every number and label, and where it comes from. |
 
-## Rebuild
+## Rebuild a film
 
 ```
-python sources/mask_receipts.py                     # masked receipts (needs Pillow + PyMuPDF)
-npm i puppeteer-core@23 ffmpeg-static@5             # once, in any folder; set NODE_PATH to its node_modules
-node scenes/render.js stills                        # review frames first
-node scenes/render.js all                           # 9:16 + 16:9; mixes audio/narration.wav when present
+bash tools/install-chatterbox.sh && bash tools/install-deepfilter.sh            # once
+E:/tools/deepfilter/.venv/Scripts/python.exe tools/prepare_sample.py audio/Recording.m4a s1
+FILM=tag VOICE_TAG=s1 E:/tools/chatterbox/.venv/Scripts/python.exe tools/voiceover.py en C
+FILM=tag E:/tools/chatterbox/.venv/Scripts/python.exe tools/build_timeline.py audio/voiceover-en-tag-C-s1.json
+FILM=tag node scenes/render.js stills      # review frames first
+FILM=tag node scenes/render.js all         # 9:16 + 16:9 with the voice
 ```
-
-## Timeline (seconds)
-
-| From | To | Screen |
-| --- | --- | --- |
-| 0.0 | 4.0 | Home, 4 products tracked, nothing to claim yet; tap the Scan button |
-| 4.0 | 12.4 | Scan receipt → document scanner on the **paper receipt** → capture → "Scanning receipt…" |
-| 12.4 | 15.3 | Confirm receipt: Costco, Dec 5, 2025, $79.92 / $4.03 / **$83.95** → Save |
-| 15.3 | 22.9 | Home → Scan → **Upload file** → Files: "Costco receipt.pdf" → scanning → Confirm: Jun 28, 2025, **$336.80** → Save |
-| 22.9 | 27.3 | Home; notification "🟢 Price drop on a recent purchase · You can save $13.00 · 25d left." |
-| 27.3 | 32.4 | To claim **$23.00**: Van Houtte coffee +$13, Chefman kettle +$10; notification "🔴 Last days to claim a price drop · You can save $600.00 · Last day." |
-| 32.4 | 36.2 | To claim **$1623.00**: Generac generator +$1,000, Samsung QN80H TV +$600 (last day), coffee, kettle |
-| 36.2 | 41.6 | Tap the TV → Price drop: +$600.00 to claim, then "How to claim at a Costco warehouse" (the app's 4 steps) |
-| 41.6 | 45.0 | Home → the PriceBack app icon and name |
+(`NODE_PATH` must point at a `node_modules` with `puppeteer-core@23` and `ffmpeg-static@5`; set `FFMPEG` for the
+Python tools to that ffmpeg-static binary.)

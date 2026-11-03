@@ -53,6 +53,15 @@ FILMS["translator"] = [
     (22.7, None, 1.0),  # PriceBack end card (silent)
     (24.7, None, None),
 ]
+FILMS["claim"] = [
+    (0.0, 1, 0.8),     # Home: $547 to claim -> the TV's Claim button
+    (3.0, 2, 0.8),     # Price drop +$500 -> Claim instructions
+    (8.0, 3, 0.8),     # How to claim at a Costco warehouse -> Show my receipt
+    (12.0, 4, 0.8),    # step 3: Costco refunds the difference
+    (14.0, 5, 0.6),    # back up -> Mark as Claimed -> alert -> Refund claimed — $500.00 saved
+    (24.0, None, 1.0),  # PriceBack end card (silent)
+    (26.0, None, None),
+]
 # Captions show amounts and price endings as figures (easier to read muted, e.g. on Instagram).
 FIGURES = [("Forty-seven dollars", "$47"), ("sixteen dollars", "$16"), ("twelve on", "$12 on"),
            ("five hundred dollars", "$500"), ("six hundred", "$600"), ("ninety-seven", ".97"), ("zero zero", ".00")]
