@@ -49,7 +49,7 @@ SEEDS = (11, 23, 37, 41, 53)  # a line is re-generated until Whisper hears every
 # FILM=kickstarter (SCRIPT.md) | tag (SCRIPT-tag.md) | translator (SCRIPT-translator.md): which script to voice.
 FILM = os.environ.get("FILM", "kickstarter")
 SCRIPT_FILE = "SCRIPT.md" if FILM == "kickstarter" else f"SCRIPT-{FILM}.md"
-VERSION = "v5" if FILM == "kickstarter" else FILM  # the SCRIPT.md version: each version gets its own files (a file open in a player can't be
+VERSION = "v6" if FILM == "kickstarter" else FILM  # the SCRIPT.md version: each version gets its own files (a file open in a player can't be
                 # overwritten on Windows, and old takes stay comparable)
 # Pronunciation hints, for the speech model only (SCRIPT.md keeps the real spelling): "PriceBack" as one word
 # lost its P ("Riceback", "prize back"); two words are read cleanly.
@@ -68,7 +68,7 @@ FFMPEG = os.environ.get("FFMPEG") or shutil.which("ffmpeg") or "ffmpeg"
 if os.path.isabs(FFMPEG):
     os.environ["PATH"] = os.path.dirname(FFMPEG) + os.pathsep + os.environ.get("PATH", "")
 
-NUM = {"0": "zero", "00": "zero zero", "97": "ninety seven", "30": "thirty", "2": "two", "6": "six", "12": "twelve", "16": "sixteen", "47": "forty seven", "500": "five hundred",
+NUM = {"0": "zero", "00": "zero zero", "97": "ninety seven", "30": "thirty", "5": "five", "2": "two", "6": "six", "12": "twelve", "16": "sixteen", "47": "forty seven", "500": "five hundred",
        "600": "six hundred"}
 
 
@@ -184,6 +184,15 @@ def main(lang, takes=None):
     sr = model.sr
     script = rows()
     assert script, "no voice-over rows in SCRIPT.md"
+    # REUSE_JSON=<previous take .json> REUSE_RAW=<its raw track>: unchanged lines are reused as they were
+    # (same voice, already checked), only new or edited lines are generated.
+    reuse = {}
+    if os.environ.get("REUSE_JSON") and os.environ.get("REUSE_RAW"):
+        prev = json.load(open(os.environ["REUSE_JSON"], encoding="utf-8"))
+        prev_raw, prev_sr = read_wav(os.environ["REUSE_RAW"])
+        assert prev_sr == sr, (prev_sr, sr)
+        for l in prev["lines"]:
+            reuse[l["text"]] = (prev_raw[int(l["start"] * sr):int(l["end"] * sr)], l)
 
     for take, params in TAKES.items():
         if takes and take not in takes:
@@ -194,7 +203,11 @@ def main(lang, takes=None):
         for n, en, fr in script:
             text = en if lang == "en" else fr
             best = None
-            for seed in SEEDS:
+            if text in reuse:
+                x, old = reuse[text]
+                best = (old.get("match", 1.0), x, old.get("heard", ""), old.get("seed"))
+                print(f"{take} line {n}: reused from the previous take ({len(x) / sr:.1f}s)", flush=True)
+            for seed in ([] if best else SEEDS):
                 torch.manual_seed(seed)
                 say = text
                 for k, v in SAY.items():

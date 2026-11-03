@@ -1,4 +1,4 @@
-# Voice-over v5: Kickstarter video
+# Voice-over v6: Kickstarter video
 
 **Voice first, then picture** (Maxim, 2026-11-02): the voice-over track is generated and validated on its own;
 only then is the video re-timed (and its empty space reworked) to fit it. No video render until Maxim approves the
@@ -11,18 +11,22 @@ It says the drops are real (RULES §5b). Every amount is real (facts below). No 
 
 | # | On screen | English | Français (on hold) |
 | --- | --- | --- | --- |
-| 1 | Home → Scan → document scanner (paper receipt, Anjou Business Centre) | Scan any Costco receipt, paper or PDF. | Scannez n'importe quel reçu Costco, papier ou PDF. |
-| 2 | Scanning → Confirm: Anjou Business Centre read from the receipt, 15 items | PriceBack reads every item and finds the warehouse on the receipt, because prices can differ from one warehouse to another. | PriceBack lit chaque article et trouve l'entrepôt sur le reçu, car les prix peuvent varier d'un entrepôt à l'autre. |
-| 3 | Confirm: Online / Warehouse Purchase switch | Warehouses and Business Centres, in-store or online: they're all supported. | Entrepôts et Centres d'affaires, en magasin ou en ligne : tout est pris en charge. |
-| 4 | Start Tracking | Check the details, and start tracking. | Vérifiez, puis lancez le suivi. |
-| 5 | Chip flips to "6 days later" → daily summary → $47 to claim | Six days later, real price drops: sixteen dollars on mayonnaise, twelve on coffee pods. Forty-seven dollars to claim. | Six jours plus tard, de vraies baisses de prix : seize dollars sur la mayonnaise, douze sur le café. Quarante-sept dollars à réclamer. |
-| 6 | Oct 31: upload a PDF from Oct 14 → Laval #505 read from the receipt → Start Tracking | Bought something two weeks ago? Upload that receipt too. | Un achat d'il y a deux semaines ? Ajoutez aussi ce reçu. |
-| 7 | Clock 9:41 → 9:44: TV alert → receipt detail | Minutes later: five hundred dollars off this Samsung TV, after a single day at six hundred. | Quelques minutes plus tard : cinq cents dollars de moins sur ce téléviseur Samsung, après une seule journée à six cents. |
-| 8 | How to claim at a Costco warehouse | Show your receipt at the warehouse, and claim the difference. | Montrez votre reçu à l'entrepôt et réclamez la différence. |
+| 1 | PriceBack splash (≤ 2 s): the hook | Costco members are throwing money away. | Les membres Costco jettent leur argent par les fenêtres. |
+| 2 | Home → Scan → document scanner (paper receipt, Anjou Business Centre) | Scan any Costco receipt, paper or PDF. | Scannez n'importe quel reçu Costco, papier ou PDF. |
+| 3 | Scanning → Confirm: Anjou Business Centre read from the receipt, 15 items | PriceBack reads every item and finds the warehouse on the receipt, because prices can differ from one warehouse to another. | PriceBack lit chaque article et trouve l'entrepôt sur le reçu, car les prix peuvent varier d'un entrepôt à l'autre. |
+| 4 | Confirm: Online / Warehouse Purchase switch | Warehouses and Business Centres, in-store or online: they're all supported. | Entrepôts et Centres d'affaires, en magasin ou en ligne : tout est pris en charge. |
+| 5 | Start Tracking | Check the details, and start tracking. | Vérifiez, puis lancez le suivi. |
+| 6 | Chip flips to "6 days later" → daily summary (5 items) → $47 to claim | Six days later: five real price drops, forty-seven dollars to claim. | Six jours plus tard : cinq vraies baisses de prix, quarante-sept dollars à réclamer. |
+| 7 | Oct 31: upload a PDF from Oct 14 → Laval #505 read from the receipt → Start Tracking | Bought something two weeks ago? Upload that receipt too. | Un achat d'il y a deux semaines ? Ajoutez aussi ce reçu. |
+| 8 | Clock 9:41 → 9:44: TV alert ($500, 5d left) | Minutes later: five hundred dollars to claim on this TV. | Quelques minutes plus tard : cinq cents dollars à réclamer sur ce téléviseur. |
+| 9 | Receipt detail: +$500.00 | Uploaded on the day you bought it, PriceBack would also have caught its one-day flash sale: six hundred dollars off. | Ajouté le jour de l'achat, PriceBack aurait aussi repéré sa vente éclair d'un jour : six cents dollars de rabais. |
+| 10 | How to claim at a Costco warehouse | Show your receipt at the warehouse, and claim the difference. | Montrez votre reçu à l'entrepôt et réclamez la différence. |
 
-**No spoken ending** (Maxim, 2026-11-03): the voice ends on "…claim the difference."; the end card ($547 to claim
-→ PriceBack logo) closes the video in silence. A one-word "PriceBack." could not be generated cleanly (every
-attempt was heard as "Briceback", "Try us back"…), and the logo says it anyway.
+**v6 (Maxim, 2026-11-03):** a hook on the splash before the scan (the splash moves from the end to the start;
+the video ends on $547 to claim); line 6 states the count and the total of the drops (5 drops, $47: naming
+two of them for $28 read as misleading); less dead time between the drops and the PDF upload (the date flip
+stays as the transition); the TV says $500 to claim now, and separately that a receipt uploaded on the purchase
+day would also have caught the one-day $600 drop (Oct 26, prod `savings`).
 
 **No warehouse setup in the story** (Maxim, 2026-11-02): the app reads the warehouse from each receipt and tracks
 every receipt at its own warehouse, because prices differ between warehouses. The favourite warehouse in the

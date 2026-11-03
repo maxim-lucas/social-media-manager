@@ -676,7 +676,7 @@ function translatorAt(t) {
 const GR = GROC.items.map((x) => x[0]), ALLR = [...GR, "tv"];
 const f = (t, a, b) => ease((t - a) / (b - a));
 let SCRIPT = [
-  [0.0, 3.6, () => costcoProfile()],
+  [0.0, 3.6, () => splash()],   // v6: the hook plays on the splash, then the app opens
   [3.6, 6.0, () => home({})],
   [6.0, 8.2, () => scanIntro()],
   [8.2, 10.8, (t) => docScanner(8.2, t)],
@@ -698,11 +698,11 @@ let NOTIFS = [
   [34.4, 36.8, { title: "🔴 Price drop on a recent purchase", body: "You can save $500.00 · 5d left." }],
 ];
 // Date chip above the phone: [from, month, day, label, sub]. A flip plays when it changes.
-let CHIPS = [[0.0, "OCT", "20", "Oct 20, 2026", ""], [18.8, "OCT", "26", "6 days later", "Oct 26, 2026"], [26.0, "OCT", "31", "Oct 31, 2026", "uploading an older receipt"]];
+let CHIPS = [[3.6, "OCT", "20", "Oct 20, 2026", ""], [18.8, "OCT", "26", "6 days later", "Oct 26, 2026"], [26.0, "OCT", "31", "Oct 31, 2026", "uploading an older receipt"]];
 // [time, x, y] in phone dp ("Show taps"); "btn" = Start Tracking, "ci" = Claim instructions, "save" = Save.
 let TAPS = [[3.0, 180, "save"], [5.4, 180, 323], [7.5, 180, 300], [10.2, 180, 694], [17.6, 180, "btn"], [21.5, 180, 120], [26.4, 180, 704], [27.7, 268, 425], [29.1, 97, 260], [33.0, 180, "btn"], [36.5, 180, 90], [38.8, 265, "ci"], [42.3, 32, 52]];
 let NO_SLIDE = new Set([3.6, 10.8, 12.4, 29.6, 30.8, 21.2, 42.6]);
-let FADE_AT = 44.0;
+let FADE_AT = 3.6;   // v6: splash -> Home cross-fade (the end card moved to the start)
 let FLASH = 10.25, CLOCKRULE = (t) => (t >= 34.0 ? "9:44" : "9:41"), PICTURE = 46.0;
 const FILMS = {
   tag: {

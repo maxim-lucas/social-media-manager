@@ -22,18 +22,20 @@ LEAD = 0.15   # the line starts this long after its scene
 TAIL = 0.40   # breathing room after the line before the next scene
 # Per film: (picture time, voice line or None, slowest compression allowed for the actions of this segment)
 FILMS = {}
-FILMS["kickstarter"] = [
-    (3.6, 1, 0.62),    # Home (empty) -> Scan -> document scanner: "Scan any Costco receipt, paper or PDF."
-    (10.8, 2, 0.75),   # scanning -> Confirm: "PriceBack reads every item and finds the warehouse on the receipt…"
-    (13.0, 3, 0.75),   # Confirm top (warehouse, Online / Warehouse Purchase): "Warehouses and Business Centres…"
-    (14.0, 4, 0.75),   # items scroll -> Start Tracking: "Check the details, and start tracking."
-    (18.8, 5, 0.75),   # date chip "6 days later" -> daily summary -> $47: "Six days later, real price drops…"
-    (23.0, None, 0.6),  # $47 to claim, held
-    (26.0, 6, 0.62),   # Oct 31 -> Upload file -> PDF -> Confirm -> Start Tracking: "Bought something two weeks ago?…"
-    (34.0, 7, 0.75),   # clock 9:44 -> TV alert -> receipt detail: "Minutes later: five hundred dollars off…"
-    (38.8, 8, 0.75),   # Claim instructions: "Show your receipt at the warehouse, and claim the difference."
-    (42.6, None, 1.0),  # $547 to claim -> PriceBack end card (silent)
-    (46.0, None, None),
+FILMS["kickstarter"] = [   # v6 (Maxim, 2026-11-03): the hook on the splash first; ends on $547 to claim
+    (1.8, 1, 1.0, 0.05),  # PriceBack splash: "Costco members are throwing money away." (<= 2 s: short tail)
+    (3.6, 2, 0.62),    # Home (empty) -> Scan -> document scanner: "Scan any Costco receipt, paper or PDF."
+    (10.8, 3, 0.75),   # scanning -> Confirm: "PriceBack reads every item and finds the warehouse on the receipt…"
+    (13.0, 4, 0.75),   # Confirm top (warehouse, Online / Warehouse Purchase): "Warehouses and Business Centres…"
+    (14.0, 5, 0.75),   # items scroll -> Start Tracking: "Check the details, and start tracking."
+    (18.8, 6, 0.75),   # date chip "6 days later" -> daily summary -> $47: "Six days later: five real price drops…"
+    (23.0, None, 0.2),  # $47 to claim: a short beat only (Maxim: less dead time before the PDF upload)
+    (26.0, 7, 0.62),   # date chip Oct 31 -> Upload file -> PDF -> Confirm -> Start Tracking
+    (34.0, 8, 0.75),   # clock 9:44 -> TV alert: "Minutes later: five hundred dollars to claim on this TV."
+    (36.6, 9, 0.75),   # receipt detail +$500: "Uploaded on the day you bought it… one-day flash sale: $600 off."
+    (38.8, 10, 0.75),  # Claim instructions: "Show your receipt at the warehouse, and claim the difference."
+    (42.6, None, 1.0),  # $547 to claim (silent end)
+    (44.0, None, None),
 ]
 FILMS["tag"] = [
     (0.0, 1, 0.75),    # Scan -> Price tag -> live camera on the tag -> shutter
@@ -72,7 +74,8 @@ FILMS["stores"] = [
 ]
 # Captions show amounts and price endings as figures (easier to read muted, e.g. on Instagram).
 FIGURES = [("Forty-seven dollars", "$47"), ("sixteen dollars", "$16"), ("twelve on", "$12 on"),
-           ("five hundred dollars", "$500"), ("six hundred", "$600"), ("ninety-seven", ".97"), ("zero zero", ".00"), ("thirty days", "30 days")]
+           ("five hundred dollars", "$500"), ("six hundred dollars", "$600"), ("six hundred", "$600"),
+           ("five real price drops", "5 real price drops"), ("ninety-seven", ".97"), ("zero zero", ".00"), ("thirty days", "30 days")]
 
 
 def read_wav(path):
@@ -104,12 +107,15 @@ def main(take_json, film="kickstarter"):
     lang = "fr" if "-fr-" in os.path.basename(take_json) else "en"
 
     warp, captions, placed, t = [], [], [], 0.0
-    for (old, n, floor), (old_next, _, _) in zip(ANCHORS, ANCHORS[1:]):
+    for anchor, nxt in zip(ANCHORS, ANCHORS[1:]):
+        old, n, floor = anchor[:3]
+        tail = anchor[3] if len(anchor) > 3 else TAIL   # optional 4th value: this line's own tail
+        old_next = nxt[0]
         warp.append([round(t, 3), old])
         span = (old_next - old) * floor
         if n is not None:
             l = lines[n]
-            need = LEAD + (l["end"] - l["start"]) + TAIL
+            need = LEAD + (l["end"] - l["start"]) + tail
             span = max(span, need)
             start = t + LEAD
             placed.append((start, l))
