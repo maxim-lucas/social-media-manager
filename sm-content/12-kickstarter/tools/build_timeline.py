@@ -62,9 +62,17 @@ FILMS["claim"] = [
     (24.0, None, 1.0),  # PriceBack end card (silent)
     (26.0, None, None),
 ]
+FILMS["stores"] = [
+    (0.0, 1, 0.8),     # Home -> Stores tab -> Costco, Featured, 30 days
+    (4.6, 2, 0.8),     # the list scrolls through the coming-soon stores
+    (8.8, 3, 0.8),     # tap Best Buy -> launch sheet -> Notify me
+    (11.7, 4, 0.8),    # You'll be notified when Best Buy launches
+    (15.5, None, 1.0),  # PriceBack end card (silent)
+    (17.5, None, None),
+]
 # Captions show amounts and price endings as figures (easier to read muted, e.g. on Instagram).
 FIGURES = [("Forty-seven dollars", "$47"), ("sixteen dollars", "$16"), ("twelve on", "$12 on"),
-           ("five hundred dollars", "$500"), ("six hundred", "$600"), ("ninety-seven", ".97"), ("zero zero", ".00")]
+           ("five hundred dollars", "$500"), ("six hundred", "$600"), ("ninety-seven", ".97"), ("zero zero", ".00"), ("thirty days", "30 days")]
 
 
 def read_wav(path):

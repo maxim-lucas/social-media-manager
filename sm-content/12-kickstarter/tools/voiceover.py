@@ -68,7 +68,7 @@ FFMPEG = os.environ.get("FFMPEG") or shutil.which("ffmpeg") or "ffmpeg"
 if os.path.isabs(FFMPEG):
     os.environ["PATH"] = os.path.dirname(FFMPEG) + os.pathsep + os.environ.get("PATH", "")
 
-NUM = {"0": "zero", "00": "zero zero", "97": "ninety seven", "2": "two", "6": "six", "12": "twelve", "16": "sixteen", "47": "forty seven", "500": "five hundred",
+NUM = {"0": "zero", "00": "zero zero", "97": "ninety seven", "30": "thirty", "2": "two", "6": "six", "12": "twelve", "16": "sixteen", "47": "forty seven", "500": "five hundred",
        "600": "six hundred"}
 
 
