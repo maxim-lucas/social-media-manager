@@ -1,0 +1,62 @@
+{
+  "take": "C",
+  "sample": "s1",
+  "params": {
+    "voice": "us",
+    "exaggeration": 0.5,
+    "cfg_weight": 0.5,
+    "temperature": 0.7
+  },
+  "similarity": {
+    "s1": 0.87,
+    "s2": 0.895
+  },
+  "duration": 19.22,
+  "lines": [
+    {
+      "line": 1,
+      "text": "Is it really a good deal? The price on a Costco tag tells you, if you know how to read it.",
+      "start": 0.4,
+      "end": 4.45,
+      "seed": 41,
+      "heard": "Is it really a good deal? The price on a Costco tag tells you if you know how to read it.",
+      "match": 1.0
+    },
+    {
+      "line": 2,
+      "text": "Type the price you see. Ending in ninety-seven: Costco's head office marked it down.",
+      "start": 5.05,
+      "end": 9.08,
+      "seed": 11,
+      "heard": "Type the price you see. Ending in 97, Costco's head office marked it down.",
+      "match": 1.0
+    },
+    {
+      "line": 3,
+      "text": "Ending in zero zero: the store manager wants it gone.",
+      "start": 9.68,
+      "end": 12.72,
+      "seed": 11,
+      "heard": "Ending in 00, the store manager wants it gone.",
+      "match": 1.0
+    },
+    {
+      "line": 4,
+      "text": "A star in the corner? It won't be restocked.",
+      "start": 13.32,
+      "end": 15.66,
+      "seed": 11,
+      "heard": "A star in the corner, it won't be restocked.",
+      "match": 1.0
+    },
+    {
+      "line": 5,
+      "text": "And it all works with no internet, right at the shelf.",
+      "start": 16.26,
+      "end": 18.82,
+      "seed": 11,
+      "heard": "And it all works with no internet, right at the shelf.",
+      "match": 1.0
+    }
+  ]
+}

@@ -1,0 +1,881 @@
+<!doctype html>
+<!--
+  app-recording.html (v2, 2026-11-02) — the PriceBack app rebuilt from the app's own code and played as a phone
+  screen recording, inside a phone body. Follows RULES-README §5b: real screens only (HomeScreen, ScanTemplate,
+  ScanScreen confirm step, ReceiptScanningAnimation, DetailScreen, App.js tab bar, BrandMark, EN strings,
+  backend/lib/pushI18n.js), one consistent story (every alerted product comes from a receipt scanned here),
+  real prices (prod price_points) and real drops (prod savings), realistic days left.
+  ?layout=tall → 1080×1920 (Instagram / Kickstarter Discovery); ?layout=wide → 1920×1080 (Kickstarter main).
+  window.renderAt(seconds) draws one frame. Data and sources: ../SOURCES.md.
+-->
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:IT4;src:url(assets/fonts/InterTight_400Regular.ttf)}
+@font-face{font-family:IT5;src:url(assets/fonts/InterTight_500Medium.ttf)}
+@font-face{font-family:IT6;src:url(assets/fonts/InterTight_600SemiBold.ttf)}
+@font-face{font-family:IT7;src:url(assets/fonts/InterTight_700Bold.ttf)}
+@font-face{font-family:IT8;src:url(assets/fonts/InterTight_800ExtraBold.ttf)}
+@font-face{font-family:PJ6;src:url(assets/fonts/PlusJakartaSans_600SemiBold.ttf)}
+@font-face{font-family:PJ7;src:url(assets/fonts/PlusJakartaSans_700Bold.ttf)}
+@font-face{font-family:Ion;src:url(assets/fonts/Ionicons.ttf)}
+:root{--bg:#eef5f1;--alt:#f4f9f6;--ink:#0d3d28;--inkDeep:#062a1a;--sub:#64748b;--muted:#94a3b8;--border:#d8e3dd;--div:#e8efea;--accent:#10b981;--accentDeep:#047857;--accentSoft:#dcfce7;--accentInk:#15803d;--lime:#bef264;--limeSoft:#d9f99d}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow:hidden}
+body{background:radial-gradient(120% 90% at 50% 20%,#f7fbf8 0%,#e4f1ea 55%,#d6ebe0 100%)}
+#device{position:absolute;left:50%;top:50%;width:384px;height:784px;margin:-392px 0 0 -192px;border-radius:52px;background:linear-gradient(145deg,#3a3d40,#1b1c1e 40%,#2a2c2e);box-shadow:0 40px 80px rgba(6,42,26,.28),0 8px 18px rgba(6,42,26,.18),inset 0 0 0 1.5px #5a5e62;transform-origin:50% 50%}
+#device:before{content:"";position:absolute;right:-3px;top:150px;width:3px;height:64px;border-radius:0 3px 3px 0;background:#2b2d30}
+#device:after{content:"";position:absolute;right:-3px;top:240px;width:3px;height:110px;border-radius:0 3px 3px 0;background:#2b2d30}
+#phone{position:absolute;left:12px;top:12px;width:360px;height:760px;border-radius:41px;overflow:hidden;background:var(--bg);font-family:IT5;color:var(--ink)}
+.cut{position:absolute;left:50%;top:21px;width:11px;height:11px;margin-left:-5.5px;border-radius:50%;background:#050505;z-index:90;box-shadow:inset 0 0 0 2px #1d2226}
+.i{font-family:Ion;font-style:normal;line-height:1;display:inline-block}
+.screen{position:absolute;left:0;top:0;width:360px;height:760px;overflow:hidden;background:var(--bg)}
+.status{position:absolute;left:0;top:0;right:0;height:30px;display:flex;align-items:center;justify-content:space-between;padding:4px 26px 0 30px;font-family:IT6;font-size:12.5px;color:var(--ink);z-index:50}
+.status.dark{color:#fff}
+.navpill{position:absolute;left:50%;bottom:7px;width:108px;height:4px;margin-left:-54px;border-radius:2px;background:rgba(13,61,40,.55);z-index:50}
+.navpill.dark{background:rgba(255,255,255,.7)}
+.body{position:absolute;left:0;right:0;top:30px;bottom:0;overflow:hidden}
+.scroll{position:absolute;left:0;right:0;top:0}
+.topRow{display:flex;align-items:center;justify-content:space-between;padding:10px 14px}
+.lockup{display:flex;align-items:center;gap:9.5px}
+.tile{width:28px;height:28px;border-radius:6.3px;background:linear-gradient(160deg,#10b981,#047857);display:flex;align-items:center;justify-content:center}
+.word{font-family:IT8;font-size:15px;letter-spacing:-.4px}
+.iconBtn{position:relative;width:36px;height:36px;border-radius:10px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--ink)}
+.badge{position:absolute;top:4px;right:4px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#ef4444;border:1.5px solid var(--bg);color:#fff;font-family:PJ7;font-size:9px;display:flex;align-items:center;justify-content:center}
+.hero{margin:4px 12px 0;border-radius:22px;padding:18px;background:linear-gradient(135deg,var(--ink),var(--inkDeep));color:#fff;position:relative}
+.caps{font-family:PJ6;font-size:9.5px;letter-spacing:1px;text-transform:uppercase}
+.heroAmt{display:flex;align-items:flex-start;margin-top:6px}
+.heroAmt .d{font-family:IT8;font-size:24px;margin:8px 2px 0 0;color:var(--limeSoft)}
+.heroAmt .n{font-family:IT8;font-size:56px;letter-spacing:-2px;line-height:60px}
+.heroAmt .c{font-family:IT8;font-size:24px;margin-top:8px;color:var(--limeSoft)}
+.heroLine{display:flex;align-items:center;gap:8px;margin-top:10px;font-family:IT8;font-size:14px}
+.heroFoot{display:flex;align-items:center;gap:6px;margin-top:12px;padding-top:10px;border-top:.5px solid rgba(255,255,255,.18);font-family:PJ6;font-size:12px;color:rgba(255,255,255,.7)}
+.dots{position:absolute;top:18px;right:18px;display:flex;gap:4px}
+.dots i{width:14px;height:3px;border-radius:2px;background:rgba(255,255,255,.25);display:block}
+.dots i.on{background:var(--lime)}
+.onboard{margin:16px 12px 0;background:#fff;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:8px;box-shadow:0 1px 3px rgba(13,61,40,.04)}
+.obT{font-family:IT8;font-size:18px;text-align:center;letter-spacing:-.4px}
+.obB{font-family:IT4;font-size:13px;color:var(--sub);text-align:center;line-height:19px}
+.obBtn{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--accent);border-radius:14px;padding:14px;margin-top:6px;color:#fff;font-family:IT7;font-size:14px;box-shadow:0 6px 16px rgba(16,185,129,.3)}
+.section{padding:0 12px;margin-top:16px}
+.secHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;padding:0 4px}
+.secTitle{font-family:IT7;font-size:15px;letter-spacing:-.3px}
+.secSub{font-family:PJ6;font-size:11px;color:var(--sub);margin-top:2px}
+.secAct{font-family:PJ6;font-size:11px;color:var(--accent)}
+.empty{background:#fff;border-radius:16px;padding:18px;text-align:center;font-family:IT5;font-size:13px;color:var(--sub)}
+.list{background:#fff;border-radius:16px;padding:0 14px;box-shadow:0 1px 3px rgba(13,61,40,.04)}
+.row{display:flex;align-items:center;gap:10px;padding:14px 0;border-bottom:1px solid var(--div)}
+.row:last-child{border-bottom:0}
+.sbadge{width:38px;height:38px;border-radius:10px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.co{width:28px;height:28px;border-radius:7px;background:#E31837;color:#fff;font-weight:900;font-family:Arial,Helvetica,sans-serif;font-size:11.8px;letter-spacing:-.5px;display:flex;align-items:center;justify-content:center}
+.iname{font-family:IT6;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chips{display:flex;align-items:center;gap:6px;margin-top:4px;flex-wrap:wrap}
+.chipD{border-radius:10px;padding:3px 8px;font-family:IT7;font-size:11px;display:inline-block}
+.chipS{border-radius:4px;padding:2px 6px;font-family:PJ7;font-size:10px}
+.place{font-family:monospace;font-size:11px;color:var(--muted)}
+.right{display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0}
+.sav{font-family:IT8;font-size:14px;color:var(--accent);letter-spacing:-.4px}
+.claim{margin-top:4px;background:var(--ink);color:#fff;border-radius:999px;padding:5px 12px;font-family:PJ7;font-size:11px}
+.price{font-family:monospace;font-size:12px;color:var(--muted)}
+.tabbar{position:absolute;left:0;right:0;bottom:0;height:74px;background:#fff;border-top:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-around;padding-top:8px}
+.tab{display:flex;flex-direction:column;align-items:center;gap:2px;width:56px;position:relative;font-family:PJ6;font-size:10px;color:var(--muted)}
+.tab .i{font-size:20px}
+.tab.on{color:var(--ink);font-family:PJ7}
+.tab.on:before{content:"";position:absolute;top:-10px;width:28px;height:3px;border-radius:2px;background:var(--accent)}
+.fab{width:52px;height:52px;border-radius:18px;background:var(--accent);margin-top:-22px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;box-shadow:0 8px 18px rgba(16,185,129,.45)}
+.sHead{display:flex;align-items:center;gap:8px;padding:12px 14px 10px;background:var(--bg)}
+.back{width:36px;height:36px;border-radius:10px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px}
+.sTitle{flex:1;text-align:center;font-family:IT7;font-size:14px;letter-spacing:-.2px}
+.cancel{padding:8px;font-family:IT6;font-size:13px;color:var(--sub)}
+.sBody{padding:0 14px 14px;display:flex;flex-direction:column;gap:14px}
+.track{display:flex;padding:4px;gap:2px;background:var(--alt);border:1px solid var(--div);border-radius:14px}
+.seg{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 2px;border-radius:10px;font-family:IT6;font-size:11.5px;line-height:14px;color:var(--sub);text-align:center}
+.seg .i{font-size:15px}
+.seg.on{background:#fff;color:var(--ink);font-family:IT7;box-shadow:0 1px 3px rgba(13,61,40,.1)}
+.credits{display:flex;align-items:center;gap:11px;padding:10px 12px;background:#fff;border:1px solid var(--border);border-radius:14px}
+.cIcon{width:34px;height:34px;border-radius:17px;background:rgba(16,185,129,.12);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:17px}
+.cBig{font-family:IT8;font-size:17px;letter-spacing:-.3px}
+.bar{height:4px;border-radius:2px;background:var(--div);margin-top:6px;overflow:hidden}
+.bar i{display:block;height:100%;width:100%;background:var(--accent)}
+.capture{border:1.5px dashed var(--border);border-radius:20px;background:#fff;display:flex;flex-direction:column;align-items:center;gap:10px;padding:36px 0}
+.cap{position:relative;width:64px;height:64px;border-radius:20px;background:var(--accentSoft);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:30px}
+.plus{position:absolute;right:6px;bottom:6px;width:22px;height:22px;border-radius:11px;background:var(--accent);border:2px solid #fff;color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center}
+.capL{font-family:IT8;font-size:16px;letter-spacing:-.3px}
+.capS{font-family:IT5;font-size:12.5px;color:var(--sub)}
+.acts{display:flex;gap:8px}
+.act{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:12px 8px;border-radius:12px;background:#fff;border:1px solid var(--border);font-family:IT6;font-size:12.5px}
+.act .i{font-size:16px}
+.cam{position:absolute;inset:0;background:#0b0f0d}
+.camImg{position:absolute;left:50%;top:47%;width:296px;box-shadow:0 0 40px rgba(0,0,0,.6)}
+.camTop{position:absolute;left:0;right:0;top:36px;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;color:#fff;font-family:Roboto,Arial,sans-serif;font-size:14px}
+.camBottom{position:absolute;left:0;right:0;bottom:0;height:130px;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center}
+.shutterO{width:66px;height:66px;border-radius:33px;border:4px solid #fff;display:flex;align-items:center;justify-content:center}
+.shutterI{width:52px;height:52px;border-radius:26px;background:#fff}
+.camHint{position:absolute;left:50%;top:92px;transform:translateX(-50%);background:rgba(0,0,0,.55);color:#fff;font-family:Roboto,Arial,sans-serif;font-size:13px;padding:6px 14px;border-radius:16px;white-space:nowrap}
+.scanWrap{position:absolute;left:0;right:0;top:170px;display:flex;flex-direction:column;align-items:center;gap:22px}
+.stage{position:relative;width:148px;height:148px;display:flex;align-items:center;justify-content:center}
+.glow{position:absolute;width:136px;height:136px;border-radius:68px;background:var(--accent)}
+.stile{position:relative;width:108px;height:108px;border-radius:28px;overflow:hidden;background:linear-gradient(135deg,#1c2622,#0d1714 55%,#161f1b);display:flex;align-items:center;justify-content:center}
+.sline{position:absolute;left:10px;right:10px;top:10px;height:2px;border-radius:2px;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+.stitle{font-family:IT7;font-size:17px;text-align:center}
+.ssub{font-family:monospace;font-size:12px;color:var(--muted);text-align:center;margin-top:6px}
+.sdots{display:flex;gap:7px}
+.sdots i{width:7px;height:7px;border-radius:4px;background:var(--accent);display:block}
+.progress{display:flex;gap:6px;padding:0 14px 8px;background:var(--bg)}
+.progress i{flex:1;height:4px;border-radius:2px;background:var(--accent);display:block}
+.content{padding:12px;display:flex;flex-direction:column;gap:16px}
+.rHero{border-radius:22px;padding:18px;background:linear-gradient(135deg,var(--ink),var(--inkDeep));color:#fff}
+.rEye{font-family:PJ6;font-size:9.5px;letter-spacing:1px;color:rgba(255,255,255,.55)}
+.rTitle{font-family:IT8;font-size:22px;letter-spacing:-.6px;margin-top:4px;line-height:26px}
+.rStore{display:flex;align-items:center;gap:10px;margin-top:14px;padding:12px;border-radius:14px;background:rgba(255,255,255,.06)}
+.rBadge{width:44px;height:44px;border-radius:10px;background:#E31837;display:flex;align-items:center;justify-content:center}
+.rName{font-family:IT7;font-size:14px}
+.rSub{font-family:PJ6;font-size:11px;color:rgba(255,255,255,.6);margin-top:2px}
+.rChange{font-family:PJ6;font-size:11px;color:#fff;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15)}
+.rSeg{display:flex;gap:6px;margin-top:10px;padding:3px;border-radius:999px;background:rgba(0,0,0,.25)}
+.rSeg span{flex:1;text-align:center;padding:7px 0;border-radius:999px;font-family:PJ6;font-size:12px;color:rgba(255,255,255,.6)}
+.rSeg span.on{background:var(--accent);color:#fff}
+.wh{display:flex;align-items:center;gap:11px;padding:10px 12px;background:#fff;border:1px solid var(--border);border-radius:14px}
+.whI{width:34px;height:34px;border-radius:17px;background:rgba(16,185,129,.12);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:18px;flex-shrink:0}
+.whL{font-family:IT7;font-size:14.5px;letter-spacing:-.2px}
+.whS{font-family:IT5;font-size:12px;color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.whC{display:flex;align-items:center;gap:1px;align-self:flex-start;font-family:IT6;font-size:12px;color:var(--muted)}
+.card{background:#fff;border-radius:16px;padding:14px;box-shadow:0 1px 3px rgba(13,61,40,.04)}
+.cLabel{font-family:PJ6;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--sub)}
+.irow{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--div)}
+.iN{font-family:IT6;font-size:13px}
+.skuTag{background:var(--div);padding:2px 6px;border-radius:4px;color:var(--accent);font-family:PJ7;font-size:10px;letter-spacing:.5px}
+.skuV{font-family:IT5;font-size:12px;color:var(--ink)}
+.qtyL{font-family:PJ6;font-size:11px;color:var(--sub)}
+.qtyV{font-family:IT8;font-size:14px}
+.lAct{display:flex;align-items:center;gap:5px;margin-top:6px;padding:4px 0;color:var(--accent);font-family:IT6;font-size:12px}
+.rm{width:26px;height:26px;display:flex;align-items:center;justify-content:center;color:#dc2626;font-size:16px;flex-shrink:0}
+.addItem{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 0;margin-top:8px;border:1px dashed var(--accent);border-radius:12px;color:var(--accent);font-family:monospace;font-size:13px;font-weight:700}
+.tRow{display:flex;justify-content:space-between;align-items:center;padding-top:10px;margin-top:10px;border-top:1px solid var(--div);font-family:IT5;font-size:13px;color:var(--muted)}
+.tRow b{font-family:monospace;color:var(--ink);font-size:13px}
+.meta{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--div)}
+.meta:last-child{border-bottom:0}
+.metaK{font-family:PJ6;font-size:11px;color:var(--sub)}
+.metaV{font-family:IT6;font-size:13px}
+.btnP{display:flex;align-items:center;justify-content:center;gap:6px;padding:14px 24px;border-radius:14px;background:var(--accent);color:#fff;font-family:IT7;font-size:15px;box-shadow:0 6px 16px rgba(16,185,129,.3)}
+.files{position:absolute;inset:0;background:#fff;font-family:Roboto,Arial,sans-serif;color:#1f1f1f}
+.fTop{position:absolute;left:0;right:0;top:36px;height:56px;display:flex;align-items:center;gap:18px;padding:0 18px;font-size:20px}
+.fChip{display:inline-block;padding:6px 14px;border-radius:8px;border:1px solid #c4c7c5;font-size:13px;margin-right:6px}
+.fGrid{position:absolute;left:16px;right:16px;top:156px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fItem{border-radius:12px;background:#f0f4f9;overflow:hidden}
+.fThumb{height:160px;background:#fff;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;border-bottom:1px solid #e3e3e3}
+.fThumb img{width:96%;margin-top:6px}
+.fName{padding:8px 10px 10px;font-size:12.5px}
+.fMeta{font-size:11px;color:#5f6368;margin-top:2px}
+.notif{position:absolute;left:8px;right:8px;top:38px;border-radius:24px;background:#f3f6f4;box-shadow:0 6px 24px rgba(0,0,0,.18);padding:14px 16px;z-index:60;font-family:Roboto,Arial,sans-serif}
+.nHead{display:flex;align-items:center;gap:8px;font-size:12px;color:#444}
+.nIcon{width:20px;height:20px;border-radius:5px;background:linear-gradient(160deg,#10b981,#047857);display:flex;align-items:center;justify-content:center}
+.nTitle{font-size:14.5px;font-weight:600;color:#1b1b1b;margin-top:8px}
+.nBody{font-size:13.5px;color:#3c3c3c;margin-top:3px;line-height:18px}
+.dHero{border-radius:22px;padding:18px;background:linear-gradient(135deg,var(--accent),var(--accentDeep));color:#fff}
+.dStore{font-family:IT8;font-size:18px;letter-spacing:-.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dEye{font-family:PJ6;font-size:9.5px;letter-spacing:1px;color:rgba(255,255,255,.7)}
+.dNum{font-family:IT8;font-size:34px;letter-spacing:-1px;line-height:38px;margin-top:2px}
+.dAmt{font-family:IT8;font-size:30px;letter-spacing:-1px;line-height:38px;margin-top:2px;color:#d1fae5}
+.cmp{flex:1;border-radius:14px;padding:14px;box-shadow:0 1px 3px rgba(13,61,40,.04)}
+.cmpL{font-family:PJ6;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--sub)}
+.cmpA{font-family:IT8;font-size:22px;letter-spacing:-.6px;margin-top:4px}
+.cmpS{font-family:PJ6;font-size:11px;color:var(--sub);margin-top:2px}
+.sec2{flex:1;padding:12px 0;border-radius:12px;background:#fff;border:1px solid var(--border);text-align:center;font-family:IT6;font-size:13px}
+.drow{display:flex;justify-content:space-between;align-items:center;padding:8px 0}
+.drow span{font-family:PJ6;font-size:11px;color:var(--sub)}
+.drow b{font-family:IT6;font-size:13px;color:var(--ink);font-weight:normal}
+.sLabel{font-family:PJ6;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--sub);margin-bottom:12px}
+.step{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
+.sn{width:22px;height:22px;border-radius:11px;background:var(--accentSoft);color:var(--accentInk);font-family:PJ7;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.st{font-family:IT7;font-size:13px;line-height:19px;flex:1}
+.showR{display:flex;align-items:center;gap:6px;margin:0 0 12px 32px;color:var(--accent);font-family:IT6;font-size:13px}
+.splash{position:absolute;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+.tap{position:absolute;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:28px;background:rgba(255,255,255,.6);border:3px solid rgba(13,61,40,.45);box-shadow:0 0 0 6px rgba(255,255,255,.35);z-index:80}
+.pressed{filter:brightness(.88);transform:scale(.97);transition:none}
+.subH{display:flex;align-items:center;justify-content:space-between;padding:8px 12px 12px;border-bottom:1px solid var(--border)}
+.subH .t{font-family:IT7;font-size:16px}
+.cpBody{padding:20px}
+.cpIcon{width:56px;height:56px;border-radius:28px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;margin:0 auto 12px}
+.cpT{font-family:IT8;font-size:22px;text-align:center}
+.cpL{font-family:IT5;font-size:14px;color:var(--sub);text-align:center;margin-top:8px;line-height:20px}
+.cpLab{font-family:IT8;font-size:13px;margin:24px 0 8px}
+.rad{display:flex;align-items:center;gap:12px;padding:14px;border-radius:16px;border:1.5px solid var(--border);background:#fff;margin-bottom:8px}
+.rad.on{border-color:var(--accent);background:var(--accentSoft)}
+.rd{width:20px;height:20px;border-radius:10px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center}
+.rad.on .rd{border-color:var(--accent)}
+.rad.on .rd:after{content:"";width:10px;height:10px;border-radius:5px;background:var(--accent)}
+.radL{font-family:IT7;font-size:15px}.rad.on .radL{color:var(--accentDeep)}
+.radS{font-family:IT5;font-size:12.5px;color:var(--sub);margin-top:2px}
+#chip{position:absolute;display:flex;align-items:center;gap:14px;padding:16px 30px;border-radius:999px;background:#fff;box-shadow:0 10px 30px rgba(6,42,26,.14);font-family:IT8;color:var(--ink);white-space:nowrap;transform-origin:50% 50%}
+#chip .cal{display:flex;flex-direction:column;align-items:center;justify-content:center;width:62px;height:62px;border-radius:14px;background:var(--accentSoft);color:var(--accentDeep)}
+#chip .cal b{font-family:PJ7;font-size:15px;letter-spacing:1px}#chip .cal span{font-family:IT8;font-size:26px;line-height:26px}
+#chip .txt{font-size:34px;letter-spacing:-.6px}#chip .sub{font-family:PJ6;font-size:20px;color:var(--accent);display:block;letter-spacing:.3px}
+.flash{position:absolute;inset:0;background:#fff;z-index:70}
+.howto{display:flex;gap:9px;align-items:flex-start;padding:0 2px}
+.howto .hi{width:22px;height:22px;border-radius:7px;margin-top:1px;background:var(--accentSoft);display:flex;align-items:center;justify-content:center;color:var(--accentInk);font-size:13px;flex-shrink:0}
+.howto span:not(.i){flex:1;font-family:IT5;font-size:12.5px;line-height:18px;color:var(--sub)}
+.vf{position:relative;width:100%;aspect-ratio:4/3;border-radius:20px;overflow:hidden;border:1px solid var(--border);background:#111;box-shadow:0 6px 16px rgba(13,61,40,.08)}
+.vf img{position:absolute;left:50%;top:50%;width:150%}
+.vfRet{position:absolute;left:9%;top:26%;width:82%;height:48%}
+.br{position:absolute;width:20px;height:20px;border:0 solid var(--accent);border-radius:3px}
+.live{position:absolute;top:12px;left:12px;display:flex;align-items:center;gap:6px;font-family:monospace;font-size:10px;letter-spacing:1px;color:rgba(255,255,255,.85)}
+.live i{width:7px;height:7px;border-radius:4px;background:#ef4444}
+.vfHint{position:absolute;left:0;right:0;bottom:78px;text-align:center}
+.vfHint span{font-family:monospace;font-size:11px;color:rgba(255,255,255,.82);background:rgba(0,0,0,.4);padding:5px 12px;border-radius:999px}
+.vfShut{position:absolute;left:50%;bottom:14px;width:60px;height:60px;margin-left:-30px;border-radius:30px;border:3px solid rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;box-sizing:border-box}
+.vfShut i{width:44px;height:44px;border-radius:22px;background:var(--accent);box-shadow:0 0 12px rgba(16,185,129,.5)}
+.tNote{display:flex;gap:10px;align-items:flex-start;margin:16px 16px 0;padding:12px 14px;border-radius:16px;background:var(--accentSoft);color:var(--accentInk);font-size:18px}
+.tNote span:not(.i){flex:1;font-family:IT6;font-size:13px;line-height:19px}
+.tLimit{display:flex;gap:10px;align-items:flex-start;margin:8px 16px 0;padding:10px 14px;border-radius:16px;border:1px solid var(--div);background:var(--alt);color:var(--sub);font-size:16px}
+.tLimT{font-family:IT6;font-size:12.5px;line-height:18px;color:var(--sub)}
+.tLimL{font-family:IT5;font-size:12px;line-height:17px;color:var(--muted);margin-top:2px}
+.tHead{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--border)}
+.tHead .bk{width:36px;height:36px;border-radius:10px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:20px;box-sizing:border-box}
+.tHead .tt{font-family:IT7;font-size:16px}
+.gate{position:absolute;left:0;right:0;top:110px;bottom:40px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;gap:8px;text-align:center}
+.spin{width:36px;height:36px;border-radius:18px;border:4px solid var(--accent);border-right-color:transparent;box-sizing:border-box}
+.gT{font-family:IT7;font-size:20px;margin-top:16px}
+.gS{font-family:IT5;font-size:14px;line-height:20px;color:var(--sub)}
+.h1{font-family:IT7;font-size:22px;margin-bottom:6px}
+.sub2{font-family:IT5;font-size:14px;line-height:20px;color:var(--sub);margin-bottom:24px}
+.tc{padding:16px;margin-bottom:16px;border-radius:16px;border:1px solid var(--border);background:#fff}
+.tcHead{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.tcT{font-family:IT7;font-size:15px}
+.del{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:#fee2e2;border:1px solid var(--border);color:#dc2626;font-size:18px;box-sizing:border-box}
+.conf{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;margin-bottom:16px;background:var(--accentSoft);color:var(--accentInk);font-size:14px}
+.conf span:not(.i){font-family:monospace;font-size:12px;font-weight:600}
+.savB{display:flex;align-items:center;gap:6px;margin-bottom:16px;padding:8px 10px;border-radius:12px;background:var(--accentSoft);color:var(--accentInk);font-size:14px}
+.savB span:not(.i){flex:1;font-family:IT6;font-size:12px}
+.deal{border-radius:12px;padding:10px;margin-top:8px}
+.deal .dRow{display:flex;align-items:center;gap:5px;font-size:14px}
+.deal b{font-family:IT7;font-size:12px}
+.deal .dl{font-family:IT5;font-size:12px}
+.deal .dDet{font-family:IT5;font-size:12px;line-height:17px;margin-top:4px}
+.deal .dNote{font-family:IT5;font-size:11.5px;line-height:16px;margin-top:4px;font-style:italic}
+.tgl{display:flex;align-items:center;gap:8px;margin-top:8px}
+.tglL{font-family:IT6;font-size:13px}
+.tglH{font-family:IT5;font-size:11.5px;line-height:16px;color:var(--sub)}
+.sw{position:relative;width:36px;height:20px;flex-shrink:0}
+.sw .tr{position:absolute;left:2px;right:2px;top:3px;height:14px;border-radius:7px;background:#b9b9b9}
+.sw .th{position:absolute;top:0;left:0;width:20px;height:20px;border-radius:10px;background:#ececec;box-shadow:0 1px 3px rgba(0,0,0,.35)}
+.sw.on .tr{background:rgba(16,185,129,.5)}
+.sw.on .th{left:16px;background:var(--accent)}
+.fl{margin-bottom:16px}
+.flL{font-family:monospace;font-size:12px;font-weight:600;color:var(--sub);margin-bottom:6px;letter-spacing:.5px}
+.flI{padding:12px;border-radius:16px;border:1px solid var(--border);background:#fff;font-family:IT5;font-size:15px;display:flex;justify-content:space-between;align-items:center}
+.ghost{padding:12px;text-align:center;font-family:IT5;font-size:14px;color:var(--muted)}
+.btnS{flex:0 0 auto;white-space:nowrap;display:flex;align-items:center;justify-content:center;padding:14px;border-radius:16px;background:#fff;border:1px solid var(--border);font-family:IT6;font-size:15px}
+.btnP2{flex:0 0 auto;white-space:nowrap;min-width:90px;display:flex;align-items:center;justify-content:center;padding:14px;border-radius:16px;background:var(--accent);color:#fff;font-family:IT7;font-size:15px}
+.noteBox{display:flex;align-items:flex-start;gap:7px;margin-top:8px;padding:9px 12px;border-radius:12px;background:var(--alt);border:1px solid var(--div);color:var(--sub);font-size:16px;text-align:left;max-width:300px}
+.noteBox span:not(.i){flex:1;font-family:IT5;font-size:12.5px;line-height:18px}
+.dim{position:absolute;inset:0;background:rgba(0,0,0,.32);z-index:60}
+.dlg{position:absolute;left:24px;right:24px;top:270px;background:#fff;border-radius:4px;padding:22px 24px 8px;box-shadow:0 12px 32px rgba(0,0,0,.3);z-index:61}
+.dlg .dT{font-family:Roboto,Arial,sans-serif;font-weight:500;font-size:20px;color:#212121;margin-bottom:14px}
+.dlg .dM{font-family:Roboto,Arial,sans-serif;font-size:16px;line-height:22px;color:#757575}
+.dlg .dB{display:flex;justify-content:flex-end;gap:4px;margin-top:20px}
+.dlg .dB span{padding:10px 8px;font-family:Roboto,Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:.6px;color:#009688;text-transform:uppercase}
+.qpc{margin:16px 16px 0;padding:16px;border-radius:16px;border:1px solid var(--border);background:#fff}
+.qpcT{font-family:IT7;font-size:15px}
+.qpcS{font-family:IT5;font-size:12.5px;line-height:18px;color:var(--sub);margin:4px 0 8px}
+.qIn{padding:12px;border-radius:16px;border:1px solid var(--border);background:#fff;font-family:IT5;font-size:15px;min-height:20px}
+.qIn.focus{border-color:var(--accent)}
+.qIn .ph{color:var(--muted)}
+.caret{display:inline-block;width:2px;height:18px;background:var(--accent);vertical-align:-3px;margin-left:1px}
+.qOff{font-family:IT5;font-size:11px;color:var(--muted);margin-top:8px}
+.kb{position:absolute;left:0;right:0;bottom:0;height:262px;background:#e8eaed;padding:8px 6px 30px;box-sizing:border-box;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:6px;z-index:40}
+.kb div{background:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:Roboto,Arial,sans-serif;font-size:22px;color:#202124;box-shadow:0 1px 0 rgba(0,0,0,.15)}
+.kb div.fn{background:#d2d5da;font-size:18px}
+.kb div.hit{background:#c8ccd2}
+.claimedB{display:flex;align-items:center;gap:8px;padding:12px;background:var(--accentSoft);border-radius:12px;border:1px solid #bbf7d0;color:var(--accentInk)}
+.claimedB span:not(.i){flex:1;font-family:IT6;font-size:13px}
+.rPrev{margin:8px 0 12px 34px;border-radius:12px;overflow:hidden;background:#fff;border:1px solid var(--border)}
+.rPrev img{width:100%;display:block}
+.polL{margin-top:12px;padding-top:10px;border-top:1px solid var(--div);font-family:monospace;font-size:12px;color:var(--accent)}
+.stH{padding:14px 14px 10px}
+.stT{font-family:IT8;font-size:26px;letter-spacing:-.6px}
+.stS{font-family:IT4;font-size:13px;line-height:18px;color:var(--sub);margin-top:4px}
+.stSearch{display:flex;align-items:center;gap:10px;margin-top:12px;padding:10px 14px;border-radius:14px;border:1px solid var(--border);background:#fff;font-family:IT5;font-size:14px;color:var(--muted)}
+.cats{display:flex;gap:8px;margin-top:8px;white-space:nowrap;overflow:hidden}
+.cat{padding:7px 14px;border-radius:999px;border:1px solid var(--border);background:#fff;font-family:PJ6;font-size:11px;color:var(--sub);flex-shrink:0}
+.cat.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.stList{padding:12px;display:flex;flex-direction:column;gap:10px}
+.stCard{display:flex;align-items:flex-start;gap:14px;padding:14px;border-radius:14px;background:#fff;box-shadow:0 1px 3px rgba(13,61,40,.06),0 6px 16px rgba(13,61,40,.06)}
+.stCard.off{opacity:.62;box-shadow:none;border:1px solid var(--border)}
+.stIco{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mark{width:38px;height:38px;border-radius:9.5px;display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif;font-weight:900;letter-spacing:-.5px}
+.stName{font-family:IT7;font-size:15px;letter-spacing:-.3px}
+.stCard.off .stName{color:var(--sub)}
+.feat{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:999px;background:var(--accentSoft);color:var(--accentInk);font-family:PJ7;font-size:9px;letter-spacing:.6px;text-transform:uppercase;margin-left:6px;vertical-align:2px}
+.stCat{font-family:PJ6;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--sub);margin-top:1px}
+.stPol{font-family:IT4;font-size:12px;line-height:17px;color:var(--sub);margin-top:4px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.stCard.off .stPol{color:var(--muted)}
+.stVer{font-family:IT4;font-size:10px;color:var(--muted);margin-top:4px}
+.stDays{font-family:IT8;font-size:22px;letter-spacing:-.6px;color:var(--accent);text-align:right}
+.stDaysL{font-family:PJ6;font-size:10px;color:var(--sub);text-align:right}
+.soon{padding:3px 8px;border-radius:999px;background:var(--border);font-family:PJ7;font-size:9px;letter-spacing:.6px;text-transform:uppercase;color:var(--sub)}
+.subd{display:flex;align-items:center;gap:4px;margin-top:6px;font-family:PJ6;font-size:10px;color:var(--accent)}
+.disc{padding:14px;border-radius:14px;background:#fff;margin-top:8px;font-family:IT4;font-size:12px;line-height:18px;color:var(--sub);text-align:center}
+.mOver{position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:24px;z-index:60}
+.mSheet{width:100%;background:#fff;border-radius:18px;padding:22px;display:flex;flex-direction:column;align-items:center;box-sizing:border-box}
+.mT{font-family:IT8;font-size:18px;letter-spacing:-.4px;text-align:center;margin-top:14px}
+.mB{font-family:IT4;font-size:13.5px;line-height:19px;color:var(--sub);text-align:center;margin-top:8px}
+.mCta{align-self:stretch;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;padding:12px 18px;border-radius:12px;background:var(--accent);color:#fff;font-family:IT7;font-size:14px}
+.mX{margin-top:10px;padding:8px 12px;font-family:IT4;font-size:13px;color:var(--sub)}
+#cap{position:absolute;font-family:IT8;color:var(--ink);letter-spacing:-.4px;line-height:1.16;opacity:0}
+#cap b{color:var(--accent);font-family:IT8}
+</style></head>
+<body><div style="position:absolute;width:1px;height:1px;overflow:hidden;opacity:0"><img src="../sources/receipt-paper-masked.png"><img src="../sources/receipt-pdf-masked.png"></div><div id="chip"></div><div id="cap"></div><div id="device"><div id="phone"></div><div class="cut"></div></div>
+<script>document.write('<script src="timeline-' + (new URLSearchParams(location.search).get("film") || "kickstarter") + '.js"><\/script>');</script>
+<script>
+const LAYOUT = new URLSearchParams(location.search).get("layout") || "tall";
+const W = LAYOUT === "wide" ? 1920 : 1080, H = LAYOUT === "wide" ? 1080 : 1920;
+document.body.style.width = W + "px"; document.body.style.height = H + "px";
+const deviceEl = document.getElementById("device");
+deviceEl.style.transform = `scale(${LAYOUT === "wide" ? 1.3 : 1.86})`;
+Object.assign(deviceEl.style, LAYOUT === "wide" ? { left: "71%", top: "50%" } : { left: "50%", top: "60.5%" });
+const chipEl = document.getElementById("chip");
+Object.assign(chipEl.style, LAYOUT === "wide" ? { left: "150px", top: "250px", transformOrigin: "0 50%" } : { left: "50%", top: "34px" });
+const capEl = document.getElementById("cap");
+Object.assign(capEl.style, LAYOUT === "wide"
+  ? { left: "150px", top: "420px", width: "860px", fontSize: "62px" }
+  : { left: "60px", top: "168px", width: "960px", fontSize: "44px", textAlign: "center" });
+const TL = window.TIMELINE || null;  // absent: the v3 timeline plays as it is
+
+const GL = {"star":62869,"lock-closed-outline":62408,"notifications":62581,"chevron-up":62017,"pricetag":62698,"scan-outline":62810,"help-circle-outline":62334,"information-circle-outline":62361,"trending-down-outline":62969,"flame-outline":62228,"alert-circle-outline":61716,"bulb-outline":61889,"calendar-outline":61910,"backspace-outline":61781,"close-circle":62027,"home":62338,"receipt-outline":62735,"camera":61915,"storefront-outline":62888,"person-outline":62636,"search-outline":62819,"notifications-outline":62591,"checkmark-circle":61982,"time-outline":62942,"chevron-back":61993,"chevron-forward":62011,"images-outline":62354,"document-attach-outline":62124,"ticket-outline":62939,"add":61699,"flash-outline":62234,"close":62026,"pricetag-outline":62699,"language-outline":62378,"barcode-outline":61814,"menu":62545,"ellipsis-vertical":62164,"trash-outline":62966,"cart-outline":61955,"add-circle-outline":61701};
+const I = (n, st = "") => `<span class="i" style="${st}">${String.fromCodePoint(GL[n])}</span>`;
+const glyph = (w) => `<svg width="${w}" height="${w}" viewBox="0 0 48 48"><g fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 9 H35 V34 L32 37 L29 34 L26 37 L23 34 L20 37 L17 34 L14 37 L13 36 Z"/><path d="M17 16 L21.5 20.5 L25.5 17 L31 27"/><path d="M31 27 L27.4 26 M31 27 L31.7 23.2"/></g></svg>`;
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const ease = (x) => { x = clamp(x); return x < .5 ? 4*x*x*x : 1 - Math.pow(-2*x + 2, 3) / 2; };
+const m2 = (n) => n.toFixed(2);
+
+// ── Story data v3: real regular prices (prod price_points, 2026-11-02) and real Costco savings (prod savings, Oct 2026).
+const WH = "Laval, QC · #505";                         // the shopper's saved (default) warehouse
+const BC = "Anjou Business Centre, QC · #1447";        // a real Costco Business Centre (prod warehouses)
+const GROC = { wh: BC, date: "Oct 20, 2026", watch: "Nov 19, 2026", sub: 485.35, tax: 11.38, total: 496.73, items: [
+  ["may", "Heinz Mayonnaise", "1345567", 79.99],
+  ["mcc", "McCafé Autumn Blend K-Cup Coffee Pods", "1477487", 54.99],
+  ["sal", "Kirkland Signature Atlantic Salmon", "46340", 39.99],
+  ["pat", "Kirkland Signature Frozen Lean Beef Patties", "50846", 35.99],
+  ["evi", "Evian Carbonated Natural Spring Water, 12 × 750 mL", "1752222", 31.99],
+  ["mas", "Saputo Mascarpone Cheese", "1924842", 29.99],
+  ["chb", "Kirkland Signature Frozen Chicken Breast Fillets", "378381", 29.99],
+  ["chk", "Kirkland Signature Breaded Chicken Chunks", "1736931", 26.99],
+  ["tur", "Turtles Classic Recipe Chocolates", "1331706", 24.99],
+  ["bac", "Kirkland Signature Sliced Bacon", "104847", 23.99],
+  ["jas", "Kirkland Signature Thai Hom Mali Jasmine Rice", "382153", 23.49],
+  ["par", "Kirkland Signature Shredded Parmigiano Reggiano", "1349687", 21.99],
+  ["alm", "Kirkland Signature Whole Almonds", "284601", 21.99],
+  ["hon", "Kirkland Signature 100% Pure Liquid Honey", "1149163", 19.99],
+  ["gra", "Quaker Yogourt Granola Bars", "1788908", 18.99],
+]};
+const TVR = { wh: WH, date: "Oct 14, 2026", watch: "Nov 13, 2026", sub: 1808.24, tax: 270.78, total: 2079.02, items: [
+  ["tv", "Samsung QN80H Series 4K UHD Neo QLED TV", "5708165", 1808.24],
+]};
+const NAME = Object.fromEntries([...GROC.items, ...TVR.items].map(([k, n, s, p]) => [k, { n, p, groc: GROC.items.some((x) => x[0] === k) }]));
+const SAVE = { may: 16, mcc: 12, evi: 7, gra: 7, tur: 5, tv: 500 };
+const URG = { green: ["#dcfce7", "#15803d"], yellow: ["#fef3c7", "#92400e"], red: ["#fee2e2", "#991b1b"] };
+// Claim deadlines on the day each alert arrives (saving end, else the 30-day window), real saving dates.
+const STATES = {
+  oct26: { may: ["yellow", "Claim by Nov 8 · 13d left"], mcc: ["red", "Claim by Nov 1 · 6d left"], evi: ["yellow", "Claim by Nov 8 · 13d left"], gra: ["yellow", "Claim by Nov 8 · 13d left"], tur: ["red", "Claim by Nov 1 · 6d left"] },
+  oct31pre: { may: ["red", "Claim by Nov 8 · 8d left"], evi: ["red", "Claim by Nov 8 · 8d left"], gra: ["red", "Claim by Nov 8 · 8d left"], mcc: ["red", "Claim by Nov 1 · 1d left"], tur: ["red", "Claim by Nov 1 · 1d left"] },
+  oct31: { tv: ["red", "Claim by Nov 5 · 5d left"], may: ["red", "Claim by Nov 8 · 8d left"], evi: ["red", "Claim by Nov 8 · 8d left"], gra: ["red", "Claim by Nov 8 · 8d left"], mcc: ["red", "Claim by Nov 1 · 1d left"], tur: ["red", "Claim by Nov 1 · 1d left"] },
+};
+let CLOCK = "9:41";
+
+function status(dark) {
+  return `<div class="status ${dark ? "dark" : ""}"><span>${CLOCK}</span><span style="display:flex;gap:5px;align-items:center">
+    <svg width="15" height="11" viewBox="0 0 15 11"><path d="M1 10h2V7H1zM5 10h2V5H5zM9 10h2V3H9zM13 10h2V1h-2z" fill="currentColor"/></svg>
+    <svg width="15" height="11" viewBox="0 0 16 12"><path d="M8 11.5 15.5 3.6A11 11 0 0 0 .5 3.6z" fill="currentColor"/></svg>
+    <svg width="22" height="11" viewBox="0 0 22 11"><rect x=".5" y=".5" width="18" height="10" rx="2.5" fill="none" stroke="currentColor"/><rect x="2" y="2" width="13" height="7" rx="1.2" fill="currentColor"/><rect x="19.5" y="3.5" width="1.5" height="4" rx=".7" fill="currentColor"/></svg></span></div>`;
+}
+const nav = (dark) => `<div class="navpill ${dark ? "dark" : ""}"></div>`;
+const tabbar = (on = "Home") => `<div class="tabbar"><div class="tab ${on === "Home" ? "on" : ""}">${I("home")}<span>Home</span></div><div class="tab">${I("receipt-outline")}<span>Tracking</span></div>
+  <div class="fab">${I("camera")}</div><div class="tab ${on === "Stores" ? "on" : ""}">${I("storefront-outline")}<span>Stores</span></div><div class="tab">${I("person-outline")}<span>Profile</span></div></div>`;
+const topRow = (alerts) => `<div class="topRow"><div class="lockup"><div class="tile">${glyph(17)}</div><div class="word"><span>Price</span><span style="color:var(--accent)">Back</span></div></div>
+  <div style="display:flex;gap:6px"><div class="iconBtn">${I("search-outline")}</div><div class="iconBtn">${I("notifications-outline")}${alerts ? `<div class="badge">${alerts}</div>` : ""}</div></div></div>`;
+const savedHero = (spent) => `<div class="caps" style="color:rgba(255,255,255,.55)">Total saved · all-time</div>
+  <div style="display:flex;align-items:baseline;margin-top:4px"><span style="font-family:IT7;font-size:22px;color:rgba(255,255,255,.85);letter-spacing:-1px">$</span><span style="font-family:IT8;font-size:40px;letter-spacing:-1.8px;line-height:44px">0</span><span style="font-family:IT8;font-size:26px;color:rgba(255,255,255,.85)">.00</span></div>
+  ${spent ? `<div style="display:flex;align-items:center;gap:5px;margin-top:8px;font-family:PJ6;font-size:11px;color:rgba(255,255,255,.62)">${I("cart-outline", "font-size:11px;color:rgba(255,255,255,.5)")}<span>Spent in 2026 · $${m2(spent)} · all stores</span></div>` : ""}`;
+
+// Home (HomeScreen.js). tracked = watched product keys; state = which real drops are live.
+function home({ tracked = [], state = null } = {}) {
+  if (!tracked.length) {
+    return `<div class="screen">${status()}<div class="body">${topRow(0)}
+      <div class="hero">${savedHero(0)}</div>
+      <div class="onboard"><span class="i" style="font-size:36px;color:var(--accent);align-self:center">${String.fromCodePoint(GL["receipt-outline"])}</span><div class="obT">Welcome to PriceBack!</div><div class="obB">Here's how it works in 3 steps:</div><div class="obBtn">${I("camera", "font-size:18px")}<span>Scan Your First Receipt</span></div></div>
+      <div class="section"><div class="secHead"><div class="secTitle">Products you're tracking</div></div><div class="empty">No tracked products yet — scan a receipt to start</div></div>
+    </div>${tabbar()}${nav()}</div>`;
+  }
+  const drops = state ? Object.keys(STATES[state]) : [];
+  const amt = drops.reduce((s, k) => s + SAVE[k], 0);
+  const order = [...tracked].sort((a, b) => {
+    const da = drops.includes(a), db = drops.includes(b);
+    if (da !== db) return da ? -1 : 1;
+    if (da && db) return SAVE[b] - SAVE[a];
+    return (NAME[a].groc ? 0 : 1) - (NAME[b].groc ? 0 : 1);
+  }).slice(0, 6);
+  const rows = order.map((k) => {
+    const d = drops.includes(k) ? STATES[state][k] : null;
+    const pct = d ? Math.round(SAVE[k] / NAME[k].p * 100) : null;
+    return `<div class="row"><div class="sbadge"><div class="co">CO</div></div><div style="flex:1;min-width:0"><div class="iname">${NAME[k].n}</div>
+      <div class="chips">${d ? `<span class="chipS" style="background:var(--accentSoft);color:var(--accentInk)">−${pct}%</span><span class="chipD" style="background:${URG[d[0]][0]};color:${URG[d[0]][1]}">${d[1]}</span>` : ""}<span class="place">${NAME[k].groc ? "Anjou Business Centre #1447" : "Laval #505"}</span></div></div>
+      ${d ? `<div class="right"><div class="sav">+$${m2(SAVE[k])}</div><div class="claim">Claim</div></div>` : `<div class="right"><div class="price">$${m2(NAME[k].p)}</div></div>`}</div>`;
+  }).join("");
+  const n = drops.length, recs = new Set(drops.map((k) => NAME[k].groc)).size;
+  const minDays = n ? Math.min(...drops.map((k) => +STATES[state][k][1].match(/(\d+)d left/)[1])) : 0;
+  const hero = n
+    ? `<div class="dots"><i class="on"></i><i></i></div><div class="caps" style="color:var(--lime)">To claim</div>
+       <div class="heroAmt"><span class="d">$</span><span class="n">${Math.floor(amt)}</span><span class="c">.${m2(amt).split(".")[1]}</span></div>
+       <div class="heroLine">${I("checkmark-circle", "font-size:15px;color:var(--lime)")}<span>${n === 1 ? "1 price drop" : `${n} price drops`} · ${recs === 1 ? "on 1 receipt" : `on ${recs} receipts`}</span></div>
+       <div class="heroFoot">${I("time-outline", "font-size:13px")}<span><b style="color:var(--lime);font-family:IT8">${minDays}d left</b> · Tap for more details</span></div>`
+    : savedHero(GROC.total + (tracked.includes("tv") ? TVR.total : 0));
+  const sub = n ? `${tracked.length} tracked · ${n} ready to claim · $${m2(amt)} pending` : `Watching ${tracked.length} products for price drops`;
+  return `<div class="screen">${status()}<div class="body">${topRow(n)}
+    <div class="hero">${hero}<svg width="100%" height="28" viewBox="0 0 300 28" preserveAspectRatio="none" style="margin-top:12px"><path d="M0 24 C40 22 60 20 90 21 S150 14 180 15 S240 8 300 4" fill="none" stroke="rgba(167,243,208,.7)" stroke-width="2"/></svg></div>
+    <div class="section"><div class="secHead"><div><div class="secTitle">Products you're tracking</div><div class="secSub">${sub}</div></div><div class="secAct">See all → (${tracked.length}) ›</div></div>
+      <div class="list">${rows}</div></div></div>${tabbar()}${nav()}</div>`;
+}
+
+function scanIntro() {
+  return `<div class="screen">${status()}<div class="body">
+    <div class="sHead"><div class="back">${I("chevron-back")}</div><div class="sTitle">Scan receipt</div><div class="cancel">Cancel</div></div>
+    <div class="sBody">
+      <div class="track"><div class="seg on">${I("receipt-outline")}<span>Receipt</span></div><div class="seg">${I("pricetag-outline")}<span>Price tag</span></div><div class="seg">${I("language-outline")}<span>Price translator</span></div><div class="seg">${I("barcode-outline")}<span>Price Checker</span></div></div>
+      <div class="credits"><div class="cIcon">${I("ticket-outline")}</div><div style="flex:1"><div class="cBig">Unlimited scans</div><div class="bar"><i></i></div></div>${I("chevron-forward", "font-size:15px;color:var(--muted)")}</div>
+      <div class="capture"><div class="cap">${I("receipt-outline")}<div class="plus">${I("add")}</div></div><div class="capL">Scan a receipt</div><div class="capS">Opens the document scanner</div></div>
+      <div class="acts"><div class="act">${I("images-outline")}<span>Photo library</span></div><div class="act">${I("document-attach-outline")}<span>Upload file</span></div></div>
+    </div></div>${nav()}</div>`;
+}
+
+function docScanner(t0, t) {
+  const found = clamp((t - t0 - .6) / .4);
+  return `<div class="screen cam">${status(true)}
+    <img class="camImg" src="../sources/receipt-paper-masked.png" style="transform:translate(-50%,-50%) rotate(${(-1.1 + Math.sin(t * 2.2) * .35).toFixed(2)}deg) scale(${(1 + Math.sin(t * 1.7) * .006).toFixed(4)})">
+    <svg style="position:absolute;left:0;top:0;opacity:${found}" width="360" height="760"><polygon points="35,160 325,153 330,550 40,557" fill="rgba(26,115,232,.12)" stroke="#8ab4f8" stroke-width="2.5"/></svg>
+    <div class="camTop"><span>${I("close", "font-size:22px")}</span><span style="opacity:.9">Auto capture</span><span>${I("flash-outline", "font-size:20px")}</span></div>
+    <div class="camHint" style="opacity:${1 - found}">Position the document in view</div>
+    <div class="camBottom"><div class="shutterO"><div class="shutterI"></div></div></div>${nav(true)}</div>`;
+}
+
+function scanning(t) {
+  const sweep = (t % 1.6) / 1.6, breathe = (Math.sin(t * 3.4) + 1) / 2;
+  const d = (i) => .35 + .65 * Math.max(0, Math.sin(t * 6 - i));
+  return `<div class="screen">${status()}<div class="body">
+    <div class="sHead"><div class="back">${I("chevron-back")}</div><div class="sTitle">Scan receipt</div><div class="cancel">Cancel</div></div>
+    <div class="scanWrap"><div class="stage"><div class="glow" style="opacity:${(.35 + .35 * breathe).toFixed(2)};transform:scale(${(1 + .16 * breathe).toFixed(3)})"></div>
+      <div class="stile">${glyph(56)}<div class="sline" style="transform:translateY(${(sweep * 82).toFixed(1)}px);opacity:${sweep < .08 ? sweep / .08 : sweep > .92 ? (1 - sweep) / .08 : 1}"></div></div></div>
+      <div><div class="stitle">Scanning receipt…</div><div class="ssub">Processing receipt…</div></div>
+      <div class="sdots">${[0, 1, 2].map((i) => `<i style="opacity:${d(i).toFixed(2)}"></i>`).join("")}</div></div></div>${nav()}</div>`;
+}
+
+// Confirm receipt (ScanScreen.js step 1). `scroll` is a 0..1 fraction of the content's overflow.
+function confirm(R, frac) {
+  const items = R.items.map(([k, n, sku, p]) => `<div class="irow"><div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px">
+      <div class="iN">${n}</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:4px"><span class="skuTag">SKU</span><span class="skuV">${sku}</span></div>
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px"><span class="qtyL">QTY</span><span class="qtyV">1</span><span style="color:var(--muted);font-family:PJ6;font-size:11px">·</span><span class="qtyL">$</span><span class="qtyV">${m2(p)}</span></div>
+      <div class="lAct">${I("pricetag-outline", "font-size:13px")}<span>+ Add discount</span></div></div>
+      <div class="rm">${I("close")}</div></div>`).join("");
+  return `<div class="screen">${status()}<div class="body">
+    <div style="position:relative;z-index:2"><div class="sHead"><div class="back">${I("chevron-back")}</div><div class="sTitle">Confirm receipt</div><div class="cancel">Cancel</div></div>
+    <div class="progress"><i></i><i></i></div></div>
+    <div class="scroll" data-frac="${frac}" style="top:70px"><div class="content">
+      <div class="rHero"><div class="rEye">STEP 2 OF 2 · CONFIRM DETAILS</div><div class="rTitle">Make sure this matches your receipt</div>
+        <div class="rStore"><div class="rBadge"><div class="co" style="width:26px;height:26px;font-size:11px">CO</div></div><div style="flex:1"><div class="rName">Costco Wholesale</div><div class="rSub">${R.date} · 30-day window</div></div><div class="rChange">Change ›</div></div>
+        <div class="rSeg"><span>Online</span><span class="on">Warehouse Purchase</span></div></div>
+      <div class="wh"><div class="whI">${I("storefront-outline")}</div><div style="flex:1;min-width:0"><div class="whL">${R.wh}</div><div class="whS">Tap to change the warehouse for this receipt</div></div><div class="whC"><span>Change</span>${I("chevron-forward", "font-size:15px")}</div></div>
+      <div class="card"><div class="cLabel">Items (${R.items.length})</div>${items}<div class="addItem">${I("add-circle-outline", "font-size:18px")}<span>+ Add Item</span></div></div>
+      <div class="card"><div class="cLabel">Summary</div>
+        <div class="tRow" style="border-top:0;margin-top:6px"><span>Subtotal</span><b>$${m2(R.sub)}</b></div>
+        <div class="tRow"><span>Tax (HST/GST)</span><b>$${m2(R.tax)}</b></div>
+        <div class="tRow"><span style="font-family:IT7;font-size:16px;color:var(--ink)">Total</span><b style="font-family:IT8;font-size:22px;letter-spacing:-.6px">$${m2(R.total)}</b></div></div>
+      <div class="card" style="padding:4px 14px"><div class="meta"><span class="metaK">Purchase Date</span><span class="metaV">${R.date}</span></div><div class="meta"><span class="metaK">Watch Until</span><span class="metaV">${R.watch}</span></div></div>
+      <div class="btnP">Start Tracking 🚀</div><div style="height:30px"></div>
+    </div></div></div>${nav()}</div>`;
+}
+
+function filesPicker() {
+  return `<div class="screen files">${status()}
+    <div class="fTop">${I("menu", "font-size:22px")}<span style="flex:1;font-size:19px">Recent</span>${I("search-outline", "font-size:20px")}${I("ellipsis-vertical", "font-size:20px")}</div>
+    <div style="position:absolute;left:16px;top:104px"><span class="fChip">Images</span><span class="fChip">Documents</span><span class="fChip">Downloads</span></div>
+    <div class="fGrid"><div class="fItem"><div class="fThumb"><img src="../sources/receipt-pdf-masked.png"></div><div class="fName">Costco receipt.pdf<div class="fMeta">162 kB · Oct 14</div></div></div>
+      <div class="fItem" style="opacity:.55"><div class="fThumb" style="background:#e9eef6"></div><div class="fName">Statement.pdf<div class="fMeta">88 kB · Oct 2</div></div></div></div>${nav()}</div>`;
+}
+
+const notif = ({ title, body }) => `<div class="notif"><div class="nHead"><div class="nIcon">${glyph(13)}</div><span>PriceBack</span><span>·</span><span>now</span></div><div class="nTitle">${title}</div><div class="nBody">${body}</div></div>`;
+
+// Receipt detail (DetailScreen.js) for the TV receipt (PDF, bought Oct 14), opened from its alert on Oct 31.
+function detail(frac, { receipt = 0, claimed = false, alert = 0 } = {}) {
+  const step = (n, s) => `<div class="step"><div class="sn">${n}</div><div class="st">${s}</div></div>`;
+  return `<div class="screen">${status()}<div class="body">
+    <div class="sHead" style="position:relative;z-index:2"><div class="back">${I("chevron-back")}</div><div class="sTitle">Price drop</div><div class="back" style="color:#dc2626;font-size:16px">${I("trash-outline")}</div></div>
+    <div class="scroll" data-frac="${frac}" style="top:58px"><div class="content" style="gap:12px">
+      <div class="dHero"><div style="display:flex;align-items:center;gap:10px"><div style="width:38px;height:38px;border-radius:10px;background:#E31837;display:flex;align-items:center;justify-content:center"><div class="co" style="width:26px;height:26px;font-size:11px">CO</div></div>
+        <div style="flex:1;min-width:0"><div class="dStore">${WH}</div><div class="dEye">${TVR.date.toUpperCase()}</div></div></div>
+        <div style="display:flex;align-items:flex-end;margin-top:18px"><div><div class="dEye">PRICE DROPS</div><div class="dNum">1</div></div><div style="flex:1"></div><div style="text-align:right"><div class="dEye">TOTAL PRICE DROP</div><div class="dAmt">+$500.00</div></div></div></div>
+      <div style="display:flex;gap:10px"><div class="cmp" style="background:#fff"><div class="cmpL">You paid</div><div class="cmpA" style="color:var(--muted);text-decoration:line-through">$1808.24</div><div class="cmpS">${TVR.date}</div></div>
+        <div class="cmp" style="background:var(--accent)"><div class="cmpL" style="color:rgba(255,255,255,.75)">Now</div><div class="cmpA" style="color:#fff">$1308.24</div><div class="cmpS" style="color:rgba(255,255,255,.85)">checked recently</div></div></div>
+      ${claimed ? `<div class="claimedB">${I("checkmark-circle", "font-size:18px")}<span>Refund claimed — $500.00 saved</span></div>`
+        : `<div style="display:flex;gap:8px"><div class="sec2">✅ Mark as Claimed</div><div class="sec2" style="color:var(--sub);border-color:var(--div)">Claim instructions</div></div>`}
+      <div class="card" style="padding:8px 16px">
+        <div class="drow"><span>Subtotal</span><b>$${m2(TVR.sub)}</b></div><div class="drow"><span>Tax (HST/GST)</span><b>$${m2(TVR.tax)}</b></div>
+        <div class="drow"><span style="color:var(--ink);font-family:PJ7">Total</span><b style="font-family:IT7;font-size:16px">$${m2(TVR.total)} CAD</b></div>
+        <div class="drow"><span>Purchase Date</span><b>${TVR.date}</b></div><div class="drow"><span>Scanned on</span><b>Oct 31, 2026</b></div>
+        <div class="drow"><span>Adjustment Window</span><b>30 days</b></div><div class="drow"><span>Receipt window ends</span><b style="color:#991b1b">${TVR.watch}</b></div>
+        <div class="drow"><span>Receipt window: days left</span><b style="color:#991b1b">13 days</b></div></div>
+      <div class="card" style="padding:16px"><div class="sLabel">How to claim at a Costco warehouse</div>
+        ${step(1, "Go to the Returns counter at any Costco warehouse before the deadline, while the lower price is still running.")}
+        ${step(2, "Show this receipt from the PriceBack app (tap “Show my receipt”), or your paper copy, and ask for a price adjustment.")}
+        <div class="showR">${I(receipt > 0 ? "chevron-up" : "receipt-outline", "font-size:15px")}<span>${receipt > 0 ? "Hide my receipt" : "Show my receipt"}</span></div>
+        ${receipt > 0 ? `<div class="rPrev" style="height:${(520 * receipt).toFixed(0)}px"><img src="../sources/receipt-pdf-masked.png"></div>` : ""}
+        ${step(3, "Costco refunds the difference to your original payment method. The money comes from Costco, not from PriceBack.")}
+        ${step(4, "Once Costco has refunded you, tap “Claimed” so we add it to your savings.")}
+        <div class="polL">View Official Policy →</div></div>
+      <div style="height:20px"></div></div></div></div>${alert ? `<div class="dim" style="opacity:${alert.toFixed(2)}"></div><div class="dlg" style="opacity:${alert.toFixed(2)};transform:scale(${(.94 + .06 * alert).toFixed(3)})">
+      <div class="dT">Mark as Claimed?</div><div class="dM">This will record $500.00 in savings and remove the price alert.</div>
+      <div class="dB"><span>Cancel</span><span class="yes">Yes, Claimed! ✅</span></div></div>` : ""}${nav()}</div>`;
+}
+
+// Costco profile (CostcoProfileScreen.js): the saved, default warehouse + membership.
+function costcoProfile() {
+  return `<div class="screen">${status()}<div class="body">
+    <div class="subH"><div class="back" style="border:0;background:transparent;font-size:22px">${I("chevron-back")}</div><div class="t">Costco profile</div><div style="width:36px"></div></div>
+    <div class="cpBody"><div class="cpIcon">${I("storefront-outline")}</div><div class="cpT">Your Costco details</div>
+      <div class="cpL">Your usual warehouse and membership type help us find the price drops that apply to you, including Executive-only offers.</div>
+      <div class="cpLab">Preferred warehouse</div>
+      <div class="wh"><div class="whI">${I("storefront-outline")}</div><div style="flex:1;min-width:0"><div class="whL">${WH}</div><div class="whS">The Costco you shop at most</div></div><div class="whC"><span>Change</span>${I("chevron-forward", "font-size:15px")}</div></div>
+      <div class="cpLab">Costco membership</div>
+      <div class="rad"><div class="rd"></div><div><div class="radL">Gold Star</div><div class="radS">Standard membership</div></div></div>
+      <div class="rad on"><div class="rd"></div><div><div class="radL">Executive</div><div class="radS">Unlocks Executive-only price drops</div></div></div>
+      <div class="btnP" style="margin-top:32px">Save</div><div style="text-align:center;padding:14px;font-family:IT6;font-size:14px;color:var(--sub)">Not now</div>
+    </div></div>${nav()}</div>`;
+}
+
+const splash = () => `<div class="screen splash">${status()}<div style="width:96px;height:96px;border-radius:21.5px;background:linear-gradient(160deg,#10b981,#047857);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(16,185,129,.32)">${glyph(60)}</div><div style="font-family:IT8;font-size:30px;letter-spacing:-.75px"><span>Price</span><span style="color:var(--accent)">Back</span></div>${nav()}</div>`;
+
+// ── Shared pieces of the scan modes (components/ScanTemplate.js, ScanModeSwitcher.js)
+const MODES = [["receipt", "receipt-outline", "Receipt"], ["tag", "pricetag-outline", "Price tag"],
+  ["translator", "language-outline", "Price translator"], ["barcode", "barcode-outline", "Price Checker"]];
+const modeTrack = (on) => `<div class="track">${MODES.map(([k, ic, l]) => `<div class="seg ${k === on ? "on" : ""}">${I(ic)}<span>${l}</span></div>`).join("")}</div>`;
+const scanHead = (title) => `<div class="sHead"><div class="back">${I("chevron-back")}</div><div class="sTitle">${title}</div><div class="cancel">Cancel</div></div>`;
+// DealBadge.js: tier colours + translated labels (priceTag.deal.* / priceTag.dealDetail.*)
+const TIERS = { normal: ["#F3F4F6", "#6B7280", "pricetag-outline", "Regular"], good: ["#DBEAFE", "#1D4ED8", "trending-down-outline", "Good deal"], best: ["#D1FAE5", "#065F46", "flame-outline", "Best price"] };
+const SIGNALS = {
+  regular: ["Regular price", "Costco's standard everyday price — still good value."],
+  instant_savings: ["Instant savings", "This item is on sale right now — the instant savings make it a good deal."],
+  markdown_97: ["Corporate markdown", "The price ends in .97 — Costco head office officially marked this down. Limited time, so buy now."],
+  manager_markdown_00: ["Manager markdown", "The price ends in .00 — the store manager wants this gone. Returns, floor models or almost no stock left. Grab it."],
+  clearance_88: ["Store clearance", "The price ends in .88 — store-level clearance or lucky-number pricing. A deep discount."],
+  manufacturer_promo: ["Manufacturer promo", "The price ends in .X9 — a special offer from the brand, not from Costco. Usually a trial run or below regular retail."],
+};
+// shared/priceSignal.js decodePriceEnding, verbatim logic
+function decodeEnding(n) {
+  const c = Math.round(n * 100) % 100;
+  if (c === 97) return ["markdown_97", "good"];
+  if (c === 0) return ["manager_markdown_00", "best"];
+  if (c === 88) return ["clearance_88", "best"];
+  if (c % 10 === 9 && c !== 99) return ["manufacturer_promo", "good"];
+  return ["regular", "normal"];
+}
+function dealBadge(signal, tier, star = false) {
+  const [bg, ink, icon, tierText] = TIERS[tier];
+  const [label, detail] = SIGNALS[signal];
+  return `<div class="deal" style="background:${bg};color:${ink}"><div class="dRow">${I(icon)}<b>${tierText}</b><span class="dl"> · ${label}</span></div>
+    <div class="dDet">${detail}</div>${star ? `<div class="dNote">★ Death Star — item discontinuing. Stock up if you love it.</div>` : ""}</div>`;
+}
+const toggle = (on) => `<div class="tgl"><div style="flex:1"><div class="tglL">Star (*) in the corner of the tag</div><div class="tglH">A star means this item won't be restocked once it's gone.</div></div><div class="sw ${on ? "on" : ""}"><i class="tr"></i><i class="th"></i></div></div>`;
+
+// ── Film: scan a price tag (PriceTagScanScreen.js). The tag is a real Costco shelf tag photographed in a
+// warehouse (Priceback __tests__/fixtures/price-tags/PXL_20260527_193305863.jpg); every value is printed on it.
+const TAG = { sku: "1455423", brand: "JAMIESON", product: "GENTLE IRON 28 MG 250 CAPSULES", orig: "19.99", sav: "4.00", exp: "June 7, 2026", fin: "15.99" };
+const TAG_WH = "Laval · #505";   // formatWarehouseName(): the shopper's default warehouse for logging tags
+const tagHead = () => `<div class="tHead"><div class="bk">${I("chevron-back")}</div><div class="tt">Scan a price tag</div><div style="width:36px"></div></div>`;
+function tagIntro(t) {
+  const sway = `translate(-50%,-50%) translate(-7%,21%) translate(${(Math.sin(t * 1.3) * 3).toFixed(1)}px,${(Math.cos(t * 1.1) * 2).toFixed(1)}px)`;
+  const corners = [["top:0;left:0", "border-top-width:3px;border-left-width:3px"], ["top:0;right:0", "border-top-width:3px;border-right-width:3px"],
+    ["bottom:0;left:0", "border-bottom-width:3px;border-left-width:3px"], ["bottom:0;right:0", "border-bottom-width:3px;border-right-width:3px"]];
+  return `<div class="screen">${status()}<div class="body">${scanHead("Scan price tag")}
+    <div class="sBody">${modeTrack("tag")}
+      <div class="wh"><div class="whI">${I("storefront-outline")}</div><div style="flex:1;min-width:0"><div class="whL">Laval, QC · #505</div><div class="whS">Default warehouse for logging price tags</div></div><div class="whC"><span>Change</span>${I("chevron-forward", "font-size:15px")}</div></div>
+      <div class="howto"><div class="hi">${I("bulb-outline")}</div><span>Scan a Costco shelf tag with the SKU and price in frame. Your scan feeds the live price pool for your province.</span></div>
+      <div class="vf"><img src="../sources/tag-jamieson-viewfinder.jpg" style="transform:${sway}">
+        <div class="vfRet">${corners.map(([pos, b]) => `<i class="br" style="${pos};${b}"></i>`).join("")}</div>
+        <div class="live"><i></i>LIVE</div><div class="vfHint"><span>Keep the SKU and price sharp</span></div><div class="vfShut"><i></i></div></div>
+      <div class="acts"><div class="act">${I("images-outline")}<span>Photo library</span></div><div class="act">${I("help-circle-outline")}<span>Framing tips</span></div></div>
+    </div>
+    <div class="tNote">${I("pricetag")}<span>Only SAVINGS tags are kept and earn credit · Capped weekly · Regular-price and expired tags are not added</span></div>
+    <div class="tLimit">${I("scan-outline")}<div style="flex:1"><div class="tLimT">Up to 5 price-tag scans per day and 15 per week, so scanning stays available for everyone.</div><div class="tLimL">Left today: 5 · Left this week: 15</div></div></div>
+  </div>${nav()}</div>`;
+}
+function tagReading(t) {
+  return `<div class="screen">${status()}<div class="body">${tagHead()}<div class="gate"><div class="spin" style="transform:rotate(${((t * 400) % 360).toFixed(0)}deg)"></div>
+    <div class="gT">Reading the tag…</div><div class="gS">Pulling SKU, brand, product, prices, and any instant savings from the photo.</div></div></div>${nav()}</div>`;
+}
+function tagReview(frac, alert) {
+  const field = (l, v, extra = "") => `<div class="fl"><div class="flL">${l}</div><div class="flI" ${extra}>${v}</div></div>`;
+  const dlg = alert ? `<div class="dim" style="opacity:${alert.toFixed(2)}"></div><div class="dlg" style="opacity:${alert.toFixed(2)};transform:scale(${(.94 + .06 * alert).toFixed(3)})">
+      <div class="dT">Confirm your warehouse</div><div class="dM">These prices will be shared for Laval · #505. Is that the warehouse you're in?</div>
+      <div class="dB"><span>Change warehouse</span><span class="yes">Yes — Laval · #505</span></div></div>` : "";
+  return `<div class="screen">${status()}<div class="body">${tagHead()}
+    <div style="position:absolute;left:0;right:0;top:${'90px'};bottom:0;overflow:hidden"><div class="scroll" data-frac="${frac.toFixed(3)}" style="padding:16px">
+      <div class="h1">Confirm the price</div><div class="sub2">Double-check the values pulled from the tag for ${TAG_WH}, then submit.</div>
+      <div class="tc"><div class="tcHead"><div class="tcT">Tag details</div><div class="del">${I("trash-outline")}</div></div>
+        <div class="conf">${I("checkmark-circle")}<span>Scan looks clean</span></div>
+        <div class="savB">${I("pricetag")}<span>Savings tag — can earn credit once verified</span></div>
+        ${dealBadge("instant_savings", "good")}${toggle(false)}<div style="height:16px"></div>
+        ${field("SKU", TAG.sku)}${field("Brand", TAG.brand)}${field("Product", TAG.product, 'style="min-height:60px;align-items:flex-start;box-sizing:border-box"')}
+        ${field("Original price (CAD)", TAG.orig)}${field("Instant savings (CAD)", TAG.sav)}
+        ${field("Savings expiry", `<span>${TAG.exp}</span>${I("calendar-outline", "font-size:18px;color:var(--sub)")}`)}${field("Final price after savings (CAD)", TAG.fin)}
+      </div>
+      <div class="btnP">Submit observation</div><div class="ghost">Re-scan tag</div><div style="height:30px"></div>
+    </div></div></div>${dlg}${nav()}</div>`;
+}
+function tagDone() {
+  return `<div class="screen">${status()}<div class="body">${tagHead()}<div class="gate" style="justify-content:center">
+    ${I("checkmark-circle", "font-size:64px;color:var(--accent)")}<div class="gT">Thanks for contributing!</div>
+    <div class="gS">Your observation has been added to the crowdsourced pool for ${TAG_WH}.</div>
+    <div style="align-self:stretch;max-width:320px;margin:0 auto;text-align:left">${dealBadge("instant_savings", "good")}</div>
+    <div class="noteBox">${I("information-circle-outline")}<span>Saved — pending crowd verification. You'll earn credit once enough shoppers confirm this savings.</span></div>
+    <div style="display:flex;gap:8px;margin-top:16px"><div class="btnS">Scan another</div><div class="btnP2">Done</div></div>
+  </div></div>${nav()}</div>`;
+}
+
+// ── Film: the price translator (PriceTranslatorScreen.js + DealBadge.js QuickPriceCheck). Offline: no camera,
+// no network; the verdict is decoded on the phone from the price ending.
+const KEYS = ["1", "2", "3", "-", "4", "5", "6", "␣", "7", "8", "9", "⌫", ",", "0", ".", "→"];
+function translator({ price = "", star = false, focus = false, kb = 0, hit = null }) {
+  const n = parseFloat(price);
+  const sig = price && n > 0 ? decodeEnding(n) : null;
+  const keyboard = kb > 0 ? `<div class="kb" style="transform:translateY(${((1 - kb) * 262).toFixed(1)}px)">${KEYS.map((k) =>
+    `<div class="${["-", "␣", "⌫", "→", ","].includes(k) ? "fn" : ""} ${k === hit ? "hit" : ""}">${k === "⌫" ? I("backspace-outline", "font-size:20px") : k}</div>`).join("")}</div>` : "";
+  return `<div class="screen">${status()}<div class="body">${scanHead("Price translator")}
+    <div style="padding:14px 14px 0">${modeTrack("translator")}</div>
+    <div class="qpc"><div class="dRow" style="display:flex;align-items:center;gap:5px">${I("language-outline", "font-size:18px;color:var(--accent)")}<span class="qpcT">Price tag translator</span></div>
+      <div class="qpcS">Is it a good deal? Type the price you see on the tag — the ending tells you.</div>
+      <div class="qIn ${focus ? "focus" : ""}">${price ? price : `<span class="ph">Price on the tag, e.g. 14.97</span>`}${focus ? `<span class="caret"></span>` : ""}</div>
+      ${toggle(star)}${sig ? dealBadge(sig[0], sig[1], star) : ""}
+      <div class="qOff">Works without internet — handy in the warehouse.</div></div>
+  </div>${keyboard}${nav()}</div>`;
+}
+// Typing script: [time, text in the field]. Keys light up as they are pressed.
+const TYPING = [[2.9, "1"], [3.2, "14"], [3.5, "14."], [3.8, "14.9"], [4.1, "14.97"],
+  [8.2, "14.9"], [8.4, "14."], [8.6, "14"], [8.8, "1"], [9.0, ""], [9.4, "9"], [9.7, "9."], [10.0, "9.0"], [10.3, "9.00"]];
+function typedAt(t) {
+  let text = "", key = null;
+  for (const [tt, v] of TYPING) if (t >= tt) { key = t < tt + .18 ? (v.length < text.length ? "⌫" : v.slice(-1)) : null; text = v; }
+  return [text, key];
+}
+function translatorAt(t) {
+  const [price, hit] = typedAt(t);
+  const kbIn = clamp((t - 2.3) / .3), kbOut = clamp((t - 17.2) / .3);
+  return translator({ price, star: t >= 13.2, focus: t >= 2.2 && t < 17.2, kb: kbIn * (1 - kbOut), hit });
+}
+
+// ── Timeline v3 (seconds). Scenario A: grocery receipt scanned on purchase day, drops "6 days later".
+// Scenario B: TV receipt from Oct 14 uploaded on Oct 31, drop found minutes later (clock 9:41 → 9:44).
+const GR = GROC.items.map((x) => x[0]), ALLR = [...GR, "tv"];
+const f = (t, a, b) => ease((t - a) / (b - a));
+let SCRIPT = [
+  [0.0, 3.6, () => splash()],   // v6: the hook plays on the splash, then the app opens
+  [3.6, 6.0, () => home({})],
+  [6.0, 8.2, () => scanIntro()],
+  [8.2, 10.8, (t) => docScanner(8.2, t)],
+  [10.8, 12.4, (t) => scanning(t)],
+  [12.4, 18.0, (t) => confirm(GROC, t < 14.0 ? 0 : f(t, 14.0, 17.2))],
+  [18.0, 21.2, () => home({ tracked: GR })],
+  [21.2, 26.8, () => home({ tracked: GR, state: "oct26" })],
+  [26.8, 28.2, () => scanIntro()],
+  [28.2, 29.6, () => filesPicker()],
+  [29.6, 30.8, (t) => scanning(t)],
+  [30.8, 33.4, (t) => confirm(TVR, t < 31.6 ? 0 : f(t, 31.6, 32.6))],
+  [33.4, 36.6, () => home({ tracked: ALLR, state: "oct31pre" })],
+  [36.6, 42.6, (t) => detail(t < 39.0 ? 0 : f(t, 39.0, 40.2))],
+  [42.6, 44.0, () => home({ tracked: ALLR, state: "oct31" })],
+  [44.0, 46.0, () => splash()],
+];
+let NOTIFS = [
+  [19.6, 21.8, { title: "📉 Your daily price-drop summary", body: "5 of your watched items dropped in price today. Open PriceBack to claim your refunds." }],
+  [34.4, 36.8, { title: "🔴 Price drop on a recent purchase", body: "You can save $500.00 · 5d left." }],
+];
+// Date chip above the phone: [from, month, day, label, sub]. A flip plays when it changes.
+let CHIPS = [[3.6, "OCT", "20", "Oct 20, 2026", ""], [18.8, "OCT", "26", "6 days later", "Oct 26, 2026"], [26.0, "OCT", "31", "Oct 31, 2026", "uploading an older receipt"]];
+// [time, x, y] in phone dp ("Show taps"); "btn" = Start Tracking, "ci" = Claim instructions, "save" = Save.
+let TAPS = [[3.0, 180, "save"], [5.4, 180, 323], [7.5, 180, 300], [10.2, 180, 694], [17.6, 180, "btn"], [21.5, 180, 120], [26.4, 180, 704], [27.7, 268, 425], [29.1, 97, 260], [33.0, 180, "btn"], [36.5, 180, 90], [38.8, 265, "ci"], [42.3, 32, 52]];
+let NO_SLIDE = new Set([3.6, 10.8, 12.4, 29.6, 30.8, 21.2, 42.6]);
+let FADE_AT = 3.6;   // v6: splash -> Home cross-fade (the end card moved to the start)
+let FLASH = 10.25, CLOCKRULE = (t) => (t >= 34.0 ? "9:44" : "9:41"), PICTURE = 46.0;
+const FILMS = {
+  tag: {
+    PICTURE: 24.0, FLASH: 5.65, CLOCKRULE: () => "9:41", CHIPS: [], NOTIFS: [], FADE_AT: 22.0,
+    NO_SLIDE: new Set([0.0, 1.6, 6.4, 15.0, 17.4]),
+    SCRIPT: [
+      [0.0, 1.6, () => scanIntro()],
+      [1.6, 6.4, (t) => tagIntro(t)],
+      [6.4, 8.0, (t) => tagReading(t)],
+      [8.0, 15.0, (t) => tagReview(t < 11.6 ? 0 : f(t, 11.6, 14.2), 0)],
+      [15.0, 17.4, (t) => tagReview(1, clamp((t - 15.0) / .25) * (1 - clamp((t - 17.15) / .2)))],
+      [17.4, 22.0, () => tagDone()],
+      [22.0, 24.0, () => splash()],
+    ],
+    // [time, x, y]: "tagSeg" = the Price tag mode, "shutter", "btn" = Submit observation, "yes" = the alert's Yes
+    TAPS: [[1.2, 0, "tagSeg"], [5.6, 0, "shutter"], [14.6, 180, "btn"], [16.9, 0, "yes"]],
+  },
+  translator: {
+    // The translator opens and waits 2.2 s before the field is tapped (the opening line needs the time).
+    PICTURE: 24.7, FLASH: -1, CLOCKRULE: () => "9:41", CHIPS: [], NOTIFS: [], FADE_AT: 22.7,
+    NO_SLIDE: new Set([0.0, 1.4]),
+    SCRIPT: [
+      [0.0, 1.4, () => scanIntro()],
+      [1.4, 22.7, (t) => translatorAt(t - 2.2)],
+      [22.7, 24.7, () => splash()],
+    ],
+    TAPS: [[1.0, 0, "trSeg"], [4.4, 0, "input"], [15.4, 0, "switch"]],
+  },
+};
+// ── Film: Supported Stores (StoresAndProfileScreens.js StoresScreen, components/Icons.js StoreIcon). The list is
+// prod's `stores` table as the app receives it (visible stores with a short name): Costco live, five coming soon.
+const STORE_LIST = [
+  ["costco", "Costco", "Wholesale", 30, true, "Costco price adjustment: if a Costco price drops within 30 days of your purchase, Costco refunds the difference. Warehouse purchases must be adjusted at the warehouse Returns counter; Costco.ca purchases via the online price-adjustment form.", "April 25, 2026"],
+  ["bestbuy", "Best Buy", "Electronics", 30, false, "Best Buy Low Price Guarantee: present your original receipt within 30 days of purchase and Best Buy will refund the difference if the price drops at Best Buy or at an authorized retailer. My Best Buy account members get 60 days.", "April 25, 2026"],
+  ["homedepot", "Home Depot", "Home Improvement", 30, false, "Home Depot Price Guarantee: matches a current lower price from a local retailer or major online-only retailer (and beats local retailers by 10%). Major-appliance 30-day price drop adjustment within 30 days of purchase (this 30-day window does NOT apply to other product categories).", "April 25, 2026"],
+  ["rona", "Rona", "Home Improvement", 30, false, "Rona Price Guarantee: matches a current lower price from a local retailer or major online-only retailer within 30 days of purchase.", "April 27, 2026"],
+  ["sportchek", "Sport Chek", "Sports & Outdoors", 15, false, "Sport Chek Price Match: present your original receipt within 15 days of purchase and Sport Chek will refund the difference if the price drops or a competitor advertises a lower price on an identical item.", "April 27, 2026"],
+  ["thesource", "The Source / Best Buy Express", "Electronics", 30, false, "The Source / Best Buy Express Low Price Guarantee: 30-day price match. The Source rebranded to Best Buy Express in 2024; remaining Source stores apply the same policy. Excludes Black Friday and Boxing Week.", "April 25, 2026"],
+];
+const MARKS = { costco: ["CO", "#E31837", "#FFFFFF"], bestbuy: ["BB", "#FFF200", "#0046BE"], homedepot: ["HD", "#F96302", "#FFFFFF"],
+  rona: ["R", "#004E9B", "#FFDD00"], sportchek: ["SC", "#E4002B", "#FFFFFF"], thesource: ["S", "#E31837", "#FFFFFF"] };
+const mark = (id, size = 38) => { const [l, bg, fg] = MARKS[id]; return `<div class="mark" style="width:${size}px;height:${size}px;border-radius:${size / 4}px;background:${bg};color:${fg};font-size:${(l.length === 1 ? size * .55 : size * .42).toFixed(1)}px">${l}</div>`; };
+function storesScreen(frac, { modal = 0, subscribed = false } = {}) {
+  const card = ([id, name, cat, days, on, note, ver]) => `<div class="stCard ${on ? "" : "off"}" data-id="${id}"><div class="stIco">${mark(id)}</div>
+    <div style="flex:1;min-width:0"><div><span class="stName">${name}</span>${on ? `<span class="feat">${I("star", "font-size:9px")}Featured</span>` : ""}</div>
+      <div class="stCat">${cat}</div><div class="stPol">${note}</div><div class="stVer">Last verified: ${ver}</div>
+      ${!on && subscribed && id === "bestbuy" ? `<div class="subd">${I("notifications", "font-size:11px")}<span>You'll be notified when Best Buy launches</span></div>` : ""}</div>
+    ${on ? `<div><div class="stDays">${days}</div><div class="stDaysL">days</div></div>` : `<div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px"><span class="soon">Coming soon</span>${I("lock-closed-outline", "font-size:14px;color:var(--muted)")}</div>`}</div>`;
+  const sheet = modal ? `<div class="mOver" style="opacity:${modal.toFixed(2)}"><div class="mSheet"><div style="width:56px;height:56px;display:flex;align-items:center;justify-content:center">${mark("bestbuy", 42)}</div>
+      <div class="mT">Best Buy — coming soon</div><div class="mB">PriceBack is launching with Costco first. Best Buy support is on the roadmap — we'll let you know the moment it goes live.</div>
+      <div class="mCta">${I("notifications-outline", "font-size:16px")}<span>Notify me when it launches</span></div><div class="mX">Close</div></div></div>` : "";
+  return `<div class="screen">${status()}<div class="body">
+    <div class="stH"><div class="stT">Supported Stores</div><div class="stS">1 available now · 5 more coming soon</div>
+      <div class="stSearch">${I("search-outline", "font-size:16px")}<span>Search stores…</span></div>
+      <div class="cats"><span class="cat on">All</span><span class="cat">Wholesale</span><span class="cat">Electronics</span><span class="cat">Home Improvement</span><span class="cat">Sports &amp; Outdoors</span></div></div>
+    <div style="position:absolute;left:0;right:0;top:166px;bottom:0;overflow:hidden"><div class="scroll" data-frac="${frac.toFixed(3)}" style="top:0">
+      <div class="stList">${STORE_LIST.map(card).join("")}
+        <div class="disc">🍁 Policies updated regularly. Tap any store to view the official policy page. Always verify with the retailer.</div><div style="height:120px"></div></div></div></div>
+  </div>${tabbar("Stores")}${sheet}${nav()}</div>`;
+}
+FILMS.stores = {
+  PICTURE: 17.5, FLASH: -1, CLOCKRULE: () => "9:41", CHIPS: [], NOTIFS: [], FADE_AT: 15.5,
+  NO_SLIDE: new Set([0.0, 2.6, 9.0, 11.7]),
+  SCRIPT: [
+    [0.0, 2.6, () => home({ tracked: ALLR, state: "oct31" })],
+    // scroll down through every store, then back up to Best Buy, which gets tapped
+    [2.6, 9.0, (t) => storesScreen(t < 4.6 ? 0 : t < 7.0 ? f(t, 4.6, 7.0) * .6 : .6 - f(t, 7.2, 8.4) * .48)],
+    [9.0, 11.7, (t) => storesScreen(.12, { modal: clamp((t - 9.15) / .25) * (1 - clamp((t - 11.45) / .2)) })],
+    [11.7, 15.5, () => storesScreen(.12, { subscribed: true })],
+    [15.5, 17.5, () => splash()],
+  ],
+  TAPS: [[2.2, 0, "storesTab"], [8.8, 0, "bestbuy"], [11.3, 0, "notifyCta"]],
+};
+
+// Film: claim a price drop (DetailScreen.js): the TV drop of the Kickstarter story, from the alert to the refund.
+FILMS.claim = {
+  PICTURE: 26.0, FLASH: -1, CLOCKRULE: () => "9:44", CHIPS: [], NOTIFS: [], FADE_AT: 24.0,
+  NO_SLIDE: new Set([0.0, 8.0, 14.0, 17.4, 20.4]),
+  SCRIPT: [
+    [0.0, 3.0, () => home({ tracked: ALLR, state: "oct31" })],
+    [3.0, 8.0, (t) => detail(t < 6.8 ? 0 : f(t, 6.8, 7.8))],
+    [8.0, 14.0, (t) => detail(1, { receipt: clamp((t - 10.2) / .45) })],
+    [14.0, 17.4, (t) => detail(1 - f(t, 14.3, 16.4), { receipt: 1 })],
+    [17.4, 20.4, (t) => detail(0, { receipt: 1, alert: clamp((t - 17.4) / .25) * (1 - clamp((t - 20.15) / .2)) })],
+    [20.4, 24.0, () => detail(0, { receipt: 1, claimed: true })],
+    [24.0, 26.0, () => splash()],
+  ],
+  TAPS: [[2.4, 0, "claimBtn"], [6.5, 0, "ci"], [10.0, 0, "showR"], [17.0, 0, "mark"], [19.9, 0, "yes"]],
+};
+const FILM = new URLSearchParams(location.search).get("film") || "kickstarter";
+if (FILMS[FILM]) ({ SCRIPT, NOTIFS, CHIPS, TAPS, NO_SLIDE, FADE_AT, FLASH, CLOCKRULE, PICTURE } = FILMS[FILM]);
+
+window.DURATION = TL ? TL.duration : PICTURE;
+// New (voice-driven) time -> v3 picture time, piecewise linear between keyframes [new, old].
+function warp(tn) {
+  if (!TL) return tn;
+  const k = TL.warp;
+  if (tn <= k[0][0]) return k[0][1];
+  for (let j = 1; j < k.length; j++) if (tn <= k[j][0]) {
+    const [n0, o0] = k[j - 1], [n1, o1] = k[j];
+    return o0 + (o1 - o0) * (tn - n0) / (n1 - n0);
+  }
+  return k[k.length - 1][1];
+}
+function captions(tn) {
+  const c = TL && TL.captions.find(([a, b]) => tn >= a - .15 && tn < b + .15);
+  if (!c) { capEl.style.opacity = 0; return; }
+  const [a, b, text] = c;
+  capEl.innerHTML = text.replace(/(\$[\d,]+)/g, "<b>$1</b>");
+  capEl.style.opacity = Math.min(clamp((tn - a + .15) / .2), clamp((b + .15 - tn) / .2)).toFixed(2);
+}
+window.renderAt = function (tn) {
+  renderPicture(warp(tn));
+  captions(tn);
+};
+function renderPicture(t) {
+  const phone = document.getElementById("phone");
+  CLOCK = CLOCKRULE(t); // Kickstarter film, scenario B: only a few minutes pass
+  const ci = CHIPS.filter((c) => t >= c[0]).pop();
+  chipEl.style.display = ci ? "" : "none";
+  if (ci) {
+  const flip = clamp((t - ci[0]) / .5);
+  chipEl.innerHTML = `<div class="cal"><b>${ci[1]}</b><span>${ci[2]}</span></div><div><span class="txt">${ci[3]}</span>${ci[4] ? `<span class="sub">${ci[4]}</span>` : ""}</div>`;
+  const csc = LAYOUT === "wide" ? 1.2 : 1;
+  chipEl.style.transform = `${LAYOUT === "wide" ? "" : "translateX(-50%) "}scale(${csc}) perspective(600px) rotateX(${ci[0] > 0 && flip < 1 ? ((1 - flip) * 90).toFixed(1) : 0}deg)`;
+  }
+  const i = SCRIPT.findIndex(([a, b]) => t >= a && t < b);
+  const cur = SCRIPT[i >= 0 ? i : SCRIPT.length - 1];
+  const since = t - cur[0];
+  let html;
+  if (i > 0 && since < .28 && !NO_SLIDE.has(cur[0]) && cur[0] !== FADE_AT) {
+    const p = ease(since / .28), prev = SCRIPT[i - 1];
+    html = `<div style="position:absolute;inset:0;transform:translateX(${(-90 * p).toFixed(1)}px)">${prev[2](cur[0] - .001)}</div><div style="position:absolute;inset:0;transform:translateX(${(360 * (1 - p)).toFixed(1)}px);box-shadow:-8px 0 24px rgba(0,0,0,.12)">${cur[2](t)}</div>`;
+  } else if (cur[0] === FADE_AT) {
+    html = `<div style="position:absolute;inset:0">${SCRIPT[i - 1][2](t)}</div><div style="position:absolute;inset:0;opacity:${clamp(since / .5)}">${cur[2](t)}</div>`;
+  } else html = cur[2](t);
+  phone.innerHTML = html;
+  // scroll: data-frac × the real overflow of the scroll content (layout-measured, like a ScrollView)
+  const scale = phone.getBoundingClientRect().height / 760;
+  for (const s of phone.querySelectorAll(".scroll[data-frac]")) {
+    const over = Math.max(0, s.scrollHeight - (s.parentElement.clientHeight - s.offsetTop));
+    s.style.transform = `translateY(${(-over * Number(s.dataset.frac)).toFixed(1)}px)`;
+  }
+  let extra = "";
+  for (const [a, b, n] of NOTIFS) if (t >= a && t < b) {
+    const inP = ease((t - a) / .35), outP = ease((t - (b - .3)) / .3);
+    extra += `<div style="position:absolute;inset:0;transform:translateY(${(-140 * (1 - inP) - 140 * outP).toFixed(1)}px)">${notif(n)}</div>`;
+  }
+  if (FLASH >= 0 && t >= FLASH && t < FLASH + .3) extra += `<div class="flash" style="opacity:${(1 - (t - FLASH) / .3).toFixed(2)}"></div>`;
+  const pr = phone.getBoundingClientRect();
+  const at = (el) => { const r = el.getBoundingClientRect(); return [(r.left + r.width / 2 - pr.left) / scale, (r.top + r.height / 2 - pr.top) / scale]; };
+  for (let [tt, x, y] of TAPS) {
+    if (!(t >= tt - .05 && t < tt + .35)) continue;
+    if (y === "btn") { const b = phone.querySelector(".btnP"); if (b) [x, y] = at(b); else y = 600; }
+    if (y === "ci") { const b = phone.querySelectorAll(".sec2")[1]; if (b) [x, y] = at(b); else y = 400; }
+    if (y === "save") { const b = phone.querySelector(".btnP"); if (b) [x, y] = at(b); else y = 560; }
+    const pick = { tagSeg: () => phone.querySelectorAll(".seg")[1], trSeg: () => phone.querySelectorAll(".seg")[2],
+      shutter: () => phone.querySelector(".vfShut"), yes: () => phone.querySelector(".dlg .yes"),
+      input: () => phone.querySelector(".qIn"), switch: () => phone.querySelector(".sw"),
+      claimBtn: () => phone.querySelector(".claim"), showR: () => phone.querySelector(".showR"),
+      mark: () => phone.querySelectorAll(".sec2")[0], storesTab: () => phone.querySelectorAll(".tabbar .tab")[2],
+      bestbuy: () => phone.querySelector('.stCard[data-id="bestbuy"]'), notifyCta: () => phone.querySelector(".mCta") }[y];
+    if (pick) { const b = pick(); if (b) [x, y] = at(b); else y = 400; }
+    // the element under the finger shows its pressed state, like a real tap
+    if (t < tt + .25) {
+      const target = document.elementFromPoint(pr.left + x * scale, pr.top + y * scale);
+      const btn = target && target.closest(".btnP,.obBtn,.capture,.act,.fItem,.notif,.sec2,.fab,.row,.back,.claim,.showR,.seg,.vfShut,.qIn,.dB span");
+      if (btn) btn.classList.add("pressed");
+    }
+    const p = clamp((t - tt + .05) / .4);
+    extra += `<div class="tap" style="left:${x.toFixed(1)}px;top:${y.toFixed(1)}px;opacity:${(1 - p * .9).toFixed(2)};transform:scale(${(1 + p * .25).toFixed(2)})"></div>`;
+  }
+  if (extra) phone.insertAdjacentHTML("beforeend", extra);
+}
+window.renderAt(Number(new URLSearchParams(location.search).get("t") || 0));
+</script></body></html>

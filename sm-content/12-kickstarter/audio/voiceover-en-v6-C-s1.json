@@ -1,0 +1,107 @@
+{
+  "take": "C",
+  "sample": "s1",
+  "params": {
+    "voice": "us",
+    "exaggeration": 0.5,
+    "cfg_weight": 0.5,
+    "temperature": 0.7
+  },
+  "similarity": {
+    "s1": 0.866,
+    "s2": 0.887
+  },
+  "duration": 40.32,
+  "lines": [
+    {
+      "line": 1,
+      "text": "Costco members are throwing money away.",
+      "start": 0.4,
+      "end": 2.35,
+      "seed": 11,
+      "heard": "Costco members are throwing money away.",
+      "match": 1.0
+    },
+    {
+      "line": 2,
+      "text": "Scan any Costco receipt, paper or PDF.",
+      "start": 2.95,
+      "end": 5.97,
+      "seed": 11,
+      "heard": "Scan any Costco receipt, paper or PDF.",
+      "match": 1.0
+    },
+    {
+      "line": 3,
+      "text": "PriceBack reads every item and finds the warehouse on the receipt, because prices can differ from one warehouse to another.",
+      "start": 6.57,
+      "end": 11.66,
+      "seed": 11,
+      "heard": "Priceback reads every item and finds the warehouse on the receipt, because prices can differ from one warehouse to another.",
+      "match": 1.0
+    },
+    {
+      "line": 4,
+      "text": "Warehouses and Business Centres, in-store or online: they're all supported.",
+      "start": 12.26,
+      "end": 16.64,
+      "seed": 11,
+      "heard": "Warehouses and business centers, in-store or online, they're all supported.",
+      "match": 0.917
+    },
+    {
+      "line": 5,
+      "text": "Check the details, and start tracking.",
+      "start": 17.24,
+      "end": 19.47,
+      "seed": 11,
+      "heard": "Check the details, and start tracking.",
+      "match": 1.0
+    },
+    {
+      "line": 6,
+      "text": "Six days later: five real price drops, forty-seven dollars to claim.",
+      "start": 20.07,
+      "end": 23.98,
+      "seed": 11,
+      "heard": "Six days later, five real price drops, $47 to claim.",
+      "match": 1.0
+    },
+    {
+      "line": 7,
+      "text": "Bought something two weeks ago? Upload that receipt too.",
+      "start": 24.58,
+      "end": 27.35,
+      "seed": 11,
+      "heard": "Bought something two weeks ago? Upload that receipt too.",
+      "match": 1.0
+    },
+    {
+      "line": 8,
+      "text": "Minutes later: five hundred dollars to claim on this TV.",
+      "start": 27.95,
+      "end": 30.61,
+      "seed": 11,
+      "heard": "Minutes later, $500 to claim on this TV.",
+      "match": 1.0
+    },
+    {
+      "line": 9,
+      "text": "Uploaded on the day you bought it, PriceBack would also have caught its one-day flash sale: six hundred dollars off.",
+      "start": 31.21,
+      "end": 36.44,
+      "seed": 11,
+      "heard": "Uploaded on the day you bought it, Priceback would also have caught its one day flash sale $600 off.",
+      "match": 1.0
+    },
+    {
+      "line": 10,
+      "text": "Show your receipt at the warehouse, and claim the difference.",
+      "start": 37.04,
+      "end": 39.92,
+      "seed": 11,
+      "heard": "Show your receipt at the warehouse and claim the difference.",
+      "match": 1.0
+    }
+  ]
+}

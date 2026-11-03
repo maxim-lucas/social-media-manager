@@ -1,0 +1,62 @@
+{
+  "take": "C",
+  "sample": "s1",
+  "params": {
+    "voice": "us",
+    "exaggeration": 0.5,
+    "cfg_weight": 0.5,
+    "temperature": 0.7
+  },
+  "similarity": {
+    "s1": 0.872,
+    "s2": 0.888
+  },
+  "duration": 18.83,
+  "lines": [
+    {
+      "line": 1,
+      "text": "A price drop on something you bought? Here's how to get your money back.",
+      "start": 0.4,
+      "end": 3.58,
+      "seed": 11,
+      "heard": "A price drop on something you bought, here's how to get your money back.",
+      "match": 1.0
+    },
+    {
+      "line": 2,
+      "text": "Open it, and tap Claim instructions.",
+      "start": 4.18,
+      "end": 6.55,
+      "seed": 11,
+      "heard": "Open it and tap Claim Instructions.",
+      "match": 1.0
+    },
+    {
+      "line": 3,
+      "text": "At any Costco warehouse, go to the Returns counter and show your receipt, right from the app.",
+      "start": 7.15,
+      "end": 11.43,
+      "seed": 23,
+      "heard": "At any Costco warehouse, go to the returns counter and show your receipt, right from the app.",
+      "match": 1.0
+    },
+    {
+      "line": 4,
+      "text": "Costco refunds the difference to your original payment method.",
+      "start": 12.03,
+      "end": 14.62,
+      "seed": 11,
+      "heard": "Costco refunds the difference to your original payment method.",
+      "match": 1.0
+    },
+    {
+      "line": 5,
+      "text": "Then mark it as claimed, and PriceBack records your savings.",
+      "start": 15.22,
+      "end": 18.43,
+      "seed": 37,
+      "heard": "Then mark it as claimed, and price back records your savings.",
+      "match": 1.0
+    }
+  ]
+}
