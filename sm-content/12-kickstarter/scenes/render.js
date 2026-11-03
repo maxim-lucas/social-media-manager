@@ -27,6 +27,7 @@ async function open(layout) {
   await p.setViewport({ width: w, height: h, deviceScaleFactor: 1 });
   await p.goto("file:///" + path.join(__dirname, "app-recording.html").replace(/\\/g, "/") + `?layout=${layout}`, { waitUntil: "networkidle0" });
   await p.evaluate(() => document.fonts.ready);
+  await p.evaluate(() => Promise.all([...document.images].map((i) => i.complete ? 0 : new Promise((r) => { i.onload = i.onerror = r; }))));
   return { browser, p };
 }
 
@@ -36,7 +37,7 @@ async function stills() {
   const { browser, p } = await open("tall");
   const dir = path.join(OUT, "stills");
   fs.mkdirSync(dir, { recursive: true });
-  const times = [1.5, 4.5, 7.4, 9.5, 11.0, 13.0, 15.6, 17.0, 20.0, 22.0, 23.4, 25.5, 27.3, 30.0, 31.8, 34.0, 36.0, 38.5, 41.5, 43.8, 45.5];
+  const times = [1.5, 3.05, 4.8, 7.0, 9.6, 10.3, 11.6, 13.0, 15.0, 17.2, 19.2, 20.6, 23.0, 27.6, 28.9, 31.2, 32.4, 35.0, 37.8, 40.5, 43.2, 45.5];
   for (const t of times) {
     await p.evaluate((x) => window.renderAt(x), t);
     await p.screenshot({ path: path.join(dir, `t-${t.toFixed(1).replace(".", "_")}.png`) });

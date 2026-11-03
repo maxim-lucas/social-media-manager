@@ -190,15 +190,37 @@ body{background:radial-gradient(120% 90% at 50% 20%,#f7fbf8 0%,#e4f1ea 55%,#d6eb
 .st{font-family:IT7;font-size:13px;line-height:19px;flex:1}
 .showR{display:flex;align-items:center;gap:6px;margin:0 0 12px 32px;color:var(--accent);font-family:IT6;font-size:13px}
 .splash{position:absolute;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
-.tap{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:22px;background:rgba(255,255,255,.55);border:1px solid rgba(0,0,0,.12);z-index:80}
+.tap{position:absolute;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:28px;background:rgba(255,255,255,.6);border:3px solid rgba(13,61,40,.45);box-shadow:0 0 0 6px rgba(255,255,255,.35);z-index:80}
+.pressed{filter:brightness(.88);transform:scale(.97);transition:none}
+.subH{display:flex;align-items:center;justify-content:space-between;padding:8px 12px 12px;border-bottom:1px solid var(--border)}
+.subH .t{font-family:IT7;font-size:16px}
+.cpBody{padding:20px}
+.cpIcon{width:56px;height:56px;border-radius:28px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;margin:0 auto 12px}
+.cpT{font-family:IT8;font-size:22px;text-align:center}
+.cpL{font-family:IT5;font-size:14px;color:var(--sub);text-align:center;margin-top:8px;line-height:20px}
+.cpLab{font-family:IT8;font-size:13px;margin:24px 0 8px}
+.rad{display:flex;align-items:center;gap:12px;padding:14px;border-radius:16px;border:1.5px solid var(--border);background:#fff;margin-bottom:8px}
+.rad.on{border-color:var(--accent);background:var(--accentSoft)}
+.rd{width:20px;height:20px;border-radius:10px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center}
+.rad.on .rd{border-color:var(--accent)}
+.rad.on .rd:after{content:"";width:10px;height:10px;border-radius:5px;background:var(--accent)}
+.radL{font-family:IT7;font-size:15px}.rad.on .radL{color:var(--accentDeep)}
+.radS{font-family:IT5;font-size:12.5px;color:var(--sub);margin-top:2px}
+#chip{position:absolute;display:flex;align-items:center;gap:14px;padding:16px 30px;border-radius:999px;background:#fff;box-shadow:0 10px 30px rgba(6,42,26,.14);font-family:IT8;color:var(--ink);white-space:nowrap;transform-origin:50% 50%}
+#chip .cal{display:flex;flex-direction:column;align-items:center;justify-content:center;width:62px;height:62px;border-radius:14px;background:var(--accentSoft);color:var(--accentDeep)}
+#chip .cal b{font-family:PJ7;font-size:15px;letter-spacing:1px}#chip .cal span{font-family:IT8;font-size:26px;line-height:26px}
+#chip .txt{font-size:34px;letter-spacing:-.6px}#chip .sub{font-family:PJ6;font-size:20px;color:var(--accent);display:block;letter-spacing:.3px}
 .flash{position:absolute;inset:0;background:#fff;z-index:70}
 </style></head>
-<body><div id="device"><div id="phone"></div><div class="cut"></div></div>
+<body><div style="position:absolute;width:1px;height:1px;overflow:hidden;opacity:0"><img src="../sources/receipt-paper-masked.png"><img src="../sources/receipt-pdf-masked.png"></div><div id="chip"></div><div id="device"><div id="phone"></div><div class="cut"></div></div>
 <script>
 const LAYOUT = new URLSearchParams(location.search).get("layout") || "tall";
 const W = LAYOUT === "wide" ? 1920 : 1080, H = LAYOUT === "wide" ? 1080 : 1920;
 document.body.style.width = W + "px"; document.body.style.height = H + "px";
-document.getElementById("device").style.transform = `scale(${LAYOUT === "wide" ? 1.27 : 2.3})`;
+document.getElementById("device").style.transform = `scale(${LAYOUT === "wide" ? 1.27 : 2.05})`;
+document.getElementById("device").style.top = LAYOUT === "wide" ? "50%" : "55%";
+const chipEl = document.getElementById("chip");
+Object.assign(chipEl.style, LAYOUT === "wide" ? { right: "1250px", top: "470px", transformOrigin: "100% 50%" } : { left: "50%", top: "54px" });
 
 const GL = {"home":62338,"receipt-outline":62735,"camera":61915,"storefront-outline":62888,"person-outline":62636,"search-outline":62819,"notifications-outline":62591,"checkmark-circle":61982,"time-outline":62942,"chevron-back":61993,"chevron-forward":62011,"images-outline":62354,"document-attach-outline":62124,"ticket-outline":62939,"add":61699,"flash-outline":62234,"close":62026,"pricetag-outline":62699,"language-outline":62378,"barcode-outline":61814,"menu":62545,"ellipsis-vertical":62164,"trash-outline":62966,"cart-outline":61955,"add-circle-outline":61701};
 const I = (n, st = "") => `<span class="i" style="${st}">${String.fromCodePoint(GL[n])}</span>`;
@@ -207,33 +229,42 @@ const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
 const ease = (x) => { x = clamp(x); return x < .5 ? 4*x*x*x : 1 - Math.pow(-2*x + 2, 3) / 2; };
 const m2 = (n) => n.toFixed(2);
 
-// ── Story data: real regular prices (prod price_points, 2026-11-02) and real Costco savings (prod savings, Oct 2026).
-const WH = "Laval, QC · #505";
-const PAPER = { date: "Oct 14, 2026", watch: "Nov 13, 2026", sub: 2009.68, tax: 293.01, total: 2302.69, items: [
+// ── Story data v3: real regular prices (prod price_points, 2026-11-02) and real Costco savings (prod savings, Oct 2026).
+const WH = "Laval, QC · #505";                         // the shopper's saved (default) warehouse
+const BC = "Anjou Business Centre, QC · #1447";        // a real Costco Business Centre (prod warehouses)
+const GROC = { wh: BC, date: "Oct 20, 2026", watch: "Nov 19, 2026", sub: 485.35, tax: 11.38, total: 496.73, items: [
+  ["may", "Heinz Mayonnaise", "1345567", 79.99],
+  ["mcc", "McCafé Autumn Blend K-Cup Coffee Pods", "1477487", 54.99],
+  ["sal", "Kirkland Signature Atlantic Salmon", "46340", 39.99],
+  ["pat", "Kirkland Signature Frozen Lean Beef Patties", "50846", 35.99],
+  ["evi", "Evian Carbonated Natural Spring Water, 12 × 750 mL", "1752222", 31.99],
+  ["mas", "Saputo Mascarpone Cheese", "1924842", 29.99],
+  ["chb", "Kirkland Signature Frozen Chicken Breast Fillets", "378381", 29.99],
+  ["chk", "Kirkland Signature Breaded Chicken Chunks", "1736931", 26.99],
+  ["tur", "Turtles Classic Recipe Chocolates", "1331706", 24.99],
+  ["bac", "Kirkland Signature Sliced Bacon", "104847", 23.99],
+  ["jas", "Kirkland Signature Thai Hom Mali Jasmine Rice", "382153", 23.49],
+  ["par", "Kirkland Signature Shredded Parmigiano Reggiano", "1349687", 21.99],
+  ["alm", "Kirkland Signature Whole Almonds", "284601", 21.99],
+  ["hon", "Kirkland Signature 100% Pure Liquid Honey", "1149163", 19.99],
+  ["gra", "Quaker Yogourt Granola Bars", "1788908", 18.99],
+]};
+const TVR = { wh: WH, date: "Oct 14, 2026", watch: "Nov 13, 2026", sub: 1808.24, tax: 270.78, total: 2079.02, items: [
   ["tv", "Samsung QN80H Series 4K UHD Neo QLED TV", "5708165", 1808.24],
-  ["ket", "Chefman Stainless Steel Kettle RJ11-18SSD-CACO", "2023352", 39.99],
-  ["cof", "Van Houtte Original House Blend Coffee K-Cup Pods", "266556", 52.99],
-  ["bty", "Bounty P24 Plus Select-A-Size Paper Towels", "1717599", 32.49],
-  ["lau", "Kirkland Signature Ultra Clean Premium Liquid Laundry Detergent", "1845613", 19.99],
-  ["cas", "Cascade Platinum Plus ActionPacs Dishwasher Detergent", "1727590", 29.99],
-  ["dur", "Duracell Power Boost AA Batteries", "1806358", 25.99],
 ]};
-const PDF = { date: "Oct 20, 2026", watch: "Nov 19, 2026", sub: 9032.48, tax: 1352.61, total: 10385.09, items: [
-  ["gen", "Generac Guardian Generator", "1737269", 8999.99],
-  ["chm", "Charmin Ultra Soft Toilet Paper Jumbo Rolls", "2633624", 32.49],
-]};
-const NAME = Object.fromEntries([...PAPER.items, ...PDF.items].map(([k, n, s, p]) => [k, { n, p, paper: PAPER.items.some((x) => x[0] === k) }]));
-const SAVE = { gen: 1000, cof: 13, ket: 10, tv: 500 };
+const NAME = Object.fromEntries([...GROC.items, ...TVR.items].map(([k, n, s, p]) => [k, { n, p, groc: GROC.items.some((x) => x[0] === k) }]));
+const SAVE = { may: 16, mcc: 12, evi: 7, gra: 7, tur: 5, tv: 500 };
 const URG = { green: ["#dcfce7", "#15803d"], yellow: ["#fef3c7", "#92400e"], red: ["#fee2e2", "#991b1b"] };
-// Claim deadlines per home state (the day each alert arrives), from the real saving dates.
+// Claim deadlines on the day each alert arrives (saving end, else the 30-day window), real saving dates.
 const STATES = {
-  oct26: { gen: ["yellow", "Claim by Nov 8 · 13d left"] },
-  oct27: { gen: ["yellow", "Claim by Nov 8 · 12d left"], cof: ["yellow", "Claim by Nov 13 · 17d left"], ket: ["yellow", "Claim by Nov 13 · 17d left"] },
-  oct31: { gen: ["yellow", "Claim by Nov 8 · 8d left"], cof: ["red", "Claim by Nov 13 · 13d left"], ket: ["red", "Claim by Nov 13 · 13d left"], tv: ["red", "Claim by Nov 5 · 5d left"] },
+  oct26: { may: ["yellow", "Claim by Nov 8 · 13d left"], mcc: ["red", "Claim by Nov 1 · 6d left"], evi: ["yellow", "Claim by Nov 8 · 13d left"], gra: ["yellow", "Claim by Nov 8 · 13d left"], tur: ["red", "Claim by Nov 1 · 6d left"] },
+  oct31pre: { may: ["red", "Claim by Nov 8 · 8d left"], evi: ["red", "Claim by Nov 8 · 8d left"], gra: ["red", "Claim by Nov 8 · 8d left"], mcc: ["red", "Claim by Nov 1 · 1d left"], tur: ["red", "Claim by Nov 1 · 1d left"] },
+  oct31: { tv: ["red", "Claim by Nov 5 · 5d left"], may: ["red", "Claim by Nov 8 · 8d left"], evi: ["red", "Claim by Nov 8 · 8d left"], gra: ["red", "Claim by Nov 8 · 8d left"], mcc: ["red", "Claim by Nov 1 · 1d left"], tur: ["red", "Claim by Nov 1 · 1d left"] },
 };
+let CLOCK = "9:41";
 
 function status(dark) {
-  return `<div class="status ${dark ? "dark" : ""}"><span>9:41</span><span style="display:flex;gap:5px;align-items:center">
+  return `<div class="status ${dark ? "dark" : ""}"><span>${CLOCK}</span><span style="display:flex;gap:5px;align-items:center">
     <svg width="15" height="11" viewBox="0 0 15 11"><path d="M1 10h2V7H1zM5 10h2V5H5zM9 10h2V3H9zM13 10h2V1h-2z" fill="currentColor"/></svg>
     <svg width="15" height="11" viewBox="0 0 16 12"><path d="M8 11.5 15.5 3.6A11 11 0 0 0 .5 3.6z" fill="currentColor"/></svg>
     <svg width="22" height="11" viewBox="0 0 22 11"><rect x=".5" y=".5" width="18" height="10" rx="2.5" fill="none" stroke="currentColor"/><rect x="2" y="2" width="13" height="7" rx="1.2" fill="currentColor"/><rect x="19.5" y="3.5" width="1.5" height="4" rx=".7" fill="currentColor"/></svg></span></div>`;
@@ -262,23 +293,23 @@ function home({ tracked = [], state = null } = {}) {
     const da = drops.includes(a), db = drops.includes(b);
     if (da !== db) return da ? -1 : 1;
     if (da && db) return SAVE[b] - SAVE[a];
-    return (NAME[a].paper ? 0 : 1) - (NAME[b].paper ? 0 : 1);
+    return (NAME[a].groc ? 0 : 1) - (NAME[b].groc ? 0 : 1);
   }).slice(0, 6);
   const rows = order.map((k) => {
     const d = drops.includes(k) ? STATES[state][k] : null;
     const pct = d ? Math.round(SAVE[k] / NAME[k].p * 100) : null;
     return `<div class="row"><div class="sbadge"><div class="co">CO</div></div><div style="flex:1;min-width:0"><div class="iname">${NAME[k].n}</div>
-      <div class="chips">${d ? `<span class="chipS" style="background:var(--accentSoft);color:var(--accentInk)">−${pct}%</span><span class="chipD" style="background:${URG[d[0]][0]};color:${URG[d[0]][1]}">${d[1]}</span>` : ""}<span class="place">Laval</span></div></div>
+      <div class="chips">${d ? `<span class="chipS" style="background:var(--accentSoft);color:var(--accentInk)">−${pct}%</span><span class="chipD" style="background:${URG[d[0]][0]};color:${URG[d[0]][1]}">${d[1]}</span>` : ""}<span class="place">${NAME[k].groc ? "Anjou Business Centre #1447" : "Laval #505"}</span></div></div>
       ${d ? `<div class="right"><div class="sav">+$${m2(SAVE[k])}</div><div class="claim">Claim</div></div>` : `<div class="right"><div class="price">$${m2(NAME[k].p)}</div></div>`}</div>`;
   }).join("");
-  const n = drops.length, recs = new Set(drops.map((k) => NAME[k].paper)).size;
+  const n = drops.length, recs = new Set(drops.map((k) => NAME[k].groc)).size;
   const minDays = n ? Math.min(...drops.map((k) => +STATES[state][k][1].match(/(\d+)d left/)[1])) : 0;
   const hero = n
     ? `<div class="dots"><i class="on"></i><i></i></div><div class="caps" style="color:var(--lime)">To claim</div>
        <div class="heroAmt"><span class="d">$</span><span class="n">${Math.floor(amt)}</span><span class="c">.${m2(amt).split(".")[1]}</span></div>
        <div class="heroLine">${I("checkmark-circle", "font-size:15px;color:var(--lime)")}<span>${n === 1 ? "1 price drop" : `${n} price drops`} · ${recs === 1 ? "on 1 receipt" : `on ${recs} receipts`}</span></div>
        <div class="heroFoot">${I("time-outline", "font-size:13px")}<span><b style="color:var(--lime);font-family:IT8">${minDays}d left</b> · Tap for more details</span></div>`
-    : savedHero(PAPER.total + (tracked.includes("gen") ? PDF.total : 0));
+    : savedHero(GROC.total + (tracked.includes("tv") ? TVR.total : 0));
   const sub = n ? `${tracked.length} tracked · ${n} ready to claim · $${m2(amt)} pending` : `Watching ${tracked.length} products for price drops`;
   return `<div class="screen">${status()}<div class="body">${topRow(n)}
     <div class="hero">${hero}<svg width="100%" height="28" viewBox="0 0 300 28" preserveAspectRatio="none" style="margin-top:12px"><path d="M0 24 C40 22 60 20 90 21 S150 14 180 15 S240 8 300 4" fill="none" stroke="rgba(167,243,208,.7)" stroke-width="2"/></svg></div>
@@ -333,7 +364,7 @@ function confirm(R, frac) {
       <div class="rHero"><div class="rEye">STEP 2 OF 2 · CONFIRM DETAILS</div><div class="rTitle">Make sure this matches your receipt</div>
         <div class="rStore"><div class="rBadge"><div class="co" style="width:26px;height:26px;font-size:11px">CO</div></div><div style="flex:1"><div class="rName">Costco Wholesale</div><div class="rSub">${R.date} · 30-day window</div></div><div class="rChange">Change ›</div></div>
         <div class="rSeg"><span>Online</span><span class="on">Warehouse Purchase</span></div></div>
-      <div class="wh"><div class="whI">${I("storefront-outline")}</div><div style="flex:1;min-width:0"><div class="whL">${WH}</div><div class="whS">Tap to change the warehouse for this receipt</div></div><div class="whC"><span>Change</span>${I("chevron-forward", "font-size:15px")}</div></div>
+      <div class="wh"><div class="whI">${I("storefront-outline")}</div><div style="flex:1;min-width:0"><div class="whL">${R.wh}</div><div class="whS">Tap to change the warehouse for this receipt</div></div><div class="whC"><span>Change</span>${I("chevron-forward", "font-size:15px")}</div></div>
       <div class="card"><div class="cLabel">Items (${R.items.length})</div>${items}<div class="addItem">${I("add-circle-outline", "font-size:18px")}<span>+ Add Item</span></div></div>
       <div class="card"><div class="cLabel">Summary</div>
         <div class="tRow" style="border-top:0;margin-top:6px"><span>Subtotal</span><b>$${m2(R.sub)}</b></div>
@@ -348,29 +379,29 @@ function filesPicker() {
   return `<div class="screen files">${status()}
     <div class="fTop">${I("menu", "font-size:22px")}<span style="flex:1;font-size:19px">Recent</span>${I("search-outline", "font-size:20px")}${I("ellipsis-vertical", "font-size:20px")}</div>
     <div style="position:absolute;left:16px;top:104px"><span class="fChip">Images</span><span class="fChip">Documents</span><span class="fChip">Downloads</span></div>
-    <div class="fGrid"><div class="fItem"><div class="fThumb"><img src="../sources/receipt-pdf-masked.png"></div><div class="fName">Costco receipt.pdf<div class="fMeta">162 kB · Oct 20</div></div></div>
+    <div class="fGrid"><div class="fItem"><div class="fThumb"><img src="../sources/receipt-pdf-masked.png"></div><div class="fName">Costco receipt.pdf<div class="fMeta">162 kB · Oct 14</div></div></div>
       <div class="fItem" style="opacity:.55"><div class="fThumb" style="background:#e9eef6"></div><div class="fName">Statement.pdf<div class="fMeta">88 kB · Oct 2</div></div></div></div>${nav()}</div>`;
 }
 
 const notif = ({ title, body }) => `<div class="notif"><div class="nHead"><div class="nIcon">${glyph(13)}</div><span>PriceBack</span><span>·</span><span>now</span></div><div class="nTitle">${title}</div><div class="nBody">${body}</div></div>`;
 
-// Receipt detail (DetailScreen.js) for the paper receipt, opened from the TV alert on Oct 31.
+// Receipt detail (DetailScreen.js) for the TV receipt (PDF, bought Oct 14), opened from its alert on Oct 31.
 function detail(frac) {
   const step = (n, s) => `<div class="step"><div class="sn">${n}</div><div class="st">${s}</div></div>`;
   return `<div class="screen">${status()}<div class="body">
     <div class="sHead" style="position:relative;z-index:2"><div class="back">${I("chevron-back")}</div><div class="sTitle">Price drop</div><div class="back" style="color:#dc2626;font-size:16px">${I("trash-outline")}</div></div>
     <div class="scroll" data-frac="${frac}" style="top:58px"><div class="content" style="gap:12px">
       <div class="dHero"><div style="display:flex;align-items:center;gap:10px"><div style="width:38px;height:38px;border-radius:10px;background:#E31837;display:flex;align-items:center;justify-content:center"><div class="co" style="width:26px;height:26px;font-size:11px">CO</div></div>
-        <div style="flex:1;min-width:0"><div class="dStore">${WH}</div><div class="dEye">${PAPER.date.toUpperCase()}</div></div></div>
-        <div style="display:flex;align-items:flex-end;margin-top:18px"><div><div class="dEye">PRICE DROPS</div><div class="dNum">3</div></div><div style="flex:1"></div><div style="text-align:right"><div class="dEye">TOTAL PRICE DROP</div><div class="dAmt">+$523.00</div></div></div></div>
-      <div style="display:flex;gap:10px"><div class="cmp" style="background:#fff"><div class="cmpL">You paid</div><div class="cmpA" style="color:var(--muted);text-decoration:line-through">$1808.24</div><div class="cmpS">${PAPER.date}</div></div>
+        <div style="flex:1;min-width:0"><div class="dStore">${WH}</div><div class="dEye">${TVR.date.toUpperCase()}</div></div></div>
+        <div style="display:flex;align-items:flex-end;margin-top:18px"><div><div class="dEye">PRICE DROPS</div><div class="dNum">1</div></div><div style="flex:1"></div><div style="text-align:right"><div class="dEye">TOTAL PRICE DROP</div><div class="dAmt">+$500.00</div></div></div></div>
+      <div style="display:flex;gap:10px"><div class="cmp" style="background:#fff"><div class="cmpL">You paid</div><div class="cmpA" style="color:var(--muted);text-decoration:line-through">$1808.24</div><div class="cmpS">${TVR.date}</div></div>
         <div class="cmp" style="background:var(--accent)"><div class="cmpL" style="color:rgba(255,255,255,.75)">Now</div><div class="cmpA" style="color:#fff">$1308.24</div><div class="cmpS" style="color:rgba(255,255,255,.85)">checked recently</div></div></div>
       <div style="display:flex;gap:8px"><div class="sec2">✅ Mark as Claimed</div><div class="sec2" style="color:var(--sub);border-color:var(--div)">Claim instructions</div></div>
       <div class="card" style="padding:8px 16px">
-        <div class="drow"><span>Subtotal</span><b>$${m2(PAPER.sub)}</b></div><div class="drow"><span>Tax (HST/GST)</span><b>$${m2(PAPER.tax)}</b></div>
-        <div class="drow"><span style="color:var(--ink);font-family:PJ7">Total</span><b style="font-family:IT7;font-size:16px">$${m2(PAPER.total)} CAD</b></div>
-        <div class="drow"><span>Purchase Date</span><b>${PAPER.date}</b></div><div class="drow"><span>Scanned on</span><b>${PAPER.date}</b></div>
-        <div class="drow"><span>Adjustment Window</span><b>30 days</b></div><div class="drow"><span>Receipt window ends</span><b style="color:#991b1b">${PAPER.watch}</b></div>
+        <div class="drow"><span>Subtotal</span><b>$${m2(TVR.sub)}</b></div><div class="drow"><span>Tax (HST/GST)</span><b>$${m2(TVR.tax)}</b></div>
+        <div class="drow"><span style="color:var(--ink);font-family:PJ7">Total</span><b style="font-family:IT7;font-size:16px">$${m2(TVR.total)} CAD</b></div>
+        <div class="drow"><span>Purchase Date</span><b>${TVR.date}</b></div><div class="drow"><span>Scanned on</span><b>Oct 31, 2026</b></div>
+        <div class="drow"><span>Adjustment Window</span><b>30 days</b></div><div class="drow"><span>Receipt window ends</span><b style="color:#991b1b">${TVR.watch}</b></div>
         <div class="drow"><span>Receipt window: days left</span><b style="color:#991b1b">13 days</b></div></div>
       <div class="card" style="padding:16px"><div class="sLabel">How to claim at a Costco warehouse</div>
         ${step(1, "Go to the Returns counter at any Costco warehouse before the deadline, while the lower price is still running.")}
@@ -381,49 +412,73 @@ function detail(frac) {
       <div style="height:20px"></div></div></div></div>${nav()}</div>`;
 }
 
+// Costco profile (CostcoProfileScreen.js): the saved, default warehouse + membership.
+function costcoProfile() {
+  return `<div class="screen">${status()}<div class="body">
+    <div class="subH"><div class="back" style="border:0;background:transparent;font-size:22px">${I("chevron-back")}</div><div class="t">Costco profile</div><div style="width:36px"></div></div>
+    <div class="cpBody"><div class="cpIcon">${I("storefront-outline")}</div><div class="cpT">Your Costco details</div>
+      <div class="cpL">Your usual warehouse and membership type help us find the price drops that apply to you, including Executive-only offers.</div>
+      <div class="cpLab">Preferred warehouse</div>
+      <div class="wh"><div class="whI">${I("storefront-outline")}</div><div style="flex:1;min-width:0"><div class="whL">${WH}</div><div class="whS">The Costco you shop at most</div></div><div class="whC"><span>Change</span>${I("chevron-forward", "font-size:15px")}</div></div>
+      <div class="cpLab">Costco membership</div>
+      <div class="rad"><div class="rd"></div><div><div class="radL">Gold Star</div><div class="radS">Standard membership</div></div></div>
+      <div class="rad on"><div class="rd"></div><div><div class="radL">Executive</div><div class="radS">Unlocks Executive-only price drops</div></div></div>
+      <div class="btnP" style="margin-top:32px">Save</div><div style="text-align:center;padding:14px;font-family:IT6;font-size:14px;color:var(--sub)">Not now</div>
+    </div></div>${nav()}</div>`;
+}
+
 const splash = () => `<div class="screen splash">${status()}<div style="width:96px;height:96px;border-radius:21.5px;background:linear-gradient(160deg,#10b981,#047857);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(16,185,129,.32)">${glyph(60)}</div><div style="font-family:IT8;font-size:30px;letter-spacing:-.75px"><span>Price</span><span style="color:var(--accent)">Back</span></div>${nav()}</div>`;
 
-// ── Timeline (seconds)
-const ALL7 = PAPER.items.map((x) => x[0]), ALL9 = [...ALL7, ...PDF.items.map((x) => x[0])];
+// ── Timeline v3 (seconds). Scenario A: grocery receipt scanned on purchase day, drops "6 days later".
+// Scenario B: TV receipt from Oct 14 uploaded on Oct 31, drop found minutes later (clock 9:41 → 9:44).
+const GR = GROC.items.map((x) => x[0]), ALLR = [...GR, "tv"];
 const f = (t, a, b) => ease((t - a) / (b - a));
 const SCRIPT = [
-  [0.0, 3.0, () => home({})],
-  [3.0, 5.6, () => scanIntro()],
-  [5.6, 8.6, (t) => docScanner(5.6, t)],
-  [8.6, 10.4, (t) => scanning(t)],
-  [10.4, 16.6, (t) => confirm(PAPER, t < 11.6 ? 0 : f(t, 11.6, 15.4))],
-  [16.6, 17.8, () => home({ tracked: ALL7 })],
-  [17.8, 19.0, () => scanIntro()],
-  [19.0, 20.4, () => filesPicker()],
-  [20.4, 21.6, (t) => scanning(t)],
-  [21.6, 24.6, (t) => confirm(PDF, t < 22.3 ? 0 : f(t, 22.3, 23.6))],
-  [24.6, 28.8, () => home({ tracked: ALL9 })],
-  [28.8, 33.0, () => home({ tracked: ALL9, state: "oct26" })],
-  [33.0, 37.2, () => home({ tracked: ALL9, state: "oct27" })],
-  [37.2, 43.4, (t) => detail(t < 39.8 ? 0 : f(t, 39.8, 41.0))],
-  [43.4, 44.2, () => home({ tracked: ALL9, state: "oct31" })],
-  [44.2, 46.0, () => splash()],
+  [0.0, 3.6, () => costcoProfile()],
+  [3.6, 6.0, () => home({})],
+  [6.0, 8.2, () => scanIntro()],
+  [8.2, 10.8, (t) => docScanner(8.2, t)],
+  [10.8, 12.4, (t) => scanning(t)],
+  [12.4, 18.0, (t) => confirm(GROC, t < 13.2 ? 0 : f(t, 13.2, 17.0))],
+  [18.0, 21.2, () => home({ tracked: GR })],
+  [21.2, 26.8, () => home({ tracked: GR, state: "oct26" })],
+  [26.8, 28.2, () => scanIntro()],
+  [28.2, 29.6, () => filesPicker()],
+  [29.6, 30.8, (t) => scanning(t)],
+  [30.8, 33.4, (t) => confirm(TVR, t < 31.6 ? 0 : f(t, 31.6, 32.6))],
+  [33.4, 36.6, () => home({ tracked: ALLR, state: "oct31pre" })],
+  [36.6, 42.6, (t) => detail(t < 39.0 ? 0 : f(t, 39.0, 40.2))],
+  [42.6, 44.0, () => home({ tracked: ALLR, state: "oct31" })],
+  [44.0, 46.0, () => splash()],
 ];
 const NOTIFS = [
-  [26.2, 28.8, { title: "🟡 Price drop on a recent purchase", body: "You can save $1000.00 · 13d left." }],
-  [30.6, 33.0, { title: "📉 Your daily price-drop summary", body: "2 of your watched items dropped in price today. Open PriceBack to claim your refunds." }],
-  [34.8, 37.2, { title: "🔴 Price drop on a recent purchase", body: "You can save $500.00 · 5d left." }],
+  [19.6, 21.8, { title: "📉 Your daily price-drop summary", body: "5 of your watched items dropped in price today. Open PriceBack to claim your refunds." }],
+  [34.4, 36.8, { title: "🔴 Price drop on a recent purchase", body: "You can save $500.00 · 5d left." }],
 ];
-// [time, x, y] in phone dp ("Show taps"); y = "btn" → on the Start Tracking button wherever the scroll left it.
-const TAPS = [[2.5, 180, 343], [5.0, 180, 300], [8.0, 180, 694], [16.1, 180, "btn"], [17.4, 180, 704], [18.6, 268, 425], [19.9, 97, 260], [24.1, 180, "btn"], [28.5, 180, 90], [32.7, 180, 90], [36.9, 180, 90], [39.6, 265, "ci"], [43.1, 32, 52]];
-const NO_SLIDE = new Set([8.6, 10.4, 20.4, 21.6, 28.8, 33.0, 43.4]);
+// Date chip above the phone: [from, month, day, label, sub]. A flip plays when it changes.
+const CHIPS = [[0.0, "OCT", "20", "Oct 20, 2026", ""], [18.8, "OCT", "26", "6 days later", "Oct 26, 2026"], [26.0, "OCT", "31", "Oct 31, 2026", "uploading an older receipt"]];
+// [time, x, y] in phone dp ("Show taps"); "btn" = Start Tracking, "ci" = Claim instructions, "save" = Save.
+const TAPS = [[3.0, 180, "save"], [5.4, 180, 323], [7.5, 180, 300], [10.2, 180, 694], [17.6, 180, "btn"], [21.5, 180, 120], [26.4, 180, 704], [27.7, 268, 425], [29.1, 97, 260], [33.0, 180, "btn"], [36.5, 180, 90], [38.8, 265, "ci"], [42.3, 32, 52]];
+const NO_SLIDE = new Set([10.8, 12.4, 29.6, 30.8, 21.2, 42.6]);
+const FADE_AT = 44.0;
 
 window.DURATION = 46.0;
 window.renderAt = function (t) {
   const phone = document.getElementById("phone");
+  CLOCK = t >= 34.0 ? "9:44" : "9:41"; // scenario B: only a few minutes pass
+  const ci = CHIPS.filter((c) => t >= c[0]).pop();
+  const flip = clamp((t - ci[0]) / .5);
+  chipEl.innerHTML = `<div class="cal"><b>${ci[1]}</b><span>${ci[2]}</span></div><div><span class="txt">${ci[3]}</span>${ci[4] ? `<span class="sub">${ci[4]}</span>` : ""}</div>`;
+  const csc = LAYOUT === "wide" ? 1.2 : 1;
+  chipEl.style.transform = `${LAYOUT === "wide" ? "" : "translateX(-50%) "}scale(${csc}) perspective(600px) rotateX(${ci[0] > 0 && flip < 1 ? ((1 - flip) * 90).toFixed(1) : 0}deg)`;
   const i = SCRIPT.findIndex(([a, b]) => t >= a && t < b);
   const cur = SCRIPT[i >= 0 ? i : SCRIPT.length - 1];
   const since = t - cur[0];
   let html;
-  if (i > 0 && since < .28 && !NO_SLIDE.has(cur[0]) && cur[0] !== 44.2) {
+  if (i > 0 && since < .28 && !NO_SLIDE.has(cur[0]) && cur[0] !== FADE_AT) {
     const p = ease(since / .28), prev = SCRIPT[i - 1];
     html = `<div style="position:absolute;inset:0;transform:translateX(${(-90 * p).toFixed(1)}px)">${prev[2](cur[0] - .001)}</div><div style="position:absolute;inset:0;transform:translateX(${(360 * (1 - p)).toFixed(1)}px);box-shadow:-8px 0 24px rgba(0,0,0,.12)">${cur[2](t)}</div>`;
-  } else if (cur[0] === 44.2) {
+  } else if (cur[0] === FADE_AT) {
     html = `<div style="position:absolute;inset:0">${SCRIPT[i - 1][2](t)}</div><div style="position:absolute;inset:0;opacity:${clamp(since / .5)}">${cur[2](t)}</div>`;
   } else html = cur[2](t);
   phone.innerHTML = html;
@@ -438,13 +493,20 @@ window.renderAt = function (t) {
     const inP = ease((t - a) / .35), outP = ease((t - (b - .3)) / .3);
     extra += `<div style="position:absolute;inset:0;transform:translateY(${(-140 * (1 - inP) - 140 * outP).toFixed(1)}px)">${notif(n)}</div>`;
   }
-  if (t >= 8.05 && t < 8.35) extra += `<div class="flash" style="opacity:${(1 - (t - 8.05) / .3).toFixed(2)}"></div>`;
+  if (t >= 10.25 && t < 10.55) extra += `<div class="flash" style="opacity:${(1 - (t - 10.25) / .3).toFixed(2)}"></div>`;
   const pr = phone.getBoundingClientRect();
   const at = (el) => { const r = el.getBoundingClientRect(); return [(r.left + r.width / 2 - pr.left) / scale, (r.top + r.height / 2 - pr.top) / scale]; };
   for (let [tt, x, y] of TAPS) {
     if (!(t >= tt - .05 && t < tt + .35)) continue;
     if (y === "btn") { const b = phone.querySelector(".btnP"); if (b) [x, y] = at(b); else y = 600; }
     if (y === "ci") { const b = phone.querySelectorAll(".sec2")[1]; if (b) [x, y] = at(b); else y = 400; }
+    if (y === "save") { const b = phone.querySelector(".btnP"); if (b) [x, y] = at(b); else y = 560; }
+    // the element under the finger shows its pressed state, like a real tap
+    if (t < tt + .25) {
+      const target = document.elementFromPoint(pr.left + x * scale, pr.top + y * scale);
+      const btn = target && target.closest(".btnP,.obBtn,.capture,.act,.fItem,.notif,.sec2,.fab,.row,.back,.claim");
+      if (btn) btn.classList.add("pressed");
+    }
     const p = clamp((t - tt + .05) / .4);
     extra += `<div class="tap" style="left:${x.toFixed(1)}px;top:${y.toFixed(1)}px;opacity:${(1 - p * .9).toFixed(2)};transform:scale(${(1 + p * .25).toFixed(2)})"></div>`;
   }
