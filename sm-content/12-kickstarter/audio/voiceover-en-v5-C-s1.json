@@ -1,0 +1,89 @@
+{
+  "take": "C",
+  "sample": "s1",
+  "params": {
+    "voice": "us",
+    "exaggeration": 0.5,
+    "cfg_weight": 0.5,
+    "temperature": 0.7
+  },
+  "similarity": {
+    "s1": 0.87,
+    "s2": 0.892
+  },
+  "duration": 35.93,
+  "lines": [
+    {
+      "line": 1,
+      "text": "Scan any Costco receipt, paper or PDF.",
+      "start": 0.4,
+      "end": 3.42,
+      "seed": 11,
+      "heard": "Scan any Costco receipt, paper or PDF.",
+      "match": 1.0
+    },
+    {
+      "line": 2,
+      "text": "PriceBack reads every item and finds the warehouse on the receipt, because prices can differ from one warehouse to another.",
+      "start": 4.02,
+      "end": 9.11,
+      "seed": 11,
+      "heard": "Priceback reads every item and finds the warehouse on the receipt, because prices can differ from one warehouse to another.",
+      "match": 1.0
+    },
+    {
+      "line": 3,
+      "text": "Warehouses and Business Centres, in-store or online: they're all supported.",
+      "start": 9.71,
+      "end": 14.09,
+      "seed": 11,
+      "heard": "Warehouses and business centers, in-store or online, they're all supported.",
+      "match": 0.917
+    },
+    {
+      "line": 4,
+      "text": "Check the details, and start tracking.",
+      "start": 14.69,
+      "end": 16.92,
+      "seed": 11,
+      "heard": "Check the details, and start tracking.",
+      "match": 1.0
+    },
+    {
+      "line": 5,
+      "text": "Six days later, real price drops: sixteen dollars on mayonnaise, twelve on coffee pods. Forty-seven dollars to claim.",
+      "start": 17.52,
+      "end": 23.66,
+      "seed": 11,
+      "heard": "Six days later, real price drops, $16 on mayonnaise, 12 on coffee pods, $47 to claim.",
+      "match": 1.0
+    },
+    {
+      "line": 6,
+      "text": "Bought something two weeks ago? Upload that receipt too.",
+      "start": 24.26,
+      "end": 27.03,
+      "seed": 11,
+      "heard": "Bought something two weeks ago? Upload that receipt too.",
+      "match": 1.0
+    },
+    {
+      "line": 7,
+      "text": "Minutes later: five hundred dollars off this Samsung TV, after a single day at six hundred.",
+      "start": 27.63,
+      "end": 32.05,
+      "seed": 11,
+      "heard": "Minutes later, $500 off the Samsung TV, after a single day at 600.",
+      "match": 0.938
+    },
+    {
+      "line": 8,
+      "text": "Show your receipt at the warehouse, and claim the difference.",
+      "start": 32.65,
+      "end": 35.53,
+      "seed": 11,
+      "heard": "Show your receipt at the warehouse and claim the difference.",
+      "match": 1.0
+    }
+  ]
+}

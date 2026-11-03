@@ -18,6 +18,9 @@ const OUT = path.join(ROOT, "out");
 const FPS = 30;
 const CHROME = process.env.CHROME || "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe";
 const mode = process.argv[2] || "stills";
+// FILM=kickstarter (default) | tag | translator: which film of app-recording.html to render.
+const FILM = process.env.FILM || "kickstarter";
+const NAME = FILM === "kickstarter" ? "priceback-kickstarter" : `priceback-${FILM}`;
 const SIZE = { tall: [1080, 1920], wide: [1920, 1080] };
 
 async function open(layout) {
@@ -25,7 +28,7 @@ async function open(layout) {
   const p = await browser.newPage();
   const [w, h] = SIZE[layout];
   await p.setViewport({ width: w, height: h, deviceScaleFactor: 1 });
-  await p.goto("file:///" + path.join(__dirname, "app-recording.html").replace(/\\/g, "/") + `?layout=${layout}`, { waitUntil: "networkidle0" });
+  await p.goto("file:///" + path.join(__dirname, "app-recording.html").replace(/\\/g, "/") + `?layout=${layout}&film=${FILM}`, { waitUntil: "networkidle0" });
   await p.evaluate(() => document.fonts.ready);
   await p.evaluate(() => Promise.all([...document.images].map((i) => i.complete ? 0 : new Promise((r) => { i.onload = i.onerror = r; }))));
   return { browser, p };
@@ -35,9 +38,10 @@ const run = (args) => new Promise((res, rej) => spawn(ffmpeg, args, { stdio: ["i
 
 async function stills() {
   const { browser, p } = await open("tall");
-  const dir = path.join(OUT, "stills");
+  const dir = path.join(OUT, FILM === "kickstarter" ? "stills" : `stills-${FILM}`);
   fs.mkdirSync(dir, { recursive: true });
-  const times = [1.5, 3.05, 4.8, 7.0, 9.6, 10.3, 11.6, 13.0, 15.0, 17.2, 19.2, 20.6, 23.0, 27.6, 28.9, 31.2, 32.4, 35.0, 37.8, 40.5, 43.2, 45.5];
+  const dur = await p.evaluate(() => window.DURATION);
+  const times = Array.from({ length: 24 }, (_, i) => +((i + 0.5) * dur / 24).toFixed(1)); // evenly over the film
   for (const t of times) {
     await p.evaluate((x) => window.renderAt(x), t);
     await p.screenshot({ path: path.join(dir, `t-${t.toFixed(1).replace(".", "_")}.png`) });
@@ -49,7 +53,7 @@ async function stills() {
 async function video(layout) {
   const { browser, p } = await open(layout);
   const dur = await p.evaluate(() => window.DURATION);
-  const silent = path.join(OUT, `priceback-kickstarter-${layout === "tall" ? "9x16" : "16x9"}.silent.mp4`);
+  const silent = path.join(OUT, `${NAME}-${layout === "tall" ? "9x16" : "16x9"}.silent.mp4`);
   const ff = spawn(ffmpeg, ["-y", "-f", "image2pipe", "-framerate", String(FPS), "-i", "-", "-c:v", "libx264", "-preset", "slow", "-crf", "17", "-pix_fmt", "yuv420p", "-r", String(FPS), silent], { stdio: ["pipe", "ignore", "inherit"] });
   const frames = Math.round(dur * FPS);
   for (let f = 0; f < frames; f++) {
@@ -61,7 +65,9 @@ async function video(layout) {
   await new Promise((r) => ff.on("close", r));
   await browser.close();
   for (const lang of ["en", "fr"]) {
-    const vo = path.join(ROOT, "audio", `narration-${lang}.wav`);
+    // The voice-over placed on the video's clock by tools/build_timeline.py (falls back to the v3 narration).
+    let vo = path.join(ROOT, "audio", FILM === "kickstarter" ? `voiceover-final-${lang}.wav` : `voiceover-final-${FILM}-${lang}.wav`);
+    if (!fs.existsSync(vo) && FILM === "kickstarter") vo = path.join(ROOT, "audio", `narration-${lang}.wav`);
     if (fs.existsSync(vo)) await run(["-y", "-i", silent, "-i", vo, "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", silent.replace(".silent.mp4", `-${lang}.mp4`)]);
   }
   return silent;

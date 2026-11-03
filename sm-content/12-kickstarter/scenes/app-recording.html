@@ -211,18 +211,102 @@ body{background:radial-gradient(120% 90% at 50% 20%,#f7fbf8 0%,#e4f1ea 55%,#d6eb
 #chip .cal b{font-family:PJ7;font-size:15px;letter-spacing:1px}#chip .cal span{font-family:IT8;font-size:26px;line-height:26px}
 #chip .txt{font-size:34px;letter-spacing:-.6px}#chip .sub{font-family:PJ6;font-size:20px;color:var(--accent);display:block;letter-spacing:.3px}
 .flash{position:absolute;inset:0;background:#fff;z-index:70}
+.howto{display:flex;gap:9px;align-items:flex-start;padding:0 2px}
+.howto .hi{width:22px;height:22px;border-radius:7px;margin-top:1px;background:var(--accentSoft);display:flex;align-items:center;justify-content:center;color:var(--accentInk);font-size:13px;flex-shrink:0}
+.howto span:not(.i){flex:1;font-family:IT5;font-size:12.5px;line-height:18px;color:var(--sub)}
+.vf{position:relative;width:100%;aspect-ratio:4/3;border-radius:20px;overflow:hidden;border:1px solid var(--border);background:#111;box-shadow:0 6px 16px rgba(13,61,40,.08)}
+.vf img{position:absolute;left:50%;top:50%;width:150%}
+.vfRet{position:absolute;left:9%;top:26%;width:82%;height:48%}
+.br{position:absolute;width:20px;height:20px;border:0 solid var(--accent);border-radius:3px}
+.live{position:absolute;top:12px;left:12px;display:flex;align-items:center;gap:6px;font-family:monospace;font-size:10px;letter-spacing:1px;color:rgba(255,255,255,.85)}
+.live i{width:7px;height:7px;border-radius:4px;background:#ef4444}
+.vfHint{position:absolute;left:0;right:0;bottom:78px;text-align:center}
+.vfHint span{font-family:monospace;font-size:11px;color:rgba(255,255,255,.82);background:rgba(0,0,0,.4);padding:5px 12px;border-radius:999px}
+.vfShut{position:absolute;left:50%;bottom:14px;width:60px;height:60px;margin-left:-30px;border-radius:30px;border:3px solid rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;box-sizing:border-box}
+.vfShut i{width:44px;height:44px;border-radius:22px;background:var(--accent);box-shadow:0 0 12px rgba(16,185,129,.5)}
+.tNote{display:flex;gap:10px;align-items:flex-start;margin:16px 16px 0;padding:12px 14px;border-radius:16px;background:var(--accentSoft);color:var(--accentInk);font-size:18px}
+.tNote span:not(.i){flex:1;font-family:IT6;font-size:13px;line-height:19px}
+.tLimit{display:flex;gap:10px;align-items:flex-start;margin:8px 16px 0;padding:10px 14px;border-radius:16px;border:1px solid var(--div);background:var(--alt);color:var(--sub);font-size:16px}
+.tLimT{font-family:IT6;font-size:12.5px;line-height:18px;color:var(--sub)}
+.tLimL{font-family:IT5;font-size:12px;line-height:17px;color:var(--muted);margin-top:2px}
+.tHead{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--border)}
+.tHead .bk{width:36px;height:36px;border-radius:10px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:20px;box-sizing:border-box}
+.tHead .tt{font-family:IT7;font-size:16px}
+.gate{position:absolute;left:0;right:0;top:110px;bottom:40px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;gap:8px;text-align:center}
+.spin{width:36px;height:36px;border-radius:18px;border:4px solid var(--accent);border-right-color:transparent;box-sizing:border-box}
+.gT{font-family:IT7;font-size:20px;margin-top:16px}
+.gS{font-family:IT5;font-size:14px;line-height:20px;color:var(--sub)}
+.h1{font-family:IT7;font-size:22px;margin-bottom:6px}
+.sub2{font-family:IT5;font-size:14px;line-height:20px;color:var(--sub);margin-bottom:24px}
+.tc{padding:16px;margin-bottom:16px;border-radius:16px;border:1px solid var(--border);background:#fff}
+.tcHead{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.tcT{font-family:IT7;font-size:15px}
+.del{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:#fee2e2;border:1px solid var(--border);color:#dc2626;font-size:18px;box-sizing:border-box}
+.conf{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;margin-bottom:16px;background:var(--accentSoft);color:var(--accentInk);font-size:14px}
+.conf span:not(.i){font-family:monospace;font-size:12px;font-weight:600}
+.savB{display:flex;align-items:center;gap:6px;margin-bottom:16px;padding:8px 10px;border-radius:12px;background:var(--accentSoft);color:var(--accentInk);font-size:14px}
+.savB span:not(.i){flex:1;font-family:IT6;font-size:12px}
+.deal{border-radius:12px;padding:10px;margin-top:8px}
+.deal .dRow{display:flex;align-items:center;gap:5px;font-size:14px}
+.deal b{font-family:IT7;font-size:12px}
+.deal .dl{font-family:IT5;font-size:12px}
+.deal .dDet{font-family:IT5;font-size:12px;line-height:17px;margin-top:4px}
+.deal .dNote{font-family:IT5;font-size:11.5px;line-height:16px;margin-top:4px;font-style:italic}
+.tgl{display:flex;align-items:center;gap:8px;margin-top:8px}
+.tglL{font-family:IT6;font-size:13px}
+.tglH{font-family:IT5;font-size:11.5px;line-height:16px;color:var(--sub)}
+.sw{position:relative;width:36px;height:20px;flex-shrink:0}
+.sw .tr{position:absolute;left:2px;right:2px;top:3px;height:14px;border-radius:7px;background:#b9b9b9}
+.sw .th{position:absolute;top:0;left:0;width:20px;height:20px;border-radius:10px;background:#ececec;box-shadow:0 1px 3px rgba(0,0,0,.35)}
+.sw.on .tr{background:rgba(16,185,129,.5)}
+.sw.on .th{left:16px;background:var(--accent)}
+.fl{margin-bottom:16px}
+.flL{font-family:monospace;font-size:12px;font-weight:600;color:var(--sub);margin-bottom:6px;letter-spacing:.5px}
+.flI{padding:12px;border-radius:16px;border:1px solid var(--border);background:#fff;font-family:IT5;font-size:15px;display:flex;justify-content:space-between;align-items:center}
+.ghost{padding:12px;text-align:center;font-family:IT5;font-size:14px;color:var(--muted)}
+.btnS{flex:0 0 auto;white-space:nowrap;display:flex;align-items:center;justify-content:center;padding:14px;border-radius:16px;background:#fff;border:1px solid var(--border);font-family:IT6;font-size:15px}
+.btnP2{flex:0 0 auto;white-space:nowrap;min-width:90px;display:flex;align-items:center;justify-content:center;padding:14px;border-radius:16px;background:var(--accent);color:#fff;font-family:IT7;font-size:15px}
+.noteBox{display:flex;align-items:flex-start;gap:7px;margin-top:8px;padding:9px 12px;border-radius:12px;background:var(--alt);border:1px solid var(--div);color:var(--sub);font-size:16px;text-align:left;max-width:300px}
+.noteBox span:not(.i){flex:1;font-family:IT5;font-size:12.5px;line-height:18px}
+.dim{position:absolute;inset:0;background:rgba(0,0,0,.32);z-index:60}
+.dlg{position:absolute;left:24px;right:24px;top:270px;background:#fff;border-radius:4px;padding:22px 24px 8px;box-shadow:0 12px 32px rgba(0,0,0,.3);z-index:61}
+.dlg .dT{font-family:Roboto,Arial,sans-serif;font-weight:500;font-size:20px;color:#212121;margin-bottom:14px}
+.dlg .dM{font-family:Roboto,Arial,sans-serif;font-size:16px;line-height:22px;color:#757575}
+.dlg .dB{display:flex;justify-content:flex-end;gap:4px;margin-top:20px}
+.dlg .dB span{padding:10px 8px;font-family:Roboto,Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:.6px;color:#009688;text-transform:uppercase}
+.qpc{margin:16px 16px 0;padding:16px;border-radius:16px;border:1px solid var(--border);background:#fff}
+.qpcT{font-family:IT7;font-size:15px}
+.qpcS{font-family:IT5;font-size:12.5px;line-height:18px;color:var(--sub);margin:4px 0 8px}
+.qIn{padding:12px;border-radius:16px;border:1px solid var(--border);background:#fff;font-family:IT5;font-size:15px;min-height:20px}
+.qIn.focus{border-color:var(--accent)}
+.qIn .ph{color:var(--muted)}
+.caret{display:inline-block;width:2px;height:18px;background:var(--accent);vertical-align:-3px;margin-left:1px}
+.qOff{font-family:IT5;font-size:11px;color:var(--muted);margin-top:8px}
+.kb{position:absolute;left:0;right:0;bottom:0;height:262px;background:#e8eaed;padding:8px 6px 30px;box-sizing:border-box;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:6px;z-index:40}
+.kb div{background:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:Roboto,Arial,sans-serif;font-size:22px;color:#202124;box-shadow:0 1px 0 rgba(0,0,0,.15)}
+.kb div.fn{background:#d2d5da;font-size:18px}
+.kb div.hit{background:#c8ccd2}
+#cap{position:absolute;font-family:IT8;color:var(--ink);letter-spacing:-.4px;line-height:1.16;opacity:0}
+#cap b{color:var(--accent);font-family:IT8}
 </style></head>
-<body><div style="position:absolute;width:1px;height:1px;overflow:hidden;opacity:0"><img src="../sources/receipt-paper-masked.png"><img src="../sources/receipt-pdf-masked.png"></div><div id="chip"></div><div id="device"><div id="phone"></div><div class="cut"></div></div>
+<body><div style="position:absolute;width:1px;height:1px;overflow:hidden;opacity:0"><img src="../sources/receipt-paper-masked.png"><img src="../sources/receipt-pdf-masked.png"></div><div id="chip"></div><div id="cap"></div><div id="device"><div id="phone"></div><div class="cut"></div></div>
+<script>document.write('<script src="timeline-' + (new URLSearchParams(location.search).get("film") || "kickstarter") + '.js"><\/script>');</script>
 <script>
 const LAYOUT = new URLSearchParams(location.search).get("layout") || "tall";
 const W = LAYOUT === "wide" ? 1920 : 1080, H = LAYOUT === "wide" ? 1080 : 1920;
 document.body.style.width = W + "px"; document.body.style.height = H + "px";
-document.getElementById("device").style.transform = `scale(${LAYOUT === "wide" ? 1.27 : 2.05})`;
-document.getElementById("device").style.top = LAYOUT === "wide" ? "50%" : "55%";
+const deviceEl = document.getElementById("device");
+deviceEl.style.transform = `scale(${LAYOUT === "wide" ? 1.3 : 1.86})`;
+Object.assign(deviceEl.style, LAYOUT === "wide" ? { left: "71%", top: "50%" } : { left: "50%", top: "60.5%" });
 const chipEl = document.getElementById("chip");
-Object.assign(chipEl.style, LAYOUT === "wide" ? { right: "1250px", top: "470px", transformOrigin: "100% 50%" } : { left: "50%", top: "54px" });
+Object.assign(chipEl.style, LAYOUT === "wide" ? { left: "150px", top: "250px", transformOrigin: "0 50%" } : { left: "50%", top: "34px" });
+const capEl = document.getElementById("cap");
+Object.assign(capEl.style, LAYOUT === "wide"
+  ? { left: "150px", top: "420px", width: "860px", fontSize: "62px" }
+  : { left: "60px", top: "168px", width: "960px", fontSize: "44px", textAlign: "center" });
+const TL = window.TIMELINE || null;  // absent: the v3 timeline plays as it is
 
-const GL = {"home":62338,"receipt-outline":62735,"camera":61915,"storefront-outline":62888,"person-outline":62636,"search-outline":62819,"notifications-outline":62591,"checkmark-circle":61982,"time-outline":62942,"chevron-back":61993,"chevron-forward":62011,"images-outline":62354,"document-attach-outline":62124,"ticket-outline":62939,"add":61699,"flash-outline":62234,"close":62026,"pricetag-outline":62699,"language-outline":62378,"barcode-outline":61814,"menu":62545,"ellipsis-vertical":62164,"trash-outline":62966,"cart-outline":61955,"add-circle-outline":61701};
+const GL = {"pricetag":62698,"scan-outline":62810,"help-circle-outline":62334,"information-circle-outline":62361,"trending-down-outline":62969,"flame-outline":62228,"alert-circle-outline":61716,"bulb-outline":61889,"calendar-outline":61910,"backspace-outline":61781,"close-circle":62027,"home":62338,"receipt-outline":62735,"camera":61915,"storefront-outline":62888,"person-outline":62636,"search-outline":62819,"notifications-outline":62591,"checkmark-circle":61982,"time-outline":62942,"chevron-back":61993,"chevron-forward":62011,"images-outline":62354,"document-attach-outline":62124,"ticket-outline":62939,"add":61699,"flash-outline":62234,"close":62026,"pricetag-outline":62699,"language-outline":62378,"barcode-outline":61814,"menu":62545,"ellipsis-vertical":62164,"trash-outline":62966,"cart-outline":61955,"add-circle-outline":61701};
 const I = (n, st = "") => `<span class="i" style="${st}">${String.fromCodePoint(GL[n])}</span>`;
 const glyph = (w) => `<svg width="${w}" height="${w}" viewBox="0 0 48 48"><g fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 9 H35 V34 L32 37 L29 34 L26 37 L23 34 L20 37 L17 34 L14 37 L13 36 Z"/><path d="M17 16 L21.5 20.5 L25.5 17 L31 27"/><path d="M31 27 L27.4 26 M31 27 L31.7 23.2"/></g></svg>`;
 const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
@@ -429,17 +513,135 @@ function costcoProfile() {
 
 const splash = () => `<div class="screen splash">${status()}<div style="width:96px;height:96px;border-radius:21.5px;background:linear-gradient(160deg,#10b981,#047857);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(16,185,129,.32)">${glyph(60)}</div><div style="font-family:IT8;font-size:30px;letter-spacing:-.75px"><span>Price</span><span style="color:var(--accent)">Back</span></div>${nav()}</div>`;
 
+// ── Shared pieces of the scan modes (components/ScanTemplate.js, ScanModeSwitcher.js)
+const MODES = [["receipt", "receipt-outline", "Receipt"], ["tag", "pricetag-outline", "Price tag"],
+  ["translator", "language-outline", "Price translator"], ["barcode", "barcode-outline", "Price Checker"]];
+const modeTrack = (on) => `<div class="track">${MODES.map(([k, ic, l]) => `<div class="seg ${k === on ? "on" : ""}">${I(ic)}<span>${l}</span></div>`).join("")}</div>`;
+const scanHead = (title) => `<div class="sHead"><div class="back">${I("chevron-back")}</div><div class="sTitle">${title}</div><div class="cancel">Cancel</div></div>`;
+// DealBadge.js: tier colours + translated labels (priceTag.deal.* / priceTag.dealDetail.*)
+const TIERS = { normal: ["#F3F4F6", "#6B7280", "pricetag-outline", "Regular"], good: ["#DBEAFE", "#1D4ED8", "trending-down-outline", "Good deal"], best: ["#D1FAE5", "#065F46", "flame-outline", "Best price"] };
+const SIGNALS = {
+  regular: ["Regular price", "Costco's standard everyday price — still good value."],
+  instant_savings: ["Instant savings", "This item is on sale right now — the instant savings make it a good deal."],
+  markdown_97: ["Corporate markdown", "The price ends in .97 — Costco head office officially marked this down. Limited time, so buy now."],
+  manager_markdown_00: ["Manager markdown", "The price ends in .00 — the store manager wants this gone. Returns, floor models or almost no stock left. Grab it."],
+  clearance_88: ["Store clearance", "The price ends in .88 — store-level clearance or lucky-number pricing. A deep discount."],
+  manufacturer_promo: ["Manufacturer promo", "The price ends in .X9 — a special offer from the brand, not from Costco. Usually a trial run or below regular retail."],
+};
+// shared/priceSignal.js decodePriceEnding, verbatim logic
+function decodeEnding(n) {
+  const c = Math.round(n * 100) % 100;
+  if (c === 97) return ["markdown_97", "good"];
+  if (c === 0) return ["manager_markdown_00", "best"];
+  if (c === 88) return ["clearance_88", "best"];
+  if (c % 10 === 9 && c !== 99) return ["manufacturer_promo", "good"];
+  return ["regular", "normal"];
+}
+function dealBadge(signal, tier, star = false) {
+  const [bg, ink, icon, tierText] = TIERS[tier];
+  const [label, detail] = SIGNALS[signal];
+  return `<div class="deal" style="background:${bg};color:${ink}"><div class="dRow">${I(icon)}<b>${tierText}</b><span class="dl"> · ${label}</span></div>
+    <div class="dDet">${detail}</div>${star ? `<div class="dNote">★ Death Star — item discontinuing. Stock up if you love it.</div>` : ""}</div>`;
+}
+const toggle = (on) => `<div class="tgl"><div style="flex:1"><div class="tglL">Star (*) in the corner of the tag</div><div class="tglH">A star means this item won't be restocked once it's gone.</div></div><div class="sw ${on ? "on" : ""}"><i class="tr"></i><i class="th"></i></div></div>`;
+
+// ── Film: scan a price tag (PriceTagScanScreen.js). The tag is a real Costco shelf tag photographed in a
+// warehouse (Priceback __tests__/fixtures/price-tags/PXL_20260527_193305863.jpg); every value is printed on it.
+const TAG = { sku: "1455423", brand: "JAMIESON", product: "GENTLE IRON 28 MG 250 CAPSULES", orig: "19.99", sav: "4.00", exp: "June 7, 2026", fin: "15.99" };
+const TAG_WH = "Laval · #505";   // formatWarehouseName(): the shopper's default warehouse for logging tags
+const tagHead = () => `<div class="tHead"><div class="bk">${I("chevron-back")}</div><div class="tt">Scan a price tag</div><div style="width:36px"></div></div>`;
+function tagIntro(t) {
+  const sway = `translate(-50%,-50%) translate(-7%,21%) translate(${(Math.sin(t * 1.3) * 3).toFixed(1)}px,${(Math.cos(t * 1.1) * 2).toFixed(1)}px)`;
+  const corners = [["top:0;left:0", "border-top-width:3px;border-left-width:3px"], ["top:0;right:0", "border-top-width:3px;border-right-width:3px"],
+    ["bottom:0;left:0", "border-bottom-width:3px;border-left-width:3px"], ["bottom:0;right:0", "border-bottom-width:3px;border-right-width:3px"]];
+  return `<div class="screen">${status()}<div class="body">${scanHead("Scan price tag")}
+    <div class="sBody">${modeTrack("tag")}
+      <div class="wh"><div class="whI">${I("storefront-outline")}</div><div style="flex:1;min-width:0"><div class="whL">Laval, QC · #505</div><div class="whS">Default warehouse for logging price tags</div></div><div class="whC"><span>Change</span>${I("chevron-forward", "font-size:15px")}</div></div>
+      <div class="howto"><div class="hi">${I("bulb-outline")}</div><span>Scan a Costco shelf tag with the SKU and price in frame. Your scan feeds the live price pool for your province.</span></div>
+      <div class="vf"><img src="../sources/tag-jamieson-viewfinder.jpg" style="transform:${sway}">
+        <div class="vfRet">${corners.map(([pos, b]) => `<i class="br" style="${pos};${b}"></i>`).join("")}</div>
+        <div class="live"><i></i>LIVE</div><div class="vfHint"><span>Keep the SKU and price sharp</span></div><div class="vfShut"><i></i></div></div>
+      <div class="acts"><div class="act">${I("images-outline")}<span>Photo library</span></div><div class="act">${I("help-circle-outline")}<span>Framing tips</span></div></div>
+    </div>
+    <div class="tNote">${I("pricetag")}<span>Only SAVINGS tags are kept and earn credit · Capped weekly · Regular-price and expired tags are not added</span></div>
+    <div class="tLimit">${I("scan-outline")}<div style="flex:1"><div class="tLimT">Up to 5 price-tag scans per day and 15 per week, so scanning stays available for everyone.</div><div class="tLimL">Left today: 5 · Left this week: 15</div></div></div>
+  </div>${nav()}</div>`;
+}
+function tagReading(t) {
+  return `<div class="screen">${status()}<div class="body">${tagHead()}<div class="gate"><div class="spin" style="transform:rotate(${((t * 400) % 360).toFixed(0)}deg)"></div>
+    <div class="gT">Reading the tag…</div><div class="gS">Pulling SKU, brand, product, prices, and any instant savings from the photo.</div></div></div>${nav()}</div>`;
+}
+function tagReview(frac, alert) {
+  const field = (l, v, extra = "") => `<div class="fl"><div class="flL">${l}</div><div class="flI" ${extra}>${v}</div></div>`;
+  const dlg = alert ? `<div class="dim" style="opacity:${alert.toFixed(2)}"></div><div class="dlg" style="opacity:${alert.toFixed(2)};transform:scale(${(.94 + .06 * alert).toFixed(3)})">
+      <div class="dT">Confirm your warehouse</div><div class="dM">These prices will be shared for Laval · #505. Is that the warehouse you're in?</div>
+      <div class="dB"><span>Change warehouse</span><span class="yes">Yes — Laval · #505</span></div></div>` : "";
+  return `<div class="screen">${status()}<div class="body">${tagHead()}
+    <div style="position:absolute;left:0;right:0;top:${'90px'};bottom:0;overflow:hidden"><div class="scroll" data-frac="${frac.toFixed(3)}" style="padding:16px">
+      <div class="h1">Confirm the price</div><div class="sub2">Double-check the values pulled from the tag for ${TAG_WH}, then submit.</div>
+      <div class="tc"><div class="tcHead"><div class="tcT">Tag details</div><div class="del">${I("trash-outline")}</div></div>
+        <div class="conf">${I("checkmark-circle")}<span>Scan looks clean</span></div>
+        <div class="savB">${I("pricetag")}<span>Savings tag — can earn credit once verified</span></div>
+        ${dealBadge("instant_savings", "good")}${toggle(false)}<div style="height:16px"></div>
+        ${field("SKU", TAG.sku)}${field("Brand", TAG.brand)}${field("Product", TAG.product, 'style="min-height:60px;align-items:flex-start;box-sizing:border-box"')}
+        ${field("Original price (CAD)", TAG.orig)}${field("Instant savings (CAD)", TAG.sav)}
+        ${field("Savings expiry", `<span>${TAG.exp}</span>${I("calendar-outline", "font-size:18px;color:var(--sub)")}`)}${field("Final price after savings (CAD)", TAG.fin)}
+      </div>
+      <div class="btnP">Submit observation</div><div class="ghost">Re-scan tag</div><div style="height:30px"></div>
+    </div></div></div>${dlg}${nav()}</div>`;
+}
+function tagDone() {
+  return `<div class="screen">${status()}<div class="body">${tagHead()}<div class="gate" style="justify-content:center">
+    ${I("checkmark-circle", "font-size:64px;color:var(--accent)")}<div class="gT">Thanks for contributing!</div>
+    <div class="gS">Your observation has been added to the crowdsourced pool for ${TAG_WH}.</div>
+    <div style="align-self:stretch;max-width:320px;margin:0 auto;text-align:left">${dealBadge("instant_savings", "good")}</div>
+    <div class="noteBox">${I("information-circle-outline")}<span>Saved — pending crowd verification. You'll earn credit once enough shoppers confirm this savings.</span></div>
+    <div style="display:flex;gap:8px;margin-top:16px"><div class="btnS">Scan another</div><div class="btnP2">Done</div></div>
+  </div></div>${nav()}</div>`;
+}
+
+// ── Film: the price translator (PriceTranslatorScreen.js + DealBadge.js QuickPriceCheck). Offline: no camera,
+// no network; the verdict is decoded on the phone from the price ending.
+const KEYS = ["1", "2", "3", "-", "4", "5", "6", "␣", "7", "8", "9", "⌫", ",", "0", ".", "→"];
+function translator({ price = "", star = false, focus = false, kb = 0, hit = null }) {
+  const n = parseFloat(price);
+  const sig = price && n > 0 ? decodeEnding(n) : null;
+  const keyboard = kb > 0 ? `<div class="kb" style="transform:translateY(${((1 - kb) * 262).toFixed(1)}px)">${KEYS.map((k) =>
+    `<div class="${["-", "␣", "⌫", "→", ","].includes(k) ? "fn" : ""} ${k === hit ? "hit" : ""}">${k === "⌫" ? I("backspace-outline", "font-size:20px") : k}</div>`).join("")}</div>` : "";
+  return `<div class="screen">${status()}<div class="body">${scanHead("Price translator")}
+    <div style="padding:14px 14px 0">${modeTrack("translator")}</div>
+    <div class="qpc"><div class="dRow" style="display:flex;align-items:center;gap:5px">${I("language-outline", "font-size:18px;color:var(--accent)")}<span class="qpcT">Price tag translator</span></div>
+      <div class="qpcS">Is it a good deal? Type the price you see on the tag — the ending tells you.</div>
+      <div class="qIn ${focus ? "focus" : ""}">${price ? price : `<span class="ph">Price on the tag, e.g. 14.97</span>`}${focus ? `<span class="caret"></span>` : ""}</div>
+      ${toggle(star)}${sig ? dealBadge(sig[0], sig[1], star) : ""}
+      <div class="qOff">Works without internet — handy in the warehouse.</div></div>
+  </div>${keyboard}${nav()}</div>`;
+}
+// Typing script: [time, text in the field]. Keys light up as they are pressed.
+const TYPING = [[2.9, "1"], [3.2, "14"], [3.5, "14."], [3.8, "14.9"], [4.1, "14.97"],
+  [8.2, "14.9"], [8.4, "14."], [8.6, "14"], [8.8, "1"], [9.0, ""], [9.4, "9"], [9.7, "9."], [10.0, "9.0"], [10.3, "9.00"]];
+function typedAt(t) {
+  let text = "", key = null;
+  for (const [tt, v] of TYPING) if (t >= tt) { key = t < tt + .18 ? (v.length < text.length ? "⌫" : v.slice(-1)) : null; text = v; }
+  return [text, key];
+}
+function translatorAt(t) {
+  const [price, hit] = typedAt(t);
+  const kbIn = clamp((t - 2.3) / .3), kbOut = clamp((t - 17.2) / .3);
+  return translator({ price, star: t >= 13.2, focus: t >= 2.2 && t < 17.2, kb: kbIn * (1 - kbOut), hit });
+}
+
 // ── Timeline v3 (seconds). Scenario A: grocery receipt scanned on purchase day, drops "6 days later".
 // Scenario B: TV receipt from Oct 14 uploaded on Oct 31, drop found minutes later (clock 9:41 → 9:44).
 const GR = GROC.items.map((x) => x[0]), ALLR = [...GR, "tv"];
 const f = (t, a, b) => ease((t - a) / (b - a));
-const SCRIPT = [
+let SCRIPT = [
   [0.0, 3.6, () => costcoProfile()],
   [3.6, 6.0, () => home({})],
   [6.0, 8.2, () => scanIntro()],
   [8.2, 10.8, (t) => docScanner(8.2, t)],
   [10.8, 12.4, (t) => scanning(t)],
-  [12.4, 18.0, (t) => confirm(GROC, t < 13.2 ? 0 : f(t, 13.2, 17.0))],
+  [12.4, 18.0, (t) => confirm(GROC, t < 14.0 ? 0 : f(t, 14.0, 17.2))],
   [18.0, 21.2, () => home({ tracked: GR })],
   [21.2, 26.8, () => home({ tracked: GR, state: "oct26" })],
   [26.8, 28.2, () => scanIntro()],
@@ -451,26 +653,82 @@ const SCRIPT = [
   [42.6, 44.0, () => home({ tracked: ALLR, state: "oct31" })],
   [44.0, 46.0, () => splash()],
 ];
-const NOTIFS = [
+let NOTIFS = [
   [19.6, 21.8, { title: "📉 Your daily price-drop summary", body: "5 of your watched items dropped in price today. Open PriceBack to claim your refunds." }],
   [34.4, 36.8, { title: "🔴 Price drop on a recent purchase", body: "You can save $500.00 · 5d left." }],
 ];
 // Date chip above the phone: [from, month, day, label, sub]. A flip plays when it changes.
-const CHIPS = [[0.0, "OCT", "20", "Oct 20, 2026", ""], [18.8, "OCT", "26", "6 days later", "Oct 26, 2026"], [26.0, "OCT", "31", "Oct 31, 2026", "uploading an older receipt"]];
+let CHIPS = [[0.0, "OCT", "20", "Oct 20, 2026", ""], [18.8, "OCT", "26", "6 days later", "Oct 26, 2026"], [26.0, "OCT", "31", "Oct 31, 2026", "uploading an older receipt"]];
 // [time, x, y] in phone dp ("Show taps"); "btn" = Start Tracking, "ci" = Claim instructions, "save" = Save.
-const TAPS = [[3.0, 180, "save"], [5.4, 180, 323], [7.5, 180, 300], [10.2, 180, 694], [17.6, 180, "btn"], [21.5, 180, 120], [26.4, 180, 704], [27.7, 268, 425], [29.1, 97, 260], [33.0, 180, "btn"], [36.5, 180, 90], [38.8, 265, "ci"], [42.3, 32, 52]];
-const NO_SLIDE = new Set([10.8, 12.4, 29.6, 30.8, 21.2, 42.6]);
-const FADE_AT = 44.0;
+let TAPS = [[3.0, 180, "save"], [5.4, 180, 323], [7.5, 180, 300], [10.2, 180, 694], [17.6, 180, "btn"], [21.5, 180, 120], [26.4, 180, 704], [27.7, 268, 425], [29.1, 97, 260], [33.0, 180, "btn"], [36.5, 180, 90], [38.8, 265, "ci"], [42.3, 32, 52]];
+let NO_SLIDE = new Set([3.6, 10.8, 12.4, 29.6, 30.8, 21.2, 42.6]);
+let FADE_AT = 44.0;
+let FLASH = 10.25, CLOCKRULE = (t) => (t >= 34.0 ? "9:44" : "9:41"), PICTURE = 46.0;
+const FILMS = {
+  tag: {
+    PICTURE: 24.0, FLASH: 5.65, CLOCKRULE: () => "9:41", CHIPS: [], NOTIFS: [], FADE_AT: 22.0,
+    NO_SLIDE: new Set([0.0, 1.6, 6.4, 15.0, 17.4]),
+    SCRIPT: [
+      [0.0, 1.6, () => scanIntro()],
+      [1.6, 6.4, (t) => tagIntro(t)],
+      [6.4, 8.0, (t) => tagReading(t)],
+      [8.0, 15.0, (t) => tagReview(t < 11.6 ? 0 : f(t, 11.6, 14.2), 0)],
+      [15.0, 17.4, (t) => tagReview(1, clamp((t - 15.0) / .25) * (1 - clamp((t - 17.15) / .2)))],
+      [17.4, 22.0, () => tagDone()],
+      [22.0, 24.0, () => splash()],
+    ],
+    // [time, x, y]: "tagSeg" = the Price tag mode, "shutter", "btn" = Submit observation, "yes" = the alert's Yes
+    TAPS: [[1.2, 0, "tagSeg"], [5.6, 0, "shutter"], [14.6, 180, "btn"], [16.9, 0, "yes"]],
+  },
+  translator: {
+    // The translator opens and waits 2.2 s before the field is tapped (the opening line needs the time).
+    PICTURE: 24.7, FLASH: -1, CLOCKRULE: () => "9:41", CHIPS: [], NOTIFS: [], FADE_AT: 22.7,
+    NO_SLIDE: new Set([0.0, 1.4]),
+    SCRIPT: [
+      [0.0, 1.4, () => scanIntro()],
+      [1.4, 22.7, (t) => translatorAt(t - 2.2)],
+      [22.7, 24.7, () => splash()],
+    ],
+    TAPS: [[1.0, 0, "trSeg"], [4.4, 0, "input"], [15.4, 0, "switch"]],
+  },
+};
+const FILM = new URLSearchParams(location.search).get("film") || "kickstarter";
+if (FILMS[FILM]) ({ SCRIPT, NOTIFS, CHIPS, TAPS, NO_SLIDE, FADE_AT, FLASH, CLOCKRULE, PICTURE } = FILMS[FILM]);
 
-window.DURATION = 46.0;
-window.renderAt = function (t) {
+window.DURATION = TL ? TL.duration : PICTURE;
+// New (voice-driven) time -> v3 picture time, piecewise linear between keyframes [new, old].
+function warp(tn) {
+  if (!TL) return tn;
+  const k = TL.warp;
+  if (tn <= k[0][0]) return k[0][1];
+  for (let j = 1; j < k.length; j++) if (tn <= k[j][0]) {
+    const [n0, o0] = k[j - 1], [n1, o1] = k[j];
+    return o0 + (o1 - o0) * (tn - n0) / (n1 - n0);
+  }
+  return k[k.length - 1][1];
+}
+function captions(tn) {
+  const c = TL && TL.captions.find(([a, b]) => tn >= a - .15 && tn < b + .15);
+  if (!c) { capEl.style.opacity = 0; return; }
+  const [a, b, text] = c;
+  capEl.innerHTML = text.replace(/(\$[\d,]+)/g, "<b>$1</b>");
+  capEl.style.opacity = Math.min(clamp((tn - a + .15) / .2), clamp((b + .15 - tn) / .2)).toFixed(2);
+}
+window.renderAt = function (tn) {
+  renderPicture(warp(tn));
+  captions(tn);
+};
+function renderPicture(t) {
   const phone = document.getElementById("phone");
-  CLOCK = t >= 34.0 ? "9:44" : "9:41"; // scenario B: only a few minutes pass
+  CLOCK = CLOCKRULE(t); // Kickstarter film, scenario B: only a few minutes pass
   const ci = CHIPS.filter((c) => t >= c[0]).pop();
+  chipEl.style.display = ci ? "" : "none";
+  if (ci) {
   const flip = clamp((t - ci[0]) / .5);
   chipEl.innerHTML = `<div class="cal"><b>${ci[1]}</b><span>${ci[2]}</span></div><div><span class="txt">${ci[3]}</span>${ci[4] ? `<span class="sub">${ci[4]}</span>` : ""}</div>`;
   const csc = LAYOUT === "wide" ? 1.2 : 1;
   chipEl.style.transform = `${LAYOUT === "wide" ? "" : "translateX(-50%) "}scale(${csc}) perspective(600px) rotateX(${ci[0] > 0 && flip < 1 ? ((1 - flip) * 90).toFixed(1) : 0}deg)`;
+  }
   const i = SCRIPT.findIndex(([a, b]) => t >= a && t < b);
   const cur = SCRIPT[i >= 0 ? i : SCRIPT.length - 1];
   const since = t - cur[0];
@@ -493,7 +751,7 @@ window.renderAt = function (t) {
     const inP = ease((t - a) / .35), outP = ease((t - (b - .3)) / .3);
     extra += `<div style="position:absolute;inset:0;transform:translateY(${(-140 * (1 - inP) - 140 * outP).toFixed(1)}px)">${notif(n)}</div>`;
   }
-  if (t >= 10.25 && t < 10.55) extra += `<div class="flash" style="opacity:${(1 - (t - 10.25) / .3).toFixed(2)}"></div>`;
+  if (FLASH >= 0 && t >= FLASH && t < FLASH + .3) extra += `<div class="flash" style="opacity:${(1 - (t - FLASH) / .3).toFixed(2)}"></div>`;
   const pr = phone.getBoundingClientRect();
   const at = (el) => { const r = el.getBoundingClientRect(); return [(r.left + r.width / 2 - pr.left) / scale, (r.top + r.height / 2 - pr.top) / scale]; };
   for (let [tt, x, y] of TAPS) {
@@ -501,6 +759,10 @@ window.renderAt = function (t) {
     if (y === "btn") { const b = phone.querySelector(".btnP"); if (b) [x, y] = at(b); else y = 600; }
     if (y === "ci") { const b = phone.querySelectorAll(".sec2")[1]; if (b) [x, y] = at(b); else y = 400; }
     if (y === "save") { const b = phone.querySelector(".btnP"); if (b) [x, y] = at(b); else y = 560; }
+    const pick = { tagSeg: () => phone.querySelectorAll(".seg")[1], trSeg: () => phone.querySelectorAll(".seg")[2],
+      shutter: () => phone.querySelector(".vfShut"), yes: () => phone.querySelector(".dlg .yes"),
+      input: () => phone.querySelector(".qIn"), switch: () => phone.querySelector(".sw") }[y];
+    if (pick) { const b = pick(); if (b) [x, y] = at(b); else y = 400; }
     // the element under the finger shows its pressed state, like a real tap
     if (t < tt + .25) {
       const target = document.elementFromPoint(pr.left + x * scale, pr.top + y * scale);
@@ -511,6 +773,6 @@ window.renderAt = function (t) {
     extra += `<div class="tap" style="left:${x.toFixed(1)}px;top:${y.toFixed(1)}px;opacity:${(1 - p * .9).toFixed(2)};transform:scale(${(1 + p * .25).toFixed(2)})"></div>`;
   }
   if (extra) phone.insertAdjacentHTML("beforeend", extra);
-};
+}
 window.renderAt(Number(new URLSearchParams(location.search).get("t") || 0));
 </script></body></html>

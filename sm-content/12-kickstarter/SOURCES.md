@@ -1,15 +1,20 @@
 # Sources (v3): what the Kickstarter video shows and where it comes from
 
-## The story (one consistent demo, RULES §5b)
+## The story (one consistent demo, RULES §5b) — v4, timed to the voice
 
-1. **Costco profile**: the shopper saves a preferred warehouse (Laval, QC · #505) and membership (Executive).
-2. **Scenario A: scanned on the purchase day.** Oct 20: a grocery run at the **Anjou Business Centre (#1447)**,
-   15 lines, scanned the same day. A date chip above the phone flips to "6 days later · Oct 26": the daily
-   summary arrives, $47 to claim on 5 items. No drop runs on the purchase day.
-3. **Scenario B: an older receipt uploaded today.** Oct 31: the shopper uploads the PDF of a Samsung TV bought
-   Oct 14 (inside the 30-day window); the saved warehouse fills in by itself. The drop is already running, so the
-   alert lands minutes later: only the status-bar clock moves (9:41 → 9:44). Receipt detail → how to claim.
-4. $547 to claim → PriceBack.
+1. **Scenario A: scanned on the purchase day.** Oct 20: a grocery run at the **Anjou Business Centre (#1447)**,
+   15 lines, scanned the same day. The app reads the warehouse from the receipt (each receipt is tracked at its own
+   warehouse: prices differ). A date chip flips to "6 days later · Oct 26": the daily summary arrives, $47 to claim
+   on 5 items. No drop runs on the purchase day.
+2. **Scenario B: an older receipt uploaded today.** Oct 31: the shopper uploads the PDF of a Samsung TV bought
+   Oct 14 (inside the 30-day window); its warehouse (Laval #505) is read from the receipt. The drop is already
+   running, so the alert lands minutes later: only the status-bar clock moves (9:41 → 9:44). Receipt detail →
+   how to claim.
+3. $547 to claim → PriceBack end card (silent).
+
+v4 (Maxim, 2026-11-03): the Costco-profile opening is cut (the favourite warehouse is only a preference), the
+picture is re-timed to the voice-over (`tools/build_timeline.py`), and captions of each spoken line fill the space
+beside (16:9) or above (9:16) the phone.
 
 ## Real data (prod, read-only, 2026-11-02)
 
