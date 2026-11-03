@@ -1,0 +1,62 @@
+{
+  "take": "C",
+  "sample": "s1",
+  "params": {
+    "voice": "us",
+    "exaggeration": 0.5,
+    "cfg_weight": 0.5,
+    "temperature": 0.7
+  },
+  "similarity": {
+    "s1": 0.859,
+    "s2": 0.877
+  },
+  "duration": 18.11,
+  "lines": [
+    {
+      "line": 1,
+      "text": "Spotted a savings tag at Costco? Scan it with PriceBack.",
+      "start": 0.4,
+      "end": 3.59,
+      "seed": 11,
+      "heard": "spotted a savings tag at Costco? Scan it with price back.",
+      "match": 1.0
+    },
+    {
+      "line": 2,
+      "text": "It reads the SKU, the prices, and when the savings ends.",
+      "start": 4.19,
+      "end": 8.04,
+      "seed": 11,
+      "heard": "It reads the SKU, the prices, and when the savings ends.",
+      "match": 1.0
+    },
+    {
+      "line": 3,
+      "text": "And it tells you right away if it's a good deal.",
+      "start": 8.64,
+      "end": 11.02,
+      "seed": 11,
+      "heard": "and it tells you right away if it's a good deal.",
+      "match": 1.0
+    },
+    {
+      "line": 4,
+      "text": "Submit it, and the savings is shared with shoppers at your warehouse.",
+      "start": 11.62,
+      "end": 14.51,
+      "seed": 11,
+      "heard": "Submit it, and the savings is shared with shoppers at your warehouse.",
+      "match": 1.0
+    },
+    {
+      "line": 5,
+      "text": "Once enough shoppers confirm it, you earn a scan credit.",
+      "start": 15.11,
+      "end": 17.71,
+      "seed": 11,
+      "heard": "Once enough shoppers confirm it, you earn a scan credit.",
+      "match": 1.0
+    }
+  ]
+}
