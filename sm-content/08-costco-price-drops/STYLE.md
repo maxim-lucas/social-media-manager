@@ -91,7 +91,8 @@ offers per carousel, EN + FR, province strip on every item, the claim cover, the
 - Business Centre carousels are separate: `"businessCentre": true` adds the yellow "Only in Costco Business
   Centres" ribbon on the cover.
 - Item choice: everyday staples with the highest savings first, then other groceries, then smaller savings;
-  anything over $2 off beats a $2 item. Query:
+  anything over $2 off beats a $2 item. A bigger saving always wins over "everyday"; everyday only breaks ties.
+- End card: yellow line "+ hundreds more hidden savings, only in the PriceBack app" under the subline (`endMore`). Query:
   `valid_from` ≥ the week's Monday and `created_at` ≥ that Monday.
 - Reels come only after Monica validates the slides. Every remark Monica makes is added as a rule here and in
   `RULES-README.md` §1.

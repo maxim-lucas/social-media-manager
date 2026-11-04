@@ -68,6 +68,7 @@ const L = {
     endKick: "DON'T MISS THE NEXT ONE",
     endHead: "Follow\n@priceback.ca",
     endSub: "New Costco price drops, every week.",
+    endMore: "+ hundreds more hidden savings, only in the PriceBack app",
     endHow: "Scan your Costco receipt. PriceBack alerts you when a price drops, then you claim the difference.",
     endPlans: "Free to download. Try it free, then buy credits that never expire, or go Unlimited for the full experience.",
     endCta: "DOWNLOAD PRICEBACK",
@@ -105,6 +106,7 @@ const L = {
     endKick: "NE MANQUEZ PAS LES PROCHAINES",
     endHead: "Suivez\n@priceback.ca",
     endSub: "De nouvelles baisses de prix Costco chaque semaine.",
+    endMore: "+ des centaines de rabais cachés, exclusivement dans l'app PriceBack",
     endHow: "Scannez votre reçu Costco. PriceBack vous avertit quand un prix baisse, puis vous réclamez la différence.",
     endPlans: "Téléchargement gratuit. Essayez-le gratuitement, puis achetez des crédits qui n'expirent jamais, ou passez à Illimité pour l'expérience complète.",
     endCta: "TÉLÉCHARGEZ PRICEBACK",
@@ -323,6 +325,7 @@ function endSlide(lang, f, badges) {
     <div class="kick">${esc(t.endKick)}</div>
     <div class="ehead">${esc(t.endHead).replace("\n", "<br>")}</div>
     <div class="esub">${esc(t.endSub)}</div>
+    <div class="emore"><span>${esc(t.endMore)}</span></div>
     <div class="ecard"><div class="pb"><img src="${MARK}">PriceBack</div>
       <p>${esc(t.endHow)}</p><p class="pl">${esc(t.endPlans)}</p></div>
     <div class="ecta">${esc(t.endCta)}</div>
@@ -596,14 +599,17 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
 .fr .ehead{font-size:100px}
 .fr .esub{font-size:31px}
 .esub{position:absolute;left:60px;right:60px;top:500px;font-size:38px;font-weight:800;color:#111}
-.ecard{position:absolute;left:60px;right:60px;top:590px;background:#0d3d28;border-radius:22px;padding:30px 36px;color:#fff}
+.emore{position:absolute;left:60px;right:60px;top:562px;font-size:31px;white-space:nowrap;letter-spacing:-.3px;font-weight:900;color:#111;line-height:1.25}
+.emore span{background:var(--yel);padding:2px 10px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.fr .emore{font-size:27px;white-space:nowrap;letter-spacing:-.3px}
+.ecard{position:absolute;left:60px;right:60px;top:628px;background:#0d3d28;border-radius:22px;padding:26px 36px;color:#fff}
 .ecard .pb{background:transparent;color:#fff;padding:0;font-size:44px;margin-bottom:16px}
 .ecard .pb img{width:66px;height:66px;border-radius:14px}
 .ecard p{font-size:29px;line-height:1.35;font-weight:700}
 .ecard p.pl{margin-top:14px;color:#7fe0a8;font-weight:800}
 .fr .ecard p{font-size:26px}
-.ecta{position:absolute;left:60px;right:60px;top:965px;text-align:center;font-weight:900;font-size:26px;letter-spacing:3px;color:#111}
-.ebadges{position:absolute;left:60px;right:60px;top:1010px;display:flex;justify-content:center;gap:28px}
+.ecta{position:absolute;left:60px;right:60px;top:985px;text-align:center;font-weight:900;font-size:26px;letter-spacing:3px;color:#111}
+.ebadges{position:absolute;left:60px;right:60px;top:1028px;display:flex;justify-content:center;gap:28px}
 .ebadges img{height:96px;width:auto}
 .end .claim{justify-content:flex-start}
 .kick{position:absolute;left:60px;top:196px;background:var(--yel);color:#111;font-weight:900;font-size:40px;letter-spacing:2px;padding:4px 16px;transform:rotate(-1.5deg)}

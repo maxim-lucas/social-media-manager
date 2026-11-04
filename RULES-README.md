@@ -35,6 +35,12 @@ Deal posts are real Costco price drops with product photos. They matter more tha
     Loosen to other grocery items. Still not enough? Take smaller savings. **Prefer any item over $2 off to a $2
     item** (Monica, 2026-11-04: BUILT Puff −$6 replaced Villaggio bread −$2); go down to $2 only when nothing
     bigger with a clean photo is left in the category and end date.
+  - **Saving size beats "everyday staple"** (Monica, 2026-11-04, after the bread was picked over BUILT Puff −$6):
+    "daily and common" only breaks ties between similar savings. Never put a smaller saving in a carousel while a
+    bigger one in the same category and end date, with a clean photo and not yet posted, is left out.
+  - **End card** (Monica, 2026-11-04): unchanged except one yellow line under "New Costco price drops, every
+    week.": "+ hundreds more hidden savings, only in the PriceBack app" (FR "+ des centaines de rabais cachés,
+    exclusivement dans l'app PriceBack").
   - **Business Centre and warehouse savings are never in the same carousel** (Monica, 2026-11-04): separate
     carousels, and a Business Centre cover says "Only in Costco Business Centres" (FR "Seulement dans les
     Centres d'entreprises Costco"); `"businessCentre": true` in the week file. **Never an item already posted** in an earlier carousel:
