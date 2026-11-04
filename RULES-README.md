@@ -55,6 +55,20 @@ Deal posts are real Costco price drops with product photos. They matter more tha
     pulsing "FOLLOW @priceback.ca" button. Music is an original track made by `reels/music.py` (no licence issues),
     with a whoosh on every cut; Monica can swap in trending Instagram audio when posting. These reels are the
     exception to §5's "no music" rule, which covers the story videos.
+  - **Reel feedback (Monica, 2026-11-04 17:29), these override the reel described above:**
+    - **The follower reel is 7 seconds and loops** (Instagram rewards 7–10 s loops; an 18 s reel with 8 products
+      gets saves, not follows). `reels/short-reel.js`:
+      0–1 s "Shopped at Costco lately?"; 1–2.5 s the yellow "N PRICES JUST DROPPED" banner + "Claim up to $X
+      back"; 2.5–6 s only the **3 biggest drops**, each with the "CLAIM $X BACK" sticker; 6–7 s "FOLLOW
+      @priceback.ca for next week's drops", ending on the hook's look so it loops.
+    - **The 3 products:** the 3 biggest savings across **all the week's grocery carousels**, Costco warehouse
+      offers only (**no Business Centre**), **no raw meat photos**, one product per brand.
+    - **No cover slide in reels:** the animated hook already does its job.
+    - **No red footer on slides in reels:** crop it off; the big "CLAIM $X BACK" sticker replaces it (reels only,
+      the carousel keeps its footer).
+    - **Music:** Monica disliked the first track (too loud, tempo too quick). Calm, slower (about 90 BPM), quiet
+      under the visuals; always also deliver a no-music copy so she can add Instagram audio.
+    - Edit **EN only** until Monica approves; FR follows.
   - **Business Centre and warehouse savings are never in the same carousel** (Monica, 2026-11-04): separate
     carousels, and a Business Centre cover says "Only in Costco Business Centres" (FR "Seulement dans les
     Centres d'entreprises Costco"); `"businessCentre": true` in the week file. **Never an item already posted** in an earlier carousel:
