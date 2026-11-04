@@ -1,10 +1,10 @@
 # Price-drop reels: approved default design
 
-Approved by Monica on 2026-11-04 ("this is perfect, save this design for all reels"). Every future reel of this
-format is generated with `follower-reel.js` and this spec, automatically. Change the design only when Monica asks,
+Approved by Monica on 2026-11-04 ("this is perfect, save this design for all reels"). Whenever Monica asks for a reel
+of this format, it is generated with `follower-reel.js` and this spec, without re-asking about the design. Change the design only when Monica asks,
 and record her remark in `RULES-README.md` §1.
 
-## What to make each week (EN first; FR only after Monica approves the EN)
+## The two reel types (make what Monica asks for; EN first, FR after she approves the EN)
 1. **Category basket reel** (`"mode":"basket"`) for each category reel asked for (grocery first). Config like
    `2026-11-08-grocery-basket.json`: the category's week files, `category` label (EN "GROCERY", FR "D'ÉPICERIE"),
    `rawMeat` SKUs to skip.
