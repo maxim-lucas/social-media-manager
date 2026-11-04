@@ -47,6 +47,14 @@ Deal posts are real Costco price drops with product photos. They matter more tha
     "PAID $X". Tell Monica which big savings were skipped for this.
   - **Savings ending within 2 days** of building are skipped: they would be over before Monica validates.
   - Same-Day search by **item number** mostly misses (Montreal store); search by **product name** finds far more.
+  - **Price-drop reels** (Monica, 2026-11-04: "use some animation … to hook the users … get more followers"): made
+    only after Monica validates the carousel, EN and FR, 1080×1920, about 19 s:
+    `sm-content/08-costco-price-drops/reels/make-reel.js <week json> <en|fr> <out.mp4>`. Hook first (product photos
+    pop in, "8 PRICES JUST DROPPED", the claim total counts up, the end date), then the cover, each item with a push
+    transition, a "CLAIM $X BACK" stamp, a "DROP n OF 8" progress bar and a running total, and the end card with a
+    pulsing "FOLLOW @priceback.ca" button. Music is an original track made by `reels/music.py` (no licence issues),
+    with a whoosh on every cut; Monica can swap in trending Instagram audio when posting. These reels are the
+    exception to §5's "no music" rule, which covers the story videos.
   - **Business Centre and warehouse savings are never in the same carousel** (Monica, 2026-11-04): separate
     carousels, and a Business Centre cover says "Only in Costco Business Centres" (FR "Seulement dans les
     Centres d'entreprises Costco"); `"businessCentre": true` in the week file. **Never an item already posted** in an earlier carousel:
