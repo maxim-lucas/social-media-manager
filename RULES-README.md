@@ -47,6 +47,11 @@ Deal posts are real Costco price drops with product photos. They matter more tha
     "PAID $X". Tell Monica which big savings were skipped for this.
   - **Savings ending within 2 days** of building are skipped: they would be over before Monica validates.
   - Same-Day search by **item number** mostly misses (Montreal store); search by **product name** finds far more.
+  - **DEFAULT REEL DESIGN, APPROVED (Monica, 2026-11-04 21:13: "this is perfect, save this design for all reels").**
+    Every price-drop reel is generated with `sm-content/08-costco-price-drops/reels/follower-reel.js` exactly as
+    committed on 2026-11-04 (v5), without being asked, for every week: a category **basket** reel per category
+    carousel set and one whole-week **top3** reel. Spec in `sm-content/08-costco-price-drops/reels/README.md`.
+    Older builders (`make-reel.js`, `short-reel.js`) are superseded; the notes below are the history behind it.
   - **Price-drop reels** (Monica, 2026-11-04: "use some animation … to hook the users … get more followers"): made
     only after Monica validates the carousel, EN and FR, 1080×1920, about 19 s:
     `sm-content/08-costco-price-drops/reels/make-reel.js <week json> <en|fr> <out.mp4>`. Hook first (product photos

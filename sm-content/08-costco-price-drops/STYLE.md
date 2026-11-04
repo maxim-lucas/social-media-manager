@@ -120,3 +120,5 @@ the repo keeps only the finished posts, never the raw images.
   name the category ("GROCERY") in the hook; propose hook options before regenerating when the top drop is small;
   end card names the app once as "ONLY in [logo PriceBack]"; "HIDDEN" in bold capitals; music = trending
   Instagram audio added at posting (we deliver a no-music copy), not synth tracks.
+- **Approved default reel design (Monica, 2026-11-04 21:13):** `reels/follower-reel.js` v5, spec in `reels/README.md`.
+  Use it automatically for every future reel of this format.
