@@ -39,6 +39,20 @@ Deal posts are real Costco price drops with product photos. They matter more tha
     4. "Bought in the last 30 days?" (FR "Acheté ces 30 derniers jours ?"): very bottom, small, yellow.
   - **The end card stays as is and is the last slide of every carousel.**
   - **Always English AND French.**
+  - **Source: the `priceback.savings` table** (live, not superseded rows; source `sameday_costco` = warehouses,
+    `sameday_business_centre` = Business Centres, `saving_warehouses` for the stores), with regular prices from
+    `price_points`. `price_points` alone misses most of the week's savings (Monica, 2026-11-04).
+  - **Flyer items are allowed** in grocery carousels (2026-11-04); the "hidden savings only" filter does not apply.
+  - **No photo is not a reason to drop an item** until both Same-Day and costco.ca have been tried.
+  - **Ending soon = included and posted first.** Carousels go out in end-date order, the soonest first.
+  - **Items outside the 4 categories** (apparel, electronics, toys, seasonal…) go in a separate mixed carousel.
+  - **Fewer than 5 items in a carousel** → complete it with offers from the same category that started before this
+    week, end on the same date, with the highest savings.
+  - **Cover total line** under the drop count: "Total possible back: $35 if you bought them all" (FR "Total à
+    récupérer : 35 $ si vous les avez tous achetés").
+  - **The red footer is the hero** on item slides, huge, and says only "PAID $26.99? CLAIM $5.50 BACK" (FR
+    "PAYÉ 26,99 $ ? RÉCLAMEZ 5,50 $"); `"bigClaim": true` in the week file. The PriceBack green banner stays.
+  - **Make one carousel first**, have Monica validate it, then do the rest.
   - **Images first, reel second.** Render the slides, send them to Monica, and **only after she validates the
     photos** turn each carousel into an Instagram reel (a few seconds per slide, standard transitions, music).
 - **Business Centre vs warehouse is read from the data, never assumed** (Monica, 2026-11-04, item 2068876). A

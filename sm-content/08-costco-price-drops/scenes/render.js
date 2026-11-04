@@ -57,6 +57,9 @@ const L = {
     paid: (p) => `Paid ${money("en", p)} in the last 30 days?`,
     claim: (n) => `Claim the ${money("en", n, true)} difference.`,
     paidMany: "Bought these at full price?",
+    // The conversion line, huge in the red band (Monica, 2026-11-04): only "PAID $X? CLAIM $Y BACK".
+    paidBig: (p) => `PAID ${money("en", p)}?`,
+    claimBig: (n) => `CLAIM ${money("en", n, true)} BACK`,
     claimMany: "Claim the difference.",
     pitch: "Scan your Costco receipt. We tell you when the price drops.",
     // Never "free app" (Monica, 2026-11-02): free to download, with a trial.
@@ -92,6 +95,8 @@ const L = {
     paid: (p) => `Payé ${money("fr", p)} ces 30 derniers jours ?`,
     claim: (n) => `Réclamez la différence de ${money("fr", n, true)}.`,
     paidMany: "Payé le plein prix ?",
+    paidBig: (p) => `PAYÉ ${money("fr", p)} ?`,
+    claimBig: (n) => `RÉCLAMEZ ${money("fr", n, true)}`,
     claimMany: "Réclamez la différence.",
     pitch: "Scannez votre reçu Costco. On vous avertit si le prix baisse.",
     free: "Téléchargement gratuit, avec essai gratuit",
@@ -258,7 +263,10 @@ function post(lang, p, photos, badges) {
         <div class="save">${t.save(item.off)}</div></div>`)
       .join("");
   }
-  const claim = single
+  const big = single && DATA.bigClaim;
+  const claim = big
+    ? `<span>${esc(t.paidBig(items[0][1].regular))}</span><b>${esc(t.claimBig(items[0][1].off))}</b>`
+    : single
     ? `${t.paid(items[0][1].regular)}<br><b>${t.claim(items[0][1].off)}</b>`
     : `${t.paidMany}<br><b>${t.claimMany}</b>`;
   const seen = items.map(([, i]) => i.seen || DATA.seenOn).sort().pop();
@@ -276,7 +284,7 @@ function post(lang, p, photos, badges) {
     <div class="disc">${esc(t.fine(seen, regionName(lang, items[0][1].provinces)))}${single && (items[0][1].bizOnly || []).length ? esc(lang === "fr"
       ? ` Aussi relevé dans les centres d'affaires Costco seulement : ${items[0][1].bizOnly.join(", ")}.`
       : ` Also seen at Costco Business Centres only in ${items[0][1].bizOnly.join(", ")}.`) : ""}</div>
-    <div class="claim"><div class="a">${claim}</div>${stores}${dots(p.dots)}</div>
+    <div class="claim"><div class="a${big ? " huge" : ""}">${claim}</div>${stores}${dots(p.dots)}</div>
   </div></body></html>`;
 }
 
@@ -432,6 +440,7 @@ const CC = {
     range: (ds) => ds.map((d) => dateShortCase("en", d)).join(" & ").replace(/^([A-Za-z]+) (\d+) & \1 /, "$1 $2 & "),
     count: (n) => `${n} price drop${n > 1 ? "s" : ""}`,
     bought: "Bought in the last 30 days?",
+    total: (n) => `Total possible back: ${money("en", n, true)} if you bought them all`,
   },
   fr: {
     top: "Baisses Costco Canada",
@@ -442,6 +451,7 @@ const CC = {
     range: (ds) => ds.map((d) => dateShortCase("fr", d)).join(" et ").replace(/^(\d+) ([^ ]+) et (\d+) \2$/, "$1 et $3 $2"),
     count: (n) => `${n} baisse${n > 1 ? "s" : ""} de prix`,
     bought: "Acheté ces 30 derniers jours ?",
+    total: (n) => `Total à récupérer : ${money("fr", n, true)} si vous les avez tous achetés`,
   },
 };
 function claimCover(lang, f, badges) {
@@ -466,6 +476,7 @@ function claimCover(lang, f, badges) {
       ${when}
     </div>
     <div class="cc-count">${esc(c.count(items.length))}</div>
+    <div class="cc-total">${esc(c.total(Math.round(items.reduce((a, [, i]) => a + i.off, 0) * 100) / 100))}</div>
     <div class="disc">${esc(t.coverFine(seen[0], seen[seen.length - 1]))}</div>
     <div class="claim"><div class="a cc-bought">${esc(c.bought)}</div>${stores}${dots(f.dots)}</div>
   </div></body></html>`;
@@ -481,12 +492,15 @@ const CLAIM_CSS = `
 .cc-until{color:#111;font-weight:900;font-size:96px;line-height:1;letter-spacing:-2px}
 .fr .cc-until{font-size:84px}
 .cc-day{color:var(--blue);font-weight:900;font-size:120px;line-height:1.05;letter-spacing:-3px;margin-top:18px;text-transform:capitalize}
+.fr .cc-day{text-transform:none}
 .cc-date{display:inline-block;align-self:flex-start;background:var(--yel);color:var(--blue);font-weight:900;font-size:190px;line-height:1;letter-spacing:-6px;padding:4px 20px 10px;margin-top:6px;white-space:nowrap}
 .fr .cc-date{font-size:150px;letter-spacing:-5px}
 .cc-date.rng{font-size:132px;letter-spacing:-4px;margin-top:22px}
 .fr .cc-date.rng{font-size:104px}
 .cc-count{position:absolute;left:60px;right:60px;top:860px;text-align:center;font-weight:900;font-size:64px;color:#fff;background:var(--blue);border-radius:60px;padding:14px 0;letter-spacing:-.5px;box-shadow:inset 0 -8px 0 var(--red)}
 .cc .disc{bottom:190px}
+.cc-total{position:absolute;left:60px;right:60px;top:978px;text-align:center;font-weight:800;font-size:34px;color:#111}
+.fr .cc-total{font-size:30px}
 .cc-bought{color:var(--yel);font-size:34px !important;font-weight:900}
 `;
 
@@ -541,6 +555,11 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
 .claim .a{font-size:30px;font-weight:800;line-height:1.3}
 .fr .claim .a{font-size:27px}
 .claim .a b{background:#fff;color:var(--red);padding:0 10px;font-weight:900}
+.post .claim .a.huge{font-size:58px;line-height:1.02;font-weight:900;letter-spacing:0;white-space:nowrap;margin:-22px 0 0 -14px}
+.post.fr .claim .a.huge{font-size:52px}
+.claim .a.huge{text-align:left}
+.claim .a.huge span{display:block;padding:0 14px}
+.claim .a.huge b{display:block;width:max-content;margin-top:8px;padding:2px 14px}
 .pb{display:flex;align-items:center;gap:12px;font-weight:900;font-size:28px;background:#fff;color:#0d3d28;padding:12px 18px;border-radius:14px;white-space:nowrap}
 .pb img{width:40px;height:40px;border-radius:10px}
 .promo{position:absolute;left:40px;right:40px;top:1024px;height:98px;display:flex;align-items:center;gap:22px;background:#0d3d28;border-radius:18px;padding:0 24px;box-shadow:0 10px 24px rgba(13,61,40,.28)}

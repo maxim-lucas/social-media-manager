@@ -1,0 +1,257 @@
+{
+  "_note": "First carousel of the Nov 4 rebuild from priceback.savings (Monica, 2026-11-04): Grocery ending Sun Nov 8 (ends soonest, so posted first), the 8 biggest new savings (valid_from >= Nov 2) with a clean photo, never posted before. Flyer items allowed. Location from savings source (sameday_costco = warehouse, sameday_business_centre = Business Centre); all 8 are warehouse items. Regular prices from the latest price_points.",
+  "source": "priceback.savings (sameday_costco run of 2026-11-04) + priceback.price_points regular prices, pulled 2026-11-04 16:00 UTC",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "carousels": [
+    {
+      "id": "grocery",
+      "category": {
+        "en": "Grocery",
+        "fr": "Épicerie"
+      },
+      "items": [
+        "9943119",
+        "51070",
+        "1703933",
+        "1668161",
+        "3301967",
+        "1510729",
+        "1242444",
+        "1154961"
+      ]
+    }
+  ],
+  "items": {
+    "9943119": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "BUILT Puff",
+          "protein bars",
+          "14 × 40 g"
+        ],
+        "fr": [
+          "BUILT Puff",
+          "barres protéinées",
+          "14 × 40 g"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6.0,
+      "price": 23.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "51070": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Kirkland Signature",
+          "canned chicken breast",
+          "6 × 354 g"
+        ],
+        "fr": [
+          "Kirkland Signature",
+          "poitrines de poulet",
+          "en conserve, 6 × 354 g"
+        ]
+      },
+      "regular": 19.99,
+      "off": 5.0,
+      "price": 14.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1703933": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Tre Stelle",
+          "paneer",
+          "1 kg"
+        ],
+        "fr": [
+          "Tre Stelle",
+          "paneer",
+          "1 kg"
+        ]
+      },
+      "regular": 21.99,
+      "off": 4.5,
+      "price": 17.49,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1668161": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Kirkland Signature",
+          "BellaVitano Cabernet",
+          "Sauvignon cheese, 450 g"
+        ],
+        "fr": [
+          "Kirkland Signature",
+          "fromage BellaVitano",
+          "Cabernet Sauvignon, 450 g"
+        ]
+      },
+      "regular": 16.99,
+      "off": 4.0,
+      "price": 12.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "3301967": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Ritz Bits",
+          "cheese mini sandwiches",
+          "34 × 42 g"
+        ],
+        "fr": [
+          "Ritz Bits",
+          "mini sandwiches fromage",
+          "34 × 42 g"
+        ]
+      },
+      "regular": 16.99,
+      "off": 4.0,
+      "price": 12.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "1510729": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Blue Monkey",
+          "sparkling juice",
+          "16 × 330 mL"
+        ],
+        "fr": [
+          "Blue Monkey",
+          "jus pétillant",
+          "16 × 330 ml"
+        ]
+      },
+      "regular": 17.99,
+      "off": 4.0,
+      "price": 13.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1242444": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Freybe",
+          "air dried salami trio",
+          "2 × 375 g"
+        ],
+        "fr": [
+          "Freybe",
+          "trio de salamis séchés",
+          "2 × 375 g"
+        ]
+      },
+      "regular": 19.99,
+      "off": 4.0,
+      "price": 15.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1154961": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Kirkland Signature",
+          "mozzarella cheese",
+          "1.15 kg"
+        ],
+        "fr": [
+          "Kirkland Signature",
+          "fromage mozzarella",
+          "1,15 kg"
+        ]
+      },
+      "regular": 15.99,
+      "off": 3.5,
+      "price": 12.49,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    }
+  },
+  "feeds": {
+    "en": [
+      "grocery"
+    ],
+    "fr": [
+      "grocery"
+    ]
+  }
+}
