@@ -57,12 +57,18 @@ const L = {
     paid: (p) => `Paid ${money("en", p)} in the last 30 days?`,
     claim: (n) => `Claim the ${money("en", n, true)} difference.`,
     paidMany: "Bought these at full price?",
+    // The conversion line, huge in the red band (Monica, 2026-11-04): only "PAID $X? CLAIM $Y BACK".
+    paidBig: (p) => `PAID ${money("en", p)}`,
+    paidWhen: " in the last 30 days?",
+    claimBig: (n) => `CLAIM ${money("en", n, true)} BACK`,
     claimMany: "Claim the difference.",
     pitch: "Scan your Costco receipt. We tell you when the price drops.",
-    free: "Free on iPhone and Android",
+    // Never "free app" (Monica, 2026-11-02): free to download, with a trial.
+    free: "Free download, with a free trial",
     endKick: "DON'T MISS THE NEXT ONE",
     endHead: "Follow\n@priceback.ca",
     endSub: "New Costco price drops, every week.",
+    endMore: "+ hundreds more hidden savings, only in the PriceBack app",
     endHow: "Scan your Costco receipt. PriceBack alerts you when a price drops, then you claim the difference.",
     endPlans: "Free to download. Try it free, then buy credits that never expire, or go Unlimited for the full experience.",
     endCta: "DOWNLOAD PRICEBACK",
@@ -72,10 +78,11 @@ const L = {
     swipe: "SWIPE",
     until: "THIS WEEK",
     coverFine: (a, b) =>
-      `Prices seen at Costco between ${dateShortCase("en", a)} and ${dateLong("en", b)}. Each slide names its provinces. ` +
+      (a === b ? `Prices seen at Costco on ${dateLong("en", b)}. ` : `Prices seen at Costco between ${dateShortCase("en", a)} and ${dateLong("en", b)}. `) +
+      "Each slide names its provinces. " +
       "Adjustment terms are set by the retailer. PriceBack is an independent app, not affiliated with Costco.",
     fine: (d, where) =>
-      `Price seen at Costco ${where || "Canada"}, ${dateLong("en", d)}. Adjustment terms are set by the retailer. ` +
+      `Price seen at Costco${DATA.businessCentre ? " Business Centres" : ""} ${where || "Canada"}, ${dateLong("en", d)}. Adjustment terms are set by the retailer. ` +
       "PriceBack is an independent app, not affiliated with Costco.",
   },
   fr: {
@@ -90,12 +97,16 @@ const L = {
     paid: (p) => `Payé ${money("fr", p)} ces 30 derniers jours ?`,
     claim: (n) => `Réclamez la différence de ${money("fr", n, true)}.`,
     paidMany: "Payé le plein prix ?",
+    paidBig: (p) => `PAYÉ ${money("fr", p)}`,
+    paidWhen: " ces 30 derniers jours ?",
+    claimBig: (n) => `RÉCLAMEZ ${money("fr", n, true)}`,
     claimMany: "Réclamez la différence.",
     pitch: "Scannez votre reçu Costco. On vous avertit si le prix baisse.",
-    free: "Gratuit sur iPhone et Android",
+    free: "Téléchargement gratuit, avec essai gratuit",
     endKick: "NE MANQUEZ PAS LES PROCHAINES",
     endHead: "Suivez\n@priceback.ca",
     endSub: "De nouvelles baisses de prix Costco chaque semaine.",
+    endMore: "+ des centaines de rabais cachés, exclusivement dans l'app PriceBack",
     endHow: "Scannez votre reçu Costco. PriceBack vous avertit quand un prix baisse, puis vous réclamez la différence.",
     endPlans: "Téléchargement gratuit. Essayez-le gratuitement, puis achetez des crédits qui n'expirent jamais, ou passez à Illimité pour l'expérience complète.",
     endCta: "TÉLÉCHARGEZ PRICEBACK",
@@ -105,10 +116,11 @@ const L = {
     swipe: "GLISSEZ",
     until: "CETTE SEMAINE",
     coverFine: (a, b) =>
-      `Prix relevés chez Costco entre le ${dateShortCase("fr", a)} et le ${dateLong("fr", b)}. Chaque image indique ses provinces. ` +
+      (a === b ? `Prix relevés chez Costco le ${dateLong("fr", b)}. ` : `Prix relevés chez Costco entre le ${dateShortCase("fr", a)} et le ${dateLong("fr", b)}. `) +
+      "Chaque image indique ses provinces. " +
       "Les conditions d'ajustement sont fixées par le détaillant. PriceBack est une application indépendante, non affiliée à Costco.",
     fine: (d, where) =>
-      `Prix relevé chez Costco ${where || "Canada"} le ${dateLong("fr", d)}. Les conditions d'ajustement sont fixées par le détaillant. ` +
+      `Prix relevé ${DATA.businessCentre ? "dans les centres d'affaires Costco" : "chez Costco"} ${where || "Canada"} le ${dateLong("fr", d)}. Les conditions d'ajustement sont fixées par le détaillant. ` +
       "PriceBack est une application indépendante, non affiliée à Costco.",
   },
 };
@@ -237,14 +249,14 @@ function post(lang, p, photos, badges) {
   const total = items.reduce((s, [, i]) => s + i.off, 0);
   const firstExp = items.map(([, i]) => i.exp).sort()[0];
   const right = single
-    ? `${esc((items[0][1].cat || p.category)[lang]).toUpperCase()}<br>${t.exp} ${dateShort(lang, firstExp)}`
+    ? `<span class="cat">${esc((items[0][1].cat || p.category)[lang]).toUpperCase()}</span><br>${t.exp} ${dateShort(lang, firstExp)}`
     : `${esc(p.category[lang]).toUpperCase()}<br>${t.totalOff(total)}`;
   let body;
   if (single) {
     const [sku, item] = items[0];
     body = `<div class="photo hero" style="background-image:url('${photos[sku]}')"></div>
       <div class="burst"><div class="x${money(lang, item.off, true).length > 4 ? " long" : ""}">-${money(lang, item.off, true)}</div><div class="y">${t.off}</div></div>
-      ${tag(lang, sku, item)}${DATA.provinceStrip !== false ? strip(lang, item.provinces, item.bizOnly || []) : ""}`;
+      ${tag(lang, sku, item)}${DATA.provinceStrip !== false ? (DATA.businessCentre ? strip(lang, [], item.provinces, true) : strip(lang, item.provinces, item.bizOnly || [])) : ""}`;
   } else {
     const w = items.length === 2 ? 465 : 300;
     const gap = (1080 - 90 - w * items.length) / (items.length - 1);
@@ -255,7 +267,10 @@ function post(lang, p, photos, badges) {
         <div class="save">${t.save(item.off)}</div></div>`)
       .join("");
   }
-  const claim = single
+  const big = single && DATA.bigClaim;
+  const claim = big
+    ? `<span>${esc(t.paidBig(items[0][1].regular))}<small>${esc(t.paidWhen)}</small></span><b>${esc(t.claimBig(items[0][1].off))}</b>`
+    : single
     ? `${t.paid(items[0][1].regular)}<br><b>${t.claim(items[0][1].off)}</b>`
     : `${t.paidMany}<br><b>${t.claimMany}</b>`;
   const seen = items.map(([, i]) => i.seen || DATA.seenOn).sort().pop();
@@ -265,7 +280,7 @@ function post(lang, p, photos, badges) {
   const stores = `<div class="stores"><img src="${badges.apple}"><img src="${badges.google}"></div>`;
   return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>${CSS}
     .card .ptag .name{min-height:${items.length > 2 ? 76 : 60}px}</style></head><body>
-  <div class="post ${lang} ${single ? "s" : "g"}${single && DATA.provinceStrip !== false ? " prov" : ""}${single && (items[0][1].bizOnly || []).length ? " bzp" : ""}${DATA.fineNote ? " note" : ""}">
+  <div class="post ${lang} ${single ? "s" : "g"}${single && DATA.provinceStrip !== false ? " prov" : ""}${single && (DATA.businessCentre || (items[0][1].bizOnly || []).length) ? " bzp" : ""}${DATA.fineNote ? " note" : ""}">
     <div class="band"><div class="t">COSTCO <span>${single ? t.drop : t.drops}</span></div><div class="c">${right}</div></div>
     <div class="stripe"></div>
     ${body}
@@ -273,7 +288,7 @@ function post(lang, p, photos, badges) {
     <div class="disc">${esc(t.fine(seen, regionName(lang, items[0][1].provinces)))}${single && (items[0][1].bizOnly || []).length ? esc(lang === "fr"
       ? ` Aussi relevé dans les centres d'affaires Costco seulement : ${items[0][1].bizOnly.join(", ")}.`
       : ` Also seen at Costco Business Centres only in ${items[0][1].bizOnly.join(", ")}.`) : ""}</div>
-    <div class="claim"><div class="a">${claim}</div>${stores}${dots(p.dots)}</div>
+    <div class="claim"><div class="a${big ? " huge" : ""}">${claim}</div>${stores}${dots(p.dots)}</div>
   </div></body></html>`;
 }
 
@@ -283,11 +298,14 @@ const STRIP = ["BC", "AB", "SK", "MB", "ON", "QC", "NB", "NS", "PE", "NL"];
 // Location (Monica, 2026-10-29): Costco warehouses and Costco Business Centres are never mixed without saying
 // where to buy. `bizOnly` lists provinces where the saving was seen only at a Business Centre: those cells are
 // yellow and a legend line says so.
-function strip(lang, prov, bizOnly = []) {
-  const on = national(prov) ? STRIP : prov;
+function strip(lang, prov, bizOnly = [], bcOnly = false) {
+  // bcOnly (Monica, 2026-11-04): a Business Centre carousel, every cell yellow, one legend key.
+  const on = !prov.length ? [] : national(prov) ? STRIP : prov;
   const label = lang === "fr" ? "RELEVÉ EN" : "SEEN IN";
   const cells = STRIP.map((c) => `<i class="${on.includes(c) ? "on" : bizOnly.includes(c) ? "bz" : "off"}">${c}</i>`).join("");
-  const legend = bizOnly.length
+  const legend = bcOnly
+    ? `<div class="legend"><b class="k bz"></b>${lang === "fr" ? "Centres d'affaires Costco seulement" : "Costco Business Centres only"}</div>`
+    : bizOnly.length
     ? `<div class="legend"><b class="k on"></b>${lang === "fr" ? "Entrepôts Costco" : "Costco warehouses"}<b class="k bz"></b>${
         lang === "fr" ? "Centres d'affaires Costco seulement" : "Costco Business Centres only"}</div>`
     : "";
@@ -310,6 +328,7 @@ function endSlide(lang, f, badges) {
     <div class="kick">${esc(t.endKick)}</div>
     <div class="ehead">${esc(t.endHead).replace("\n", "<br>")}</div>
     <div class="esub">${esc(t.endSub)}</div>
+    <div class="emore"><span>${esc(t.endMore)}</span></div>
     <div class="ecard"><div class="pb"><img src="${MARK}">PriceBack</div>
       <p>${esc(t.endHow)}</p><p class="pl">${esc(t.endPlans)}</p></div>
     <div class="ecta">${esc(t.endCta)}</div>
@@ -414,6 +433,98 @@ function cover(lang, f, photos, badges) {
   </div></body></html>`;
 }
 
+// The claim cover (Monica, 2026-11-04), used when the week file sets `"coverStyle": "claim"`. Four things, in
+// this order and nothing else: "Costco Canada Drops 🇨🇦" (top, small), "New drops / Claim until <Sunday, date>"
+// (middle, huge), the number of drops (bottom, medium), "Bought in the last 30 days?" (very bottom, small,
+// yellow). No swipe cue. One end date when every item shares it (her preference), else the range.
+const CC = {
+  en: {
+    top: "Costco Canada Drops",
+    fresh: "NEW DROPS",
+    until: "Claim until",
+    day: (iso) => new Date(iso + "T12:00:00Z").toLocaleDateString("en-CA", { weekday: "long", timeZone: "UTC" }) + ",",
+    date: (iso) => dateShortCase("en", iso),
+    // Mixed end dates: every date listed, never a "from–to" range (it reads as a start date).
+    range: (ds) => ds.map((d) => dateShortCase("en", d)).join(" & ").replace(/^([A-Za-z]+) (\d+) & \1 /, "$1 $2 & "),
+    count: (n) => `${n} price drop${n > 1 ? "s" : ""}`,
+    bought: "Bought in the last 30 days?",
+    claimUpTo: (n) => `CLAIM UP TO ${money("en", n, true)} BACK`,
+    bizOnly: "Only in Costco Business Centres",
+    total: (n) => [`Total possible back: ${money("en", n, true)}`, "if you bought them"],
+  },
+  fr: {
+    top: "Baisses Costco Canada",
+    fresh: "NOUVELLES BAISSES",
+    until: "Réclamez jusqu'au",
+    day: (iso) => new Date(iso + "T12:00:00Z").toLocaleDateString("fr-CA", { weekday: "long", timeZone: "UTC" }),
+    date: (iso) => dateShortCase("fr", iso),
+    range: (ds) => ds.map((d) => dateShortCase("fr", d)).join(" et ").replace(/^(\d+) ([^ ]+) et (\d+) \2$/, "$1 et $3 $2"),
+    count: (n) => `${n} baisse${n > 1 ? "s" : ""} de prix`,
+    bought: "Acheté ces 30 derniers jours ?",
+    claimUpTo: (n) => `RÉCLAMEZ JUSQU'À ${money("fr", n, true)}`,
+    bizOnly: "Seulement dans les centres d'affaires Costco",
+    total: (n) => [`Total à récupérer : ${money("fr", n, true)}`, "si vous les avez achetés"],
+  },
+};
+function claimCover(lang, f, badges) {
+  const t = L[lang], c = CC[lang];
+  const items = f.items.map((sku) => [sku, DATA.items[sku]]);
+  const exps = [...new Set(items.map(([, i]) => i.exp))].sort();
+  const one = exps.length === 1;
+  const when = one
+    ? `<div class="cc-day">${esc(c.day(exps[0]))}</div><div class="cc-date">${esc(c.date(exps[0]))}</div>`
+    : `<div class="cc-date rng">${esc(c.range(exps))}</div>`;
+  const until = c.until;
+  const seen = items.map(([, i]) => i.seen).sort();
+  const sum = Math.round(items.reduce((a, [, i]) => a + i.off, 0) * 100) / 100;
+  const cat = (DATA.carousels[0].category || {})[lang] || "";
+  const stores = `<div class="stores"><img src="${badges.apple}"><img src="${badges.google}"></div>`;
+  return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>${CSS}${CLAIM_CSS}</style></head><body>
+  <div class="post ${lang} s cc">
+    <div class="cc-top"><span>${esc(c.top)} <i class="flag">🇨🇦</i></span><b>${esc(cat).toUpperCase()}</b></div>
+    <div class="stripe cc-stripe"></div>
+    ${DATA.businessCentre ? `<div class="cc-biz">${esc(c.bizOnly)}</div>` : ""}
+    <div class="cc-mid">
+      <div class="cc-new">${esc(c.fresh)}</div>
+      <div class="cc-until">${esc(until)}</div>
+      ${when}
+    </div>
+    <div class="cc-count">${esc(c.count(items.length))}</div>
+    <div class="cc-total">${c.total(sum).map(esc).join("<br>")}</div>
+    <div class="disc">${esc(t.coverFine(seen[0], seen[seen.length - 1]))}</div>
+    <div class="claim"><div class="a cc-bought">${esc(c.bought)}<b>${esc(c.claimUpTo(sum))}</b></div>${stores}${dots(f.dots)}</div>
+  </div></body></html>`;
+}
+const CLAIM_CSS = `
+.cc-top{position:absolute;top:0;left:0;right:0;height:96px;background:var(--blue);display:flex;align-items:center;justify-content:space-between;padding:0 60px;color:#fff}
+.cc-top span{font-weight:900;font-size:36px;letter-spacing:.5px;display:flex;align-items:center;gap:14px}
+.cc-top .flag{font-style:normal;font-family:"Noto Color Emoji";font-size:38px}
+.cc-top b{color:#fff;font-size:30px;font-weight:900;letter-spacing:3px}
+.cc-stripe{top:96px}
+.cc-mid{position:absolute;left:60px;right:60px;top:140px;height:620px;display:flex;flex-direction:column;justify-content:center}
+.cc-new{align-self:flex-start;background:var(--red);color:#fff;font-weight:900;font-size:56px;letter-spacing:2px;padding:6px 22px;transform:rotate(-1.5deg);margin-bottom:22px}
+.cc-until{color:#111;font-weight:900;font-size:96px;line-height:1;letter-spacing:-2px}
+.fr .cc-until{font-size:84px}
+.cc-day{color:var(--blue);font-weight:900;font-size:96px;line-height:1.05;letter-spacing:-3px;margin-top:14px;text-transform:capitalize}
+.fr .cc-day{text-transform:none}
+.cc-date{display:inline-block;align-self:flex-start;background:var(--yel);color:var(--blue);font-weight:900;font-size:100px;line-height:1;letter-spacing:-3px;padding:4px 20px 10px;margin-top:6px;white-space:nowrap}
+.fr .cc-date{font-size:92px;letter-spacing:-3px}
+.cc-date.rng{font-size:96px;letter-spacing:-4px;margin-top:22px}
+.fr .cc-date.rng{font-size:84px}
+.cc-count{position:absolute;left:40px;right:40px;top:780px;text-align:center;font-weight:900;font-size:124px;color:#fff;background:var(--blue);border-radius:70px;padding:12px 0;letter-spacing:-.5px;box-shadow:inset 0 -8px 0 var(--red)}
+.cc .disc{bottom:190px}
+.cc-total{position:absolute;left:40px;right:40px;top:968px;text-align:center;font-weight:900;font-size:44px;color:#111;letter-spacing:-.5px}
+.fr .cc-total{font-size:40px}
+.fr .cc-count{font-size:104px}
+.cc-total{line-height:1.12}
+.cc-biz{position:absolute;left:0;right:0;top:112px;background:var(--yel);color:#111;text-align:center;font-weight:900;font-size:34px;letter-spacing:1px;padding:8px 0;text-transform:uppercase}
+.fr .cc-biz{font-size:28px}
+.cc-bought{color:var(--yel);font-size:40px !important;font-weight:900;line-height:1.1 !important;margin-top:-16px;white-space:nowrap}
+.fr .cc-bought{font-size:34px !important}
+.cc-bought b{display:block;width:max-content;margin-top:8px;font-size:54px;padding:2px 14px !important}
+.fr .cc-bought b{font-size:46px}
+`;
+
 const CSS = `
 *{box-sizing:border-box;margin:0;padding:0}
 body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
@@ -424,6 +535,7 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
 .band .t span{background:var(--red);padding:2px 18px;margin-left:8px}
 .fr .band .t{font-size:48px}
 .band .c{color:#cfe3f5;font-size:22px;font-weight:700;letter-spacing:3px;text-align:right;white-space:nowrap}
+.band .c .cat{color:#fff;font-size:30px;font-weight:900;letter-spacing:2px}
 .stripe{position:absolute;top:150px;left:0;right:0;height:16px;background:var(--red)}
 .photo{position:absolute;background-size:contain;background-repeat:no-repeat;background-position:center}
 .photo.hero{left:60px;right:60px;top:186px;height:430px}
@@ -465,6 +577,13 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
 .claim .a{font-size:30px;font-weight:800;line-height:1.3}
 .fr .claim .a{font-size:27px}
 .claim .a b{background:#fff;color:var(--red);padding:0 10px;font-weight:900}
+.post .claim .a.huge{font-size:58px;line-height:1.02;font-weight:900;letter-spacing:0;white-space:nowrap;margin:-22px 0 0 -14px}
+.post.fr .claim .a.huge{font-size:52px}
+.claim .a.huge{text-align:left}
+.claim .a.huge span{display:block;padding:0 14px}
+.claim .a.huge small{font-size:30px;font-weight:800;letter-spacing:0}
+.post.fr .claim .a.huge small{font-size:26px}
+.claim .a.huge b{display:block;width:max-content;margin-top:8px;padding:2px 14px}
 .pb{display:flex;align-items:center;gap:12px;font-weight:900;font-size:28px;background:#fff;color:#0d3d28;padding:12px 18px;border-radius:14px;white-space:nowrap}
 .pb img{width:40px;height:40px;border-radius:10px}
 .promo{position:absolute;left:40px;right:40px;top:1024px;height:98px;display:flex;align-items:center;gap:22px;background:#0d3d28;border-radius:18px;padding:0 24px;box-shadow:0 10px 24px rgba(13,61,40,.28)}
@@ -483,14 +602,17 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
 .fr .ehead{font-size:100px}
 .fr .esub{font-size:31px}
 .esub{position:absolute;left:60px;right:60px;top:500px;font-size:38px;font-weight:800;color:#111}
-.ecard{position:absolute;left:60px;right:60px;top:590px;background:#0d3d28;border-radius:22px;padding:30px 36px;color:#fff}
+.emore{position:absolute;left:60px;right:60px;top:562px;font-size:31px;white-space:nowrap;letter-spacing:-.3px;font-weight:900;color:#111;line-height:1.25}
+.emore span{background:var(--yel);padding:2px 10px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.fr .emore{font-size:27px;white-space:nowrap;letter-spacing:-.3px}
+.ecard{position:absolute;left:60px;right:60px;top:628px;background:#0d3d28;border-radius:22px;padding:26px 36px;color:#fff}
 .ecard .pb{background:transparent;color:#fff;padding:0;font-size:44px;margin-bottom:16px}
 .ecard .pb img{width:66px;height:66px;border-radius:14px}
 .ecard p{font-size:29px;line-height:1.35;font-weight:700}
 .ecard p.pl{margin-top:14px;color:#7fe0a8;font-weight:800}
 .fr .ecard p{font-size:26px}
-.ecta{position:absolute;left:60px;right:60px;top:965px;text-align:center;font-weight:900;font-size:26px;letter-spacing:3px;color:#111}
-.ebadges{position:absolute;left:60px;right:60px;top:1010px;display:flex;justify-content:center;gap:28px}
+.ecta{position:absolute;left:60px;right:60px;top:985px;text-align:center;font-weight:900;font-size:26px;letter-spacing:3px;color:#111}
+.ebadges{position:absolute;left:60px;right:60px;top:1028px;display:flex;justify-content:center;gap:28px}
 .ebadges img{height:96px;width:auto}
 .end .claim{justify-content:flex-start}
 .kick{position:absolute;left:60px;top:196px;background:var(--yel);color:#111;font-weight:900;font-size:40px;letter-spacing:2px;padding:4px 16px;transform:rotate(-1.5deg)}
@@ -672,7 +794,7 @@ function allPosts() {
     }
   for (const p of posts)
     for (const lang of p.lang ? [p.lang] : langsFor(p)) {
-      const html = p.end ? endSlide(lang, p, badges[lang]) : p.cover ? cover(lang, p, photos, badges[lang]) : post(lang, p, photos, badges[lang]);
+      const html = p.end ? endSlide(lang, p, badges[lang]) : p.cover ? (DATA.coverStyle === "claim" ? claimCover(lang, p, badges[lang]) : cover(lang, p, photos, badges[lang])) : post(lang, p, photos, badges[lang]);
       await page.setContent(html, { waitUntil: "load" });
       // Week carousels: one folder per language, so EN and FR never mix (Monica, 2026-10-15).
       const file = typeof p.file === "function" ? path.join(OUT, `${p.file(lang)}.png`) : path.join(OUT, `${p.file}-${lang}.png`);

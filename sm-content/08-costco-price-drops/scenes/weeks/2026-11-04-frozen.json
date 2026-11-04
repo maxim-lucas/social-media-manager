@@ -1,0 +1,110 @@
+{
+  "_note": "Savings that STARTED this week (valid_from >= 2026-11-02), end Nov 15 or later, one saving everywhere. Location from flags.storefront / warehouse name: a province is blue only when a Costco warehouse row exists; provinces with Business Centre rows only go in bizOnly (yellow). Flipp checked 2026-11-04 (flyers 8216470, 8216437, 8216439): Easy-Off, Finish rinse aid, Frank's, Kinder's, Clamato, Aussie Bites, Scotch-Brite lint roller dropped. Never posted before.",
+  "source": "priceback.price_points (Same-Day in-store savings, price_tag_scan, verified), pulled 2026-11-04 07:30 UTC",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "carousels": [
+    {
+      "id": "frozen",
+      "category": {
+        "en": "Frozen",
+        "fr": "Surgelés"
+      },
+      "items": [
+        "3282174",
+        "2660593",
+        "184877"
+      ]
+    }
+  ],
+  "items": {
+    "3282174": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Janes",
+          "battered haddock",
+          "1.26 kg"
+        ],
+        "fr": [
+          "Janes",
+          "aiglefin en pâte",
+          "1,26 kg"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5.0,
+      "price": 19.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2660593": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Siwin",
+          "sweet longanisa",
+          "cured sausage, 1.5 kg"
+        ],
+        "fr": [
+          "Siwin",
+          "longanisa sucrée",
+          "saucisse, 1,5 kg"
+        ]
+      },
+      "regular": 14.99,
+      "off": 5.0,
+      "price": 9.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "MB"
+      ],
+      "bizOnly": []
+    },
+    "184877": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Traditions Mega",
+          "vanilla ice cream",
+          "sandwiches, 30 × 190 mL"
+        ],
+        "fr": [
+          "Traditions Mega",
+          "sandwichs à la crème",
+          "glacée vanille, 30 × 190 ml"
+        ]
+      },
+      "regular": 19.99,
+      "off": 5.0,
+      "price": 14.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    }
+  },
+  "feeds": {
+    "en": [
+      "frozen"
+    ],
+    "fr": [
+      "frozen"
+    ]
+  }
+}

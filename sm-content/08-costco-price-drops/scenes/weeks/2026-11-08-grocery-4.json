@@ -1,0 +1,200 @@
+{
+  "_note": "Grocery ending Sun Nov 8. priceback.savings live rows; new this week first (valid_from >= Nov 2), topped up with older offers ending the same day when needed; biggest saving first. Missing photo (dropped): 1975748, 1835723.",
+  "source": "priceback.savings + priceback.price_points regular prices, pulled 2026-11-04",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "Grocery",
+        "fr": "Épicerie"
+      },
+      "items": [
+        "1788908",
+        "599010",
+        "469627",
+        "1830902",
+        "1435450",
+        "1352311"
+      ]
+    }
+  ],
+  "items": {
+    "1788908": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Quaker",
+          "yogurt granola bars",
+          "variety pack"
+        ],
+        "fr": [
+          "Quaker",
+          "barres granola au yogourt",
+          "assortiment"
+        ]
+      },
+      "regular": 18.99,
+      "off": 7.0,
+      "price": 11.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "599010": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Lavazza",
+          "Crema e Aroma coffee",
+          "whole bean, 2.2 lb"
+        ],
+        "fr": [
+          "Lavazza",
+          "café Crema e Aroma",
+          "en grains, 1 kg"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5.0,
+      "price": 19.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "469627": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Ferrero Rocher",
+          "fine hazelnut chocolates",
+          "48 pieces"
+        ],
+        "fr": [
+          "Ferrero Rocher",
+          "chocolats fins aux noisettes",
+          "48 pièces"
+        ]
+      },
+      "regular": 21.99,
+      "off": 4.5,
+      "price": 17.49,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1830902": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Le Chic Pâtissier",
+          "French macarons",
+          "36 pieces"
+        ],
+        "fr": [
+          "Le Chic Pâtissier",
+          "macarons français",
+          "36 pièces"
+        ]
+      },
+      "regular": 18.99,
+      "off": 4.0,
+      "price": 14.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1435450": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Siwin",
+          "Japanese-style sausage",
+          "2 × 600 g"
+        ],
+        "fr": [
+          "Siwin",
+          "saucisses style japonais",
+          "2 × 600 g"
+        ]
+      },
+      "regular": 14.99,
+      "off": 3.0,
+      "price": 11.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "NL",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "1352311": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Vonbee",
+          "honey citron & ginger tea",
+          "2 kg"
+        ],
+        "fr": [
+          "Vonbee",
+          "thé miel, citron et gingembre",
+          "2 kg"
+        ]
+      },
+      "regular": 13.99,
+      "off": 3.0,
+      "price": 10.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    }
+  },
+  "feeds": {
+    "en": [
+      "c"
+    ],
+    "fr": [
+      "c"
+    ]
+  }
+}
