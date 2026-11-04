@@ -74,7 +74,7 @@ body{width:1080px;height:1920px;overflow:hidden;font-family:"Helvetica Neue",Ari
 #more{left:0;right:0;top:820px;text-align:center}
 #more span{display:inline-block;background:#FFF200;color:#E31837;font-weight:900;font-size:80px;padding:8px 30px;letter-spacing:-1px}
 #tag{left:0;right:0;top:120px;text-align:center}
-#tag span{display:inline-block;background:#E31837;color:#fff;font-weight:900;font-size:50px;padding:8px 26px;letter-spacing:3px;border:5px solid #fff}
+#tag span{display:inline-block;white-space:nowrap;background:#E31837;color:#fff;font-weight:900;font-size:${lang === "fr" ? 38 : 50}px;padding:8px 26px;letter-spacing:${lang === "fr" ? 1 : 3}px;border:5px solid #fff}
 /* top3 mode */
 #rank{left:0;right:0;top:150px;text-align:center}
 #rank span{display:inline-block;background:#FFF200;color:#E31837;font-weight:900;font-size:64px;padding:8px 26px;letter-spacing:1px}
