@@ -76,6 +76,17 @@ Deal posts are real Costco price drops with product photos. They matter more tha
     - **End card (1.5 s, reel is 7.5 s):** "🔔 DON'T MISS" yellow tag, "NEXT WEEK'S COSTCO DROPS" big, a huge
       pulsing "FOLLOW @priceback.ca" button with a tapping hand, "+ hundreds more hidden savings only in the
       PriceBack app" in yellow, the PriceBack icon + name, and both store badges.
+    - **Feedback (Monica, 2026-11-04 18:10), overrides the lines above where they differ:**
+      - **No text ever overlaps a product photo** in a reel (hook question, date, banner, counter): photos and text
+        get separate zones. The end date ("Ends Sunday, Nov 8") needs its own design and place, not a loose line.
+      - **Say the category in the hook** ("GROCERY") when the reel is a category reel. A single "$7" top drop is not
+        appealing on its own: propose hook options to Monica BEFORE regenerating, never pick silently.
+      - **End card: the app name appears once.** Write it as "ONLY in [PriceBack logo + name]", with the word
+        "ONLY" styled to blend with the logo, not a second "PriceBack" line.
+      - **"HIDDEN" is emphasised** (bold, capitals, highlighted) in "+ hundreds more HIDDEN savings".
+      - **Music must sound like trending Reels audio** for this kind of content, not generic synth. Our tracks are
+        synthesized (no licence issues), so the default is: deliver the no-music copy and add a trending sound
+        from Instagram's own audio library when posting (licensed for Reels, and trending audio gets reach).
   - **Business Centre and warehouse savings are never in the same carousel** (Monica, 2026-11-04): separate
     carousels, and a Business Centre cover says "Only in Costco Business Centres" (FR "Seulement dans les
     Centres d'entreprises Costco"); `"businessCentre": true` in the week file. **Never an item already posted** in an earlier carousel:
