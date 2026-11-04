@@ -97,6 +97,12 @@ Deal posts are real Costco price drops with product photos. They matter more tha
           the week; the 3 biggest drops with CLAIM stickers ("65 COSTCO PRICES JUST DROPPED", up to $486.70).
         - End date is an "ENDS | SUN NOV 8" ticket in its own zone. Backup music `reels/music_house.py` (122 BPM
           funky house, about -16.5 dB); a no-music copy is always delivered for trending Instagram audio.
+      - **Follow-up (Monica, 2026-11-04 21:07):** the "ENDS | SUN NOV 8" ticket is big (72/96 px); the products
+        going into the cart start big (540 px card, never below half size) and still never touch any text.
+      - **Platforms:** Instagram + Facebook get the **music-only** version (`-IG-FB.mp4`). YouTube Shorts + TikTok
+        get a **voiceover + music** version, voiced with Monica's own cloned voice through the same local pipeline
+        she used for the Kickstarter video (on her machine; lines generated there and pushed to
+        `reels/vo/<week>/`, with a README naming the pipeline).
   - **Business Centre and warehouse savings are never in the same carousel** (Monica, 2026-11-04): separate
     carousels, and a Business Centre cover says "Only in Costco Business Centres" (FR "Seulement dans les
     Centres d'entreprises Costco"); `"businessCentre": true` in the week file. **Never an item already posted** in an earlier carousel:
