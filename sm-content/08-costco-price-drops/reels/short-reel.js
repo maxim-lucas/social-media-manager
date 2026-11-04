@@ -22,9 +22,9 @@ const b64 = (p) => "data:image/" + (p.endsWith(".png") ? "png" : p.endsWith(".sv
 const money = (n) => { const d = Math.round(n * 100) % 100 !== 0; return lang === "fr" ? (d ? n.toFixed(2).replace(".", ",") : Math.round(n)) + " $" : "$" + (d ? n.toFixed(2) : Math.round(n)); };
 const D = new Date(exp + "T12:00:00");
 const T = {
-  en: { q: "Shopped at Costco lately?", drop: `${N} PRICES JUST DROPPED`, upto: "Claim up to", back: "back", ifb: "if you bought them", e1: "🔔 DON'T MISS", e2: "NEXT WEEK'S<br>COSTCO DROPS", more: "+ hundreds more hidden savings<br>only in the PriceBack app", ends: `Ends Sunday, Nov ${D.getDate()}`,
+  en: { q: "Shopped at Costco lately?", drop: `${N} PRICES JUST DROPPED`, upto: "Claim up to", back: "back", ifb: "if you bought them", e1: "🔔 DON'T MISS", e2: "NEXT WEEK'S<br>COSTCO DROPS", more: "+ hundreds more<br><span class=\"hid\"><em>HIDDEN</em></span> savings", only: "ONLY in", ends: `Ends Sunday, Nov ${D.getDate()}`,
         rank: (i) => ["BIGGEST DROP", "#2 DROP", "#3 DROP"][i], claim: (x) => `CLAIM ${money(x)} BACK`, follow: "FOLLOW", handle: "@priceback.ca", fsub: "for next week's drops" },
-  fr: { q: "Vous avez magasiné chez Costco récemment ?", drop: `${N} PRIX VIENNENT DE BAISSER`, upto: "Réclamez jusqu'à", back: "", ifb: "si vous les avez achetés", e1: "🔔 NE MANQUEZ PAS", e2: "LES BAISSES COSTCO<br>DE LA SEMAINE PROCHAINE", more: "+ des centaines de rabais cachés<br>exclusivement dans l'app PriceBack", ends: `Jusqu'au dimanche ${D.getDate()} novembre`,
+  fr: { q: "Vous avez magasiné chez Costco récemment ?", drop: `${N} PRIX VIENNENT DE BAISSER`, upto: "Réclamez jusqu'à", back: "", ifb: "si vous les avez achetés", e1: "🔔 NE MANQUEZ PAS", e2: "LES BAISSES COSTCO<br>DE LA SEMAINE PROCHAINE", more: "+ des centaines de<br>rabais <span class=\"hid\"><em>CACHÉS</em></span>", only: "SEULEMENT dans", ends: `Jusqu'au dimanche ${D.getDate()} novembre`,
         rank: (i) => ["PLUS GROSSE BAISSE", "BAISSE N° 2", "BAISSE N° 3"][i], claim: (x) => `RÉCLAMEZ ${money(x)}`, follow: "SUIVEZ", handle: "@priceback.ca", fsub: "pour les baisses de la semaine prochaine" },
 }[lang];
 const FPS = 30, DUR = 7.5, A = 1.0, B = 2.5, C = 6.0, PER = (C - B) / top.length;
@@ -49,17 +49,22 @@ body{width:1080px;height:1920px;overflow:hidden;font-family:"Helvetica Neue",Ari
 #e1 span{display:inline-block;background:#FFF200;color:#E31837;font-weight:900;font-size:64px;padding:8px 28px;font-family:"Helvetica Neue",Arial,"Noto Color Emoji",sans-serif}
 #e2{left:30px;right:30px;top:370px;text-align:center;color:#fff;font-weight:900;font-size:${lang === "fr" ? 84 : 116}px;line-height:1.02;letter-spacing:-2px}
 #fol{left:0;right:0;top:700px;text-align:center}
-#e3{left:30px;right:30px;top:1120px;text-align:center;color:#FFF200;font-weight:900;font-size:${lang === "fr" ? 46 : 52}px;line-height:1.2}
-#e4{left:140px;right:140px;top:1310px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:26px 30px}
-#e4 .mk{width:120px;height:120px;border-radius:26px}
-#e4 b{color:#fff;font-size:70px;font-weight:900}
-#e4 .br{flex-basis:100%;height:0}
+#e3{left:20px;right:20px;top:1080px;text-align:center;color:#fff;font-weight:900;font-size:${lang === "fr" ? 62 : 70}px;line-height:1.25;white-space:nowrap}
+#e3 .hid{position:relative;display:inline-block;background:#FFF200;color:#E31837;padding:0 14px;transform:rotate(-3deg);font-size:1.3em;letter-spacing:2px}
+#e3 .hid em{font-style:normal}
+#e3 .hid:after{content:"";position:absolute;right:0;top:0;bottom:0;left:var(--bar,0%);background:#111}
+#e4{left:0;right:0;top:1340px;display:flex;flex-direction:column;align-items:center;gap:30px}
+#e4 .pill{display:flex;align-items:center;gap:20px;background:#fff;border-radius:999px;padding:14px 44px 14px 34px;box-shadow:0 14px 34px rgba(0,0,0,.3)}
+#e4 .only{color:#0EAD79;font-size:${lang === "fr" ? 44 : 54}px;font-weight:900;letter-spacing:3px;font-style:italic}
+#e4 .mk{width:110px;height:110px;border-radius:24px}
+#e4 b{color:#11785A;font-size:76px;font-weight:900;letter-spacing:-1px}
+#e4 .bds{display:flex;align-items:center;gap:30px}
 #e4 .bd{height:104px}
 #e4 .bd+.bd{height:122px;margin:-9px}
 #fol .btn{display:inline-block;background:#E31837;color:#fff;font-weight:900;font-size:130px;padding:24px 80px;border-radius:90px;border:8px solid #fff;letter-spacing:2px;box-shadow:0 14px 34px rgba(0,0,0,.35);line-height:1.05}
 #fol .btn small{display:block;font-size:80px;letter-spacing:0}
 #fol .sub{color:#FFF200;font-weight:900;font-size:${lang === "fr" ? 44 : 54}px;margin-top:34px}
-#hand{font-size:150px;left:870px;top:990px;font-family:"Noto Color Emoji"}
+#hand{font-size:150px;left:830px;top:880px;font-family:"Noto Color Emoji"}
 #flash{left:0;top:0;width:1080px;height:1920px;background:#fff}
 </style></head><body>
 <div id="hookL" class="abs" style="left:0;top:0;width:1080px;height:1920px">
@@ -77,7 +82,7 @@ ${top.map((t, i) => `<div class="abs sl" id="s${i}" style="background-image:url(
   <div id="e2" class="abs">${T.e2}</div>
   <div id="fol" class="abs"><div class="btn">${T.follow}<small>${T.handle}</small></div></div>
   <div id="e3" class="abs">${T.more}</div>
-  <div id="e4" class="abs"><img class="mk" src="${b64(path.join(SC, "mark.png"))}"><b>PriceBack</b><i class="br"></i><img class="bd" src="${b64(path.join(__dirname, "../../06-launch/badges/app-store-en.svg").replace(/x$/, "x"))}"><img class="bd" src="${b64(path.join(__dirname, "../../06-launch/badges/google-play-" + lang + ".png"))}"></div>
+  <div id="e4" class="abs"><div class="pill"><span class="only">${T.only}</span><img class="mk" src="${b64(path.join(SC, "mark.png"))}"><b>PriceBack</b></div><div class="bds"><img class="bd" src="${b64(path.join(__dirname, "../../06-launch/badges/app-store-en.svg"))}"><img class="bd" src="${b64(path.join(__dirname, "../../06-launch/badges/google-play-" + lang + ".png"))}"></div></div>
 </div>
 <div id="hand" class="abs">👆</div>
 <div id="flash" class="abs"></div>
@@ -111,7 +116,7 @@ window.frame=(t)=>{
   }
   const end=t>=C, lt2=t-C; $("endL").style.display=end?"block":"none"; $("hand").style.display=end?"block":"none";
   if(end){ $("e1").style.transform="scale("+(0.3+0.7*back(lt2/0.25))+") rotate(-3deg)"; $("e2").style.opacity=String(cl((lt2-0.08)/0.12)); $("e2").style.transform="translateY("+(40*(1-eo((lt2-0.08)/0.25)))+"px)";
-    $("e3").style.opacity=String(cl((lt2-0.45)/0.15)); $("e4").style.opacity=String(cl((lt2-0.6)/0.15)); $("e4").style.transform="translateY("+(30*(1-eo((lt2-0.6)/0.25)))+"px)"; }
+    $("e3").style.opacity=String(cl((lt2-0.45)/0.15)); document.querySelector("#e3 .hid").style.setProperty("--bar",(100*eo((lt2-0.6)/0.3))+"%"); $("e4").style.opacity=String(cl((lt2-0.6)/0.15)); $("e4").style.transform="translateY("+(30*(1-eo((lt2-0.6)/0.25)))+"px)"; }
   if(end){ const s=back((lt2-0.2)/0.3), pulse=1+0.05*Math.max(0,Math.sin((lt2-0.35)*Math.PI*3)); $("fol").style.transform="scale("+(s*pulse)+")";
     const tap=Math.abs(Math.sin((lt2-0.3)*Math.PI*2)); $("hand").style.opacity=String(cl((lt2-0.3)/0.1)); $("hand").style.transform="translate("+(-18*tap)+"px,"+(-26*tap)+"px)"; }
   const f=Math.max(1-cl(Math.abs(t-A)/0.07), 1-cl(Math.abs(t-B)/0.08), 1-cl(Math.abs(t-C)/0.08)); $("flash").style.opacity=String(f*0.45);
@@ -120,9 +125,10 @@ window.frame=(t)=>{
 (async () => {
   const tmp = fs.mkdtempSync("/tmp/sreel-"); fs.writeFileSync(path.join(tmp, "r.html"), html);
   const wav = path.join(tmp, "m.wav");
-  if (flag !== "--silent") execFileSync("python3", [path.join(__dirname, "music_pop.py"), String(DUR), wav, cuts.join(",")]);
+  if (flag !== "--silent" && flag !== "--stills") execFileSync("python3", [path.join(__dirname, "music_pop.py"), String(DUR), wav, cuts.join(",")]);
   const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
   await p.goto("file://" + path.join(tmp, "r.html")); await p.waitForTimeout(400);
+  if (flag === "--stills") { for (const t of (process.argv[6] || "1.5,7.2").split(",")) { await p.evaluate((x) => window.frame(x), +t); await p.screenshot({ path: out.replace(/\.mp4$/, "") + "-" + t + ".png" }); } await b.close(); return; }
   const args = ["-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", String(FPS), "-c:v", "mjpeg", "-i", "-"];
   if (flag !== "--silent") args.push("-i", wav, "-c:a", "aac", "-b:a", "160k", "-shortest");
   args.push("-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p", "-r", String(FPS), "-movflags", "+faststart", out);
