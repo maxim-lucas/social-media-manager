@@ -27,16 +27,25 @@ Deal posts are real Costco price drops with product photos. They matter more tha
   - **Group by saving end date as much as possible, and order the slides by end date** (then biggest saving first).
     One end date for the whole carousel is preferred. **More than 8 offers in a category = 2 carousels, split by
     end-date range.** A carousel is never a single item.
-  - **Only savings that started this week** (valid from the Monday of the posting week or later). A saving that
-    started earlier and is still running is not "new". **Never an item already posted** in an earlier carousel:
+  - **Only savings that started this week**: query `savings` for `valid_from` on or after the Monday of the posting
+    week **and** `created_at` on that Monday or later (Monica, 2026-11-04). A saving that started earlier and is
+    still running is not "new".
+  - **Which items first** (Monica, 2026-11-04): daily, common groceries (the most-bought staples: milk, cheese,
+    yogurt, eggs, bread, meat, canned basics, snacks families buy every week) with the highest savings. Not enough?
+    Loosen to other grocery items. Still not enough? Take smaller savings.
+  - **Business Centre and warehouse savings are never in the same carousel** (Monica, 2026-11-04): separate
+    carousels, and a Business Centre cover says "Only in Costco Business Centres" (FR "Seulement dans les
+    Centres d'entreprises Costco"); `"businessCentre": true` in the week file. **Never an item already posted** in an earlier carousel:
     check every `posts/` folder and `/mnt/project-files/marketing/costco-posts/` first.
   - **Every item slide shows province availability** (the province strip).
   - **Cover ("guard") card, exactly these 4 things in this order**, and nothing else (no swipe cue, no photo grid):
     1. "Costco Canada Drops 🇨🇦" (FR "Baisses Costco Canada 🇨🇦"): top, small.
     2. "New drops · Claim until Sunday, Nov 15": middle, HUGE. The weekday + date when every item ends the same
        day (preferred); otherwise every end date listed ("Nov 15 & 29"), never a from–to range.
-    3. The number of drops ("8 price drops"): bottom, medium.
-    4. "Bought in the last 30 days?" (FR "Acheté ces 30 derniers jours ?"): very bottom, small, yellow.
+    3. The number of drops ("8 price drops"): bottom. **Bigger than the date** (the count matters more for a
+       save; the yellow date box is slightly smaller than the pill, Monica 2026-11-04).
+    4. The red footer, bigger: "Bought in the last 30 days?" in yellow, then "CLAIM UP TO $27.70 BACK" in a
+       white box (FR "Acheté ces 30 derniers jours ?" / "RÉCLAMEZ JUSQU'À 27,70 $").
   - **The end card stays as is and is the last slide of every carousel.**
   - **Always English AND French.**
   - **Source: the `priceback.savings` table** (live, not superseded rows; source `sameday_costco` = warehouses,
@@ -48,10 +57,15 @@ Deal posts are real Costco price drops with product photos. They matter more tha
   - **Items outside the 4 categories** (apparel, electronics, toys, seasonal…) go in a separate mixed carousel.
   - **Fewer than 5 items in a carousel** → complete it with offers from the same category that started before this
     week, end on the same date, with the highest savings.
-  - **Cover total line** under the drop count: "Total possible back: $35 if you bought them all" (FR "Total à
-    récupérer : 35 $ si vous les avez tous achetés").
-  - **The red footer is the hero** on item slides, huge, and says only "PAID $26.99? CLAIM $5.50 BACK" (FR
-    "PAYÉ 26,99 $ ? RÉCLAMEZ 5,50 $"); `"bigClaim": true` in the week file. The PriceBack green banner stays.
+  - **Cover total line** under the drop count, big and bold (no "all"): "Total possible back: $27.70 / if you
+    bought them" (FR "Total à récupérer : 27,70 $ / si vous les avez achetés"), on two clean lines.
+  - **The red footer is the hero** on item slides, huge: "PAID $29.99 in the last 30 days?" then "CLAIM $6 BACK"
+    in a white box (FR "PAYÉ 29,99 $ ces 30 derniers jours ?" / "RÉCLAMEZ 6 $"); `"bigClaim": true` in the
+    week file. The PriceBack green banner stays.
+  - **The category in the top band is clearly visible** on every slide (white, bold, a bit bigger), not oversized.
+  - **French uses "vous"** and the `25,70 $` price format.
+  - **Every remark or edit Monica makes becomes a rule here** (and in STYLE.md), in the same session, without
+    being asked (Monica, 2026-11-04).
   - **Make one carousel first**, have Monica validate it, then do the rest.
   - **Images first, reel second.** Render the slides, send them to Monica, and **only after she validates the
     photos** turn each carousel into an Instagram reel (a few seconds per slide, standard transitions, music).

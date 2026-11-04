@@ -1,5 +1,5 @@
 {
-  "_note": "First carousel of the Nov 4 rebuild from priceback.savings (Monica, 2026-11-04): Grocery ending Sun Nov 8 (ends soonest, so posted first), the 8 biggest new savings (valid_from >= Nov 2) with a clean photo, never posted before. Flyer items allowed. Location from savings source (sameday_costco = warehouse, sameday_business_centre = Business Centre); all 8 are warehouse items. Regular prices from the latest price_points.",
+  "_note": "Grocery ending Sun Nov 8, first carousel of the Nov 4 rebuild. priceback.savings rows valid from Monday Nov 2 and created that day or later; everyday groceries first (dairy, bread, pantry staples), highest savings; warehouse savings only (Business Centre savings get their own carousels). Regular prices from price_points.",
   "source": "priceback.savings (sameday_costco run of 2026-11-04) + priceback.price_points regular prices, pulled 2026-11-04 16:00 UTC",
   "provinceStrip": true,
   "endSlide": true,
@@ -13,47 +13,18 @@
         "fr": "Épicerie"
       },
       "items": [
-        "9943119",
         "51070",
-        "1703933",
         "1668161",
         "3301967",
-        "1510729",
-        "1242444",
-        "1154961"
+        "1154961",
+        "1152866",
+        "2215670",
+        "5086",
+        "4679"
       ]
     }
   ],
   "items": {
-    "9943119": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "BUILT Puff",
-          "protein bars",
-          "14 × 40 g"
-        ],
-        "fr": [
-          "BUILT Puff",
-          "barres protéinées",
-          "14 × 40 g"
-        ]
-      },
-      "regular": 29.99,
-      "off": 6.0,
-      "price": 23.99,
-      "exp": "2026-11-08",
-      "seen": "2026-11-04",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "NS",
-        "ON",
-        "QC"
-      ],
-      "bizOnly": []
-    },
     "51070": {
       "sameday": null,
       "tag": {
@@ -71,33 +42,6 @@
       "regular": 19.99,
       "off": 5.0,
       "price": 14.99,
-      "exp": "2026-11-08",
-      "seen": "2026-11-04",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "SK"
-      ],
-      "bizOnly": []
-    },
-    "1703933": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Tre Stelle",
-          "paneer",
-          "1 kg"
-        ],
-        "fr": [
-          "Tre Stelle",
-          "paneer",
-          "1 kg"
-        ]
-      },
-      "regular": 21.99,
-      "off": 4.5,
-      "price": 17.49,
       "exp": "2026-11-08",
       "seen": "2026-11-04",
       "provinces": [
@@ -164,60 +108,6 @@
       ],
       "bizOnly": []
     },
-    "1510729": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Blue Monkey",
-          "sparkling juice",
-          "16 × 330 mL"
-        ],
-        "fr": [
-          "Blue Monkey",
-          "jus pétillant",
-          "16 × 330 ml"
-        ]
-      },
-      "regular": 17.99,
-      "off": 4.0,
-      "price": 13.99,
-      "exp": "2026-11-08",
-      "seen": "2026-11-04",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "SK"
-      ],
-      "bizOnly": []
-    },
-    "1242444": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Freybe",
-          "air dried salami trio",
-          "2 × 375 g"
-        ],
-        "fr": [
-          "Freybe",
-          "trio de salamis séchés",
-          "2 × 375 g"
-        ]
-      },
-      "regular": 19.99,
-      "off": 4.0,
-      "price": 15.99,
-      "exp": "2026-11-08",
-      "seen": "2026-11-04",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "SK"
-      ],
-      "bizOnly": []
-    },
     "1154961": {
       "sameday": null,
       "tag": {
@@ -235,6 +125,118 @@
       "regular": 15.99,
       "off": 3.5,
       "price": 12.49,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1152866": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Khaas",
+          "halal plain yogurt 3%",
+          "6 × 750 g"
+        ],
+        "fr": [
+          "Khaas",
+          "yogourt nature halal 3 %",
+          "6 × 750 g"
+        ]
+      },
+      "regular": 15.99,
+      "off": 3.2,
+      "price": 12.79,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "2215670": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "The Laughing Cow",
+          "original spreadable",
+          "cheese, 800 g"
+        ],
+        "fr": [
+          "La Vache qui rit",
+          "fromage fondu",
+          "original, 800 g"
+        ]
+      },
+      "regular": 13.99,
+      "off": 3.0,
+      "price": 10.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "5086": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Black Diamond",
+          "marble Cheestrings",
+          "40 × 21 g"
+        ],
+        "fr": [
+          "Black Diamond",
+          "Ficello marbré",
+          "40 × 21 g"
+        ]
+      },
+      "regular": 14.89,
+      "off": 3.0,
+      "price": 11.89,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "4679": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Villaggio",
+          "Italian style bread",
+          "3 × 510 g"
+        ],
+        "fr": [
+          "Villaggio",
+          "pain à l'italienne",
+          "3 × 510 g"
+        ]
+      },
+      "regular": 8.99,
+      "off": 2.0,
+      "price": 6.99,
       "exp": "2026-11-08",
       "seen": "2026-11-04",
       "provinces": [

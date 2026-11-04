@@ -24,7 +24,7 @@ PriceBack. **One item per image, always. A category is a carousel** (Monica, 202
 | Product photo | The official packshot, white background, trimmed and centred. **Never** a shelf photo, a blurry crop or a brand-name placeholder: no clean photo, no post. |
 | Shelf tag | A recreation of the Costco tag: item number, uppercase name, regular price, yellow `-x.xx`, `Instant Savings` + `EXP.` date, `PRICE AT REGISTER`, the big price. Serif numbers, like the real tag. |
 | Badge | Single posts only: a red circle with `-$6 OFF` (FR `-6 $ DE RABAIS`) on the tag's left. |
-| Download row | Above the fine print: the PriceBack chip, `Scan your Costco receipt. We tell you when the price drops.` / `Free on iPhone and Android` (FR `Scannez votre reçu Costco. On vous avertit si le prix baisse.` / `Gratuit sur iPhone et Android`). |
+| Download row | Above the fine print: the PriceBack chip, `Scan your Costco receipt. We tell you when the price drops.` / `Free download, with a free trial` (FR `Scannez votre reçu Costco. On vous avertit si le prix baisse.` / `Téléchargement gratuit, avec essai gratuit`; never call the app "free"). |
 | Bottom band | Red. `Paid $19.99 in the last 30 days?` / `Claim the $6 difference.`, with Apple's and Google's official download badges on the right (unaltered artwork from `../06-launch/badges/`; Google's French badge on FR, Apple's English one until `app-store-fr.svg` is added there). |
 | Fine print | Above the band, on every post: where and when the price was seen, that adjustment terms are the retailer's, and the not-affiliated line. |
 
@@ -84,7 +84,16 @@ offers per carousel, EN + FR, province strip on every item, the claim cover, the
 - Photos: Same-Day search by item number (`sameday.costco.ca/store/costco-canada/s?k=<item #>` in headless
   Chromium; search shows the store's region, so western-only items may miss) or costco.ca
   (`gdx-assets.costco.com/.../<item #>-894__1.jpg`). Check every photo by eye. No clean photo, no post.
-- Reels come only after Monica validates the slides.
+- Cover (latest, 2026-11-04): total line on two lines without "all"; "8 price drops" pill bigger than the date
+  box; red footer "Bought in the last 30 days?" + white box "CLAIM UP TO $X BACK".
+- Item slides: `"bigClaim": true` → red footer "PAID $X in the last 30 days?" + white box "CLAIM $Y BACK" (the
+  `.huge` class). Category in the top band white, bold, 30px.
+- Business Centre carousels are separate: `"businessCentre": true` adds the yellow "Only in Costco Business
+  Centres" ribbon on the cover.
+- Item choice: everyday staples with the highest savings first, then other groceries, then smaller savings. Query:
+  `valid_from` ≥ the week's Monday and `created_at` ≥ that Monday.
+- Reels come only after Monica validates the slides. Every remark Monica makes is added as a rule here and in
+  `RULES-README.md` §1.
 
 ## Rules this style keeps
 
