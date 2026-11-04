@@ -32,7 +32,9 @@ Deal posts are real Costco price drops with product photos. They matter more tha
     still running is not "new".
   - **Which items first** (Monica, 2026-11-04): daily, common groceries (the most-bought staples: milk, cheese,
     yogurt, eggs, bread, meat, canned basics, snacks families buy every week) with the highest savings. Not enough?
-    Loosen to other grocery items. Still not enough? Take smaller savings.
+    Loosen to other grocery items. Still not enough? Take smaller savings. **Prefer any item over $2 off to a $2
+    item** (Monica, 2026-11-04: BUILT Puff −$6 replaced Villaggio bread −$2); go down to $2 only when nothing
+    bigger with a clean photo is left in the category and end date.
   - **Business Centre and warehouse savings are never in the same carousel** (Monica, 2026-11-04): separate
     carousels, and a Business Centre cover says "Only in Costco Business Centres" (FR "Seulement dans les
     Centres d'entreprises Costco"); `"businessCentre": true` in the week file. **Never an item already posted** in an earlier carousel:
@@ -42,8 +44,9 @@ Deal posts are real Costco price drops with product photos. They matter more tha
     1. "Costco Canada Drops 🇨🇦" (FR "Baisses Costco Canada 🇨🇦"): top, small.
     2. "New drops · Claim until Sunday, Nov 15": middle, HUGE. The weekday + date when every item ends the same
        day (preferred); otherwise every end date listed ("Nov 15 & 29"), never a from–to range.
-    3. The number of drops ("8 price drops"): bottom. **Bigger than the date** (the count matters more for a
-       save; the yellow date box is slightly smaller than the pill, Monica 2026-11-04).
+    3. The number of drops ("8 price drops"): bottom. **The count is clearly bigger than the date** (Monica,
+       2026-11-04, said twice): they must not compete; the number of drops sells the save more than the date.
+       Today: date 100px, count 124px (FR 92 / 104).
     4. The red footer, bigger: "Bought in the last 30 days?" in yellow, then "CLAIM UP TO $27.70 BACK" in a
        white box (FR "Acheté ces 30 derniers jours ?" / "RÉCLAMEZ JUSQU'À 27,70 $").
   - **The end card stays as is and is the last slide of every carousel.**

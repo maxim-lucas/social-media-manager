@@ -13,14 +13,14 @@
         "fr": "Épicerie"
       },
       "items": [
+        "9943119",
         "51070",
         "1668161",
         "3301967",
         "1154961",
         "1152866",
         "2215670",
-        "5086",
-        "4679"
+        "5086"
       ]
     }
   ],
@@ -220,30 +220,32 @@
       ],
       "bizOnly": []
     },
-    "4679": {
+    "9943119": {
       "sameday": null,
       "tag": {
         "en": [
-          "Villaggio",
-          "Italian style bread",
-          "3 × 510 g"
+          "BUILT Puff",
+          "protein bars",
+          "14 × 40 g"
         ],
         "fr": [
-          "Villaggio",
-          "pain à l'italienne",
-          "3 × 510 g"
+          "BUILT Puff",
+          "barres protéinées",
+          "14 × 40 g"
         ]
       },
-      "regular": 8.99,
-      "off": 2.0,
-      "price": 6.99,
+      "regular": 29.99,
+      "off": 6.0,
+      "price": 23.99,
       "exp": "2026-11-08",
       "seen": "2026-11-04",
       "provinces": [
         "AB",
         "BC",
         "MB",
-        "SK"
+        "NS",
+        "ON",
+        "QC"
       ],
       "bizOnly": []
     }

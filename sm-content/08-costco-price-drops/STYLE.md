@@ -84,13 +84,14 @@ offers per carousel, EN + FR, province strip on every item, the claim cover, the
 - Photos: Same-Day search by item number (`sameday.costco.ca/store/costco-canada/s?k=<item #>` in headless
   Chromium; search shows the store's region, so western-only items may miss) or costco.ca
   (`gdx-assets.costco.com/.../<item #>-894__1.jpg`). Check every photo by eye. No clean photo, no post.
-- Cover (latest, 2026-11-04): total line on two lines without "all"; "8 price drops" pill bigger than the date
-  box; red footer "Bought in the last 30 days?" + white box "CLAIM UP TO $X BACK".
+- Cover (latest, 2026-11-04): total line on two lines without "all"; "8 price drops" clearly bigger than the date
+  (date 100px, count 124px; FR 92/104); red footer "Bought in the last 30 days?" + white box "CLAIM UP TO $X BACK".
 - Item slides: `"bigClaim": true` → red footer "PAID $X in the last 30 days?" + white box "CLAIM $Y BACK" (the
   `.huge` class). Category in the top band white, bold, 30px.
 - Business Centre carousels are separate: `"businessCentre": true` adds the yellow "Only in Costco Business
   Centres" ribbon on the cover.
-- Item choice: everyday staples with the highest savings first, then other groceries, then smaller savings. Query:
+- Item choice: everyday staples with the highest savings first, then other groceries, then smaller savings;
+  anything over $2 off beats a $2 item. Query:
   `valid_from` ≥ the week's Monday and `created_at` ≥ that Monday.
 - Reels come only after Monica validates the slides. Every remark Monica makes is added as a rule here and in
   `RULES-README.md` §1.

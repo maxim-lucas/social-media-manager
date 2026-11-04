@@ -495,20 +495,21 @@ const CLAIM_CSS = `
 .cc-top .flag{font-style:normal;font-family:"Noto Color Emoji";font-size:38px}
 .cc-top b{color:#fff;font-size:30px;font-weight:900;letter-spacing:3px}
 .cc-stripe{top:96px}
-.cc-mid{position:absolute;left:60px;right:60px;top:150px;height:640px;display:flex;flex-direction:column;justify-content:center}
+.cc-mid{position:absolute;left:60px;right:60px;top:140px;height:620px;display:flex;flex-direction:column;justify-content:center}
 .cc-new{align-self:flex-start;background:var(--red);color:#fff;font-weight:900;font-size:56px;letter-spacing:2px;padding:6px 22px;transform:rotate(-1.5deg);margin-bottom:22px}
 .cc-until{color:#111;font-weight:900;font-size:96px;line-height:1;letter-spacing:-2px}
 .fr .cc-until{font-size:84px}
-.cc-day{color:var(--blue);font-weight:900;font-size:104px;line-height:1.05;letter-spacing:-3px;margin-top:18px;text-transform:capitalize}
+.cc-day{color:var(--blue);font-weight:900;font-size:96px;line-height:1.05;letter-spacing:-3px;margin-top:14px;text-transform:capitalize}
 .fr .cc-day{text-transform:none}
-.cc-date{display:inline-block;align-self:flex-start;background:var(--yel);color:var(--blue);font-weight:900;font-size:150px;line-height:1;letter-spacing:-6px;padding:4px 20px 10px;margin-top:6px;white-space:nowrap}
-.fr .cc-date{font-size:124px;letter-spacing:-4px}
-.cc-date.rng{font-size:132px;letter-spacing:-4px;margin-top:22px}
-.fr .cc-date.rng{font-size:104px}
-.cc-count{position:absolute;left:40px;right:40px;top:820px;text-align:center;font-weight:900;font-size:84px;color:#fff;background:var(--blue);border-radius:70px;padding:12px 0;letter-spacing:-.5px;box-shadow:inset 0 -8px 0 var(--red)}
+.cc-date{display:inline-block;align-self:flex-start;background:var(--yel);color:var(--blue);font-weight:900;font-size:100px;line-height:1;letter-spacing:-3px;padding:4px 20px 10px;margin-top:6px;white-space:nowrap}
+.fr .cc-date{font-size:92px;letter-spacing:-3px}
+.cc-date.rng{font-size:96px;letter-spacing:-4px;margin-top:22px}
+.fr .cc-date.rng{font-size:84px}
+.cc-count{position:absolute;left:40px;right:40px;top:780px;text-align:center;font-weight:900;font-size:124px;color:#fff;background:var(--blue);border-radius:70px;padding:12px 0;letter-spacing:-.5px;box-shadow:inset 0 -8px 0 var(--red)}
 .cc .disc{bottom:190px}
 .cc-total{position:absolute;left:40px;right:40px;top:968px;text-align:center;font-weight:900;font-size:44px;color:#111;letter-spacing:-.5px}
 .fr .cc-total{font-size:40px}
+.fr .cc-count{font-size:104px}
 .cc-total{line-height:1.12}
 .cc-biz{position:absolute;left:0;right:0;top:112px;background:var(--yel);color:#111;text-align:center;font-weight:900;font-size:34px;letter-spacing:1px;padding:8px 0;text-transform:uppercase}
 .fr .cc-biz{font-size:28px}
