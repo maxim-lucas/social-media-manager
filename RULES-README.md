@@ -69,6 +69,13 @@ Deal posts are real Costco price drops with product photos. They matter more tha
     - **Music:** Monica disliked the first track (too loud, tempo too quick). Calm, slower (about 90 BPM), quiet
       under the visuals; always also deliver a no-music copy so she can add Instagram audio.
     - Edit **EN only** until Monica approves; FR follows.
+    - **Follow-up (17:39):** the calm track was "so boring": use `reels/music_pop.py` (104 BPM feel-good pop with a
+      marimba hook, mid volume about -17 dB). Never as loud/fast as track 1, never as flat as track 2.
+    - **Make the claim believable:** under "Claim up to $X back" always add, small and yellow, "if you bought them"
+      (FR "si vous les avez achetés"); a bare "up to $120" reads as a scam.
+    - **End card (1.5 s, reel is 7.5 s):** "🔔 DON'T MISS" yellow tag, "NEXT WEEK'S COSTCO DROPS" big, a huge
+      pulsing "FOLLOW @priceback.ca" button with a tapping hand, "+ hundreds more hidden savings only in the
+      PriceBack app" in yellow, the PriceBack icon + name, and both store badges.
   - **Business Centre and warehouse savings are never in the same carousel** (Monica, 2026-11-04): separate
     carousels, and a Business Centre cover says "Only in Costco Business Centres" (FR "Seulement dans les
     Centres d'entreprises Costco"); `"businessCentre": true` in the week file. **Never an item already posted** in an earlier carousel:
