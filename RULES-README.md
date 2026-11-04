@@ -21,8 +21,32 @@ Deal posts are real Costco price drops with product photos. They matter more tha
      product post says where to buy. On the province strip, blue = seen at Costco warehouses, yellow = seen only
      at Costco Business Centres (with a legend line), grey = not seen. An item sold only at Business Centres goes
      in a Business Centre carousel, never in a warehouse one.
-- **Groceries are the exception**: grouped by type (coffee & drinks, frozen & meat, dairy & cheese, pantry &
-  snacks…), not by saving.
+- **Groceries are the exception** (rules from Monica, 2026-11-04; they replace the Oct 27 "by type" grouping):
+  - **Four categories only: Grocery, Home, Health & Beauty, Frozen.** Pet food goes in Grocery. Anything else
+    (electronics, toys, appliances, apparel…) is not a grocery post.
+  - **Group by saving end date as much as possible, and order the slides by end date** (then biggest saving first).
+    One end date for the whole carousel is preferred. **More than 8 offers in a category = 2 carousels, split by
+    end-date range.** A carousel is never a single item.
+  - **Only savings that started this week** (valid from the Monday of the posting week or later). A saving that
+    started earlier and is still running is not "new". **Never an item already posted** in an earlier carousel:
+    check every `posts/` folder and `/mnt/project-files/marketing/costco-posts/` first.
+  - **Every item slide shows province availability** (the province strip).
+  - **Cover ("guard") card, exactly these 4 things in this order**, and nothing else (no swipe cue, no photo grid):
+    1. "Costco Canada Drops 🇨🇦" (FR "Baisses Costco Canada 🇨🇦"): top, small.
+    2. "New drops · Claim until Sunday, Nov 15": middle, HUGE. The weekday + date when every item ends the same
+       day (preferred); otherwise every end date listed ("Nov 15 & 29"), never a from–to range.
+    3. The number of drops ("8 price drops"): bottom, medium.
+    4. "Bought in the last 30 days?" (FR "Acheté ces 30 derniers jours ?"): very bottom, small, yellow.
+  - **The end card stays as is and is the last slide of every carousel.**
+  - **Always English AND French.**
+  - **Images first, reel second.** Render the slides, send them to Monica, and **only after she validates the
+    photos** turn each carousel into an Instagram reel (a few seconds per slide, standard transitions, music).
+- **Business Centre vs warehouse is read from the data, never assumed** (Monica, 2026-11-04, item 2068876). A
+  price point is a Business Centre one when `flags.storefront = 'business_centre'` **or** its warehouse name
+  contains "Business Centre", including province-wide rows with no warehouse. A province is blue (warehouse) only
+  when a warehouse (`storefront = 'costco'`) row exists there; a province with Business Centre rows only is
+  yellow. An item seen only at Business Centres everywhere is never in a warehouse carousel. (Oct 27 mistake:
+  Business-Centre-only ON/QC rows had no warehouse id and were shown as warehouses.)
 - **English and French always carry the exact same offers** (2026-10-29). Never choose a language by province,
   even for a saving seen only in Alberta or only in Quebec.
 - **One post per product, never one per province.** Under the product photo, a **province strip** lists every

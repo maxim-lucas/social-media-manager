@@ -1,0 +1,153 @@
+{
+  "_note": "Savings that STARTED this week (valid_from >= 2026-11-02), end Nov 15 or later, one saving everywhere. Location from flags.storefront / warehouse name: a province is blue only when a Costco warehouse row exists; provinces with Business Centre rows only go in bizOnly (yellow). Flipp checked 2026-11-04 (flyers 8216470, 8216437, 8216439): Easy-Off, Finish rinse aid, Frank's, Kinder's, Clamato, Aussie Bites, Scotch-Brite lint roller dropped. Never posted before.",
+  "source": "priceback.price_points (Same-Day in-store savings, price_tag_scan, verified), pulled 2026-11-04 07:30 UTC",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "carousels": [
+    {
+      "id": "health-beauty",
+      "category": {
+        "en": "Health & Beauty",
+        "fr": "Santé et beauté"
+      },
+      "items": [
+        "2061006",
+        "1870006",
+        "2029782",
+        "2073187"
+      ]
+    }
+  ],
+  "items": {
+    "2061006": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "I Dew Care Tap Secret",
+          "dry shampoo powder",
+          "3 × 7 g"
+        ],
+        "fr": [
+          "I Dew Care Tap Secret",
+          "shampooing sec en poudre",
+          "3 × 7 g"
+        ]
+      },
+      "regular": 44.99,
+      "off": 10.0,
+      "price": 34.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1870006": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Wedderspoon organic",
+          "Manuka honey drops",
+          "lemon, 60 drops"
+        ],
+        "fr": [
+          "Wedderspoon bio",
+          "pastilles au miel Manuka",
+          "citron, 60 pastilles"
+        ]
+      },
+      "regular": 17.99,
+      "off": 4.0,
+      "price": 13.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2029782": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Brushworks",
+          "makeup brush",
+          "and bag set"
+        ],
+        "fr": [
+          "Brushworks",
+          "ensemble pinceaux",
+          "et trousse à maquillage"
+        ]
+      },
+      "regular": 19.99,
+      "off": 4.0,
+      "price": 15.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2073187": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Naväge",
+          "nasal care bundle"
+        ],
+        "fr": [
+          "Naväge",
+          "ensemble de soins nasaux"
+        ]
+      },
+      "regular": 139.99,
+      "off": 30.0,
+      "price": 109.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "ON",
+        "SK"
+      ],
+      "bizOnly": []
+    }
+  },
+  "feeds": {
+    "en": [
+      "health-beauty"
+    ],
+    "fr": [
+      "health-beauty"
+    ]
+  }
+}

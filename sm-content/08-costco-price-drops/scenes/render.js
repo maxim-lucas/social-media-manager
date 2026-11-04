@@ -59,7 +59,8 @@ const L = {
     paidMany: "Bought these at full price?",
     claimMany: "Claim the difference.",
     pitch: "Scan your Costco receipt. We tell you when the price drops.",
-    free: "Free on iPhone and Android",
+    // Never "free app" (Monica, 2026-11-02): free to download, with a trial.
+    free: "Free download, with a free trial",
     endKick: "DON'T MISS THE NEXT ONE",
     endHead: "Follow\n@priceback.ca",
     endSub: "New Costco price drops, every week.",
@@ -72,7 +73,8 @@ const L = {
     swipe: "SWIPE",
     until: "THIS WEEK",
     coverFine: (a, b) =>
-      `Prices seen at Costco between ${dateShortCase("en", a)} and ${dateLong("en", b)}. Each slide names its provinces. ` +
+      (a === b ? `Prices seen at Costco on ${dateLong("en", b)}. ` : `Prices seen at Costco between ${dateShortCase("en", a)} and ${dateLong("en", b)}. `) +
+      "Each slide names its provinces. " +
       "Adjustment terms are set by the retailer. PriceBack is an independent app, not affiliated with Costco.",
     fine: (d, where) =>
       `Price seen at Costco ${where || "Canada"}, ${dateLong("en", d)}. Adjustment terms are set by the retailer. ` +
@@ -92,7 +94,7 @@ const L = {
     paidMany: "Payé le plein prix ?",
     claimMany: "Réclamez la différence.",
     pitch: "Scannez votre reçu Costco. On vous avertit si le prix baisse.",
-    free: "Gratuit sur iPhone et Android",
+    free: "Téléchargement gratuit, avec essai gratuit",
     endKick: "NE MANQUEZ PAS LES PROCHAINES",
     endHead: "Suivez\n@priceback.ca",
     endSub: "De nouvelles baisses de prix Costco chaque semaine.",
@@ -105,7 +107,8 @@ const L = {
     swipe: "GLISSEZ",
     until: "CETTE SEMAINE",
     coverFine: (a, b) =>
-      `Prix relevés chez Costco entre le ${dateShortCase("fr", a)} et le ${dateLong("fr", b)}. Chaque image indique ses provinces. ` +
+      (a === b ? `Prix relevés chez Costco le ${dateLong("fr", b)}. ` : `Prix relevés chez Costco entre le ${dateShortCase("fr", a)} et le ${dateLong("fr", b)}. `) +
+      "Chaque image indique ses provinces. " +
       "Les conditions d'ajustement sont fixées par le détaillant. PriceBack est une application indépendante, non affiliée à Costco.",
     fine: (d, where) =>
       `Prix relevé chez Costco ${where || "Canada"} le ${dateLong("fr", d)}. Les conditions d'ajustement sont fixées par le détaillant. ` +
@@ -414,6 +417,79 @@ function cover(lang, f, photos, badges) {
   </div></body></html>`;
 }
 
+// The claim cover (Monica, 2026-11-04), used when the week file sets `"coverStyle": "claim"`. Four things, in
+// this order and nothing else: "Costco Canada Drops 🇨🇦" (top, small), "New drops / Claim until <Sunday, date>"
+// (middle, huge), the number of drops (bottom, medium), "Bought in the last 30 days?" (very bottom, small,
+// yellow). No swipe cue. One end date when every item shares it (her preference), else the range.
+const CC = {
+  en: {
+    top: "Costco Canada Drops",
+    fresh: "NEW DROPS",
+    until: "Claim until",
+    day: (iso) => new Date(iso + "T12:00:00Z").toLocaleDateString("en-CA", { weekday: "long", timeZone: "UTC" }) + ",",
+    date: (iso) => dateShortCase("en", iso),
+    // Mixed end dates: every date listed, never a "from–to" range (it reads as a start date).
+    range: (ds) => ds.map((d) => dateShortCase("en", d)).join(" & ").replace(/^([A-Za-z]+) (\d+) & \1 /, "$1 $2 & "),
+    count: (n) => `${n} price drop${n > 1 ? "s" : ""}`,
+    bought: "Bought in the last 30 days?",
+  },
+  fr: {
+    top: "Baisses Costco Canada",
+    fresh: "NOUVELLES BAISSES",
+    until: "Réclamez jusqu'au",
+    day: (iso) => new Date(iso + "T12:00:00Z").toLocaleDateString("fr-CA", { weekday: "long", timeZone: "UTC" }),
+    date: (iso) => dateShortCase("fr", iso),
+    range: (ds) => ds.map((d) => dateShortCase("fr", d)).join(" et ").replace(/^(\d+) ([^ ]+) et (\d+) \2$/, "$1 et $3 $2"),
+    count: (n) => `${n} baisse${n > 1 ? "s" : ""} de prix`,
+    bought: "Acheté ces 30 derniers jours ?",
+  },
+};
+function claimCover(lang, f, badges) {
+  const t = L[lang], c = CC[lang];
+  const items = f.items.map((sku) => [sku, DATA.items[sku]]);
+  const exps = [...new Set(items.map(([, i]) => i.exp))].sort();
+  const one = exps.length === 1;
+  const when = one
+    ? `<div class="cc-day">${esc(c.day(exps[0]))}</div><div class="cc-date">${esc(c.date(exps[0]))}</div>`
+    : `<div class="cc-date rng">${esc(c.range(exps))}</div>`;
+  const until = c.until;
+  const seen = items.map(([, i]) => i.seen).sort();
+  const cat = (DATA.carousels[0].category || {})[lang] || "";
+  const stores = `<div class="stores"><img src="${badges.apple}"><img src="${badges.google}"></div>`;
+  return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>${CSS}${CLAIM_CSS}</style></head><body>
+  <div class="post ${lang} s cc">
+    <div class="cc-top"><span>${esc(c.top)} <i class="flag">🇨🇦</i></span><b>${esc(cat).toUpperCase()}</b></div>
+    <div class="stripe cc-stripe"></div>
+    <div class="cc-mid">
+      <div class="cc-new">${esc(c.fresh)}</div>
+      <div class="cc-until">${esc(until)}</div>
+      ${when}
+    </div>
+    <div class="cc-count">${esc(c.count(items.length))}</div>
+    <div class="disc">${esc(t.coverFine(seen[0], seen[seen.length - 1]))}</div>
+    <div class="claim"><div class="a cc-bought">${esc(c.bought)}</div>${stores}${dots(f.dots)}</div>
+  </div></body></html>`;
+}
+const CLAIM_CSS = `
+.cc-top{position:absolute;top:0;left:0;right:0;height:96px;background:var(--blue);display:flex;align-items:center;justify-content:space-between;padding:0 60px;color:#fff}
+.cc-top span{font-weight:900;font-size:36px;letter-spacing:.5px;display:flex;align-items:center;gap:14px}
+.cc-top .flag{font-style:normal;font-family:"Noto Color Emoji";font-size:38px}
+.cc-top b{color:#cfe3f5;font-size:22px;letter-spacing:3px}
+.cc-stripe{top:96px}
+.cc-mid{position:absolute;left:60px;right:60px;top:170px;height:640px;display:flex;flex-direction:column;justify-content:center}
+.cc-new{align-self:flex-start;background:var(--red);color:#fff;font-weight:900;font-size:56px;letter-spacing:2px;padding:6px 22px;transform:rotate(-1.5deg);margin-bottom:22px}
+.cc-until{color:#111;font-weight:900;font-size:96px;line-height:1;letter-spacing:-2px}
+.fr .cc-until{font-size:84px}
+.cc-day{color:var(--blue);font-weight:900;font-size:120px;line-height:1.05;letter-spacing:-3px;margin-top:18px;text-transform:capitalize}
+.cc-date{display:inline-block;align-self:flex-start;background:var(--yel);color:var(--blue);font-weight:900;font-size:190px;line-height:1;letter-spacing:-6px;padding:4px 20px 10px;margin-top:6px;white-space:nowrap}
+.fr .cc-date{font-size:150px;letter-spacing:-5px}
+.cc-date.rng{font-size:132px;letter-spacing:-4px;margin-top:22px}
+.fr .cc-date.rng{font-size:104px}
+.cc-count{position:absolute;left:60px;right:60px;top:860px;text-align:center;font-weight:900;font-size:64px;color:#fff;background:var(--blue);border-radius:60px;padding:14px 0;letter-spacing:-.5px;box-shadow:inset 0 -8px 0 var(--red)}
+.cc .disc{bottom:190px}
+.cc-bought{color:var(--yel);font-size:34px !important;font-weight:900}
+`;
+
 const CSS = `
 *{box-sizing:border-box;margin:0;padding:0}
 body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
@@ -672,7 +748,7 @@ function allPosts() {
     }
   for (const p of posts)
     for (const lang of p.lang ? [p.lang] : langsFor(p)) {
-      const html = p.end ? endSlide(lang, p, badges[lang]) : p.cover ? cover(lang, p, photos, badges[lang]) : post(lang, p, photos, badges[lang]);
+      const html = p.end ? endSlide(lang, p, badges[lang]) : p.cover ? (DATA.coverStyle === "claim" ? claimCover(lang, p, badges[lang]) : cover(lang, p, photos, badges[lang])) : post(lang, p, photos, badges[lang]);
       await page.setContent(html, { waitUntil: "load" });
       // Week carousels: one folder per language, so EN and FR never mix (Monica, 2026-10-15).
       const file = typeof p.file === "function" ? path.join(OUT, `${p.file(lang)}.png`) : path.join(OUT, `${p.file}-${lang}.png`);

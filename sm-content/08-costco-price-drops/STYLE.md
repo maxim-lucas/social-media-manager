@@ -69,6 +69,23 @@ PriceBack. **One item per image, always. A category is a carousel** (Monica, 202
 5. Write the tag lines in EN and FR (size from the package), render, and look at every slide in both languages.
    EN and FR go out as separate carousels (playbook §5).
 
+## Grocery carousels (Monica, 2026-11-04)
+
+Full rule list: `../../RULES-README.md` §1. In short: four categories (Grocery, Home, Health & Beauty, Frozen),
+savings that started this week only, never an item already posted, grouped and ordered by end date, at most 8
+offers per carousel, EN + FR, province strip on every item, the claim cover, the end card last.
+
+- Week file: `"coverStyle": "claim"` renders the claim cover (`claimCover()` in `render.js`): "Costco Canada
+  Drops 🇨🇦" small on top, "New drops / Claim until / Sunday, / Nov 15" huge in the middle, the drop count
+  medium below, "Bought in the last 30 days?" small and yellow in the red band. No swipe cue.
+- Location query (the Oct 27 bug fix): classify each price point as Business Centre when
+  `flags->>'storefront' = 'business_centre'` or the warehouse name matches `%business%`, else warehouse; a
+  province goes in `provinces` only if it has a warehouse row, in `bizOnly` if it has Business Centre rows only.
+- Photos: Same-Day search by item number (`sameday.costco.ca/store/costco-canada/s?k=<item #>` in headless
+  Chromium; search shows the store's region, so western-only items may miss) or costco.ca
+  (`gdx-assets.costco.com/.../<item #>-894__1.jpg`). Check every photo by eye. No clean photo, no post.
+- Reels come only after Monica validates the slides.
+
 ## Rules this style keeps
 
 - **Claim, never get** (playbook §7). The band says *claim the difference*; the store decides.
