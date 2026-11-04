@@ -87,6 +87,16 @@ Deal posts are real Costco price drops with product photos. They matter more tha
       - **Music must sound like trending Reels audio** for this kind of content, not generic synth. Our tracks are
         synthesized (no licence issues), so the default is: deliver the no-music copy and add a trending sound
         from Instagram's own audio library when posting (licensed for Reels, and trending audio gets reach).
+      - **Two follower reels a week (Monica chose "basket + week reel", 2026-11-04 18:13)**, built by
+        `reels/follower-reel.js` (replaces short-reel.js):
+        - **Category basket reel** (`"mode":"basket"`, e.g. `reels/2026-11-08-grocery-basket.json`): hook names the
+          category ("30 GROCERY PRICES JUST DROPPED"), then the 8 biggest drops (one per brand, no raw meat, no
+          Business Centre) drop into a cart one by one with a "-$X" chip while the claim counter climbs, then
+          "+ N more drops" takes it to the full total ("Claim up to $120.70 back / if you bought them").
+        - **Whole-week reel** (`"mode":"top3"`, e.g. `reels/2026-11-08-week-top3.json`): every warehouse carousel of
+          the week; the 3 biggest drops with CLAIM stickers ("65 COSTCO PRICES JUST DROPPED", up to $486.70).
+        - End date is an "ENDS | SUN NOV 8" ticket in its own zone. Backup music `reels/music_house.py` (122 BPM
+          funky house, about -16.5 dB); a no-music copy is always delivered for trending Instagram audio.
   - **Business Centre and warehouse savings are never in the same carousel** (Monica, 2026-11-04): separate
     carousels, and a Business Centre cover says "Only in Costco Business Centres" (FR "Seulement dans les
     Centres d'entreprises Costco"); `"businessCentre": true` in the week file. **Never an item already posted** in an earlier carousel:
