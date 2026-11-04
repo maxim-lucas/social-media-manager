@@ -82,7 +82,7 @@ const L = {
       "Each slide names its provinces. " +
       "Adjustment terms are set by the retailer. PriceBack is an independent app, not affiliated with Costco.",
     fine: (d, where) =>
-      `Price seen at Costco ${where || "Canada"}, ${dateLong("en", d)}. Adjustment terms are set by the retailer. ` +
+      `Price seen at Costco${DATA.businessCentre ? " Business Centres" : ""} ${where || "Canada"}, ${dateLong("en", d)}. Adjustment terms are set by the retailer. ` +
       "PriceBack is an independent app, not affiliated with Costco.",
   },
   fr: {
@@ -120,7 +120,7 @@ const L = {
       "Chaque image indique ses provinces. " +
       "Les conditions d'ajustement sont fixées par le détaillant. PriceBack est une application indépendante, non affiliée à Costco.",
     fine: (d, where) =>
-      `Prix relevé chez Costco ${where || "Canada"} le ${dateLong("fr", d)}. Les conditions d'ajustement sont fixées par le détaillant. ` +
+      `Prix relevé ${DATA.businessCentre ? "dans les centres d'affaires Costco" : "chez Costco"} ${where || "Canada"} le ${dateLong("fr", d)}. Les conditions d'ajustement sont fixées par le détaillant. ` +
       "PriceBack est une application indépendante, non affiliée à Costco.",
   },
 };
@@ -256,7 +256,7 @@ function post(lang, p, photos, badges) {
     const [sku, item] = items[0];
     body = `<div class="photo hero" style="background-image:url('${photos[sku]}')"></div>
       <div class="burst"><div class="x${money(lang, item.off, true).length > 4 ? " long" : ""}">-${money(lang, item.off, true)}</div><div class="y">${t.off}</div></div>
-      ${tag(lang, sku, item)}${DATA.provinceStrip !== false ? strip(lang, item.provinces, item.bizOnly || []) : ""}`;
+      ${tag(lang, sku, item)}${DATA.provinceStrip !== false ? (DATA.businessCentre ? strip(lang, [], item.provinces, true) : strip(lang, item.provinces, item.bizOnly || [])) : ""}`;
   } else {
     const w = items.length === 2 ? 465 : 300;
     const gap = (1080 - 90 - w * items.length) / (items.length - 1);
@@ -280,7 +280,7 @@ function post(lang, p, photos, badges) {
   const stores = `<div class="stores"><img src="${badges.apple}"><img src="${badges.google}"></div>`;
   return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>${CSS}
     .card .ptag .name{min-height:${items.length > 2 ? 76 : 60}px}</style></head><body>
-  <div class="post ${lang} ${single ? "s" : "g"}${single && DATA.provinceStrip !== false ? " prov" : ""}${single && (items[0][1].bizOnly || []).length ? " bzp" : ""}${DATA.fineNote ? " note" : ""}">
+  <div class="post ${lang} ${single ? "s" : "g"}${single && DATA.provinceStrip !== false ? " prov" : ""}${single && (DATA.businessCentre || (items[0][1].bizOnly || []).length) ? " bzp" : ""}${DATA.fineNote ? " note" : ""}">
     <div class="band"><div class="t">COSTCO <span>${single ? t.drop : t.drops}</span></div><div class="c">${right}</div></div>
     <div class="stripe"></div>
     ${body}
@@ -298,11 +298,14 @@ const STRIP = ["BC", "AB", "SK", "MB", "ON", "QC", "NB", "NS", "PE", "NL"];
 // Location (Monica, 2026-10-29): Costco warehouses and Costco Business Centres are never mixed without saying
 // where to buy. `bizOnly` lists provinces where the saving was seen only at a Business Centre: those cells are
 // yellow and a legend line says so.
-function strip(lang, prov, bizOnly = []) {
-  const on = national(prov) ? STRIP : prov;
+function strip(lang, prov, bizOnly = [], bcOnly = false) {
+  // bcOnly (Monica, 2026-11-04): a Business Centre carousel, every cell yellow, one legend key.
+  const on = !prov.length ? [] : national(prov) ? STRIP : prov;
   const label = lang === "fr" ? "RELEVÉ EN" : "SEEN IN";
   const cells = STRIP.map((c) => `<i class="${on.includes(c) ? "on" : bizOnly.includes(c) ? "bz" : "off"}">${c}</i>`).join("");
-  const legend = bizOnly.length
+  const legend = bcOnly
+    ? `<div class="legend"><b class="k bz"></b>${lang === "fr" ? "Centres d'affaires Costco seulement" : "Costco Business Centres only"}</div>`
+    : bizOnly.length
     ? `<div class="legend"><b class="k on"></b>${lang === "fr" ? "Entrepôts Costco" : "Costco warehouses"}<b class="k bz"></b>${
         lang === "fr" ? "Centres d'affaires Costco seulement" : "Costco Business Centres only"}</div>`
     : "";

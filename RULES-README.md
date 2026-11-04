@@ -41,6 +41,12 @@ Deal posts are real Costco price drops with product photos. They matter more tha
   - **End card** (Monica, 2026-11-04): unchanged except one yellow line under "New Costco price drops, every
     week.": "+ hundreds more hidden savings, only in the PriceBack app" (FR "+ des centaines de rabais cachés,
     exclusivement dans l'app PriceBack").
+  - **Business Centre carousel strip** (2026-11-04): every province cell yellow, one legend key "Costco Business
+    Centres only", fine print "Price seen at Costco Business Centres in …" (`"businessCentre": true`).
+  - **Weighted, sold-by-the-case meat** (price changes per case) is left out: the database can't give one true
+    "PAID $X". Tell Monica which big savings were skipped for this.
+  - **Savings ending within 2 days** of building are skipped: they would be over before Monica validates.
+  - Same-Day search by **item number** mostly misses (Montreal store); search by **product name** finds far more.
   - **Business Centre and warehouse savings are never in the same carousel** (Monica, 2026-11-04): separate
     carousels, and a Business Centre cover says "Only in Costco Business Centres" (FR "Seulement dans les
     Centres d'entreprises Costco"); `"businessCentre": true` in the week file. **Never an item already posted** in an earlier carousel:

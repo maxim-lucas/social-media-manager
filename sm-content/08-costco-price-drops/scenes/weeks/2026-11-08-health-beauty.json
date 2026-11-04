@@ -1,0 +1,235 @@
+{
+  "_note": "Health & Beauty ending Sun Nov 8. priceback.savings live rows; new this week first (valid_from >= Nov 2), topped up with older offers ending the same day when needed; biggest saving first. Missing photo (dropped): 401500.",
+  "source": "priceback.savings + priceback.price_points regular prices, pulled 2026-11-04",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "Health & Beauty",
+        "fr": "Santé et beauté"
+      },
+      "items": [
+        "4211377",
+        "3244285",
+        "1314464",
+        "8030252",
+        "1941818",
+        "9868112",
+        "214143"
+      ]
+    }
+  ],
+  "items": {
+    "4211377": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Align",
+          "probiotic supplement",
+          "77 capsules"
+        ],
+        "fr": [
+          "Align",
+          "supplément probiotique",
+          "77 capsules"
+        ]
+      },
+      "regular": 59.99,
+      "off": 12.0,
+      "price": 47.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "3244285": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "BioGaia",
+          "ProTectis baby drops",
+          "2 × 8 mL"
+        ],
+        "fr": [
+          "BioGaia",
+          "ProTectis gouttes bébé",
+          "2 × 8 mL"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10.0,
+      "price": 39.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1314464": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "New Nordic",
+          "Hair Gro",
+          "120 tablets"
+        ],
+        "fr": [
+          "New Nordic",
+          "Hair Gro",
+          "120 comprimés"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10.0,
+      "price": 39.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "8030252": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Nizoral",
+          "anti-dandruff shampoo",
+          "400 mL"
+        ],
+        "fr": [
+          "Nizoral",
+          "shampooing antipelliculaire",
+          "400 mL"
+        ]
+      },
+      "regular": 37.99,
+      "off": 8.0,
+      "price": 29.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1941818": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Systane",
+          "Hydration eye drops",
+          "3 × 10 mL"
+        ],
+        "fr": [
+          "Systane",
+          "gouttes oculaires Hydratant",
+          "3 × 10 mL"
+        ]
+      },
+      "regular": 25.99,
+      "off": 8.0,
+      "price": 17.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "9868112": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Vitalux",
+          "Advanced eye multivitamin",
+          "200 caplets"
+        ],
+        "fr": [
+          "Vitalux",
+          "multivitamine oculaire Advanced",
+          "200 comprimés"
+        ]
+      },
+      "regular": 34.99,
+      "off": 7.0,
+      "price": 27.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "NB",
+        "NL",
+        "NS",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "214143": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Aleve",
+          "naproxen 220 mg"
+        ],
+        "fr": [
+          "Aleve",
+          "naproxène 220 mg"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5.0,
+      "price": 19.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "SK"
+      ],
+      "bizOnly": []
+    }
+  },
+  "feeds": {
+    "en": [
+      "c"
+    ],
+    "fr": [
+      "c"
+    ]
+  }
+}

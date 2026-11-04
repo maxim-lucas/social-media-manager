@@ -1,0 +1,192 @@
+{
+  "_note": "Home ending Sun Nov 8. priceback.savings live rows; new this week first (valid_from >= Nov 2), topped up with older offers ending the same day when needed; biggest saving first. Missing photo (dropped): 2942946.",
+  "source": "priceback.savings + priceback.price_points regular prices, pulled 2026-11-04",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "Home",
+        "fr": "Maison"
+      },
+      "items": [
+        "1938109",
+        "1738732",
+        "1392500",
+        "1853751",
+        "2032555",
+        "5950014"
+      ]
+    }
+  ],
+  "items": {
+    "1938109": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Enbrighten",
+          "dimmable hex",
+          "garage lights"
+        ],
+        "fr": [
+          "Enbrighten",
+          "lumières hexagonales",
+          "à intensité variable"
+        ]
+      },
+      "regular": 119.99,
+      "off": 20.0,
+      "price": 99.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "ON"
+      ],
+      "bizOnly": []
+    },
+    "1738732": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "PureGuardian",
+          "cool mist ultrasonic",
+          "humidifier H997W"
+        ],
+        "fr": [
+          "PureGuardian",
+          "humidificateur ultrasonique",
+          "à brume fraîche H997W"
+        ]
+      },
+      "regular": 61.09,
+      "off": 15.0,
+      "price": 46.09,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "MB",
+        "NB",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1392500": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Martha Stewart",
+          "memory foam pillow"
+        ],
+        "fr": [
+          "Martha Stewart",
+          "oreiller à mémoire de forme"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6.0,
+      "price": 23.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "MB",
+        "ON",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1853751": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "OxiClean",
+          "Max Efficiency stain remover",
+          "5.25 kg"
+        ],
+        "fr": [
+          "OxiClean",
+          "détachant efficacité maximale",
+          "5,25 kg"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5.0,
+      "price": 19.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2032555": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Forest For Climate",
+          "paper lawn & leaf bags",
+          "25 pack"
+        ],
+        "fr": [
+          "Forest For Climate",
+          "sacs en papier de jardin",
+          "paquet de 25"
+        ]
+      },
+      "regular": 17.99,
+      "off": 4.0,
+      "price": 13.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "5950014": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "GO4GREEN",
+          "6-compartment trays",
+          "pack of 100"
+        ],
+        "fr": [
+          "GO4GREEN",
+          "plateaux à 6 compartiments",
+          "paquet de 100"
+        ]
+      },
+      "regular": 19.99,
+      "off": 4.0,
+      "price": 15.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC"
+      ],
+      "bizOnly": []
+    }
+  },
+  "feeds": {
+    "en": [
+      "c"
+    ],
+    "fr": [
+      "c"
+    ]
+  }
+}

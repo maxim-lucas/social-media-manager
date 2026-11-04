@@ -1,0 +1,185 @@
+{
+  "_note": "More drops ending Sun Nov 8. priceback.savings live rows; new this week first (valid_from >= Nov 2), topped up with older offers ending the same day when needed; biggest saving first. Missing photo (dropped): none.",
+  "source": "priceback.savings + priceback.price_points regular prices, pulled 2026-11-04",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "More drops",
+        "fr": "Autres baisses"
+      },
+      "items": [
+        "7998842",
+        "2037641",
+        "1914782",
+        "1550207",
+        "2027041"
+      ]
+    }
+  ],
+  "items": {
+    "7998842": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Kirkland Signature",
+          "women's travel pants"
+        ],
+        "fr": [
+          "Kirkland Signature",
+          "pantalon de voyage pour femmes"
+        ]
+      },
+      "regular": 21.99,
+      "off": 7.0,
+      "price": 14.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2037641": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Nautica",
+          "men's full-zip jacket"
+        ],
+        "fr": [
+          "Nautica",
+          "veste zippée pour hommes"
+        ]
+      },
+      "regular": 28.99,
+      "off": 6.0,
+      "price": 22.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1914782": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Sierra Designs",
+          "women's full-zip",
+          "sherpa jacket"
+        ],
+        "fr": [
+          "Sierra Designs",
+          "veste sherpa zippée",
+          "pour femmes"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5.0,
+      "price": 19.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1550207": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "ShedRain",
+          "Windpro arc umbrella",
+          "46 in."
+        ],
+        "fr": [
+          "ShedRain",
+          "parapluie Windpro",
+          "46 po"
+        ]
+      },
+      "regular": 19.99,
+      "off": 5.0,
+      "price": 14.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "2027041": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Gatorade",
+          "Contour squeeze bottles",
+          "4 pack"
+        ],
+        "fr": [
+          "Gatorade",
+          "bouteilles à presser Contour",
+          "ensemble de 4"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5.0,
+      "price": 19.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    }
+  },
+  "feeds": {
+    "en": [
+      "c"
+    ],
+    "fr": [
+      "c"
+    ]
+  }
+}

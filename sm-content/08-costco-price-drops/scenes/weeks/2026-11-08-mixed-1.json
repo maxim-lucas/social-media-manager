@@ -1,0 +1,216 @@
+{
+  "_note": "More drops ending Sun Nov 8. priceback.savings live rows; new this week first (valid_from >= Nov 2), topped up with older offers ending the same day when needed; biggest saving first. Missing photo (dropped): 1851620, 2775463.",
+  "source": "priceback.savings + priceback.price_points regular prices, pulled 2026-11-04",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "More drops",
+        "fr": "Autres baisses"
+      },
+      "items": [
+        "2074388",
+        "1929741",
+        "2060331",
+        "1974257",
+        "1851592",
+        "1851616"
+      ]
+    }
+  ],
+  "items": {
+    "2074388": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Ultimate Ears",
+          "Megaboom 4 portable",
+          "Bluetooth speaker"
+        ],
+        "fr": [
+          "Ultimate Ears",
+          "enceinte portable",
+          "Bluetooth Megaboom 4"
+        ]
+      },
+      "regular": 190.49,
+      "off": 50.0,
+      "price": 140.49,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1929741": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "LED snowflake",
+          "with prismatic star"
+        ],
+        "fr": [
+          "Flocon de neige",
+          "et étoile à DEL"
+        ]
+      },
+      "regular": 159.99,
+      "off": 50.0,
+      "price": 109.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2060331": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Govee",
+          "Christmas string lights",
+          "100 ft"
+        ],
+        "fr": [
+          "Govee",
+          "guirlande lumineuse de Noël",
+          "30,48 m"
+        ]
+      },
+      "regular": 99.99,
+      "off": 30.0,
+      "price": 69.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1974257": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Fanttik",
+          "4-in. mini chainsaw"
+        ],
+        "fr": [
+          "Fanttik",
+          "mini scie à chaîne 4 po"
+        ]
+      },
+      "regular": 99.99,
+      "off": 20.0,
+      "price": 79.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "MB",
+        "ON",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1851592": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Wooden holiday",
+          "icon assortment"
+        ],
+        "fr": [
+          "Décorations des fêtes",
+          "en bois, assortiment"
+        ]
+      },
+      "regular": 39.99,
+      "off": 15.0,
+      "price": 24.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1851616": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Hot Wheels",
+          "Barbie Ford Bronco R/C",
+          "with 2 dolls"
+        ],
+        "fr": [
+          "Hot Wheels",
+          "Ford Bronco téléguidé Barbie",
+          "avec 2 poupées"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10.0,
+      "price": 39.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    }
+  },
+  "feeds": {
+    "en": [
+      "c"
+    ],
+    "fr": [
+      "c"
+    ]
+  }
+}

@@ -1,0 +1,248 @@
+{
+  "_note": "Grocery ending Sun Nov 8. priceback.savings live rows; new this week first (valid_from >= Nov 2), topped up with older offers ending the same day when needed; biggest saving first. Missing photo (dropped): none.",
+  "source": "priceback.savings + priceback.price_points regular prices, pulled 2026-11-04",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "Grocery",
+        "fr": "Épicerie"
+      },
+      "items": [
+        "4443119",
+        "19539",
+        "1703933",
+        "2836103",
+        "1510729",
+        "1242444",
+        "1856048",
+        "50099"
+      ]
+    }
+  ],
+  "items": {
+    "4443119": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "BUILT Puff",
+          "hazelnut & mint protein bars",
+          "14 × 40 g"
+        ],
+        "fr": [
+          "BUILT Puff",
+          "barres protéinées choco-noisette",
+          "et choco-menthe, 14 × 40 g"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6.0,
+      "price": 23.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "19539": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Boneless",
+          "pork shoulder",
+          "about 3 kg"
+        ],
+        "fr": [
+          "Épaule de porc",
+          "désossée",
+          "environ 3 kg"
+        ]
+      },
+      "regular": 34.75,
+      "off": 5.0,
+      "price": 29.75,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1703933": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Tre Stelle",
+          "paneer",
+          "1 kg"
+        ],
+        "fr": [
+          "Tre Stelle",
+          "paneer",
+          "1 kg"
+        ]
+      },
+      "regular": 21.99,
+      "off": 4.5,
+      "price": 17.49,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2836103": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Skotidakis",
+          "2% protein Greek yogurt",
+          "variety pack, 12 × 150 g"
+        ],
+        "fr": [
+          "Skotidakis",
+          "yogourt grec protéiné 2 %",
+          "assortiment, 12 × 150 g"
+        ]
+      },
+      "regular": 19.49,
+      "off": 4.5,
+      "price": 14.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "BC"
+      ],
+      "bizOnly": []
+    },
+    "1510729": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Blue Monkey",
+          "sparkling tropical juice",
+          "16 × 330 mL"
+        ],
+        "fr": [
+          "Blue Monkey",
+          "jus tropical pétillant",
+          "16 × 330 mL"
+        ]
+      },
+      "regular": 17.99,
+      "off": 4.0,
+      "price": 13.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1242444": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Freybe",
+          "air-dried salami trio",
+          "2 × 375 g"
+        ],
+        "fr": [
+          "Freybe",
+          "trio de salamis séchés",
+          "2 × 375 g"
+        ]
+      },
+      "regular": 19.99,
+      "off": 4.0,
+      "price": 15.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1856048": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "44th Street",
+          "pork roast in gravy",
+          "2 × 575 g"
+        ],
+        "fr": [
+          "44th Street",
+          "rôti de porc en sauce",
+          "2 × 575 g"
+        ]
+      },
+      "regular": 16.99,
+      "off": 4.0,
+      "price": 12.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "50099": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Grain-fed",
+          "diced veal",
+          "1.15 kg"
+        ],
+        "fr": [
+          "Veau de grain",
+          "en cubes",
+          "1,15 kg"
+        ]
+      },
+      "regular": 29.89,
+      "off": 4.0,
+      "price": 25.89,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "ON"
+      ],
+      "bizOnly": []
+    }
+  },
+  "feeds": {
+    "en": [
+      "c"
+    ],
+    "fr": [
+      "c"
+    ]
+  }
+}

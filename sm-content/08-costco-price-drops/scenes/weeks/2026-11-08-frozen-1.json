@@ -1,0 +1,189 @@
+{
+  "_note": "Frozen ending Sun Nov 8. priceback.savings live rows; new this week first (valid_from >= Nov 2), topped up with older offers ending the same day when needed; biggest saving first. Missing photo (dropped): 2055938, 2066227.",
+  "source": "priceback.savings + priceback.price_points regular prices, pulled 2026-11-04",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "Frozen",
+        "fr": "Surgelés"
+      },
+      "items": [
+        "2045471",
+        "362866",
+        "3768778",
+        "1777328",
+        "1426829",
+        "268241"
+      ]
+    }
+  ],
+  "items": {
+    "2045471": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Sato Asian Fare",
+          "tandoori fish pakora",
+          "1.36 kg"
+        ],
+        "fr": [
+          "Sato Asian Fare",
+          "pakora de poisson tandoori",
+          "1,36 kg"
+        ]
+      },
+      "regular": 19.99,
+      "off": 7.0,
+      "price": 12.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "362866": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Diamond Harvest",
+          "31/40 raw shrimp",
+          "1.82 kg"
+        ],
+        "fr": [
+          "Diamond Harvest",
+          "crevettes crues 31/40",
+          "1,82 kg"
+        ]
+      },
+      "regular": 27.99,
+      "off": 6.0,
+      "price": 21.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "ON"
+      ],
+      "bizOnly": []
+    },
+    "3768778": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Al-Shamas",
+          "handmade chicken samosa",
+          "1.5 kg"
+        ],
+        "fr": [
+          "Al-Shamas",
+          "samosas au poulet",
+          "1,5 kg"
+        ]
+      },
+      "regular": 18.99,
+      "off": 4.0,
+      "price": 14.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "1777328": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Nanak's",
+          "aloo tikki potato patties",
+          "1.8 kg"
+        ],
+        "fr": [
+          "Nanak",
+          "galettes aloo tikki",
+          "1,8 kg"
+        ]
+      },
+      "regular": 16.99,
+      "off": 4.0,
+      "price": 12.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC"
+      ],
+      "bizOnly": []
+    },
+    "1426829": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "NOVO",
+          "chicken wings",
+          "1.6 kg"
+        ],
+        "fr": [
+          "NOVO",
+          "ailes de poulet",
+          "1,6 kg"
+        ]
+      },
+      "regular": 19.99,
+      "off": 4.0,
+      "price": 15.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "268241": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "TGI Fridays",
+          "cheddar & bacon",
+          "potato skins, 992 g"
+        ],
+        "fr": [
+          "TGI Fridays",
+          "pelures de pommes de terre",
+          "cheddar et bacon, 992 g"
+        ]
+      },
+      "regular": 15.99,
+      "off": 3.5,
+      "price": 12.49,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    }
+  },
+  "feeds": {
+    "en": [
+      "c"
+    ],
+    "fr": [
+      "c"
+    ]
+  }
+}
