@@ -60,16 +60,16 @@ body{width:1080px;height:1920px;overflow:hidden;font-family:"Helvetica Neue",Ari
 #drop{left:20px;right:20px;top:950px;text-align:center}
 #drop span{display:inline-block;background:#FFF200;color:#E31837;font-weight:900;font-size:${lang === "fr" ? 66 : 82}px;letter-spacing:-2px;padding:10px 26px;line-height:1.02;box-shadow:0 12px 0 #E31837}
 #cnt{left:40px;right:40px;text-align:center;color:#fff;font-weight:900;font-size:60px}
-#cnt b{display:block;font-size:150px;color:#FFF200;letter-spacing:-4px;line-height:1.02}
+#cnt b{display:block;font-size:140px;color:#FFF200;letter-spacing:-4px;line-height:1.02}
 #cnt i{display:block;font-style:normal;color:#FFF200;font-size:44px;font-weight:800;margin-top:4px}
 #tk{left:0;right:0;top:1560px;display:flex;justify-content:center}
 #tk div{display:flex;align-items:stretch;border-radius:16px;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.35);border:5px solid #fff}
-#tk em{font-style:normal;background:#E31837;color:#fff;font-weight:900;font-size:50px;padding:12px 26px;letter-spacing:2px;display:flex;align-items:center}
-#tk strong{background:#fff;color:#0060A9;font-weight:900;font-size:62px;padding:8px 30px;letter-spacing:1px}
+#tk em{font-style:normal;background:#E31837;color:#fff;font-weight:900;font-size:72px;padding:14px 34px;letter-spacing:3px;display:flex;align-items:center}
+#tk strong{background:#fff;color:#0060A9;font-weight:900;font-size:96px;padding:6px 40px;letter-spacing:1px}
 /* basket mode */
-#cart{left:300px;top:1180px;width:480px;height:330px}
+#cart{left:300px;top:1235px;width:480px;height:330px}
 #cart svg{width:100%;height:100%}
-.fly{width:420px;height:420px;border-radius:34px;background:#fff center/86% no-repeat;box-shadow:0 20px 44px rgba(0,0,0,.4)}
+.fly{width:540px;height:540px;border-radius:34px;background:#fff center/86% no-repeat;box-shadow:0 20px 44px rgba(0,0,0,.4)}
 .chip{background:#E31837;color:#fff;font-weight:900;font-size:76px;padding:6px 26px;border-radius:999px;border:6px solid #fff;white-space:nowrap}
 #more{left:0;right:0;top:820px;text-align:center}
 #more span{display:inline-block;background:#FFF200;color:#E31837;font-weight:900;font-size:80px;padding:8px 30px;letter-spacing:-1px}
@@ -146,23 +146,23 @@ window.frame=(t)=>{
   // counter + date ticket
   const inB=MODE==="basket"&&t>=B&&t<C, cOn=MODE==="basket"?inB:(hook&&t>=A+0.1);
   show("cnt",cOn); show("tk",t<C);
-  $("tk").style.top=(MODE==="basket"?1580:1650)+"px"; $("tk").style.opacity=String(cl((t-0.5)/0.15));
-  if(MODE==="top3"&&cOn){ $("cnt").style.top="1170px"; $("cnt").style.opacity=String(cl((t-A-0.1)/0.12)); $("cnt").querySelector("b").textContent=money(Math.round(TOTAL*eo((t-A-0.1)/0.8)*100)/100); }
+  $("tk").style.top=(MODE==="basket"?1610:1540)+"px"; $("tk").style.opacity=String(cl((t-0.5)/0.15));
+  if(MODE==="top3"&&cOn){ $("cnt").style.top="1160px"; $("cnt").style.opacity=String(cl((t-A-0.1)/0.12)); $("cnt").querySelector("b").textContent=money(Math.round(TOTAL*eo((t-A-0.1)/0.8)*100)/100); }
   if(MODE==="top3"&&!hook) show("tk",false);
   // basket
   show("basL",inB);
   if(inB){
-    const lt=t-B, first=B+0.15+0.6*STEP; $("cnt").style.top="300px"; $("cnt").style.opacity=String(cl((t-first)/0.08)); $("cnt").style.transform="scale("+(0.6+0.4*back((t-first)/0.25))+")";
+    const lt=t-B, first=B+0.15+0.6*STEP; $("cnt").style.top="225px"; $("cnt").style.opacity=String(cl((t-first)/0.08)); $("cnt").style.transform="scale("+(0.6+0.4*back((t-first)/0.25))+")";
     $("tag").style.transform="scale("+(0.5+0.5*back(lt/0.25))+")";
     let sum=0;
     for(let i=0;i<NP;i++){const s=0.15+i*STEP, u=(t-B-s)/STEP, f=$("f"+i), c=$("c"+i);
       if(u<0||u>1){f.style.display="none";c.style.display="none"; if(u>1) sum+=OFF[i]; continue;}
       f.style.display="block";c.style.display="block";
       // pop in at the centre (0-0.45), then fall into the cart (0.6-1)
-      const pop=back(u/0.35), fall=ei((u-0.6)/0.4), sc=pop*(1-0.75*fall);
-      const x=330, y=790+(1230-790)*fall;
+      const pop=back(u/0.35), fall=ei((u-0.6)/0.4), sc=(0.6+0.4*pop)*(1-0.5*fall);
+      const x=270, y=705+(1130-705)*fall;
       f.style.left=x+"px"; f.style.top=y+"px"; f.style.transform="scale("+sc+") rotate("+(fall*(i%2?18:-18))+"deg)"; f.style.opacity=String(cl(u/0.08));
-      c.style.top=(650)+"px"; c.style.left=(540-c.offsetWidth/2)+"px"; c.style.opacity=String(cl((u-0.12)/0.08)*(1-cl((u-0.55)/0.1)));
+      c.style.top=(585)+"px"; c.style.left=(540-c.offsetWidth/2)+"px"; c.style.opacity=String(cl((u-0.12)/0.08)*(1-cl((u-0.55)/0.1)));
       c.style.transform="scale("+back((u-0.12)/0.25)+") rotate(-4deg)";
       if(u>=0.6) sum+=OFF[i]*cl((u-0.6)/0.15);
     }
