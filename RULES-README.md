@@ -47,6 +47,14 @@ Deal posts are real Costco price drops with product photos. They matter more tha
     "PAID $X". Tell Monica which big savings were skipped for this.
   - **Savings ending within 2 days** of building are skipped: they would be over before Monica validates.
   - Same-Day search by **item number** mostly misses (Montreal store); search by **product name** finds far more.
+  - **One category = one carousel, as few categories as possible (Monica, 2026-11-10).** Monica posts at most one
+    carousel + one reel a day, so never split a category into "Grocery 2/3/4": one carousel per category, even past
+    10 items (Instagram caps a carousel at 20 slides = cover + 18 items + end card; above 18, keep the 18 biggest
+    savings and list the rest). Default split: **Grocery** (all food and drinks, fresh and frozen) and **Home &
+    more** (everything else; FR "Maison et plus"). Each carousel gets its own basket reel, so a week is 2 posting days.
+  - **Reel length follows the item count (Monica, 2026-11-10):** same speed as the approved reel (0.42 s per
+    product into the cart); with more products the reel gets longer instead of faster. Every carousel item goes
+    into the cart (no "+ N more" when all fit).
   - **DEFAULT REEL DESIGN, APPROVED (Monica, 2026-11-04 21:13: "this is perfect, save this design for all reels").**
     Every price-drop reel Monica asks for is generated with `sm-content/08-costco-price-drops/reels/follower-reel.js`
     exactly as committed on 2026-11-04 (v5): a category **basket** reel and/or a whole-week **top3** reel. Reels

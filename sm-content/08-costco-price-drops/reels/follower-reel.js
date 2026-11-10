@@ -26,7 +26,11 @@ const N = all.length, TOTAL = Math.round(all.reduce((a, b) => a + b.off, 0) * 10
 const brands = new Set();
 const ranked = all.filter((i) => !skip.has(i.sku) && fs.existsSync(path.join(SC, ".cache", i.sku + ".jpg"))).sort((a, b) => b.off - a.off)
   .filter((i) => { const b = i.tag.en[0].toLowerCase(); if (brands.has(b)) return false; brands.add(b); return true; });
-const top = ranked.slice(0, 3), pics = ranked.slice(0, 8);
+const top = ranked.slice(0, 3);
+// basket: every carousel item goes into the cart (Monica, 2026-11-10: same speed, the reel gets longer with more
+// products); the hook grid shows the 8 biggest. "basketAll": false keeps the old 8-item basket + "+N more".
+const allPics = all.filter((i) => !skip.has(i.sku) && fs.existsSync(path.join(SC, ".cache", i.sku + ".jpg"))).sort((a, b) => b.off - a.off);
+const pics = MODE === "basket" && cfg.basketAll !== false ? allPics : ranked.slice(0, 8), grid8 = ranked.slice(0, 8);
 const b64 = (p) => "data:image/" + (p.endsWith(".png") ? "png" : p.endsWith(".svg") ? "svg+xml" : "jpeg") + ";base64," + fs.readFileSync(p).toString("base64");
 const money = (n) => { const d = Math.round(n * 100) % 100 !== 0; return lang === "fr" ? (d ? n.toFixed(2).replace(".", ",") : Math.round(n)) + " $" : "$" + (d ? n.toFixed(2) : Math.round(n)); };
 const D = new Date(exp + "T12:00:00");
@@ -45,8 +49,9 @@ const T = {
         e1: "🔔 NE MANQUEZ PAS", e2: "LES BAISSES COSTCO<br>DE LA SEMAINE PROCHAINE", hid: "+ des centaines de<br>rabais <span class=\"hid\"><em>CACHÉS</em></span>", only: "SEULEMENT dans",
         rank: (i) => ["PLUS GROSSE BAISSE", "BAISSE N° 2", "BAISSE N° 3"][i], claim: (x) => `RÉCLAMEZ ${money(x)}`, follow: "SUIVEZ", handle: "@priceback.ca" },
 }[lang];
-const FPS = 30, DUR = 7.5, A = 0.9, B = MODE === "basket" ? 1.7 : 2.5, C = 6.0;
-const NB = pics.length, STEP = 0.42, BK = B + 0.15 + NB * STEP; // basket: when the "+N more" jump happens
+const FPS = 30, A = 0.9, B = MODE === "basket" ? 1.7 : 2.5;
+const NB = pics.length, STEP = 0.42, BK = B + 0.15 + NB * STEP;
+const C = MODE === "basket" ? Math.round((BK + 0.79) * 30) / 30 : 6.0, DUR = C + 1.5; // basket: when the "+N more" jump happens
 const SHOWN = Math.round(pics.reduce((a, b) => a + b.off, 0) * 100) / 100;
 const PER = (C - B) / top.length;
 const cuts = MODE === "basket" ? [A, B, BK, C] : [A, B, ...top.map((_, i) => B + i * PER).slice(1), C];
@@ -104,7 +109,7 @@ body{width:1080px;height:1920px;overflow:hidden;font-family:"Helvetica Neue",Ari
 </style></head><body>
 <div id="hookL" class="abs" style="left:0;top:0;width:1080px;height:1920px">
   <div id="q" class="abs">${T.q}</div>
-  ${pics.map((p, i) => `<div class="abs ph" id="p${i}" style="background-image:url('${b64(path.join(SC, ".cache", p.sku + ".jpg"))}')"></div>`).join("")}
+  ${grid8.map((p, i) => `<div class="abs ph" id="p${i}" style="background-image:url('${b64(path.join(SC, ".cache", p.sku + ".jpg"))}')"></div>`).join("")}
   <div id="drop" class="abs"><span>${T.drop}</span></div>
 </div>
 <div id="cnt" class="abs">${T.upto}<b>0</b>${T.back}<i>${T.ifb}</i></div>
@@ -113,7 +118,7 @@ body{width:1080px;height:1920px;overflow:hidden;font-family:"Helvetica Neue",Ari
   <div id="tag" class="abs"><span>${T.drop.replace("<br>", " ")}</span></div>
   <div id="cart" class="abs"><svg viewBox="0 0 480 330"><path d="M10 30 H90 L140 250 H420 L462 90 H110" fill="none" stroke="#fff" stroke-width="26" stroke-linejoin="round" stroke-linecap="round"/><path d="M120 92 H452 L414 236 H150 Z" fill="rgba(255,255,255,.18)"/><circle cx="180" cy="300" r="26" fill="#FFF200"/><circle cx="380" cy="300" r="26" fill="#FFF200"/></svg></div>
   ${pics.map((p, i) => `<div class="abs fly" id="f${i}" style="background-image:url('${b64(path.join(SC, ".cache", p.sku + ".jpg"))}')"></div><div class="abs chip" id="c${i}">-${money(p.off)}</div>`).join("")}
-  <div id="more" class="abs"><span>${T.more(N - NB)}</span></div>
+  ${N > NB ? `<div id="more" class="abs"><span>${T.more(N - NB)}</span></div>` : ""}
 </div>
 <div id="rank" class="abs"><span></span></div>
 ${MODE === "top3" ? top.map((t, i) => `<div class="abs sl" id="s${i}" style="background-image:url('${b64(t.slide)}')"></div>`).join("") : ""}
@@ -128,7 +133,7 @@ ${MODE === "top3" ? top.map((t, i) => `<div class="abs sl" id="s${i}" style="bac
 <div id="hand" class="abs">👆</div>
 <div id="flash" class="abs"></div>
 <script>
-const MODE="${MODE}",A=${A},B=${B},C=${C},PER=${PER},TOTAL=${TOTAL},LANG="${lang}",NT=${top.length},NP=${pics.length},STEP=${STEP},BK=${BK};
+const MODE="${MODE}",A=${A},B=${B},C=${C},PER=${PER},TOTAL=${TOTAL},LANG="${lang}",NT=${top.length},NP=${pics.length},NG=${grid8.length},STEP=${STEP},BK=${BK};
 const OFF=${JSON.stringify(pics.map((p) => p.off))}, RANK=${JSON.stringify(top.map((_, i) => T.rank(i)))}, CLAIM=${JSON.stringify(top.map((t) => T.claim(t.off)))};
 const $=(id)=>document.getElementById(id), cl=(x)=>Math.max(0,Math.min(1,x)), eo=(x)=>1-Math.pow(1-cl(x),3), ei=(x)=>Math.pow(cl(x),2);
 const back=(x)=>{x=cl(x);const c=1.7;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
@@ -139,7 +144,7 @@ window.frame=(t)=>{
   const hook=t<B; show("hookL",hook);
   if(hook){
     $("q").style.transform="scale("+(1.2-0.2*back(t/0.3))+")";
-    for(let i=0;i<NP;i++){const p=$("p"+i),k=back((t-0.12-i*0.05)/0.3),[x,y]=grid[i];p.style.left=x+"px";p.style.top=y+"px";
+    for(let i=0;i<NG;i++){const p=$("p"+i),k=back((t-0.12-i*0.05)/0.3),[x,y]=grid[i];p.style.left=x+"px";p.style.top=y+"px";
       p.style.opacity=String(cl((t-0.12-i*0.05)/0.08));p.style.transform="scale("+k+") rotate("+((i%2?6:-6)*(1-k)+(i%2?2:-2))+"deg)";}
     const d=back((t-A)/0.28); $("drop").style.opacity=String(cl((t-A)/0.06)); $("drop").style.transform="scale("+(2-1*d)+") rotate(-2deg)";
   }
@@ -169,7 +174,7 @@ window.frame=(t)=>{
     const jump=eo((t-BK)/0.6); const val=t<BK?sum:sum+(TOTAL-sum)*jump;
     $("cnt").querySelector("b").textContent=money(Math.round(val*100)/100);
     $("cnt").querySelector("b").style.transform="scale("+(1+0.12*Math.max(0,Math.sin(Math.min(1,cl((t-BK)/0.4))*Math.PI)))+")";
-    $("more").style.display=t>=BK?"block":"none"; $("more").style.transform="scale("+back((t-BK)/0.25)+") rotate(-3deg)";
+    if($("more")){$("more").style.display=t>=BK?"block":"none"; $("more").style.transform="scale("+back((t-BK)/0.25)+") rotate(-3deg)";}
     const shake=t>=BK?Math.sin((t-BK)*40)*8*(1-cl((t-BK)/0.5)):0; $("cart").style.transform="translateX("+shake+"px)";
   }
   // top 3

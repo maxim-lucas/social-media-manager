@@ -122,3 +122,5 @@ the repo keeps only the finished posts, never the raw images.
   Instagram audio added at posting (we deliver a no-music copy), not synth tracks.
 - **Approved default reel design (Monica, 2026-11-04 21:13):** `reels/follower-reel.js` v5, spec in `reels/README.md`.
   Use it by default for every reel of this format that Monica asks for (reels only on request).
+- **1 category = 1 carousel** (Monica, 2026-11-10), fewest categories (Grocery; Home & more), max 18 items
+  per carousel (Instagram 20-slide cap). One basket reel per carousel; the reel gets longer with more items, same speed.
