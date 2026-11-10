@@ -90,6 +90,11 @@ TRACKS = [
 # Static boxes: (source, from, to, x, y, w, h) — the home-screen to-do widget.
 STATIC = [("r2", 4.4, 6.4, 0, 420, 650, 1200)]
 LABEL_MIN_SPEED = 1.01
+LABEL_MIN_DUR = 1.0      # a sped-up label shorter than this would only flash
+
+# EDL=<file.json> replaces the EDL above: [[id, src|null, start, end, speed], ...]
+if os.environ.get("EDL"):
+    EDL = [tuple(e) for e in json.load(open(os.environ["EDL"], encoding="utf-8"))]
 CARD_TEXT = "A few days later"
 
 
@@ -212,7 +217,7 @@ def main():
         seg = {"id": seg_id, "src": src, "from": a, "to": b, "speed": speed,
                "out_from": round(n0 / FPS, 3), "out_to": round(t_out / FPS, 3)}
         timeline.append(seg)
-        if speed >= LABEL_MIN_SPEED:
+        if speed >= LABEL_MIN_SPEED and seg["out_to"] - seg["out_from"] >= LABEL_MIN_DUR:
             labels.append({"from": seg["out_from"], "to": seg["out_to"], "text": f"{speed:g}x sped up"})
         print(f"{seg_id:12s} {seg['out_from']:7.2f} -> {seg['out_to']:7.2f}", flush=True)
     enc.stdin.close()

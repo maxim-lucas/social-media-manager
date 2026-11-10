@@ -44,6 +44,8 @@ def main():
     audio_map = ["-map", "1:a", "-c:a", "aac", "-b:a", "192k", "-shortest"] if voice else ["-an"]
     suffix = "-voice" if voice else "-silent"
 
+    formats = os.environ.get("FORMATS", "16x9,9x16").split(",")
+
     # 16:9
     phone_h = 1010
     phone_w = round(1080 * phone_h / 2424 / 2) * 2
@@ -54,7 +56,8 @@ def main():
             f"[bg][ph]overlay={px}:{(1080 - phone_h) // 2}:shortest=1[v0]"]
     chain = drawtexts(labels, side_x, 500, 46, "box=1:boxcolor=0x000000@0.35:boxborderw=22:")
     f169.append("[v0]" + (",".join(chain) if chain else "null") + "[v]")
-    subprocess.run([FFMPEG, "-v", "error", "-y", "-i", clean, *audio_in, "-filter_complex", ";".join(f169),
+    if "16x9" in formats:
+      subprocess.run([FFMPEG, "-v", "error", "-y", "-i", clean, *audio_in, "-filter_complex", ";".join(f169),
                     "-map", "[v]", *audio_map, "-c:v", "libx264", "-preset", "medium", "-crf", "18",
                     "-pix_fmt", "yuv420p", "-movflags", "+faststart",
                     os.path.join(DIR, f"priceback-kickstarter-real-16x9{suffix}.mp4")], check=True)
@@ -62,7 +65,8 @@ def main():
     # 9:16
     chain = drawtexts(labels, "(w-text_w)/2", 175, 54, "box=1:boxcolor=0x0c4a2e@0.85:boxborderw=24:")
     f916 = "[0:v]" + (",".join(chain) if chain else "null") + "[v]"
-    subprocess.run([FFMPEG, "-v", "error", "-y", "-i", clean, *audio_in, "-filter_complex", f916,
+    if "9x16" in formats:
+      subprocess.run([FFMPEG, "-v", "error", "-y", "-i", clean, *audio_in, "-filter_complex", f916,
                     "-map", "[v]", *audio_map, "-c:v", "libx264", "-preset", "medium", "-crf", "18",
                     "-pix_fmt", "yuv420p", "-movflags", "+faststart",
                     os.path.join(DIR, f"priceback-kickstarter-real-9x16{suffix}.mp4")], check=True)
