@@ -32,7 +32,7 @@ const top = ranked.slice(0, 3);
 const allPics = all.filter((i) => !skip.has(i.sku) && fs.existsSync(path.join(SC, ".cache", i.sku + ".jpg"))).sort((a, b) => b.off - a.off);
 const pics = MODE === "basket" && cfg.basketAll !== false ? allPics : ranked.slice(0, 8), grid8 = ranked.slice(0, 8);
 const b64 = (p) => "data:image/" + (p.endsWith(".png") ? "png" : p.endsWith(".svg") ? "svg+xml" : "jpeg") + ";base64," + fs.readFileSync(p).toString("base64");
-const money = (n) => { const d = Math.round(n * 100) % 100 !== 0; return lang === "fr" ? (d ? n.toFixed(2).replace(".", ",") : Math.round(n)) + " $" : "$" + (d ? n.toFixed(2) : Math.round(n)); };
+const money = (n) => { const d = Math.round(n * 100) % 100 !== 0, f = (x) => x.toLocaleString(lang === "fr" ? "fr-CA" : "en-CA", { minimumFractionDigits: d ? 2 : 0, maximumFractionDigits: d ? 2 : 0 }).replace(/\u202f|\u00a0/g, " "); return lang === "fr" ? f(n) + " $" : "$" + f(n); };
 const D = new Date(exp + "T12:00:00");
 const MON = { en: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"], fr: ["JANV.", "FÉVR.", "MARS", "AVR.", "MAI", "JUIN", "JUIL.", "AOÛT", "SEPT.", "OCT.", "NOV.", "DÉC."] }[lang];
 const DAY = { en: ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"], fr: ["DIM.", "LUN.", "MAR.", "MER.", "JEU.", "VEN.", "SAM."] }[lang];
@@ -137,7 +137,7 @@ const MODE="${MODE}",A=${A},B=${B},C=${C},PER=${PER},TOTAL=${TOTAL},LANG="${lang
 const OFF=${JSON.stringify(pics.map((p) => p.off))}, RANK=${JSON.stringify(top.map((_, i) => T.rank(i)))}, CLAIM=${JSON.stringify(top.map((t) => T.claim(t.off)))};
 const $=(id)=>document.getElementById(id), cl=(x)=>Math.max(0,Math.min(1,x)), eo=(x)=>1-Math.pow(1-cl(x),3), ei=(x)=>Math.pow(cl(x),2);
 const back=(x)=>{x=cl(x);const c=1.7;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
-const money=(n)=>{const d=Math.round(n*100)%100!==0;return LANG==="fr"?(d?n.toFixed(2).replace(".",","):Math.round(n))+" $":"$"+(d?n.toFixed(2):Math.round(n))};
+const money=(n)=>{const d=Math.round(n*100)%100!==0,f=(x)=>x.toLocaleString(LANG==="fr"?"fr-CA":"en-CA",{minimumFractionDigits:d?2:0,maximumFractionDigits:d?2:0}).replace(/\u202f|\u00a0/g," ");return LANG==="fr"?f(n)+" $":"$"+f(n)};
 const grid=[...Array(8)].map((_,i)=>[22+(i%4)*262,410+Math.floor(i/4)*262]);
 const show=(id,v)=>{$(id).style.display=v?(id==="tk"?"flex":"block"):"none"};
 window.frame=(t)=>{

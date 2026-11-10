@@ -1,0 +1,424 @@
+{
+  "_note": "TVs & tech ending the week of 2026-11-15. priceback.savings live rows (not superseded), warehouse only, never posted before; biggest saving first. Missing photo (dropped): none.",
+  "source": "priceback.savings + latest priceback.price_points regular price",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "TVs & tech",
+        "fr": "Télés et techno"
+      },
+      "items": [
+        "5708165",
+        "6593065",
+        "5609565",
+        "5708065",
+        "6593055",
+        "5707055",
+        "5707265",
+        "8786565",
+        "2048787",
+        "8900650",
+        "2225060",
+        "2075025"
+      ]
+    }
+  ],
+  "items": {
+    "5708165": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Samsung 65 in.",
+          "QN80H Neo QLED",
+          "4K UHD TV"
+        ],
+        "fr": [
+          "Samsung 65 po",
+          "Neo QLED QN80H",
+          "téléviseur 4K UHD"
+        ]
+      },
+      "regular": 1808.84,
+      "off": 600.0,
+      "price": 1208.84,
+      "exp": "2026-11-12",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "6593065": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "TCL 65 in.",
+          "A400U QD-Mini LED",
+          "4K UHD TV"
+        ],
+        "fr": [
+          "TCL 65 po",
+          "QD-Mini DEL A400U",
+          "téléviseur 4K UHD"
+        ]
+      },
+      "regular": 1513.84,
+      "off": 400.0,
+      "price": 1113.84,
+      "exp": "2026-11-12",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "5609565": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Samsung 65 in.",
+          "S90H OLED",
+          "4K UHD smart TV"
+        ],
+        "fr": [
+          "Samsung 65 po",
+          "OLED S90H",
+          "téléviseur 4K UHD"
+        ]
+      },
+      "regular": 2503.84,
+      "off": 300.0,
+      "price": 2203.84,
+      "exp": "2026-11-12",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "5708065": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Samsung 65 in.",
+          "M80H Mini LED",
+          "4K TV"
+        ],
+        "fr": [
+          "Samsung 65 po",
+          "Mini DEL M80H",
+          "téléviseur 4K"
+        ]
+      },
+      "regular": 1208.24,
+      "off": 300.0,
+      "price": 908.24,
+      "exp": "2026-11-12",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "6593055": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "TCL 55 in.",
+          "A400U QD-Mini LED",
+          "4K UHD TV"
+        ],
+        "fr": [
+          "TCL 55 po",
+          "QD-Mini DEL A400U",
+          "téléviseur 4K UHD"
+        ]
+      },
+      "regular": 1106.99,
+      "off": 200.0,
+      "price": 906.99,
+      "exp": "2026-11-12",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "5707055": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Samsung 55 in.",
+          "M70H Mini LED",
+          "4K TV"
+        ],
+        "fr": [
+          "Samsung 55 po",
+          "Mini DEL M70H",
+          "téléviseur 4K"
+        ]
+      },
+      "regular": 801.99,
+      "off": 150.0,
+      "price": 651.99,
+      "exp": "2026-11-12",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "5707265": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Samsung 65 in.",
+          "M72H Mini LED",
+          "4K TV"
+        ],
+        "fr": [
+          "Samsung 65 po",
+          "Mini DEL M72H",
+          "téléviseur 4K"
+        ]
+      },
+      "regular": 844.99,
+      "off": 150.0,
+      "price": 694.99,
+      "exp": "2026-11-12",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "8786565": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Hisense 65 in.",
+          "QD65SR QLED",
+          "4K UHD TV"
+        ],
+        "fr": [
+          "Hisense 65 po",
+          "QLED QD65SR",
+          "téléviseur 4K UHD"
+        ]
+      },
+      "regular": 674.99,
+      "off": 100.0,
+      "price": 574.99,
+      "exp": "2026-11-12",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2048787": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Samsung",
+          "Sound Tower 160 W",
+          "party speaker"
+        ],
+        "fr": [
+          "Samsung",
+          "Sound Tower 160 W",
+          "enceinte de fête"
+        ]
+      },
+      "regular": 400.49,
+      "off": 100.0,
+      "price": 300.49,
+      "exp": "2026-11-12",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "8900650": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Hisense 50 in.",
+          "QD65SR QLED",
+          "4K UHD smart TV"
+        ],
+        "fr": [
+          "Hisense 50 po",
+          "QLED QD65SR",
+          "téléviseur 4K UHD"
+        ]
+      },
+      "regular": 435.49,
+      "off": 50.0,
+      "price": 385.49,
+      "exp": "2026-11-12",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2225060": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Apple Mac mini",
+          "M6 chip, 16 GB RAM",
+          "256 GB SSD"
+        ],
+        "fr": [
+          "Apple Mac mini",
+          "puce M6, 16 Go de RAM",
+          "SSD de 256 Go"
+        ]
+      },
+      "regular": 1240.79,
+      "off": 41.0,
+      "price": 1199.79,
+      "exp": "2026-11-12",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2075025": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "HyperX",
+          "Cloud Stinger 3",
+          "wired gaming headset"
+        ],
+        "fr": [
+          "HyperX",
+          "Cloud Stinger 3",
+          "casque de jeu filaire"
+        ]
+      },
+      "regular": 70.49,
+      "off": 20.0,
+      "price": 50.49,
+      "exp": "2026-11-12",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    }
+  },
+  "feeds": {
+    "en": [
+      "c"
+    ],
+    "fr": [
+      "c"
+    ]
+  }
+}

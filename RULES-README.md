@@ -52,6 +52,11 @@ Deal posts are real Costco price drops with product photos. They matter more tha
     10 items (Instagram caps a carousel at 20 slides = cover + 18 items + end card; above 18, keep the 18 biggest
     savings and list the rest). Default split: **Grocery** (all food and drinks, fresh and frozen) and **Home &
     more** (everything else; FR "Maison et plus"). Each carousel gets its own basket reel, so a week is 2 posting days.
+  - **Savings ending within 2 days are not dropped (Monica, 2026-11-10 01:34: "continue with the TVs").** They go in
+    their own carousel, posted first (day 1). Photos: Same-Day, then costco.ca (`www.costco.ca/p/-/item/<sku>` works
+    for many warehouse numbers, TVs included), then the Priceback R2 bucket `priceback-product-images`
+    (`costco/<sku>.jpg`; not reachable from cloud sessions, ask Monica for an export if needed). "The rest of the
+    items" = everything left out for lack of a photo, plus the Business Centre carousel.
   - **Reel length follows the item count (Monica, 2026-11-10):** same speed as the approved reel (0.42 s per
     product into the cart); with more products the reel gets longer instead of faster. Every carousel item goes
     into the cart (no "+ N more" when all fit).

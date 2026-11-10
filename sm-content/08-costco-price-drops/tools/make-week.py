@@ -6,7 +6,8 @@ SC = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "scenes")
 spec = importlib.util.spec_from_file_location("items", sys.argv[1]); m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
 I = m.I; week = sys.argv[2]
 CATS = {"grocery": ("Grocery", "Épicerie"), "home": ("Home & more", "Maison et plus"),
-        "hb": ("Health & Beauty", "Santé et beauté"), "frozen": ("Frozen", "Surgelés")}
+        "hb": ("Health & Beauty", "Santé et beauté"), "frozen": ("Frozen", "Surgelés"),
+        "tech": ("TVs & tech", "Télés et techno"), "bc": ("Grocery", "Épicerie")}
 for arg in sys.argv[3:]:
     cat, skus = arg.split("="); skus = skus.split(",")
     have = lambda s: os.path.exists(f"{SC}/.cache/{s}.jpg")
@@ -14,7 +15,7 @@ for arg in sys.argv[3:]:
     keep.sort(key=lambda s: (I[s][3], -I[s][1]))
     d = {"_note": f"{CATS[cat][0]} ending the week of {week}. priceback.savings live rows (not superseded), warehouse only, never posted before; biggest saving first. Missing photo (dropped): {', '.join(miss) or 'none'}.",
          "source": "priceback.savings + latest priceback.price_points regular price",
-         "provinceStrip": True, "endSlide": True, "coverStyle": "claim", "bigClaim": True,
+         "provinceStrip": True, "endSlide": True, "coverStyle": "claim", "bigClaim": True, **({"businessCentre": True} if cat == "bc" else {}),
          "carousels": [{"id": "c", "category": {"en": CATS[cat][0], "fr": CATS[cat][1]}, "items": keep}],
          "items": {}, "feeds": {"en": ["c"], "fr": ["c"]}}
     for s in keep:
