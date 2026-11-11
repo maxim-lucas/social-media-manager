@@ -82,6 +82,24 @@ def main(edl_path, script_path, vo_json, vo_wav, out_edl, out_wav):
     if tail > 0:
         for h in rows[-1]["holds"]:
             holds[h] += tail / len(rows[-1]["holds"])
+    # POSTER: Kickstarter's thumbnail is the frame at exactly 5.000 s (measured
+    # 2026-11-10 with a timecode upload; no picker, an embedded cover is ignored).
+    # Keep scene SEG on screen through T±0.4 s: hold moves onto SEG from the later
+    # scenes of the same line first, so the rest of the timing stays put.
+    seg, t = (os.environ.get("POSTER", "splash:5.0").split(":") + ["5.0"])[:2]
+    if seg:
+        t = float(t)
+        e = next(x for x in edl if x[0] == seg)
+        pos = starts(edl, holds)[0]
+        assert pos[seg] <= t - 0.4, (seg, pos[seg], "starts after the poster time")
+        need = t + 0.4 - (pos[seg] + frames(e) / FPS + holds[seg])
+        line = next(r for r in rows if seg in r["holds"] or r["anchor"] == seg)
+        for k in order[order.index(seg) + 1:]:
+            if need <= 0 or k not in line["holds"]:
+                continue
+            take = min(holds[k], need)
+            holds[k] -= take; holds[seg] += take; need -= take
+        holds[seg] += max(0.0, need)
     # holds rounded to whole frames, the way realcut.py writes them
     holds = {k: round(v * FPS) / FPS for k, v in holds.items()}
     pos, total = starts(edl, holds)
