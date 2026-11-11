@@ -90,6 +90,14 @@ TRACKS = [
 ]
 # Static boxes: (source, from, to, x, y, w, h) — the home-screen to-do widget.
 STATIC = [("r2", 4.4, 6.4, 0, 420, 650, 1200)]
+# Supported Stores page: every store but Costco is blurred (Maxim, 2026-11-10: Best Buy reads "30 days" and is
+# not marked coming soon), and so is the "2 available now" count. Found per frame: the page by its title, the
+# Costco card by its logo + name, so the card stays sharp while the list scrolls.
+STORES_PAGE = ("r1", 75.6, 83.0)
+STORES_TPL = {"title": (T + "stores.png", 36, 225, 520, 75), "costco": (T + "stores.png", 80, 1185, 480, 110)}
+STORES_LIST = (715, 2145)          # list viewport, below the filter chips, above the tab bar
+STORES_COUNT = (30, 305, 640, 70)  # "2 available now · 4 more coming soon"
+COSTCO_CARD = (-50, 335)           # card top/bottom relative to the logo match
 LABEL_MIN_SPEED = 1.01
 LABEL_MIN_DUR = 1.0      # a sped-up label shorter than this would only flash
 
@@ -106,6 +114,8 @@ def load_templates():
         if img is None:
             sys.exit(f"missing template frame {path}")
         out[k] = img[y:y + h, x:x + w]
+    for k, (path, x, y, w, h) in STORES_TPL.items():
+        out[k] = cv2.imread(path, cv2.IMREAD_GRAYSCALE)[y:y + h, x:x + w]
     return out
 
 
@@ -132,6 +142,24 @@ def blur(frame, x, y, w, h):
     roi = frame[y0:y1, x0:x1]
     small = cv2.resize(roi, (max(1, (x1 - x0) // 18), max(1, (y1 - y0) // 18)), interpolation=cv2.INTER_AREA)
     frame[y0:y1, x0:x1] = cv2.GaussianBlur(cv2.resize(small, (x1 - x0, y1 - y0), interpolation=cv2.INTER_LINEAR), (31, 31), 0)
+
+
+def blur_stores(frame, gray, tpls):
+    """Blur the Supported Stores list except the Costco card. Returns True when the page was found."""
+    if find(gray, tpls["title"], [1.0])[0] < 0.6:
+        return False
+    blur(frame, *STORES_COUNT)
+    top, bot = STORES_LIST
+    score, _, y, _, _ = find(gray, tpls["costco"], [1.0])
+    if score >= 0.85:   # other store cards (logo + name) match at ~0.71
+        ct, cb = y + COSTCO_CARD[0], y + COSTCO_CARD[1]
+        if ct > top:
+            blur(frame, 0, top, W, min(ct, bot) - top)
+        if cb < bot:
+            blur(frame, 0, max(cb, top), W, bot - max(cb, top))
+    else:
+        blur(frame, 0, top, W, bot - top)
+    return True
 
 
 def admin_box(m):
@@ -213,6 +241,8 @@ def main():
                         _, x, y, w, h = best
                         l, tp, r, bt = pad
                         blur(frame, x - l, y - tp, w + l + r, h + tp + bt)
+                if src == STORES_PAGE[0] and STORES_PAGE[1] <= t_src < STORES_PAGE[2]:
+                    blur_stores(frame, gray, tpls)
                 for (s, fa, fb, x, y, w, h) in STATIC:
                     if s == src and fa <= t_src < fb:
                         blur(frame, x, y, w, h)

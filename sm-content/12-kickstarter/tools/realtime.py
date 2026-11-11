@@ -25,6 +25,7 @@ import numpy as np
 
 FPS = 30
 LEAD = 0.25   # the scene shows first, then the voice
+FIRST_LEAD = 1.0  # the splash plays alone first: players start late, 0.25 s clipped the first words (Maxim, 2026-11-10)
 GAP = 0.35    # breath between two lines
 TAIL = 1.6    # the last frame stays after the last word
 FADE = 0.012  # seconds faded in/out at each line's edges
@@ -72,7 +73,7 @@ def main(edl_path, script_path, vo_json, vo_wav, out_edl, out_wav):
             if need > 0:
                 for h in prev["holds"]:
                     holds[h] += need / len(prev["holds"])
-        st = starts(edl, holds)[0][r["anchor"]] + LEAD
+        st = starts(edl, holds)[0][r["anchor"]] + (LEAD if i else FIRST_LEAD)
         v = voice[r["line"]]
         placed.append({"line": r["line"], "start": st, "end": st + v["end"] - v["start"],
                        "src": (v["start"], v["end"])})
@@ -85,8 +86,8 @@ def main(edl_path, script_path, vo_json, vo_wav, out_edl, out_wav):
     holds = {k: round(v * FPS) / FPS for k, v in holds.items()}
     pos, total = starts(edl, holds)
     end = -GAP
-    for p, r in zip(placed, rows):   # re-placed on the rounded clock (anchors move by < 1 frame)
-        p["start"] = max(pos[r["anchor"]] + LEAD, end + GAP)
+    for i, (p, r) in enumerate(zip(placed, rows)):   # re-placed on the rounded clock (anchors move by < 1 frame)
+        p["start"] = max(pos[r["anchor"]] + (LEAD if i else FIRST_LEAD), end + GAP)
         p["end"] = end = p["start"] + p["src"][1] - p["src"][0]
 
     with wave.open(vo_wav) as w:   # the RAW take: polish comes after, over the whole track
