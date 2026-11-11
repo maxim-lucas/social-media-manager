@@ -12,7 +12,7 @@ What it does, per segment of the EDL below:
   * writes one silent 1080x2424 master and timeline.json (segment and label times
     in OUTPUT seconds) for compose/voice timing.
 
-Sources (not committed, Maxim's Downloads):
+Sources (not committed, E:/To Be Transfered, override with SRC_DIR):
   r1 = screen-20261110-130939-1794334085945.mp4   scan -> track -> profile -> stores
   r2 = screen-20261110-145440-1794340415970~2.mp4 drop alerts -> claims -> $34.60
 
@@ -27,9 +27,10 @@ import cv2
 import numpy as np
 
 FFMPEG = os.environ.get("FFMPEG", "E:/tools/video/node_modules/ffmpeg-static/ffmpeg.exe")
+SRC_DIR = os.environ.get("SRC_DIR", "E:/To Be Transfered")   # never C: (Maxim, 2026-11-10)
 SRC = {
-    "r1": "C:/Users/Maxim/Downloads/screen-20261110-130939-1794334085945.mp4",
-    "r2": "C:/Users/Maxim/Downloads/screen-20261110-145440-1794340415970~2.mp4",
+    "r1": f"{SRC_DIR}/screen-20261110-130939-1794334085945.mp4",
+    "r2": f"{SRC_DIR}/screen-20261110-145440-1794340415970~2.mp4",
 }
 OUT_DIR = os.environ.get("OUT_DIR", "E:/tools/video/realcut")
 W, H, FPS = 1080, 2424, 30

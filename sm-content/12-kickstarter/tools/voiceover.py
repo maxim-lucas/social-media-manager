@@ -25,7 +25,8 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PACK = os.path.dirname(HERE)
-AUDIO = os.path.join(PACK, "audio")
+AUDIO = os.environ.get("AUDIO_DIR", "E:/tools/voice/out")   # outputs never on C: (Maxim, 2026-11-10)
+os.makedirs(AUDIO, exist_ok=True)
 # Which prepared sample to clone (tools/prepare_sample.py <file> <tag>): VOICE_TAG=s1 (first recording), s2, ...
 TAG = os.environ.get("VOICE_TAG", "clean")
 REF = f"E:/tools/voice/ref-{TAG}.wav"            # the cleaned sample (see SCRIPT.md)
