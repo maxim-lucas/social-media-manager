@@ -1,0 +1,174 @@
+{
+  "_note": "Frozen ending Sun Nov 8. priceback.savings live rows; new this week first (valid_from >= Nov 2), topped up with older offers ending the same day when needed; biggest saving first. Missing photo (dropped): 2880791.",
+  "source": "priceback.savings + priceback.price_points regular prices, pulled 2026-11-04",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "Frozen",
+        "fr": "Surgelés"
+      },
+      "items": [
+        "3282174",
+        "2392786",
+        "1021807",
+        "2011829",
+        "396203"
+      ]
+    }
+  ],
+  "items": {
+    "3282174": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Janes",
+          "battered haddock",
+          "1.26 kg"
+        ],
+        "fr": [
+          "Janes",
+          "aiglefin en pâte",
+          "1,26 kg"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5.0,
+      "price": 19.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "2392786": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Cheese & pepperoni",
+          "pizza variety",
+          "4 pack"
+        ],
+        "fr": [
+          "Pizzas fromage",
+          "et pepperoni",
+          "paquet de 4"
+        ]
+      },
+      "regular": 18.49,
+      "off": 4.5,
+      "price": 13.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "NB",
+        "NL",
+        "NS",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1021807": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Marie Callender's",
+          "chicken pot pies",
+          "8 × 283 g"
+        ],
+        "fr": [
+          "Marie Callender's",
+          "pâtés au poulet",
+          "8 × 283 g"
+        ]
+      },
+      "regular": 19.99,
+      "off": 4.0,
+      "price": 15.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2011829": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Golden Harvest",
+          "shrimp bao buns",
+          "10 × 90 g"
+        ],
+        "fr": [
+          "Golden Harvest",
+          "brioches bao aux crevettes",
+          "10 × 90 g"
+        ]
+      },
+      "regular": 17.99,
+      "off": 4.0,
+      "price": 13.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "396203": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "SUM-M!",
+          "sesame ginger chicken",
+          "gyoza, 900 g"
+        ],
+        "fr": [
+          "SUM-M!",
+          "gyozas poulet sésame",
+          "et gingembre, 900 g"
+        ]
+      },
+      "regular": 11.99,
+      "off": 3.0,
+      "price": 8.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    }
+  },
+  "feeds": {
+    "en": [
+      "c"
+    ],
+    "fr": [
+      "c"
+    ]
+  }
+}

@@ -21,8 +21,149 @@ Deal posts are real Costco price drops with product photos. They matter more tha
      product post says where to buy. On the province strip, blue = seen at Costco warehouses, yellow = seen only
      at Costco Business Centres (with a legend line), grey = not seen. An item sold only at Business Centres goes
      in a Business Centre carousel, never in a warehouse one.
-- **Groceries are the exception**: grouped by type (coffee & drinks, frozen & meat, dairy & cheese, pantry &
-  snacks…), not by saving.
+- **Groceries are the exception** (rules from Monica, 2026-11-04; they replace the Oct 27 "by type" grouping):
+  - **Four categories only: Grocery, Home, Health & Beauty, Frozen.** Pet food goes in Grocery. Anything else
+    (electronics, toys, appliances, apparel…) is not a grocery post.
+  - **Group by saving end date as much as possible, and order the slides by end date** (then biggest saving first).
+    One end date for the whole carousel is preferred. **More than 8 offers in a category = 2 carousels, split by
+    end-date range.** A carousel is never a single item.
+  - **Only savings that started this week**: query `savings` for `valid_from` on or after the Monday of the posting
+    week **and** `created_at` on that Monday or later (Monica, 2026-11-04). A saving that started earlier and is
+    still running is not "new".
+  - **Which items first** (Monica, 2026-11-04): daily, common groceries (the most-bought staples: milk, cheese,
+    yogurt, eggs, bread, meat, canned basics, snacks families buy every week) with the highest savings. Not enough?
+    Loosen to other grocery items. Still not enough? Take smaller savings. **Prefer any item over $2 off to a $2
+    item** (Monica, 2026-11-04: BUILT Puff −$6 replaced Villaggio bread −$2); go down to $2 only when nothing
+    bigger with a clean photo is left in the category and end date.
+  - **Saving size beats "everyday staple"** (Monica, 2026-11-04, after the bread was picked over BUILT Puff −$6):
+    "daily and common" only breaks ties between similar savings. Never put a smaller saving in a carousel while a
+    bigger one in the same category and end date, with a clean photo and not yet posted, is left out.
+  - **End card** (Monica, 2026-11-04): unchanged except one yellow line under "New Costco price drops, every
+    week.": "+ hundreds more hidden savings, only in the PriceBack app" (FR "+ des centaines de rabais cachés,
+    exclusivement dans l'app PriceBack").
+  - **Business Centre carousel strip** (2026-11-04): every province cell yellow, one legend key "Costco Business
+    Centres only", fine print "Price seen at Costco Business Centres in …" (`"businessCentre": true`).
+  - **Weighted, sold-by-the-case meat** (price changes per case) is left out: the database can't give one true
+    "PAID $X". Tell Monica which big savings were skipped for this.
+  - **Savings ending within 2 days** of building are skipped: they would be over before Monica validates.
+  - Same-Day search by **item number** mostly misses (Montreal store); search by **product name** finds far more.
+  - **One category = one carousel, as few categories as possible (Monica, 2026-11-10).** Monica posts at most one
+    carousel + one reel a day, so never split a category into "Grocery 2/3/4": one carousel per category, even past
+    10 items (Instagram caps a carousel at 20 slides = cover + 18 items + end card; above 18, keep the 18 biggest
+    savings and list the rest). Default split: **Grocery** (all food and drinks, fresh and frozen) and **Home &
+    more** (everything else; FR "Maison et plus"). Each carousel gets its own basket reel, so a week is 2 posting days.
+  - **Savings ending within 2 days are not dropped (Monica, 2026-11-10 01:34: "continue with the TVs").** They go in
+    their own carousel, posted first (day 1). Photos: Same-Day, then costco.ca (`www.costco.ca/p/-/item/<sku>` works
+    for many warehouse numbers, TVs included), then the Priceback R2 bucket `priceback-product-images`
+    (`costco/<sku>.jpg`; not reachable from cloud sessions, ask Monica for an export if needed). "The rest of the
+    items" = everything left out for lack of a photo, plus the Business Centre carousel.
+  - **Reel length follows the item count (Monica, 2026-11-10):** same speed as the approved reel (0.42 s per
+    product into the cart); with more products the reel gets longer instead of faster. Every carousel item goes
+    into the cart (no "+ N more" when all fit).
+  - **DEFAULT REEL DESIGN, APPROVED (Monica, 2026-11-04 21:13: "this is perfect, save this design for all reels").**
+    Every price-drop reel Monica asks for is generated with `sm-content/08-costco-price-drops/reels/follower-reel.js`
+    exactly as committed on 2026-11-04 (v5): a category **basket** reel and/or a whole-week **top3** reel. Reels
+    are made only when she asks; the design is the default, not a weekly auto-run. Spec in `sm-content/08-costco-price-drops/reels/README.md`.
+    Older builders (`make-reel.js`, `short-reel.js`) are superseded; the notes below are the history behind it.
+  - **Price-drop reels** (Monica, 2026-11-04: "use some animation … to hook the users … get more followers"): made
+    only after Monica validates the carousel, EN and FR, 1080×1920, about 19 s:
+    `sm-content/08-costco-price-drops/reels/make-reel.js <week json> <en|fr> <out.mp4>`. Hook first (product photos
+    pop in, "8 PRICES JUST DROPPED", the claim total counts up, the end date), then the cover, each item with a push
+    transition, a "CLAIM $X BACK" stamp, a "DROP n OF 8" progress bar and a running total, and the end card with a
+    pulsing "FOLLOW @priceback.ca" button. Music is an original track made by `reels/music.py` (no licence issues),
+    with a whoosh on every cut; Monica can swap in trending Instagram audio when posting. These reels are the
+    exception to §5's "no music" rule, which covers the story videos.
+  - **Reel feedback (Monica, 2026-11-04 17:29), these override the reel described above:**
+    - **The follower reel is 7 seconds and loops** (Instagram rewards 7–10 s loops; an 18 s reel with 8 products
+      gets saves, not follows). `reels/short-reel.js`:
+      0–1 s "Shopped at Costco lately?"; 1–2.5 s the yellow "N PRICES JUST DROPPED" banner + "Claim up to $X
+      back"; 2.5–6 s only the **3 biggest drops**, each with the "CLAIM $X BACK" sticker; 6–7 s "FOLLOW
+      @priceback.ca for next week's drops", ending on the hook's look so it loops.
+    - **The 3 products:** the 3 biggest savings across **all the week's grocery carousels**, Costco warehouse
+      offers only (**no Business Centre**), **no raw meat photos**, one product per brand.
+    - **No cover slide in reels:** the animated hook already does its job.
+    - **No red footer on slides in reels:** crop it off; the big "CLAIM $X BACK" sticker replaces it (reels only,
+      the carousel keeps its footer).
+    - **Music:** Monica disliked the first track (too loud, tempo too quick). Calm, slower (about 90 BPM), quiet
+      under the visuals; always also deliver a no-music copy so she can add Instagram audio.
+    - Edit **EN only** until Monica approves; FR follows.
+    - **Follow-up (17:39):** the calm track was "so boring": use `reels/music_pop.py` (104 BPM feel-good pop with a
+      marimba hook, mid volume about -17 dB). Never as loud/fast as track 1, never as flat as track 2.
+    - **Make the claim believable:** under "Claim up to $X back" always add, small and yellow, "if you bought them"
+      (FR "si vous les avez achetés"); a bare "up to $120" reads as a scam.
+    - **End card (1.5 s, reel is 7.5 s):** "🔔 DON'T MISS" yellow tag, "NEXT WEEK'S COSTCO DROPS" big, a huge
+      pulsing "FOLLOW @priceback.ca" button with a tapping hand, "+ hundreds more hidden savings only in the
+      PriceBack app" in yellow, the PriceBack icon + name, and both store badges.
+    - **Feedback (Monica, 2026-11-04 18:10), overrides the lines above where they differ:**
+      - **No text ever overlaps a product photo** in a reel (hook question, date, banner, counter): photos and text
+        get separate zones. The end date ("Ends Sunday, Nov 8") needs its own design and place, not a loose line.
+      - **Say the category in the hook** ("GROCERY") when the reel is a category reel. A single "$7" top drop is not
+        appealing on its own: propose hook options to Monica BEFORE regenerating, never pick silently.
+      - **End card: the app name appears once.** Write it as "ONLY in [PriceBack logo + name]", with the word
+        "ONLY" styled to blend with the logo, not a second "PriceBack" line.
+      - **"HIDDEN" is emphasised** (bold, capitals, highlighted) in "+ hundreds more HIDDEN savings".
+      - **Music must sound like trending Reels audio** for this kind of content, not generic synth. Our tracks are
+        synthesized (no licence issues), so the default is: deliver the no-music copy and add a trending sound
+        from Instagram's own audio library when posting (licensed for Reels, and trending audio gets reach).
+      - **Two follower reels a week (Monica chose "basket + week reel", 2026-11-04 18:13)**, built by
+        `reels/follower-reel.js` (replaces short-reel.js):
+        - **Category basket reel** (`"mode":"basket"`, e.g. `reels/2026-11-08-grocery-basket.json`): hook names the
+          category ("30 GROCERY PRICES JUST DROPPED"), then the 8 biggest drops (one per brand, no raw meat, no
+          Business Centre) drop into a cart one by one with a "-$X" chip while the claim counter climbs, then
+          "+ N more drops" takes it to the full total ("Claim up to $120.70 back / if you bought them").
+        - **Whole-week reel** (`"mode":"top3"`, e.g. `reels/2026-11-08-week-top3.json`): every warehouse carousel of
+          the week; the 3 biggest drops with CLAIM stickers ("65 COSTCO PRICES JUST DROPPED", up to $486.70).
+        - End date is an "ENDS | SUN NOV 8" ticket in its own zone. Backup music `reels/music_house.py` (122 BPM
+          funky house, about -16.5 dB); a no-music copy is always delivered for trending Instagram audio.
+      - **Follow-up (Monica, 2026-11-04 21:07):** the "ENDS | SUN NOV 8" ticket is big (72/96 px); the products
+        going into the cart start big (540 px card, never below half size) and still never touch any text.
+      - **Platforms:** Instagram + Facebook get the **music-only** version (`-IG-FB.mp4`). YouTube Shorts + TikTok
+        get a **voiceover + music** version, voiced with Monica's own cloned voice through the same local pipeline
+        she used for the Kickstarter video (on her machine; lines generated there and pushed to
+        `reels/vo/<week>/`, with a README naming the pipeline).
+  - **Business Centre and warehouse savings are never in the same carousel** (Monica, 2026-11-04): separate
+    carousels, and a Business Centre cover says "Only in Costco Business Centres" (FR "Seulement dans les
+    Centres d'entreprises Costco"); `"businessCentre": true` in the week file. **Never an item already posted** in an earlier carousel:
+    check every `posts/` folder and `/mnt/project-files/marketing/costco-posts/` first.
+  - **Every item slide shows province availability** (the province strip).
+  - **Cover ("guard") card, exactly these 4 things in this order**, and nothing else (no swipe cue, no photo grid):
+    1. "Costco Canada Drops 🇨🇦" (FR "Baisses Costco Canada 🇨🇦"): top, small.
+    2. "New drops · Claim until Sunday, Nov 15": middle, HUGE. The weekday + date when every item ends the same
+       day (preferred); otherwise every end date listed ("Nov 15 & 29"), never a from–to range.
+    3. The number of drops ("8 price drops"): bottom. **The count is clearly bigger than the date** (Monica,
+       2026-11-04, said twice): they must not compete; the number of drops sells the save more than the date.
+       Today: date 100px, count 124px (FR 92 / 104).
+    4. The red footer, bigger: "Bought in the last 30 days?" in yellow, then "CLAIM UP TO $27.70 BACK" in a
+       white box (FR "Acheté ces 30 derniers jours ?" / "RÉCLAMEZ JUSQU'À 27,70 $").
+  - **The end card stays as is and is the last slide of every carousel.**
+  - **Always English AND French.**
+  - **Source: the `priceback.savings` table** (live, not superseded rows; source `sameday_costco` = warehouses,
+    `sameday_business_centre` = Business Centres, `saving_warehouses` for the stores), with regular prices from
+    `price_points`. `price_points` alone misses most of the week's savings (Monica, 2026-11-04).
+  - **Flyer items are allowed** in grocery carousels (2026-11-04); the "hidden savings only" filter does not apply.
+  - **No photo is not a reason to drop an item** until both Same-Day and costco.ca have been tried.
+  - **Ending soon = included and posted first.** Carousels go out in end-date order, the soonest first.
+  - **Items outside the 4 categories** (apparel, electronics, toys, seasonal…) go in a separate mixed carousel.
+  - **Fewer than 5 items in a carousel** → complete it with offers from the same category that started before this
+    week, end on the same date, with the highest savings.
+  - **Cover total line** under the drop count, big and bold (no "all"): "Total possible back: $27.70 / if you
+    bought them" (FR "Total à récupérer : 27,70 $ / si vous les avez achetés"), on two clean lines.
+  - **The red footer is the hero** on item slides, huge: "PAID $29.99 in the last 30 days?" then "CLAIM $6 BACK"
+    in a white box (FR "PAYÉ 29,99 $ ces 30 derniers jours ?" / "RÉCLAMEZ 6 $"); `"bigClaim": true` in the
+    week file. The PriceBack green banner stays.
+  - **The category in the top band is clearly visible** on every slide (white, bold, a bit bigger), not oversized.
+  - **French uses "vous"** and the `25,70 $` price format.
+  - **Every remark or edit Monica makes becomes a rule here** (and in STYLE.md), in the same session, without
+    being asked (Monica, 2026-11-04).
+  - **Make one carousel first**, have Monica validate it, then do the rest.
+  - **Images first, reel second.** Render the slides, send them to Monica, and **only after she validates the
+    photos** turn each carousel into an Instagram reel (a few seconds per slide, standard transitions, music).
+- **Business Centre vs warehouse is read from the data, never assumed** (Monica, 2026-11-04, item 2068876). A
+  price point is a Business Centre one when `flags.storefront = 'business_centre'` **or** its warehouse name
+  contains "Business Centre", including province-wide rows with no warehouse. A province is blue (warehouse) only
+  when a warehouse (`storefront = 'costco'`) row exists there; a province with Business Centre rows only is
+  yellow. An item seen only at Business Centres everywhere is never in a warehouse carousel. (Oct 27 mistake:
+  Business-Centre-only ON/QC rows had no warehouse id and were shown as warehouses.)
 - **English and French always carry the exact same offers** (2026-10-29). Never choose a language by province,
   even for a saving seen only in Alberta or only in Quebec.
 - **One post per product, never one per province.** Under the product photo, a **province strip** lists every

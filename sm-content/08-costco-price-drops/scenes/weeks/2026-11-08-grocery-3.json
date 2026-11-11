@@ -1,0 +1,248 @@
+{
+  "_note": "Grocery ending Sun Nov 8. priceback.savings live rows; new this week first (valid_from >= Nov 2), topped up with older offers ending the same day when needed; biggest saving first. Missing photo (dropped): none.",
+  "source": "priceback.savings + priceback.price_points regular prices, pulled 2026-11-04",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "Grocery",
+        "fr": "Épicerie"
+      },
+      "items": [
+        "28537",
+        "26898",
+        "1625775",
+        "3323944",
+        "5058014",
+        "2059194",
+        "1443237",
+        "1448438"
+      ]
+    }
+  ],
+  "items": {
+    "28537": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Lean",
+          "ground pork chub",
+          "about 1.8 kg"
+        ],
+        "fr": [
+          "Porc haché",
+          "maigre en tube",
+          "environ 1,8 kg"
+        ]
+      },
+      "regular": 18.99,
+      "off": 4.0,
+      "price": 14.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "26898": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Duso's",
+          "roasted garlic chicken",
+          "tortelloni, 3 × 500 g"
+        ],
+        "fr": [
+          "Duso's",
+          "tortellonis poulet à l'ail rôti",
+          "3 × 500 g"
+        ]
+      },
+      "regular": 17.49,
+      "off": 3.5,
+      "price": 13.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1625775": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Rubicon",
+          "exotic juice variety",
+          "32 × 200 mL"
+        ],
+        "fr": [
+          "Rubicon",
+          "jus exotiques variés",
+          "32 × 200 mL"
+        ]
+      },
+      "regular": 16.99,
+      "off": 3.5,
+      "price": 13.49,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "ON"
+      ],
+      "bizOnly": []
+    },
+    "3323944": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Golden Island",
+          "Korean BBQ pork jerky",
+          "410 g"
+        ],
+        "fr": [
+          "Golden Island",
+          "jerky de porc BBQ coréen",
+          "410 g"
+        ]
+      },
+      "regular": 16.99,
+      "off": 3.5,
+      "price": 13.49,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "MB"
+      ],
+      "bizOnly": []
+    },
+    "5058014": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Castello",
+          "extra creamy Danish blue",
+          "2 × 250 g"
+        ],
+        "fr": [
+          "Castello",
+          "bleu danois extra crémeux",
+          "2 × 250 g"
+        ]
+      },
+      "regular": 13.99,
+      "off": 3.0,
+      "price": 10.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB"
+      ],
+      "bizOnly": []
+    },
+    "2059194": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Jules Destrooper",
+          "Belgian butter crisps",
+          "6 × 75 g"
+        ],
+        "fr": [
+          "Jules Destrooper",
+          "galettes au beurre belges",
+          "6 × 75 g"
+        ]
+      },
+      "regular": 14.99,
+      "off": 3.0,
+      "price": 11.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "1443237": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Toffifee",
+          "hazelnut caramel candies",
+          "2 × 400 g"
+        ],
+        "fr": [
+          "Toffifee",
+          "friandises noisette caramel",
+          "2 × 400 g"
+        ]
+      },
+      "regular": 14.99,
+      "off": 3.0,
+      "price": 11.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1448438": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Sweet Sixteen",
+          "original candies",
+          "1.25 kg"
+        ],
+        "fr": [
+          "Sweet Sixteen",
+          "bonbons originaux",
+          "1,25 kg"
+        ]
+      },
+      "regular": 10.99,
+      "off": 3.0,
+      "price": 7.99,
+      "exp": "2026-11-08",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    }
+  },
+  "feeds": {
+    "en": [
+      "c"
+    ],
+    "fr": [
+      "c"
+    ]
+  }
+}

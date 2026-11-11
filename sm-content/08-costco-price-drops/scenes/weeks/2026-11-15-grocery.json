@@ -1,0 +1,535 @@
+{
+  "_note": "Grocery ending the week of 2026-11-15. priceback.savings live rows (not superseded), warehouse only, never posted before; biggest saving first. Missing photo (dropped): none.",
+  "source": "priceback.savings + latest priceback.price_points regular price",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "Grocery",
+        "fr": "Épicerie"
+      },
+      "items": [
+        "2034361",
+        "395935",
+        "690407",
+        "1563109",
+        "2059647",
+        "2059195",
+        "1987294",
+        "1952804",
+        "4442410",
+        "1736000",
+        "2324095",
+        "2154772",
+        "333666",
+        "2419407",
+        "2400772",
+        "2743223",
+        "2062406",
+        "2058033"
+      ]
+    }
+  ],
+  "items": {
+    "2034361": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Royal Asia",
+          "honey walnut shrimp",
+          "907 g"
+        ],
+        "fr": [
+          "Royal Asia",
+          "crevettes miel et noix",
+          "907 g"
+        ]
+      },
+      "regular": 24.99,
+      "off": 10.0,
+      "price": 14.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "395935": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Yorkshire Valley Farms",
+          "organic chicken breasts",
+          "frozen, 2 kg"
+        ],
+        "fr": [
+          "Yorkshire Valley Farms",
+          "poitrines de poulet bio",
+          "surgelées, 2 kg"
+        ]
+      },
+      "regular": 46.99,
+      "off": 10.0,
+      "price": 36.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "690407": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Caffè Cimo",
+          "Azzurro dark espresso",
+          "whole bean, 2 kg"
+        ],
+        "fr": [
+          "Caffè Cimo",
+          "espresso Azzurro foncé",
+          "en grains, 2 kg"
+        ]
+      },
+      "regular": 34.99,
+      "off": 7.0,
+      "price": 27.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "1563109": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Heineken 0.0",
+          "alcohol-free beer",
+          "24 × 330 mL"
+        ],
+        "fr": [
+          "Heineken 0,0",
+          "bière sans alcool",
+          "24 × 330 mL"
+        ]
+      },
+      "regular": 32.99,
+      "off": 7.0,
+      "price": 25.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "2059647": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Prime Bites",
+          "protein brownies",
+          "10 × 68 g"
+        ],
+        "fr": [
+          "Prime Bites",
+          "brownies protéinés",
+          "10 × 68 g"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6.0,
+      "price": 23.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "2059195": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Blue Moon",
+          "non-alcoholic Belgian white",
+          "24 × 355 mL"
+        ],
+        "fr": [
+          "Blue Moon",
+          "blanche belge sans alcool",
+          "24 × 355 mL"
+        ]
+      },
+      "regular": 28.99,
+      "off": 6.0,
+      "price": 22.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1987294": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Purefoods",
+          "Tender Juicy jumbo hotdogs",
+          "1.13 kg"
+        ],
+        "fr": [
+          "Purefoods",
+          "saucisses Tender Juicy jumbo",
+          "1,13 kg"
+        ]
+      },
+      "regular": 15.99,
+      "off": 6.0,
+      "price": 9.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1952804": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "GURU",
+          "zero sugar organic energy",
+          "18 × 355 mL"
+        ],
+        "fr": [
+          "GURU",
+          "énergie bio zéro sucre",
+          "18 × 355 mL"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6.0,
+      "price": 23.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "NL",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "4442410": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Kicking Horse",
+          "Jolly Ass dark roast",
+          "whole bean, 1 kg"
+        ],
+        "fr": [
+          "Kicking Horse",
+          "Jolly Ass torréfaction foncée",
+          "en grains, 1 kg"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6.0,
+      "price": 23.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1736000": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Level Ground",
+          "organic Peru coffee",
+          "whole bean, 907 g"
+        ],
+        "fr": [
+          "Level Ground",
+          "café bio du Pérou",
+          "en grains, 907 g"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5.0,
+      "price": 19.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2324095": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Dujardin",
+          "cauliflower rice",
+          "5 × 500 g"
+        ],
+        "fr": [
+          "Dujardin",
+          "riz de chou-fleur",
+          "5 × 500 g"
+        ]
+      },
+      "regular": 9.99,
+      "off": 5.0,
+      "price": 4.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "BC"
+      ],
+      "bizOnly": []
+    },
+    "2154772": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "44th Street",
+          "Texas BBQ pork back ribs",
+          "2 × 740 g"
+        ],
+        "fr": [
+          "44th Street",
+          "côtes levées BBQ texanes",
+          "2 × 740 g"
+        ]
+      },
+      "regular": 21.99,
+      "off": 5.0,
+      "price": 16.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "333666": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Ethical Bean",
+          "Lush medium-dark roast",
+          "whole bean, 907 g"
+        ],
+        "fr": [
+          "Ethical Bean",
+          "Lush mi-foncé",
+          "en grains, 907 g"
+        ]
+      },
+      "regular": 23.99,
+      "off": 5.0,
+      "price": 18.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "2419407": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Pinty's",
+          "crispy chicken wings",
+          "1.5 kg"
+        ],
+        "fr": [
+          "Pinty's",
+          "ailes de poulet croustillantes",
+          "1,5 kg"
+        ]
+      },
+      "regular": 21.99,
+      "off": 5.0,
+      "price": 16.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "2400772": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "SunRype",
+          "Fruit Source bars",
+          "30 × 37 g"
+        ],
+        "fr": [
+          "SunRype",
+          "barres Fruit Source",
+          "30 × 37 g"
+        ]
+      },
+      "regular": 21.99,
+      "off": 4.5,
+      "price": 17.49,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2743223": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Cadbury Dairy Milk",
+          "mini chocolate bars",
+          "810 g"
+        ],
+        "fr": [
+          "Cadbury Dairy Milk",
+          "mini tablettes",
+          "810 g"
+        ]
+      },
+      "regular": 19.99,
+      "off": 4.0,
+      "price": 15.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "2062406": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Delici",
+          "cookie butter mousse",
+          "454 g"
+        ],
+        "fr": [
+          "Delici",
+          "mousse au spéculoos",
+          "454 g"
+        ]
+      },
+      "regular": 13.99,
+      "off": 4.0,
+      "price": 9.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2058033": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Plaisirs Gastronomiques",
+          "Boursin garlic & herb pizza",
+          "3 × 394 g"
+        ],
+        "fr": [
+          "Plaisirs Gastronomiques",
+          "pizza Boursin ail et fines herbes",
+          "3 × 394 g"
+        ]
+      },
+      "regular": 18.99,
+      "off": 4.0,
+      "price": 14.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    }
+  },
+  "feeds": {
+    "en": [
+      "c"
+    ],
+    "fr": [
+      "c"
+    ]
+  }
+}

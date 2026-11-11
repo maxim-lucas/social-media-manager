@@ -1,0 +1,587 @@
+{
+  "_note": "Home & more ending the week of 2026-11-15. priceback.savings live rows (not superseded), warehouse only, never posted before; biggest saving first. Missing photo (dropped): none.",
+  "source": "priceback.savings + latest priceback.price_points regular price",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "Home & more",
+        "fr": "Maison et plus"
+      },
+      "items": [
+        "6373801",
+        "5558298",
+        "2711548",
+        "2041170",
+        "1938087",
+        "2049676",
+        "1985321",
+        "2034932",
+        "1929688",
+        "2053016",
+        "2008741",
+        "1529991",
+        "2058384",
+        "160230",
+        "5145977",
+        "1176688",
+        "4227788",
+        "2068680"
+      ]
+    }
+  ],
+  "items": {
+    "6373801": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Dyson",
+          "Gen5detect cordless",
+          "stick vacuum"
+        ],
+        "fr": [
+          "Dyson",
+          "aspirateur balai sans fil",
+          "Gen5detect"
+        ]
+      },
+      "regular": 1099.99,
+      "off": 200.0,
+      "price": 899.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "5558298": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "FoodSaver",
+          "vacuum sealer",
+          "with marinator"
+        ],
+        "fr": [
+          "FoodSaver",
+          "scelleuse sous vide",
+          "avec marinade"
+        ]
+      },
+      "regular": 129.99,
+      "off": 40.0,
+      "price": 89.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2711548": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "4×4 Crawlers",
+          "motorized vehicle playset",
+          "with storage case"
+        ],
+        "fr": [
+          "4×4 Crawlers",
+          "véhicules motorisés",
+          "avec mallette"
+        ]
+      },
+      "regular": 50.94,
+      "off": 15.0,
+      "price": 35.94,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2041170": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Copper Fit",
+          "Freeze 360",
+          "cooling sleeve"
+        ],
+        "fr": [
+          "Copper Fit",
+          "manchon Freeze 360",
+          "refroidissant"
+        ]
+      },
+      "regular": 39.99,
+      "off": 10.0,
+      "price": 29.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1938087": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Infinity X1",
+          "10,000-lumen",
+          "rechargeable flashlight"
+        ],
+        "fr": [
+          "Infinity X1",
+          "lampe de poche",
+          "rechargeable 10 000 lm"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10.0,
+      "price": 39.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2049676": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "LeapFrog",
+          "LeapStart reading",
+          "buddies set"
+        ],
+        "fr": [
+          "LeapFrog",
+          "LeapStart Reading",
+          "Buddies"
+        ]
+      },
+      "regular": 50.09,
+      "off": 10.0,
+      "price": 40.09,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "SK",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "1985321": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Mobile Warming",
+          "heated socks"
+        ],
+        "fr": [
+          "Mobile Warming",
+          "chaussettes chauffantes"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10.0,
+      "price": 39.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "ON"
+      ],
+      "bizOnly": []
+    },
+    "2034932": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Mondetta",
+          "yoga & pilates",
+          "home kit"
+        ],
+        "fr": [
+          "Mondetta",
+          "kit yoga et pilates",
+          "à domicile"
+        ]
+      },
+      "regular": 39.99,
+      "off": 10.0,
+      "price": 29.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "ON"
+      ],
+      "bizOnly": []
+    },
+    "1929688": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Holiday crochet",
+          "figures",
+          "assorted"
+        ],
+        "fr": [
+          "Figurines des Fêtes",
+          "en tricot",
+          "assorties"
+        ]
+      },
+      "regular": 44.99,
+      "off": 10.0,
+      "price": 34.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2053016": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Arencia",
+          "rice mochi",
+          "deep pore cleanser"
+        ],
+        "fr": [
+          "Arencia",
+          "nettoyant mochi au riz",
+          "pores profonds"
+        ]
+      },
+      "regular": 33.99,
+      "off": 8.0,
+      "price": 25.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2008741": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Satin-like",
+          "cooling beauty pillow"
+        ],
+        "fr": [
+          "Oreiller beauté",
+          "satiné rafraîchissant"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6.0,
+      "price": 23.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1529991": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Webber Naturals",
+          "magnesium bisglycinate",
+          "300 capsules"
+        ],
+        "fr": [
+          "Webber Naturals",
+          "bisglycinate de magnésium",
+          "300 capsules"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6.0,
+      "price": 23.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2058384": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Ello",
+          "glass bakeware",
+          "4 pieces"
+        ],
+        "fr": [
+          "Ello",
+          "plats de cuisson en verre",
+          "4 pièces"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6.0,
+      "price": 23.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "160230": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Vancouver Classics",
+          "3-tier mesh",
+          "shoe rack"
+        ],
+        "fr": [
+          "Vancouver Classics",
+          "porte-chaussures",
+          "3 niveaux"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6.0,
+      "price": 23.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "5145977": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Advil",
+          "Cold & Sinus",
+          "102 caplets"
+        ],
+        "fr": [
+          "Advil",
+          "Rhume et sinus",
+          "102 caplets"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5.0,
+      "price": 19.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1176688": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "GlucksteinStudio",
+          "bath sheet"
+        ],
+        "fr": [
+          "GlucksteinStudio",
+          "drap de bain"
+        ]
+      },
+      "regular": 19.99,
+      "off": 5.0,
+      "price": 14.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "4227788": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Cascade",
+          "Power Clean ActionPacs",
+          "115 count"
+        ],
+        "fr": [
+          "Cascade",
+          "Super net ActionPacs",
+          "115 unités"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5.0,
+      "price": 19.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2068680": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Pokémon",
+          "Poké Ball plush",
+          "3 pack"
+        ],
+        "fr": [
+          "Pokémon",
+          "peluches Poké Ball",
+          "paquet de 3"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5.0,
+      "price": 19.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-10",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "SK"
+      ],
+      "bizOnly": []
+    }
+  },
+  "feeds": {
+    "en": [
+      "c"
+    ],
+    "fr": [
+      "c"
+    ]
+  }
+}

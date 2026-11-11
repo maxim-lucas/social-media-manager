@@ -24,7 +24,7 @@ PriceBack. **One item per image, always. A category is a carousel** (Monica, 202
 | Product photo | The official packshot, white background, trimmed and centred. **Never** a shelf photo, a blurry crop or a brand-name placeholder: no clean photo, no post. |
 | Shelf tag | A recreation of the Costco tag: item number, uppercase name, regular price, yellow `-x.xx`, `Instant Savings` + `EXP.` date, `PRICE AT REGISTER`, the big price. Serif numbers, like the real tag. |
 | Badge | Single posts only: a red circle with `-$6 OFF` (FR `-6 $ DE RABAIS`) on the tag's left. |
-| Download row | Above the fine print: the PriceBack chip, `Scan your Costco receipt. We tell you when the price drops.` / `Free on iPhone and Android` (FR `Scannez votre reçu Costco. On vous avertit si le prix baisse.` / `Gratuit sur iPhone et Android`). |
+| Download row | Above the fine print: the PriceBack chip, `Scan your Costco receipt. We tell you when the price drops.` / `Free download, with a free trial` (FR `Scannez votre reçu Costco. On vous avertit si le prix baisse.` / `Téléchargement gratuit, avec essai gratuit`; never call the app "free"). |
 | Bottom band | Red. `Paid $19.99 in the last 30 days?` / `Claim the $6 difference.`, with Apple's and Google's official download badges on the right (unaltered artwork from `../06-launch/badges/`; Google's French badge on FR, Apple's English one until `app-store-fr.svg` is added there). |
 | Fine print | Above the band, on every post: where and when the price was seen, that adjustment terms are the retailer's, and the not-affiliated line. |
 
@@ -69,6 +69,34 @@ PriceBack. **One item per image, always. A category is a carousel** (Monica, 202
 5. Write the tag lines in EN and FR (size from the package), render, and look at every slide in both languages.
    EN and FR go out as separate carousels (playbook §5).
 
+## Grocery carousels (Monica, 2026-11-04)
+
+Full rule list: `../../RULES-README.md` §1. In short: four categories (Grocery, Home, Health & Beauty, Frozen),
+savings that started this week only, never an item already posted, grouped and ordered by end date, at most 8
+offers per carousel, EN + FR, province strip on every item, the claim cover, the end card last.
+
+- Week file: `"coverStyle": "claim"` renders the claim cover (`claimCover()` in `render.js`): "Costco Canada
+  Drops 🇨🇦" small on top, "New drops / Claim until / Sunday, / Nov 15" huge in the middle, the drop count
+  medium below, "Bought in the last 30 days?" small and yellow in the red band. No swipe cue.
+- Location query (the Oct 27 bug fix): classify each price point as Business Centre when
+  `flags->>'storefront' = 'business_centre'` or the warehouse name matches `%business%`, else warehouse; a
+  province goes in `provinces` only if it has a warehouse row, in `bizOnly` if it has Business Centre rows only.
+- Photos: Same-Day search by item number (`sameday.costco.ca/store/costco-canada/s?k=<item #>` in headless
+  Chromium; search shows the store's region, so western-only items may miss) or costco.ca
+  (`gdx-assets.costco.com/.../<item #>-894__1.jpg`). Check every photo by eye. No clean photo, no post.
+- Cover (latest, 2026-11-04): total line on two lines without "all"; "8 price drops" clearly bigger than the date
+  (date 100px, count 124px; FR 92/104); red footer "Bought in the last 30 days?" + white box "CLAIM UP TO $X BACK".
+- Item slides: `"bigClaim": true` → red footer "PAID $X in the last 30 days?" + white box "CLAIM $Y BACK" (the
+  `.huge` class). Category in the top band white, bold, 30px.
+- Business Centre carousels are separate: `"businessCentre": true` adds the yellow "Only in Costco Business
+  Centres" ribbon on the cover.
+- Item choice: everyday staples with the highest savings first, then other groceries, then smaller savings;
+  anything over $2 off beats a $2 item. A bigger saving always wins over "everyday"; everyday only breaks ties.
+- End card: yellow line "+ hundreds more hidden savings, only in the PriceBack app" under the subline (`endMore`). Query:
+  `valid_from` ≥ the week's Monday and `created_at` ≥ that Monday.
+- Reels come only after Monica validates the slides. Every remark Monica makes is added as a rule here and in
+  `RULES-README.md` §1.
+
 ## Rules this style keeps
 
 - **Claim, never get** (playbook §7). The band says *claim the difference*; the store decides.
@@ -88,3 +116,11 @@ the art. **Before any of these run as paid Meta ads, have someone qualified revi
 
 The packshots belong to the brands and are served by Costco's Same-Day site. They are cached locally to render and
 the repo keeps only the finished posts, never the raw images.
+- Reels (Monica, 2026-11-04 18:10): no text over product photos; the end date gets its own designed badge/zone;
+  name the category ("GROCERY") in the hook; propose hook options before regenerating when the top drop is small;
+  end card names the app once as "ONLY in [logo PriceBack]"; "HIDDEN" in bold capitals; music = trending
+  Instagram audio added at posting (we deliver a no-music copy), not synth tracks.
+- **Approved default reel design (Monica, 2026-11-04 21:13):** `reels/follower-reel.js` v5, spec in `reels/README.md`.
+  Use it by default for every reel of this format that Monica asks for (reels only on request).
+- **1 category = 1 carousel** (Monica, 2026-11-10), fewest categories (Grocery; Home & more), max 18 items
+  per carousel (Instagram 20-slide cap). One basket reel per carousel; the reel gets longer with more items, same speed.

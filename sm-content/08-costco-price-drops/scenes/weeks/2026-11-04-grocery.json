@@ -1,0 +1,258 @@
+{
+  "_note": "Savings that STARTED this week (valid_from >= 2026-11-02), end Nov 15 or later, one saving everywhere. Location from flags.storefront / warehouse name: a province is blue only when a Costco warehouse row exists; provinces with Business Centre rows only go in bizOnly (yellow). Flipp checked 2026-11-04 (flyers 8216470, 8216437, 8216439): Easy-Off, Finish rinse aid, Frank's, Kinder's, Clamato, Aussie Bites, Scotch-Brite lint roller dropped. Never posted before.",
+  "source": "priceback.price_points (Same-Day in-store savings, price_tag_scan, verified), pulled 2026-11-04 07:30 UTC",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "carousels": [
+    {
+      "id": "grocery",
+      "category": {
+        "en": "Grocery",
+        "fr": "Épicerie"
+      },
+      "items": [
+        "1374017",
+        "2061418",
+        "2268256",
+        "2063089",
+        "2056928",
+        "100778",
+        "1195239",
+        "1043892"
+      ]
+    }
+  ],
+  "items": {
+    "1374017": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "CLIF Builders",
+          "protein bars",
+          "18 × 68 g"
+        ],
+        "fr": [
+          "CLIF Builders",
+          "barres protéinées",
+          "18 × 68 g"
+        ]
+      },
+      "regular": 26.99,
+      "off": 5.5,
+      "price": 21.49,
+      "exp": "2026-11-15",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2061418": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Maison Perrier",
+          "lime sparkling water",
+          "24 × 330 mL, glass"
+        ],
+        "fr": [
+          "Maison Perrier",
+          "eau pétillante lime",
+          "24 × 330 ml, verre"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5.0,
+      "price": 19.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2268256": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Olivieri",
+          "skillet gnocchi",
+          "2 × 480 g"
+        ],
+        "fr": [
+          "Olivieri",
+          "gnocchi à poêler",
+          "2 × 480 g"
+        ]
+      },
+      "regular": 12.99,
+      "off": 3.0,
+      "price": 9.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "2063089": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "HO-YA",
+          "sweet & spicy topokki",
+          "4 × 235 g"
+        ],
+        "fr": [
+          "HO-YA",
+          "topokki sucré et épicé",
+          "4 × 235 g"
+        ]
+      },
+      "regular": 12.99,
+      "off": 3.0,
+      "price": 9.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "2056928": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Kraft Rancher's Choice",
+          "dressing",
+          "3 × 710 mL"
+        ],
+        "fr": [
+          "Kraft",
+          "vinaigrette Campagne",
+          "3 × 710 ml"
+        ]
+      },
+      "regular": 11.49,
+      "off": 2.5,
+      "price": 8.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "100778": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Munchies",
+          "original snack mix",
+          "1.1 kg"
+        ],
+        "fr": [
+          "Munchies",
+          "super mélange original",
+          "1,1 kg"
+        ]
+      },
+      "regular": 9.49,
+      "off": 2.5,
+      "price": 6.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "1195239": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Activia lactose-free",
+          "probiotic yogurt",
+          "24 × 100 g"
+        ],
+        "fr": [
+          "Activia sans lactose",
+          "yogourt probiotique",
+          "24 × 100 g"
+        ]
+      },
+      "regular": 10.99,
+      "off": 2.2,
+      "price": 8.79,
+      "exp": "2026-11-15",
+      "seen": "2026-11-04",
+      "provinces": [
+        "AB",
+        "SK"
+      ],
+      "bizOnly": []
+    },
+    "1043892": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Saputo",
+          "Ricotta di Campagna",
+          "1 kg"
+        ],
+        "fr": [
+          "Saputo",
+          "Ricotta di Campagna",
+          "1 kg"
+        ]
+      },
+      "regular": 9.99,
+      "off": 2.0,
+      "price": 7.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-04",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    }
+  },
+  "feeds": {
+    "en": [
+      "grocery"
+    ],
+    "fr": [
+      "grocery"
+    ]
+  }
+}
