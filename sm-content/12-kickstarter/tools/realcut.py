@@ -92,7 +92,7 @@ STATIC = [("r2", 4.4, 6.4, 0, 420, 650, 1200)]
 LABEL_MIN_SPEED = 1.01
 LABEL_MIN_DUR = 1.0      # a sped-up label shorter than this would only flash
 
-# EDL=<file.json> replaces the EDL above: [[id, src|null, start, end, speed], ...]
+# EDL=<file.json> replaces the EDL above: [[id, src|null, start, end, speed(, hold seconds)], ...]
 if os.environ.get("EDL"):
     EDL = [tuple(e) for e in json.load(open(os.environ["EDL"], encoding="utf-8"))]
 CARD_TEXT = "A few days later"
@@ -180,12 +180,15 @@ def main():
     timeline, labels, misses = [], [], []
     t_out = 0
     last = {}
-    for seg_id, src, a, b, speed in EDL:
+    for seg_id, src, a, b, speed, *rest in EDL:
+        hold = rest[0] if rest else 0.0   # seconds the segment's last frame is held (tools/realtime.py: voice room)
         n0 = t_out
+        frame = None
         if src is None:
             for f in make_card(int(round((b - a) * FPS))):
                 enc.stdin.write(f.tobytes())
                 t_out += 1
+                frame = f
         else:
             for t_src, frame in segment_frames(src, a, b, speed):
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -214,7 +217,10 @@ def main():
                         blur(frame, x, y, w, h)
                 enc.stdin.write(frame.tobytes())
                 t_out += 1
-        seg = {"id": seg_id, "src": src, "from": a, "to": b, "speed": speed,
+        for _ in range(int(round(hold * FPS)) if frame is not None else 0):
+            enc.stdin.write(frame.tobytes())
+            t_out += 1
+        seg = {"id": seg_id, "src": src, "from": a, "to": b, "speed": speed, "hold": hold,
                "out_from": round(n0 / FPS, 3), "out_to": round(t_out / FPS, 3)}
         timeline.append(seg)
         if speed >= LABEL_MIN_SPEED and seg["out_to"] - seg["out_from"] >= LABEL_MIN_DUR:

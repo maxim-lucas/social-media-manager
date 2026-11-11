@@ -46,6 +46,9 @@ GAP = 0.6      # pause between lines (the video re-timing places each line on it
 EDGE = 0.4     # silence at the start and end of the track
 PAD = 0.08     # kept around each line's speech so no consonant is clipped
 SEEDS = (11, 23, 37, 41, 53)  # a line is re-generated until Whisper hears every word (best of 5 kept otherwise)
+# MATCH_OK=0.9: accept a line once Whisper hears this share of its words (Whisper writes "$4.99" for "four
+# ninety-nine", which never scores 1.0 and would burn all five seeds on a correct line).
+MATCH_OK = float(os.environ.get("MATCH_OK", "1.0"))
 # FILM=kickstarter (SCRIPT.md) | tag (SCRIPT-tag.md) | translator (SCRIPT-translator.md): which script to voice.
 FILM = os.environ.get("FILM", "kickstarter")
 SCRIPT_FILE = "SCRIPT.md" if FILM == "kickstarter" else f"SCRIPT-{FILM}.md"
@@ -82,10 +85,28 @@ def rows():
     return out
 
 
+ONES = ("zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen "
+        "seventeen eighteen nineteen").split()
+TENS = "_ _ twenty thirty forty fifty sixty seventy eighty ninety".split()
+
+
+def spell(n):
+    """0-999 in words (Whisper writes digits; the script spells them)."""
+    if n < 20:
+        return ONES[n]
+    if n < 100:
+        return TENS[n // 10] + ("" if n % 10 == 0 else " " + ONES[n % 10])
+    return ONES[n // 100] + " hundred" + ("" if n % 100 == 0 else " " + spell(n % 100))
+
+
 def words(text):
     """Comparable words: numbers as words ("$16" == "sixteen dollars"), no punctuation, "price back" == "PriceBack"."""
-    text = re.sub(r"\$(\d+)", lambda m: NUM.get(m.group(1), m.group(1)) + " dollars", text.lower())
+    # "$4.99" == "four ninety-nine" (how a price is said), "$34.60" == "thirty-four dollars and sixty cents"
+    text = re.sub(r"\$(\d+)\.(\d\d)\b", lambda m: spell(int(m.group(1))) + " " + spell(int(m.group(2))), text.lower())
+    text = re.sub(r"\$(\d+)", lambda m: m.group(1) + " dollars", text)
+    text = re.sub(r"\b(\d{1,3})\b", lambda m: NUM.get(m.group(1)) or spell(int(m.group(1))), text)
     text = re.sub(r"\d+", lambda m: NUM.get(m.group(0), m.group(0)), text)
+    text = text.replace(" dollars and ", " ").replace(" cents", "")
     text = re.sub(r"\b(\w+)'re\b", r"\1 are", text)   # "they're" == "they are"
     text = re.sub(r"centre", "center", text)               # Whisper writes US spelling: "Centres" == "centers"
     text = re.sub(r"[^a-z' ]", " ", text.replace("-", " ")).replace("'", "")
@@ -208,6 +229,23 @@ def main(lang, takes=None):
                 best = (old.get("match", 1.0), x, old.get("heard", ""), old.get("seed"))
                 print(f"{take} line {n}: reused from the previous take ({len(x) / sr:.1f}s)", flush=True)
             for seed in ([] if best else SEEDS):
+                path = os.path.join(WORK, f"{VERSION}-{TAG}-{lang}-{take}-{n}-s{seed}.wav")
+                if os.environ.get("RESUME") and os.path.exists(path):
+                    # RESUME=1: a run that was stopped (low memory) picks up where it was: a line already
+                    # generated is re-checked, not re-generated
+                    x, _ = read_wav(path)
+                    heard, score = "", 1.0
+                    if asr:
+                        segs, _ = asr.transcribe(path, language=lang, beam_size=5)
+                        heard = " ".join(s.text.strip() for s in segs)
+                        score = match(text, heard)
+                    print(f"{take} line {n} seed {seed}: {len(x) / sr:4.1f}s match {score:.2f}  (resumed)  heard: {heard}",
+                          flush=True)
+                    if best is None or score > best[0]:
+                        best = (score, x, heard, seed)
+                    if score >= MATCH_OK:
+                        break
+                    continue
                 torch.manual_seed(seed)
                 say = text
                 for k, v in SAY.items():
@@ -235,7 +273,7 @@ def main(lang, takes=None):
                 print(f"{take} line {n} seed {seed}: {len(x) / sr:4.1f}s match {score:.2f}  heard: {heard}", flush=True)
                 if best is None or score > best[0]:
                     best = (score, x, heard, seed)
-                if score >= 1.0:
+                if score >= MATCH_OK:
                     break
             score, x, heard, seed = best
             timeline.append({"line": n, "text": text, "start": round(t, 3), "end": round(t + len(x) / sr, 3),
