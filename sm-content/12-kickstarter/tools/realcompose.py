@@ -63,13 +63,33 @@ def main():
                     os.path.join(DIR, f"priceback-kickstarter-real-16x9{suffix}.mp4")], check=True)
 
     # 9:16
-    chain = drawtexts(labels, "(w-text_w)/2", 175, 54, "box=1:boxcolor=0x0c4a2e@0.85:boxborderw=24:")
-    f916 = "[0:v]" + (",".join(chain) if chain else "null") + "[v]"
+    # EXACTLY 1080x1920. The phone records 1080x2424 (~9:20), which Kickstarter's
+    # Discovery upload rejects ("must have a 9:16 aspect ratio"): fit the
+    # recording to the full height and centre it on PriceBack green.
+    v_w = round(1080 * 1920 / 2424 / 2) * 2
+    chain = drawtexts(labels, "(w-text_w)/2", 150, 46, "box=1:boxcolor=0x0c4a2e@0.85:boxborderw=20:")
+    f916 = ";".join([f"color=c={GREEN}:s=1080x1920:r=30:d={tl['duration']}[bg]",
+                     f"[0:v]scale={v_w}:1920:flags=lanczos[ph]",
+                     f"[bg][ph]overlay={(1080 - v_w) // 2}:0:shortest=1[v0]",
+                     "[v0]" + (",".join(chain) if chain else "null") + ",setsar=1[v]"])
     if "9x16" in formats:
       subprocess.run([FFMPEG, "-v", "error", "-y", "-i", clean, *audio_in, "-filter_complex", f916,
                     "-map", "[v]", *audio_map, "-c:v", "libx264", "-preset", "medium", "-crf", "18",
                     "-pix_fmt", "yuv420p", "-movflags", "+faststart",
                     os.path.join(DIR, f"priceback-kickstarter-real-9x16{suffix}.mp4")], check=True)
+
+    # Cover art: without an embedded cover, Windows Explorer and other previewers
+    # take a frame ~10% in, which lands on the receipt scan. Embed the home-screen
+    # "total saved" frame (COVER_AT seconds) as the attached picture.
+    cover_t = os.environ.get("COVER_AT", "80")
+    for fmt in formats:
+        src = os.path.join(DIR, f"priceback-kickstarter-real-{fmt}{suffix}.mp4")
+        cover = os.path.join(DIR, f"cover-{fmt}.jpg")
+        out = os.path.join(DIR, f"priceback-kickstarter-{fmt}{suffix}-cover.mp4")
+        subprocess.run([FFMPEG, "-v", "error", "-y", "-ss", cover_t, "-i", src, "-frames:v", "1", cover], check=True)
+        subprocess.run([FFMPEG, "-v", "error", "-y", "-i", src, "-i", cover, "-map", "0", "-map", "1",
+                        "-c", "copy", "-c:v:1", "mjpeg", "-disposition:v:1", "attached_pic",
+                        "-movflags", "+faststart", out], check=True)
     print("composed", suffix)
 
 
