@@ -437,6 +437,27 @@ function cover(lang, f, photos, badges) {
 // this order and nothing else: "Costco Canada Drops 🇨🇦" (top, small), "New drops / Claim until <Sunday, date>"
 // (middle, huge), the number of drops (bottom, medium), "Bought in the last 30 days?" (very bottom, small,
 // yellow). No swipe cue. One end date when every item shares it (her preference), else the range.
+// Cover end dates, grouped by month. One month: full month name. Several months: short month names
+// so the line never runs off the slide (the FR "15 novembre et 22 novembre et 6 décembre" did, 2026-11-12).
+function coverRange(lang, ds) {
+  const groups = [];
+  for (const iso of ds) {
+    const d = new Date(iso + "T12:00:00Z"), m = d.getUTCMonth();
+    if (!groups.length || groups[groups.length - 1].m !== m) groups.push({ m, d, days: [] });
+    groups[groups.length - 1].days.push(d.getUTCDate());
+  }
+  const short = groups.length > 1;
+  const mon = (d) => {
+    if (lang === "en") return d.toLocaleDateString("en-CA", { month: "short", timeZone: "UTC" }).replace(".", "");
+    return short ? d.toLocaleDateString("fr-CA", { month: "short", timeZone: "UTC" }).replace(/\.?$/, ".")
+                 : d.toLocaleDateString("fr-CA", { month: "long", timeZone: "UTC" });
+  };
+  const and = lang === "en" ? " & " : " et ";
+  const list = (xs) => (xs.length < 2 ? `${xs[0]}` : xs.slice(0, -1).join(", ") + and + xs[xs.length - 1]);
+  if (!short) return lang === "en" ? `${mon(groups[0].d)} ${list(groups[0].days)}` : `${list(groups[0].days)} ${mon(groups[0].d)}`;
+  const parts = groups.map((g) => (lang === "en" ? `${mon(g.d)} ${g.days.join(", ")}` : `${g.days.join(", ")} ${mon(g.d)}`));
+  return list(parts);
+}
 const CC = {
   en: {
     top: "Costco Canada Drops",
@@ -445,7 +466,8 @@ const CC = {
     day: (iso) => new Date(iso + "T12:00:00Z").toLocaleDateString("en-CA", { weekday: "long", timeZone: "UTC" }) + ",",
     date: (iso) => dateShortCase("en", iso),
     // Mixed end dates: every date listed, never a "from–to" range (it reads as a start date).
-    range: (ds) => ds.map((d) => dateShortCase("en", d)).join(" & ").replace(/^([A-Za-z]+) (\d+) & \1 /, "$1 $2 & "),
+    // Grouped by month so 3+ dates still fit one line (2026-11-12): "Nov 15, 22 & Dec 6".
+    range: (ds) => coverRange("en", ds),
     count: (n) => `${n} price drop${n > 1 ? "s" : ""}`,
     bought: "Bought in the last 30 days?",
     claimUpTo: (n) => `CLAIM UP TO ${money("en", n, true)} BACK`,
@@ -458,7 +480,7 @@ const CC = {
     until: "Réclamez jusqu'au",
     day: (iso) => new Date(iso + "T12:00:00Z").toLocaleDateString("fr-CA", { weekday: "long", timeZone: "UTC" }),
     date: (iso) => dateShortCase("fr", iso),
-    range: (ds) => ds.map((d) => dateShortCase("fr", d)).join(" et ").replace(/^(\d+) ([^ ]+) et (\d+) \2$/, "$1 et $3 $2"),
+    range: (ds) => coverRange("fr", ds), // "15 et 22 novembre", or "15, 22 nov. et 6 déc." across months
     count: (n) => `${n} baisse${n > 1 ? "s" : ""} de prix`,
     bought: "Acheté ces 30 derniers jours ?",
     claimUpTo: (n) => `RÉCLAMEZ JUSQU'À ${money("fr", n, true)}`,

@@ -1,0 +1,538 @@
+{
+  "_note": "Grocery ending the week of 2026-11-15. priceback.savings live rows (not superseded), never posted before; biggest saving first. Missing photo (dropped): none.",
+  "source": "priceback.savings + latest priceback.price_points regular price",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "businessCentre": true,
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "Grocery",
+        "fr": "Épicerie"
+      },
+      "items": [
+        "1851395",
+        "2120420",
+        "2066220",
+        "33484",
+        "226626",
+        "1566195",
+        "3882754",
+        "5858000",
+        "2065618",
+        "1487204",
+        "2780636",
+        "1770263",
+        "404390",
+        "1062199",
+        "318527",
+        "5952870",
+        "1254041",
+        "2050332"
+      ]
+    }
+  ],
+  "items": {
+    "1851395": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Lotus Biscoff",
+          "cookie spread",
+          "3 kg"
+        ],
+        "fr": [
+          "Lotus Biscoff",
+          "tartinade aux biscuits",
+          "3 kg"
+        ]
+      },
+      "regular": 34.99,
+      "off": 7.0,
+      "price": 27.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-12",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "2120420": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "GURU",
+          "organic energy variety",
+          "18 × 355 mL"
+        ],
+        "fr": [
+          "GURU",
+          "énergie bio assortie",
+          "18 × 355 mL"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6.0,
+      "price": 23.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-12",
+      "provinces": [
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "2066220": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Grilled",
+          "chipotle chicken",
+          "1 kg"
+        ],
+        "fr": [
+          "Poulet grillé",
+          "au chipotle",
+          "1 kg"
+        ]
+      },
+      "regular": 16.99,
+      "off": 5.0,
+      "price": 11.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-12",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "33484": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Kraft",
+          "Miracle Whip",
+          "3.78 L"
+        ],
+        "fr": [
+          "Kraft",
+          "Miracle Whip",
+          "3,78 L"
+        ]
+      },
+      "regular": 23.99,
+      "off": 5.0,
+      "price": 18.99,
+      "exp": "2026-11-15",
+      "seen": "2026-11-12",
+      "provinces": [
+        "ON"
+      ],
+      "bizOnly": []
+    },
+    "226626": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Mars",
+          "chocolate bars",
+          "case of 48 × 52 g"
+        ],
+        "fr": [
+          "Mars",
+          "barres de chocolat",
+          "caisse de 48 × 52 g"
+        ]
+      },
+      "regular": 68.99,
+      "off": 15.0,
+      "price": 53.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-12",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "1566195": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Robert Irvine's FitCrunch",
+          "baked protein bars",
+          "18 × 46 g"
+        ],
+        "fr": [
+          "FitCrunch de Robert Irvine",
+          "barres protéinées",
+          "18 × 46 g"
+        ]
+      },
+      "regular": 29.99,
+      "off": 10.0,
+      "price": 19.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-12",
+      "provinces": [
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "3882754": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Starbucks",
+          "Holiday Blend K-Cup pods",
+          "54 pods"
+        ],
+        "fr": [
+          "Starbucks",
+          "mélange des fêtes K-Cup",
+          "54 capsules"
+        ]
+      },
+      "regular": 48.99,
+      "off": 10.0,
+      "price": 38.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-12",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "5858000": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Ritter Sport",
+          "mini chocolate bars",
+          "84 × 16 g"
+        ],
+        "fr": [
+          "Ritter Sport",
+          "mini tablettes de chocolat",
+          "84 × 16 g"
+        ]
+      },
+      "regular": 36.99,
+      "off": 8.0,
+      "price": 28.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-12",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "2065618": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "BioSteel",
+          "hydration mix",
+          "45 packets"
+        ],
+        "fr": [
+          "BioSteel",
+          "mélange d'hydratation",
+          "45 sachets"
+        ]
+      },
+      "regular": 39.99,
+      "off": 8.0,
+      "price": 31.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-12",
+      "provinces": [
+        "AB",
+        "BC",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "1487204": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Lavazza",
+          "Super Crema",
+          "whole bean, 1 kg"
+        ],
+        "fr": [
+          "Lavazza",
+          "Super Crema",
+          "en grains, 1 kg"
+        ]
+      },
+      "regular": 34.99,
+      "off": 7.0,
+      "price": 27.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-12",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "2780636": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Celsius",
+          "Sparkling Vibes energy",
+          "18 × 355 mL"
+        ],
+        "fr": [
+          "Celsius",
+          "énergie Sparkling Vibes",
+          "18 × 355 mL"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6.0,
+      "price": 23.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-12",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "1770263": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Oatbox",
+          "Barista oat beverage",
+          "6 × 946 mL"
+        ],
+        "fr": [
+          "Oatbox",
+          "boisson d'avoine Barista",
+          "6 × 946 mL"
+        ]
+      },
+      "regular": 20.17,
+      "off": 5.0,
+      "price": 15.17,
+      "exp": "2026-11-22",
+      "seen": "2026-11-12",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON"
+      ],
+      "bizOnly": []
+    },
+    "404390": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Dasani",
+          "water",
+          "24 × 591 mL"
+        ],
+        "fr": [
+          "Dasani",
+          "eau",
+          "24 × 591 mL"
+        ]
+      },
+      "regular": 16.99,
+      "off": 4.0,
+      "price": 12.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-12",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "1062199": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Sprague",
+          "organic lentil soup",
+          "8 × 398 mL"
+        ],
+        "fr": [
+          "Sprague",
+          "soupe aux lentilles bio",
+          "8 × 398 mL"
+        ]
+      },
+      "regular": 15.99,
+      "off": 4.0,
+      "price": 11.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-12",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "318527": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "merci",
+          "European chocolates",
+          "675 g"
+        ],
+        "fr": [
+          "merci",
+          "chocolats assortis",
+          "675 g"
+        ]
+      },
+      "regular": 19.99,
+      "off": 4.0,
+      "price": 15.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-12",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "5952870": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Loacker",
+          "Tortina mini biscuits",
+          "450 g"
+        ],
+        "fr": [
+          "Loacker",
+          "mini biscuits Tortina",
+          "450 g"
+        ]
+      },
+      "regular": 17.99,
+      "off": 4.0,
+      "price": 13.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-12",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "1254041": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Bella Casara",
+          "burrata",
+          "2 × 250 g"
+        ],
+        "fr": [
+          "Bella Casara",
+          "burrata",
+          "2 × 250 g"
+        ]
+      },
+      "regular": 17.99,
+      "off": 4.0,
+      "price": 13.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-12",
+      "provinces": [
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    },
+    "2050332": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Monster Energy",
+          "Punch variety pack",
+          "18 × 473 mL"
+        ],
+        "fr": [
+          "Monster Energy",
+          "assortiment Punch",
+          "18 × 473 mL"
+        ]
+      },
+      "regular": 33.99,
+      "off": 7.0,
+      "price": 26.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-12",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": []
+    }
+  },
+  "feeds": {
+    "en": [
+      "c"
+    ],
+    "fr": [
+      "c"
+    ]
+  }
+}
