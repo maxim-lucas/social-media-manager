@@ -88,6 +88,8 @@ offers per carousel, EN + FR, province strip on every item, the claim cover, the
   (date 100px, count 124px; FR 92/104); red footer "Bought in the last 30 days?" + white box "CLAIM UP TO $X BACK".
 - Item slides: `"bigClaim": true` → red footer "PAID $X in the last 30 days?" + white box "CLAIM $Y BACK" (the
   `.huge` class). Category in the top band white, bold, 30px.
+- **Business Centre = grocery only** (Monica, 2026-11-12): one Business Centre carousel of food and drinks;
+  QC and ON savings first, biggest saving first, then most provinces (`tools/items-2026-11-15-bc.py` shows the pick).
 - Business Centre carousels are separate: `"businessCentre": true` adds the yellow "Only in Costco Business
   Centres" ribbon on the cover.
 - Item choice: everyday staples with the highest savings first, then other groceries, then smaller savings;

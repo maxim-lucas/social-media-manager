@@ -123,7 +123,11 @@ Deal posts are real Costco price drops with product photos. They matter more tha
         `reels/vo/<week>/`, with a README naming the pipeline).
   - **Business Centre and warehouse savings are never in the same carousel** (Monica, 2026-11-04): separate
     carousels, and a Business Centre cover says "Only in Costco Business Centres" (FR "Seulement dans les
-    Centres d'entreprises Costco"); `"businessCentre": true` in the week file. **Never an item already posted** in an earlier carousel:
+    Centres d'entreprises Costco"); `"businessCentre": true` in the week file.
+  - **Business Centre carousels are GROCERY ONLY** (Monica, 2026-11-12): food and drinks, never a Business Centre
+    "Home & more". Pick the savings available in **Quebec and Ontario first** (most of our users), biggest saving
+    first, then the most provinces; never an item already posted; one carousel, max 18 items. Business Centre
+    photos come from Same-Day (Business Centre store) or the R2 bucket; costco.ca has some of them. **Never an item already posted** in an earlier carousel:
     check every `posts/` folder and `/mnt/project-files/marketing/costco-posts/` first.
   - **Every item slide shows province availability** (the province strip).
   - **Cover ("guard") card, exactly these 4 things in this order**, and nothing else (no swipe cue, no photo grid):

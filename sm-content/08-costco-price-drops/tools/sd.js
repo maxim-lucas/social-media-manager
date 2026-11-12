@@ -2,14 +2,16 @@
 // and saves a screenshot of each results page for eyeballing.
 const { chromium } = require("playwright");
 (async () => {
-  const out = process.env.OUT || ".";
+  const out = process.env.OUT || "."; const store = process.env.STORE || "costco-canada"; // STORE=costco-business-centre for Business Centre items
   const b = await chromium.launch();
   const p = await b.newPage({ viewport: { width: 1280, height: 1400 } });
-  await p.goto("https://sameday.costco.ca/store/costco-canada/storefront", { waitUntil: "domcontentloaded", timeout: 60000 });
+  await p.goto(`https://sameday.costco.ca/store/${store}/storefront`, { waitUntil: "domcontentloaded", timeout: 60000 });
   await p.waitForTimeout(5000);
+  const guest = p.getByText("Browse as a guest"); // the Business Centre store shows a sign-in gate first
+  if (await guest.count()) { await guest.first().click(); await p.waitForTimeout(5000); }
   for (const q of process.argv.slice(2)) {
     try {
-      await p.goto(`https://sameday.costco.ca/store/costco-canada/s?k=${encodeURIComponent(q)}`, { waitUntil: "domcontentloaded", timeout: 60000 });
+      await p.goto(`https://sameday.costco.ca/store/${store}/s?k=${encodeURIComponent(q)}`, { waitUntil: "domcontentloaded", timeout: 60000 });
       await p.waitForTimeout(7000);
       const tiles = await p.evaluate(() =>
         [...document.querySelectorAll("img")]
