@@ -1,0 +1,58 @@
+[
+  {
+    "file": "cand-01-92bpm--3st.wav",
+    "n": 1,
+    "bpm": 92,
+    "shift": -3,
+    "seed": 20
+  },
+  {
+    "file": "cand-02-96bpm-2st.wav",
+    "n": 2,
+    "bpm": 96,
+    "shift": 2,
+    "seed": 21
+  },
+  {
+    "file": "cand-03-100bpm-7st.wav",
+    "n": 3,
+    "bpm": 100,
+    "shift": 7,
+    "seed": 22
+  },
+  {
+    "file": "cand-04-108bpm-5st.wav",
+    "n": 4,
+    "bpm": 108,
+    "shift": 5,
+    "seed": 23
+  },
+  {
+    "file": "cand-05-112bpm--1st.wav",
+    "n": 5,
+    "bpm": 112,
+    "shift": -1,
+    "seed": 24
+  },
+  {
+    "file": "cand-06-116bpm-3st.wav",
+    "n": 6,
+    "bpm": 116,
+    "shift": 3,
+    "seed": 25
+  },
+  {
+    "file": "cand-07-92bpm--1st.wav",
+    "n": 7,
+    "bpm": 92,
+    "shift": -1,
+    "seed": 26
+  },
+  {
+    "file": "cand-08-96bpm-3st.wav",
+    "n": 8,
+    "bpm": 96,
+    "shift": 3,
+    "seed": 27
+  }
+]

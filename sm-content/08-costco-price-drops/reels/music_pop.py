@@ -2,12 +2,14 @@
 fast, track 2 "so boring"). 104 BPM major-key pop: a catchy marimba/pluck hook melody, bouncy bass, four-on-the-
 floor kick, claps on 2 and 4, soft shaker, a sparkle on each cut. Mid volume (about -17 dB mean). Wraps around so it
 loops with the video. Usage: python3 music_pop.py <seconds> <out.wav> [cut1,cut2,...]"""
-import sys, wave, numpy as np
+import os, sys, wave, numpy as np
+# Candidate variants (weekly automation, 2026-11-16): MUSIC_BPM / MUSIC_SEED / MUSIC_SHIFT (semitones) change the
+# tempo, the shaker noise and the key. The defaults are the approved track, byte for byte.
 SR = 44100
 dur = float(sys.argv[1]); out = sys.argv[2]
 cuts = [float(x) for x in sys.argv[3].split(",")] if len(sys.argv) > 3 and sys.argv[3] else []
-n = int(SR * dur); mix = np.zeros(n); rng = np.random.default_rng(11)
-beat = 60 / 104; s16 = beat / 4
+n = int(SR * dur); mix = np.zeros(n); rng = np.random.default_rng(int(os.environ.get("MUSIC_SEED", "11")))
+beat = 60 / float(os.environ.get("MUSIC_BPM", "104")); s16 = beat / 4
 def add(sig, t, g=1.0):
     i = int(t * SR) % n; j = min(n, i + len(sig)); mix[i:j] += sig[: j - i] * g
     r = len(sig) - (j - i)
@@ -32,6 +34,8 @@ def pad(fs, L):
     return s * np.clip(np.minimum(t / 0.05, (L - t) / 0.1), 0, 1)
 N = {"C4": 261.63, "D4": 293.66, "E4": 329.63, "G4": 392.0, "A4": 440.0, "B4": 493.88, "C5": 523.25, "D5": 587.33, "E5": 659.25, "G5": 783.99}
 prog = [([261.63, 329.63, 392.0], 65.41), ([246.94, 293.66, 392.0], 49.0), ([220.0, 261.63, 329.63], 55.0), ([220.0, 261.63, 349.23], 43.65)]
+K = 2 ** (float(os.environ.get("MUSIC_SHIFT", "0")) / 12)
+if K != 1: N = {k: v * K for k, v in N.items()}; prog = [([f * K for f in ch], r * K) for ch, r in prog]
 # one-bar hook motif per chord (16th steps, note or None)
 motif = [["E5", None, "G5", None, "E5", "D5", None, "C5", None, None, "D5", None, "E5", None, None, None],
          ["D5", None, "G4", None, "B4", "D5", None, "G5", None, None, "E5", None, "D5", None, None, None],
