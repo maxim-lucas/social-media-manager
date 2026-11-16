@@ -12,7 +12,7 @@
 const fs = require("fs");
 const path = require("path");
 const { planWeek } = require("./lib/week");
-const { torontoInstant } = require("./query");
+const { torontoInstant } = require("./lib/time");
 
 const PACK = path.join(__dirname, "..", "..", "sm-content", "08-costco-price-drops");
 const WEEKS = path.join(PACK, "scenes", "weeks");

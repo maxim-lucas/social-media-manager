@@ -12,6 +12,7 @@ const fs = require("fs");
 const path = require("path");
 const { Client, types } = require("pg");
 const { evaluateSettled } = require("./lib/settled");
+const { torontoToday, torontoInstant } = require("./lib/time");
 
 // A `date` column is a calendar date, not an instant: keep it as the text "YYYY-MM-DD". The driver's default turns it
 // into a local-midnight Date, which is the previous day in any timezone east of UTC.
@@ -19,20 +20,6 @@ types.setTypeParser(1082, (v) => v);
 
 const arg = (n) => (process.argv.find((a) => a.startsWith(`--${n}=`)) || "").split("=").slice(1).join("=");
 const has = (n) => process.argv.includes(`--${n}`);
-
-/** The Toronto calendar date of an instant, and the UTC instant of a Toronto wall-clock time that day. */
-function torontoToday(now = new Date()) {
-  return new Intl.DateTimeFormat("en-CA", { timeZone: "America/Toronto" }).format(now);
-}
-function torontoInstant(iso, hhmm) {
-  // Try both offsets and keep the one that round-trips, so daylight saving needs no table.
-  for (const off of ["-04:00", "-05:00"]) {
-    const d = new Date(`${iso}T${hhmm}:00${off}`);
-    const back = new Intl.DateTimeFormat("en-GB", { timeZone: "America/Toronto", hour: "2-digit", minute: "2-digit", hour12: false }).format(d);
-    if (back === hhmm) return d;
-  }
-  throw new Error(`cannot place ${iso} ${hhmm} in Toronto time`);
-}
 
 async function main() {
   if (!process.env.DATABASE_URL_SOCIAL_RO) throw new Error("DATABASE_URL_SOCIAL_RO is not set");
@@ -79,4 +66,3 @@ async function main() {
 }
 
 if (require.main === module) main().catch((e) => { console.error(e.message); process.exit(1); });
-module.exports = { torontoToday, torontoInstant };
