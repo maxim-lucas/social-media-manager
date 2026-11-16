@@ -19,7 +19,9 @@ for (const w of cfg.weeks) {
   const d = JSON.parse(fs.readFileSync(path.join(SC, "weeks", w + ".json"), "utf8"));
   if (d.businessCentre) continue; // reels are warehouse only
   const files = fs.readdirSync(path.join(POSTS, w, lang));
-  for (const c of d.carousels) for (const s of c.items)
+  // Maxim, 2026-11-16: an item whose amount differs by province (`exceptions`) is not in a reel: the claim total
+  // would overstate what some shoppers get. It stays in the carousel, where the strip shows each province's amount.
+  for (const c of d.carousels) for (const s of c.items) if (!Object.keys(d.items[s].exceptions || {}).length)
     all.push({ sku: s, week: w, ...d.items[s], slide: path.join(POSTS, w, lang, files.find((f) => f.endsWith("-" + s + ".png"))) });
 }
 const N = all.length, TOTAL = Math.round(all.reduce((a, b) => a + b.off, 0) * 100) / 100, exp = all[0].exp;

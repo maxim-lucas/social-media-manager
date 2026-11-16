@@ -1,0 +1,93 @@
+name: Weekly publish
+
+# Posts whatever the weekly schedules (sm-content/08-costco-price-drops/weekly/<monday>/schedule.json) say is due, to
+# Instagram and Facebook through the Meta Graph API. See scripts/weekly/publish-week.js for the four safety
+# properties: dry run by default, never twice, never late, the disclaimer appended in one place.
+#
+# ── Nothing posts until Maxim switches it on ───────────────────────────────
+#
+# The publish step runs only when the repository variable PUBLISH_ENABLED is exactly "true" (Settings -> Secrets and
+# variables -> Actions -> Variables). Until then every run is a dry run that prints what it WOULD have posted.
+# Planned: 4 weeks of dry runs, Maxim reviews, then he sets PUBLISH_ENABLED (design, section 8).
+#
+# Secrets to add (Maxim): META_INSTAGRAM_BUSINESS_ACCOUNT_ID, META_INSTAGRAM_ACCESS_TOKEN, META_PAGE_ID,
+# META_PAGE_ACCESS_TOKEN. Variables: ASSET_BASE_URL and REEL_BASE_URL (public hosts for slides and reels).
+#
+# This repository is public, so Actions minutes are free; the cron still skips the night hours (Toronto 23:00-05:00).
+
+on:
+  schedule:
+    # Every 15 minutes from 10:00 to 04:59 UTC = 05:00 to 23:59 Toronto (EST) / 06:00 to 00:59 (EDT).
+    - cron: "*/15 10-23,0-4 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (print what would post, publish nothing)"
+        type: boolean
+        default: true
+      only:
+        description: "Publish one slot id, ignoring its window (e.g. 2026-11-16-carousel-grocery-en)"
+        type: string
+        required: false
+
+concurrency:
+  # Two runs publishing at once would each read the ledger before the other wrote it.
+  group: social-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # to commit the published.json receipt back
+      issues: write # to open an issue when a slot fails
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Dry run
+        if: ${{ vars.PUBLISH_ENABLED != 'true' || inputs.dry_run }}
+        env:
+          ASSET_BASE_URL: ${{ vars.ASSET_BASE_URL }}
+          REEL_BASE_URL: ${{ vars.REEL_BASE_URL }}
+        run: |
+          echo "PUBLISH_ENABLED=${{ vars.PUBLISH_ENABLED }} - running dry."
+          node scripts/weekly/publish-week.js ${{ inputs.only && format('--only={0}', inputs.only) || '' }}
+
+      - name: Publish what is due
+        id: publish
+        if: ${{ vars.PUBLISH_ENABLED == 'true' && !inputs.dry_run }}
+        env:
+          META_INSTAGRAM_BUSINESS_ACCOUNT_ID: ${{ secrets.META_INSTAGRAM_BUSINESS_ACCOUNT_ID }}
+          META_INSTAGRAM_ACCESS_TOKEN: ${{ secrets.META_INSTAGRAM_ACCESS_TOKEN }}
+          META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+          META_PAGE_ACCESS_TOKEN: ${{ secrets.META_PAGE_ACCESS_TOKEN }}
+          ASSET_BASE_URL: ${{ vars.ASSET_BASE_URL }}
+          REEL_BASE_URL: ${{ vars.REEL_BASE_URL }}
+        run: node scripts/weekly/publish-week.js --write ${{ inputs.only && format('--only={0}', inputs.only) || '' }}
+
+      - name: Commit the receipt
+        if: ${{ always() && vars.PUBLISH_ENABLED == 'true' && !inputs.dry_run }}
+        run: |
+          if [ -z "$(git status --porcelain -- 'sm-content/08-costco-price-drops/weekly/*/published.json')" ]; then
+            echo "nothing published this run."
+            exit 0
+          fi
+          git config user.name "priceback-bot"
+          git config user.email "bot@priceback.ca"
+          git add 'sm-content/08-costco-price-drops/weekly/*/published.json'
+          git commit -m "chore(social): record published slots [skip ci]"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push
+
+      - name: Open an issue when a slot failed
+        if: ${{ failure() && steps.publish.outcome == 'failure' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create --repo "${{ github.repository }}" \
+            --title "Weekly publish failed ($(date -u +%Y-%m-%dT%H:%MZ))" \
+            --body "A slot failed in run ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}. Nothing was posted late; fix and re-run with the slot id."
