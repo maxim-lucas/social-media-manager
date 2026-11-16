@@ -256,7 +256,7 @@ function post(lang, p, photos, badges) {
     const [sku, item] = items[0];
     body = `<div class="photo hero" style="background-image:url('${photos[sku]}')"></div>
       <div class="burst"><div class="x${money(lang, item.off, true).length > 4 ? " long" : ""}">-${money(lang, item.off, true)}</div><div class="y">${t.off}</div></div>
-      ${tag(lang, sku, item)}${DATA.provinceStrip !== false ? (DATA.businessCentre ? strip(lang, [], item.provinces, true) : strip(lang, item.provinces, item.bizOnly || [])) : ""}`;
+      ${tag(lang, sku, item)}${DATA.provinceStrip !== false ? (DATA.businessCentre ? strip(lang, [], item.provinces, true) : strip(lang, item.provinces, item.bizOnly || [], false, item.exceptions || {})) : ""}`;
   } else {
     const w = items.length === 2 ? 465 : 300;
     const gap = (1080 - 90 - w * items.length) / (items.length - 1);
@@ -294,22 +294,15 @@ function post(lang, p, photos, badges) {
 
 // The province strip (Monica, 2026-10-27): every province with a Costco warehouse, under the product,
 // the ones where this saving was seen filled in, the rest greyed, so a missing province shows at a glance.
-const STRIP = ["BC", "AB", "SK", "MB", "ON", "QC", "NB", "NS", "PE", "NL"];
 // Location (Monica, 2026-10-29): Costco warehouses and Costco Business Centres are never mixed without saying
 // where to buy. `bizOnly` lists provinces where the saving was seen only at a Business Centre: those cells are
-// yellow and a legend line says so.
-function strip(lang, prov, bizOnly = [], bcOnly = false) {
+// yellow and a legend line says so. The markup lives in strip.js (unit-tested); `exceptions` (Maxim, 2026-11-16)
+// puts a different amount, small, in its own province's cell.
+const { stripHtml, STRIP } = require("./strip");
+function strip(lang, prov, bizOnly = [], bcOnly = false, exceptions = {}) {
   // bcOnly (Monica, 2026-11-04): a Business Centre carousel, every cell yellow, one legend key.
   const on = !prov.length ? [] : national(prov) ? STRIP : prov;
-  const label = lang === "fr" ? "RELEVÉ EN" : "SEEN IN";
-  const cells = STRIP.map((c) => `<i class="${on.includes(c) ? "on" : bizOnly.includes(c) ? "bz" : "off"}">${c}</i>`).join("");
-  const legend = bcOnly
-    ? `<div class="legend"><b class="k bz"></b>${lang === "fr" ? "Centres d'affaires Costco seulement" : "Costco Business Centres only"}</div>`
-    : bizOnly.length
-    ? `<div class="legend"><b class="k on"></b>${lang === "fr" ? "Entrepôts Costco" : "Costco warehouses"}<b class="k bz"></b>${
-        lang === "fr" ? "Centres d'affaires Costco seulement" : "Costco Business Centres only"}</div>`
-    : "";
-  return `<div class="strip"><span class="lab">${label}</span>${cells}</div>${legend}`;
+  return stripHtml({ lang, on, bizOnly, bcOnly, exceptions, money });
 }
 
 // Carousel dots in the red band, so the post reads as "there is more, swipe" in the feed.
@@ -578,6 +571,8 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
 .strip i{flex:1;height:52px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:900;font-size:24px;letter-spacing:1px}
 .strip i.on{background:var(--blue);color:#fff;box-shadow:inset 0 -5px 0 var(--red)}
 .strip i.bz{background:var(--yel);color:#111;box-shadow:inset 0 -5px 0 #111}
+.strip i.exc{flex-direction:column;line-height:1;font-size:22px}
+.strip i.exc small{font-size:15px;font-weight:700;letter-spacing:0;color:var(--yel);margin-top:2px}
 .bzp .photo.hero{height:296px}.bzp .strip{top:494px}
 .bzp .promo{top:1010px}.bzp .disc{font-size:14px;line-height:1.25;bottom:176px;left:40px;right:40px}
 .legend{position:absolute;left:146px;right:60px;top:556px;font-size:18px;font-weight:800;color:#111;display:flex;align-items:center;gap:8px}
