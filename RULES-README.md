@@ -309,3 +309,38 @@ Source of truth for plans, pricing and the guarantee: https://priceback.ca/.
 
 - Approved content: `sm-content/` in this repo, one numbered folder per pack.
 - Posting playbook: `docs/instagram-playbook.md`.
+
+## 8. Weekly automation (Maxim, 2026-11-16)
+
+Maxim is the owner; these rules come from him and apply to the weekly cloud routine and to anyone building the
+week by hand. Design: `docs/weekly-automation-design.md`. Plan: `docs/weekly-automation-plan.md`.
+
+- **Language follows the province.** English posts cover the 8 provinces outside Quebec (ON, BC, AB, MB, SK, NB, NS,
+  NL). French posts cover Quebec only. No more EN + FR copies of the same post. Business Centre follows the same split.
+- **Priority of a slide's items.** (1) Savings common to every province of the audience, (2) then Ontario for English
+  (Quebec is the whole French audience), (3) then the rest. Inside a tier: soonest end date first, then biggest saving.
+- **No "up to $X".** The main figure is the amount in the most provinces of the item's highest tier. A province with
+  another amount shows it small inside its own cell of the province strip ("$2" on the West's cells).
+- **Hidden savings** (offers in one region only) go to the Saturday regional carousel (West, Ontario or Atlantic, in
+  rotation) and to the end-card line "+ N more hidden savings in <region>, only in the PriceBack app".
+- **Photos are never optional.** The public route `https://priceback-production.up.railway.app/api/product-images/costco/<sku>`
+  first, then Same-Day, then costco.ca. No photo, no slide. The routine tests the route before it builds anything and
+  stops with an issue if it cannot be reached.
+- **Build when the harvest has settled, not on a clock.** Mondays from 06:45 Toronto, every 15 minutes: start when all
+  9 provinces have at least 30 savings created today and nothing new was created in the last 30 minutes; start anyway at
+  12:30. The Monday carousel goes out as soon as it is built (08:00 earliest) and no later than 14:30: be the first
+  app to publish.
+- **Weekly slots** (hypotheses for 4 weeks, then replaced by Instagram Insights data). Mon Grocery · Tue TVs & tech 12:00 /
+  20:00 · Wed Home & more 08:00 / 19:30 · Thu Business Centre grocery 06:00 / 12:00 · Fri recap reel 19:00 · Sat regional
+  carousel 09:00, reel 18:00 · Sun how-to-claim carousel 18:00, reel 20:00. Every English slot has a Quebec French twin
+  60 to 90 minutes later. Sunday is never a list of drops that are over.
+- **Reel music is pre-approved.** Only tracks in `sm-content/08-costco-price-drops/reels/music/APPROVED.json`, filled by
+  Maxim before the week; never the same track two weeks in a row; empty library = no-music copy and a note in the PR.
+- **9.5 / 10 or it does not go out.** Every carousel and reel is scored on `weekly/RUBRIC.md` (hook 2, clarity 2,
+  photos 1.5, legibility 1.5, language 1, compliance 1, call to action 1), reworked for up to 3 rounds, and not
+  published below 9.5. The score is the model's own rubric; real conversion is read weekly from Instagram Insights and
+  the rubric weights are corrected when they disagree.
+- **Publishing is dry run until Maxim switches it on** (`PUBLISH_ENABLED=true`). Never twice, never late (2 h window).
+  Any failure opens a GitHub issue and publishes nothing for that slot.
+- **Secrets** (read-only database role, Meta token, bucket key) live in the routine's environment, never in the repo
+  or in chat.
