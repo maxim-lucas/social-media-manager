@@ -132,3 +132,29 @@ Every carousel and reel is rendered, then scored by a separate reviewer pass on 
 ## 10. Out of scope for now
 
 TikTok and YouTube Shorts (voice-over version), Stories and Highlights stickers, paid ads, any change to the app.
+
+## 11. Status, 2026-11-16 (what was built, what is still open)
+
+**Built and tested (71 unit tests):** settled-harvest detector, audience/tier model, week planner with the hidden-savings
+rotation, snapshot and poll through the read-only role (certificate verified against Supabase's CA), photo fetch with
+preflight, renderer strip exceptions, approved-music picker and candidate generator, score gate, media conversion with the
+duplicate-slide check, schedule builder, Graph API client and publisher (dry run by default), 15-minute workflow.
+Verified live: the read-only role, the photo route, the poll against production (all 9 provinces seen), a rendered slide
+with the small-amount province cells, the publisher's due / missed / unreachable-asset behaviour.
+
+**Changed from this design while building:**
+- Cloud routines cannot run more often than hourly, so the Monday poll is hourly from 07:10 Toronto (the harvest had
+  settled at 06:36 on Nov 16), with the 12:00 deadline.
+- Monday's carousel is no longer pinned to 19:00: it posts as soon as built, 08:00 earliest, 14:30 latest.
+- The top-up routine is **not registered**: it needs a slot-level rebuild mode first (`weekly/ROUTINE.md`, last section).
+- Reels skip an item whose amount differs by province (the claim total would overstate); the carousel keeps it.
+
+**Open, in the order they block posting:**
+1. `DATABASE_URL_SOCIAL_RO` set in the cloud environment (file in `%USERPROFILE%\.priceback-secrets\`).
+2. Meta token, Instagram and Page ids as GitHub secrets; confirm `META_GRAPH_VERSION` (default `v24.0`) and the API's
+   carousel limit (`IG_CAROUSEL_MAX`, default 20) with the real token on the first dry run.
+3. `REEL_BASE_URL`: a public host for reel videos. Until then reel slots stay `needs_content`.
+4. Approved music: 8 candidates are in `sm-content/08-costco-price-drops/reels/music/CANDIDATES/` on Maxim's machine
+   (not in git); approve by adding entries to `music/APPROVED.json`.
+5. First cloud run: the routine's setup (Playwright, fonts, ffmpeg) is untested in the cloud; a failure opens an issue.
+6. Sunday how-to and Friday recap content have no generator yet; those slots stay `needs_content`.
