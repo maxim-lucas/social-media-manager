@@ -65,4 +65,4 @@ async function main() {
   }
 }
 
-if (require.main === module) main().catch((e) => { console.error(e.message); process.exit(1); });
+if (require.main === module) main().catch((e) => { console.error(e.message || (e.errors || []).map((x) => x.message || x.code).join("; ") || String(e)); process.exit(1); });

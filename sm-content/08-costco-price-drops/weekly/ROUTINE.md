@@ -9,8 +9,9 @@ not the right moment. Design: `docs/weekly-automation-design.md`. Rules: `RULES-
 | **Weekly build** | `10 12-17 * * 1` | Mon 07:10 to 12:10, hourly | Polls the harvest; the first poll that finds it settled builds the week. |
 | **Top-up check** | `45 18 * * *` | daily 13:45 | **PLANNED, not registered yet** (see the last section). |
 
-**Needed in the cloud environment (Maxim sets these; never in the repo or in chat):** `DATABASE_URL_SOCIAL_RO`
-(file `%USERPROFILE%\.priceback-secrets\social-readonly-db.env`). The Meta token, Instagram and Page ids are
+**The routine never touches the database** (the cloud sandbox only allows HTTPS, a Postgres connection is refused).
+`.github/workflows/weekly-snapshot.yml` reads it through the read-only role (GitHub secret `DATABASE_URL_SOCIAL_RO`) and
+commits `<pack>/weekly/snapshots/<monday>.settled.json` and, once settled, `<monday>.snapshot.json` to master. The Meta token, Instagram and Page ids are
 **GitHub repository secrets** used by `weekly-publish.yml`, not routine variables.
 
 The routines never publish. They build and merge the week's pack; `weekly-publish.yml` posts it at the slot times,
@@ -34,14 +35,14 @@ open issue has that title; add a comment instead), stop, and leave master untouc
 1. **Is it the right moment?** Compute today's Toronto date (`TZ=America/Toronto date +%F`, weekday must be Monday).
    `<monday>` is that date. If it is not Monday, stop. If the branch `weekly/<monday>` already exists on origin
    (`git ls-remote --heads origin weekly/<monday>`), stop: the week is built.
-2. **Setup:** `npm ci`, `npx playwright install chromium`. If `DATABASE_URL_SOCIAL_RO` is empty, open the issue
-   "Weekly build cannot run: DATABASE_URL_SOCIAL_RO is not set" and stop.
-3. **Has the harvest settled?** `node scripts/weekly/query.js --settled --deadline=12:00`. Exit code 3 means not yet:
-   print its JSON and stop (the next hourly fire tries again). Exit 0: continue, and keep its `reason` and `missing`
-   (reason `deadline` with a missing province goes into the PR body in the first line).
+2. **Setup:** `git pull`, `npm ci`, `npx playwright install chromium`.
+3. **Has the harvest settled?** Read `<pack>/weekly/snapshots/<monday>.settled.json` (`git pull` first). If it is missing
+   or `"ready"` is false, stop: the next hourly fire tries again. Missing at the 12:10 fire means the snapshot workflow
+   did not run: open the issue "Weekly build: harvest snapshot missing" and stop. Otherwise continue and keep its
+   `reason` and `missing` (reason `deadline` with a missing province goes into the PR body in the first line).
 4. **Photos reachable?** `node scripts/weekly/fetch-photos.js --preflight`. Exit 4: open the issue "Weekly build
    cannot reach the product photos" and stop. Never build a pack without photos.
-5. `git switch -c weekly/<monday>`. `node scripts/weekly/query.js --snapshot=/tmp/snap.json`.
+5. `git switch -c weekly/<monday>`. copy `<pack>/weekly/snapshots/<monday>.snapshot.json` to `/tmp/snap.json` (it must exist: it is written when the harvest settles).
 6. `node scripts/weekly/build-week.js <monday> --snapshot=/tmp/snap.json`. Read `<pack>/weekly/<monday>/needs.json`.
 7. **Judgement the scripts cannot make** (write only into the two caches, both `{sku: ...}`; take names from the snapshot):
    - `<pack>/tools/categories.json`: for each SKU in `needs.category` set `{"cat":"grocery"}` (food, drink, pantry,

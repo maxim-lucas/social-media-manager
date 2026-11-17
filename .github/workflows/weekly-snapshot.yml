@@ -1,0 +1,56 @@
+name: Weekly snapshot
+
+# Reads the harvest through the read-only role social_ro and commits the result to master, because the cloud routine's
+# sandbox only allows HTTPS (a Postgres connection is refused) but can read git. The routine never touches the database.
+#   sm-content/08-costco-price-drops/weekly/snapshots/<toronto-date>.settled.json   every run (ready true/false)
+#   sm-content/08-costco-price-drops/weekly/snapshots/<toronto-date>.snapshot.json  only once the harvest is settled
+# Secret: DATABASE_URL_SOCIAL_RO (the same value Maxim keeps in %USERPROFILE%\.priceback-secrets\social-readonly-db.env).
+
+on:
+  schedule:
+    # Mondays, hourly 12:00 to 17:00 UTC = 07:00 to 12:00 Toronto (EST); the routine reads it from 12:10 UTC.
+    - cron: "0 12-17 * * 1"
+  workflow_dispatch: {}
+
+concurrency:
+  group: weekly-snapshot
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm ci
+      - name: Poll the harvest and snapshot it
+        env:
+          DATABASE_URL_SOCIAL_RO: ${{ secrets.DATABASE_URL_SOCIAL_RO }}
+        run: |
+          set -u
+          D=sm-content/08-costco-price-drops/weekly/snapshots
+          mkdir -p "$D"
+          TODAY=$(TZ=America/Toronto date +%F)
+          set +e
+          node scripts/weekly/query.js --settled --deadline=12:00 > "$D/$TODAY.settled.json"
+          CODE=$?
+          set -e
+          cat "$D/$TODAY.settled.json"
+          if [ "$CODE" = "0" ]; then
+            node scripts/weekly/query.js --snapshot="$D/$TODAY.snapshot.json"
+          elif [ "$CODE" != "3" ]; then
+            echo "query.js failed with exit $CODE"; exit "$CODE"
+          fi
+      - name: Commit
+        run: |
+          git config user.name "priceback-bot"
+          git config user.email "bot@priceback.ca"
+          git add sm-content/08-costco-price-drops/weekly/snapshots
+          if git diff --cached --quiet; then echo "nothing new."; exit 0; fi
+          git commit -m "chore(social): harvest snapshot [skip ci]"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push
