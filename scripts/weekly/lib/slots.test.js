@@ -68,3 +68,12 @@ test("time helpers survive both daylight-saving offsets", () => {
   assert.strictEqual(addDays("2026-11-28", 3), "2026-12-01");
   assert.strictEqual(addMinutes("23:00", 75), "23:59");
 });
+
+test("a weekday top-up schedule is the national carousels on the pack's own date, French 75 minutes after", () => {
+  const { DAY_TEMPLATE } = require("./slots");
+  const s = buildSchedule({ monday: "2026-11-18", template: DAY_TEMPLATE });
+  assert.deepStrictEqual(s.filter((x) => x.lang === "en").map((x) => [x.date, x.key, x.time]), [
+    ["2026-11-18", "grocery", "17:00"], ["2026-11-18", "home", "18:00"], ["2026-11-18", "tech", "19:00"],
+  ]);
+  assert.strictEqual(s.find((x) => x.key === "grocery" && x.lang === "fr").time, "18:15");
+});

@@ -7,7 +7,7 @@ not the right moment. Design: `docs/weekly-automation-design.md`. Rules: `RULES-
 | Routine | Cron (UTC) | Toronto (winter) | Purpose |
 |---|---|---|---|
 | **Weekly build** | `10 12-17 * * 1` | Mon 07:10 to 12:10, hourly | Polls the harvest; the first poll that finds it settled builds the week. |
-| **Top-up check** | `45 18 * * *` | daily 13:45 | **PLANNED, not registered yet** (see the last section). |
+| **Weekday top-up** | `20 19 * * 2-6` | Tue to Sat 14:20 | Same prompt. Builds a day pack only when the snapshot says that day's new savings are important (15+ new products or one saving of $50+). |
 
 **The routine never touches the database** (the cloud sandbox only allows HTTPS, a Postgres connection is refused).
 `.github/workflows/weekly-snapshot.yml` reads it through the read-only role (GitHub secret `DATABASE_URL_SOCIAL_RO`) and
@@ -32,11 +32,21 @@ a track that is not in `<pack>/reels/music/APPROVED.json`, or publish a piece sc
 **On any unexpected failure:** open a GitHub issue titled `Weekly build failed: <short reason>` (first check that no
 open issue has that title; add a comment instead), stop, and leave master untouched.
 
-1. **Is it the right moment?** Compute today's Toronto date (`TZ=America/Toronto date +%F`, weekday must be Monday).
-   `<monday>` is that date. If it is not Monday, stop. If the branch `weekly/<monday>` already exists on origin
-   (`git ls-remote --heads origin weekly/<monday>`), stop: the week is built.
+1. **Which build is this?** Toronto date `D` (`TZ=America/Toronto date +%F`) and weekday (`date +%u`, 1 = Monday).
+   - **Monday:** a weekly build, `<monday>` = `D`. If the branch `weekly/<monday>` exists on origin
+     (`git ls-remote --heads origin weekly/<monday>`), stop: the week is built.
+   - **Tuesday to Saturday, catch-up:** `<thisMonday>` = the Monday of this Toronto week. If no `weekly/<thisMonday>`
+     branch exists and `<pack>/weekly/snapshots/<thisMonday>.snapshot.json` exists, the Monday build was missed: do the
+     weekly build for `<thisMonday>` now (it is then `<monday>` below; slots whose time has passed stay `missed`).
+   - **Tuesday to Saturday, top-up:** otherwise this is a weekday top-up, `<monday>` = `D` and the day-pack flag is on.
+     Run only if `git pull` brings `<pack>/weekly/snapshots/D.settled.json` with `"important": true` and
+     `D.snapshot.json` exists, and no `weekly/D` branch exists. Otherwise stop with one line saying why.
+     **Day pack differences:** pass `--day` to `build-week.js`, `make-media.js` and `make-schedule.js`; the pack is the
+     national carousels only (no Business Centre, no regional); **no reels** (skip step 10); no Friday recap or
+     Sunday how-to; PR title "Weekday pack D".
+   - **Sunday:** stop.
 2. **Setup:** `git pull`, `npm ci`, `npx playwright install chromium`.
-3. **Has the harvest settled?** Read `<pack>/weekly/snapshots/<monday>.settled.json` (`git pull` first). If it is missing
+3. **Has the harvest settled?** Read `<pack>/weekly/snapshots/<monday>.settled.json` (for a top-up, `D.settled.json`: step 1 already checked it) (`git pull` first). If it is missing
    or `"ready"` is false, stop: the next hourly fire tries again. Missing at the 12:10 fire means the snapshot workflow
    did not run: open the issue "Weekly build: harvest snapshot missing" and stop. Otherwise continue and keep its
    `reason` and `missing` (reason `deadline` with a missing province goes into the PR body in the first line).

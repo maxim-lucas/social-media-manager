@@ -26,15 +26,25 @@ const WEEK_TEMPLATE = [
   { day: 7, kind: "reel", key: "how-to-claim", time: "20:00" },
 ];
 
+/**
+ * A weekday top-up (Tue to Sat) after an important batch of new savings: the national carousels only, one slot each,
+ * early evening, with the Quebec French twin 75 minutes later. `day: 1` = the pack's own date.
+ */
+const DAY_TEMPLATE = [
+  { day: 1, kind: "carousel", key: "grocery", time: "17:00" },
+  { day: 1, kind: "carousel", key: "home", time: "18:00" },
+  { day: 1, kind: "carousel", key: "tech", time: "19:00" },
+];
+
 const slotId = (date, kind, key, lang) => `${date}-${kind}-${key}-${lang}`;
 
 /**
  * @param {{monday: string, available: Record<string, {assets: string[]}>, captions: Record<string, {instagram: string, facebook: string}>}} o
  * available/captions are keyed by slot id. A slot without assets or a caption is `needs_content`, never guessed.
  */
-function buildSchedule({ monday, available = {}, captions = {} }) {
+function buildSchedule({ monday, available = {}, captions = {}, template = WEEK_TEMPLATE }) {
   const slots = [];
-  for (const t of WEEK_TEMPLATE) {
+  for (const t of template) {
     const date = addDays(monday, t.day - 1);
     for (const lang of ["en", "fr"]) {
       const id = slotId(date, t.kind, t.key, lang);
@@ -67,4 +77,4 @@ function dueState(slot, ledger, now, { windowHours = WINDOW_HOURS } = {}) {
   return now <= end ? "due" : "missed";
 }
 
-module.exports = { WEEK_TEMPLATE, buildSchedule, dueState, slotId, TWIN_MINUTES, WINDOW_HOURS };
+module.exports = { WEEK_TEMPLATE, DAY_TEMPLATE, buildSchedule, dueState, slotId, TWIN_MINUTES, WINDOW_HOURS };

@@ -10,6 +10,9 @@ on:
   schedule:
     # Mondays, hourly 12:00 to 17:00 UTC = 07:00 to 12:00 Toronto (EST); the routine reads it from 12:10 UTC.
     - cron: "0 12-17 * * 1"
+    # Tuesday to Saturday, once, 18:00 UTC = 13:00 Toronto (EST): is today's batch of new savings important (15+ new
+    # products or one saving of $50+)? Only then is a snapshot written and the weekday top-up built.
+    - cron: "0 18 * * 2-6"
   workflow_dispatch: {}
 
 concurrency:
@@ -40,7 +43,9 @@ jobs:
           CODE=$?
           set -e
           cat "$D/$TODAY.settled.json"
-          if [ "$CODE" = "0" ]; then
+          DOW=$(TZ=America/Toronto date +%u)
+          IMPORTANT=$(node -e 'console.log(JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")).important)' "$D/$TODAY.settled.json")
+          if [ "$CODE" = "0" ] && { [ "$DOW" = "1" ] || [ "$IMPORTANT" = "true" ]; }; then
             node scripts/weekly/query.js --snapshot="$D/$TODAY.snapshot.json"
           elif [ "$CODE" != "3" ]; then
             echo "query.js failed with exit $CODE"; exit "$CODE"
