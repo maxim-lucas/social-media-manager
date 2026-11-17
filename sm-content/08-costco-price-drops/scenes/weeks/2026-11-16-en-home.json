@@ -24,14 +24,12 @@
         "1851550",
         "1851555",
         "1851559",
-        "5134800",
-        "5134801",
-        "5134802",
-        "5134803",
-        "5134804",
         "2013145",
         "1903779",
-        "1903782"
+        "1903782",
+        "2022890",
+        "2903782",
+        "1915332"
       ]
     }
   ],
@@ -234,6 +232,39 @@
       "bizOnly": [],
       "exceptions": {}
     },
+    "1915332": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "32 Degrees",
+          "kids' heat baselayer",
+          "1 each"
+        ],
+        "fr": [
+          "32 Degrees",
+          "sous-vêtement thermique pour enfants",
+          "1 unité"
+        ]
+      },
+      "regular": 12.99,
+      "off": 3,
+      "price": 9.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
     "1929794": {
       "sameday": null,
       "tag": {
@@ -284,6 +315,39 @@
       "regular": 18.99,
       "off": 4,
       "price": 14.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2022890": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Olay",
+          "Essential Botanical bar soap",
+          "106 g"
+        ],
+        "fr": [
+          "Olay",
+          "pain de savon Essential Botanical",
+          "106 g"
+        ]
+      },
+      "regular": 16.49,
+      "off": 3.5,
+      "price": 12.99,
       "exp": "2026-11-22",
       "seen": "2026-11-16",
       "provinces": [
@@ -398,6 +462,36 @@
       "bizOnly": [],
       "exceptions": {}
     },
+    "2903782": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Dove",
+          "hair conditioner",
+          "1.18 L"
+        ],
+        "fr": [
+          "Dove",
+          "revitalisant",
+          "1,18 L"
+        ]
+      },
+      "regular": 11.99,
+      "off": 3.5,
+      "price": 8.49,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "NB",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
     "4444590": {
       "sameday": null,
       "tag": {
@@ -416,164 +510,6 @@
       "off": 50,
       "price": 199.99,
       "exp": "2026-11-29",
-      "seen": "2026-11-16",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "NB",
-        "NL",
-        "NS",
-        "ON",
-        "QC",
-        "SK"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
-    "5134800": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Tahari",
-          "women's sherpa ¼ zip pullover"
-        ],
-        "fr": [
-          "Tahari",
-          "chandail sherpa à fermeture éclair ¼, femme"
-        ]
-      },
-      "regular": 24.99,
-      "off": 5,
-      "price": 19.99,
-      "exp": "2026-11-22",
-      "seen": "2026-11-16",
-      "provinces": [
-        "AB",
-        "NL",
-        "ON",
-        "QC"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
-    "5134801": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Tahari",
-          "women's sherpa ¼ zip pullover",
-          "Medium"
-        ],
-        "fr": [
-          "Tahari",
-          "chandail sherpa à fermeture éclair ¼, femme",
-          "Moyen"
-        ]
-      },
-      "regular": 24.99,
-      "off": 5,
-      "price": 19.99,
-      "exp": "2026-11-22",
-      "seen": "2026-11-16",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "NB",
-        "NL",
-        "NS",
-        "ON",
-        "QC",
-        "SK"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
-    "5134802": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Tahari",
-          "women's sherpa ¼ zip pullover",
-          "Large"
-        ],
-        "fr": [
-          "Tahari",
-          "chandail sherpa à fermeture éclair ¼, femme",
-          "Grand"
-        ]
-      },
-      "regular": 24.99,
-      "off": 5,
-      "price": 19.99,
-      "exp": "2026-11-22",
-      "seen": "2026-11-16",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "NB",
-        "NL",
-        "NS",
-        "ON",
-        "QC",
-        "SK"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
-    "5134803": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Tahari",
-          "women's sherpa ¼ zip pullover",
-          "X-Large"
-        ],
-        "fr": [
-          "Tahari",
-          "chandail sherpa à fermeture éclair ¼, femme",
-          "Très grand"
-        ]
-      },
-      "regular": 24.99,
-      "off": 5,
-      "price": 19.99,
-      "exp": "2026-11-22",
-      "seen": "2026-11-16",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "NB",
-        "NL",
-        "NS",
-        "ON",
-        "QC",
-        "SK"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
-    "5134804": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Tahari",
-          "women's sherpa ¼ zip pullover",
-          "XXL"
-        ],
-        "fr": [
-          "Tahari",
-          "chandail sherpa à fermeture éclair ¼, femme",
-          "2 x très grand"
-        ]
-      },
-      "regular": 24.99,
-      "off": 5,
-      "price": 19.99,
-      "exp": "2026-11-22",
       "seen": "2026-11-16",
       "provinces": [
         "AB",
