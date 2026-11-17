@@ -47,7 +47,10 @@ for (const f of fs.readdirSync(WEEKS)) {
   if (f.startsWith(monday)) continue; // re-running the same week must not exclude its own items
   for (const sku of Object.keys(readJson(path.join(WEEKS, f), { items: {} }).items || {})) posted.add(sku);
 }
-const photos = new Set(fs.existsSync(CACHE) ? fs.readdirSync(CACHE).filter((f) => f.endsWith(".jpg")).map((f) => f.slice(0, -4)) : []);
+// tools/photo-rejects.json: SKUs whose only photo is a lifestyle scene, a collage or a banner crop (a reviewer named them).
+// Such an item leaves the carousel until a clean packshot exists; no photo, no slide.
+const rejects = new Set(readJson(path.join(PACK, "tools", "photo-rejects.json"), []));
+const photos = new Set((fs.existsSync(CACHE) ? fs.readdirSync(CACHE).filter((f) => f.endsWith(".jpg")).map((f) => f.slice(0, -4)) : []).filter((s) => !rejects.has(s)));
 
 const plan = planWeek({
   rows: snapshot.rows, monday, today: snapshot.today,

@@ -118,10 +118,10 @@ const L = {
     coverFine: (a, b) =>
       (a === b ? `Prix relevés chez Costco le ${dateLong("fr", b)}. ` : `Prix relevés chez Costco entre le ${dateShortCase("fr", a)} et le ${dateLong("fr", b)}. `) +
       "Chaque image indique ses provinces. " +
-      "Les conditions d'ajustement sont fixées par le détaillant. PriceBack est une application indépendante, non affiliée à Costco.",
+      "Conditions d'ajustement fixées par le détaillant. PriceBack est indépendante, non affiliée à Costco.",
     fine: (d, where) =>
-      `Prix relevé ${DATA.businessCentre ? "dans les centres d'affaires Costco" : "chez Costco"} ${where || "Canada"} le ${dateLong("fr", d)}. Les conditions d'ajustement sont fixées par le détaillant. ` +
-      "PriceBack est une application indépendante, non affiliée à Costco.",
+      `Prix relevé ${DATA.businessCentre ? "dans les centres d'affaires Costco" : "chez Costco"} ${where || "Canada"} le ${dateLong("fr", d)}. Conditions d'ajustement fixées par le détaillant. ` +
+      "PriceBack est indépendante, non affiliée à Costco.",
   },
 };
 
@@ -454,6 +454,8 @@ const CC = {
     top: "Costco Canada Drops",
     fresh: "NEW DROPS",
     until: "Claim until",
+    untilSoon: "Ending first",
+    each: "Every slide shows its own end date.",
     day: (iso) => new Date(iso + "T12:00:00Z").toLocaleDateString("en-CA", { weekday: "long", timeZone: "UTC" }) + ",",
     date: (iso) => dateShortCase("en", iso),
     // Mixed end dates: every date listed, never a "from–to" range (it reads as a start date).
@@ -466,11 +468,14 @@ const CC = {
     total: (n) => [`Total possible back: ${money("en", n, true)}`, "if you bought them"],
     top1: (name, off) => `Biggest drop: ${name}, ${money("en", off, true)} off`,
     prov: (n, total) => (n === total ? `All ${total} in all 9 provinces` : `${n} of ${total} in all 9 provinces`),
+    only: (where) => `Only in ${where}`,
   },
   fr: {
     top: "Baisses Costco Canada",
     fresh: "NOUVELLES BAISSES",
     until: "Réclamez jusqu'au",
+    untilSoon: "Fin dès le",
+    each: "Chaque diapo indique sa date de fin.",
     day: (iso) => new Date(iso + "T12:00:00Z").toLocaleDateString("fr-CA", { weekday: "long", timeZone: "UTC" }),
     date: (iso) => dateShortCase("fr", iso),
     range: (ds) => coverRange("fr", ds), // "15 et 22 novembre", or "15, 22 nov. et 6 déc." across months
@@ -481,20 +486,29 @@ const CC = {
     total: (n) => [`Total à récupérer : ${money("fr", n, true)}`, "si vous les avez achetés"],
     top1: (name, off) => `Plus grosse baisse : ${name}, ${money("fr", off, true)} de rabais`,
     prov: (n, total) => (n === total ? `Les ${total} dans les 9 provinces` : `${n} de ${total} dans les 9 provinces`),
+    only: (where) => `Seulement : ${where}`,
   },
 };
-function claimCover(lang, f, badges) {
+function claimCover(lang, f, badges, photos = {}) {
   const t = L[lang], c = CC[lang];
   const items = f.items.map((sku) => [sku, DATA.items[sku]]);
   const exps = [...new Set(items.map(([, i]) => i.exp))].sort();
-  const one = exps.length === 1;
+  const one = exps.length === 1, many = exps.length > 2;
+  // Three or more end dates read as a list nobody parses: show the soonest and say each slide has its own.
   const when = one
     ? `<div class="cc-day">${esc(c.day(exps[0]))}</div><div class="cc-date">${esc(c.date(exps[0]))}</div>`
+    : many
+    ? `<div class="cc-date">${esc(c.date(exps[0]))}</div><div class="cc-each">${esc(c.each)}</div>`
     : `<div class="cc-date rng">${esc(c.range(exps))}</div>`;
-  const until = c.until;
+  const until = many ? c.untilSoon : c.until;
   const seen = items.map(([, i]) => i.seen).sort();
   const sum = Math.round(items.reduce((a, [, i]) => a + i.off, 0) * 100) / 100;
   const cat = (DATA.carousels[0].category || {})[lang] || "";
+  const ALL9 = ["ON", "QC", "BC", "AB", "MB", "SK", "NB", "NS", "NL"];
+  const nat = items.filter(([, i]) => ALL9.every((p) => (i.provinces || []).includes(p))).length;
+  // A regional carousel has no item in all 9: say where its savings are instead of "0 of N".
+  const union = [...new Set(items.flatMap(([, i]) => i.provinces || []))];
+  const provLine = nat > 0 ? c.prov(nat, items.length) : c.only(regionName(lang, union.length === 1 ? union : union).replace(/^(in|dans ces provinces : )\s*/, ""));
   const stores = `<div class="stores"><img src="${badges.apple}"><img src="${badges.google}"></div>`;
   return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>${CSS}${CLAIM_CSS}</style></head><body>
   <div class="post ${lang} s cc">
@@ -505,8 +519,8 @@ function claimCover(lang, f, badges) {
       <div class="cc-new">${esc(c.fresh)}</div>
       <div class="cc-until">${esc(until)}</div>
       ${when}
-      <div class="cc-prod">${esc(c.top1(items[0][1].tag[lang].slice(0, 2).join(" "), items[0][1].off))}</div>
-      <div class="cc-prov">${esc(c.prov(items.filter(([, i]) => ["ON", "QC", "BC", "AB", "MB", "SK", "NB", "NS", "NL"].every((p) => (i.provinces || []).includes(p))).length, items.length))}</div>
+      <div class="cc-row">${photos[items[0][0]] ? `<div class="cc-pic" style="background-image:url('${photos[items[0][0]]}')"></div>` : ""}<div><div class="cc-prod">${esc(c.top1(items[0][1].tag[lang].slice(0, 2).join(" "), items[0][1].off))}</div>
+      <div class="cc-prov">${esc(provLine)}</div></div></div>
     </div>
     <div class="cc-count">${esc(c.count(items.length))}</div>
     <div class="cc-total">${c.total(sum).map(esc).join("<br>")}</div>
@@ -532,11 +546,15 @@ const CLAIM_CSS = `
 .fr .cc-date.rng{font-size:84px}
 .cc-count{position:absolute;left:40px;right:40px;top:780px;text-align:center;font-weight:900;font-size:124px;color:#fff;background:var(--blue);border-radius:70px;padding:12px 0;letter-spacing:-.5px;box-shadow:inset 0 -8px 0 var(--red)}
 .cc .disc{bottom:190px}
-.cc-prod{margin-top:26px;font-weight:900;font-size:34px;line-height:1.15;color:#111;letter-spacing:-.3px}
+.cc-row{display:flex;align-items:center;gap:24px;margin-top:26px}
+.cc-pic{flex:none;width:170px;height:170px;background-size:contain;background-repeat:no-repeat;background-position:center}
+.cc-each{margin-top:10px;font-weight:800;font-size:30px;color:#111}
+.cc-prod{margin-top:0;font-weight:900;font-size:34px;line-height:1.15;color:#111;letter-spacing:-.3px}
 .cc-prov{margin-top:8px;font-weight:800;font-size:30px;color:var(--blue)}
 .cc-total{position:absolute;left:40px;right:40px;top:992px;text-align:center;font-weight:900;font-size:44px;color:#111;letter-spacing:-.5px}
 .fr .cc-total{font-size:40px}
-.fr .cc-count{font-size:104px}
+.fr .cc-count{font-size:92px}
+.cc-count{white-space:nowrap}
 .cc-total{line-height:1.12}
 .cc-biz{position:absolute;left:0;right:0;top:112px;background:var(--yel);color:#111;text-align:center;font-weight:900;font-size:34px;letter-spacing:1px;padding:8px 0;text-transform:uppercase}
 .fr .cc-biz{font-size:28px}
@@ -741,6 +759,7 @@ function itemLangs() {
 const langsFor = (p) => ["en", "fr"].filter((l) => p.items.every((sku) => itemLangs(DATA.items[sku]).includes(l)));
 function regionName(lang, prov) {
   if (national(prov)) return null;
+  if (["ON", "QC", "BC", "AB", "MB", "SK", "NB", "NS", "NL"].every((c) => prov.includes(c))) return lang === "fr" ? "dans les 9 provinces" : "in all 9 provinces";
   // Past three provinces the full names push the fine print into the download row, so use codes.
   const short = prov.length > 3;
   const names = short ? prov : prov.map((c) => PROV[lang][c] || c);
@@ -818,7 +837,7 @@ function allPosts() {
     }
   for (const p of posts)
     for (const lang of p.lang ? [p.lang] : langsFor(p)) {
-      const html = p.end ? endSlide(lang, p, badges[lang]) : p.cover ? (DATA.coverStyle === "claim" ? claimCover(lang, p, badges[lang]) : cover(lang, p, photos, badges[lang])) : post(lang, p, photos, badges[lang]);
+      const html = p.end ? endSlide(lang, p, badges[lang]) : p.cover ? (DATA.coverStyle === "claim" ? claimCover(lang, p, badges[lang], photos) : cover(lang, p, photos, badges[lang])) : post(lang, p, photos, badges[lang]);
       await page.setContent(html, { waitUntil: "load" });
       // Week carousels: one folder per language, so EN and FR never mix (Monica, 2026-10-15).
       const file = typeof p.file === "function" ? path.join(OUT, `${p.file(lang)}.png`) : path.join(OUT, `${p.file}-${lang}.png`);

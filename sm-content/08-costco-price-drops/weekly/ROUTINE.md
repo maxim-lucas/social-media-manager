@@ -65,13 +65,21 @@ open issue has that title; add a comment instead), stop, and leave master untouc
 8. Run `build-week.js` again, then `node scripts/weekly/fetch-photos.js <monday>`, then `build-week.js` once more so the
    items with photos enter the carousels. For a SKU still without a photo, look it up by name on Same-Day or costco.ca;
    if found save it as `<pack>/scenes/.cache/<sku>.jpg`, else leave the item out and list it in the PR.
-9. **Render and score.** For every `<pack>/scenes/weeks/<monday>-*.json`:
-   `node <pack>/scenes/render.js weeks/<name>.json`. Look at EVERY slide (cover, two or three items, end card at
-   minimum, plus any slide whose strip shows a small province amount). Then ask a separate reviewer agent (Agent tool,
-   fresh context) to score the carousel against `weekly/RUBRIC.md`; it gets the slides and the caption, not your
-   reasoning. Apply its fixes, re-render, re-score. Use `scripts/weekly/lib/score.js` (`rubricTotal`, `gate`): at most
-   3 rounds (use all three before giving up on a carousel; a defect in the renderer or house design is fixed in
-   `scenes/render.js` on this branch, never left as a reason to stop); a carousel under 9.5 after round 3 is removed from this week (delete its PNG folder) and listed in the PR.
+9. **Render, score, fix, repeat: three rounds, always.** Never end the run after round 1, never stop to ask: the run
+   finishes only when every carousel has passed or used its three rounds, then the PR is opened.
+   Round loop for each `<pack>/scenes/weeks/<monday>-*.json`:
+   1. `node <pack>/scenes/render.js weeks/<name>.json`. Look at the cover, an item slide, a slide with a small province
+      amount and the end card yourself.
+   2. Ask a separate reviewer agent (Agent tool, fresh context) to score it against `weekly/RUBRIC.md` (it gets the slides
+      and the caption, not your reasoning; run the carousels' reviewers in parallel). Use `scripts/weekly/lib/score.js`.
+   3. Apply every fix the rubric accepts: (a) `rejectPhotos` SKUs go into `<pack>/tools/photo-rejects.json` (a JSON array),
+      then re-run `build-week.js` so the next-biggest items take their place, fetch their photos and re-render;
+      (b) a data fix (a tag line, a size that disagrees with the photo, five near-identical size variants of one product:
+      keep the biggest saving, drop the rest); (c) a renderer defect: fix it in `scenes/render.js` and re-render EVERY
+      carousel. A reviewer fix that changes the house design or RUBRIC "known house design" is **not applied and not a
+      reason to stop**: score on without it.
+   4. Re-score. At most 3 rounds. A carousel still under 9.5 after round 3 is removed from this week (delete its PNG
+      folder) and listed in the PR with its sub-scores. A carousel that passes is kept as it is.
    Save every round's sub-scores to `<pack>/weekly/<monday>/scores.json`.
 10. **Reels** (warehouse carousels only, one basket reel per language per carousel): `node
     <pack>/reels/pick-track.js <monday> --record` prints the approved track or `null`; with `null` build the no-music
