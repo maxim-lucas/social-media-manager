@@ -761,7 +761,7 @@ function regionName(lang, prov) {
   if (national(prov)) return null;
   if (["ON", "QC", "BC", "AB", "MB", "SK", "NB", "NS", "NL"].every((c) => prov.includes(c))) return lang === "fr" ? "dans les 9 provinces" : "in all 9 provinces";
   // Past three provinces the full names push the fine print into the download row, so use codes.
-  const short = prov.length > 3;
+  const short = prov.length > (lang === "fr" ? 2 : 3);
   const names = short ? prov : prov.map((c) => PROV[lang][c] || c);
   const and = lang === "fr" ? "et" : "and";
   const list = names.length > 1 ? `${names.slice(0, -1).join(", ")} ${and} ${names[names.length - 1]}` : names[0];

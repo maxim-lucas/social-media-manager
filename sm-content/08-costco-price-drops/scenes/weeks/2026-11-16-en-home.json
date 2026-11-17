@@ -14,24 +14,24 @@
         "fr": "Maison et plus"
       },
       "items": [
-        "1929733",
         "4444590",
         "2049670",
-        "1560100",
-        "1929739",
-        "2047587",
         "1929794",
         "2130150",
         "2052553",
         "655360",
         "5161251",
-        "1739985",
         "1851550",
         "1851555",
         "1851559",
-        "1851686",
-        "4082311",
-        "5134800"
+        "5134800",
+        "5134801",
+        "5134802",
+        "5134803",
+        "5134804",
+        "2013145",
+        "1903779",
+        "1903782"
       ]
     }
   ],
@@ -54,72 +54,6 @@
       "off": 6,
       "price": 23.99,
       "exp": "2026-11-29",
-      "seen": "2026-11-16",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "NB",
-        "NL",
-        "NS",
-        "ON",
-        "QC",
-        "SK"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
-    "1560100": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Dinoflex",
-          "rubber interlocking floor tiles",
-          "10 ct"
-        ],
-        "fr": [
-          "Dinoflex",
-          "tuiles de plancher emboîtables en caoutchouc",
-          "10 unités"
-        ]
-      },
-      "regular": 59.99,
-      "off": 12,
-      "price": 47.99,
-      "exp": "2026-11-22",
-      "seen": "2026-11-16",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "NB",
-        "NL",
-        "NS",
-        "ON",
-        "QC",
-        "SK"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
-    "1739985": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "SYLVANIA",
-          "20 twinkling icicle lights, white",
-          "1 set"
-        ],
-        "fr": [
-          "SYLVANIA",
-          "20 lumières glaçons scintillantes, blanches",
-          "1 ensemble"
-        ]
-      },
-      "regular": 24.99,
-      "off": 5,
-      "price": 19.99,
-      "exp": "2026-11-22",
       "seen": "2026-11-16",
       "provinces": [
         "AB",
@@ -234,59 +168,28 @@
       "bizOnly": [],
       "exceptions": {}
     },
-    "1851686": {
+    "1903779": {
       "sameday": null,
       "tag": {
         "en": [
-          "Rear projection",
-          "snowman Christmas décor",
-          "1 each"
+          "Dove",
+          "Daily Moisture shampoo",
+          "1.18 L"
         ],
         "fr": [
-          "Projection arrière",
-          "bonhomme de neige, décor de Noël",
-          "1 unité"
+          "Dove",
+          "shampooing hydratation quotidienne",
+          "1,18 L"
         ]
       },
-      "regular": 19.99,
-      "off": 5,
-      "price": 14.99,
+      "regular": 11.99,
+      "off": 3.5,
+      "price": 8.49,
       "exp": "2026-11-22",
       "seen": "2026-11-16",
       "provinces": [
         "AB",
         "BC",
-        "MB",
-        "NB",
-        "NS",
-        "ON",
-        "QC",
-        "SK"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
-    "1929733": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Penguin",
-          "with LED lights",
-          "1.5 m (5 ft)"
-        ],
-        "fr": [
-          "Pingouin",
-          "avec lumières DEL",
-          "1,5 m (5 pi)"
-        ]
-      },
-      "regular": 199.99,
-      "off": 50,
-      "price": 149.99,
-      "exp": "2026-11-22",
-      "seen": "2026-11-16",
-      "provinces": [
-        "AB",
         "MB",
         "NB",
         "NL",
@@ -298,23 +201,23 @@
       "bizOnly": [],
       "exceptions": {}
     },
-    "1929739": {
+    "1903782": {
       "sameday": null,
       "tag": {
         "en": [
-          "Wooden",
-          "LED advent calendar",
-          "1 each"
+          "Dove",
+          "Daily Moisture hydration conditioner",
+          "1.18 L"
         ],
         "fr": [
-          "Calendrier de l'Avent",
-          "en bois, DEL",
-          "1 unité"
+          "Dove",
+          "revitalisant hydratation quotidienne",
+          "1,18 L"
         ]
       },
-      "regular": 29.99,
-      "off": 10,
-      "price": 19.99,
+      "regular": 11.99,
+      "off": 3.5,
+      "price": 8.49,
       "exp": "2026-11-22",
       "seen": "2026-11-16",
       "provinces": [
@@ -364,23 +267,23 @@
       "bizOnly": [],
       "exceptions": {}
     },
-    "2047587": {
+    "2013145": {
       "sameday": null,
       "tag": {
         "en": [
-          "Mr. Christmas",
-          "LED infinity Christmas tree decoration",
-          "1 each"
+          "Febreze",
+          "bathroom air freshener variety pack",
+          "7.5 mL"
         ],
         "fr": [
-          "Mr. Christmas",
-          "décoration de sapin DEL infinie",
-          "1 unité"
+          "Febreze",
+          "assortiment de désodorisants pour salle de bain",
+          "7,5 mL"
         ]
       },
-      "regular": 49.99,
-      "off": 10,
-      "price": 39.99,
+      "regular": 18.99,
+      "off": 4,
+      "price": 14.99,
       "exp": "2026-11-22",
       "seen": "2026-11-16",
       "provinces": [
@@ -495,36 +398,6 @@
       "bizOnly": [],
       "exceptions": {}
     },
-    "4082311": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Tapestry",
-          "kitchen mat",
-          "1 each"
-        ],
-        "fr": [
-          "Tapestry",
-          "tapis de cuisine",
-          "1 unité"
-        ]
-      },
-      "regular": 14.99,
-      "off": 5,
-      "price": 9.99,
-      "exp": "2026-11-22",
-      "seen": "2026-11-16",
-      "provinces": [
-        "BC",
-        "NB",
-        "NL",
-        "NS",
-        "ON",
-        "QC"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
     "4444590": {
       "sameday": null,
       "tag": {
@@ -567,7 +440,7 @@
         ],
         "fr": [
           "Tahari",
-          "pull sherpa à ¼ fermeture éclair, femme"
+          "chandail sherpa à fermeture éclair ¼, femme"
         ]
       },
       "regular": 24.99,
@@ -580,6 +453,138 @@
         "NL",
         "ON",
         "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "5134801": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Tahari",
+          "women's sherpa ¼ zip pullover",
+          "Medium"
+        ],
+        "fr": [
+          "Tahari",
+          "chandail sherpa à fermeture éclair ¼, femme",
+          "Moyen"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "5134802": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Tahari",
+          "women's sherpa ¼ zip pullover",
+          "Large"
+        ],
+        "fr": [
+          "Tahari",
+          "chandail sherpa à fermeture éclair ¼, femme",
+          "Grand"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "5134803": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Tahari",
+          "women's sherpa ¼ zip pullover",
+          "X-Large"
+        ],
+        "fr": [
+          "Tahari",
+          "chandail sherpa à fermeture éclair ¼, femme",
+          "Très grand"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "5134804": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Tahari",
+          "women's sherpa ¼ zip pullover",
+          "XXL"
+        ],
+        "fr": [
+          "Tahari",
+          "chandail sherpa à fermeture éclair ¼, femme",
+          "2 x très grand"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
       ],
       "bizOnly": [],
       "exceptions": {}

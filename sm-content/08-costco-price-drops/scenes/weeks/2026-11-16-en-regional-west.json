@@ -14,12 +14,9 @@
         "fr": "Cachés dans l'Ouest"
       },
       "items": [
-        "1929701",
-        "1851620",
         "2264172",
         "1937049",
         "1027677",
-        "1253037",
         "1976335",
         "2077995",
         "1391931",
@@ -31,11 +28,70 @@
         "107038",
         "1266459",
         "610845",
-        "1134671"
+        "1134671",
+        "2048486",
+        "3918",
+        "71408"
       ]
     }
   ],
   "items": {
+    "3918": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Dempster's",
+          "original tortillas",
+          "36 ct"
+        ],
+        "fr": [
+          "Dempster's",
+          "tortillas originales",
+          "36 unités"
+        ]
+      },
+      "regular": 9.99,
+      "off": 2,
+      "price": 7.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "71408": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Kraft",
+          "smooth peanut butter",
+          "2 kg"
+        ],
+        "fr": [
+          "Kraft",
+          "beurre d'arachide crémeux",
+          "2 kg"
+        ]
+      },
+      "regular": 9.89,
+      "off": 2,
+      "price": 7.89,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
     "107038": {
       "sameday": null,
       "tag": {
@@ -232,34 +288,6 @@
       "bizOnly": [],
       "exceptions": {}
     },
-    "1253037": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Le Bon Patissier",
-          "caramel stroopwafels",
-          "1.26 kg"
-        ],
-        "fr": [
-          "Le Bon Patissier",
-          "stroopwafels au caramel",
-          "1,26 kg"
-        ]
-      },
-      "regular": 14.99,
-      "off": 4,
-      "price": 10.99,
-      "exp": "2026-11-22",
-      "seen": "2026-11-16",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "SK"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
     "1266459": {
       "sameday": null,
       "tag": {
@@ -316,61 +344,6 @@
       "bizOnly": [],
       "exceptions": {}
     },
-    "1851620": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Lighted bow",
-          "red",
-          "48 in"
-        ],
-        "fr": [
-          "Boucle lumineuse",
-          "rouge",
-          "48 po"
-        ]
-      },
-      "regular": 129.99,
-      "off": 30,
-      "price": 99.99,
-      "exp": "2026-11-22",
-      "seen": "2026-11-16",
-      "provinces": [
-        "AB",
-        "MB",
-        "SK"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
-    "1929701": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Polar bear",
-          "LED lighted 2-piece set",
-          "1 set"
-        ],
-        "fr": [
-          "Ours polaire",
-          "ensemble lumineux DEL de 2 pièces",
-          "1 ensemble"
-        ]
-      },
-      "regular": 199.99,
-      "off": 100,
-      "price": 99.99,
-      "exp": "2026-11-22",
-      "seen": "2026-11-16",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "SK"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
     "1937049": {
       "sameday": null,
       "tag": {
@@ -416,6 +389,34 @@
       "regular": 18.99,
       "off": 4,
       "price": 14.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2048486": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Doritos Collisions",
+          "fried chicken and pickle tortilla chips",
+          "655 g"
+        ],
+        "fr": [
+          "Doritos Collisions",
+          "croustilles de poulet frit et cornichon",
+          "655 g"
+        ]
+      },
+      "regular": 8.99,
+      "off": 2,
+      "price": 6.99,
       "exp": "2026-11-22",
       "seen": "2026-11-16",
       "provinces": [
