@@ -1,1 +1,44 @@
-[]
+[
+  {
+    "id": "cand-01",
+    "file": "approved/cand-01-92bpm--3st.wav",
+    "bpm": 92,
+    "approvedAt": "2026-11-16"
+  },
+  {
+    "id": "cand-02",
+    "file": "approved/cand-02-96bpm-2st.wav",
+    "bpm": 96,
+    "approvedAt": "2026-11-16"
+  },
+  {
+    "id": "cand-03",
+    "file": "approved/cand-03-100bpm-7st.wav",
+    "bpm": 100,
+    "approvedAt": "2026-11-16"
+  },
+  {
+    "id": "cand-04",
+    "file": "approved/cand-04-108bpm-5st.wav",
+    "bpm": 108,
+    "approvedAt": "2026-11-16"
+  },
+  {
+    "id": "cand-05",
+    "file": "approved/cand-05-112bpm--1st.wav",
+    "bpm": 112,
+    "approvedAt": "2026-11-16"
+  },
+  {
+    "id": "cand-06",
+    "file": "approved/cand-06-116bpm-3st.wav",
+    "bpm": 116,
+    "approvedAt": "2026-11-16"
+  },
+  {
+    "id": "cand-08",
+    "file": "approved/cand-08-96bpm-3st.wav",
+    "bpm": 96,
+    "approvedAt": "2026-11-16"
+  }
+]
