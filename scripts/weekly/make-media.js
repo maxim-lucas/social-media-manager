@@ -12,7 +12,7 @@
 const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
-const { buildSchedule } = require("./lib/slots");
+const { buildSchedule, DAY_TEMPLATE } = require("./lib/slots");
 const { sourceFor, duplicates } = require("./lib/media");
 
 const monday = process.argv[2];
@@ -28,7 +28,7 @@ const weekFiles = fs.readdirSync(path.join(PACK, "scenes", "weeks")).filter((f) 
 
 (async () => {
   let made = 0;
-  for (const slot of buildSchedule({ monday })) {
+  for (const slot of buildSchedule({ monday, template: process.argv.includes("--day") ? DAY_TEMPLATE : undefined })) {
     const source = sourceFor(slot, monday, weekFiles);
     if (!source) continue;
     const from = path.join(PACK, "posts", source, slot.lang);

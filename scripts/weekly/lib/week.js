@@ -48,10 +48,10 @@ function regularFor(chRows, item, audience) {
  *          tags: Record<string, {en: string[], fr: string[]}>, posted: Set<string>, photos: Set<string>, weekIndex?: number}} input
  * rows: social_ro.savings_live rows, each with `regular` (the product's regular price in that province, or null)
  */
-function planWeek({ rows: allRows, monday, today, categories, tags, posted, photos, weekIndex = 0, newSince = null }) {
+function planWeek({ rows: allRows, monday, today, categories, tags, posted, photos, weekIndex = 0, newSince = null, daily = false, weekStart = null }) {
   // Monica, 2026-11-04: only savings that started this week and were created this week are "new".
   const rows = newSince
-    ? allRows.filter((r) => String(r.valid_from).slice(0, 10) >= monday && new Date(r.created_at) >= new Date(newSince))
+    ? allRows.filter((r) => String(r.valid_from).slice(0, 10) >= (weekStart || monday) && new Date(r.created_at) >= new Date(newSince))
     : allRows;
   const needs = { category: new Set(), tags: new Set(), photo: new Set(), regular: new Set(), frenchReview: new Set() };
   const files = [];
@@ -79,7 +79,7 @@ function planWeek({ rows: allRows, monday, today, categories, tags, posted, phot
     files.push({ name, data });
   };
 
-  for (const channel of ["warehouse", "bc"]) {
+  for (const channel of daily ? ["warehouse"] : ["warehouse", "bc"]) {
     const bc = channel === "bc";
     const chRows = rows.filter((r) => BC_SOURCES.has(r.source) === bc);
     const aud = AUDIENCES.all;
@@ -109,7 +109,7 @@ function planWeek({ rows: allRows, monday, today, categories, tags, posted, phot
       }
     }
 
-    if (!bc) {
+    if (!bc && !daily) {
       emit({ id: "fr", priority: aud.priority }, "regional-qc", usable.filter(qcOnly));
       const pools = {};
       for (const it of usable.filter(regional)) (pools[regionOf(it.provinces)] ||= []).push(it);

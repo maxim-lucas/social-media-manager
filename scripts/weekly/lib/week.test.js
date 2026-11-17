@@ -128,3 +128,13 @@ test("region helpers", () => {
   assert.strictEqual(chooseRegion({ west: 2, ontario: 9, atlantic: 4 }, 0), "ontario");
   assert.strictEqual(chooseRegion({ west: 1, ontario: 2, atlantic: 0 }, 0), null);
 });
+
+test("a weekday top-up builds the national carousels only: no Business Centre, no regional, week-start filter", () => {
+  const bc = (sku) => EN8.map((p) => row(sku, p, 8, { source: "sameday_business_centre" }));
+  const west = (sku) => ["AB", "BC", "MB", "SK"].map((p) => row(sku, p, 30));
+  const rows = [...[1, 2, 3].flatMap((n) => everywhere("w" + n, 5, { valid_from: "2026-11-16" })), ...[1, 2, 3].flatMap((n) => bc("b" + n)), ...[1, 2, 3].flatMap((n) => west("x" + n))];
+  const c = ctx(rows, { monday: "2026-11-18", daily: true, weekStart: "2026-11-16", newSince: "2026-11-18T05:00:00Z" });
+  for (const r of rows) r.created_at = "2026-11-18T15:00:00Z";
+  const plan = planWeek(c);
+  assert.deepStrictEqual(names(plan), ["2026-11-18-en-grocery", "2026-11-18-fr-grocery"]);
+});

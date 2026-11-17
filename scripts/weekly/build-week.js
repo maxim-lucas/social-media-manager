@@ -2,7 +2,7 @@
 /**
  * build-week.js: snapshot in, the renderer's week files out.
  *
- *   node scripts/weekly/build-week.js <monday-iso> --snapshot=<snapshot.json>
+ *   node scripts/weekly/build-week.js <monday-iso> --snapshot=<snapshot.json> [--day]
  *
  * Writes scenes/weeks/<monday>-<aud>-<carousel>.json for every carousel that can be made, and
  * weekly/<monday>/needs.json (what is missing and who must supply it) and report.json. Reads the caches the routine's
@@ -20,6 +20,7 @@ const CACHE = path.join(PACK, "scenes", ".cache");
 
 const readJson = (p, d) => (fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, "utf8")) : d);
 const monday = process.argv[2];
+const DAY = process.argv.includes("--day"); // a weekday top-up: <monday> is the pack's own date
 const snap = (process.argv.find((a) => a.startsWith("--snapshot=")) || "").slice("--snapshot=".length);
 if (!/^\d{4}-\d{2}-\d{2}$/.test(monday || "") || !snap) {
   console.error("usage: build-week.js <monday-iso> --snapshot=<file>");
@@ -31,6 +32,13 @@ function weekIndex(iso) {
   const d = new Date(`${iso}T12:00:00Z`);
   const start = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
   return Math.floor((d - start) / (7 * 86400000));
+}
+
+/** The Monday of the week containing an ISO date. */
+function mondayOf(iso) {
+  const d = new Date(`${iso}T12:00:00Z`);
+  d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 6) % 7));
+  return d.toISOString().slice(0, 10);
 }
 
 const snapshot = readJson(snap);
@@ -46,7 +54,8 @@ const plan = planWeek({
   categories: readJson(path.join(PACK, "tools", "categories.json"), {}),
   tags: readJson(path.join(PACK, "tools", "tags.json"), {}),
   posted, photos, weekIndex: weekIndex(monday),
-  newSince: torontoInstant(monday, "00:00"),
+  newSince: torontoInstant(monday, "00:00"), daily: DAY,
+  weekStart: DAY ? mondayOf(monday) : null,
 });
 
 for (const f of plan.files) fs.writeFileSync(path.join(WEEKS, `${f.name}.json`), JSON.stringify(f.data, null, 2) + "\n");

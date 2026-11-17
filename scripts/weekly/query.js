@@ -12,6 +12,7 @@ const fs = require("fs");
 const path = require("path");
 const { Client, types } = require("pg");
 const { evaluateSettled } = require("./lib/settled");
+const { isImportant } = require("./lib/important");
 const { torontoToday, torontoInstant } = require("./lib/time");
 
 // A `date` column is a calendar date, not an instant: keep it as the text "YYYY-MM-DD". The driver's default turns it
@@ -42,7 +43,13 @@ async function main() {
     if (has("settled")) {
       const deadline = torontoInstant(today, arg("deadline") || "12:30");
       const r = evaluateSettled({ perProvince, lastCreatedAt, now, deadline });
-      console.log(JSON.stringify({ ...r, today, perProvince, lastCreatedAt }));
+      // What arrived today, for the weekday top-up decision (important.js).
+      const fresh = await client.query(
+        "select count(distinct sku)::int products, coalesce(max(amount), 0)::float max_amount from savings_live where created_at >= $1",
+        [dayStart]
+      );
+      const newProducts = fresh.rows[0].products, maxNewAmount = fresh.rows[0].max_amount;
+      console.log(JSON.stringify({ ...r, today, perProvince, lastCreatedAt, newProducts, maxNewAmount, important: isImportant({ newProducts, maxNewAmount }) }));
       process.exit(r.ready ? 0 : 3);
     }
 
