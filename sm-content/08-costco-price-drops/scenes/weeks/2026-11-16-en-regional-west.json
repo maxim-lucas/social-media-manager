@@ -1,0 +1,544 @@
+{
+  "_note": "Hidden in the West, outside Quebec, built 2026-11-16 from priceback.savings (read-only views).",
+  "source": "priceback.savings via social_ro views",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "audience": "en",
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "Hidden in the West",
+        "fr": "Cachés dans l'Ouest"
+      },
+      "items": [
+        "1929701",
+        "1851620",
+        "2264172",
+        "1937049",
+        "1253037",
+        "1976335",
+        "1027677",
+        "2077995",
+        "362864",
+        "2849352",
+        "390698",
+        "419542",
+        "610845",
+        "71408",
+        "1134671",
+        "768939",
+        "2048486",
+        "3918"
+      ]
+    }
+  ],
+  "items": {
+    "3918": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Dempster’s",
+          "original tortillas",
+          "36 ct"
+        ],
+        "fr": [
+          "Dempster’s",
+          "tortillas originales",
+          "36 unités"
+        ]
+      },
+      "regular": 9.99,
+      "off": 2,
+      "price": 7.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "71408": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Kraft",
+          "smooth peanut butter",
+          "2 kg"
+        ],
+        "fr": [
+          "Kraft",
+          "beurre d’arachide crémeux",
+          "2 kg"
+        ]
+      },
+      "regular": 9.89,
+      "off": 2,
+      "price": 7.89,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "362864": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Mr. Clean",
+          "all-purpose cleaner",
+          "5.2 L"
+        ],
+        "fr": [
+          "M. Net",
+          "nettoyant tout usage",
+          "5,2 L"
+        ]
+      },
+      "regular": 13.49,
+      "off": 3.5,
+      "price": 9.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "390698": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Schaaf Foods",
+          "golden marble loaf cakes",
+          "375 g"
+        ],
+        "fr": [
+          "Schaaf Foods",
+          "gâteaux marbrés dorés",
+          "375 g"
+        ]
+      },
+      "regular": 10.89,
+      "off": 3,
+      "price": 7.89,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "419542": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Bothwell",
+          "smoked Gouda cheese",
+          "600 g"
+        ],
+        "fr": [
+          "Bothwell",
+          "gouda fumé",
+          "600 g"
+        ]
+      },
+      "regular": 13.49,
+      "off": 3,
+      "price": 10.49,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "610845": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Kirkland Signature",
+          "double cream brie",
+          "600 g"
+        ],
+        "fr": [
+          "Kirkland Signature",
+          "brie double crème",
+          "600 g"
+        ]
+      },
+      "regular": 10.99,
+      "off": 2.5,
+      "price": 8.49,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "768939": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Kellogg’s",
+          "All-Bran Buds cereal",
+          "1.05 kg"
+        ],
+        "fr": [
+          "Kellogg’s",
+          "céréales All-Bran Buds",
+          "1,05 kg"
+        ]
+      },
+      "regular": 9.99,
+      "off": 2,
+      "price": 7.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1027677": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "MotzaStix",
+          "breaded mozzarella sticks",
+          "frozen, 1.47 kg"
+        ],
+        "fr": [
+          "MotzaStix",
+          "bâtonnets de mozzarella panés",
+          "surgelés, 1,47 kg"
+        ]
+      },
+      "regular": 17.99,
+      "off": 4,
+      "price": 13.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1134671": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Cheerios",
+          "multi grain cereal",
+          "1.24 kg"
+        ],
+        "fr": [
+          "Cheerios",
+          "céréales multigrains",
+          "1,24 kg"
+        ]
+      },
+      "regular": 9.99,
+      "off": 2,
+      "price": 7.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1253037": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Le Bon Patissier",
+          "caramel stroopwafels",
+          "1.26 kg"
+        ],
+        "fr": [
+          "Le Bon Patissier",
+          "stroopwafels au caramel",
+          "1,26 kg"
+        ]
+      },
+      "regular": 14.99,
+      "off": 4,
+      "price": 10.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1851620": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "lighted bow, red",
+          "48 in"
+        ],
+        "fr": [
+          "boucle lumineuse, rouge",
+          "48 po"
+        ]
+      },
+      "regular": 129.99,
+      "off": 30,
+      "price": 99.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1929701": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "LED lighted polar bear",
+          "2-piece set"
+        ],
+        "fr": [
+          "ours polaire lumineux à DEL",
+          "ensemble de 2"
+        ]
+      },
+      "regular": 199.99,
+      "off": 100,
+      "price": 99.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1937049": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Nutty & Fruity",
+          "Dubai style milk chocolate",
+          "454 g"
+        ],
+        "fr": [
+          "Nutty & Fruity",
+          "chocolat au lait style Dubaï",
+          "454 g"
+        ]
+      },
+      "regular": 22.99,
+      "off": 5,
+      "price": 17.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1976335": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "ChocXO",
+          "milk chocolate pistachio cups",
+          "420 g"
+        ],
+        "fr": [
+          "ChocXO",
+          "coupelles de chocolat au lait et pistache",
+          "420 g"
+        ]
+      },
+      "regular": 18.99,
+      "off": 4,
+      "price": 14.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2048486": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Doritos Collisions",
+          "fried chicken and pickle tortilla chips",
+          "655 g"
+        ],
+        "fr": [
+          "Doritos Collisions",
+          "croustilles poulet frit et cornichon",
+          "655 g"
+        ]
+      },
+      "regular": 8.99,
+      "off": 2,
+      "price": 6.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2077995": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Leclerc Célébration",
+          "mini maple leaf cookies",
+          "30 ct"
+        ],
+        "fr": [
+          "Leclerc Célébration",
+          "mini biscuits feuille d’érable",
+          "30 unités"
+        ]
+      },
+      "regular": 13.99,
+      "off": 4,
+      "price": 9.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2264172": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "High Liner",
+          "English style battered blue cod fillets",
+          "2 kg"
+        ],
+        "fr": [
+          "High Liner",
+          "filets de morue bleue panés à l’anglaise",
+          "2 kg"
+        ]
+      },
+      "regular": 27.99,
+      "off": 6,
+      "price": 21.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2849352": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Fibre 1",
+          "oats & chocolate chewy bars",
+          "35 g"
+        ],
+        "fr": [
+          "Fibre 1",
+          "barres tendres avoine et chocolat",
+          "35 g"
+        ]
+      },
+      "regular": 14.99,
+      "off": 3,
+      "price": 11.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    }
+  },
+  "feeds": {
+    "en": [
+      "c"
+    ]
+  }
+}

@@ -1,0 +1,475 @@
+{
+  "_note": "Home & more, Quebec, built 2026-11-16 from priceback.savings (read-only views).",
+  "source": "priceback.savings via social_ro views",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "audience": "fr",
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "Home & more",
+        "fr": "Maison et plus"
+      },
+      "items": [
+        "5161251",
+        "1929733",
+        "1560100",
+        "1929739",
+        "2047587",
+        "2130150",
+        "2052553",
+        "4082311",
+        "1851559",
+        "1739985",
+        "1851555",
+        "1851550",
+        "1851686",
+        "5134800",
+        "5134804",
+        "5134801",
+        "5134802",
+        "5134803"
+      ]
+    }
+  ],
+  "items": {
+    "1560100": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Dinoflex",
+          "interlocking floor tiles",
+          "10 ct"
+        ],
+        "fr": [
+          "Dinoflex",
+          "dalles de plancher emboîtables",
+          "10 unités"
+        ]
+      },
+      "regular": 59.99,
+      "off": 12,
+      "price": 47.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1739985": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "SYLVANIA",
+          "20 twinkling icicle lights, white"
+        ],
+        "fr": [
+          "SYLVANIA",
+          "20 glaçons scintillants, blanc"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1851550": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "SYLVANIA",
+          "C9 multi LED Christmas lights",
+          "50 ct"
+        ],
+        "fr": [
+          "SYLVANIA",
+          "lumières de Noël C9 DEL multicolores",
+          "50 unités"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1851555": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "SYLVANIA",
+          "C6 LED lights, white",
+          "2 ct"
+        ],
+        "fr": [
+          "SYLVANIA",
+          "lumières C6 DEL, blanc",
+          "2 unités"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1851559": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Stay-Lit",
+          "LED C6 light set",
+          "100 ct"
+        ],
+        "fr": [
+          "Stay-Lit",
+          "jeu de lumières C6 à DEL",
+          "100 unités"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1851686": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "rear projection snowman décor"
+        ],
+        "fr": [
+          "bonhomme de neige à projection arrière"
+        ]
+      },
+      "regular": 19.99,
+      "off": 5,
+      "price": 14.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1929733": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "LED lighted penguin",
+          "1.5 m (5 ft)"
+        ],
+        "fr": [
+          "pingouin lumineux à DEL",
+          "1,5 m (5 pi)"
+        ]
+      },
+      "regular": 199.99,
+      "off": 50,
+      "price": 149.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1929739": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "wooden LED advent calendar"
+        ],
+        "fr": [
+          "calendrier de l’Avent en bois à DEL"
+        ]
+      },
+      "regular": 29.99,
+      "off": 10,
+      "price": 19.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2047587": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Mr. Christmas",
+          "LED infinity Christmas tree decoration"
+        ],
+        "fr": [
+          "Mr. Christmas",
+          "sapin de Noël infini à DEL"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10,
+      "price": 39.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2052553": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Mytagalongs",
+          "backpack"
+        ],
+        "fr": [
+          "Mytagalongs",
+          "sac à dos"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6,
+      "price": 23.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2130150": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Huggies Natural Care Plus",
+          "wipes",
+          "1080 ct"
+        ],
+        "fr": [
+          "Huggies Natural Care Plus",
+          "lingettes",
+          "1080 unités"
+        ]
+      },
+      "regular": 28.99,
+      "off": 7.5,
+      "price": 21.49,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "4082311": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "tapestry kitchen mat"
+        ],
+        "fr": [
+          "tapis de cuisine style tapisserie"
+        ]
+      },
+      "regular": 14.99,
+      "off": 5,
+      "price": 9.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "5134800": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Tahari",
+          "women’s sherpa ¼ zip pullover",
+          "Small"
+        ],
+        "fr": [
+          "Tahari",
+          "pull sherpa ¼ zip, femmes",
+          "Petit"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "5134801": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Tahari",
+          "women’s sherpa ¼ zip pullover",
+          "Medium"
+        ],
+        "fr": [
+          "Tahari",
+          "pull sherpa ¼ zip, femmes",
+          "Moyen"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "5134802": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Tahari",
+          "women’s sherpa ¼ zip pullover",
+          "Large"
+        ],
+        "fr": [
+          "Tahari",
+          "pull sherpa ¼ zip, femmes",
+          "Grand"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "5134803": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Tahari",
+          "women’s sherpa ¼ zip pullover",
+          "X-Large"
+        ],
+        "fr": [
+          "Tahari",
+          "pull sherpa ¼ zip, femmes",
+          "TG"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "5134804": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Tahari",
+          "women’s sherpa ¼ zip pullover",
+          "XXL"
+        ],
+        "fr": [
+          "Tahari",
+          "pull sherpa ¼ zip, femmes",
+          "TTG"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "5161251": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Downy Unstopables",
+          "fresh in-wash scent booster beads",
+          "1.13 kg"
+        ],
+        "fr": [
+          "Downy Unstopables",
+          "billes parfumées pour la lessive, frais",
+          "1,13 kg"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-11-19",
+      "seen": "2026-11-16",
+      "provinces": [
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    }
+  },
+  "feeds": {
+    "fr": [
+      "c"
+    ]
+  }
+}

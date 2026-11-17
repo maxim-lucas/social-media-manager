@@ -1,0 +1,556 @@
+{
+  "_note": "Grocery, outside Quebec, built 2026-11-16 from priceback.savings (read-only views).",
+  "source": "priceback.savings via social_ro views",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "audience": "en",
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "Grocery",
+        "fr": "Épicerie"
+      },
+      "items": [
+        "417766",
+        "1859994",
+        "4145965",
+        "1218715",
+        "7175722",
+        "2056667",
+        "2041384",
+        "1791636",
+        "20994",
+        "1448167",
+        "170600",
+        "5428146",
+        "1974109",
+        "2035752",
+        "1998448",
+        "2082687",
+        "402498",
+        "168035"
+      ]
+    }
+  ],
+  "items": {
+    "20994": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Cambozola cheese",
+          "400 g"
+        ],
+        "fr": [
+          "fromage Cambozola",
+          "400 g"
+        ]
+      },
+      "regular": 11.99,
+      "off": 3,
+      "price": 8.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NS",
+        "ON"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "168035": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Balderson",
+          "double smoked cheddar",
+          "500 g"
+        ],
+        "fr": [
+          "Balderson",
+          "cheddar doublement fumé",
+          "500 g"
+        ]
+      },
+      "regular": 13.89,
+      "off": 3,
+      "price": 10.89,
+      "exp": "2026-11-29",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "170600": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Hellmann’s",
+          "real mayonnaise",
+          "1.8 L"
+        ],
+        "fr": [
+          "Hellmann’s",
+          "vraie mayonnaise",
+          "1,8 L"
+        ]
+      },
+      "regular": 10.99,
+      "off": 2.5,
+      "price": 8.49,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "402498": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Bridor",
+          "pre-proofed butter croissant",
+          "70 g"
+        ],
+        "fr": [
+          "Bridor",
+          "croissants au beurre pré-levés",
+          "70 g"
+        ]
+      },
+      "regular": 16.99,
+      "off": 4,
+      "price": 12.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "417766": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Kirkland Signature",
+          "ginger cookies",
+          "1.1 kg"
+        ],
+        "fr": [
+          "Kirkland Signature",
+          "biscuits au gingembre",
+          "1,1 kg"
+        ]
+      },
+      "regular": 9.99,
+      "off": 2,
+      "price": 7.99,
+      "exp": "2026-11-19",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1218715": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Nutella & GO",
+          "hazelnut spread and breadsticks",
+          "52 g"
+        ],
+        "fr": [
+          "Nutella & GO",
+          "tartinade et bâtonnets de pain",
+          "52 g"
+        ]
+      },
+      "regular": 18.99,
+      "off": 4,
+      "price": 14.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1448167": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Plats du Chef",
+          "puff pastry assortment",
+          "792 g"
+        ],
+        "fr": [
+          "Plats du Chef",
+          "assortiment de bouchées feuilletées",
+          "792 g"
+        ]
+      },
+      "regular": 14.99,
+      "off": 3,
+      "price": 11.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1791636": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Saputo",
+          "sliced Havarti cheese",
+          "750 g"
+        ],
+        "fr": [
+          "Saputo",
+          "havarti en tranches",
+          "750 g"
+        ]
+      },
+      "regular": 13.99,
+      "off": 3,
+      "price": 10.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1859994": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "BOOST",
+          "high protein meal replacement",
+          "chocolate, 237 mL"
+        ],
+        "fr": [
+          "BOOST",
+          "substitut de repas protéiné",
+          "chocolat, 237 ml"
+        ]
+      },
+      "regular": 44.99,
+      "off": 10,
+      "price": 34.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1974109": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Ho-Ya",
+          "naturally brewed soy sauce",
+          "1 L"
+        ],
+        "fr": [
+          "Ho-Ya",
+          "sauce soya brassée naturellement",
+          "1 L"
+        ]
+      },
+      "regular": 8.49,
+      "off": 2,
+      "price": 6.49,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1998448": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Dunster’s",
+          "sugar crescent donuts",
+          "1 kg"
+        ],
+        "fr": [
+          "Dunster’s",
+          "beignes croissant au sucre",
+          "1 kg"
+        ]
+      },
+      "regular": 9.99,
+      "off": 2,
+      "price": 7.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NS",
+        "ON"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2035752": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Dempster’s",
+          "everything protein bagels",
+          "450 g"
+        ],
+        "fr": [
+          "Dempster’s",
+          "bagels protéinés tout garni",
+          "450 g"
+        ]
+      },
+      "regular": 7.99,
+      "off": 2,
+      "price": 5.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2041384": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Wafflemeister",
+          "waffle bites",
+          "700 g"
+        ],
+        "fr": [
+          "Wafflemeister",
+          "bouchées de gaufre",
+          "700 g"
+        ]
+      },
+      "regular": 13.99,
+      "off": 3,
+      "price": 10.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2056667": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Chokovia",
+          "nutcrackers",
+          "630 g"
+        ],
+        "fr": [
+          "Chokovia",
+          "casse-noisettes au chocolat",
+          "630 g"
+        ]
+      },
+      "regular": 17.99,
+      "off": 4,
+      "price": 13.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2082687": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Takis Fuego",
+          "rolled tortilla chips",
+          "700 g"
+        ],
+        "fr": [
+          "Takis Fuego",
+          "croustilles de tortilla roulées",
+          "700 g"
+        ]
+      },
+      "regular": 6.99,
+      "off": 2,
+      "price": 4.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NS",
+        "ON"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "4145965": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "M&M’s",
+          "peanut chocolate candies",
+          "1.37 kg"
+        ],
+        "fr": [
+          "M&M’s",
+          "bonbons au chocolat et arachides",
+          "1,37 kg"
+        ]
+      },
+      "regular": 19.99,
+      "off": 4,
+      "price": 15.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "5428146": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Dare",
+          "Bear Paws chocolate chip cookies",
+          "40 ct"
+        ],
+        "fr": [
+          "Dare",
+          "biscuits Pattes d’ours aux pépites de chocolat",
+          "40 unités"
+        ]
+      },
+      "regular": 12.49,
+      "off": 2.5,
+      "price": 9.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "7175722": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Sunrise Farms",
+          "chicken strips",
+          "1.2 kg"
+        ],
+        "fr": [
+          "Sunrise Farms",
+          "lanières de poulet",
+          "1,2 kg"
+        ]
+      },
+      "regular": 18.99,
+      "off": 4,
+      "price": 14.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    }
+  },
+  "feeds": {
+    "en": [
+      "c"
+    ]
+  }
+}
