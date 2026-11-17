@@ -20,14 +20,24 @@ const ctx = (rows, extra = {}) => {
 };
 const names = (plan) => plan.files.map((f) => f.name).sort();
 
-test("English and French week files are built separately, one language each", () => {
+test("the same items go out in English (outside Quebec) and in French (Quebec), Quebec included in availability", () => {
   const plan = planWeek(ctx([1, 2, 3].flatMap((n) => everywhere(String(n), 5 + n))));
   assert.deepStrictEqual(names(plan), ["2026-11-16-en-grocery", "2026-11-16-fr-grocery"]);
   const en = plan.files.find((f) => f.name.endsWith("en-grocery")).data;
   assert.deepStrictEqual(en.feeds, { en: ["c"] });
   assert.strictEqual(en.audience, "en");
   assert.deepStrictEqual(Object.keys(en.items).sort(), ["1", "2", "3"]);
-  assert.ok(!en.items["1"].provinces.includes("QC"));
+  assert.ok(en.items["1"].provinces.includes("QC"));
+  const fr = plan.files.find((f) => f.name.endsWith("fr-grocery")).data;
+  assert.deepStrictEqual(fr.carousels[0].items, en.carousels[0].items);
+  assert.deepStrictEqual(fr.feeds, { fr: ["c"] });
+});
+
+test("a saving in Quebec and other provinces stays in the national carousels", () => {
+  const rows = [...[1, 2, 3].flatMap((n) => ["QC", "ON"].map((p) => row("qo" + n, p, 20)))];
+  const plan = planWeek(ctx(rows));
+  assert.deepStrictEqual(Object.keys(plan.files.find((f) => f.name.endsWith("fr-grocery")).data.items).sort(), ["qo1", "qo2", "qo3"]);
+  assert.ok(!plan.files.some((f) => /regional-qc/.test(f.name)));
 });
 
 test("item fields match the renderer: price, off, exp, provinces, exceptions", () => {
@@ -69,17 +79,18 @@ test("already posted items are left out", () => {
   assert.deepStrictEqual(Object.keys(plan.files.find((f) => f.name.endsWith("en-grocery")).data.items).sort(), ["2", "3", "4"]);
 });
 
-test("at most 18 items, biggest tier then soonest end then biggest saving", () => {
+test("at most 18 items, the biggest saving first", () => {
   const rows = Array.from({ length: 20 }, (_, i) => everywhere(String(100 + i), 1 + i)).flat();
   // slide order is the carousel's items array: object keys with numeric names are always sorted ascending by JS
   const items = planWeek(ctx(rows)).files.find((f) => f.name.endsWith("en-grocery")).data.carousels[0].items;
   assert.strictEqual(items.length, 18);
   assert.strictEqual(items[0], "119");
+  assert.deepStrictEqual(items, [...items].sort((a, b) => Number(b) - Number(a)));
   assert.ok(!items.includes("100") && !items.includes("101"));
 });
 
 test("Business Centre savings are their own grocery-only carousel, never mixed with the warehouse", () => {
-  const bc = (sku) => EN8.map((p) => row(sku, p, 8, { source: "sameday_business_centre" }));
+  const bc = (sku) => [...EN8, "QC"].map((p) => row(sku, p, 8, { source: "sameday_business_centre" }));
   const rows = [...[1, 2, 3].flatMap((n) => bc("b" + n)), ...[1, 2, 3].flatMap((n) => everywhere("w" + n, 5))];
   const c = ctx(rows);
   c.categories.b1 = c.categories.b2 = c.categories.b3 = { cat: "grocery" };

@@ -1,16 +1,19 @@
 /**
- * model.js: which savings go on a slide, in which order, at which amount (Maxim, 2026-11-16).
+ * model.js: which savings go on a slide, in which order, at which amount (Maxim, 2026-11-16, revised the same night).
  *
- *  - Audience en = the 8 provinces outside Quebec, fr = Quebec only.
- *  - tier 1: the saving exists in every province of the audience; tier 2: it includes a priority province
- *    (Ontario for English); tier 3: anything else.
- *  - Headline amount: the amount held by the most provinces; a tie goes to the amount a priority province holds,
- *    then to the larger. Provinces with another amount are `exceptions`. Never "up to".
- *  - Order: tier, soonest end date, biggest saving.
+ *  - One audience: all 9 provinces, Quebec included. A saving's availability is shown across all 9 (the province strip).
+ *    Posted in English for the 8 provinces outside Quebec and in French for Quebec, with the same items.
+ *  - Order: the biggest saving first, always. Ties go to the soonest end date.
+ *  - Headline amount: the amount held by the most provinces; a tie goes to the amount a priority province holds
+ *    (Ontario, Quebec), then to the larger. Provinces with another amount are `exceptions`. Never "up to".
+ *  - tier 1: the saving exists in every province; tier 2: it includes a priority province; tier 3: anything else.
+ *    Tier no longer orders slides; it only tells how widely a saving is available.
+ *  - Only Quebec-exclusive savings are kept apart (the hidden savings of Quebec). Single-region savings of the other
+ *    provinces are the Saturday regional carousel (week.js).
  */
+const ALL_PROVINCES = ["ON", "QC", "BC", "AB", "MB", "SK", "NB", "NS", "NL"];
 const AUDIENCES = {
-  en: { id: "en", provinces: ["ON", "BC", "AB", "MB", "SK", "NB", "NS", "NL"], priority: ["ON"] },
-  fr: { id: "fr", provinces: ["QC"], priority: ["QC"] },
+  all: { id: "all", provinces: ALL_PROVINCES, priority: ["ON", "QC"] },
 };
 
 const order = (list) => [...list].sort();
@@ -58,7 +61,7 @@ function buildAudience(rows, audience, { today }) {
       needsFrenchReview: !frName,
     });
   }
-  return items.sort((a, b) => a.tier - b.tier || (a.validUntil < b.validUntil ? -1 : a.validUntil > b.validUntil ? 1 : 0) || b.amount - a.amount);
+  return items.sort((a, b) => b.amount - a.amount || (a.validUntil < b.validUntil ? -1 : a.validUntil > b.validUntil ? 1 : 0) || (a.sku < b.sku ? -1 : 1));
 }
 
-module.exports = { buildAudience, AUDIENCES };
+module.exports = { buildAudience, AUDIENCES, ALL_PROVINCES };

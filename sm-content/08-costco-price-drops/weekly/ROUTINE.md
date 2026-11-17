@@ -60,7 +60,8 @@ open issue has that title; add a comment instead), stop, and leave master untouc
    minimum, plus any slide whose strip shows a small province amount). Then ask a separate reviewer agent (Agent tool,
    fresh context) to score the carousel against `weekly/RUBRIC.md`; it gets the slides and the caption, not your
    reasoning. Apply its fixes, re-render, re-score. Use `scripts/weekly/lib/score.js` (`rubricTotal`, `gate`): at most
-   3 rounds; a carousel under 9.5 after round 3 is removed from this week (delete its PNG folder) and listed in the PR.
+   3 rounds (use all three before giving up on a carousel; a defect in the renderer or house design is fixed in
+   `scenes/render.js` on this branch, never left as a reason to stop); a carousel under 9.5 after round 3 is removed from this week (delete its PNG folder) and listed in the PR.
    Save every round's sub-scores to `<pack>/weekly/<monday>/scores.json`.
 10. **Reels** (warehouse carousels only, one basket reel per language per carousel): `node
     <pack>/reels/pick-track.js <monday> --record` prints the approved track or `null`; with `null` build the no-music

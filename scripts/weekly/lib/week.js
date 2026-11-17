@@ -63,7 +63,7 @@ function planWeek({ rows: allRows, monday, today, categories, tags, posted, phot
     if (picked.length < MIN_ITEMS) return skipped.push({ key: `${aud.id}-${key}`, reason: `only ${picked.length} usable items (minimum ${MIN_ITEMS})` });
     const catKey = key.replace(/^bc-/, "");
     const data = {
-      _note: `${LABELS[catKey].en}, ${aud.id === "fr" ? "Quebec" : "outside Quebec"}, built ${today} from priceback.savings (read-only views).`,
+      _note: `${LABELS[catKey].en}, ${aud.id === "fr" ? "French, for Quebec" : "English, for the provinces outside Quebec"}, built ${today} from priceback.savings (read-only views).`,
       source: "priceback.savings via social_ro views",
       provinceStrip: true, endSlide: true, coverStyle: "claim", bigClaim: true, audience: aud.id,
       ...(bc ? { businessCentre: true } : {}),
@@ -82,43 +82,41 @@ function planWeek({ rows: allRows, monday, today, categories, tags, posted, phot
   for (const channel of ["warehouse", "bc"]) {
     const bc = channel === "bc";
     const chRows = rows.filter((r) => BC_SOURCES.has(r.source) === bc);
-    const everywhere = new Map(); // sku -> every province it has a saving in, across all 9
-    for (const r of chRows) (everywhere.get(r.sku) || everywhere.set(r.sku, new Set()).get(r.sku)).add(r.province);
+    const aud = AUDIENCES.all;
+    const usable = [];
+    for (const it of buildAudience(chRows, aud, { today })) {
+      if (posted.has(it.sku)) continue;
+      const cat = categories[it.sku];
+      if (!cat) { needs.category.add(it.sku); continue; }
+      if (!tags[it.sku]) { needs.tags.add(it.sku); continue; }
+      if (!photos.has(it.sku)) { needs.photo.add(it.sku); continue; }
+      const regular = regularFor(chRows, it, aud);
+      if (regular == null) { needs.regular.add(it.sku); continue; }
+      if (it.needsFrenchReview) needs.frenchReview.add(it.sku);
+      usable.push({ ...it, cat: cat.cat, regular });
+    }
 
-    for (const aud of [AUDIENCES.en, AUDIENCES.fr]) {
-      const usable = [];
-      for (const it of buildAudience(chRows, aud, { today })) {
-        if (posted.has(it.sku)) continue;
-        const cat = categories[it.sku];
-        if (!cat) { needs.category.add(it.sku); continue; }
-        if (!tags[it.sku]) { needs.tags.add(it.sku); continue; }
-        if (!photos.has(it.sku)) { needs.photo.add(it.sku); continue; }
-        const regular = regularFor(chRows, it, aud);
-        if (regular == null) { needs.regular.add(it.sku); continue; }
-        if (aud.id === "fr" && it.needsFrenchReview) needs.frenchReview.add(it.sku);
-        usable.push({ ...it, cat: cat.cat, regular });
-      }
+    // Kept apart: Quebec-exclusive savings (hidden in Quebec) and, outside Quebec, single-region savings.
+    const qcOnly = (it) => it.provinces.length === 1 && it.provinces[0] === "QC";
+    const regional = (it) => !qcOnly(it) && regionOf(it.provinces) !== null;
+    const main = bc ? usable : usable.filter((it) => !qcOnly(it) && !regional(it));
 
-      const hidden = (it) =>
-        aud.id === "fr" ? everywhere.get(it.sku).size === 1 : it.tier > 1 && regionOf(it.provinces) !== null;
-      const main = bc ? usable : usable.filter((it) => !hidden(it));
-
+    // The same items in both languages: English for the 8 provinces outside Quebec, French for Quebec.
+    for (const lang of ["en", "fr"]) {
+      const L = { id: lang, priority: aud.priority };
       for (const cat of bc ? ["grocery"] : ["tech", "grocery", "home"]) {
-        emit(aud, bc ? `bc-${cat}` : cat, main.filter((i) => i.cat === cat), { bc });
+        emit(L, bc ? `bc-${cat}` : cat, main.filter((i) => i.cat === cat), { bc });
       }
+    }
 
-      if (!bc) {
-        if (aud.id === "fr") {
-          emit(aud, "regional-qc", usable.filter(hidden));
-        } else {
-          const pools = {};
-          for (const it of usable.filter(hidden)) (pools[regionOf(it.provinces)] ||= []).push(it);
-          const sizes = Object.fromEntries(Object.entries(pools).map(([k, v]) => [k, v.length]));
-          const region = chooseRegion(sizes, weekIndex);
-          if (region) emit(aud, `regional-${region}`, pools[region]);
-          else skipped.push({ key: "en-regional", reason: `no region has ${MIN_ITEMS} hidden items (${JSON.stringify(sizes)})` });
-        }
-      }
+    if (!bc) {
+      emit({ id: "fr", priority: aud.priority }, "regional-qc", usable.filter(qcOnly));
+      const pools = {};
+      for (const it of usable.filter(regional)) (pools[regionOf(it.provinces)] ||= []).push(it);
+      const sizes = Object.fromEntries(Object.entries(pools).map(([k, v]) => [k, v.length]));
+      const region = chooseRegion(sizes, weekIndex);
+      if (region) emit({ id: "en", priority: aud.priority }, `regional-${region}`, pools[region]);
+      else skipped.push({ key: "en-regional", reason: `no region has ${MIN_ITEMS} hidden items (${JSON.stringify(sizes)})` });
     }
   }
 
