@@ -232,7 +232,7 @@ function placeholder(sku, item) {
 // ── Markup ──────────────────────────────────────────────────────────────────
 function tag(lang, sku, item, { compact = false } = {}) {
   const t = L[lang];
-  return `<div class="ptag${compact ? " compact" : ""}">
+  return `<div class="ptag${compact ? " compact" : ""}${item.tag[lang].length >= 4 || item.tag[lang].join(" ").length > 40 ? " l4" : ""}">
     <div class="num">${sku}</div>
     <div class="row"><div class="name">${item.tag[lang].map(esc).join("<br>")}</div>
       <div><div class="reg">${num(lang, item.regular)}</div><div class="off">-${num(lang, item.off)}</div></div></div>
@@ -324,8 +324,6 @@ function endSlide(lang, f, badges) {
     <div class="emore"><span>${esc(t.endMore)}</span></div>
     <div class="ecard"><div class="pb"><img src="${MARK}">PriceBack</div>
       <p>${esc(t.endHow)}</p><p class="pl">${esc(t.endPlans)}</p></div>
-    <div class="ecta">${esc(t.endCta)}</div>
-    <div class="ebadges"><img src="${badges.apple}"><img src="${badges.google}"></div>
     <div class="claim"><div class="a">${t.paidMany}<br><b>${t.claimMany}</b></div>${dots(f.dots)}</div>
   </div></body></html>`;
 }
@@ -466,6 +464,8 @@ const CC = {
     claimUpTo: (n) => `CLAIM UP TO ${money("en", n, true)} BACK`,
     bizOnly: "Only in Costco Business Centres",
     total: (n) => [`Total possible back: ${money("en", n, true)}`, "if you bought them"],
+    top1: (name, off) => `Biggest drop: ${name}, ${money("en", off, true)} off`,
+    prov: (n, total) => (n === total ? `All ${total} in all 9 provinces` : `${n} of ${total} in all 9 provinces`),
   },
   fr: {
     top: "Baisses Costco Canada",
@@ -479,6 +479,8 @@ const CC = {
     claimUpTo: (n) => `RÉCLAMEZ JUSQU'À ${money("fr", n, true)}`,
     bizOnly: "Seulement dans les centres d'affaires Costco",
     total: (n) => [`Total à récupérer : ${money("fr", n, true)}`, "si vous les avez achetés"],
+    top1: (name, off) => `Plus grosse baisse : ${name}, ${money("fr", off, true)} de rabais`,
+    prov: (n, total) => (n === total ? `Les ${total} dans les 9 provinces` : `${n} de ${total} dans les 9 provinces`),
   },
 };
 function claimCover(lang, f, badges) {
@@ -503,6 +505,8 @@ function claimCover(lang, f, badges) {
       <div class="cc-new">${esc(c.fresh)}</div>
       <div class="cc-until">${esc(until)}</div>
       ${when}
+      <div class="cc-prod">${esc(c.top1(items[0][1].tag[lang].slice(0, 2).join(" "), items[0][1].off))}</div>
+      <div class="cc-prov">${esc(c.prov(items.filter(([, i]) => ["ON", "QC", "BC", "AB", "MB", "SK", "NB", "NS", "NL"].every((p) => (i.provinces || []).includes(p))).length, items.length))}</div>
     </div>
     <div class="cc-count">${esc(c.count(items.length))}</div>
     <div class="cc-total">${c.total(sum).map(esc).join("<br>")}</div>
@@ -528,7 +532,9 @@ const CLAIM_CSS = `
 .fr .cc-date.rng{font-size:84px}
 .cc-count{position:absolute;left:40px;right:40px;top:780px;text-align:center;font-weight:900;font-size:124px;color:#fff;background:var(--blue);border-radius:70px;padding:12px 0;letter-spacing:-.5px;box-shadow:inset 0 -8px 0 var(--red)}
 .cc .disc{bottom:190px}
-.cc-total{position:absolute;left:40px;right:40px;top:968px;text-align:center;font-weight:900;font-size:44px;color:#111;letter-spacing:-.5px}
+.cc-prod{margin-top:26px;font-weight:900;font-size:34px;line-height:1.15;color:#111;letter-spacing:-.3px}
+.cc-prov{margin-top:8px;font-weight:800;font-size:30px;color:var(--blue)}
+.cc-total{position:absolute;left:40px;right:40px;top:992px;text-align:center;font-weight:900;font-size:44px;color:#111;letter-spacing:-.5px}
 .fr .cc-total{font-size:40px}
 .fr .cc-count{font-size:104px}
 .cc-total{line-height:1.12}
@@ -558,6 +564,7 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
 .s .ptag{left:250px;right:60px;top:600px;padding:18px 30px 14px;transform:rotate(-1.5deg)}
 .ptag .num{font-size:44px}
 .ptag .name{font-size:34px;text-transform:uppercase;line-height:1.1;letter-spacing:.5px}
+.ptag.l4 .name{font-size:28px;line-height:1.05}
 .ptag .row{display:flex;justify-content:space-between;align-items:flex-end;margin-top:6px}
 .hl{background:var(--yel);font-family:Arial,sans-serif;font-weight:700;font-size:22px;padding:0 6px}
 .reg{text-align:right;font-size:38px;line-height:1}
@@ -574,12 +581,12 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
 .strip i.exc{flex-direction:column;line-height:1;font-size:22px}
 .strip i.exc small{font-size:15px;font-weight:700;letter-spacing:0;color:var(--yel);margin-top:2px}
 .bzp .photo.hero{height:296px}.bzp .strip{top:494px}
-.bzp .promo{top:1010px}.bzp .disc{font-size:14px;line-height:1.25;bottom:176px;left:40px;right:40px}
+.bzp .promo{top:1010px}.bzp .disc{font-size:19px;line-height:1.2;bottom:176px;left:40px;right:40px}
 .legend{position:absolute;left:146px;right:60px;top:556px;font-size:18px;font-weight:800;color:#111;display:flex;align-items:center;gap:8px}
 .legend .k{display:inline-block;width:22px;height:16px;border-radius:4px;margin-left:10px}.legend .k:first-child{margin-left:0}
 .legend .k.on{background:var(--blue)}.legend .k.bz{background:var(--yel);border:2px solid #111}
 .strip i.off{background:#fff;color:#c3c7cd;border:2px dashed #d4d7dc;text-decoration:line-through}
-.note .promo{top:1016px}.note .disc{font-size:14px;line-height:1.25;left:40px;right:40px;bottom:178px}
+.note .promo{top:1016px}.note .disc{font-size:19px;line-height:1.2;left:40px;right:40px;bottom:178px}
 .burst{position:absolute;left:52px;top:640px;width:200px;height:200px;border-radius:50%;background:var(--red);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;transform:rotate(-10deg);box-shadow:0 12px 30px rgba(0,0,0,.25);border:6px solid #fff;text-align:center}
 .burst .x{font-size:60px;line-height:1;white-space:nowrap}.burst .x.long{font-size:42px}.burst .y{font-size:20px;letter-spacing:2px}
 .card{position:absolute;top:220px;height:800px;background:#fff;border:2px solid #e5e7eb;border-radius:10px;overflow:hidden}
@@ -589,7 +596,7 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
 .card .reg{font-size:30px}.card .off{font-size:32px}.card .par{font-size:14px}
 .card .big{font-size:112px;letter-spacing:-2px}
 .save{position:absolute;left:18px;right:18px;bottom:18px;background:var(--red);color:#fff;text-align:center;font-weight:900;font-size:28px;padding:14px 0;border-radius:6px}
-.disc{position:absolute;left:60px;right:60px;bottom:182px;font-size:16px;line-height:1.35;color:#6b7280;text-align:center}
+.disc{position:absolute;left:40px;right:40px;bottom:180px;font-size:21px;line-height:1.2;color:#6b7280;text-align:center}
 .claim{position:absolute;left:0;right:0;bottom:0;height:170px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 60px}
 .claim .a{font-size:30px;font-weight:800;line-height:1.3}
 .fr .claim .a{font-size:27px}
@@ -615,24 +622,24 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
 .dots{position:absolute;left:0;right:0;bottom:14px;display:flex;justify-content:center;align-items:center;gap:10px}
 .dots i{width:12px;height:12px;border-radius:6px;background:rgba(255,255,255,.45)}
 .dots i.on{width:34px;background:#fff}
-.ehead{position:absolute;left:60px;right:60px;top:262px;color:var(--blue);font-weight:900;font-size:110px;line-height:1;letter-spacing:-3px}
+.ehead{position:absolute;left:60px;right:60px;top:318px;color:var(--blue);font-weight:900;font-size:110px;line-height:1;letter-spacing:-3px}
 .fr .ehead{font-size:100px}
 .fr .esub{font-size:31px}
-.esub{position:absolute;left:60px;right:60px;top:500px;font-size:38px;font-weight:800;color:#111}
-.emore{position:absolute;left:60px;right:60px;top:562px;font-size:31px;white-space:nowrap;letter-spacing:-.3px;font-weight:900;color:#111;line-height:1.25}
+.esub{position:absolute;left:60px;right:60px;top:560px;font-size:38px;font-weight:800;color:#111}
+.emore{position:absolute;left:60px;right:60px;top:630px;font-size:29px;white-space:normal;letter-spacing:-.3px;font-weight:900;color:#111;line-height:1.25}
 .emore span{background:var(--yel);padding:2px 10px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .fr .emore{font-size:27px;white-space:nowrap;letter-spacing:-.3px}
-.ecard{position:absolute;left:60px;right:60px;top:628px;background:#0d3d28;border-radius:22px;padding:26px 36px;color:#fff}
+.ecard{position:absolute;left:60px;right:60px;top:760px;background:#0d3d28;border-radius:22px;padding:34px 40px;color:#fff}
 .ecard .pb{background:transparent;color:#fff;padding:0;font-size:44px;margin-bottom:16px}
 .ecard .pb img{width:66px;height:66px;border-radius:14px}
-.ecard p{font-size:29px;line-height:1.35;font-weight:700}
+.ecard p{font-size:32px;line-height:1.35;font-weight:700}
 .ecard p.pl{margin-top:14px;color:#7fe0a8;font-weight:800}
 .fr .ecard p{font-size:26px}
 .ecta{position:absolute;left:60px;right:60px;top:985px;text-align:center;font-weight:900;font-size:26px;letter-spacing:3px;color:#111}
 .ebadges{position:absolute;left:60px;right:60px;top:1028px;display:flex;justify-content:center;gap:28px}
 .ebadges img{height:96px;width:auto}
 .end .claim{justify-content:flex-start}
-.kick{position:absolute;left:60px;top:196px;background:var(--yel);color:#111;font-weight:900;font-size:40px;letter-spacing:2px;padding:4px 16px;transform:rotate(-1.5deg)}
+.kick{position:absolute;left:60px;top:250px;background:var(--yel);color:#111;font-weight:900;font-size:40px;letter-spacing:2px;padding:4px 16px;transform:rotate(-1.5deg)}
 .head{position:absolute;left:60px;right:60px;top:262px;color:var(--blue);font-weight:900;font-size:92px;line-height:1;letter-spacing:-2px;white-space:nowrap}
 .fr .head{font-size:76px}
 .grid{position:absolute;left:60px;right:60px;top:470px;height:460px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:16px}

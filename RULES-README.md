@@ -315,10 +315,14 @@ Source of truth for plans, pricing and the guarantee: https://priceback.ca/.
 Maxim is the owner; these rules come from him and apply to the weekly cloud routine and to anyone building the
 week by hand. Design: `docs/weekly-automation-design.md`. Plan: `docs/weekly-automation-plan.md`.
 
-- **Language follows the province.** English posts cover the 8 provinces outside Quebec (ON, BC, AB, MB, SK, NB, NS,
-  NL). French posts cover Quebec only. No more EN + FR copies of the same post. Business Centre follows the same split.
-- **Priority of a slide's items.** (1) Savings common to every province of the audience, (2) then Ontario for English
-  (Quebec is the whole French audience), (3) then the rest. Inside a tier: soonest end date first, then biggest saving.
+- **One national carousel, two languages (Maxim, 2026-11-16, revised).** The carousel for "all provinces" covers all
+  9 provinces, Quebec included: availability is judged across all 9 (the province strip shows each one). The same items
+  are posted in English for the 8 provinces outside Quebec and in French for Quebec. Business Centre follows the same split.
+- **Order: the biggest saving first, always.** Slides are ordered by saving amount, highest first; a tie goes to the
+  soonest end date. Availability (tier) never reorders slides.
+- **Kept apart: only exclusives.** A saving that exists only in Quebec goes to the Quebec hidden-savings carousel (French).
+  A saving that exists only inside one region of the other provinces goes to the Saturday regional carousel. A saving in
+  Quebec and other provinces stays in the national carousel.
 - **No "up to $X".** The main figure is the amount in the most provinces of the item's highest tier. A province with
   another amount shows it small inside its own cell of the province strip ("$2" on the West's cells).
 - **Hidden savings** (offers in one region only) go to the Saturday regional carousel (West, Ontario or Atlantic, in

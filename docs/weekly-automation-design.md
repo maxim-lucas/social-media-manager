@@ -8,8 +8,8 @@ through the Meta Graph API. Everything automated; anything social media cannot d
 
 | # | Decision |
 |---|---|
-| D1 | **Keep today's post format**, but **English = the 8 provinces outside Quebec**, **French = Quebec only**. No more EN + FR copies of the same post. Same split for Business Centre. |
-| D2 | **Priority of what goes on a slide:** (1) savings common to every province of the audience, (2) then Quebec and Ontario (the biggest user bases), (3) then the rest. Biggest saving first inside each tier. |
+| D1 | **One national carousel for all 9 provinces, Quebec included**, posted in English (8 provinces outside Quebec) and French (Quebec) with the same items. Only Quebec-exclusive savings are kept apart (hidden savings of Quebec). Same split for Business Centre. *(Revised 2026-11-16.)* |
+| D2 | **Order: the biggest saving first, always** (ties: soonest end date). Availability never reorders slides. *(Revised 2026-11-16.)* |
 | D3 | **No "up to $6".** The main figure stays the common amount; a province with a different amount carries its own small amount in the province strip ("$2 only" on the West's cells). |
 | D4 | **Posting through the Graph API token.** Metricool is out. |
 | D5 | **The schedule runs in the cloud.** R2 photo paths are fixed for cloud use (section 5). |
@@ -54,7 +54,7 @@ The unit is a **product**. For an audience (EN: ON, BC, AB, MB, SK, NB, NS, NL; 
 - `headline amount`: the amount in the most provinces of its highest tier (ties: the larger).
 - `exceptions`: provinces whose amount differs. They show a small amount inside their province cell
   (`AB $2`), and the claim total never counts more than the shopper's own province would pay.
-- Order: tier, then end date (soonest first), then biggest saving.
+- Order: biggest saving first; ties go to the soonest end date (tier does not reorder).
 - Reality check from the data: only **8 of 515** products today have different amounts by province. The common
   difference is **availability** (247 of 541 offers are in all 9 provinces, 216 in regional blocks, 78 in one
   province), which the province strip already shows.
