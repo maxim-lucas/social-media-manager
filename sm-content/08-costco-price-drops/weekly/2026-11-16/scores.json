@@ -1,5 +1,33 @@
-{"en-grocery":[{"round":1,"hook":1,"clarity":1,"photos":1,"legibility":1,"language":1,"compliance":1,"cta":1,"total":10}],
-"en-home":[{"round":1,"total":9.1,"photos":0.4},{"round":2,"hook":1,"clarity":0.9,"photos":0.9,"legibility":0.9,"language":1,"compliance":1,"cta":1,"total":9.4},{"round":3,"hook":1,"clarity":1,"photos":0.85,"legibility":0.9,"language":1,"compliance":1,"cta":1,"total":9.6}],
-"en-regional-west":[{"round":1,"hook":0.9,"clarity":1,"photos":0.8,"legibility":0.9,"language":1,"compliance":1,"cta":1,"total":9.35},{"round":2,"hook":1,"clarity":1,"photos":0.9,"legibility":0.9,"language":1,"compliance":1,"cta":1,"total":9.7}],
-"fr-grocery":[{"round":1,"hook":1,"clarity":1,"photos":1,"legibility":0.7,"language":1,"compliance":1,"cta":1,"total":9.55},{"round":2,"hook":1,"clarity":1,"photos":1,"legibility":0.9,"language":0.95,"compliance":1,"cta":1,"total":9.8}],
-"fr-home":[{"round":1,"hook":0.9,"clarity":1,"photos":0.3,"legibility":0.7,"language":0.9,"compliance":1,"cta":1,"total":8.2},{"round":2,"hook":1,"clarity":1,"photos":1,"legibility":0.8,"language":1,"compliance":1,"cta":1,"total":9.7},{"round":3,"hook":1,"clarity":1,"photos":0.8,"legibility":0.8,"language":1,"compliance":1,"cta":1,"total":9.4,"removed":true}]}
+{
+ "en-grocery": [
+  {
+   "round": 3,
+   "total": 9.85
+  }
+ ],
+ "fr-grocery": [
+  {
+   "round": 3,
+   "total": 9.53
+  }
+ ],
+ "en-home": [
+  {
+   "round": 3,
+   "total": 9.58
+  }
+ ],
+ "fr-home": [
+  {
+   "round": 3,
+   "total": 9.53
+  }
+ ],
+ "en-regional-west": [
+  {
+   "round": 4,
+   "total": 9.83
+  }
+ ],
+ "_note": "Final-round totals after the 2026-11-17 renderer and rubric fixes (rubricTotal of the reviewers' sub-scores); earlier rounds are in git history. Reels: not built this week."
+}

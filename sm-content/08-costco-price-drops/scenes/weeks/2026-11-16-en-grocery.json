@@ -16,7 +16,6 @@
       "items": [
         "1859994",
         "1025862",
-        "31111",
         "1218715",
         "2056667",
         "3374315",
@@ -31,7 +30,8 @@
         "20994",
         "168035",
         "339054",
-        "170600"
+        "170600",
+        "5284466"
       ]
     }
   ],
@@ -60,39 +60,6 @@
         "NS",
         "ON",
         "QC"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
-    "31111": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Pork back ribs",
-          "Product of Canada",
-          "1 each"
-        ],
-        "fr": [
-          "Côtes levées de dos de porc",
-          "produit du Canada",
-          "1 unité"
-        ]
-      },
-      "regular": 10.49,
-      "off": 6,
-      "price": 4.49,
-      "exp": "2026-11-22",
-      "seen": "2026-11-16",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "NB",
-        "NL",
-        "NS",
-        "ON",
-        "QC",
-        "SK"
       ],
       "bizOnly": [],
       "exceptions": {}
@@ -525,6 +492,32 @@
         "ON",
         "QC",
         "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "5284466": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Dare",
+          "molasses Bear Paws cookies",
+          "40 ct"
+        ],
+        "fr": [
+          "Dare",
+          "biscuits Bear Paws à la mélasse",
+          "40 unités"
+        ]
+      },
+      "regular": 11.49,
+      "off": 2.5,
+      "price": 8.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "QC"
       ],
       "bizOnly": [],
       "exceptions": {}

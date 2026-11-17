@@ -28,8 +28,7 @@
         "1903779",
         "1903782",
         "2022890",
-        "2903782",
-        "1915332"
+        "2903782"
       ]
     }
   ],
@@ -216,39 +215,6 @@
       "regular": 11.99,
       "off": 3.5,
       "price": 8.49,
-      "exp": "2026-11-22",
-      "seen": "2026-11-16",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "NB",
-        "NL",
-        "NS",
-        "ON",
-        "QC",
-        "SK"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
-    "1915332": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "32 Degrees",
-          "kids' heat baselayer",
-          "1 each"
-        ],
-        "fr": [
-          "32 Degrees",
-          "sous-vêtement thermique pour enfants",
-          "1 unité"
-        ]
-      },
-      "regular": 12.99,
-      "off": 3,
-      "price": 9.99,
       "exp": "2026-11-22",
       "seen": "2026-11-16",
       "provinces": [
