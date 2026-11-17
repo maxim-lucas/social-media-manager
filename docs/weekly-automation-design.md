@@ -153,8 +153,9 @@ with the small-amount province cells, the publisher's due / missed / unreachable
 1. `DATABASE_URL_SOCIAL_RO` set in the cloud environment (file in `%USERPROFILE%\.priceback-secrets\`).
 2. Meta token, Instagram and Page ids as GitHub secrets; confirm `META_GRAPH_VERSION` (default `v24.0`) and the API's
    carousel limit (`IG_CAROUSEL_MAX`, default 20) with the real token on the first dry run.
-3. `REEL_BASE_URL`: a public host for reel videos. Until then reel slots stay `needs_content`.
-4. Approved music: 8 candidates are in `sm-content/08-costco-price-drops/reels/music/CANDIDATES/` on Maxim's machine
-   (not in git); approve by adding entries to `music/APPROVED.json`.
+3. ~~`REEL_BASE_URL`~~ Done 2026-11-16: reels are committed to the weekly branch and served from the repo's raw GitHub URL (the
+   publisher's default). To move them later, set the repository variable `REEL_BASE_URL`. First dry run must confirm Meta accepts
+   raw.githubusercontent's content type for mp4.
+4. ~~Approved music~~ Done 2026-11-16: candidates 1 to 6 and 8 approved (7 refused), files in `music/approved/`.
 5. First cloud run: the routine's setup (Playwright, fonts, ffmpeg) is untested in the cloud; a failure opens an issue.
 6. Sunday how-to and Friday recap content have no generator yet; those slots stay `needs_content`.

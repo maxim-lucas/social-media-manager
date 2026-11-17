@@ -204,7 +204,11 @@ window.frame=(t)=>{
 (async () => {
   const tmp = fs.mkdtempSync("/tmp/freel-"); fs.writeFileSync(path.join(tmp, "r.html"), html);
   const wav = path.join(tmp, "m.wav"), music = cfg.music || "music_house.py";
-  if (flag !== "--silent" && flag !== "--stills") execFileSync("python3", [path.join(__dirname, music), String(DUR), wav, cuts.join(",")]);
+  // REEL_MUSIC_FILE = the approved track pick-track.js chose (music/APPROVED.json); without it the house track is synthesised.
+  if (flag !== "--silent" && flag !== "--stills") {
+    if (process.env.REEL_MUSIC_FILE) fs.copyFileSync(process.env.REEL_MUSIC_FILE, wav);
+    else execFileSync("python3", [path.join(__dirname, music), String(DUR), wav, cuts.join(",")]);
+  }
   const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
   await p.goto("file://" + path.join(tmp, "r.html")); await p.waitForTimeout(400);
   if (flag === "--stills") { for (const t of (stillsAt || "0.5,1.5,3,5.5,7.4").split(",")) { await p.evaluate((x) => window.frame(x), +t); await p.screenshot({ path: out.replace(/\.mp4$/, "") + "-" + t + ".png" }); } await b.close(); console.log(MODE, N, TOTAL, pics.map((x) => x.sku + " -" + x.off).join(", ")); return; }
