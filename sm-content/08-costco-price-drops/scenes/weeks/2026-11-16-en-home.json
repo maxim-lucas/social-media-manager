@@ -1,0 +1,626 @@
+{
+  "_note": "Home & more, English, for the provinces outside Quebec, built 2026-11-16 from priceback.savings (read-only views).",
+  "source": "priceback.savings via social_ro views",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "audience": "en",
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "Home & more",
+        "fr": "Maison et plus"
+      },
+      "items": [
+        "1929733",
+        "4444590",
+        "2049670",
+        "1560100",
+        "1929739",
+        "2047587",
+        "1929794",
+        "2130150",
+        "2052553",
+        "655360",
+        "5161251",
+        "1739985",
+        "1851550",
+        "1851555",
+        "1851559",
+        "1851686",
+        "4082311",
+        "5134800"
+      ]
+    }
+  ],
+  "items": {
+    "655360": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Webber Naturals",
+          "Osteo Joint Ease caplets",
+          "180 ct"
+        ],
+        "fr": [
+          "Webber Naturals",
+          "Osteo Joint Ease, comprimés",
+          "180 unités"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6,
+      "price": 23.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1560100": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Dinoflex",
+          "rubber interlocking floor tiles",
+          "10 ct"
+        ],
+        "fr": [
+          "Dinoflex",
+          "tuiles de plancher emboîtables en caoutchouc",
+          "10 unités"
+        ]
+      },
+      "regular": 59.99,
+      "off": 12,
+      "price": 47.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1739985": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "SYLVANIA",
+          "20 twinkling icicle lights, white",
+          "1 set"
+        ],
+        "fr": [
+          "SYLVANIA",
+          "20 lumières glaçons scintillantes, blanches",
+          "1 ensemble"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1851550": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "SYLVANIA",
+          "C9 multicolour LED Christmas lights",
+          "50 ct"
+        ],
+        "fr": [
+          "SYLVANIA",
+          "lumières de Noël DEL C9 multicolores",
+          "50 unités"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1851555": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "SYLVANIA",
+          "C6 LED lights, white",
+          "2 ct"
+        ],
+        "fr": [
+          "SYLVANIA",
+          "lumières DEL C6, blanches",
+          "2 unités"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1851559": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Stay-Lit",
+          "LED C6 light set",
+          "100 ct"
+        ],
+        "fr": [
+          "Stay-Lit",
+          "ensemble de lumières DEL C6",
+          "100 unités"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1851686": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Rear projection",
+          "snowman Christmas décor",
+          "1 each"
+        ],
+        "fr": [
+          "Projection arrière",
+          "bonhomme de neige, décor de Noël",
+          "1 unité"
+        ]
+      },
+      "regular": 19.99,
+      "off": 5,
+      "price": 14.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1929733": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Penguin",
+          "with LED lights",
+          "1.5 m (5 ft)"
+        ],
+        "fr": [
+          "Pingouin",
+          "avec lumières DEL",
+          "1,5 m (5 pi)"
+        ]
+      },
+      "regular": 199.99,
+      "off": 50,
+      "price": 149.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1929739": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Wooden",
+          "LED advent calendar",
+          "1 each"
+        ],
+        "fr": [
+          "Calendrier de l'Avent",
+          "en bois, DEL",
+          "1 unité"
+        ]
+      },
+      "regular": 29.99,
+      "off": 10,
+      "price": 19.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1929794": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Snoop on the Stoop",
+          "collectible expansion set",
+          "1 each"
+        ],
+        "fr": [
+          "Snoop on the Stoop",
+          "ensemble d'extension à collectionner",
+          "1 unité"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10,
+      "price": 39.99,
+      "exp": "2026-11-30",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2047587": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Mr. Christmas",
+          "LED infinity Christmas tree decoration",
+          "1 each"
+        ],
+        "fr": [
+          "Mr. Christmas",
+          "décoration de sapin DEL infinie",
+          "1 unité"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10,
+      "price": 39.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2049670": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "LeapFrog",
+          "LeapMove",
+          "1 each"
+        ],
+        "fr": [
+          "LeapFrog",
+          "LeapMove",
+          "1 unité"
+        ]
+      },
+      "regular": 68.99,
+      "off": 14,
+      "price": 54.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2052553": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "MYTAGALONGS",
+          "backpack",
+          "1 each"
+        ],
+        "fr": [
+          "MYTAGALONGS",
+          "sac à dos",
+          "1 unité"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6,
+      "price": 23.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2130150": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Huggies Natural Care Plus",
+          "wipes",
+          "1080 ct"
+        ],
+        "fr": [
+          "Huggies Natural Care Plus",
+          "lingettes",
+          "1080 unités"
+        ]
+      },
+      "regular": 28.99,
+      "off": 7.5,
+      "price": 21.49,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "4082311": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Tapestry",
+          "kitchen mat",
+          "1 each"
+        ],
+        "fr": [
+          "Tapestry",
+          "tapis de cuisine",
+          "1 unité"
+        ]
+      },
+      "regular": 14.99,
+      "off": 5,
+      "price": 9.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "BC",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "4444590": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Ninja Creami XL",
+          "11-in-1 ice cream maker, 3 XL tubs",
+          "1 set"
+        ],
+        "fr": [
+          "Ninja Creami XL",
+          "sorbetière 11 en 1, 3 grands contenants",
+          "1 ensemble"
+        ]
+      },
+      "regular": 249.99,
+      "off": 50,
+      "price": 199.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "5134800": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Tahari",
+          "women's sherpa ¼ zip pullover"
+        ],
+        "fr": [
+          "Tahari",
+          "pull sherpa à ¼ fermeture éclair, femme"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "NL",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "5161251": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Downy Unstopables",
+          "fresh in-wash scent booster beads",
+          "1.13 kg"
+        ],
+        "fr": [
+          "Downy Unstopables",
+          "billes parfumées pour la lessive, fraîcheur",
+          "1,13 kg"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-11-19",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    }
+  },
+  "feeds": {
+    "en": [
+      "c"
+    ]
+  }
+}
