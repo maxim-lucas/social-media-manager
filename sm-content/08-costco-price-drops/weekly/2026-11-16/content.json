@@ -1,0 +1,140 @@
+{
+  "available": {
+    "2026-11-16-carousel-grocery-en": {
+      "assets": [
+        "media/2026-11-16-carousel-grocery-en/01.jpg",
+        "media/2026-11-16-carousel-grocery-en/02.jpg",
+        "media/2026-11-16-carousel-grocery-en/03.jpg",
+        "media/2026-11-16-carousel-grocery-en/04.jpg",
+        "media/2026-11-16-carousel-grocery-en/05.jpg",
+        "media/2026-11-16-carousel-grocery-en/06.jpg",
+        "media/2026-11-16-carousel-grocery-en/07.jpg",
+        "media/2026-11-16-carousel-grocery-en/08.jpg",
+        "media/2026-11-16-carousel-grocery-en/09.jpg",
+        "media/2026-11-16-carousel-grocery-en/10.jpg",
+        "media/2026-11-16-carousel-grocery-en/11.jpg",
+        "media/2026-11-16-carousel-grocery-en/12.jpg",
+        "media/2026-11-16-carousel-grocery-en/13.jpg",
+        "media/2026-11-16-carousel-grocery-en/14.jpg",
+        "media/2026-11-16-carousel-grocery-en/15.jpg",
+        "media/2026-11-16-carousel-grocery-en/16.jpg",
+        "media/2026-11-16-carousel-grocery-en/17.jpg",
+        "media/2026-11-16-carousel-grocery-en/18.jpg",
+        "media/2026-11-16-carousel-grocery-en/19.jpg",
+        "media/2026-11-16-carousel-grocery-en/20.jpg"
+      ]
+    },
+    "2026-11-16-carousel-grocery-fr": {
+      "assets": [
+        "media/2026-11-16-carousel-grocery-fr/01.jpg",
+        "media/2026-11-16-carousel-grocery-fr/02.jpg",
+        "media/2026-11-16-carousel-grocery-fr/03.jpg",
+        "media/2026-11-16-carousel-grocery-fr/04.jpg",
+        "media/2026-11-16-carousel-grocery-fr/05.jpg",
+        "media/2026-11-16-carousel-grocery-fr/06.jpg",
+        "media/2026-11-16-carousel-grocery-fr/07.jpg",
+        "media/2026-11-16-carousel-grocery-fr/08.jpg",
+        "media/2026-11-16-carousel-grocery-fr/09.jpg",
+        "media/2026-11-16-carousel-grocery-fr/10.jpg",
+        "media/2026-11-16-carousel-grocery-fr/11.jpg",
+        "media/2026-11-16-carousel-grocery-fr/12.jpg",
+        "media/2026-11-16-carousel-grocery-fr/13.jpg",
+        "media/2026-11-16-carousel-grocery-fr/14.jpg",
+        "media/2026-11-16-carousel-grocery-fr/15.jpg",
+        "media/2026-11-16-carousel-grocery-fr/16.jpg",
+        "media/2026-11-16-carousel-grocery-fr/17.jpg",
+        "media/2026-11-16-carousel-grocery-fr/18.jpg",
+        "media/2026-11-16-carousel-grocery-fr/19.jpg",
+        "media/2026-11-16-carousel-grocery-fr/20.jpg"
+      ]
+    },
+    "2026-11-18-carousel-home-en": {
+      "assets": [
+        "media/2026-11-18-carousel-home-en/01.jpg",
+        "media/2026-11-18-carousel-home-en/02.jpg",
+        "media/2026-11-18-carousel-home-en/03.jpg",
+        "media/2026-11-18-carousel-home-en/04.jpg",
+        "media/2026-11-18-carousel-home-en/05.jpg",
+        "media/2026-11-18-carousel-home-en/06.jpg",
+        "media/2026-11-18-carousel-home-en/07.jpg",
+        "media/2026-11-18-carousel-home-en/08.jpg",
+        "media/2026-11-18-carousel-home-en/09.jpg",
+        "media/2026-11-18-carousel-home-en/10.jpg",
+        "media/2026-11-18-carousel-home-en/11.jpg",
+        "media/2026-11-18-carousel-home-en/12.jpg",
+        "media/2026-11-18-carousel-home-en/13.jpg",
+        "media/2026-11-18-carousel-home-en/14.jpg",
+        "media/2026-11-18-carousel-home-en/15.jpg",
+        "media/2026-11-18-carousel-home-en/16.jpg",
+        "media/2026-11-18-carousel-home-en/17.jpg"
+      ]
+    },
+    "2026-11-21-carousel-regional-en": {
+      "assets": [
+        "media/2026-11-21-carousel-regional-en/01.jpg",
+        "media/2026-11-21-carousel-regional-en/02.jpg",
+        "media/2026-11-21-carousel-regional-en/03.jpg",
+        "media/2026-11-21-carousel-regional-en/04.jpg",
+        "media/2026-11-21-carousel-regional-en/05.jpg",
+        "media/2026-11-21-carousel-regional-en/06.jpg",
+        "media/2026-11-21-carousel-regional-en/07.jpg",
+        "media/2026-11-21-carousel-regional-en/08.jpg",
+        "media/2026-11-21-carousel-regional-en/09.jpg",
+        "media/2026-11-21-carousel-regional-en/10.jpg",
+        "media/2026-11-21-carousel-regional-en/11.jpg",
+        "media/2026-11-21-carousel-regional-en/12.jpg",
+        "media/2026-11-21-carousel-regional-en/13.jpg",
+        "media/2026-11-21-carousel-regional-en/14.jpg",
+        "media/2026-11-21-carousel-regional-en/15.jpg",
+        "media/2026-11-21-carousel-regional-en/16.jpg",
+        "media/2026-11-21-carousel-regional-en/17.jpg",
+        "media/2026-11-21-carousel-regional-en/18.jpg",
+        "media/2026-11-21-carousel-regional-en/19.jpg",
+        "media/2026-11-21-carousel-regional-en/20.jpg"
+      ]
+    },
+    "2026-11-18-carousel-home-fr": {
+      "assets": [
+        "media/2026-11-18-carousel-home-fr/01.jpg",
+        "media/2026-11-18-carousel-home-fr/02.jpg",
+        "media/2026-11-18-carousel-home-fr/03.jpg",
+        "media/2026-11-18-carousel-home-fr/04.jpg",
+        "media/2026-11-18-carousel-home-fr/05.jpg",
+        "media/2026-11-18-carousel-home-fr/06.jpg",
+        "media/2026-11-18-carousel-home-fr/07.jpg",
+        "media/2026-11-18-carousel-home-fr/08.jpg",
+        "media/2026-11-18-carousel-home-fr/09.jpg",
+        "media/2026-11-18-carousel-home-fr/10.jpg",
+        "media/2026-11-18-carousel-home-fr/11.jpg",
+        "media/2026-11-18-carousel-home-fr/12.jpg",
+        "media/2026-11-18-carousel-home-fr/13.jpg",
+        "media/2026-11-18-carousel-home-fr/14.jpg",
+        "media/2026-11-18-carousel-home-fr/15.jpg",
+        "media/2026-11-18-carousel-home-fr/16.jpg",
+        "media/2026-11-18-carousel-home-fr/17.jpg"
+      ]
+    }
+  },
+  "captions": {
+    "2026-11-16-carousel-grocery-en": {
+      "instagram": "18 grocery prices dropped at Costco: up to $69 back in total if you bought them. 🛒\nBOOST is $10 off, and the first ones end Nov 17. Swipe for each item, its provinces and end date.\nPaid full price in the last 30 days? You may be able to claim the difference.\nFollow @priceback.ca for the new drops every week. Link in bio.\n\n#CostcoCanada #CostcoDeals #PriceDrop #CanadianSavings #PriceBack",
+      "facebook": "18 grocery prices dropped at Costco: up to $69 back in total if you bought them. 🛒\nBOOST is $10 off, and the first ones end Nov 17. Swipe for each item, its provinces and end date.\nPaid full price in the last 30 days? You may be able to claim the difference. Adjustment terms are set by the retailer.\nFollow the page for the new drops every week.\nApp Store: https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play: https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #CostcoDeals #PriceDrop #CanadianSavings #PriceBack"
+    },
+    "2026-11-16-carousel-grocery-fr": {
+      "instagram": "18 baisses de prix à l'épicerie chez Costco : jusqu'à 69 $ à réclamer si vous les avez achetés. 🛒\nBOOST est à 10 $ de rabais, et les premières se terminent le 17 novembre. Glissez pour voir chaque article, ses provinces et sa date de fin.\nVous avez payé plein prix dans les 30 derniers jours ? Vous pourriez réclamer la différence.\nAbonnez-vous à @priceback.ca pour les nouvelles baisses chaque semaine. Lien en bio.\n\n#CostcoCanada #CostcoQuébec #BaisseDePrix #Économies #PriceBack",
+      "facebook": "18 baisses de prix à l'épicerie chez Costco : jusqu'à 69 $ à réclamer si vous les avez achetés. 🛒\nBOOST est à 10 $ de rabais, et les premières se terminent le 17 novembre. Glissez pour voir chaque article, ses provinces et sa date de fin.\nVous avez payé plein prix dans les 30 derniers jours ? Vous pourriez réclamer la différence. Les conditions d'ajustement sont fixées par le détaillant.\nAbonnez-vous à la page pour les nouvelles baisses chaque semaine.\nApp Store : https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play : https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #CostcoQuébec #BaisseDePrix #Économies #PriceBack"
+    },
+    "2026-11-18-carousel-home-en": {
+      "instagram": "The Ninja Creami XL is $50 off at Costco, and 14 more home and gift prices dropped too: up to $131.50 back in total. 🏠\nSwipe for each item, its provinces and end date.\nBought one in the last 30 days? You may be able to claim the difference.\nFollow @priceback.ca for the new drops every week. Link in bio.\n\n#CostcoCanada #CostcoDeals #PriceDrop #CanadianSavings #PriceBack",
+      "facebook": "The Ninja Creami XL is $50 off at Costco, and 14 more home and gift prices dropped too: up to $131.50 back in total. 🏠\nSwipe for each item, its provinces and end date.\nBought one in the last 30 days? You may be able to claim the difference. Adjustment terms are set by the retailer.\nFollow the page for the new drops every week.\nApp Store: https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play: https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #CostcoDeals #PriceDrop #CanadianSavings #PriceBack"
+    },
+    "2026-11-21-carousel-regional-en": {
+      "instagram": "Hidden in the West: 18 Costco prices dropped only in Alberta, BC, Manitoba and Saskatchewan, up to $60 back in total. 🔎\nHigh Liner cod is $6 off, and the first ones end Nov 22. Swipe for each item and its end date.\nPaid full price in the last 30 days? You may be able to claim the difference.\nFollow @priceback.ca for the new drops every week. Link in bio.\n\n#CostcoCanada #CostcoDeals #PriceDrop #CanadianSavings #PriceBack",
+      "facebook": "Hidden in the West: 18 Costco prices dropped only in Alberta, BC, Manitoba and Saskatchewan, up to $60 back in total. 🔎\nHigh Liner cod is $6 off, and the first ones end Nov 22. Swipe for each item and its end date.\nPaid full price in the last 30 days? You may be able to claim the difference. Adjustment terms are set by the retailer.\nFollow the page for the new drops every week.\nApp Store: https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play: https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #CostcoDeals #PriceDrop #CanadianSavings #PriceBack"
+    },
+    "2026-11-18-carousel-home-fr": {
+      "instagram": "La sorbetière Ninja Creami XL est à 50 $ de rabais chez Costco, et 14 autres baisses maison et cadeaux : jusqu'à 131,50 $ à réclamer au total. 🏠\nGlissez pour voir chaque article, ses provinces et sa date de fin.\nVous en avez acheté un dans les 30 derniers jours ? Vous pourriez réclamer la différence.\nAbonnez-vous à @priceback.ca pour les nouvelles baisses chaque semaine. Lien en bio.\n\n#CostcoCanada #CostcoQuébec #BaisseDePrix #Économies #PriceBack",
+      "facebook": "La sorbetière Ninja Creami XL est à 50 $ de rabais chez Costco, et 14 autres baisses maison et cadeaux : jusqu'à 131,50 $ à réclamer au total. 🏠\nGlissez pour voir chaque article, ses provinces et sa date de fin.\nVous en avez acheté un dans les 30 derniers jours ? Vous pourriez réclamer la différence. Les conditions d'ajustement sont fixées par le détaillant.\nAbonnez-vous à la page pour les nouvelles baisses chaque semaine.\nApp Store : https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play : https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #CostcoQuébec #BaisseDePrix #Économies #PriceBack"
+    }
+  }
+}

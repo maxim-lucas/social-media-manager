@@ -1,0 +1,560 @@
+{
+  "_note": "Grocery, French, for Quebec, built 2026-11-16 from priceback.savings (read-only views).",
+  "source": "priceback.savings via social_ro views",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "audience": "fr",
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "Grocery",
+        "fr": "Épicerie"
+      },
+      "items": [
+        "1859994",
+        "1025862",
+        "1218715",
+        "2056667",
+        "3374315",
+        "7175722",
+        "402498",
+        "4145965",
+        "435937",
+        "1834898",
+        "1448167",
+        "1791636",
+        "2041384",
+        "20994",
+        "168035",
+        "339054",
+        "170600",
+        "5284466"
+      ]
+    }
+  ],
+  "items": {
+    "20994": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Cambozola",
+          "cheese",
+          "400 g"
+        ],
+        "fr": [
+          "Cambozola",
+          "fromage",
+          "400 g"
+        ]
+      },
+      "regular": 11.99,
+      "off": 3,
+      "price": 8.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "168035": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Balderson",
+          "double smoked cheddar",
+          "500 g"
+        ],
+        "fr": [
+          "Balderson",
+          "cheddar double fumé",
+          "500 g"
+        ]
+      },
+      "regular": 13.89,
+      "off": 3,
+      "price": 10.89,
+      "exp": "2026-11-29",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "170600": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Hellmann's",
+          "real mayonnaise",
+          "1.8 L"
+        ],
+        "fr": [
+          "Hellmann's",
+          "mayonnaise véritable",
+          "1,8 L"
+        ]
+      },
+      "regular": 10.99,
+      "off": 2.5,
+      "price": 8.49,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "339054": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Pepperidge Farm",
+          "Goldfish crackers",
+          "1.64 kg"
+        ],
+        "fr": [
+          "Pepperidge Farm",
+          "craquelins Goldfish",
+          "1,64 kg"
+        ]
+      },
+      "regular": 13.99,
+      "off": 3,
+      "price": 10.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "402498": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Bridor",
+          "pre-proofed butter croissant",
+          "70 g"
+        ],
+        "fr": [
+          "Bridor",
+          "croissant au beurre pré-poussé",
+          "70 g"
+        ]
+      },
+      "regular": 16.99,
+      "off": 4,
+      "price": 12.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "435937": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "General Tao chicken",
+          "300 g",
+          "3 ct"
+        ],
+        "fr": [
+          "Poulet General Tao",
+          "300 g",
+          "3 unités"
+        ]
+      },
+      "regular": 14.99,
+      "off": 3,
+      "price": 11.99,
+      "exp": "2026-11-17",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1025862": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Plaisirs Gastronomiques",
+          "confit duck legs",
+          "500 g"
+        ],
+        "fr": [
+          "Plaisirs Gastronomiques",
+          "cuisses de canard confites",
+          "500 g"
+        ]
+      },
+      "regular": 27.99,
+      "off": 6,
+      "price": 21.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1218715": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Nutella & GO",
+          "hazelnut spread and breadsticks",
+          "52 g"
+        ],
+        "fr": [
+          "Nutella & GO",
+          "pâte à tartiner et gressins",
+          "52 g"
+        ]
+      },
+      "regular": 18.99,
+      "off": 4,
+      "price": 14.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1448167": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Plats du Chef",
+          "puff pastry assortment",
+          "792 g"
+        ],
+        "fr": [
+          "Plats du Chef",
+          "assortiment de feuilletés",
+          "792 g"
+        ]
+      },
+      "regular": 14.99,
+      "off": 3,
+      "price": 11.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1791636": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Saputo",
+          "sliced havarti",
+          "750 g"
+        ],
+        "fr": [
+          "Saputo",
+          "havarti tranché",
+          "750 g"
+        ]
+      },
+      "regular": 13.99,
+      "off": 3,
+      "price": 10.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1834898": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Président",
+          "Camembert de Campagne",
+          "250 g"
+        ],
+        "fr": [
+          "Président",
+          "camembert de campagne",
+          "250 g"
+        ]
+      },
+      "regular": 11.99,
+      "off": 3,
+      "price": 8.99,
+      "exp": "2026-11-19",
+      "seen": "2026-11-16",
+      "provinces": [
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1859994": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "BOOST",
+          "high protein meal replacement, chocolate",
+          "237 mL"
+        ],
+        "fr": [
+          "BOOST",
+          "substitut de repas hyperprotéiné, chocolat",
+          "237 mL"
+        ]
+      },
+      "regular": 44.99,
+      "off": 10,
+      "price": 34.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2041384": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Wafflemeister",
+          "waffle bites",
+          "700 g"
+        ],
+        "fr": [
+          "Wafflemeister",
+          "bouchées de gaufres",
+          "700 g"
+        ]
+      },
+      "regular": 13.99,
+      "off": 3,
+      "price": 10.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2056667": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Chokovia",
+          "nutcrackers",
+          "630 g"
+        ],
+        "fr": [
+          "Chokovia",
+          "casse-noix en chocolat",
+          "630 g"
+        ]
+      },
+      "regular": 17.99,
+      "off": 4,
+      "price": 13.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "3374315": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Halal",
+          "chicken breast strips",
+          "1.6 kg"
+        ],
+        "fr": [
+          "Halal",
+          "lanières de poitrine de poulet",
+          "1,6 kg"
+        ]
+      },
+      "regular": 16.99,
+      "off": 4,
+      "price": 12.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "4145965": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "M&M's",
+          "peanut chocolate candies",
+          "1.37 kg"
+        ],
+        "fr": [
+          "M&M's",
+          "bonbons au chocolat et arachides",
+          "1,37 kg"
+        ]
+      },
+      "regular": 19.99,
+      "off": 4,
+      "price": 15.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-16",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "5284466": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Dare",
+          "molasses Bear Paws cookies",
+          "40 ct"
+        ],
+        "fr": [
+          "Dare",
+          "biscuits Bear Paws à la mélasse",
+          "40 unités"
+        ]
+      },
+      "regular": 11.49,
+      "off": 2.5,
+      "price": 8.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "7175722": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Sunrise Farms",
+          "chicken strips",
+          "1.2 kg"
+        ],
+        "fr": [
+          "Sunrise Farms",
+          "lanières de poulet",
+          "1,2 kg"
+        ]
+      },
+      "regular": 18.99,
+      "off": 4,
+      "price": 14.99,
+      "exp": "2026-11-22",
+      "seen": "2026-11-16",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    }
+  },
+  "feeds": {
+    "fr": [
+      "c"
+    ]
+  }
+}

@@ -85,7 +85,8 @@ open issue has that title; add a comment instead), stop, and leave master untouc
     <pack>/reels/pick-track.js <monday> --record` prints the approved track or `null`; with `null` build the no-music
     copy and say so in the PR. Config format: `<pack>/reels/2026-11-15-grocery-basket.json`, with `weeks` naming the week
     file. Render with `REEL_MUSIC_FILE=<pack>/reels/music/<track.file> node follower-reel.js <config> <en|fr> <out.mp4>` into
-    `<pack>/weekly/<monday>/reels/` (committed to the weekly branch: GitHub hosts the reels for now, Maxim 2026-11-16). Score each reel on the rubric from stills (`--stills`). Reels are served from the repo's raw GitHub URL
+    `<pack>/weekly/<monday>/reels/` (committed to the weekly branch: GitHub hosts the reels for now, Maxim 2026-11-16). Score each reel on the rubric from stills (`--stills`), with the same loop as step 9 (three rounds; fix execution
+    defects in `reels/follower-reel.js`, never the approved reel structure). Reels are served from the repo's raw GitHub URL
     (the publisher's default); list them in the PR.
 11. **Media and captions:** `node scripts/weekly/make-media.js <monday>`. For every slot in
     `<pack>/weekly/<monday>/content.json` `available` write `captions[<slotId>] = {"instagram": ..., "facebook": ...}`

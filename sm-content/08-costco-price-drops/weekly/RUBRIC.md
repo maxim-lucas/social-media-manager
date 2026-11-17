@@ -25,6 +25,11 @@ banner (the builder adds them to `tools/photo-rejects.json` and the item leaves 
 - Score what is on the screen, not what the builder meant. A defect you can point at costs points; a vague feeling does not.
 - A score of 1.0 needs no fix; never ask for a change you cannot name ("make it pop" is not a fix).
 - Do not lower a score because the style is Costco-coloured: that exception is deliberate (`STYLE.md`).
+- **Reels follow the approved reel design** (`reels/README.md`, approved by Monica 2026-11-04): the hook is the question
+  "Shopped at Costco lately?" over the 2x4 photo grid, then the yellow "N PRICES JUST DROPPED" banner; the basket build
+  with the climbing "Claim up to $X back" counter; the end card with the follow button and the two store badges. There is
+  no province strip in a reel. **Never ask to change that structure**; judge only its execution: legibility, collisions,
+  clean packshots, correct figures and dates, the right language, music level.
 - Reels: judge from stills at 0.5 s, 2 s, 4 s, 6 s and 7 s, plus the cut list. The music is judged only on "approved
   track, correct level"; taste is Maxim's, through `reels/music/APPROVED.json`.
 

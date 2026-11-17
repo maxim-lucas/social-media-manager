@@ -1,0 +1,33 @@
+{
+ "en-grocery": [
+  {
+   "round": 3,
+   "total": 9.85
+  }
+ ],
+ "fr-grocery": [
+  {
+   "round": 3,
+   "total": 9.53
+  }
+ ],
+ "en-home": [
+  {
+   "round": 3,
+   "total": 9.58
+  }
+ ],
+ "fr-home": [
+  {
+   "round": 3,
+   "total": 9.53
+  }
+ ],
+ "en-regional-west": [
+  {
+   "round": 4,
+   "total": 9.83
+  }
+ ],
+ "_note": "Final-round totals after the 2026-11-17 renderer and rubric fixes (rubricTotal of the reviewers' sub-scores); earlier rounds are in git history. Reels: not built this week."
+}

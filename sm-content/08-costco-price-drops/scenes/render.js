@@ -467,8 +467,10 @@ const CC = {
     bizOnly: "Only in Costco Business Centres",
     total: (n) => [`Total possible back: ${money("en", n, true)}`, "if you bought them"],
     top1: (name, off) => `Biggest drop: ${name}, ${money("en", off, true)} off`,
-    prov: (n, total) => (n === total ? `All ${total} in all 9 provinces` : `${n} of ${total} in all 9 provinces`),
+    prov: (n, total) => (n === total ? `All ${total} drops are in every province` : `${n} of ${total} drops are in every province`),
     only: (where) => `Only in ${where}`,
+    allIn: "Available in every province",
+    eachWhere: "Each slide shows where it's available",
   },
   fr: {
     top: "Baisses Costco Canada",
@@ -485,8 +487,10 @@ const CC = {
     bizOnly: "Seulement dans les centres d'affaires Costco",
     total: (n) => [`Total à récupérer : ${money("fr", n, true)}`, "si vous les avez achetés"],
     top1: (name, off) => `Plus grosse baisse : ${name}, ${money("fr", off, true)} de rabais`,
-    prov: (n, total) => (n === total ? `Les ${total} dans les 9 provinces` : `${n} de ${total} dans les 9 provinces`),
+    prov: (n, total) => (n === total ? `Les ${total} baisses sont dans toutes les provinces` : `${n} de ${total} baisses sont dans toutes les provinces`),
     only: (where) => `Seulement : ${where}`,
+    allIn: "Offert dans toutes les provinces",
+    eachWhere: "Chaque diapo indique où c'est offert",
   },
 };
 function claimCover(lang, f, badges, photos = {}) {
@@ -508,11 +512,11 @@ function claimCover(lang, f, badges, photos = {}) {
   const nat = items.filter(([, i]) => ALL9.every((p) => (i.provinces || []).includes(p))).length;
   // A regional carousel has no item in all 9: say where its savings are instead of "0 of N".
   const union = [...new Set(items.flatMap(([, i]) => i.provinces || []))];
-  const provLine = nat > 0 ? c.prov(nat, items.length) : c.only(regionName(lang, union.length === 1 ? union : union).replace(/^(in|dans ces provinces : )\s*/, ""));
+  const provLine = nat > 0 ? (nat === items.length ? c.allIn : c.eachWhere) : c.only(regionName(lang, union.length === 1 ? union : union).replace(/^(in|dans ces provinces : )\s*/, ""));
   const stores = `<div class="stores"><img src="${badges.apple}"><img src="${badges.google}"></div>`;
   return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>${CSS}${CLAIM_CSS}</style></head><body>
   <div class="post ${lang} s cc">
-    <div class="cc-top"><span>${esc(c.top)} <i class="flag">🇨🇦</i></span><b>${esc(cat).toUpperCase()}</b></div>
+    <div class="cc-top"><span>${esc(c.top)}</span><b>${esc(cat).toUpperCase()}</b></div>
     <div class="stripe cc-stripe"></div>
     ${DATA.businessCentre ? `<div class="cc-biz">${esc(c.bizOnly)}</div>` : ""}
     <div class="cc-mid">
@@ -525,7 +529,7 @@ function claimCover(lang, f, badges, photos = {}) {
     <div class="cc-count">${esc(c.count(items.length))}</div>
     <div class="cc-total">${c.total(sum).map(esc).join("<br>")}</div>
     <div class="disc">${esc(t.coverFine(seen[0], seen[seen.length - 1]))}</div>
-    <div class="claim"><div class="a cc-bought">${esc(c.bought)}<b>${esc(c.claimUpTo(sum))}</b></div>${stores}${dots(f.dots)}</div>
+    <div class="claim"><div class="a cc-bought${c.claimUpTo(sum).length > 22 ? " long" : ""}">${esc(c.bought)}<b>${esc(c.claimUpTo(sum))}</b></div>${stores}${dots(f.dots)}</div>
   </div></body></html>`;
 }
 const CLAIM_CSS = `
@@ -546,8 +550,8 @@ const CLAIM_CSS = `
 .fr .cc-date.rng{font-size:84px}
 .cc-count{position:absolute;left:40px;right:40px;top:780px;text-align:center;font-weight:900;font-size:124px;color:#fff;background:var(--blue);border-radius:70px;padding:12px 0;letter-spacing:-.5px;box-shadow:inset 0 -8px 0 var(--red)}
 .cc .disc{bottom:190px}
-.cc-row{display:flex;align-items:center;gap:24px;margin-top:26px}
-.cc-pic{flex:none;width:170px;height:170px;background-size:contain;background-repeat:no-repeat;background-position:center}
+.cc-row{display:flex;align-items:center;gap:22px;margin-top:18px}
+.cc-pic{flex:none;width:210px;height:210px;background-size:contain;background-repeat:no-repeat;background-position:center}
 .cc-each{margin-top:10px;font-weight:800;font-size:30px;color:#111}
 .cc-prod{margin-top:0;font-weight:900;font-size:34px;line-height:1.15;color:#111;letter-spacing:-.3px}
 .cc-prov{margin-top:8px;font-weight:800;font-size:30px;color:var(--blue)}
@@ -562,6 +566,8 @@ const CLAIM_CSS = `
 .fr .cc-bought{font-size:34px !important}
 .cc-bought b{display:block;width:max-content;margin-top:8px;font-size:54px;padding:2px 14px !important}
 .fr .cc-bought b{font-size:46px}
+.cc-bought.long b{font-size:44px}.fr .cc-bought.long b{font-size:38px}
+.cc .claim .stores{flex:none}
 `;
 
 const CSS = `
@@ -574,10 +580,12 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
 .band .t span{background:var(--red);padding:2px 18px;margin-left:8px}
 .fr .band .t{font-size:48px}
 .band .c{color:#cfe3f5;font-size:22px;font-weight:700;letter-spacing:3px;text-align:right;white-space:nowrap}
+.fr .band .c{font-size:18px;letter-spacing:1.5px}
+.band .c{margin-left:28px;white-space:normal;max-width:330px;font-size:20px;letter-spacing:2px;line-height:1.2}
 .band .c .cat{color:#fff;font-size:30px;font-weight:900;letter-spacing:2px}
 .stripe{position:absolute;top:150px;left:0;right:0;height:16px;background:var(--red)}
 .photo{position:absolute;background-size:contain;background-repeat:no-repeat;background-position:center}
-.photo.hero{left:60px;right:60px;top:186px;height:430px}
+.photo.hero{left:60px;right:60px;top:186px;height:430px;padding:16px 0;background-origin:content-box}
 .ptag{background:#fff;border:2px solid #d4d4d4;box-shadow:0 18px 40px rgba(0,0,0,.18);font-family:"Times New Roman",Georgia,serif;color:#111;position:absolute}
 .s .ptag{left:250px;right:60px;top:600px;padding:18px 30px 14px;transform:rotate(-1.5deg)}
 .ptag .num{font-size:44px}
@@ -614,7 +622,7 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
 .card .reg{font-size:30px}.card .off{font-size:32px}.card .par{font-size:14px}
 .card .big{font-size:112px;letter-spacing:-2px}
 .save{position:absolute;left:18px;right:18px;bottom:18px;background:var(--red);color:#fff;text-align:center;font-weight:900;font-size:28px;padding:14px 0;border-radius:6px}
-.disc{position:absolute;left:40px;right:40px;bottom:180px;font-size:21px;line-height:1.2;color:#6b7280;text-align:center}
+.disc{position:absolute;left:40px;right:40px;bottom:178px;font-size:20px;line-height:1.15;color:#4b5563;text-align:center}
 .claim{position:absolute;left:0;right:0;bottom:0;height:170px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 60px}
 .claim .a{font-size:30px;font-weight:800;line-height:1.3}
 .fr .claim .a{font-size:27px}
@@ -646,7 +654,7 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
 .esub{position:absolute;left:60px;right:60px;top:560px;font-size:38px;font-weight:800;color:#111}
 .emore{position:absolute;left:60px;right:60px;top:630px;font-size:29px;white-space:normal;letter-spacing:-.3px;font-weight:900;color:#111;line-height:1.25}
 .emore span{background:var(--yel);padding:2px 10px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-.fr .emore{font-size:27px;white-space:nowrap;letter-spacing:-.3px}
+.fr .emore{font-size:27px;white-space:normal;letter-spacing:-.3px}
 .ecard{position:absolute;left:60px;right:60px;top:760px;background:#0d3d28;border-radius:22px;padding:34px 40px;color:#fff}
 .ecard .pb{background:transparent;color:#fff;padding:0;font-size:44px;margin-bottom:16px}
 .ecard .pb img{width:66px;height:66px;border-radius:14px}
@@ -657,6 +665,8 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
 .ebadges{position:absolute;left:60px;right:60px;top:1028px;display:flex;justify-content:center;gap:28px}
 .ebadges img{height:96px;width:auto}
 .end .claim{justify-content:flex-start}
+.end .claim{padding-bottom:34px;padding-top:6px}
+.end .claim .a{margin-top:0}
 .kick{position:absolute;left:60px;top:250px;background:var(--yel);color:#111;font-weight:900;font-size:40px;letter-spacing:2px;padding:4px 16px;transform:rotate(-1.5deg)}
 .head{position:absolute;left:60px;right:60px;top:262px;color:var(--blue);font-weight:900;font-size:92px;line-height:1;letter-spacing:-2px;white-space:nowrap}
 .fr .head{font-size:76px}
@@ -759,9 +769,9 @@ function itemLangs() {
 const langsFor = (p) => ["en", "fr"].filter((l) => p.items.every((sku) => itemLangs(DATA.items[sku]).includes(l)));
 function regionName(lang, prov) {
   if (national(prov)) return null;
-  if (["ON", "QC", "BC", "AB", "MB", "SK", "NB", "NS", "NL"].every((c) => prov.includes(c))) return lang === "fr" ? "dans les 9 provinces" : "in all 9 provinces";
+  if (["ON", "QC", "BC", "AB", "MB", "SK", "NB", "NS", "NL"].every((c) => prov.includes(c))) return lang === "fr" ? "dans toutes les provinces indiquées ci-dessus" : "in every province shown above";
   // Past three provinces the full names push the fine print into the download row, so use codes.
-  const short = prov.length > 3;
+  const short = prov.length > (lang === "fr" ? 2 : 3);
   const names = short ? prov : prov.map((c) => PROV[lang][c] || c);
   const and = lang === "fr" ? "et" : "and";
   const list = names.length > 1 ? `${names.slice(0, -1).join(", ")} ${and} ${names[names.length - 1]}` : names[0];
