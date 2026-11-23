@@ -10,6 +10,12 @@ on:
   schedule:
     # Mondays, hourly 12:00 to 17:00 UTC = 07:00 to 12:00 Toronto (EST); the routine reads it from 12:10 UTC.
     - cron: "0 12-17 * * 1"
+    # GitHub drops or delays scheduled runs on the hour (2026-11-23: not one of the six Monday runs fired, and the Tue-Sat
+    # run lands up to 6 h late). Extra off-peak minutes make a missed Monday unlikely; a run that finds today's snapshot
+    # already committed exits at once.
+    - cron: "23 12-17 * * 1"
+    - cron: "47 12-17 * * 1"
+    - cron: "23 18-20 * * 1"
     # Tuesday to Saturday, once, 18:00 UTC = 13:00 Toronto (EST): is today's batch of new savings important (15+ new
     # products or one saving of $50+)? Only then is a snapshot written and the weekday top-up built.
     - cron: "0 18 * * 2-6"
@@ -38,6 +44,7 @@ jobs:
           D=sm-content/08-costco-price-drops/weekly/snapshots
           mkdir -p "$D"
           TODAY=$(TZ=America/Toronto date +%F)
+          if [ -f "$D/$TODAY.snapshot.json" ]; then echo "today's snapshot already exists."; exit 0; fi
           set +e
           node scripts/weekly/query.js --settled --deadline=12:00 > "$D/$TODAY.settled.json"
           CODE=$?

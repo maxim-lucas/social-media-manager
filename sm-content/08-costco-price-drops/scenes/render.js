@@ -59,6 +59,9 @@ const L = {
     paidMany: "Bought these at full price?",
     // The conversion line, huge in the red band (Monica, 2026-11-04): only "PAID $X? CLAIM $Y BACK".
     paidBig: (p) => `PAID ${money("en", p)}`,
+    paidPack: "BOUGHT IT? FULL PACK",
+    packNote: "The drop applies to the full pack",
+    packBig: "SOLD BY THE PACK",
     paidWhen: " in the last 30 days?",
     claimBig: (n) => `CLAIM ${money("en", n, true)} BACK`,
     claimMany: "Claim the difference.",
@@ -98,6 +101,9 @@ const L = {
     claim: (n) => `Réclamez la différence de ${money("fr", n, true)}.`,
     paidMany: "Payé le plein prix ?",
     paidBig: (p) => `PAYÉ ${money("fr", p)}`,
+    paidPack: "ACHETÉ ? EMBALLAGE COMPLET",
+    packNote: "La baisse s'applique à l'emballage complet",
+    packBig: "VENDU À L'EMBALLAGE",
     paidWhen: " ces 30 derniers jours ?",
     claimBig: (n) => `RÉCLAMEZ ${money("fr", n, true)}`,
     claimMany: "Réclamez la différence.",
@@ -235,10 +241,9 @@ function tag(lang, sku, item, { compact = false } = {}) {
   return `<div class="ptag${compact ? " compact" : ""}${item.tag[lang].length >= 4 || item.tag[lang].join(" ").length > 40 ? " l4" : ""}">
     <div class="num">${sku}</div>
     <div class="row"><div class="name">${item.tag[lang].map(esc).join("<br>")}</div>
-      <div><div class="reg">${num(lang, item.regular)}</div><div class="off">-${num(lang, item.off)}</div></div></div>
+      <div>${item.byPack ? "" : `<div class="reg">${num(lang, item.regular)}</div>`}<div class="off">-${num(lang, item.off)}</div></div></div>
     ${compact ? "" : `<div class="row hlrow"><span class="hl">${t.instant}</span><span class="hl">${t.exp} ${item.exp}</span></div>`}
-    <div class="par">${t.register}</div>
-    <div class="big">${num(lang, item.price)}</div>
+    ${item.byPack ? `<div class="par">${t.packNote}</div><div class="big pk">${t.packBig}</div>` : `<div class="par">${t.register}</div><div class="big">${num(lang, item.price)}</div>`}
   </div>`;
 }
 
@@ -268,7 +273,9 @@ function post(lang, p, photos, badges) {
       .join("");
   }
   const big = single && DATA.bigClaim;
-  const claim = big
+  const claim = big && items[0][1].byPack
+    ? `<span>${esc(t.paidPack)}</span><b>${esc(t.claimBig(items[0][1].off))}</b>`
+    : big
     ? `<span>${esc(t.paidBig(items[0][1].regular))}<small>${esc(t.paidWhen)}</small></span><b>${esc(t.claimBig(items[0][1].off))}</b>`
     : single
     ? `${t.paid(items[0][1].regular)}<br><b>${t.claim(items[0][1].off)}</b>`
@@ -523,8 +530,6 @@ function claimCover(lang, f, badges, photos = {}) {
       <div class="cc-new">${esc(c.fresh)}</div>
       <div class="cc-until">${esc(until)}</div>
       ${when}
-      <div class="cc-row">${photos[items[0][0]] ? `<div class="cc-pic" style="background-image:url('${photos[items[0][0]]}')"></div>` : ""}<div><div class="cc-prod">${esc(c.top1(items[0][1].tag[lang].slice(0, 2).join(" "), items[0][1].off))}</div>
-      <div class="cc-prov">${esc(provLine)}</div></div></div>
     </div>
     <div class="cc-count">${esc(c.count(items.length))}</div>
     <div class="cc-total">${c.total(sum).map(esc).join("<br>")}</div>
@@ -585,12 +590,13 @@ body{width:1080px;height:1350px;font-family:"Helvetica Neue",Arial,sans-serif}
 .band .c .cat{color:#fff;font-size:30px;font-weight:900;letter-spacing:2px}
 .stripe{position:absolute;top:150px;left:0;right:0;height:16px;background:var(--red)}
 .photo{position:absolute;background-size:contain;background-repeat:no-repeat;background-position:center}
-.photo.hero{left:60px;right:60px;top:186px;height:430px;padding:16px 0;background-origin:content-box}
+.photo.hero{left:60px;right:60px;top:186px;height:430px;padding:16px 60px;background-origin:content-box}
 .ptag{background:#fff;border:2px solid #d4d4d4;box-shadow:0 18px 40px rgba(0,0,0,.18);font-family:"Times New Roman",Georgia,serif;color:#111;position:absolute}
 .s .ptag{left:250px;right:60px;top:600px;padding:18px 30px 14px;transform:rotate(-1.5deg)}
 .ptag .num{font-size:44px}
 .ptag .name{font-size:34px;text-transform:uppercase;line-height:1.1;letter-spacing:.5px}
 .ptag.l4 .name{font-size:28px;line-height:1.05}
+.ptag .big.pk{font-size:54px;letter-spacing:-1px;line-height:1.1;margin-top:8px}
 .ptag .row{display:flex;justify-content:space-between;align-items:flex-end;margin-top:6px}
 .hl{background:var(--yel);font-family:Arial,sans-serif;font-weight:700;font-size:22px;padding:0 6px}
 .reg{text-align:right;font-size:38px;line-height:1}

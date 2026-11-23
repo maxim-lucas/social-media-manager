@@ -1,4 +1,4 @@
-/** score.js: the 9.5 / 10 gate (Maxim, 2026-11-16). Sub-scores are 0..1; see weekly/RUBRIC.md. */
+/** score.js: the 9.0 / 10 gate (Maxim, 2026-11-16: 9.5, relaxed to 9.0 the same night). Sub-scores are 0..1; see weekly/RUBRIC.md. */
 const WEIGHTS = { hook: 2, clarity: 2, photos: 1.5, legibility: 1.5, language: 1, compliance: 1, cta: 1 };
 
 function rubricTotal(scores) {
@@ -12,7 +12,7 @@ function rubricTotal(scores) {
 }
 
 /** @param {number[]} history totals, one per round, newest last */
-function gate(history, max = 3, target = 9.5) {
+function gate(history, max = 3, target = 9.0) {
   const rounds = history.length;
   if (history[rounds - 1] >= target) return { publish: true, rounds, reason: "target_reached" };
   return { publish: false, rounds, reason: rounds >= max ? "below_target" : "rework" };

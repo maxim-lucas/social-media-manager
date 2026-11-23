@@ -1,7 +1,7 @@
 # Weekly social automation: design (DRAFT for Maxim's approval, 2026-11-16)
 
 Maxim's brief (2026-11-16): a cloud schedule that, every week after the savings harvest, reads the harvest, builds the
-price-drop posts and reels (product photos always), scores and improves them until they reach 9.5/10, and posts them
+price-drop posts and reels (product photos always), scores and improves them until they reach 9.0/10, and posts them
 through the Meta Graph API. Everything automated; anything social media cannot do, Maxim handles by hand.
 
 ## 1. Decisions already taken (Maxim, 2026-11-16)
@@ -14,7 +14,7 @@ through the Meta Graph API. Everything automated; anything social media cannot d
 | D4 | **Posting through the Graph API token.** Metricool is out. |
 | D5 | **The schedule runs in the cloud.** R2 photo paths are fixed for cloud use (section 5). |
 | D6 | **Reel music is pre-approved before it is used** and never repeats week after week (section 6). |
-| D7 | **Every post and reel is scored and re-worked until it reaches 9.5/10** (section 7). |
+| D7 | **Every post and reel is scored and re-worked until it reaches 9.0/10** (section 7). |
 | D8 | **All these rules live in this repo** (`RULES-README.md` §1, a new "Weekly automation" section). |
 
 ## 2. The weekly rhythm
@@ -88,7 +88,7 @@ The unit is a **product**. For an audience (EN: ON, BC, AB, MB, SK, NB, NS, NL; 
 - If the library has no unused approved track, the reel ships with the no-music copy and the PR says so.
 - Reels carry their music inside the file (the Graph API cannot add Instagram's own audio).
 
-## 7. Quality loop (target 9.5 / 10)
+## 7. Quality loop (target 9.0 / 10)
 
 Every carousel and reel is rendered, then scored by a separate reviewer pass on a fixed rubric (10 points total):
 
@@ -102,8 +102,8 @@ Every carousel and reel is rendered, then scored by a separate reviewer pass on 
 | Brand and compliance gates (disclaimer, no logo, claim never get, real numbers) | 1 |
 | Call to action: one ask, follow or download | 1 |
 
-- Below 9.5 the reviewer lists concrete fixes, the builder applies them, and it re-scores. **Maximum 3 rounds.**
-- A piece still under 9.5 after 3 rounds is **not published**; it is flagged in the PR for Maxim.
+- Below 9.0 the reviewer lists concrete fixes, the builder applies them, and it re-scores. **Maximum 3 rounds.**
+- A piece still under 9.0 after 3 rounds is **not published**; it is flagged in the PR for Maxim.
 - **Honest limit:** this score is the model's own rubric, not measured conversion. Real results come from Insights
   (reach, saves, shares, follows, profile visits) read weekly through the Graph API; the weekly report compares them to
   the scores, and the rubric weights are adjusted when they disagree.
@@ -115,7 +115,7 @@ Every carousel and reel is rendered, then scored by a separate reviewer pass on 
    maximum optimization, and as data, by him.
 3. Credentials (read-only database role, Meta token, R2 key) are set by Maxim in the routine's environment, never in
    chat or in the repo.
-4. A failure (preflight, harvest not settled by 17:30, score under 9.5, publish error) opens a GitHub issue and
+4. A failure (preflight, harvest not settled by 17:30, score under 9.0, publish error) opens a GitHub issue and
    publishes nothing for that slot.
 
 ## 9. Open items needing Maxim
