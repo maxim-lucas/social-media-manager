@@ -24,3 +24,11 @@ test("duplicate slides are detected by content", () => {
   assert.deepStrictEqual(duplicates([a, b, Buffer.from("aaa")]), [[0, 2]]);
   assert.deepStrictEqual(duplicates([a, b]), []);
 });
+
+test("a reel slot finds its rendered reel, carousels and missing reels do not", () => {
+  const { reelAssetFor } = require("./media");
+  const files = ["grocery-en.mp4", "grocery-fr.mp4"];
+  assert.strictEqual(reelAssetFor({ kind: "reel", key: "grocery", lang: "en" }, files), "reels/grocery-en.mp4");
+  assert.strictEqual(reelAssetFor({ kind: "reel", key: "tech", lang: "en" }, files), null);
+  assert.strictEqual(reelAssetFor({ kind: "carousel", key: "grocery", lang: "en" }, files), null);
+});

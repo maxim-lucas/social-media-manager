@@ -15,6 +15,18 @@ function sourceFor(slot, monday, weekFiles) {
   return weekFiles.includes(base + slot.key) ? base + slot.key : null;
 }
 
+/**
+ * The rendered reel for a reel slot, as a path relative to weekly/<monday>/ (2026-11-23: six reels were rendered and
+ * committed but never registered, so every reel slot stayed `needs_content`). A reel is weekly/<monday>/reels/<key>-<lang>.mp4.
+ * @param {{kind: string, key: string, lang: string}} slot
+ * @param {string[]} reelFiles file names in weekly/<monday>/reels
+ */
+function reelAssetFor(slot, reelFiles) {
+  if (slot.kind !== "reel") return null;
+  const name = `${slot.key}-${slot.lang}.mp4`;
+  return reelFiles.includes(name) ? `reels/${name}` : null;
+}
+
 const md5 = (buf) => crypto.createHash("md5").update(buf).digest("hex");
 
 /** Runbook rule 2 (10-composio-posting-runbook): a carousel must never contain the same image twice. */
@@ -29,4 +41,4 @@ function duplicates(buffers) {
   return dup;
 }
 
-module.exports = { sourceFor, duplicates, md5 };
+module.exports = { reelAssetFor, sourceFor, duplicates, md5 };
