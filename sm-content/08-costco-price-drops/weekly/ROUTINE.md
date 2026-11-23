@@ -44,6 +44,12 @@ open issue has that title; add a comment instead), stop, and leave master untouc
      **Day pack differences:** pass `--day` to `build-week.js`, `make-media.js` and `make-schedule.js`; the pack is the
      national carousels only (no Business Centre, no regional); **no reels** (skip step 10); no Friday recap or
      Sunday how-to; PR title "Weekday pack D".
+   - **Reels pending (any day Monday to Saturday, checked FIRST, 2026-11-23):** if `<pack>/weekly/<thisMonday>/reels/` holds an
+     `.mp4` and `content.json` has no `captions` entry for its slot (`<date>-reel-<key>-<lang>`), the week is built but its reels
+     were never wired. Do ONLY this: `git pull`, `git switch -c weekly/<thisMonday>-reels`, `node scripts/weekly/make-media.js
+     <thisMonday>` (it registers every `reels/<key>-<lang>.mp4` as that slot's asset), write the reel captions (step 11, reel
+     wording: first line a concrete number, one ask, 5 hashtags), `make-schedule.js`, tests, `check-copy.js`, then PR "Weekly reels
+     <thisMonday>" and merge it. Never re-render carousels or reels in this mode.
    - **Sunday:** stop.
 2. **Setup:** `git pull`, `npm ci`, `npx playwright install chromium`.
 3. **Has the harvest settled?** Read `<pack>/weekly/snapshots/<monday>.settled.json` (for a top-up, `D.settled.json`: step 1 already checked it) (`git pull` first). If it is missing
@@ -92,7 +98,7 @@ open issue has that title; add a comment instead), stop, and leave master untouc
     `<pack>/weekly/<monday>/content.json` `available` write `captions[<slotId>] = {"instagram": ..., "facebook": ...}`
     in the slot's language: a scroll-stopping first line with a concrete number, one ask only, 5 relevant hashtags,
     Instagram says "link in bio", Facebook carries the store links. Do NOT add the disclaimer: the publisher appends it.
-    Fridays's recap, Sunday's how-to and the reel slots stay `needs_content` unless you also have their assets.
+    `make-media.js` registers every rendered reel (`weekly/<monday>/reels/<key>-<lang>.mp4`) as its slot's asset, so a reel you rendered in step 10 has a slot to caption: write its caption too (the reel's language, same rules). Friday's recap and Sunday's how-to stay `needs_content` unless you also have their assets.
 12. `node scripts/weekly/make-schedule.js <monday>`, `node --test scripts/weekly/lib/*.test.js`,
     `node scripts/check-copy.js`. Commit, push `weekly/<monday>`, open a PR "Weekly pack <monday>" whose body lists:
     harvest reason, per carousel the items and score, every item left out and why, reels status, and the slot table.
