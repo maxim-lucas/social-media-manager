@@ -323,6 +323,13 @@ week by hand. Design: `docs/weekly-automation-design.md`. Plan: `docs/weekly-aut
 - **Kept apart: only exclusives.** A saving that exists only in Quebec goes to the Quebec hidden-savings carousel (French).
   A saving that exists only inside one region of the other provinces goes to the Saturday regional carousel. A saving in
   Quebec and other provinces stays in the national carousel.
+- **The cover is plain (Maxim, 2026-11-16).** The carousel cover carries the hook, the claim-until date(s), the number of
+  price drops, the total possible back and the legal line. **No product highlight** (no "biggest drop", no product photo)
+  and **no summary of which provinces have the sale**: availability lives on each slide's province strip.
+- **Sold by the pack (Maxim, 2026-11-16).** A product packed to weight (pork, chicken, fish, beef) is shown like any other:
+  its shelf price is per kg but **the drop applies to the full pack**. Its slide shows the full saving only, never a new
+  price computed from the per-kg price (`tools/sold-by-pack.json` lists the SKUs; the database's `soldByThePackIn` is the
+  source of truth, mirror it there). Weighted meat is no longer left out of the carousels.
 - **No "up to $X".** The main figure is the amount in the most provinces of the item's highest tier. A province with
   another amount shows it small inside its own cell of the province strip ("$2" on the West's cells).
 - **Hidden savings** (offers in one region only) go to the Saturday regional carousel (West, Ontario or Atlantic, in
@@ -340,9 +347,9 @@ week by hand. Design: `docs/weekly-automation-design.md`. Plan: `docs/weekly-aut
   60 to 90 minutes later. Sunday is never a list of drops that are over.
 - **Reel music is pre-approved.** Only tracks in `sm-content/08-costco-price-drops/reels/music/APPROVED.json`, filled by
   Maxim before the week; never the same track two weeks in a row; empty library = no-music copy and a note in the PR.
-- **9.5 / 10 or it does not go out.** Every carousel and reel is scored on `weekly/RUBRIC.md` (hook 2, clarity 2,
+- **9.0 / 10 or it does not go out** (Maxim, 2026-11-16: first 9.5, relaxed to 9.0). Every carousel and reel is scored on `weekly/RUBRIC.md` (hook 2, clarity 2,
   photos 1.5, legibility 1.5, language 1, compliance 1, call to action 1), reworked for up to 3 rounds, and not
-  published below 9.5. The score is the model's own rubric; real conversion is read weekly from Instagram Insights and
+  published below 9.0. The score is the model's own rubric; real conversion is read weekly from Instagram Insights and
   the rubric weights are corrected when they disagree.
 - **Publishing is dry run until Maxim switches it on** (`PUBLISH_ENABLED=true`). Never twice, never late (2 h window).
   Any failure opens a GitHub issue and publishes nothing for that slot.

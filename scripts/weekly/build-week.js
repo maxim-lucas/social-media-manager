@@ -57,6 +57,7 @@ const plan = planWeek({
   categories: readJson(path.join(PACK, "tools", "categories.json"), {}),
   tags: readJson(path.join(PACK, "tools", "tags.json"), {}),
   posted, photos, weekIndex: weekIndex(monday),
+  byPack: new Set(readJson(path.join(PACK, "tools", "sold-by-pack.json"), [])),
   newSince: torontoInstant(monday, "00:00"), daily: DAY,
   weekStart: DAY ? mondayOf(monday) : null,
 });

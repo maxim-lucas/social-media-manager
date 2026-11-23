@@ -20,11 +20,11 @@ test("9.6 on the first round publishes", () => {
   assert.deepStrictEqual(gate([9.6]), { publish: true, rounds: 1, reason: "target_reached" });
 });
 test("below target after 3 rounds is not published", () => {
-  assert.deepStrictEqual(gate([9.0, 9.2, 9.4]), { publish: false, rounds: 3, reason: "below_target" });
+  assert.deepStrictEqual(gate([8.4, 8.6, 8.9]), { publish: false, rounds: 3, reason: "below_target" });
 });
 test("below target with rounds left asks for another round", () => {
-  assert.deepStrictEqual(gate([9.0]), { publish: false, rounds: 1, reason: "rework" });
+  assert.deepStrictEqual(gate([8.5]), { publish: false, rounds: 1, reason: "rework" });
 });
 test("it publishes on a later round once the target is met", () => {
-  assert.deepStrictEqual(gate([9.0, 9.5]), { publish: true, rounds: 2, reason: "target_reached" });
+  assert.deepStrictEqual(gate([8.5, 9.0]), { publish: true, rounds: 2, reason: "target_reached" });
 });

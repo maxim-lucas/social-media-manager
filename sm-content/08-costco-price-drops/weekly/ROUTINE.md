@@ -27,7 +27,7 @@ only in it. You start with no memory, so read first: `RULES-README.md` sections 
 `<pack>` below means `sm-content/08-costco-price-drops`.
 
 **Never:** run `publish-week.js --write`, post anything yourself, print a secret, build a slide without its photo, use
-a track that is not in `<pack>/reels/music/APPROVED.json`, or publish a piece scoring under 9.5.
+a track that is not in `<pack>/reels/music/APPROVED.json`, or publish a piece scoring under 9.0, **or put a product (photo, name, "biggest drop") on a carousel cover**: the cover is plain, and `node --test scripts/weekly/lib/*.test.js` fails if it is not.
 
 **On any unexpected failure:** open a GitHub issue titled `Weekly build failed: <short reason>` (first check that no
 open issue has that title; add a comment instead), stop, and leave master untouched.
@@ -78,14 +78,14 @@ open issue has that title; add a comment instead), stop, and leave master untouc
       keep the biggest saving, drop the rest); (c) a renderer defect: fix it in `scenes/render.js` and re-render EVERY
       carousel. A reviewer fix that changes the house design or RUBRIC "known house design" is **not applied and not a
       reason to stop**: score on without it.
-   4. Re-score. At most 3 rounds. A carousel still under 9.5 after round 3 is removed from this week (delete its PNG
+   4. Re-score. At most 3 rounds. A carousel still under 9.0 after round 3 is removed from this week (delete its PNG
       folder) and listed in the PR with its sub-scores. A carousel that passes is kept as it is.
    Save every round's sub-scores to `<pack>/weekly/<monday>/scores.json`.
 10. **Reels** (warehouse carousels only, one basket reel per language per carousel): `node
     <pack>/reels/pick-track.js <monday> --record` prints the approved track or `null`; with `null` build the no-music
     copy and say so in the PR. Config format: `<pack>/reels/2026-11-15-grocery-basket.json`, with `weeks` naming the week
     file. Render with `REEL_MUSIC_FILE=<pack>/reels/music/<track.file> node follower-reel.js <config> <en|fr> <out.mp4>` into
-    `<pack>/weekly/<monday>/reels/` (committed to the weekly branch: GitHub hosts the reels for now, Maxim 2026-11-16). Score each reel on the rubric from stills (`--stills`), with the same loop as step 9 (three rounds; fix execution
+    `<pack>/weekly/<monday>/reels/` (committed to the weekly branch: GitHub hosts the reels for now, Maxim 2026-11-16). Score each reel on the rubric from stills (`--stills`), with the same loop as step 9 (three rounds; score it as RUBRIC.md "How to score a reel" says: the approved structure is the 1.0 baseline, deduct only for an execution defect in a still; fix execution
     defects in `reels/follower-reel.js`, never the approved reel structure). Reels are served from the repo's raw GitHub URL
     (the publisher's default); list them in the PR.
 11. **Media and captions:** `node scripts/weekly/make-media.js <monday>`. For every slot in

@@ -48,7 +48,7 @@ function regularFor(chRows, item, audience) {
  *          tags: Record<string, {en: string[], fr: string[]}>, posted: Set<string>, photos: Set<string>, weekIndex?: number}} input
  * rows: social_ro.savings_live rows, each with `regular` (the product's regular price in that province, or null)
  */
-function planWeek({ rows: allRows, monday, today, categories, tags, posted, photos, weekIndex = 0, newSince = null, daily = false, weekStart = null }) {
+function planWeek({ rows: allRows, monday, today, categories, tags, posted, photos, weekIndex = 0, newSince = null, daily = false, weekStart = null, byPack = new Set() }) {
   // Monica, 2026-11-04: only savings that started this week and were created this week are "new".
   const rows = newSince
     ? allRows.filter((r) => String(r.valid_from).slice(0, 10) >= (weekStart || monday) && new Date(r.created_at) >= new Date(newSince))
@@ -72,7 +72,8 @@ function planWeek({ rows: allRows, monday, today, categories, tags, posted, phot
     };
     for (const i of picked) {
       data.items[i.sku] = {
-        sameday: null, tag: tags[i.sku], regular: i.regular, off: i.amount, price: Math.round((i.regular - i.amount) * 100) / 100,
+        sameday: null, tag: tags[i.sku], regular: i.regular, off: i.amount, price: i.byPack ? null : Math.round((i.regular - i.amount) * 100) / 100,
+        ...(i.byPack ? { byPack: true } : {}),
         exp: i.validUntil, seen: today, provinces: i.provinces, bizOnly: [], exceptions: i.exceptions,
       };
     }
@@ -90,10 +91,13 @@ function planWeek({ rows: allRows, monday, today, categories, tags, posted, phot
       if (!cat) { needs.category.add(it.sku); continue; }
       if (!tags[it.sku]) { needs.tags.add(it.sku); continue; }
       if (!photos.has(it.sku)) { needs.photo.add(it.sku); continue; }
-      const regular = regularFor(chRows, it, aud);
-      if (regular == null) { needs.regular.add(it.sku); continue; }
+      // Sold by the pack (meat, fish, anything packed to weight): the shelf price is per kg, the drop is the FULL saving on
+      // the pack. Never a computed new price from another pack's price: the slide shows the saving only.
+      const packed = byPack.has(it.sku);
+      const regular = packed ? null : regularFor(chRows, it, aud);
+      if (regular == null && !packed) { needs.regular.add(it.sku); continue; }
       if (it.needsFrenchReview) needs.frenchReview.add(it.sku);
-      usable.push({ ...it, cat: cat.cat, regular });
+      usable.push({ ...it, cat: cat.cat, regular, byPack: packed });
     }
 
     // Kept apart: Quebec-exclusive savings (hidden in Quebec) and, outside Quebec, single-region savings.

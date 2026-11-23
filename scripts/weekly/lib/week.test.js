@@ -138,3 +138,11 @@ test("a weekday top-up builds the national carousels only: no Business Centre, n
   const plan = planWeek(c);
   assert.deepStrictEqual(names(plan), ["2026-11-18-en-grocery", "2026-11-18-fr-grocery"]);
 });
+
+test("a sold-by-the-pack item needs no regular price and carries the full saving only", () => {
+  const rows = [...everywhere("p1", 6, { regular: null }), ...everywhere("p2", 5), ...everywhere("p3", 4), ...everywhere("p4", 3), ...everywhere("p5", 2, { regular: null })];
+  const plan = planWeek(ctx(rows, { byPack: new Set(["p1"]) }));
+  const items = plan.files.find((f) => f.name.endsWith("en-grocery")).data.items;
+  assert.deepStrictEqual([items.p1.byPack, items.p1.price, items.p1.off], [true, null, 6]);
+  assert.deepStrictEqual(plan.needs.regular, ["p5"]);
+});
