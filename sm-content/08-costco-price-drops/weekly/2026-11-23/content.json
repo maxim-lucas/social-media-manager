@@ -1,214 +1,268 @@
 {
- "available": {
-  "2026-11-23-carousel-grocery-en": {
-   "assets": [
-    "media/2026-11-23-carousel-grocery-en/01.jpg",
-    "media/2026-11-23-carousel-grocery-en/02.jpg",
-    "media/2026-11-23-carousel-grocery-en/03.jpg",
-    "media/2026-11-23-carousel-grocery-en/04.jpg",
-    "media/2026-11-23-carousel-grocery-en/05.jpg",
-    "media/2026-11-23-carousel-grocery-en/06.jpg",
-    "media/2026-11-23-carousel-grocery-en/07.jpg",
-    "media/2026-11-23-carousel-grocery-en/08.jpg",
-    "media/2026-11-23-carousel-grocery-en/09.jpg",
-    "media/2026-11-23-carousel-grocery-en/10.jpg",
-    "media/2026-11-23-carousel-grocery-en/11.jpg",
-    "media/2026-11-23-carousel-grocery-en/12.jpg",
-    "media/2026-11-23-carousel-grocery-en/13.jpg",
-    "media/2026-11-23-carousel-grocery-en/14.jpg",
-    "media/2026-11-23-carousel-grocery-en/15.jpg",
-    "media/2026-11-23-carousel-grocery-en/16.jpg",
-    "media/2026-11-23-carousel-grocery-en/17.jpg",
-    "media/2026-11-23-carousel-grocery-en/18.jpg",
-    "media/2026-11-23-carousel-grocery-en/19.jpg"
-   ]
+  "available": {
+    "2026-11-23-carousel-grocery-en": {
+      "assets": [
+        "media/2026-11-23-carousel-grocery-en/01.jpg",
+        "media/2026-11-23-carousel-grocery-en/02.jpg",
+        "media/2026-11-23-carousel-grocery-en/03.jpg",
+        "media/2026-11-23-carousel-grocery-en/04.jpg",
+        "media/2026-11-23-carousel-grocery-en/05.jpg",
+        "media/2026-11-23-carousel-grocery-en/06.jpg",
+        "media/2026-11-23-carousel-grocery-en/07.jpg",
+        "media/2026-11-23-carousel-grocery-en/08.jpg",
+        "media/2026-11-23-carousel-grocery-en/09.jpg",
+        "media/2026-11-23-carousel-grocery-en/10.jpg",
+        "media/2026-11-23-carousel-grocery-en/11.jpg",
+        "media/2026-11-23-carousel-grocery-en/12.jpg",
+        "media/2026-11-23-carousel-grocery-en/13.jpg",
+        "media/2026-11-23-carousel-grocery-en/14.jpg",
+        "media/2026-11-23-carousel-grocery-en/15.jpg",
+        "media/2026-11-23-carousel-grocery-en/16.jpg",
+        "media/2026-11-23-carousel-grocery-en/17.jpg",
+        "media/2026-11-23-carousel-grocery-en/18.jpg",
+        "media/2026-11-23-carousel-grocery-en/19.jpg"
+      ]
+    },
+    "2026-11-23-carousel-grocery-fr": {
+      "assets": [
+        "media/2026-11-23-carousel-grocery-fr/01.jpg",
+        "media/2026-11-23-carousel-grocery-fr/02.jpg",
+        "media/2026-11-23-carousel-grocery-fr/03.jpg",
+        "media/2026-11-23-carousel-grocery-fr/04.jpg",
+        "media/2026-11-23-carousel-grocery-fr/05.jpg",
+        "media/2026-11-23-carousel-grocery-fr/06.jpg",
+        "media/2026-11-23-carousel-grocery-fr/07.jpg",
+        "media/2026-11-23-carousel-grocery-fr/08.jpg",
+        "media/2026-11-23-carousel-grocery-fr/09.jpg",
+        "media/2026-11-23-carousel-grocery-fr/10.jpg",
+        "media/2026-11-23-carousel-grocery-fr/11.jpg",
+        "media/2026-11-23-carousel-grocery-fr/12.jpg",
+        "media/2026-11-23-carousel-grocery-fr/13.jpg",
+        "media/2026-11-23-carousel-grocery-fr/14.jpg",
+        "media/2026-11-23-carousel-grocery-fr/15.jpg",
+        "media/2026-11-23-carousel-grocery-fr/16.jpg",
+        "media/2026-11-23-carousel-grocery-fr/17.jpg",
+        "media/2026-11-23-carousel-grocery-fr/18.jpg",
+        "media/2026-11-23-carousel-grocery-fr/19.jpg"
+      ]
+    },
+    "2026-11-24-carousel-tech-en": {
+      "assets": [
+        "media/2026-11-24-carousel-tech-en/01.jpg",
+        "media/2026-11-24-carousel-tech-en/02.jpg",
+        "media/2026-11-24-carousel-tech-en/03.jpg",
+        "media/2026-11-24-carousel-tech-en/04.jpg",
+        "media/2026-11-24-carousel-tech-en/05.jpg",
+        "media/2026-11-24-carousel-tech-en/06.jpg",
+        "media/2026-11-24-carousel-tech-en/07.jpg",
+        "media/2026-11-24-carousel-tech-en/08.jpg",
+        "media/2026-11-24-carousel-tech-en/09.jpg",
+        "media/2026-11-24-carousel-tech-en/10.jpg",
+        "media/2026-11-24-carousel-tech-en/11.jpg",
+        "media/2026-11-24-carousel-tech-en/12.jpg",
+        "media/2026-11-24-carousel-tech-en/13.jpg",
+        "media/2026-11-24-carousel-tech-en/14.jpg",
+        "media/2026-11-24-carousel-tech-en/15.jpg"
+      ]
+    },
+    "2026-11-24-carousel-tech-fr": {
+      "assets": [
+        "media/2026-11-24-carousel-tech-fr/01.jpg",
+        "media/2026-11-24-carousel-tech-fr/02.jpg",
+        "media/2026-11-24-carousel-tech-fr/03.jpg",
+        "media/2026-11-24-carousel-tech-fr/04.jpg",
+        "media/2026-11-24-carousel-tech-fr/05.jpg",
+        "media/2026-11-24-carousel-tech-fr/06.jpg",
+        "media/2026-11-24-carousel-tech-fr/07.jpg",
+        "media/2026-11-24-carousel-tech-fr/08.jpg",
+        "media/2026-11-24-carousel-tech-fr/09.jpg",
+        "media/2026-11-24-carousel-tech-fr/10.jpg",
+        "media/2026-11-24-carousel-tech-fr/11.jpg",
+        "media/2026-11-24-carousel-tech-fr/12.jpg",
+        "media/2026-11-24-carousel-tech-fr/13.jpg",
+        "media/2026-11-24-carousel-tech-fr/14.jpg",
+        "media/2026-11-24-carousel-tech-fr/15.jpg"
+      ]
+    },
+    "2026-11-25-carousel-home-en": {
+      "assets": [
+        "media/2026-11-25-carousel-home-en/01.jpg",
+        "media/2026-11-25-carousel-home-en/02.jpg",
+        "media/2026-11-25-carousel-home-en/03.jpg",
+        "media/2026-11-25-carousel-home-en/04.jpg",
+        "media/2026-11-25-carousel-home-en/05.jpg",
+        "media/2026-11-25-carousel-home-en/06.jpg",
+        "media/2026-11-25-carousel-home-en/07.jpg",
+        "media/2026-11-25-carousel-home-en/08.jpg",
+        "media/2026-11-25-carousel-home-en/09.jpg",
+        "media/2026-11-25-carousel-home-en/10.jpg",
+        "media/2026-11-25-carousel-home-en/11.jpg",
+        "media/2026-11-25-carousel-home-en/12.jpg",
+        "media/2026-11-25-carousel-home-en/13.jpg",
+        "media/2026-11-25-carousel-home-en/14.jpg",
+        "media/2026-11-25-carousel-home-en/15.jpg",
+        "media/2026-11-25-carousel-home-en/16.jpg",
+        "media/2026-11-25-carousel-home-en/17.jpg",
+        "media/2026-11-25-carousel-home-en/18.jpg",
+        "media/2026-11-25-carousel-home-en/19.jpg",
+        "media/2026-11-25-carousel-home-en/20.jpg"
+      ]
+    },
+    "2026-11-25-carousel-home-fr": {
+      "assets": [
+        "media/2026-11-25-carousel-home-fr/01.jpg",
+        "media/2026-11-25-carousel-home-fr/02.jpg",
+        "media/2026-11-25-carousel-home-fr/03.jpg",
+        "media/2026-11-25-carousel-home-fr/04.jpg",
+        "media/2026-11-25-carousel-home-fr/05.jpg",
+        "media/2026-11-25-carousel-home-fr/06.jpg",
+        "media/2026-11-25-carousel-home-fr/07.jpg",
+        "media/2026-11-25-carousel-home-fr/08.jpg",
+        "media/2026-11-25-carousel-home-fr/09.jpg",
+        "media/2026-11-25-carousel-home-fr/10.jpg",
+        "media/2026-11-25-carousel-home-fr/11.jpg",
+        "media/2026-11-25-carousel-home-fr/12.jpg",
+        "media/2026-11-25-carousel-home-fr/13.jpg",
+        "media/2026-11-25-carousel-home-fr/14.jpg",
+        "media/2026-11-25-carousel-home-fr/15.jpg",
+        "media/2026-11-25-carousel-home-fr/16.jpg",
+        "media/2026-11-25-carousel-home-fr/17.jpg",
+        "media/2026-11-25-carousel-home-fr/18.jpg",
+        "media/2026-11-25-carousel-home-fr/19.jpg",
+        "media/2026-11-25-carousel-home-fr/20.jpg"
+      ]
+    },
+    "2026-11-26-carousel-bc-grocery-en": {
+      "assets": [
+        "media/2026-11-26-carousel-bc-grocery-en/01.jpg",
+        "media/2026-11-26-carousel-bc-grocery-en/02.jpg",
+        "media/2026-11-26-carousel-bc-grocery-en/03.jpg",
+        "media/2026-11-26-carousel-bc-grocery-en/04.jpg",
+        "media/2026-11-26-carousel-bc-grocery-en/05.jpg",
+        "media/2026-11-26-carousel-bc-grocery-en/06.jpg",
+        "media/2026-11-26-carousel-bc-grocery-en/07.jpg",
+        "media/2026-11-26-carousel-bc-grocery-en/08.jpg",
+        "media/2026-11-26-carousel-bc-grocery-en/09.jpg",
+        "media/2026-11-26-carousel-bc-grocery-en/10.jpg"
+      ]
+    },
+    "2026-11-26-carousel-bc-grocery-fr": {
+      "assets": [
+        "media/2026-11-26-carousel-bc-grocery-fr/01.jpg",
+        "media/2026-11-26-carousel-bc-grocery-fr/02.jpg",
+        "media/2026-11-26-carousel-bc-grocery-fr/03.jpg",
+        "media/2026-11-26-carousel-bc-grocery-fr/04.jpg",
+        "media/2026-11-26-carousel-bc-grocery-fr/05.jpg",
+        "media/2026-11-26-carousel-bc-grocery-fr/06.jpg",
+        "media/2026-11-26-carousel-bc-grocery-fr/07.jpg",
+        "media/2026-11-26-carousel-bc-grocery-fr/08.jpg",
+        "media/2026-11-26-carousel-bc-grocery-fr/09.jpg",
+        "media/2026-11-26-carousel-bc-grocery-fr/10.jpg"
+      ]
+    },
+    "2026-11-28-carousel-regional-en": {
+      "assets": [
+        "media/2026-11-28-carousel-regional-en/01.jpg",
+        "media/2026-11-28-carousel-regional-en/02.jpg",
+        "media/2026-11-28-carousel-regional-en/03.jpg",
+        "media/2026-11-28-carousel-regional-en/04.jpg",
+        "media/2026-11-28-carousel-regional-en/05.jpg",
+        "media/2026-11-28-carousel-regional-en/06.jpg",
+        "media/2026-11-28-carousel-regional-en/07.jpg",
+        "media/2026-11-28-carousel-regional-en/08.jpg"
+      ]
+    },
+    "2026-11-23-reel-grocery-en": {
+      "assets": [
+        "reels/grocery-en.mp4"
+      ]
+    },
+    "2026-11-23-reel-grocery-fr": {
+      "assets": [
+        "reels/grocery-fr.mp4"
+      ]
+    },
+    "2026-11-24-reel-tech-en": {
+      "assets": [
+        "reels/tech-en.mp4"
+      ]
+    },
+    "2026-11-24-reel-tech-fr": {
+      "assets": [
+        "reels/tech-fr.mp4"
+      ]
+    },
+    "2026-11-25-reel-home-en": {
+      "assets": [
+        "reels/home-en.mp4"
+      ]
+    },
+    "2026-11-25-reel-home-fr": {
+      "assets": [
+        "reels/home-fr.mp4"
+      ]
+    }
   },
-  "2026-11-23-carousel-grocery-fr": {
-   "assets": [
-    "media/2026-11-23-carousel-grocery-fr/01.jpg",
-    "media/2026-11-23-carousel-grocery-fr/02.jpg",
-    "media/2026-11-23-carousel-grocery-fr/03.jpg",
-    "media/2026-11-23-carousel-grocery-fr/04.jpg",
-    "media/2026-11-23-carousel-grocery-fr/05.jpg",
-    "media/2026-11-23-carousel-grocery-fr/06.jpg",
-    "media/2026-11-23-carousel-grocery-fr/07.jpg",
-    "media/2026-11-23-carousel-grocery-fr/08.jpg",
-    "media/2026-11-23-carousel-grocery-fr/09.jpg",
-    "media/2026-11-23-carousel-grocery-fr/10.jpg",
-    "media/2026-11-23-carousel-grocery-fr/11.jpg",
-    "media/2026-11-23-carousel-grocery-fr/12.jpg",
-    "media/2026-11-23-carousel-grocery-fr/13.jpg",
-    "media/2026-11-23-carousel-grocery-fr/14.jpg",
-    "media/2026-11-23-carousel-grocery-fr/15.jpg",
-    "media/2026-11-23-carousel-grocery-fr/16.jpg",
-    "media/2026-11-23-carousel-grocery-fr/17.jpg",
-    "media/2026-11-23-carousel-grocery-fr/18.jpg",
-    "media/2026-11-23-carousel-grocery-fr/19.jpg"
-   ]
-  },
-  "2026-11-24-carousel-tech-en": {
-   "assets": [
-    "media/2026-11-24-carousel-tech-en/01.jpg",
-    "media/2026-11-24-carousel-tech-en/02.jpg",
-    "media/2026-11-24-carousel-tech-en/03.jpg",
-    "media/2026-11-24-carousel-tech-en/04.jpg",
-    "media/2026-11-24-carousel-tech-en/05.jpg",
-    "media/2026-11-24-carousel-tech-en/06.jpg",
-    "media/2026-11-24-carousel-tech-en/07.jpg",
-    "media/2026-11-24-carousel-tech-en/08.jpg",
-    "media/2026-11-24-carousel-tech-en/09.jpg",
-    "media/2026-11-24-carousel-tech-en/10.jpg",
-    "media/2026-11-24-carousel-tech-en/11.jpg",
-    "media/2026-11-24-carousel-tech-en/12.jpg",
-    "media/2026-11-24-carousel-tech-en/13.jpg",
-    "media/2026-11-24-carousel-tech-en/14.jpg",
-    "media/2026-11-24-carousel-tech-en/15.jpg"
-   ]
-  },
-  "2026-11-24-carousel-tech-fr": {
-   "assets": [
-    "media/2026-11-24-carousel-tech-fr/01.jpg",
-    "media/2026-11-24-carousel-tech-fr/02.jpg",
-    "media/2026-11-24-carousel-tech-fr/03.jpg",
-    "media/2026-11-24-carousel-tech-fr/04.jpg",
-    "media/2026-11-24-carousel-tech-fr/05.jpg",
-    "media/2026-11-24-carousel-tech-fr/06.jpg",
-    "media/2026-11-24-carousel-tech-fr/07.jpg",
-    "media/2026-11-24-carousel-tech-fr/08.jpg",
-    "media/2026-11-24-carousel-tech-fr/09.jpg",
-    "media/2026-11-24-carousel-tech-fr/10.jpg",
-    "media/2026-11-24-carousel-tech-fr/11.jpg",
-    "media/2026-11-24-carousel-tech-fr/12.jpg",
-    "media/2026-11-24-carousel-tech-fr/13.jpg",
-    "media/2026-11-24-carousel-tech-fr/14.jpg",
-    "media/2026-11-24-carousel-tech-fr/15.jpg"
-   ]
-  },
-  "2026-11-25-carousel-home-en": {
-   "assets": [
-    "media/2026-11-25-carousel-home-en/01.jpg",
-    "media/2026-11-25-carousel-home-en/02.jpg",
-    "media/2026-11-25-carousel-home-en/03.jpg",
-    "media/2026-11-25-carousel-home-en/04.jpg",
-    "media/2026-11-25-carousel-home-en/05.jpg",
-    "media/2026-11-25-carousel-home-en/06.jpg",
-    "media/2026-11-25-carousel-home-en/07.jpg",
-    "media/2026-11-25-carousel-home-en/08.jpg",
-    "media/2026-11-25-carousel-home-en/09.jpg",
-    "media/2026-11-25-carousel-home-en/10.jpg",
-    "media/2026-11-25-carousel-home-en/11.jpg",
-    "media/2026-11-25-carousel-home-en/12.jpg",
-    "media/2026-11-25-carousel-home-en/13.jpg",
-    "media/2026-11-25-carousel-home-en/14.jpg",
-    "media/2026-11-25-carousel-home-en/15.jpg",
-    "media/2026-11-25-carousel-home-en/16.jpg",
-    "media/2026-11-25-carousel-home-en/17.jpg",
-    "media/2026-11-25-carousel-home-en/18.jpg",
-    "media/2026-11-25-carousel-home-en/19.jpg",
-    "media/2026-11-25-carousel-home-en/20.jpg"
-   ]
-  },
-  "2026-11-25-carousel-home-fr": {
-   "assets": [
-    "media/2026-11-25-carousel-home-fr/01.jpg",
-    "media/2026-11-25-carousel-home-fr/02.jpg",
-    "media/2026-11-25-carousel-home-fr/03.jpg",
-    "media/2026-11-25-carousel-home-fr/04.jpg",
-    "media/2026-11-25-carousel-home-fr/05.jpg",
-    "media/2026-11-25-carousel-home-fr/06.jpg",
-    "media/2026-11-25-carousel-home-fr/07.jpg",
-    "media/2026-11-25-carousel-home-fr/08.jpg",
-    "media/2026-11-25-carousel-home-fr/09.jpg",
-    "media/2026-11-25-carousel-home-fr/10.jpg",
-    "media/2026-11-25-carousel-home-fr/11.jpg",
-    "media/2026-11-25-carousel-home-fr/12.jpg",
-    "media/2026-11-25-carousel-home-fr/13.jpg",
-    "media/2026-11-25-carousel-home-fr/14.jpg",
-    "media/2026-11-25-carousel-home-fr/15.jpg",
-    "media/2026-11-25-carousel-home-fr/16.jpg",
-    "media/2026-11-25-carousel-home-fr/17.jpg",
-    "media/2026-11-25-carousel-home-fr/18.jpg",
-    "media/2026-11-25-carousel-home-fr/19.jpg",
-    "media/2026-11-25-carousel-home-fr/20.jpg"
-   ]
-  },
-  "2026-11-26-carousel-bc-grocery-en": {
-   "assets": [
-    "media/2026-11-26-carousel-bc-grocery-en/01.jpg",
-    "media/2026-11-26-carousel-bc-grocery-en/02.jpg",
-    "media/2026-11-26-carousel-bc-grocery-en/03.jpg",
-    "media/2026-11-26-carousel-bc-grocery-en/04.jpg",
-    "media/2026-11-26-carousel-bc-grocery-en/05.jpg",
-    "media/2026-11-26-carousel-bc-grocery-en/06.jpg",
-    "media/2026-11-26-carousel-bc-grocery-en/07.jpg",
-    "media/2026-11-26-carousel-bc-grocery-en/08.jpg",
-    "media/2026-11-26-carousel-bc-grocery-en/09.jpg",
-    "media/2026-11-26-carousel-bc-grocery-en/10.jpg"
-   ]
-  },
-  "2026-11-26-carousel-bc-grocery-fr": {
-   "assets": [
-    "media/2026-11-26-carousel-bc-grocery-fr/01.jpg",
-    "media/2026-11-26-carousel-bc-grocery-fr/02.jpg",
-    "media/2026-11-26-carousel-bc-grocery-fr/03.jpg",
-    "media/2026-11-26-carousel-bc-grocery-fr/04.jpg",
-    "media/2026-11-26-carousel-bc-grocery-fr/05.jpg",
-    "media/2026-11-26-carousel-bc-grocery-fr/06.jpg",
-    "media/2026-11-26-carousel-bc-grocery-fr/07.jpg",
-    "media/2026-11-26-carousel-bc-grocery-fr/08.jpg",
-    "media/2026-11-26-carousel-bc-grocery-fr/09.jpg",
-    "media/2026-11-26-carousel-bc-grocery-fr/10.jpg"
-   ]
-  },
-  "2026-11-28-carousel-regional-en": {
-   "assets": [
-    "media/2026-11-28-carousel-regional-en/01.jpg",
-    "media/2026-11-28-carousel-regional-en/02.jpg",
-    "media/2026-11-28-carousel-regional-en/03.jpg",
-    "media/2026-11-28-carousel-regional-en/04.jpg",
-    "media/2026-11-28-carousel-regional-en/05.jpg",
-    "media/2026-11-28-carousel-regional-en/06.jpg",
-    "media/2026-11-28-carousel-regional-en/07.jpg",
-    "media/2026-11-28-carousel-regional-en/08.jpg"
-   ]
+  "captions": {
+    "2026-11-23-carousel-grocery-en": {
+      "instagram": "17 Costco grocery prices just dropped: up to $110 back if you bought them 🛒\n\nPaid full price in the last 30 days? Claim the difference at the store, the store decides. Swipe for every drop, the first ones end Nov 26.\n\nFollow @priceback.ca for next week's drops. Link in bio.\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings",
+      "facebook": "17 Costco grocery prices just dropped: up to $110 back if you bought them 🛒\n\nPaid full price in the last 30 days? Claim the difference at the store, the store decides. Swipe for every drop, the first ones end Nov 26.\n\nFollow this page for next week's drops.\n\nApp Store: https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play: https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings"
+    },
+    "2026-11-23-carousel-grocery-fr": {
+      "instagram": "17 baisses de prix à l'épicerie Costco : jusqu'à 110 $ à récupérer 🛒\n\nPayé plein prix ces 30 derniers jours ? Réclamez la différence en magasin, c'est le magasin qui décide. Glissez pour toutes les baisses, les premières prennent fin le 26 nov.\n\nSuivez @priceback.ca pour les baisses de la semaine prochaine. Lien en bio.\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec",
+      "facebook": "17 baisses de prix à l'épicerie Costco : jusqu'à 110 $ à récupérer 🛒\n\nPayé plein prix ces 30 derniers jours ? Réclamez la différence en magasin, c'est le magasin qui décide. Glissez pour toutes les baisses, les premières prennent fin le 26 nov.\n\nSuivez cette page pour les baisses de la semaine prochaine.\n\nApp Store : https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play : https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec"
+    },
+    "2026-11-24-carousel-tech-en": {
+      "instagram": "13 Costco tech drops, up to $250 off a TV 📺 $1,585 to claim in total\n\nBought in the last 30 days? Ask for the price adjustment at the store. First ones end Dec 3.\n\nFollow @priceback.ca for next week's drops. Link in bio.\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings",
+      "facebook": "13 Costco tech drops, up to $250 off a TV 📺 $1,585 to claim in total\n\nBought in the last 30 days? Ask for the price adjustment at the store. First ones end Dec 3.\n\nFollow this page for next week's drops.\n\nApp Store: https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play: https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings"
+    },
+    "2026-11-24-carousel-tech-fr": {
+      "instagram": "13 baisses de prix techno chez Costco, jusqu'à 250 $ sur un téléviseur 📺 1 585 $ à réclamer\n\nAcheté ces 30 derniers jours ? Demandez l'ajustement de prix en magasin. Les premières prennent fin le 3 déc.\n\nSuivez @priceback.ca pour les baisses de la semaine prochaine. Lien en bio.\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec",
+      "facebook": "13 baisses de prix techno chez Costco, jusqu'à 250 $ sur un téléviseur 📺 1 585 $ à réclamer\n\nAcheté ces 30 derniers jours ? Demandez l'ajustement de prix en magasin. Les premières prennent fin le 3 déc.\n\nSuivez cette page pour les baisses de la semaine prochaine.\n\nApp Store : https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play : https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec"
+    },
+    "2026-11-25-carousel-home-en": {
+      "instagram": "18 Costco home price drops: a $130 coffee system and $619 in total ☕\n\nPaid full price in the last 30 days? Claim the difference at the store. Ends Nov 29 to Dec 20.\n\nFollow @priceback.ca for next week's drops. Link in bio.\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings",
+      "facebook": "18 Costco home price drops: a $130 coffee system and $619 in total ☕\n\nPaid full price in the last 30 days? Claim the difference at the store. Ends Nov 29 to Dec 20.\n\nFollow this page for next week's drops.\n\nApp Store: https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play: https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings"
+    },
+    "2026-11-25-carousel-home-fr": {
+      "instagram": "18 baisses de prix Maison et plus chez Costco : 130 $ sur un système à café, 619 $ au total ☕\n\nPayé plein prix ces 30 derniers jours ? Réclamez la différence en magasin. Fin du 29 nov. au 20 déc.\n\nSuivez @priceback.ca pour les baisses de la semaine prochaine. Lien en bio.\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec",
+      "facebook": "18 baisses de prix Maison et plus chez Costco : 130 $ sur un système à café, 619 $ au total ☕\n\nPayé plein prix ces 30 derniers jours ? Réclamez la différence en magasin. Fin du 29 nov. au 20 déc.\n\nSuivez cette page pour les baisses de la semaine prochaine.\n\nApp Store : https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play : https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec"
+    },
+    "2026-11-26-carousel-bc-grocery-en": {
+      "instagram": "8 Costco Business Centre grocery drops: $53 to claim 🧾\n\nOnly at Costco Business Centres. Bought in the last 30 days? Claim the difference at the store. Ends Dec 6.\n\nFollow @priceback.ca for next week's drops. Link in bio.\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings #BusinessCentre",
+      "facebook": "8 Costco Business Centre grocery drops: $53 to claim 🧾\n\nOnly at Costco Business Centres. Bought in the last 30 days? Claim the difference at the store. Ends Dec 6.\n\nFollow this page for next week's drops.\n\nApp Store: https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play: https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings #BusinessCentre"
+    },
+    "2026-11-26-carousel-bc-grocery-fr": {
+      "instagram": "8 baisses d'épicerie aux Centres d'affaires Costco : 53 $ à réclamer 🧾\n\nSeulement dans les centres d'affaires Costco. Acheté ces 30 derniers jours ? Réclamez la différence en magasin. Fin le 6 déc.\n\nSuivez @priceback.ca pour les baisses de la semaine prochaine. Lien en bio.\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec #CentreDAffaires",
+      "facebook": "8 baisses d'épicerie aux Centres d'affaires Costco : 53 $ à réclamer 🧾\n\nSeulement dans les centres d'affaires Costco. Acheté ces 30 derniers jours ? Réclamez la différence en magasin. Fin le 6 déc.\n\nSuivez cette page pour les baisses de la semaine prochaine.\n\nApp Store : https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play : https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec #CentreDAffaires"
+    },
+    "2026-11-28-carousel-regional-en": {
+      "instagram": "Hidden in Western Canada: 6 Costco price drops, $35.50 to claim 🤫\n\nSavings only seen in the West. Bought in the last 30 days? Claim the difference at the store. Ends Nov 29 and Dec 6.\n\nFollow @priceback.ca for next week's drops. Link in bio.\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings #WestCanada",
+      "facebook": "Hidden in Western Canada: 6 Costco price drops, $35.50 to claim 🤫\n\nSavings only seen in the West. Bought in the last 30 days? Claim the difference at the store. Ends Nov 29 and Dec 6.\n\nFollow this page for next week's drops.\n\nApp Store: https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play: https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings #WestCanada"
+    },
+    "2026-11-23-reel-grocery-en": {
+      "instagram": "17 Costco grocery prices just dropped: up to $110 back 🛒\n\nPaid full price in the last 30 days? Claim the difference at the store, the store decides. Follow @priceback.ca for next week's drops. Link in bio.\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings",
+      "facebook": "17 Costco grocery prices just dropped: up to $110 back 🛒\n\nPaid full price in the last 30 days? Claim the difference at the store, the store decides. Follow this page for next week's drops.\n\nApp Store https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings"
+    },
+    "2026-11-24-reel-tech-en": {
+      "instagram": "13 Costco tech prices just dropped, up to $250 off a TV 📺\n\nBought one in the last 30 days? Claim the difference at the store, the store decides. Follow @priceback.ca for next week's drops. Link in bio.\n\n#CostcoCanada #PriceAdjustment #CostcoTech #PriceBack #CanadianSavings",
+      "facebook": "13 Costco tech prices just dropped, up to $250 off a TV 📺\n\nBought one in the last 30 days? Claim the difference at the store, the store decides. Follow this page for next week's drops.\n\nApp Store https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #PriceAdjustment #CostcoTech #PriceBack #CanadianSavings"
+    },
+    "2026-11-25-reel-home-en": {
+      "instagram": "18 Costco home prices just dropped: $619 to claim in total 🏠\n\nPaid full price in the last 30 days? Claim the difference at the store, the store decides. Follow @priceback.ca for next week's drops. Link in bio.\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings",
+      "facebook": "18 Costco home prices just dropped: $619 to claim in total 🏠\n\nPaid full price in the last 30 days? Claim the difference at the store, the store decides. Follow this page for next week's drops.\n\nApp Store https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings"
+    },
+    "2026-11-23-reel-grocery-fr": {
+      "instagram": "17 baisses de prix à l'épicerie Costco : jusqu'à 110 $ à récupérer 🛒\n\nPayé plein prix ces 30 derniers jours ? Réclamez la différence en magasin, c'est le magasin qui décide. Suivez @priceback.ca pour les baisses de la semaine prochaine. Lien en bio.\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec",
+      "facebook": "17 baisses de prix à l'épicerie Costco : jusqu'à 110 $ à récupérer 🛒\n\nPayé plein prix ces 30 derniers jours ? Réclamez la différence en magasin, c'est le magasin qui décide. Suivez cette page pour les baisses de la semaine prochaine.\n\nApp Store : https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play : https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec"
+    },
+    "2026-11-24-reel-tech-fr": {
+      "instagram": "13 baisses de prix techno chez Costco, jusqu'à 250 $ sur un téléviseur 📺\n\nAcheté ces 30 derniers jours ? Réclamez la différence en magasin, c'est le magasin qui décide. Suivez @priceback.ca pour les baisses de la semaine prochaine. Lien en bio.\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec",
+      "facebook": "13 baisses de prix techno chez Costco, jusqu'à 250 $ sur un téléviseur 📺\n\nAcheté ces 30 derniers jours ? Réclamez la différence en magasin, c'est le magasin qui décide. Suivez cette page pour les baisses de la semaine prochaine.\n\nApp Store : https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play : https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec"
+    },
+    "2026-11-25-reel-home-fr": {
+      "instagram": "18 baisses de prix Maison et plus chez Costco : 619 $ à récupérer 🏠\n\nPayé plein prix ces 30 derniers jours ? Réclamez la différence en magasin, c'est le magasin qui décide. Suivez @priceback.ca pour les baisses de la semaine prochaine. Lien en bio.\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec",
+      "facebook": "18 baisses de prix Maison et plus chez Costco : 619 $ à récupérer 🏠\n\nPayé plein prix ces 30 derniers jours ? Réclamez la différence en magasin, c'est le magasin qui décide. Suivez cette page pour les baisses de la semaine prochaine.\n\nApp Store : https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play : https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec"
+    }
   }
- },
- "captions": {
-  "2026-11-23-carousel-grocery-en": {
-   "instagram": "17 Costco grocery prices just dropped: up to $110 back if you bought them 🛒\n\nPaid full price in the last 30 days? Claim the difference at the store, the store decides. Swipe for every drop, the first ones end Nov 26.\n\nFollow @priceback.ca for next week's drops. Link in bio.\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings",
-   "facebook": "17 Costco grocery prices just dropped: up to $110 back if you bought them 🛒\n\nPaid full price in the last 30 days? Claim the difference at the store, the store decides. Swipe for every drop, the first ones end Nov 26.\n\nFollow this page for next week's drops.\n\nApp Store: https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play: https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings"
-  },
-  "2026-11-23-carousel-grocery-fr": {
-   "instagram": "17 baisses de prix à l'épicerie Costco : jusqu'à 110 $ à récupérer 🛒\n\nPayé plein prix ces 30 derniers jours ? Réclamez la différence en magasin, c'est le magasin qui décide. Glissez pour toutes les baisses, les premières prennent fin le 26 nov.\n\nSuivez @priceback.ca pour les baisses de la semaine prochaine. Lien en bio.\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec",
-   "facebook": "17 baisses de prix à l'épicerie Costco : jusqu'à 110 $ à récupérer 🛒\n\nPayé plein prix ces 30 derniers jours ? Réclamez la différence en magasin, c'est le magasin qui décide. Glissez pour toutes les baisses, les premières prennent fin le 26 nov.\n\nSuivez cette page pour les baisses de la semaine prochaine.\n\nApp Store : https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play : https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec"
-  },
-  "2026-11-24-carousel-tech-en": {
-   "instagram": "13 Costco tech drops, up to $250 off a TV 📺 $1,585 to claim in total\n\nBought in the last 30 days? Ask for the price adjustment at the store. First ones end Dec 3.\n\nFollow @priceback.ca for next week's drops. Link in bio.\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings",
-   "facebook": "13 Costco tech drops, up to $250 off a TV 📺 $1,585 to claim in total\n\nBought in the last 30 days? Ask for the price adjustment at the store. First ones end Dec 3.\n\nFollow this page for next week's drops.\n\nApp Store: https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play: https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings"
-  },
-  "2026-11-24-carousel-tech-fr": {
-   "instagram": "13 baisses de prix techno chez Costco, jusqu'à 250 $ sur un téléviseur 📺 1 585 $ à réclamer\n\nAcheté ces 30 derniers jours ? Demandez l'ajustement de prix en magasin. Les premières prennent fin le 3 déc.\n\nSuivez @priceback.ca pour les baisses de la semaine prochaine. Lien en bio.\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec",
-   "facebook": "13 baisses de prix techno chez Costco, jusqu'à 250 $ sur un téléviseur 📺 1 585 $ à réclamer\n\nAcheté ces 30 derniers jours ? Demandez l'ajustement de prix en magasin. Les premières prennent fin le 3 déc.\n\nSuivez cette page pour les baisses de la semaine prochaine.\n\nApp Store : https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play : https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec"
-  },
-  "2026-11-25-carousel-home-en": {
-   "instagram": "18 Costco home price drops: a $130 coffee system and $619 in total ☕\n\nPaid full price in the last 30 days? Claim the difference at the store. Ends Nov 29 to Dec 20.\n\nFollow @priceback.ca for next week's drops. Link in bio.\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings",
-   "facebook": "18 Costco home price drops: a $130 coffee system and $619 in total ☕\n\nPaid full price in the last 30 days? Claim the difference at the store. Ends Nov 29 to Dec 20.\n\nFollow this page for next week's drops.\n\nApp Store: https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play: https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings"
-  },
-  "2026-11-25-carousel-home-fr": {
-   "instagram": "18 baisses de prix Maison et plus chez Costco : 130 $ sur un système à café, 619 $ au total ☕\n\nPayé plein prix ces 30 derniers jours ? Réclamez la différence en magasin. Fin du 29 nov. au 20 déc.\n\nSuivez @priceback.ca pour les baisses de la semaine prochaine. Lien en bio.\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec",
-   "facebook": "18 baisses de prix Maison et plus chez Costco : 130 $ sur un système à café, 619 $ au total ☕\n\nPayé plein prix ces 30 derniers jours ? Réclamez la différence en magasin. Fin du 29 nov. au 20 déc.\n\nSuivez cette page pour les baisses de la semaine prochaine.\n\nApp Store : https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play : https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec"
-  },
-  "2026-11-26-carousel-bc-grocery-en": {
-   "instagram": "8 Costco Business Centre grocery drops: $53 to claim 🧾\n\nOnly at Costco Business Centres. Bought in the last 30 days? Claim the difference at the store. Ends Dec 6.\n\nFollow @priceback.ca for next week's drops. Link in bio.\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings #BusinessCentre",
-   "facebook": "8 Costco Business Centre grocery drops: $53 to claim 🧾\n\nOnly at Costco Business Centres. Bought in the last 30 days? Claim the difference at the store. Ends Dec 6.\n\nFollow this page for next week's drops.\n\nApp Store: https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play: https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings #BusinessCentre"
-  },
-  "2026-11-26-carousel-bc-grocery-fr": {
-   "instagram": "8 baisses d'épicerie aux Centres d'affaires Costco : 53 $ à réclamer 🧾\n\nSeulement dans les centres d'affaires Costco. Acheté ces 30 derniers jours ? Réclamez la différence en magasin. Fin le 6 déc.\n\nSuivez @priceback.ca pour les baisses de la semaine prochaine. Lien en bio.\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec #CentreDAffaires",
-   "facebook": "8 baisses d'épicerie aux Centres d'affaires Costco : 53 $ à réclamer 🧾\n\nSeulement dans les centres d'affaires Costco. Acheté ces 30 derniers jours ? Réclamez la différence en magasin. Fin le 6 déc.\n\nSuivez cette page pour les baisses de la semaine prochaine.\n\nApp Store : https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play : https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec #CentreDAffaires"
-  },
-  "2026-11-28-carousel-regional-en": {
-   "instagram": "Hidden in Western Canada: 6 Costco price drops, $35.50 to claim 🤫\n\nSavings only seen in the West. Bought in the last 30 days? Claim the difference at the store. Ends Nov 29 and Dec 6.\n\nFollow @priceback.ca for next week's drops. Link in bio.\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings #WestCanada",
-   "facebook": "Hidden in Western Canada: 6 Costco price drops, $35.50 to claim 🤫\n\nSavings only seen in the West. Bought in the last 30 days? Claim the difference at the store. Ends Nov 29 and Dec 6.\n\nFollow this page for next week's drops.\n\nApp Store: https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play: https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings #WestCanada"
-  }
- }
 }
