@@ -3,11 +3,11 @@
   "built": [
     {
       "name": "2026-11-23-en-tech",
-      "items": 18
+      "items": 14
     },
     {
       "name": "2026-11-23-en-grocery",
-      "items": 18
+      "items": 17
     },
     {
       "name": "2026-11-23-en-home",
@@ -15,27 +15,27 @@
     },
     {
       "name": "2026-11-23-fr-tech",
-      "items": 18
+      "items": 14
     },
     {
       "name": "2026-11-23-fr-grocery",
-      "items": 18
+      "items": 17
     },
     {
       "name": "2026-11-23-fr-home",
       "items": 18
     },
     {
-      "name": "2026-11-23-en-regional-atlantic",
-      "items": 3
+      "name": "2026-11-23-en-regional-west",
+      "items": 9
     },
     {
       "name": "2026-11-23-en-bc-grocery",
-      "items": 13
+      "items": 8
     },
     {
       "name": "2026-11-23-fr-bc-grocery",
-      "items": 13
+      "items": 8
     }
   ],
   "skipped": [

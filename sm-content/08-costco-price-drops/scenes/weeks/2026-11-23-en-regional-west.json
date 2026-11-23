@@ -1,0 +1,277 @@
+{
+  "_note": "Hidden in the West, English, for the provinces outside Quebec, built 2026-11-23 from priceback.savings (read-only views).",
+  "source": "priceback.savings via social_ro views",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "audience": "en",
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "Hidden in the West",
+        "fr": "Cachés dans l'Ouest"
+      },
+      "items": [
+        "1929704",
+        "1929710",
+        "2003373",
+        "2003375",
+        "2055938",
+        "2946499",
+        "2079395",
+        "2035740",
+        "15764"
+      ]
+    }
+  ],
+  "items": {
+    "15764": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Brussels sprouts",
+          "fresh",
+          "907 g"
+        ],
+        "fr": [
+          "Choux de Bruxelles",
+          "frais",
+          "907 g"
+        ]
+      },
+      "regular": 6.99,
+      "off": 1.5,
+      "price": 5.49,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1929704": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Candy canes",
+          "Christmas decor",
+          "72 in"
+        ],
+        "fr": [
+          "Cannes de bonbon",
+          "décoration de Noël",
+          "72 po"
+        ]
+      },
+      "regular": 299.99,
+      "off": 100,
+      "price": 199.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1929710": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Infinity Mirror",
+          "Pathway lights",
+          "6 ct"
+        ],
+        "fr": [
+          "Infinity Mirror",
+          "lumières de sentier",
+          "6 ct"
+        ]
+      },
+      "regular": 49.99,
+      "off": 15,
+      "price": 34.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2003373": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "fairlife",
+          "Chocolate protein shake",
+          "340 ml"
+        ],
+        "fr": [
+          "fairlife",
+          "boisson protéinée au chocolat",
+          "340 ml"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10,
+      "price": 39.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "MB"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2003375": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "fairlife",
+          "Vanilla protein drink",
+          "340 ml"
+        ],
+        "fr": [
+          "fairlife",
+          "boisson protéinée à la vanille",
+          "340 ml"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10,
+      "price": 39.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "MB"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2035740": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "100% Pure",
+          "Roasted pumpkin seed oil",
+          "700 ml"
+        ],
+        "fr": [
+          "100 % pur",
+          "huile de graines de citrouille rôties",
+          "700 ml"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2055938": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Lightlife",
+          "Veggie burgers",
+          "1.44 kg"
+        ],
+        "fr": [
+          "Lightlife",
+          "burgers végétariens",
+          "1,44 kg"
+        ]
+      },
+      "regular": 17.99,
+      "off": 8,
+      "price": 9.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2079395": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Winkler Meats",
+          "Farmer sausage",
+          "1 kg"
+        ],
+        "fr": [
+          "Winkler Meats",
+          "saucisse fermière",
+          "1 kg"
+        ]
+      },
+      "regular": 22.99,
+      "off": 5,
+      "price": 17.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2946499": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Bucked Up",
+          "Zero Sugar mini energy drink cans",
+          "250 ml"
+        ],
+        "fr": [
+          "Bucked Up",
+          "mini canettes boisson énergisante zéro sucre",
+          "250 ml"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6,
+      "price": 23.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "MB",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    }
+  },
+  "feeds": {
+    "en": [
+      "c"
+    ]
+  }
+}

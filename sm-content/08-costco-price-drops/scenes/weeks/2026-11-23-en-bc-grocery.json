@@ -16,14 +16,9 @@
       },
       "items": [
         "1068077",
-        "2088058",
-        "8888700",
         "302050",
-        "302051",
         "93147",
-        "8888601",
         "1127413",
-        "1140257",
         "1489207",
         "1567224",
         "4894963",
@@ -90,35 +85,6 @@
       "bizOnly": [],
       "exceptions": {}
     },
-    "302051": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "M&M's",
-          "Peanut chocolate candies (case)",
-          "49 g"
-        ],
-        "fr": [
-          "M&M's",
-          "bonbons au chocolat et arachides (caisse)",
-          "49 g"
-        ]
-      },
-      "regular": 34.89,
-      "off": 7,
-      "price": 27.89,
-      "exp": "2026-12-06",
-      "seen": "2026-11-23",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "ON",
-        "QC"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
     "1068077": {
       "sameday": null,
       "tag": {
@@ -165,35 +131,6 @@
       "regular": 27.99,
       "off": 6,
       "price": 21.99,
-      "exp": "2026-12-06",
-      "seen": "2026-11-23",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "ON",
-        "QC"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
-    "1140257": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Icelandic Glacial",
-          "Natural spring water",
-          "30 × 330 ml"
-        ],
-        "fr": [
-          "Icelandic Glacial",
-          "eau de source naturelle",
-          "30 × 330 ml"
-        ]
-      },
-      "regular": 25.99,
-      "off": 6,
-      "price": 19.99,
       "exp": "2026-12-06",
       "seen": "2026-11-23",
       "provinces": [
@@ -292,35 +229,6 @@
       "bizOnly": [],
       "exceptions": {}
     },
-    "2088058": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "KD",
-          "Original Mac and Cheese",
-          "4 × 1.81 kg"
-        ],
-        "fr": [
-          "KD",
-          "macaroni au fromage original",
-          "4 × 1,81 kg"
-        ]
-      },
-      "regular": 49.99,
-      "off": 10,
-      "price": 39.99,
-      "exp": "2026-12-06",
-      "seen": "2026-11-23",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "ON",
-        "QC"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
     "4894963": {
       "sameday": null,
       "tag": {
@@ -338,64 +246,6 @@
       "regular": 29.99,
       "off": 6,
       "price": 23.99,
-      "exp": "2026-12-06",
-      "seen": "2026-11-23",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "ON",
-        "QC"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
-    "8888601": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Fennec",
-          "Frozen diced strawberries",
-          "5 × 1 kg"
-        ],
-        "fr": [
-          "Fennec",
-          "fraises coupées en dés surgelées",
-          "5 × 1 kg"
-        ]
-      },
-      "regular": 29.99,
-      "off": 6,
-      "price": 23.99,
-      "exp": "2026-11-29",
-      "seen": "2026-11-23",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "ON",
-        "QC"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
-    "8888700": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "IQF",
-          "Broccoli florets",
-          "6 × 2 kg"
-        ],
-        "fr": [
-          "IQF",
-          "fleurons de brocoli",
-          "6 × 2 kg"
-        ]
-      },
-      "regular": 32.99,
-      "off": 8,
-      "price": 24.99,
       "exp": "2026-12-06",
       "seen": "2026-11-23",
       "provinces": [

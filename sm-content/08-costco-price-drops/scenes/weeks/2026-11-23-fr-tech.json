@@ -19,19 +19,15 @@
         "1479885",
         "8785565",
         "2076124",
-        "2076126",
-        "5418525",
         "7895442",
         "2162709",
         "1431001",
         "8779903",
         "7472260",
-        "1806837",
         "2055348",
         "3824030",
-        "3824031",
         "8782021",
-        "2040559"
+        "8772021"
       ]
     }
   ],
@@ -135,68 +131,6 @@
       "bizOnly": [],
       "exceptions": {}
     },
-    "1806837": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Mysa",
-          "Smart Thermostat LITE",
-          "for baseboard heaters, 4 ct"
-        ],
-        "fr": [
-          "Mysa",
-          "thermostat intelligent LITE",
-          "pour plinthes chauffantes, 4 ct"
-        ]
-      },
-      "regular": 249.99,
-      "off": 50,
-      "price": 199.99,
-      "exp": "2026-12-06",
-      "seen": "2026-11-23",
-      "provinces": [
-        "NL",
-        "NS",
-        "QC"
-      ],
-      "bizOnly": [],
-      "exceptions": {
-        "NS": 100
-      }
-    },
-    "2040559": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Amped Wireless",
-          "High-power touchscreen Wi-Fi range extender",
-          "TAPEX-CA"
-        ],
-        "fr": [
-          "Amped Wireless",
-          "prolongateur Wi-Fi tactile haute puissance",
-          "TAPEX-CA"
-        ]
-      },
-      "regular": 69.99,
-      "off": 20,
-      "price": 49.99,
-      "exp": "2026-11-29",
-      "seen": "2026-11-23",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "NB",
-        "NL",
-        "NS",
-        "ON",
-        "QC",
-        "SK"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
     "2055348": {
       "sameday": null,
       "tag": {
@@ -237,39 +171,6 @@
           "Bose",
           "casque QuietComfort 2e génération",
           "noir"
-        ]
-      },
-      "regular": 438.99,
-      "off": 170,
-      "price": 268.99,
-      "exp": "2026-12-20",
-      "seen": "2026-11-23",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "NB",
-        "NL",
-        "NS",
-        "ON",
-        "QC",
-        "SK"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
-    "2076126": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Bose",
-          "QuietComfort headphones, 2nd gen",
-          "white"
-        ],
-        "fr": [
-          "Bose",
-          "casque QuietComfort 2e génération",
-          "blanc"
         ]
       },
       "regular": 438.99,
@@ -336,72 +237,6 @@
       "regular": 129.99,
       "off": 40,
       "price": 89.99,
-      "exp": "2026-12-20",
-      "seen": "2026-11-23",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "NB",
-        "NL",
-        "NS",
-        "ON",
-        "QC",
-        "SK"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
-    "3824031": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Shokz",
-          "OpenRun SE bone conduction headphones",
-          "blue"
-        ],
-        "fr": [
-          "Shokz",
-          "casque à conduction osseuse OpenRun SE",
-          "bleu"
-        ]
-      },
-      "regular": 129.99,
-      "off": 40,
-      "price": 89.99,
-      "exp": "2026-12-20",
-      "seen": "2026-11-23",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "NB",
-        "NL",
-        "NS",
-        "ON",
-        "QC",
-        "SK"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
-    "5418525": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Samsung",
-          "Galaxy Tab A11+ tablet",
-          "128 GB, 11\""
-        ],
-        "fr": [
-          "Samsung",
-          "tablette Galaxy Tab A11+",
-          "128 Go, 11 po"
-        ]
-      },
-      "regular": 428.99,
-      "off": 160,
-      "price": 268.99,
       "exp": "2026-12-20",
       "seen": "2026-11-23",
       "provinces": [
@@ -506,6 +341,35 @@
       "provinces": [
         "AB",
         "ON"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "8772021": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "AVF",
+          "Tilt TV mount",
+          "32-100\""
+        ],
+        "fr": [
+          "AVF",
+          "support TV inclinable",
+          "32 à 100 po"
+        ]
+      },
+      "regular": 74.99,
+      "off": 15,
+      "price": 59.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "SK"
       ],
       "bizOnly": [],
       "exceptions": {}
