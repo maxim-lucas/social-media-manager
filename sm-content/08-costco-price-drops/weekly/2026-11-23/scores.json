@@ -64,5 +64,16 @@
   "en-tech": 9.57,
   "fr-tech": 9.6,
   "en-regional-west": 9.4
+ },
+ "reels": {
+  "note": "One round, scored from stills per RUBRIC 'How to score a reel'. Approved track cand-02 (96 bpm). home-en banner clipped at round 1 (9.4), fixed by shortening the label to HOME and re-rendered.",
+  "totals": {
+   "grocery-en": 9.7,
+   "grocery-fr": 10.0,
+   "home-en": "9.4 before fix (banner), re-rendered",
+   "home-fr": 9.57,
+   "tech-en": 10.0,
+   "tech-fr": 9.7
+  }
  }
 }
