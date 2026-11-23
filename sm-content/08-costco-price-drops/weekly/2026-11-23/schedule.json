@@ -1,0 +1,574 @@
+{
+  "monday": "2026-11-23",
+  "timezone": "America/Toronto",
+  "slots": [
+    {
+      "id": "2026-11-23-carousel-grocery-en",
+      "date": "2026-11-23",
+      "time": "08:00",
+      "lang": "en",
+      "kind": "carousel",
+      "key": "grocery",
+      "asap": true,
+      "earliest": "08:00",
+      "latest": "14:30",
+      "assets": [
+        "media/2026-11-23-carousel-grocery-en/01.jpg",
+        "media/2026-11-23-carousel-grocery-en/02.jpg",
+        "media/2026-11-23-carousel-grocery-en/03.jpg",
+        "media/2026-11-23-carousel-grocery-en/04.jpg",
+        "media/2026-11-23-carousel-grocery-en/05.jpg",
+        "media/2026-11-23-carousel-grocery-en/06.jpg",
+        "media/2026-11-23-carousel-grocery-en/07.jpg",
+        "media/2026-11-23-carousel-grocery-en/08.jpg",
+        "media/2026-11-23-carousel-grocery-en/09.jpg",
+        "media/2026-11-23-carousel-grocery-en/10.jpg",
+        "media/2026-11-23-carousel-grocery-en/11.jpg",
+        "media/2026-11-23-carousel-grocery-en/12.jpg",
+        "media/2026-11-23-carousel-grocery-en/13.jpg",
+        "media/2026-11-23-carousel-grocery-en/14.jpg",
+        "media/2026-11-23-carousel-grocery-en/15.jpg",
+        "media/2026-11-23-carousel-grocery-en/16.jpg",
+        "media/2026-11-23-carousel-grocery-en/17.jpg",
+        "media/2026-11-23-carousel-grocery-en/18.jpg",
+        "media/2026-11-23-carousel-grocery-en/19.jpg"
+      ],
+      "caption": {
+        "instagram": "17 Costco grocery prices just dropped: up to $110 back if you bought them 🛒\n\nPaid full price in the last 30 days? Claim the difference at the store, the store decides. Swipe for every drop, the first ones end Nov 26.\n\nFollow @priceback.ca for next week's drops. Link in bio.\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings",
+        "facebook": "17 Costco grocery prices just dropped: up to $110 back if you bought them 🛒\n\nPaid full price in the last 30 days? Claim the difference at the store, the store decides. Swipe for every drop, the first ones end Nov 26.\n\nFollow this page for next week's drops.\n\nApp Store: https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play: https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings"
+      },
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "ready"
+    },
+    {
+      "id": "2026-11-23-carousel-grocery-fr",
+      "date": "2026-11-23",
+      "time": "09:15",
+      "lang": "fr",
+      "kind": "carousel",
+      "key": "grocery",
+      "asap": true,
+      "earliest": "09:15",
+      "latest": "15:45",
+      "assets": [
+        "media/2026-11-23-carousel-grocery-fr/01.jpg",
+        "media/2026-11-23-carousel-grocery-fr/02.jpg",
+        "media/2026-11-23-carousel-grocery-fr/03.jpg",
+        "media/2026-11-23-carousel-grocery-fr/04.jpg",
+        "media/2026-11-23-carousel-grocery-fr/05.jpg",
+        "media/2026-11-23-carousel-grocery-fr/06.jpg",
+        "media/2026-11-23-carousel-grocery-fr/07.jpg",
+        "media/2026-11-23-carousel-grocery-fr/08.jpg",
+        "media/2026-11-23-carousel-grocery-fr/09.jpg",
+        "media/2026-11-23-carousel-grocery-fr/10.jpg",
+        "media/2026-11-23-carousel-grocery-fr/11.jpg",
+        "media/2026-11-23-carousel-grocery-fr/12.jpg",
+        "media/2026-11-23-carousel-grocery-fr/13.jpg",
+        "media/2026-11-23-carousel-grocery-fr/14.jpg",
+        "media/2026-11-23-carousel-grocery-fr/15.jpg",
+        "media/2026-11-23-carousel-grocery-fr/16.jpg",
+        "media/2026-11-23-carousel-grocery-fr/17.jpg",
+        "media/2026-11-23-carousel-grocery-fr/18.jpg",
+        "media/2026-11-23-carousel-grocery-fr/19.jpg"
+      ],
+      "caption": {
+        "instagram": "17 baisses de prix à l'épicerie Costco : jusqu'à 110 $ à récupérer 🛒\n\nPayé plein prix ces 30 derniers jours ? Réclamez la différence en magasin, c'est le magasin qui décide. Glissez pour toutes les baisses, les premières prennent fin le 26 nov.\n\nSuivez @priceback.ca pour les baisses de la semaine prochaine. Lien en bio.\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec",
+        "facebook": "17 baisses de prix à l'épicerie Costco : jusqu'à 110 $ à récupérer 🛒\n\nPayé plein prix ces 30 derniers jours ? Réclamez la différence en magasin, c'est le magasin qui décide. Glissez pour toutes les baisses, les premières prennent fin le 26 nov.\n\nSuivez cette page pour les baisses de la semaine prochaine.\n\nApp Store : https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play : https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec"
+      },
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "ready"
+    },
+    {
+      "id": "2026-11-23-reel-grocery-en",
+      "date": "2026-11-23",
+      "time": "19:00",
+      "lang": "en",
+      "kind": "reel",
+      "key": "grocery",
+      "assets": [],
+      "caption": null,
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "needs_content"
+    },
+    {
+      "id": "2026-11-23-reel-grocery-fr",
+      "date": "2026-11-23",
+      "time": "20:15",
+      "lang": "fr",
+      "kind": "reel",
+      "key": "grocery",
+      "assets": [],
+      "caption": null,
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "needs_content"
+    },
+    {
+      "id": "2026-11-24-carousel-tech-en",
+      "date": "2026-11-24",
+      "time": "12:00",
+      "lang": "en",
+      "kind": "carousel",
+      "key": "tech",
+      "assets": [
+        "media/2026-11-24-carousel-tech-en/01.jpg",
+        "media/2026-11-24-carousel-tech-en/02.jpg",
+        "media/2026-11-24-carousel-tech-en/03.jpg",
+        "media/2026-11-24-carousel-tech-en/04.jpg",
+        "media/2026-11-24-carousel-tech-en/05.jpg",
+        "media/2026-11-24-carousel-tech-en/06.jpg",
+        "media/2026-11-24-carousel-tech-en/07.jpg",
+        "media/2026-11-24-carousel-tech-en/08.jpg",
+        "media/2026-11-24-carousel-tech-en/09.jpg",
+        "media/2026-11-24-carousel-tech-en/10.jpg",
+        "media/2026-11-24-carousel-tech-en/11.jpg",
+        "media/2026-11-24-carousel-tech-en/12.jpg",
+        "media/2026-11-24-carousel-tech-en/13.jpg",
+        "media/2026-11-24-carousel-tech-en/14.jpg",
+        "media/2026-11-24-carousel-tech-en/15.jpg"
+      ],
+      "caption": {
+        "instagram": "13 Costco tech drops, up to $250 off a TV 📺 $1,585 to claim in total\n\nBought in the last 30 days? Ask for the price adjustment at the store. First ones end Dec 3.\n\nFollow @priceback.ca for next week's drops. Link in bio.\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings",
+        "facebook": "13 Costco tech drops, up to $250 off a TV 📺 $1,585 to claim in total\n\nBought in the last 30 days? Ask for the price adjustment at the store. First ones end Dec 3.\n\nFollow this page for next week's drops.\n\nApp Store: https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play: https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings"
+      },
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "ready"
+    },
+    {
+      "id": "2026-11-24-carousel-tech-fr",
+      "date": "2026-11-24",
+      "time": "13:15",
+      "lang": "fr",
+      "kind": "carousel",
+      "key": "tech",
+      "assets": [
+        "media/2026-11-24-carousel-tech-fr/01.jpg",
+        "media/2026-11-24-carousel-tech-fr/02.jpg",
+        "media/2026-11-24-carousel-tech-fr/03.jpg",
+        "media/2026-11-24-carousel-tech-fr/04.jpg",
+        "media/2026-11-24-carousel-tech-fr/05.jpg",
+        "media/2026-11-24-carousel-tech-fr/06.jpg",
+        "media/2026-11-24-carousel-tech-fr/07.jpg",
+        "media/2026-11-24-carousel-tech-fr/08.jpg",
+        "media/2026-11-24-carousel-tech-fr/09.jpg",
+        "media/2026-11-24-carousel-tech-fr/10.jpg",
+        "media/2026-11-24-carousel-tech-fr/11.jpg",
+        "media/2026-11-24-carousel-tech-fr/12.jpg",
+        "media/2026-11-24-carousel-tech-fr/13.jpg",
+        "media/2026-11-24-carousel-tech-fr/14.jpg",
+        "media/2026-11-24-carousel-tech-fr/15.jpg"
+      ],
+      "caption": {
+        "instagram": "13 baisses de prix techno chez Costco, jusqu'à 250 $ sur un téléviseur 📺 1 585 $ à réclamer\n\nAcheté ces 30 derniers jours ? Demandez l'ajustement de prix en magasin. Les premières prennent fin le 3 déc.\n\nSuivez @priceback.ca pour les baisses de la semaine prochaine. Lien en bio.\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec",
+        "facebook": "13 baisses de prix techno chez Costco, jusqu'à 250 $ sur un téléviseur 📺 1 585 $ à réclamer\n\nAcheté ces 30 derniers jours ? Demandez l'ajustement de prix en magasin. Les premières prennent fin le 3 déc.\n\nSuivez cette page pour les baisses de la semaine prochaine.\n\nApp Store : https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play : https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec"
+      },
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "ready"
+    },
+    {
+      "id": "2026-11-24-reel-tech-en",
+      "date": "2026-11-24",
+      "time": "20:00",
+      "lang": "en",
+      "kind": "reel",
+      "key": "tech",
+      "assets": [],
+      "caption": null,
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "needs_content"
+    },
+    {
+      "id": "2026-11-24-reel-tech-fr",
+      "date": "2026-11-24",
+      "time": "21:15",
+      "lang": "fr",
+      "kind": "reel",
+      "key": "tech",
+      "assets": [],
+      "caption": null,
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "needs_content"
+    },
+    {
+      "id": "2026-11-25-carousel-home-en",
+      "date": "2026-11-25",
+      "time": "08:00",
+      "lang": "en",
+      "kind": "carousel",
+      "key": "home",
+      "assets": [
+        "media/2026-11-25-carousel-home-en/01.jpg",
+        "media/2026-11-25-carousel-home-en/02.jpg",
+        "media/2026-11-25-carousel-home-en/03.jpg",
+        "media/2026-11-25-carousel-home-en/04.jpg",
+        "media/2026-11-25-carousel-home-en/05.jpg",
+        "media/2026-11-25-carousel-home-en/06.jpg",
+        "media/2026-11-25-carousel-home-en/07.jpg",
+        "media/2026-11-25-carousel-home-en/08.jpg",
+        "media/2026-11-25-carousel-home-en/09.jpg",
+        "media/2026-11-25-carousel-home-en/10.jpg",
+        "media/2026-11-25-carousel-home-en/11.jpg",
+        "media/2026-11-25-carousel-home-en/12.jpg",
+        "media/2026-11-25-carousel-home-en/13.jpg",
+        "media/2026-11-25-carousel-home-en/14.jpg",
+        "media/2026-11-25-carousel-home-en/15.jpg",
+        "media/2026-11-25-carousel-home-en/16.jpg",
+        "media/2026-11-25-carousel-home-en/17.jpg",
+        "media/2026-11-25-carousel-home-en/18.jpg",
+        "media/2026-11-25-carousel-home-en/19.jpg",
+        "media/2026-11-25-carousel-home-en/20.jpg"
+      ],
+      "caption": {
+        "instagram": "18 Costco home price drops: a $130 coffee system and $619 in total ☕\n\nPaid full price in the last 30 days? Claim the difference at the store. Ends Nov 29 to Dec 20.\n\nFollow @priceback.ca for next week's drops. Link in bio.\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings",
+        "facebook": "18 Costco home price drops: a $130 coffee system and $619 in total ☕\n\nPaid full price in the last 30 days? Claim the difference at the store. Ends Nov 29 to Dec 20.\n\nFollow this page for next week's drops.\n\nApp Store: https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play: https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings"
+      },
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "ready"
+    },
+    {
+      "id": "2026-11-25-carousel-home-fr",
+      "date": "2026-11-25",
+      "time": "09:15",
+      "lang": "fr",
+      "kind": "carousel",
+      "key": "home",
+      "assets": [
+        "media/2026-11-25-carousel-home-fr/01.jpg",
+        "media/2026-11-25-carousel-home-fr/02.jpg",
+        "media/2026-11-25-carousel-home-fr/03.jpg",
+        "media/2026-11-25-carousel-home-fr/04.jpg",
+        "media/2026-11-25-carousel-home-fr/05.jpg",
+        "media/2026-11-25-carousel-home-fr/06.jpg",
+        "media/2026-11-25-carousel-home-fr/07.jpg",
+        "media/2026-11-25-carousel-home-fr/08.jpg",
+        "media/2026-11-25-carousel-home-fr/09.jpg",
+        "media/2026-11-25-carousel-home-fr/10.jpg",
+        "media/2026-11-25-carousel-home-fr/11.jpg",
+        "media/2026-11-25-carousel-home-fr/12.jpg",
+        "media/2026-11-25-carousel-home-fr/13.jpg",
+        "media/2026-11-25-carousel-home-fr/14.jpg",
+        "media/2026-11-25-carousel-home-fr/15.jpg",
+        "media/2026-11-25-carousel-home-fr/16.jpg",
+        "media/2026-11-25-carousel-home-fr/17.jpg",
+        "media/2026-11-25-carousel-home-fr/18.jpg",
+        "media/2026-11-25-carousel-home-fr/19.jpg",
+        "media/2026-11-25-carousel-home-fr/20.jpg"
+      ],
+      "caption": {
+        "instagram": "18 baisses de prix Maison et plus chez Costco : 130 $ sur un système à café, 619 $ au total ☕\n\nPayé plein prix ces 30 derniers jours ? Réclamez la différence en magasin. Fin du 29 nov. au 20 déc.\n\nSuivez @priceback.ca pour les baisses de la semaine prochaine. Lien en bio.\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec",
+        "facebook": "18 baisses de prix Maison et plus chez Costco : 130 $ sur un système à café, 619 $ au total ☕\n\nPayé plein prix ces 30 derniers jours ? Réclamez la différence en magasin. Fin du 29 nov. au 20 déc.\n\nSuivez cette page pour les baisses de la semaine prochaine.\n\nApp Store : https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play : https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec"
+      },
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "ready"
+    },
+    {
+      "id": "2026-11-25-reel-home-en",
+      "date": "2026-11-25",
+      "time": "19:30",
+      "lang": "en",
+      "kind": "reel",
+      "key": "home",
+      "assets": [],
+      "caption": null,
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "needs_content"
+    },
+    {
+      "id": "2026-11-25-reel-home-fr",
+      "date": "2026-11-25",
+      "time": "20:45",
+      "lang": "fr",
+      "kind": "reel",
+      "key": "home",
+      "assets": [],
+      "caption": null,
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "needs_content"
+    },
+    {
+      "id": "2026-11-26-carousel-bc-grocery-en",
+      "date": "2026-11-26",
+      "time": "06:00",
+      "lang": "en",
+      "kind": "carousel",
+      "key": "bc-grocery",
+      "assets": [
+        "media/2026-11-26-carousel-bc-grocery-en/01.jpg",
+        "media/2026-11-26-carousel-bc-grocery-en/02.jpg",
+        "media/2026-11-26-carousel-bc-grocery-en/03.jpg",
+        "media/2026-11-26-carousel-bc-grocery-en/04.jpg",
+        "media/2026-11-26-carousel-bc-grocery-en/05.jpg",
+        "media/2026-11-26-carousel-bc-grocery-en/06.jpg",
+        "media/2026-11-26-carousel-bc-grocery-en/07.jpg",
+        "media/2026-11-26-carousel-bc-grocery-en/08.jpg",
+        "media/2026-11-26-carousel-bc-grocery-en/09.jpg",
+        "media/2026-11-26-carousel-bc-grocery-en/10.jpg"
+      ],
+      "caption": {
+        "instagram": "8 Costco Business Centre grocery drops: $53 to claim 🧾\n\nOnly at Costco Business Centres. Bought in the last 30 days? Claim the difference at the store. Ends Dec 6.\n\nFollow @priceback.ca for next week's drops. Link in bio.\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings #BusinessCentre",
+        "facebook": "8 Costco Business Centre grocery drops: $53 to claim 🧾\n\nOnly at Costco Business Centres. Bought in the last 30 days? Claim the difference at the store. Ends Dec 6.\n\nFollow this page for next week's drops.\n\nApp Store: https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play: https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings #BusinessCentre"
+      },
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "ready"
+    },
+    {
+      "id": "2026-11-26-carousel-bc-grocery-fr",
+      "date": "2026-11-26",
+      "time": "07:15",
+      "lang": "fr",
+      "kind": "carousel",
+      "key": "bc-grocery",
+      "assets": [
+        "media/2026-11-26-carousel-bc-grocery-fr/01.jpg",
+        "media/2026-11-26-carousel-bc-grocery-fr/02.jpg",
+        "media/2026-11-26-carousel-bc-grocery-fr/03.jpg",
+        "media/2026-11-26-carousel-bc-grocery-fr/04.jpg",
+        "media/2026-11-26-carousel-bc-grocery-fr/05.jpg",
+        "media/2026-11-26-carousel-bc-grocery-fr/06.jpg",
+        "media/2026-11-26-carousel-bc-grocery-fr/07.jpg",
+        "media/2026-11-26-carousel-bc-grocery-fr/08.jpg",
+        "media/2026-11-26-carousel-bc-grocery-fr/09.jpg",
+        "media/2026-11-26-carousel-bc-grocery-fr/10.jpg"
+      ],
+      "caption": {
+        "instagram": "8 baisses d'épicerie aux Centres d'affaires Costco : 53 $ à réclamer 🧾\n\nSeulement dans les centres d'affaires Costco. Acheté ces 30 derniers jours ? Réclamez la différence en magasin. Fin le 6 déc.\n\nSuivez @priceback.ca pour les baisses de la semaine prochaine. Lien en bio.\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec #CentreDAffaires",
+        "facebook": "8 baisses d'épicerie aux Centres d'affaires Costco : 53 $ à réclamer 🧾\n\nSeulement dans les centres d'affaires Costco. Acheté ces 30 derniers jours ? Réclamez la différence en magasin. Fin le 6 déc.\n\nSuivez cette page pour les baisses de la semaine prochaine.\n\nApp Store : https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play : https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #AjustementDePrix #RabaisCostco #PriceBack #EconomiesQuébec #CentreDAffaires"
+      },
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "ready"
+    },
+    {
+      "id": "2026-11-26-reel-bc-grocery-en",
+      "date": "2026-11-26",
+      "time": "12:00",
+      "lang": "en",
+      "kind": "reel",
+      "key": "bc-grocery",
+      "assets": [],
+      "caption": null,
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "needs_content"
+    },
+    {
+      "id": "2026-11-26-reel-bc-grocery-fr",
+      "date": "2026-11-26",
+      "time": "13:15",
+      "lang": "fr",
+      "kind": "reel",
+      "key": "bc-grocery",
+      "assets": [],
+      "caption": null,
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "needs_content"
+    },
+    {
+      "id": "2026-11-27-reel-recap-en",
+      "date": "2026-11-27",
+      "time": "19:00",
+      "lang": "en",
+      "kind": "reel",
+      "key": "recap",
+      "assets": [],
+      "caption": null,
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "needs_content"
+    },
+    {
+      "id": "2026-11-27-reel-recap-fr",
+      "date": "2026-11-27",
+      "time": "20:15",
+      "lang": "fr",
+      "kind": "reel",
+      "key": "recap",
+      "assets": [],
+      "caption": null,
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "needs_content"
+    },
+    {
+      "id": "2026-11-28-carousel-regional-en",
+      "date": "2026-11-28",
+      "time": "09:00",
+      "lang": "en",
+      "kind": "carousel",
+      "key": "regional",
+      "assets": [
+        "media/2026-11-28-carousel-regional-en/01.jpg",
+        "media/2026-11-28-carousel-regional-en/02.jpg",
+        "media/2026-11-28-carousel-regional-en/03.jpg",
+        "media/2026-11-28-carousel-regional-en/04.jpg",
+        "media/2026-11-28-carousel-regional-en/05.jpg",
+        "media/2026-11-28-carousel-regional-en/06.jpg",
+        "media/2026-11-28-carousel-regional-en/07.jpg",
+        "media/2026-11-28-carousel-regional-en/08.jpg"
+      ],
+      "caption": {
+        "instagram": "Hidden in Western Canada: 6 Costco price drops, $35.50 to claim 🤫\n\nSavings only seen in the West. Bought in the last 30 days? Claim the difference at the store. Ends Nov 29 and Dec 6.\n\nFollow @priceback.ca for next week's drops. Link in bio.\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings #WestCanada",
+        "facebook": "Hidden in Western Canada: 6 Costco price drops, $35.50 to claim 🤫\n\nSavings only seen in the West. Bought in the last 30 days? Claim the difference at the store. Ends Nov 29 and Dec 6.\n\nFollow this page for next week's drops.\n\nApp Store: https://apps.apple.com/ca/app/priceback/id6795860374\nGoogle Play: https://play.google.com/store/apps/details?id=com.priceback\n\n#CostcoCanada #PriceAdjustment #CostcoDeals #PriceBack #CanadianSavings #WestCanada"
+      },
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "ready"
+    },
+    {
+      "id": "2026-11-28-carousel-regional-fr",
+      "date": "2026-11-28",
+      "time": "10:15",
+      "lang": "fr",
+      "kind": "carousel",
+      "key": "regional",
+      "assets": [],
+      "caption": null,
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "needs_content"
+    },
+    {
+      "id": "2026-11-28-reel-regional-en",
+      "date": "2026-11-28",
+      "time": "18:00",
+      "lang": "en",
+      "kind": "reel",
+      "key": "regional",
+      "assets": [],
+      "caption": null,
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "needs_content"
+    },
+    {
+      "id": "2026-11-28-reel-regional-fr",
+      "date": "2026-11-28",
+      "time": "19:15",
+      "lang": "fr",
+      "kind": "reel",
+      "key": "regional",
+      "assets": [],
+      "caption": null,
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "needs_content"
+    },
+    {
+      "id": "2026-11-29-carousel-how-to-claim-en",
+      "date": "2026-11-29",
+      "time": "18:00",
+      "lang": "en",
+      "kind": "carousel",
+      "key": "how-to-claim",
+      "assets": [],
+      "caption": null,
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "needs_content"
+    },
+    {
+      "id": "2026-11-29-carousel-how-to-claim-fr",
+      "date": "2026-11-29",
+      "time": "19:15",
+      "lang": "fr",
+      "kind": "carousel",
+      "key": "how-to-claim",
+      "assets": [],
+      "caption": null,
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "needs_content"
+    },
+    {
+      "id": "2026-11-29-reel-how-to-claim-en",
+      "date": "2026-11-29",
+      "time": "20:00",
+      "lang": "en",
+      "kind": "reel",
+      "key": "how-to-claim",
+      "assets": [],
+      "caption": null,
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "needs_content"
+    },
+    {
+      "id": "2026-11-29-reel-how-to-claim-fr",
+      "date": "2026-11-29",
+      "time": "21:15",
+      "lang": "fr",
+      "kind": "reel",
+      "key": "how-to-claim",
+      "assets": [],
+      "caption": null,
+      "networks": [
+        "instagram",
+        "facebook"
+      ],
+      "status": "needs_content"
+    }
+  ]
+}

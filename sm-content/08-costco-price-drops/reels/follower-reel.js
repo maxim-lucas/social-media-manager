@@ -216,11 +216,12 @@ window.frame=(t)=>{
   if (flag !== "--silent") args.push("-i", wav, "-c:a", "aac", "-b:a", "160k", "-shortest");
   args.push("-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p", "-r", String(FPS), "-movflags", "+faststart", out);
   const ff = spawn("ffmpeg", args, { stdio: ["pipe", "inherit", "inherit"] });
+  let ffClosed = false; ff.stdin.on("error", () => { ffClosed = true; }); // ffmpeg may close the pipe at -shortest (EPIPE)
   const n = Math.round(DUR * FPS);
-  for (let i = 0; i < n; i++) {
+  for (let i = 0; i < n && !ffClosed; i++) {
     await p.evaluate((t) => window.frame(t), i / FPS);
     const buf = await p.screenshot({ type: "jpeg", quality: 92 });
-    if (!ff.stdin.write(buf)) await new Promise((r) => ff.stdin.once("drain", r));
+    if (!ff.stdin.write(buf) && !ffClosed) await new Promise((r) => { ff.stdin.once("drain", r); ff.stdin.once("error", r); });
   }
   ff.stdin.end(); await new Promise((r) => ff.on("close", r)); await b.close();
   console.log("ok", out, MODE, "|", N, "drops,", TOTAL, "| shown:", pics.map((t) => t.sku + " -" + t.off).join(", "));

@@ -1,0 +1,451 @@
+{
+  "_note": "TVs & tech, English, for the provinces outside Quebec, built 2026-11-23 from priceback.savings (read-only views).",
+  "source": "priceback.savings via social_ro views",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "audience": "en",
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "TVs & tech",
+        "fr": "Télés et techno"
+      },
+      "items": [
+        "6688055",
+        "1432121",
+        "1479885",
+        "8785565",
+        "2076124",
+        "7895442",
+        "2162709",
+        "1431001",
+        "8779903",
+        "7472260",
+        "2055348",
+        "3824030",
+        "8782021"
+      ]
+    }
+  ],
+  "items": {
+    "1431001": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "DJI",
+          "Osmo Pocket 3 camera",
+          "bundle with Lexar 256 GB card"
+        ],
+        "fr": [
+          "DJI",
+          "caméra Osmo Pocket 3",
+          "ensemble avec carte Lexar 256 Go"
+        ]
+      },
+      "regular": 589.99,
+      "off": 90,
+      "price": 499.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1432121": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "DJI",
+          "Mini Pro 5 drone",
+          "Fly More bundle"
+        ],
+        "fr": [
+          "DJI",
+          "drone Mini Pro 5",
+          "ensemble Fly More"
+        ]
+      },
+      "regular": 1199.99,
+      "off": 200,
+      "price": 999.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1479885": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Acer",
+          "Aspire Lite laptop",
+          "Ryzen AI 5, 16 GB, 512 GB, 15.6\""
+        ],
+        "fr": [
+          "Acer",
+          "portable Aspire Lite",
+          "Ryzen AI 5, 16 Go, 512 Go, 15,6 po"
+        ]
+      },
+      "regular": 1199.99,
+      "off": 200,
+      "price": 999.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2055348": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Mysa",
+          "Smart Thermostat for central HVAC",
+          "C-wire adapter and trim kit"
+        ],
+        "fr": [
+          "Mysa",
+          "thermostat intelligent pour CVC central",
+          "adaptateur fil C et plaque"
+        ]
+      },
+      "regular": 139.99,
+      "off": 40,
+      "price": 99.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "MB",
+        "ON",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2076124": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Bose",
+          "QuietComfort headphones, 2nd gen",
+          "black"
+        ],
+        "fr": [
+          "Bose",
+          "casque QuietComfort 2e génération",
+          "noir"
+        ]
+      },
+      "regular": 438.99,
+      "off": 170,
+      "price": 268.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2162709": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "HP",
+          "27-CU0009C all-in-one",
+          "Core 5, 16 GB, SSD"
+        ],
+        "fr": [
+          "HP",
+          "tout-en-un 27-CU0009C",
+          "Core 5, 16 Go, SSD"
+        ]
+      },
+      "regular": 1199.99,
+      "off": 100,
+      "price": 1099.99,
+      "exp": "2026-12-03",
+      "seen": "2026-11-23",
+      "provinces": [
+        "NB",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "3824030": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Shokz",
+          "OpenRun SE bone conduction headphones",
+          "standard"
+        ],
+        "fr": [
+          "Shokz",
+          "casque à conduction osseuse OpenRun SE",
+          "standard"
+        ]
+      },
+      "regular": 129.99,
+      "off": 40,
+      "price": 89.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "6688055": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "TCL",
+          "55\" 55M8L Pro 4K Mini LED TV",
+          "UHD"
+        ],
+        "fr": [
+          "TCL",
+          "téléviseur Mini DEL 4K 55 po 55M8L Pro",
+          "UHD"
+        ]
+      },
+      "regular": 794.99,
+      "off": 250,
+      "price": 544.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "7472260": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Apple",
+          "AirPods Pro 3",
+          "USB-C, MagSafe case"
+        ],
+        "fr": [
+          "Apple",
+          "AirPods Pro 3",
+          "USB-C, étui MagSafe"
+        ]
+      },
+      "regular": 298.99,
+      "off": 55,
+      "price": 243.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "7895442": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "MSI",
+          "Modern 16 AI+ laptop",
+          "Core Ultra 7, 16 GB, 512 GB"
+        ],
+        "fr": [
+          "MSI",
+          "portable Modern 16 AI+",
+          "Core Ultra 7, 16 Go, 512 Go"
+        ]
+      },
+      "regular": 1749.99,
+      "off": 150,
+      "price": 1599.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "ON"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "8779903": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "soundcore",
+          "Rave 3S karaoke party speaker",
+          "1 each"
+        ],
+        "fr": [
+          "soundcore",
+          "haut-parleur karaoké Rave 3S",
+          "1 unité"
+        ]
+      },
+      "regular": 289.99,
+      "off": 60,
+      "price": 229.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "8782021": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "AVF",
+          "Multi-position TV mount",
+          "32-100\""
+        ],
+        "fr": [
+          "AVF",
+          "support TV multi-positions",
+          "32 à 100 po"
+        ]
+      },
+      "regular": 129.99,
+      "off": 30,
+      "price": 99.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "8785565": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Hisense",
+          "65\" M75SR 4K QLED Mini-LED TV",
+          "M75SR"
+        ],
+        "fr": [
+          "Hisense",
+          "téléviseur QLED Mini DEL 4K 65 po",
+          "M75SR"
+        ]
+      },
+      "regular": 794.99,
+      "off": 200,
+      "price": 594.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    }
+  },
+  "feeds": {
+    "en": [
+      "c"
+    ]
+  }
+}

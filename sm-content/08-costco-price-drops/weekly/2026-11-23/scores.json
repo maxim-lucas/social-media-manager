@@ -1,0 +1,79 @@
+{
+ "note": "Round-by-round reviewer sub-scores (fresh agents, RUBRIC.md). Round 1 raw findings drove photo rejects/variant drops; round 2 passed 7 of 9; round 3 re-scored the 5 changed carousels.",
+ "round2": {
+  "en-grocery": 9.93,
+  "fr-grocery": 9.72,
+  "en-home": 8.85,
+  "fr-home": 9.02,
+  "en-tech": 9.57,
+  "fr-tech": 9.4,
+  "en-bc-grocery": 9.68,
+  "fr-bc-grocery": 9.68,
+  "en-regional-west": 9.4
+ },
+ "round3": {
+  "en-home": {
+   "hook": 0.9,
+   "clarity": 1,
+   "photos": 0.9,
+   "legibility": 1,
+   "language": 1,
+   "compliance": 1,
+   "cta": 1
+  },
+  "fr-home": {
+   "hook": 0.9,
+   "clarity": 1,
+   "photos": 0.9,
+   "legibility": 1,
+   "language": 1,
+   "compliance": 1,
+   "cta": 1
+  },
+  "en-tech": {
+   "hook": 0.9,
+   "clarity": 1,
+   "photos": 0.9,
+   "legibility": 0.95,
+   "language": 1,
+   "compliance": 1,
+   "cta": 1
+  },
+  "fr-tech": {
+   "hook": 0.9,
+   "clarity": 1,
+   "photos": 0.95,
+   "legibility": 0.95,
+   "language": 0.95,
+   "compliance": 1,
+   "cta": 1
+  },
+  "en-regional-west": {
+   "hook": 0.9,
+   "clarity": 1,
+   "photos": 0.9,
+   "legibility": 0.9,
+   "language": 0.9,
+   "compliance": 1,
+   "cta": 1
+  }
+ },
+ "round3Totals": {
+  "en-home": 9.65,
+  "fr-home": 9.65,
+  "en-tech": 9.57,
+  "fr-tech": 9.6,
+  "en-regional-west": 9.4
+ },
+ "reels": {
+  "note": "One round, scored from stills per RUBRIC 'How to score a reel'. Approved track cand-02 (96 bpm). home-en banner clipped at round 1 (9.4), fixed by shortening the label to HOME and re-rendered.",
+  "totals": {
+   "grocery-en": 9.7,
+   "grocery-fr": 10.0,
+   "home-en": "9.4 before fix (banner), re-rendered",
+   "home-fr": 9.57,
+   "tech-en": 10.0,
+   "tech-fr": 9.7
+  }
+ }
+}

@@ -1,0 +1,634 @@
+{
+  "_note": "Home & more, English, for the provinces outside Quebec, built 2026-11-23 from priceback.savings (read-only views).",
+  "source": "priceback.savings via social_ro views",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "audience": "en",
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "Home & more",
+        "fr": "Maison et plus"
+      },
+      "items": [
+        "1845969",
+        "1901872",
+        "2027016",
+        "2777483",
+        "2884210",
+        "7774114",
+        "1927368",
+        "2030457",
+        "3333083",
+        "1934567",
+        "3923353",
+        "2053454",
+        "2776597",
+        "2034925",
+        "2058684",
+        "3703338",
+        "1598561",
+        "2034927"
+      ]
+    }
+  ],
+  "items": {
+    "1598561": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Elizabeth Arden",
+          "Ceramide Eyes Time Complex capsules",
+          "1 each"
+        ],
+        "fr": [
+          "Elizabeth Arden",
+          "capsules Ceramide Eyes Time Complex",
+          "1 unité"
+        ]
+      },
+      "regular": 49.99,
+      "off": 17,
+      "price": 32.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1845969": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Ninja",
+          "Luxe Café 3-in-1 coffee system",
+          "1 each"
+        ],
+        "fr": [
+          "Ninja",
+          "système à café Luxe Café 3-en-1",
+          "1 unité"
+        ]
+      },
+      "regular": 629.99,
+      "off": 130,
+      "price": 499.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1901872": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "GreenPan",
+          "Jewel ceramic non-stick cookware",
+          "11-piece set"
+        ],
+        "fr": [
+          "GreenPan",
+          "batterie de cuisine antiadhésive Jewel",
+          "ensemble de 11 pièces"
+        ]
+      },
+      "regular": 199.99,
+      "off": 50,
+      "price": 149.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1927368": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Keurig",
+          "K-Crema coffee maker",
+          "1 each"
+        ],
+        "fr": [
+          "Keurig",
+          "cafetière K-Crema",
+          "1 unité"
+        ]
+      },
+      "regular": 149.99,
+      "off": 30,
+      "price": 119.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1934567": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Washburn",
+          "Grand Auditorium acoustic guitar pack",
+          "quilted maple top"
+        ],
+        "fr": [
+          "Washburn",
+          "ensemble de guitare acoustique Grand Auditorium",
+          "table en érable piqué"
+        ]
+      },
+      "regular": 199.99,
+      "off": 30,
+      "price": 169.99,
+      "exp": "2026-11-30",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2027016": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Cangshan",
+          "Elko Series knife block set",
+          "16-piece set"
+        ],
+        "fr": [
+          "Cangshan",
+          "bloc de couteaux série Elko",
+          "ensemble de 16 pièces"
+        ]
+      },
+      "regular": 199.99,
+      "off": 50,
+      "price": 149.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2030457": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Bugatti",
+          "Carry-on and duffle bag set",
+          "2-piece set"
+        ],
+        "fr": [
+          "Bugatti",
+          "ensemble valise de cabine et sac polochon",
+          "ensemble de 2 pièces"
+        ]
+      },
+      "regular": 149.99,
+      "off": 30,
+      "price": 119.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2034925": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Elizabeth Arden",
+          "Visible Difference refining moisture cream complex",
+          "75 ml"
+        ],
+        "fr": [
+          "Elizabeth Arden",
+          "crème hydratante raffinante Visible Difference",
+          "75 ml"
+        ]
+      },
+      "regular": 48.99,
+      "off": 20,
+      "price": 28.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2034927": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Elizabeth Arden",
+          "Ceramide Eyes Time Complex capsules",
+          "60 ct"
+        ],
+        "fr": [
+          "Elizabeth Arden",
+          "capsules Ceramide Eyes Time Complex",
+          "60 ct"
+        ]
+      },
+      "regular": 49.99,
+      "off": 17,
+      "price": 32.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2053454": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "nutribullet",
+          "Power Core blender",
+          "1 each"
+        ],
+        "fr": [
+          "nutribullet",
+          "mélangeur Power Core",
+          "1 unité"
+        ]
+      },
+      "regular": 79.99,
+      "off": 20,
+      "price": 59.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2058684": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Biodance",
+          "Real Deep Mask multi-pack",
+          "24 ct"
+        ],
+        "fr": [
+          "Biodance",
+          "masques Real Deep, multipaquet",
+          "24 ct"
+        ]
+      },
+      "regular": 89.99,
+      "off": 20,
+      "price": 69.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2776597": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Jurassic World",
+          "Primal Hatch interactive toy",
+          "1 each"
+        ],
+        "fr": [
+          "Jurassic World",
+          "jouet interactif Primal Hatch",
+          "1 unité"
+        ]
+      },
+      "regular": 59.99,
+      "off": 20,
+      "price": 39.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2777483": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Oral-B",
+          "iO Series Professional Clean electric toothbrush",
+          "2-pack"
+        ],
+        "fr": [
+          "Oral-B",
+          "brosse à dents électrique iO Professional Clean",
+          "paquet de 2"
+        ]
+      },
+      "regular": 169.99,
+      "off": 40,
+      "price": 129.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2884210": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Chefman",
+          "Crispinator Max 10-in-1 air fryer & toaster oven",
+          "midnight"
+        ],
+        "fr": [
+          "Chefman",
+          "friteuse à air et four grille-pain 10-en-1 Crispinator Max",
+          "minuit"
+        ]
+      },
+      "regular": 199.99,
+      "off": 40,
+      "price": 159.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "3333083": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Frigidaire",
+          "Self-cleaning ice maker",
+          "11.8 kg capacity"
+        ],
+        "fr": [
+          "Frigidaire",
+          "machine à glaçons autonettoyante",
+          "capacité de 11,8 kg"
+        ]
+      },
+      "regular": 99.99,
+      "off": 30,
+      "price": 69.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "3703338": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Waterpik",
+          "CDL water flosser",
+          "1 each"
+        ],
+        "fr": [
+          "Waterpik",
+          "jet dentaire CDL",
+          "1 unité"
+        ]
+      },
+      "regular": 99.99,
+      "off": 20,
+      "price": 79.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "3923353": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Cuisinart",
+          "4-slice Belgian waffle maker with pancake plates",
+          "1 each"
+        ],
+        "fr": [
+          "Cuisinart",
+          "gaufrier belge 4 tranches avec plaques à crêpes",
+          "1 unité"
+        ]
+      },
+      "regular": 99.99,
+      "off": 20,
+      "price": 79.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "7774114": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Philips",
+          "Dry & Wet shaver",
+          "1 each"
+        ],
+        "fr": [
+          "Philips",
+          "rasoir pour peau sèche et humide",
+          "1 unité"
+        ]
+      },
+      "regular": 134.99,
+      "off": 35,
+      "price": 99.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    }
+  },
+  "feeds": {
+    "en": [
+      "c"
+    ]
+  }
+}
