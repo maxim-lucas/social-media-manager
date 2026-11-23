@@ -58,3 +58,18 @@ test("a thrown network error is a failed preflight, not a crash", async () => {
   });
   assert.deepStrictEqual([r.ok, /ENOTFOUND/.test(r.detail)], [false, true]);
 });
+
+test("substitutes: same product and TV-same-brand are automatic, other same-brand models need approval", () => {
+  const { substituteFor } = require("./photos");
+  const t = {
+    a: { use: "b", kind: "same-product" },
+    c: { use: "d", kind: "same-brand-tv" },
+    e: { use: "f", kind: "same-brand-other" },
+    g: { use: "h", kind: "same-brand-other", approved: true },
+  };
+  assert.strictEqual(substituteFor("a", t), "b");
+  assert.strictEqual(substituteFor("c", t), "d");
+  assert.strictEqual(substituteFor("e", t), null);
+  assert.strictEqual(substituteFor("g", t), "h");
+  assert.strictEqual(substituteFor("zz", t), null);
+});

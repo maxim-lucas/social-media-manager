@@ -18,6 +18,8 @@ banner (the builder adds them to `tools/photo-rejects.json` and the item leaves 
 
 ## Rules for the reviewer
 
+- **Substitute photos are allowed** when the SKU is listed in `tools/photo-substitutes.json` (the same product under another SKU, or a TV of the same brand): a TV photo showing another model of the brand is not a defect.
+
 - **Known house design, never a defect:** Costco-coloured style, the two store badges, the PriceBack app bar, the claim band,
   Quebec in the national strip, the follow-only end card. A fix that changes one of these is not accepted.
 - Fix only what the data and the renderer get wrong (a wrong stat, text overlapping, a lifestyle photo, a wrong language).
