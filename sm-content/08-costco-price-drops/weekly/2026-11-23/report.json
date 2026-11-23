@@ -1,0 +1,47 @@
+{
+  "monday": "2026-11-23",
+  "built": [
+    {
+      "name": "2026-11-23-en-tech",
+      "items": 18
+    },
+    {
+      "name": "2026-11-23-en-grocery",
+      "items": 18
+    },
+    {
+      "name": "2026-11-23-en-home",
+      "items": 18
+    },
+    {
+      "name": "2026-11-23-fr-tech",
+      "items": 18
+    },
+    {
+      "name": "2026-11-23-fr-grocery",
+      "items": 18
+    },
+    {
+      "name": "2026-11-23-fr-home",
+      "items": 18
+    },
+    {
+      "name": "2026-11-23-en-regional-atlantic",
+      "items": 3
+    },
+    {
+      "name": "2026-11-23-en-bc-grocery",
+      "items": 13
+    },
+    {
+      "name": "2026-11-23-fr-bc-grocery",
+      "items": 13
+    }
+  ],
+  "skipped": [
+    {
+      "key": "fr-regional-qc",
+      "reason": "only 1 usable items (minimum 3)"
+    }
+  ]
+}

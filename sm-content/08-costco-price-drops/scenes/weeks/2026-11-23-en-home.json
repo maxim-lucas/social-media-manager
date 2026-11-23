@@ -1,0 +1,632 @@
+{
+  "_note": "Home & more, English, for the provinces outside Quebec, built 2026-11-23 from priceback.savings (read-only views).",
+  "source": "priceback.savings via social_ro views",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "audience": "en",
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "Home & more",
+        "fr": "Maison et plus"
+      },
+      "items": [
+        "1845969",
+        "1880401",
+        "2067438",
+        "4044044",
+        "1937994",
+        "1901872",
+        "2027016",
+        "2042759",
+        "1987488",
+        "2777483",
+        "2884210",
+        "7774114",
+        "1927368",
+        "2030457",
+        "2224015",
+        "3333083",
+        "1934567",
+        "1900587"
+      ]
+    }
+  ],
+  "items": {
+    "1845969": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Ninja",
+          "Luxe Café 3-in-1 coffee system",
+          "1 each"
+        ],
+        "fr": [
+          "Ninja",
+          "système à café Luxe Café 3-en-1",
+          "1 unité"
+        ]
+      },
+      "regular": 629.99,
+      "off": 130,
+      "price": 499.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1880401": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Ninja",
+          "Luxe Café Signature 3-in-1 espresso & cold brew",
+          "1 each"
+        ],
+        "fr": [
+          "Ninja",
+          "Luxe Café Signature 3-en-1 espresso et infusion à froid",
+          "1 unité"
+        ]
+      },
+      "regular": 629.99,
+      "off": 130,
+      "price": 499.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1900587": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "WinnWell",
+          "Skateable hockey tiles",
+          "12 ct"
+        ],
+        "fr": [
+          "WinnWell",
+          "tuiles de hockey patinables",
+          "12 ct"
+        ]
+      },
+      "regular": 129.99,
+      "off": 30,
+      "price": 99.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1901872": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "GreenPan",
+          "Jewel ceramic non-stick cookware",
+          "11-piece set"
+        ],
+        "fr": [
+          "GreenPan",
+          "batterie de cuisine antiadhésive Jewel",
+          "ensemble de 11 pièces"
+        ]
+      },
+      "regular": 199.99,
+      "off": 50,
+      "price": 149.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1927368": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Keurig",
+          "K-Crema coffee maker",
+          "1 each"
+        ],
+        "fr": [
+          "Keurig",
+          "cafetière K-Crema",
+          "1 unité"
+        ]
+      },
+      "regular": 149.99,
+      "off": 30,
+      "price": 119.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1934567": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Washburn",
+          "Grand Auditorium acoustic guitar pack",
+          "quilted maple top"
+        ],
+        "fr": [
+          "Washburn",
+          "ensemble de guitare acoustique Grand Auditorium",
+          "table en érable piqué"
+        ]
+      },
+      "regular": 199.99,
+      "off": 30,
+      "price": 169.99,
+      "exp": "2026-11-30",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1937994": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Kohler",
+          "Damara Semi-Pro pull-down kitchen faucet",
+          "stainless steel"
+        ],
+        "fr": [
+          "Kohler",
+          "robinet de cuisine Damara Semi-Pro",
+          "acier inoxydable"
+        ]
+      },
+      "regular": 299.99,
+      "off": 60,
+      "price": 239.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1987488": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "True Innovations",
+          "Mesh office chair",
+          "1 each"
+        ],
+        "fr": [
+          "True Innovations",
+          "chaise de bureau en mailles",
+          "1 unité"
+        ]
+      },
+      "regular": 189.99,
+      "off": 40,
+      "price": 149.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2027016": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Cangshan",
+          "Elko Series knife block set",
+          "16-piece set"
+        ],
+        "fr": [
+          "Cangshan",
+          "bloc de couteaux série Elko",
+          "ensemble de 16 pièces"
+        ]
+      },
+      "regular": 199.99,
+      "off": 50,
+      "price": 149.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2030457": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Bugatti",
+          "Carry-on and duffle bag set",
+          "2-piece set"
+        ],
+        "fr": [
+          "Bugatti",
+          "ensemble valise de cabine et sac polochon",
+          "ensemble de 2 pièces"
+        ]
+      },
+      "regular": 149.99,
+      "off": 30,
+      "price": 119.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2042759": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Alpine",
+          "Trees with LED lights",
+          "3 ct"
+        ],
+        "fr": [
+          "Alpine",
+          "arbres avec lumières DEL",
+          "3 ct"
+        ]
+      },
+      "regular": 139.99,
+      "off": 40,
+      "price": 99.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2067438": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Shark",
+          "PowerDetect Clean & Empty cordless stick vacuum",
+          "IA3245C"
+        ],
+        "fr": [
+          "Shark",
+          "aspirateur-balai sans fil PowerDetect",
+          "IA3245C"
+        ]
+      },
+      "regular": 499.99,
+      "off": 100,
+      "price": 399.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2224015": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "FoodSaver",
+          "Mini cordless handheld vacuum sealer",
+          "charging dock"
+        ],
+        "fr": [
+          "FoodSaver",
+          "mini-emballeuse sous vide portative sans fil",
+          "station de recharge"
+        ]
+      },
+      "regular": 69.99,
+      "off": 30,
+      "price": 39.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2777483": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Oral-B",
+          "iO Series Professional Clean electric toothbrush",
+          "2-pack"
+        ],
+        "fr": [
+          "Oral-B",
+          "brosse à dents électrique iO Professional Clean",
+          "paquet de 2"
+        ]
+      },
+      "regular": 169.99,
+      "off": 40,
+      "price": 129.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2884210": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Chefman",
+          "Crispinator Max 10-in-1 air fryer & toaster oven",
+          "midnight"
+        ],
+        "fr": [
+          "Chefman",
+          "friteuse à air et four grille-pain 10-en-1 Crispinator Max",
+          "minuit"
+        ]
+      },
+      "regular": 199.99,
+      "off": 40,
+      "price": 159.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "3333083": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Frigidaire",
+          "Self-cleaning ice maker",
+          "11.8 kg capacity"
+        ],
+        "fr": [
+          "Frigidaire",
+          "machine à glaçons autonettoyante",
+          "capacité de 11,8 kg"
+        ]
+      },
+      "regular": 99.99,
+      "off": 30,
+      "price": 69.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "4044044": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Ninja",
+          "Slushi Max frozen drink maker",
+          "4.4 L"
+        ],
+        "fr": [
+          "Ninja",
+          "machine à boissons glacées Slushi Max",
+          "4,4 L"
+        ]
+      },
+      "regular": 399.99,
+      "off": 100,
+      "price": 299.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "7774114": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Philips",
+          "Dry & Wet shaver",
+          "1 each"
+        ],
+        "fr": [
+          "Philips",
+          "rasoir pour peau sèche et humide",
+          "1 unité"
+        ]
+      },
+      "regular": 134.99,
+      "off": 35,
+      "price": 99.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    }
+  },
+  "feeds": {
+    "en": [
+      "c"
+    ]
+  }
+}

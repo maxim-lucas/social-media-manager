@@ -1,0 +1,105 @@
+{
+  "_note": "Hidden in Atlantic Canada, English, for the provinces outside Quebec, built 2026-11-23 from priceback.savings (read-only views).",
+  "source": "priceback.savings via social_ro views",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "audience": "en",
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "Hidden in Atlantic Canada",
+        "fr": "Cachés dans les Maritimes"
+      },
+      "items": [
+        "1877788",
+        "1068077",
+        "302051"
+      ]
+    }
+  ],
+  "items": {
+    "302051": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "M&M's",
+          "Peanut chocolate candies (case)",
+          "49 g"
+        ],
+        "fr": [
+          "M&M's",
+          "bonbons au chocolat et arachides (caisse)",
+          "49 g"
+        ]
+      },
+      "regular": 34.89,
+      "off": 7,
+      "price": 27.89,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "NB"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1068077": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "AmoreTender",
+          "Breaded chicken breast fillets",
+          "uncooked, 4 kg"
+        ],
+        "fr": [
+          "AmoreTender",
+          "filets de poitrine de poulet panés",
+          "crus, 4 kg"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10,
+      "price": 39.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "NL"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1877788": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Escali",
+          "M-Series digital scale",
+          "1 each"
+        ],
+        "fr": [
+          "Escali",
+          "balance numérique série M",
+          "1 unité"
+        ]
+      },
+      "regular": 139.99,
+      "off": 40,
+      "price": 99.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "NL"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    }
+  },
+  "feeds": {
+    "en": [
+      "c"
+    ]
+  }
+}

@@ -1,0 +1,417 @@
+{
+  "_note": "Grocery, French, for Quebec, built 2026-11-23 from priceback.savings (read-only views).",
+  "source": "priceback.savings via social_ro views",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "audience": "fr",
+  "businessCentre": true,
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "Grocery",
+        "fr": "Épicerie"
+      },
+      "items": [
+        "1068077",
+        "2088058",
+        "8888700",
+        "302050",
+        "302051",
+        "93147",
+        "8888601",
+        "1127413",
+        "1140257",
+        "1489207",
+        "1567224",
+        "4894963",
+        "1155410"
+      ]
+    }
+  ],
+  "items": {
+    "93147": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "evian",
+          "Natural spring water",
+          "1.5 L"
+        ],
+        "fr": [
+          "evian",
+          "eau de source naturelle",
+          "1,5 L"
+        ]
+      },
+      "regular": 34.99,
+      "off": 7,
+      "price": 27.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "302050": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "M&M's",
+          "Milk chocolate (case)",
+          "1152 g"
+        ],
+        "fr": [
+          "M&M's",
+          "chocolat au lait (caisse)",
+          "1 152 g"
+        ]
+      },
+      "regular": 34.89,
+      "off": 7,
+      "price": 27.89,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "302051": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "M&M's",
+          "Peanut chocolate candies (case)",
+          "49 g"
+        ],
+        "fr": [
+          "M&M's",
+          "bonbons au chocolat et arachides (caisse)",
+          "49 g"
+        ]
+      },
+      "regular": 34.89,
+      "off": 7,
+      "price": 27.89,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1068077": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "AmoreTender",
+          "Breaded chicken breast fillets",
+          "uncooked, 4 kg"
+        ],
+        "fr": [
+          "AmoreTender",
+          "filets de poitrine de poulet panés",
+          "crus, 4 kg"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10,
+      "price": 39.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1127413": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Silani",
+          "Shredded cheddar",
+          "2 kg"
+        ],
+        "fr": [
+          "Silani",
+          "cheddar râpé",
+          "2 kg"
+        ]
+      },
+      "regular": 27.99,
+      "off": 6,
+      "price": 21.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1140257": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Icelandic Glacial",
+          "Natural spring water",
+          "30 × 330 ml"
+        ],
+        "fr": [
+          "Icelandic Glacial",
+          "eau de source naturelle",
+          "30 × 330 ml"
+        ]
+      },
+      "regular": 25.99,
+      "off": 6,
+      "price": 19.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1155410": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Goat log",
+          "Goat cheese",
+          "1 kg"
+        ],
+        "fr": [
+          "Bûche de chèvre",
+          "fromage de chèvre",
+          "1 kg"
+        ]
+      },
+      "regular": 19.99,
+      "off": 5,
+      "price": 14.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1489207": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Lavazza",
+          "Gran Crema Espresso Barista whole bean coffee",
+          "1 kg"
+        ],
+        "fr": [
+          "Lavazza",
+          "café en grains Gran Crema Espresso Barista",
+          "1 kg"
+        ]
+      },
+      "regular": 28.99,
+      "off": 6,
+      "price": 22.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1567224": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Cow / goat",
+          "Feta cheese",
+          "3 kg"
+        ],
+        "fr": [
+          "Vache / chèvre",
+          "fromage feta",
+          "3 kg"
+        ]
+      },
+      "regular": 27.99,
+      "off": 6,
+      "price": 21.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2088058": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "KD",
+          "Original Mac and Cheese",
+          "4 × 1.81 kg"
+        ],
+        "fr": [
+          "KD",
+          "macaroni au fromage original",
+          "4 × 1,81 kg"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10,
+      "price": 39.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "4894963": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Caffè Borbone",
+          "Crema Classica Nespresso-compatible pods",
+          "10 ct"
+        ],
+        "fr": [
+          "Caffè Borbone",
+          "capsules Crema Classica compatibles Nespresso",
+          "10 ct"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6,
+      "price": 23.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "8888601": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Fennec",
+          "Frozen diced strawberries",
+          "5 × 1 kg"
+        ],
+        "fr": [
+          "Fennec",
+          "fraises coupées en dés surgelées",
+          "5 × 1 kg"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6,
+      "price": 23.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "8888700": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "IQF",
+          "Broccoli florets",
+          "6 × 2 kg"
+        ],
+        "fr": [
+          "IQF",
+          "fleurons de brocoli",
+          "6 × 2 kg"
+        ]
+      },
+      "regular": 32.99,
+      "off": 8,
+      "price": 24.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    }
+  },
+  "feeds": {
+    "fr": [
+      "c"
+    ]
+  }
+}

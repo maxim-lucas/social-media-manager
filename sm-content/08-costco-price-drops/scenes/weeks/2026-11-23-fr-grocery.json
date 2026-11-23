@@ -1,0 +1,626 @@
+{
+  "_note": "Grocery, French, for Quebec, built 2026-11-23 from priceback.savings (read-only views).",
+  "source": "priceback.savings via social_ro views",
+  "provinceStrip": true,
+  "endSlide": true,
+  "coverStyle": "claim",
+  "bigClaim": true,
+  "audience": "fr",
+  "carousels": [
+    {
+      "id": "c",
+      "category": {
+        "en": "Grocery",
+        "fr": "Épicerie"
+      },
+      "items": [
+        "2092359",
+        "4272377",
+        "4272378",
+        "4272379",
+        "4272380",
+        "2064406",
+        "2064407",
+        "2007898",
+        "2068901",
+        "1019209",
+        "1769679",
+        "1480774",
+        "5552410",
+        "145866",
+        "1749659",
+        "1176059",
+        "1856067",
+        "2053414"
+      ]
+    }
+  ],
+  "items": {
+    "145866": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Lindt",
+          "Lindor Cornet assorted chocolates",
+          "900 g"
+        ],
+        "fr": [
+          "Lindt",
+          "chocolats Lindor Cornet assortis",
+          "900 g"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6,
+      "price": 23.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1019209": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Tim Hortons",
+          "Original 100% Arabica medium roast coffee",
+          "1.36 kg"
+        ],
+        "fr": [
+          "Tim Hortons",
+          "café 100 % arabica torréfaction moyenne",
+          "1,36 kg"
+        ]
+      },
+      "regular": 34.99,
+      "off": 7,
+      "price": 27.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1176059": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Nestlé",
+          "After Eight dark mint thins",
+          "200 g"
+        ],
+        "fr": [
+          "Nestlé",
+          "After Eight menthe chocolat noir",
+          "200 g"
+        ]
+      },
+      "regular": 21.99,
+      "off": 5,
+      "price": 16.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1480774": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Godiva",
+          "Belgian chocolates",
+          "316 g"
+        ],
+        "fr": [
+          "Godiva",
+          "chocolats belges",
+          "316 g"
+        ]
+      },
+      "regular": 22.99,
+      "off": 6,
+      "price": 16.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1749659": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Ferrero Rocher",
+          "Grand assortment of chocolate & confections",
+          "431 g"
+        ],
+        "fr": [
+          "Ferrero Rocher",
+          "grand assortiment de chocolats et confiseries",
+          "431 g"
+        ]
+      },
+      "regular": 24.99,
+      "off": 5,
+      "price": 19.99,
+      "exp": "2026-11-26",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1769679": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Kettle & Fire",
+          "Beef bone broth",
+          "470 ml"
+        ],
+        "fr": [
+          "Kettle & Fire",
+          "bouillon d'os de bœuf",
+          "470 ml"
+        ]
+      },
+      "regular": 29.99,
+      "off": 7,
+      "price": 22.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "1856067": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "44th Street",
+          "Slow-cook turkey breast roast",
+          "550 g"
+        ],
+        "fr": [
+          "44th Street",
+          "rôti de poitrine de dinde cuisson lente",
+          "550 g"
+        ]
+      },
+      "regular": 23.99,
+      "off": 5,
+      "price": 18.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2007898": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Prime",
+          "Cookies & Cream protein shake",
+          "325 ml"
+        ],
+        "fr": [
+          "Prime",
+          "boisson protéinée biscuits et crème",
+          "325 ml"
+        ]
+      },
+      "regular": 38.99,
+      "off": 8,
+      "price": 30.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2053414": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "PEZ",
+          "Nightmare Before Christmas candy dispenser",
+          "49.3 g"
+        ],
+        "fr": [
+          "PEZ",
+          "distributeur de bonbons L'étrange Noël de M. Jack",
+          "49,3 g"
+        ]
+      },
+      "regular": 19.99,
+      "off": 5,
+      "price": 14.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2064406": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "WakeWater",
+          "Rapid rehydration electrolyte drink mix",
+          "45 ct"
+        ],
+        "fr": [
+          "WakeWater",
+          "mélange à boisson électrolytes",
+          "45 ct"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10,
+      "price": 39.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2064407": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "WakeWater",
+          "Rapid rehydration electrolyte candy",
+          "45 ct"
+        ],
+        "fr": [
+          "WakeWater",
+          "bonbons électrolytes réhydratation",
+          "45 ct"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10,
+      "price": 39.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2068901": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Prime",
+          "Frosted Strawberry Pop-Tarts protein shake",
+          "325 ml"
+        ],
+        "fr": [
+          "Prime",
+          "boisson protéinée Pop-Tarts fraise",
+          "325 ml"
+        ]
+      },
+      "regular": 38.99,
+      "off": 8,
+      "price": 30.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2092359": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Sheba",
+          "Perfect Portions wet cat food",
+          "variety pack, 75 g"
+        ],
+        "fr": [
+          "Sheba",
+          "Perfect Portions, nourriture humide pour chats",
+          "variété, 75 g"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10,
+      "price": 39.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "4272377": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Kirkland Signature",
+          "Breakfast Blend K-Cup pods",
+          "120 ct"
+        ],
+        "fr": [
+          "Kirkland Signature",
+          "capsules K-Cup mélange déjeuner",
+          "120 ct"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10,
+      "price": 39.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "4272378": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Kirkland Signature",
+          "Pacific Bold coffee pods",
+          "120 ct"
+        ],
+        "fr": [
+          "Kirkland Signature",
+          "capsules de café Pacific Bold",
+          "120 ct"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10,
+      "price": 39.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "4272379": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Kirkland Signature",
+          "Organic Summit Fair Trade K-Cups",
+          "120 ct"
+        ],
+        "fr": [
+          "Kirkland Signature",
+          "K-Cup Summit bio équitable",
+          "120 ct"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10,
+      "price": 39.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "4272380": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Kirkland Signature",
+          "Decaffeinated K-Cups",
+          "120 ct"
+        ],
+        "fr": [
+          "Kirkland Signature",
+          "K-Cup décaféinés",
+          "120 ct"
+        ]
+      },
+      "regular": 49.99,
+      "off": 10,
+      "price": 39.99,
+      "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "5552410": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Kicking Horse",
+          "Three Sisters organic fair trade coffee beans",
+          "1 kg"
+        ],
+        "fr": [
+          "Kicking Horse",
+          "café en grains bio équitable Three Sisters",
+          "1 kg"
+        ]
+      },
+      "regular": 29.99,
+      "off": 6,
+      "price": 23.99,
+      "exp": "2026-12-06",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    }
+  },
+  "feeds": {
+    "fr": [
+      "c"
+    ]
+  }
+}
