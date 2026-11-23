@@ -15,7 +15,6 @@
       },
       "items": [
         "1845969",
-        "2067438",
         "1901872",
         "2027016",
         "2777483",
@@ -23,70 +22,38 @@
         "7774114",
         "1927368",
         "2030457",
-        "2224015",
         "3333083",
         "1934567",
-        "1802456",
         "3923353",
         "2053454",
-        "2055570",
         "2776597",
-        "1798981"
+        "2034925",
+        "2058684",
+        "3703338",
+        "1598561",
+        "2034927"
       ]
     }
   ],
   "items": {
-    "1798981": {
+    "1598561": {
       "sameday": null,
       "tag": {
         "en": [
-          "Kidde",
-          "Battery-operated smoke alarm",
-          "2 ct"
-        ],
-        "fr": [
-          "Kidde",
-          "détecteur de fumée à piles",
-          "2 ct"
-        ]
-      },
-      "regular": 79.99,
-      "off": 20,
-      "price": 59.99,
-      "exp": "2026-12-20",
-      "seen": "2026-11-23",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "NB",
-        "NL",
-        "NS",
-        "ON",
-        "QC",
-        "SK"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
-    "1802456": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Leatherman",
-          "Tool combo kit P120",
+          "Elizabeth Arden",
+          "Ceramide Eyes Time Complex capsules",
           "1 each"
         ],
         "fr": [
-          "Leatherman",
-          "ensemble d'outils combo P120",
+          "Elizabeth Arden",
+          "capsules Ceramide Eyes Time Complex",
           "1 unité"
         ]
       },
-      "regular": 99.99,
-      "off": 20,
-      "price": 79.99,
-      "exp": "2026-11-29",
+      "regular": 49.99,
+      "off": 17,
+      "price": 32.99,
+      "exp": "2026-12-20",
       "seen": "2026-11-23",
       "provinces": [
         "AB",
@@ -295,6 +262,72 @@
       "bizOnly": [],
       "exceptions": {}
     },
+    "2034925": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Elizabeth Arden",
+          "Visible Difference refining moisture cream complex",
+          "75 ml"
+        ],
+        "fr": [
+          "Elizabeth Arden",
+          "crème hydratante raffinante Visible Difference",
+          "75 ml"
+        ]
+      },
+      "regular": 48.99,
+      "off": 20,
+      "price": 28.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "2034927": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Elizabeth Arden",
+          "Ceramide Eyes Time Complex capsules",
+          "60 ct"
+        ],
+        "fr": [
+          "Elizabeth Arden",
+          "capsules Ceramide Eyes Time Complex",
+          "60 ct"
+        ]
+      },
+      "regular": 49.99,
+      "off": 17,
+      "price": 32.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
     "2053454": {
       "sameday": null,
       "tag": {
@@ -328,90 +361,24 @@
       "bizOnly": [],
       "exceptions": {}
     },
-    "2055570": {
+    "2058684": {
       "sameday": null,
       "tag": {
         "en": [
-          "Chefman",
-          "Everything Warmer modular warming tray",
-          "1 each"
+          "Biodance",
+          "Real Deep Mask multi-pack",
+          "24 ct"
         ],
         "fr": [
-          "Chefman",
-          "plateau chauffant modulaire Everything Warmer",
-          "1 unité"
+          "Biodance",
+          "masques Real Deep, multipaquet",
+          "24 ct"
         ]
       },
-      "regular": 99.99,
+      "regular": 89.99,
       "off": 20,
-      "price": 79.99,
-      "exp": "2026-12-06",
-      "seen": "2026-11-23",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "NB",
-        "NL",
-        "NS",
-        "ON",
-        "QC",
-        "SK"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
-    "2067438": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "Shark",
-          "PowerDetect Clean & Empty cordless stick vacuum",
-          "IA3245C"
-        ],
-        "fr": [
-          "Shark",
-          "aspirateur-balai sans fil PowerDetect",
-          "IA3245C"
-        ]
-      },
-      "regular": 499.99,
-      "off": 100,
-      "price": 399.99,
+      "price": 69.99,
       "exp": "2026-12-20",
-      "seen": "2026-11-23",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "NB",
-        "NL",
-        "NS",
-        "ON",
-        "QC",
-        "SK"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
-    "2224015": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "FoodSaver",
-          "Mini cordless handheld vacuum sealer",
-          "charging dock"
-        ],
-        "fr": [
-          "FoodSaver",
-          "mini-emballeuse sous vide portative sans fil",
-          "station de recharge"
-        ]
-      },
-      "regular": 69.99,
-      "off": 30,
-      "price": 39.99,
-      "exp": "2026-11-29",
       "seen": "2026-11-23",
       "provinces": [
         "AB",
@@ -544,6 +511,39 @@
       "off": 30,
       "price": 69.99,
       "exp": "2026-11-29",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "3703338": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Waterpik",
+          "CDL water flosser",
+          "1 each"
+        ],
+        "fr": [
+          "Waterpik",
+          "jet dentaire CDL",
+          "1 unité"
+        ]
+      },
+      "regular": 99.99,
+      "off": 20,
+      "price": 79.99,
+      "exp": "2026-12-20",
       "seen": "2026-11-23",
       "provinces": [
         "AB",

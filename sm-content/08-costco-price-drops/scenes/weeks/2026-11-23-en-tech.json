@@ -26,8 +26,7 @@
         "7472260",
         "2055348",
         "3824030",
-        "8782021",
-        "8772021"
+        "8782021"
       ]
     }
   ],
@@ -341,35 +340,6 @@
       "provinces": [
         "AB",
         "ON"
-      ],
-      "bizOnly": [],
-      "exceptions": {}
-    },
-    "8772021": {
-      "sameday": null,
-      "tag": {
-        "en": [
-          "AVF",
-          "Tilt TV mount",
-          "32-100\""
-        ],
-        "fr": [
-          "AVF",
-          "support TV inclinable",
-          "32 à 100 po"
-        ]
-      },
-      "regular": 74.99,
-      "off": 15,
-      "price": 59.99,
-      "exp": "2026-12-06",
-      "seen": "2026-11-23",
-      "provinces": [
-        "AB",
-        "BC",
-        "MB",
-        "ON",
-        "SK"
       ],
       "bizOnly": [],
       "exceptions": {}
