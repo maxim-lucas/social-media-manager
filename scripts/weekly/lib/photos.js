@@ -61,4 +61,17 @@ async function fetchPhoto(sku, { cacheDir, fetchImpl = fetch, fallbacks = [] }) 
   return { ok: false, source: null, path: null };
 }
 
-module.exports = { fetchPhoto, preflight, PHOTO_ROUTE };
+/**
+ * Photo substitutes (Maxim, 2026-11-23): when a SKU has no photo, the same product under another SKU or, for a TV, any
+ * TV of the same brand may stand in. Any other same-brand-different-model substitute needs Maxim's approval first.
+ * tools/photo-substitutes.json: { "<sku>": { "use": "<other sku>", "kind": "same-product" | "same-brand-tv" | "same-brand-other", "approved": true|false } }
+ * @returns {string|null} the SKU whose photo may stand in, or null (not listed, not approved, or kind needs approval)
+ */
+function substituteFor(sku, table) {
+  const e = (table || {})[sku];
+  if (!e || !e.use) return null;
+  if (e.kind === "same-product" || e.kind === "same-brand-tv") return e.use;
+  return e.approved === true ? e.use : null;
+}
+
+module.exports = { substituteFor, fetchPhoto, preflight, PHOTO_ROUTE };

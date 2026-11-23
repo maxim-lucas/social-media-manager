@@ -69,8 +69,14 @@ open issue has that title; add a comment instead), stop, and leave master untouc
      invent a size or count that is not in the product name.
    - `needs.frenchReview`: the French name fell back to English: write the Quebec French tag lines.
 8. Run `build-week.js` again, then `node scripts/weekly/fetch-photos.js <monday>`, then `build-week.js` once more so the
-   items with photos enter the carousels. For a SKU still without a photo, look it up by name on Same-Day or costco.ca;
-   if found save it as `<pack>/scenes/.cache/<sku>.jpg`, else leave the item out and list it in the PR.
+   items with photos enter the carousels. For a SKU still without a photo, in this order (Maxim, 2026-11-23): (a) look it up by name on Same-Day or costco.ca;
+   (b) **the exact same product** (same brand and product, another size, count or variant, with a photo in the cache, the photo route
+   or the snapshot): use it, record `{"use": "<sku>", "kind": "same-product"}` in `<pack>/tools/photo-substitutes.json`; (c) **a TV** of the
+   same brand, any model: use any photo of that brand's TV, kind `same-brand-tv`; (d) **any other same-brand but different model**:
+   **ask first**. A routine cannot ask mid-run, so write the proposal with `"approved": false`, leave the item out, and list it in the PR
+   under "Photo substitutes awaiting Maxim" (SKU, name, proposed SKU, why); once Maxim sets `approved: true` the next build uses it.
+   Run `fetch-photos.js` again after editing the file (it copies the substitute into `<pack>/scenes/.cache/<sku>.jpg`).
+   Never use another brand, another product type, or a lifestyle photo. If nothing qualifies, leave the item out and list it in the PR.
 9. **Render, score, fix, repeat: three rounds, always.** Never end the run after round 1, never stop to ask: the run
    finishes only when every carousel has passed or used its three rounds, then the PR is opened.
    Round loop for each `<pack>/scenes/weeks/<monday>-*.json`:

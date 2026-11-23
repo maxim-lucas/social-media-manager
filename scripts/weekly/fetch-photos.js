@@ -11,7 +11,7 @@
  */
 const fs = require("fs");
 const path = require("path");
-const { fetchPhoto, preflight } = require("./lib/photos");
+const { fetchPhoto, preflight, substituteFor } = require("./lib/photos");
 
 const PACK = path.join(__dirname, "..", "..", "sm-content", "08-costco-price-drops");
 const CACHE = path.join(PACK, "scenes", ".cache");
@@ -27,11 +27,17 @@ const CACHE = path.join(PACK, "scenes", ".cache");
   const needsPath = path.join(PACK, "weekly", String(monday), "needs.json");
   if (!fs.existsSync(needsPath)) throw new Error(`no needs.json for ${monday}: run build-week.js first`);
   const skus = JSON.parse(fs.readFileSync(needsPath, "utf8")).photo;
+  const table = fs.existsSync(path.join(PACK, "tools", "photo-substitutes.json")) ? JSON.parse(fs.readFileSync(path.join(PACK, "tools", "photo-substitutes.json"), "utf8")) : {};
   const missing = [];
   for (const sku of skus) {
     const r = await fetchPhoto(sku, { cacheDir: CACHE });
-    if (!r.ok) missing.push(sku);
+    if (r.ok) continue;
+    const use = substituteFor(sku, table);
+    const src = use && path.join(CACHE, `${use}.jpg`);
+    if (use && !fs.existsSync(src)) await fetchPhoto(use, { cacheDir: CACHE });
+    if (use && fs.existsSync(src)) { fs.copyFileSync(src, path.join(CACHE, `${sku}.jpg`)); console.log(`photo ${sku}: using ${use} (${table[sku].kind})`); continue; }
+    missing.push(sku);
   }
   console.log(`photos: ${skus.length - missing.length} fetched, ${missing.length} not found`);
-  if (missing.length) console.log(`NOT FOUND (look up by name on Same-Day or costco.ca, else leave out): ${missing.join(", ")}`);
+  if (missing.length) console.log(`NOT FOUND (apply ROUTINE.md step 8: substitute photo rules, else leave out): ${missing.join(", ")}`);
 })().catch((e) => { console.error(e.message); process.exit(1); });
