@@ -216,6 +216,7 @@ window.frame=(t)=>{
   if (flag !== "--silent") args.push("-i", wav, "-c:a", "aac", "-b:a", "160k", "-shortest");
   args.push("-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p", "-r", String(FPS), "-movflags", "+faststart", out);
   const ff = spawn("ffmpeg", args, { stdio: ["pipe", "inherit", "inherit"] });
+  ff.stdin.on("error", () => {}); // ffmpeg may close the pipe at -shortest (EPIPE)
   const n = Math.round(DUR * FPS);
   for (let i = 0; i < n; i++) {
     await p.evaluate((t) => window.frame(t), i / FPS);
