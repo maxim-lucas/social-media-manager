@@ -77,3 +77,14 @@ test("a weekday top-up schedule is the national carousels on the pack's own date
   ]);
   assert.strictEqual(s.find((x) => x.key === "grocery" && x.lang === "fr").time, "18:15");
 });
+
+test("a reel is ready only with its video, its caption AND its cover (Maxim, 2026-11-24)", () => {
+  const id = "2026-11-16-reel-grocery-en";
+  const cap = { [id]: { instagram: "i", facebook: "f" } };
+  const noCover = buildSchedule({ monday: MONDAY, available: { [id]: { assets: ["reels/grocery-en.mp4"] } }, captions: cap }).find((s) => s.id === id);
+  assert.strictEqual(noCover.status, "needs_content");
+  assert.strictEqual(noCover.cover, null);
+  const full = buildSchedule({ monday: MONDAY, available: { [id]: { assets: ["reels/grocery-en.mp4"], cover: "reels/grocery-en-cover.jpg" } }, captions: cap }).find((s) => s.id === id);
+  assert.strictEqual(full.status, "ready");
+  assert.strictEqual(full.cover, "reels/grocery-en-cover.jpg");
+});

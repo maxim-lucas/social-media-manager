@@ -7,7 +7,7 @@
 //            CLAIM sticker.
 // Layout rule: text and product photos live in separate zones; nothing is ever written over a photo. The end date
 // is its own "ENDS | SUN NOV 8" ticket. End card: app name once, as "ONLY in [logo] PriceBack"; HIDDEN revealed.
-// Usage: node follower-reel.js <config json> <en|fr> <out.mp4> [--silent | --stills t1,t2,...]
+// Usage: node follower-reel.js <config json> <en|fr> <out.mp4> [--silent | --stills t1,t2,... | --cover]
 const fs = require("fs"), path = require("path"), { spawn, execFileSync } = require("child_process");
 const { chromium } = require("playwright");
 const [cfgFile, lang, out, flag, stillsAt] = process.argv.slice(2);
@@ -202,15 +202,18 @@ window.frame=(t)=>{
 };
 </script></body></html>`;
 (async () => {
-  const tmp = fs.mkdtempSync("/tmp/freel-"); fs.writeFileSync(path.join(tmp, "r.html"), html);
+  const tmp = fs.mkdtempSync(path.join(require("os").tmpdir(), "freel-")); fs.writeFileSync(path.join(tmp, "r.html"), html);
   const wav = path.join(tmp, "m.wav"), music = cfg.music || "music_house.py";
   // REEL_MUSIC_FILE = the approved track pick-track.js chose (music/APPROVED.json); without it the house track is synthesised.
-  if (flag !== "--silent" && flag !== "--stills") {
+  if (flag !== "--silent" && flag !== "--stills" && flag !== "--cover") {
     if (process.env.REEL_MUSIC_FILE) fs.copyFileSync(process.env.REEL_MUSIC_FILE, wav);
     else execFileSync("python3", [path.join(__dirname, music), String(DUR), wav, cuts.join(",")]);
   }
   const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
-  await p.goto("file://" + path.join(tmp, "r.html")); await p.waitForTimeout(400);
+  await p.goto(require("url").pathToFileURL(path.join(tmp, "r.html")).href); await p.waitForTimeout(400);
+  // --cover: the reel's cover image for Instagram (Maxim, 2026-11-24): the hook's banner frame, 1080x1920 JPEG, written to <out> (.jpg).
+  // The Graph API takes it as cover_url; without one Instagram picks a frame itself, usually the half-built first one.
+  if (flag === "--cover") { if (grid8.length < 8) { await b.close(); throw new Error(`cover refused: the hook grid has ${grid8.length} of 8 photos (fetch them first, a cover with an empty grid is worse than none)`); } await p.evaluate((x) => window.frame(x), cfg.coverAt || A + 0.7); fs.writeFileSync(out, await p.screenshot({ type: "jpeg", quality: 92 })); await b.close(); console.log("cover", out); return; }
   if (flag === "--stills") { for (const t of (stillsAt || "0.5,1.5,3,5.5,7.4").split(",")) { await p.evaluate((x) => window.frame(x), +t); await p.screenshot({ path: out.replace(/\.mp4$/, "") + "-" + t + ".png" }); } await b.close(); console.log(MODE, N, TOTAL, pics.map((x) => x.sku + " -" + x.off).join(", ")); return; }
   const args = ["-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", String(FPS), "-c:v", "mjpeg", "-i", "-"];
   if (flag !== "--silent") args.push("-i", wav, "-c:a", "aac", "-b:a", "160k", "-shortest");

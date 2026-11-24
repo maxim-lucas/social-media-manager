@@ -27,6 +27,13 @@ function reelAssetFor(slot, reelFiles) {
   return reelFiles.includes(name) ? `reels/${name}` : null;
 }
 
+/** The reel's cover image: weekly/<monday>/reels/<key>-<lang>-cover.jpg, or null. Instagram needs one (never its own pick). */
+function reelCoverFor(slot, reelFiles) {
+  if (slot.kind !== "reel") return null;
+  const name = `${slot.key}-${slot.lang}-cover.jpg`;
+  return reelFiles.includes(name) ? `reels/${name}` : null;
+}
+
 const md5 = (buf) => crypto.createHash("md5").update(buf).digest("hex");
 
 /** Runbook rule 2 (10-composio-posting-runbook): a carousel must never contain the same image twice. */
@@ -41,4 +48,4 @@ function duplicates(buffers) {
   return dup;
 }
 
-module.exports = { reelAssetFor, sourceFor, duplicates, md5 };
+module.exports = { reelAssetFor, reelCoverFor, sourceFor, duplicates, md5 };

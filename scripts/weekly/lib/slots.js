@@ -55,9 +55,11 @@ function buildSchedule({ monday, available = {}, captions = {}, template = WEEK_
         id, date, time, lang, kind: t.kind, key: t.key,
         ...(t.asap ? { asap: true, earliest: lang === "fr" ? addMinutes(t.earliest, TWIN_MINUTES) : t.earliest, latest: lang === "fr" ? addMinutes(t.latest, TWIN_MINUTES) : t.latest } : {}),
         assets: asset ? asset.assets : [],
+        ...(t.kind === "reel" ? { cover: asset && asset.cover ? asset.cover : null } : {}),
         caption: cap || null,
         networks: ["instagram", "facebook"],
-        status: asset && asset.assets.length && cap ? "ready" : "needs_content",
+        // A reel is ready only with its cover too (Maxim, 2026-11-24): Instagram's own pick is a half-built frame.
+        status: asset && asset.assets.length && cap && (t.kind !== "reel" || asset.cover) ? "ready" : "needs_content",
       });
     }
   }

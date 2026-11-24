@@ -175,32 +175,38 @@
     "2026-11-23-reel-grocery-en": {
       "assets": [
         "reels/grocery-en.mp4"
-      ]
+      ],
+      "cover": "reels/grocery-en-cover.jpg"
     },
     "2026-11-23-reel-grocery-fr": {
       "assets": [
         "reels/grocery-fr.mp4"
-      ]
+      ],
+      "cover": "reels/grocery-fr-cover.jpg"
     },
     "2026-11-24-reel-tech-en": {
       "assets": [
         "reels/tech-en.mp4"
-      ]
+      ],
+      "cover": "reels/tech-en-cover.jpg"
     },
     "2026-11-24-reel-tech-fr": {
       "assets": [
         "reels/tech-fr.mp4"
-      ]
+      ],
+      "cover": "reels/tech-fr-cover.jpg"
     },
     "2026-11-25-reel-home-en": {
       "assets": [
         "reels/home-en.mp4"
-      ]
+      ],
+      "cover": "reels/home-en-cover.jpg"
     },
     "2026-11-25-reel-home-fr": {
       "assets": [
         "reels/home-fr.mp4"
-      ]
+      ],
+      "cover": "reels/home-fr-cover.jpg"
     }
   },
   "captions": {

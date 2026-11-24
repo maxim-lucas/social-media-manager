@@ -47,7 +47,7 @@ open issue has that title; add a comment instead), stop, and leave master untouc
    - **Reels pending (any day Monday to Saturday, checked FIRST, 2026-11-23):** if `<pack>/weekly/<thisMonday>/reels/` holds an
      `.mp4` and `content.json` has no `captions` entry for its slot (`<date>-reel-<key>-<lang>`), the week is built but its reels
      were never wired. Do ONLY this: `git pull`, `git switch -c weekly/<thisMonday>-reels`, `node scripts/weekly/make-media.js
-     <thisMonday>` (it registers every `reels/<key>-<lang>.mp4` as that slot's asset), write the reel captions (step 11, reel
+     <thisMonday>` (it registers every `reels/<key>-<lang>.mp4` and its `-cover.jpg` as that slot's assets; a reel with no cover: render it per step 10, then run `check-reels.js`), write the reel captions (step 11, reel
      wording: first line a concrete number, one ask, 5 hashtags), `make-schedule.js`, tests, `check-copy.js`, then PR "Weekly reels
      <thisMonday>" and merge it. Never re-render carousels or reels in this mode.
    - **Unpublished categories missing items (Monday to Saturday, checked right after Reels pending, 2026-11-24):** the week is built
@@ -110,6 +110,15 @@ open issue has that title; add a comment instead), stop, and leave master untouc
     `<pack>/weekly/<monday>/reels/` (committed to the weekly branch: GitHub hosts the reels for now, Maxim 2026-11-16). Score each reel on the rubric from stills (`--stills`), with the same loop as step 9 (three rounds; score it as RUBRIC.md "How to score a reel" says: the approved structure is the 1.0 baseline, deduct only for an execution defect in a still; fix execution
     defects in `reels/follower-reel.js`, never the approved reel structure). Reels are served from the repo's raw GitHub URL
     (the publisher's default); list them in the PR.
+    **Music and cover are a gate, not a hope (Maxim, 2026-11-24: a Monday pack went out of the build without them, unchecked).**
+    Every reel needs (a) the approved track mixed in, never `--silent`, never a missing `REEL_MUSIC_FILE`, and (b) its cover:
+    `node <pack>/reels/follower-reel.js <config> <en|fr> <pack>/weekly/<monday>/reels/<key>-<lang>-cover.jpg --cover`
+    (the hook frame with the product grid, banner and end date; it refuses when the photos for the grid are not in `scenes/.cache`:
+    run `fetch-photos.js <monday> --all` first: it fetches every item of the week, not only `needs.json`). Then run
+    `FFMPEG=<path if ffmpeg is not on PATH> node scripts/weekly/check-reels.js <monday>`: it must print `ok` for every reel (audio
+    stream present, mean volume between -35 and -8 dB, cover 1080x1920). **A `FAIL` is fixed and re-run; never wire or merge
+    a failing reel.** `make-media.js` registers the cover, and a reel slot without one stays `needs_content`; the publisher
+    sends it to Instagram as `cover_url` and refuses a reel that has none.
 11. **Media and captions:** `node scripts/weekly/make-media.js <monday>`. For every slot in
     `<pack>/weekly/<monday>/content.json` `available` write `captions[<slotId>] = {"instagram": ..., "facebook": ...}`
     in the slot's language: a scroll-stopping first line with a concrete number, one ask only, 5 relevant hashtags,
