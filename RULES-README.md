@@ -146,6 +146,8 @@ Deal posts are real Costco price drops with product photos. They matter more tha
     `price_points`. `price_points` alone misses most of the week's savings (Monica, 2026-11-04).
   - **Flyer items are allowed** in grocery carousels (2026-11-04); the "hidden savings only" filter does not apply.
   - **No photo is not a reason to drop an item** until both Same-Day and costco.ca have been tried.
+    The weekly routine's chain (catalogue, harvest the item's own photo by name and save it to the catalogue with `scripts/weekly/harvest-photo.js`,
+    same product, any same-brand TV, ask first) is `weekly/ROUTINE.md` step 8 and is the same on every build (Maxim, 2026-11-24).
   - **Ending soon = included and posted first.** Carousels go out in end-date order, the soonest first.
   - **Items outside the 4 categories** (apparel, electronics, toys, seasonal…) go in a separate mixed carousel.
   - **Fewer than 5 items in a carousel** → complete it with offers from the same category that started before this

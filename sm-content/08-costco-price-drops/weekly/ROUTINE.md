@@ -56,8 +56,7 @@ open issue has that title; add a comment instead), stop, and leave master untouc
      (`<pack>/tools/photo-substitutes.json`: tier `same-product` or `same-brand-tv`, or `approved: true`). Do ONLY this:
      `git pull`, `git switch -c weekly/<thisMonday>-fill`, step 5's snapshot copy, `fetch-photos.js <thisMonday>` (it copies the substitutes),
      then `build-week.js <thisMonday> --snapshot=/tmp/snap.json --only=<those categories>` (for example `--only=tech,home`; the
-     categories already published are never rebuilt, and electronics is `tech`). If the substitutes file is empty, do step 8's
-     fallback search for the SKUs that category left out first. Then steps 9 to 12 for those categories only (render, three scoring
+     categories already published are never rebuilt, and electronics is `tech`). Before that, run step 8's whole photo chain (harvest first) for the SKUs that category left out. Then steps 9 to 12 for those categories only (render, three scoring
      rounds, the reels of those carousels, `make-media.js`, new captions for the slots whose items changed, `make-schedule.js`),
      PR "Weekly fill <thisMonday>", merge. A category already published is never re-rendered.
    - **Sunday:** stop.
@@ -78,15 +77,27 @@ open issue has that title; add a comment instead), stop, and leave master untouc
      `<pack>/scenes/weeks/2026-11-15-grocery.json` (brand, product, size). Quebec French, localised not translated. Never
      invent a size or count that is not in the product name.
    - `needs.frenchReview`: the French name fell back to English: write the Quebec French tag lines.
-8. Run `build-week.js` again, then `node scripts/weekly/fetch-photos.js <monday>`, then `build-week.js` once more so the
-   items with photos enter the carousels. For a SKU still without a photo, in this order (Maxim, 2026-11-23): (a) look it up by name on Same-Day or costco.ca;
-   (b) **the exact same product** (same brand and product, another size, count or variant, with a photo in the cache, the photo route
-   or the snapshot): use it, record `{"use": "<sku>", "kind": "same-product"}` in `<pack>/tools/photo-substitutes.json`; (c) **a TV** of the
-   same brand, any model: use any photo of that brand's TV, kind `same-brand-tv`; (d) **any other same-brand but different model**:
-   **ask first**. A routine cannot ask mid-run, so write the proposal with `"approved": false`, leave the item out, and list it in the PR
-   under "Photo substitutes awaiting Maxim" (SKU, name, proposed SKU, why); once Maxim sets `approved: true` the next build uses it.
-   Run `fetch-photos.js` again after editing the file (it copies the substitute into `<pack>/scenes/.cache/<sku>.jpg`).
-   Never use another brand, another product type, or a lifestyle photo. If nothing qualifies, leave the item out and list it in the PR.
+8. Run `build-week.js` again, then `node scripts/weekly/fetch-photos.js <monday> --all`, then `build-week.js` once more so the
+   items with photos enter the carousels. **Missing photos: one chain, the same on every build (Monday, catch-up, fill, weekday
+   top-up; Maxim, 2026-11-24), tried in this order for each SKU still without a photo. No photo is never a reason to drop an item
+   until every step down to (4) has been tried:**
+   1. **The catalogue** (what `fetch-photos.js` just tried: the PriceBack photo route, `costco/<sku>.jpg`).
+   2. **Harvest the item's own photo** and save it to the catalogue: `node scripts/weekly/harvest-photo.js <sku> "<name from the
+      snapshot>" --upload`. It searches costco.ca, then costcobusinesscentre.ca, and accepts only an image whose file name carries
+      the item number (the number alone decides the product, never the printed name). Same-Day is the third place, by hand
+      (`www.costco.ca/p/-/item/<sku>` works for costco.ca items). `--upload` needs `ADMIN_TOKEN` in the environment (a cloud
+      routine has none: the photo then lives in the run's cache only and the PR lists "harvested, not in the catalogue: <skus>" so
+      Maxim can upload it). Exit 6 means Costco's hosts are blocked from this machine (cloud sandboxes): go to (3) without retrying.
+   3. **The exact same product** (same brand and product, another size, count or variant, with a photo in the catalogue, the cache or
+      the snapshot): use it, record `{"use": "<sku>", "kind": "same-product"}` in `<pack>/tools/photo-substitutes.json`.
+   4. **A TV: any TV of the same brand** (any LG TV works for an LG TV, any model): use any photo of that brand's TV, kind
+      `same-brand-tv`.
+   5. **Any other same-brand but different model: ask first.** A routine cannot ask mid-run, so write the proposal with
+      `"approved": false`, leave the item out, and list it in the PR under "Photo substitutes awaiting Maxim" (SKU, name, proposed SKU,
+      why); once Maxim sets `approved: true` the next build uses it.
+   Run `fetch-photos.js <monday> --all` again after editing the substitutes file (it copies the substitute into
+   `<pack>/scenes/.cache/<sku>.jpg`; a harvested photo is already there). Never use another brand, another product type, or a
+   lifestyle photo. If nothing qualifies, leave the item out and list it in the PR.
 9. **Render, score, fix, repeat: three rounds, always.** Never end the run after round 1, never stop to ask: the run
    finishes only when every carousel has passed or used its three rounds, then the PR is opened.
    Round loop for each `<pack>/scenes/weeks/<monday>-*.json`:
