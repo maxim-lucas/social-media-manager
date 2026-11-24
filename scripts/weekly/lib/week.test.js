@@ -146,3 +146,13 @@ test("a sold-by-the-pack item needs no regular price and carries the full saving
   assert.deepStrictEqual([items.p1.byPack, items.p1.price, items.p1.off], [true, null, 6]);
   assert.deepStrictEqual(plan.needs.regular, ["p5"]);
 });
+
+test("only: rebuilds just the named categories, never the published ones", () => {
+  const rows = [1, 2, 3].flatMap((n) => everywhere(String(n), 5 + n));
+  const categories = { 1: { cat: "tech" }, 2: { cat: "tech" }, 3: { cat: "tech" } };
+  const all = names(planWeek(ctx(rows, { categories })));
+  assert.ok(all.some((n) => n.endsWith("en-tech")));
+  const some = names(planWeek(ctx(rows, { categories, only: new Set(["tech"]) })));
+  assert.deepStrictEqual(some, ["2026-11-16-en-tech", "2026-11-16-fr-tech"]);
+  assert.deepStrictEqual(names(planWeek(ctx(rows, { categories, only: new Set(["home"]) }))), []);
+});

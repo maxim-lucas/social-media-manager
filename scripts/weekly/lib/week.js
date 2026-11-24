@@ -48,7 +48,7 @@ function regularFor(chRows, item, audience) {
  *          tags: Record<string, {en: string[], fr: string[]}>, posted: Set<string>, photos: Set<string>, weekIndex?: number}} input
  * rows: social_ro.savings_live rows, each with `regular` (the product's regular price in that province, or null)
  */
-function planWeek({ rows: allRows, monday, today, categories, tags, posted, photos, weekIndex = 0, newSince = null, daily = false, weekStart = null, byPack = new Set() }) {
+function planWeek({ rows: allRows, monday, today, categories, tags, posted, photos, weekIndex = 0, newSince = null, daily = false, weekStart = null, byPack = new Set(), only = null }) {
   // Monica, 2026-11-04: only savings that started this week and were created this week are "new".
   const rows = newSince
     ? allRows.filter((r) => String(r.valid_from).slice(0, 10) >= (weekStart || monday) && new Date(r.created_at) >= new Date(newSince))
@@ -57,7 +57,9 @@ function planWeek({ rows: allRows, monday, today, categories, tags, posted, phot
   const files = [];
   const skipped = [];
 
+  // `only`: category keys (tech, home, bc-grocery, regional-west...) to rebuild; a published category is never rewritten.
   const emit = (aud, key, items, { bc = false } = {}) => {
+    if (only && !only.has(key)) return;
     const picked = items.slice(0, MAX_ITEMS);
     const name = `${monday}-${aud.id}-${key}`;
     if (picked.length < MIN_ITEMS) return skipped.push({ key: `${aud.id}-${key}`, reason: `only ${picked.length} usable items (minimum ${MIN_ITEMS})` });
