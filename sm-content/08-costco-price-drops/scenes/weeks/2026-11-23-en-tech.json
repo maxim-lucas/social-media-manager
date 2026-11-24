@@ -14,6 +14,7 @@
         "fr": "Télés et techno"
       },
       "items": [
+        "8785575",
         "6688055",
         "1432121",
         "1479885",
@@ -426,6 +427,39 @@
       "regular": 794.99,
       "off": 200,
       "price": 594.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "8785575": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Hisense",
+          "75\" M75SR 4K QLED Mini LED TV",
+          "M75SR series"
+        ],
+        "fr": [
+          "Hisense",
+          "téléviseur QLED Mini DEL 4K 75 po",
+          "série M75SR"
+        ]
+      },
+      "regular": 1094.99,
+      "off": 300,
+      "price": 794.99,
       "exp": "2026-12-20",
       "seen": "2026-11-23",
       "provinces": [

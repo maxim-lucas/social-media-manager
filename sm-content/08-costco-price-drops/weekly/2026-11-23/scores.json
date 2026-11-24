@@ -75,5 +75,28 @@
    "tech-en": 10.0,
    "tech-fr": 9.7
   }
+ },
+ "fill_round1": {
+  "en-tech": {
+   "hook": 1,
+   "clarity": 1,
+   "photos": 1,
+   "legibility": 0.9,
+   "language": 1,
+   "compliance": 0.9,
+   "cta": 1,
+   "total": 9.75
+  },
+  "fr-tech": {
+   "hook": 1,
+   "clarity": 0.9,
+   "photos": 1,
+   "legibility": 1,
+   "language": 1,
+   "compliance": 1,
+   "cta": 1,
+   "total": 9.8
+  },
+  "note": "Fill 2026-11-24 (Hisense 75in M75SR added). Passed round 1. Known: slide 01 photo is the 65in substitute (shows a 65in chip); 3-digit red badge text tight on EN."
  }
 }
