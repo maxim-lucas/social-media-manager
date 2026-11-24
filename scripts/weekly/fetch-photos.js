@@ -39,6 +39,8 @@ const CACHE = path.join(PACK, "scenes", ".cache");
   const table = fs.existsSync(path.join(PACK, "tools", "photo-substitutes.json")) ? JSON.parse(fs.readFileSync(path.join(PACK, "tools", "photo-substitutes.json"), "utf8")) : {};
   const missing = [];
   for (const sku of skus) {
+    // A photo already in the cache (harvested by harvest-photo.js, or fetched earlier) is never replaced by a substitute.
+    if (fs.existsSync(path.join(CACHE, `${sku}.jpg`))) { if (substituteFor(sku, table)) console.log(`photo ${sku}: kept the photo already in the cache`); continue; }
     const r = await fetchPhoto(sku, { cacheDir: CACHE });
     if (r.ok) continue;
     const use = substituteFor(sku, table);
