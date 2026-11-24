@@ -2,7 +2,7 @@
 /**
  * build-week.js: snapshot in, the renderer's week files out.
  *
- *   node scripts/weekly/build-week.js <monday-iso> --snapshot=<snapshot.json> [--day]
+ *   node scripts/weekly/build-week.js <monday-iso> --snapshot=<snapshot.json> [--day] [--only=tech,home]
  *
  * Writes scenes/weeks/<monday>-<aud>-<carousel>.json for every carousel that can be made, and
  * weekly/<monday>/needs.json (what is missing and who must supply it) and report.json. Reads the caches the routine's
@@ -21,6 +21,8 @@ const CACHE = path.join(PACK, "scenes", ".cache");
 const readJson = (p, d) => (fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, "utf8")) : d);
 const monday = process.argv[2];
 const DAY = process.argv.includes("--day"); // a weekday top-up: <monday> is the pack's own date
+// --only=tech,home: rebuild just those categories (the ones not published yet); the others' week files stay as they are.
+const ONLY = (process.argv.find((a) => a.startsWith("--only=")) || "").slice("--only=".length).split(",").filter(Boolean);
 const snap = (process.argv.find((a) => a.startsWith("--snapshot=")) || "").slice("--snapshot=".length);
 if (!/^\d{4}-\d{2}-\d{2}$/.test(monday || "") || !snap) {
   console.error("usage: build-week.js <monday-iso> --snapshot=<file>");
@@ -58,7 +60,7 @@ const plan = planWeek({
   tags: readJson(path.join(PACK, "tools", "tags.json"), {}),
   posted, photos, weekIndex: weekIndex(monday),
   byPack: new Set(readJson(path.join(PACK, "tools", "sold-by-pack.json"), [])),
-  newSince: torontoInstant(monday, "00:00"), daily: DAY,
+  newSince: torontoInstant(monday, "00:00"), daily: DAY, only: ONLY.length ? new Set(ONLY) : null,
   weekStart: DAY ? mondayOf(monday) : null,
 });
 

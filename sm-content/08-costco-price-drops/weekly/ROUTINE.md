@@ -50,6 +50,16 @@ open issue has that title; add a comment instead), stop, and leave master untouc
      <thisMonday>` (it registers every `reels/<key>-<lang>.mp4` as that slot's asset), write the reel captions (step 11, reel
      wording: first line a concrete number, one ask, 5 hashtags), `make-schedule.js`, tests, `check-copy.js`, then PR "Weekly reels
      <thisMonday>" and merge it. Never re-render carousels or reels in this mode.
+   - **Unpublished categories missing items (Monday to Saturday, checked right after Reels pending, 2026-11-24):** the week is built
+     but a category that has not gone out yet (its slot in `<pack>/weekly/<thisMonday>/schedule.json` is later than now, Toronto, or
+     `PUBLISH_ENABLED` is off and its date is today or later) left items out for a missing photo, and a substitute now covers them
+     (`<pack>/tools/photo-substitutes.json`: tier `same-product` or `same-brand-tv`, or `approved: true`). Do ONLY this:
+     `git pull`, `git switch -c weekly/<thisMonday>-fill`, step 5's snapshot copy, `fetch-photos.js <thisMonday>` (it copies the substitutes),
+     then `build-week.js <thisMonday> --snapshot=/tmp/snap.json --only=<those categories>` (for example `--only=tech,home`; the
+     categories already published are never rebuilt, and electronics is `tech`). If the substitutes file is empty, do step 8's
+     fallback search for the SKUs that category left out first. Then steps 9 to 12 for those categories only (render, three scoring
+     rounds, the reels of those carousels, `make-media.js`, new captions for the slots whose items changed, `make-schedule.js`),
+     PR "Weekly fill <thisMonday>", merge. A category already published is never re-rendered.
    - **Sunday:** stop.
 2. **Setup:** `git pull`, `npm ci`, `npx playwright install chromium`.
 3. **Has the harvest settled?** Read `<pack>/weekly/snapshots/<monday>.settled.json` (for a top-up, `D.settled.json`: step 1 already checked it) (`git pull` first). If it is missing
