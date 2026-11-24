@@ -37,6 +37,19 @@ function chooseRegion(poolSizes, weekIndex, min = MIN_ITEMS) {
   return null;
 }
 
+/**
+ * A regular price the snapshot lacks, read by hand from costco.ca's own "was $X, $Y OFF, valid ..." line (Maxim, 2026-11-24: the
+ * LG 77in OLED and Samsung 75in TV were left out of the tech carousel for want of one). tools/regular-prices.json:
+ * { "<sku>": { "regular": 2294.99, "amount": 400, "validUntil": "2026-12-20", "source": "costco.ca", "seen": "2026-11-24" } }.
+ * It counts only for the SAME saving (same amount, same end date): a price from another sale is never reused. The snapshot's
+ * own regular price always wins.
+ */
+function verifiedRegular(overrides, item) {
+  const o = (overrides || {})[item.sku];
+  if (!o || Number(o.amount) !== Number(item.amount) || String(o.validUntil) !== String(item.validUntil).slice(0, 10)) return null;
+  return Number.isFinite(Number(o.regular)) && Number(o.regular) > Number(item.amount) ? Number(o.regular) : null;
+}
+
 function regularFor(chRows, item, audience) {
   const matches = chRows.filter((r) => r.sku === item.sku && item.provinces.includes(r.province) && Number(r.amount) === item.amount && r.regular != null);
   const best = matches.find((r) => audience.priority.includes(r.province)) || matches[0];
@@ -48,7 +61,7 @@ function regularFor(chRows, item, audience) {
  *          tags: Record<string, {en: string[], fr: string[]}>, posted: Set<string>, photos: Set<string>, weekIndex?: number}} input
  * rows: social_ro.savings_live rows, each with `regular` (the product's regular price in that province, or null)
  */
-function planWeek({ rows: allRows, monday, today, categories, tags, posted, photos, weekIndex = 0, newSince = null, daily = false, weekStart = null, byPack = new Set(), only = null }) {
+function planWeek({ rows: allRows, monday, today, categories, tags, posted, photos, weekIndex = 0, newSince = null, daily = false, weekStart = null, byPack = new Set(), only = null, regularOverrides = {} }) {
   // Monica, 2026-11-04: only savings that started this week and were created this week are "new".
   const rows = newSince
     ? allRows.filter((r) => String(r.valid_from).slice(0, 10) >= (weekStart || monday) && new Date(r.created_at) >= new Date(newSince))
@@ -96,7 +109,7 @@ function planWeek({ rows: allRows, monday, today, categories, tags, posted, phot
       // Sold by the pack (meat, fish, anything packed to weight): the shelf price is per kg, the drop is the FULL saving on
       // the pack. Never a computed new price from another pack's price: the slide shows the saving only.
       const packed = byPack.has(it.sku);
-      const regular = packed ? null : regularFor(chRows, it, aud);
+      const regular = packed ? null : (regularFor(chRows, it, aud) ?? verifiedRegular(regularOverrides, it));
       if (regular == null && !packed) { needs.regular.add(it.sku); continue; }
       if (it.needsFrenchReview) needs.frenchReview.add(it.sku);
       usable.push({ ...it, cat: cat.cat, regular, byPack: packed });

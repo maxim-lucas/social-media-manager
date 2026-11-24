@@ -156,3 +156,15 @@ test("only: rebuilds just the named categories, never the published ones", () =>
   assert.deepStrictEqual(some, ["2026-11-16-en-tech", "2026-11-16-fr-tech"]);
   assert.deepStrictEqual(names(planWeek(ctx(rows, { categories, only: new Set(["home"]) }))), []);
 });
+
+test("a verified regular price fills a missing one only for the same saving (amount and end date), the snapshot's own wins", () => {
+  const noReg = (sku, amount) => everywhere(sku, amount, { regular: null });
+  const rows = [...noReg("t1", 400), ...noReg("t2", 400), ...noReg("t3", 400), ...everywhere("t4", 50, { regular: 120 }), ...everywhere("t5", 50, { regular: 120 }), ...everywhere("t6", 50, { regular: 120 })];
+  const good = (sku) => ({ regular: 2294.99, amount: 400, validUntil: "2026-11-22", source: "costco.ca", seen: "2026-11-16" });
+  const plan = planWeek(ctx(rows, { regularOverrides: { t1: good(), t2: { ...good(), amount: 300 }, t3: { ...good(), validUntil: "2026-12-20" }, t4: { ...good(), regular: 999 } } }));
+  const en = plan.files.find((f) => f.name.endsWith("en-grocery")).data;
+  assert.strictEqual(en.items.t1.regular, 2294.99); // same saving: used
+  assert.strictEqual(en.items.t4.regular, 120); // the snapshot's own price wins over an override
+  assert.ok(!en.items.t2 && !en.items.t3); // another amount or another sale: never reused
+  assert.ok(plan.needs.regular.includes("t2") && plan.needs.regular.includes("t3"));
+});
