@@ -49,8 +49,9 @@ async function publishSlot(slot, monday) {
   const base = slot.kind === "reel" ? reelBase(monday) : assetBase(monday);
   const urls = slot.assets.map((a) => `${base}/${a.replace(/^\/+/, "")}`);
   const text = (n) => `${slot.caption[n]}\n\n${disclaimer[slot.lang]}`;
-  g.validateSlot({ kind: slot.kind, assets: urls, instagramCaption: text("instagram") });
-  for (const u of urls) {
+  const coverUrl = slot.kind === "reel" && slot.cover ? `${base}/${slot.cover.replace(/^\/+/, "")}` : null;
+  g.validateSlot({ kind: slot.kind, assets: urls, instagramCaption: text("instagram"), cover: slot.kind === "reel" ? coverUrl : undefined });
+  for (const u of coverUrl ? [...urls, coverUrl] : urls) {
     const why = await reachable(u);
     if (why) throw new Error(`asset not reachable by Meta (${why}): ${u}`);
   }
@@ -63,7 +64,7 @@ async function publishSlot(slot, monday) {
     const common = { fetchImpl: fetch, igId: process.env.META_INSTAGRAM_BUSINESS_ACCOUNT_ID, token: igToken };
     out.instagram = {
       id: slot.kind === "reel"
-        ? await g.postIgReel({ ...common, videoUrl: urls[0], caption: text("instagram") })
+        ? await g.postIgReel({ ...common, videoUrl: urls[0], coverUrl, caption: text("instagram") })
         : await g.postIgCarousel({ ...common, imageUrls: urls, caption: text("instagram") }),
       at: new Date().toISOString(),
     };

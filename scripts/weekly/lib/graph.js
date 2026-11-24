@@ -16,12 +16,14 @@ const IG_CAROUSEL_MIN = 2;
 class GraphError extends Error {}
 
 /** Refuse before touching Meta, so a bad slot costs nothing and leaves nothing half-created. */
-function validateSlot({ kind, assets, instagramCaption }) {
+function validateSlot({ kind, assets, instagramCaption, cover }) {
   if (instagramCaption.length > IG_CAPTION_MAX) throw new GraphError(`caption is ${instagramCaption.length} characters (max ${IG_CAPTION_MAX})`);
   if (kind === "carousel" && (assets.length < IG_CAROUSEL_MIN || assets.length > IG_CAROUSEL_MAX)) {
     throw new GraphError(`a carousel needs ${IG_CAROUSEL_MIN} to ${IG_CAROUSEL_MAX} slides, got ${assets.length}`);
   }
   if (kind === "reel" && assets.length !== 1) throw new GraphError(`a reel is exactly one video, got ${assets.length} assets`);
+  if (kind === "reel" && cover === undefined) return; // callers that predate covers (tests) pass none; publish-week always passes one
+  if (kind === "reel" && !cover) throw new GraphError("a reel needs its cover image");
 }
 
 async function call(fetchImpl, method, path, params) {
@@ -66,8 +68,10 @@ async function postIgCarousel({ fetchImpl, igId, token, imageUrls, caption, slee
 }
 
 /** Instagram reel from a public video URL (the music is already inside the file). Returns the media id. */
-async function postIgReel({ fetchImpl, igId, token, videoUrl, caption, sleep }) {
-  const c = await call(fetchImpl, "POST", `${igId}/media`, { media_type: "REELS", video_url: videoUrl, caption, share_to_feed: "true", access_token: token });
+async function postIgReel({ fetchImpl, igId, token, videoUrl, coverUrl, caption, sleep }) {
+  const params = { media_type: "REELS", video_url: videoUrl, caption, share_to_feed: "true", access_token: token };
+  if (coverUrl) params.cover_url = coverUrl; // the cover image (public JPEG); without it Instagram chooses a frame
+  const c = await call(fetchImpl, "POST", `${igId}/media`, params);
   await waitFinished(fetchImpl, c.id, token, { sleep, tries: 60 });
   return (await call(fetchImpl, "POST", `${igId}/media_publish`, { creation_id: c.id, access_token: token })).id;
 }

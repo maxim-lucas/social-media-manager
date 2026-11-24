@@ -32,3 +32,11 @@ test("a reel slot finds its rendered reel, carousels and missing reels do not", 
   assert.strictEqual(reelAssetFor({ kind: "reel", key: "tech", lang: "en" }, files), null);
   assert.strictEqual(reelAssetFor({ kind: "carousel", key: "grocery", lang: "en" }, files), null);
 });
+
+test("a reel's cover is weekly/<monday>/reels/<key>-<lang>-cover.jpg, and only a reel has one", () => {
+  const { reelCoverFor } = require("./media");
+  const files = ["grocery-en.mp4", "grocery-en-cover.jpg"];
+  assert.strictEqual(reelCoverFor({ kind: "reel", key: "grocery", lang: "en" }, files), "reels/grocery-en-cover.jpg");
+  assert.strictEqual(reelCoverFor({ kind: "reel", key: "grocery", lang: "fr" }, files), null);
+  assert.strictEqual(reelCoverFor({ kind: "carousel", key: "grocery", lang: "en" }, files), null);
+});

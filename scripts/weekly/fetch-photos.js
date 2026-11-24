@@ -3,6 +3,7 @@
  * fetch-photos.js: the packshots for every item the week still lacks a photo for.
  *
  *   node scripts/weekly/fetch-photos.js <monday-iso>      # preflight first, then every SKU in needs.json "photo"
+ *   node scripts/weekly/fetch-photos.js <monday-iso> --all  # also every carousel item missing from the cache (before rendering reels)
  *   node scripts/weekly/fetch-photos.js --preflight       # only test that the photo route is reachable
  *
  * Source: the public PriceBack product-photo route (R2 bucket priceback-product-images). It stops, printing why, when
@@ -27,6 +28,14 @@ const CACHE = path.join(PACK, "scenes", ".cache");
   const needsPath = path.join(PACK, "weekly", String(monday), "needs.json");
   if (!fs.existsSync(needsPath)) throw new Error(`no needs.json for ${monday}: run build-week.js first`);
   const skus = JSON.parse(fs.readFileSync(needsPath, "utf8")).photo;
+  // --all: every item of the week's carousels, not only the ones needs.json lists. A fresh sandbox (the reels-pending and
+  // fill modes, 2026-11-24) has an empty photo cache, and a reel's hook grid or cover rendered without photos is blank.
+  if (process.argv.includes("--all")) {
+    const weeks = path.join(PACK, "scenes", "weeks");
+    for (const f of fs.readdirSync(weeks).filter((n) => n.startsWith(String(monday)))) {
+      for (const c of JSON.parse(fs.readFileSync(path.join(weeks, f), "utf8")).carousels) for (const sku of c.items) if (!skus.includes(sku) && !fs.existsSync(path.join(CACHE, `${sku}.jpg`))) skus.push(sku);
+    }
+  }
   const table = fs.existsSync(path.join(PACK, "tools", "photo-substitutes.json")) ? JSON.parse(fs.readFileSync(path.join(PACK, "tools", "photo-substitutes.json"), "utf8")) : {};
   const missing = [];
   for (const sku of skus) {

@@ -63,3 +63,15 @@ test("a Facebook photo post uploads each photo unpublished, then one feed post a
   assert.match(calls[2].url, /P\/feed/);
   assert.match(decodeURIComponent(calls[2].body), /attached_media=\[\{"media_fbid":"id1"\},\{"media_fbid":"id2"\}\]/);
 });
+
+test("a reel is refused without its cover, and the cover goes to Instagram as cover_url", async () => {
+  assert.throws(() => g.validateSlot({ kind: "reel", assets: ["v"], instagramCaption: "x", cover: null }), /needs its cover/);
+  assert.doesNotThrow(() => g.validateSlot({ kind: "reel", assets: ["v"], instagramCaption: "x", cover: "https://x/c.jpg" }));
+  const bodies = [];
+  const fetchImpl = async (url, init) => {
+    if (init && init.body) bodies.push(init.body);
+    return { ok: true, json: async () => ({ id: "1", status_code: "FINISHED" }) };
+  };
+  await g.postIgReel({ fetchImpl, igId: "IG", token: "T", videoUrl: "https://x/v.mp4", coverUrl: "https://x/c.jpg", caption: "c", sleep: async () => {} });
+  assert.ok(decodeURIComponent(bodies[0]).includes("cover_url=https://x/c.jpg"));
+});

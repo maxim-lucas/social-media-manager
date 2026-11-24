@@ -13,7 +13,7 @@ const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
 const { buildSchedule, DAY_TEMPLATE } = require("./lib/slots");
-const { sourceFor, reelAssetFor, duplicates } = require("./lib/media");
+const { sourceFor, reelAssetFor, reelCoverFor, duplicates } = require("./lib/media");
 
 const monday = process.argv[2];
 if (!/^\d{4}-\d{2}-\d{2}$/.test(monday || "")) {
@@ -32,7 +32,12 @@ const weekFiles = fs.readdirSync(path.join(PACK, "scenes", "weeks")).filter((f) 
   const reelFiles = fs.existsSync(reelDir) ? fs.readdirSync(reelDir) : [];
   for (const slot of buildSchedule({ monday, template: process.argv.includes("--day") ? DAY_TEMPLATE : undefined })) {
     const reel = reelAssetFor(slot, reelFiles);
-    if (reel) { content.available[slot.id] = { assets: [reel] }; console.log(`${slot.id}: reel ${reel}`); continue; }
+    if (reel) {
+      const cover = reelCoverFor(slot, reelFiles);
+      content.available[slot.id] = { assets: [reel], ...(cover ? { cover } : {}) };
+      console.log(`${slot.id}: reel ${reel}${cover ? ` + cover ${cover}` : " (NO COVER: render it with follower-reel.js --cover, the slot stays needs_content)"}`);
+      continue;
+    }
     const source = sourceFor(slot, monday, weekFiles);
     if (!source) continue;
     const from = path.join(PACK, "posts", source, slot.lang);
