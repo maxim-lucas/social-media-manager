@@ -2,7 +2,7 @@
 /**
  * build-week.js: snapshot in, the renderer's week files out.
  *
- *   node scripts/weekly/build-week.js <monday-iso> --snapshot=<snapshot.json> [--day] [--only=tech,home]
+ *   node scripts/weekly/build-week.js <monday-iso> --snapshot=<snapshot.json> [--day] [--only=tech,home] [--check]
  *
  * Writes scenes/weeks/<monday>-<aud>-<carousel>.json for every carousel that can be made, and
  * weekly/<monday>/needs.json (what is missing and who must supply it) and report.json. Reads the caches the routine's
@@ -63,6 +63,20 @@ const plan = planWeek({
   newSince: torontoInstant(monday, "00:00"), daily: DAY, only: ONLY.length ? new Set(ONLY) : null,
   weekStart: DAY ? mondayOf(monday) : null,
 });
+
+// --check: write nothing; report which week files WOULD change. The fill mode's one deterministic test (2026-11-24: a run decided
+// "nothing to fill" from report.json, which never lists items dropped for a missing photo, and the tech pack stayed without its TVs).
+// Exit 10 = at least one rebuilt carousel differs from the committed one (a photo or substitute now covers items it left out).
+if (process.argv.includes("--check")) {
+  const changed = plan.files.filter((f) => {
+    const old = readJson(path.join(WEEKS, `${f.name}.json`), null);
+    const now = f.data.carousels[0].items;
+    return !old || JSON.stringify(old.carousels[0].items) !== JSON.stringify(now);
+  });
+  for (const f of changed) console.log(`WOULD CHANGE ${f.name}: ${f.data.carousels[0].items.length} items`);
+  console.log(changed.length ? `FILL NEEDED: ${changed.length} week file(s)` : "NOTHING TO FILL: every rebuilt carousel is identical");
+  process.exit(changed.length ? 10 : 0);
+}
 
 for (const f of plan.files) fs.writeFileSync(path.join(WEEKS, `${f.name}.json`), JSON.stringify(f.data, null, 2) + "\n");
 const out = path.join(PACK, "weekly", monday);
