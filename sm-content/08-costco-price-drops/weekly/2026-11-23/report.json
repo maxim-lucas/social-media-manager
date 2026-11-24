@@ -3,45 +3,12 @@
   "built": [
     {
       "name": "2026-11-23-en-tech",
-      "items": 13
-    },
-    {
-      "name": "2026-11-23-en-grocery",
-      "items": 17
-    },
-    {
-      "name": "2026-11-23-en-home",
-      "items": 18
+      "items": 16
     },
     {
       "name": "2026-11-23-fr-tech",
-      "items": 13
-    },
-    {
-      "name": "2026-11-23-fr-grocery",
-      "items": 17
-    },
-    {
-      "name": "2026-11-23-fr-home",
-      "items": 18
-    },
-    {
-      "name": "2026-11-23-en-regional-west",
-      "items": 6
-    },
-    {
-      "name": "2026-11-23-en-bc-grocery",
-      "items": 8
-    },
-    {
-      "name": "2026-11-23-fr-bc-grocery",
-      "items": 8
+      "items": 16
     }
   ],
-  "skipped": [
-    {
-      "key": "fr-regional-qc",
-      "reason": "only 1 usable items (minimum 3)"
-    }
-  ]
+  "skipped": []
 }

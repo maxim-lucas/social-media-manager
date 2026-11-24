@@ -14,6 +14,8 @@
         "fr": "Télés et techno"
       },
       "items": [
+        "9508277",
+        "8785575",
         "6688055",
         "1432121",
         "1479885",
@@ -21,6 +23,7 @@
         "2076124",
         "7895442",
         "2162709",
+        "5506975",
         "1431001",
         "8779903",
         "7472260",
@@ -252,6 +255,39 @@
       "bizOnly": [],
       "exceptions": {}
     },
+    "5506975": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Samsung",
+          "75\" U7900H 4K Crystal UHD TV",
+          "U7900H series"
+        ],
+        "fr": [
+          "Samsung",
+          "téléviseur 4K Crystal UHD 75 po",
+          "série U7900H"
+        ]
+      },
+      "regular": 794.99,
+      "off": 100,
+      "price": 694.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
     "6688055": {
       "sameday": null,
       "tag": {
@@ -426,6 +462,72 @@
       "regular": 794.99,
       "off": 200,
       "price": 594.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "8785575": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "Hisense",
+          "75\" M75SR 4K QLED Mini LED TV",
+          "M75SR series"
+        ],
+        "fr": [
+          "Hisense",
+          "téléviseur QLED Mini DEL 4K 75 po",
+          "série M75SR"
+        ]
+      },
+      "regular": 1094.99,
+      "off": 300,
+      "price": 794.99,
+      "exp": "2026-12-20",
+      "seen": "2026-11-23",
+      "provinces": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "bizOnly": [],
+      "exceptions": {}
+    },
+    "9508277": {
+      "sameday": null,
+      "tag": {
+        "en": [
+          "LG",
+          "77\" OLED B6E 4K UHD TV",
+          "OLEDB6E series"
+        ],
+        "fr": [
+          "LG",
+          "téléviseur OLED 4K UHD 77 po",
+          "série OLEDB6E"
+        ]
+      },
+      "regular": 2294.99,
+      "off": 400,
+      "price": 1894.99,
       "exp": "2026-12-20",
       "seen": "2026-11-23",
       "provinces": [
