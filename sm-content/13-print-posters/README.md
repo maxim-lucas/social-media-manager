@@ -28,4 +28,4 @@ All QR codes open `https://priceback.ca/app?s=<source tag>`: iPhone and iPad go 
 The `s=` tag shows which poster was scanned (Cloudflare Workers logs, and Play Console install referrer). For per-location tracking (e.g. one café vs one gym), re-render with a new tag.
 
 ## Source
-Renderer: `node sm-content/12-print-posters/render.js` (needs Playwright; run `npm i --no-save qrcode` first). Output goes to `out/` (gitignored); finished files are copied to `/mnt/project-files/marketing/posters/<lang>/`.
+Renderer: `node sm-content/13-print-posters/render.js` (needs Playwright; run `npm i --no-save qrcode` first). Output goes to `out/` (gitignored); finished files are copied to `/mnt/project-files/marketing/posters/<lang>/`.

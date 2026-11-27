@@ -8,7 +8,7 @@ New video concepts get their own folder here.
 
 | # | Style | Status | Files | Length · format |
 | --- | --- | --- | --- | --- |
-| 1 | **Hook Reel**: rendered motion graphics, launch pack | Produced, posted at launch | [`../reels/priceback-reel-hook-{en,fr}.mp4`](../reels), notes in [`../ASSET-PACK-NOTES.md`](../ASSET-PACK-NOTES.md) | 17.5 s · 1080×1920 · silent AAC (add audio in-app) |
+| 1 | **Hook Reel**: rendered motion graphics, launch pack | Produced, posted at launch | [`../02-launch-week/reels/priceback-reel-hook-{en,fr}.mp4`](../02-launch-week/reels), notes in [`../02-launch-week/ASSET-PACK-NOTES.md`](../02-launch-week/ASSET-PACK-NOTES.md) | 17.5 s · 1080×1920 · silent AAC (add audio in-app) |
 | 2 | **Cartoon-style videos** | Produced | **Not in this repo yet**, see *Missing* below | — |
 | 3 | **Evergreen phone Reels**: "The bin" (EN), "Three steps" (FR) | Scripted, not shot | [`../evergreen/reels/REEL-SCRIPTS.md`](../evergreen/reels/REEL-SCRIPTS.md) | ~20 s · phone-shot, figures hidden |
 | 4 | **Community Reels R1–R6**: "Nobody beats inflation alone", "Costco was the start", "Point your camera at a shelf tag", "Made here", "What went up the most in your cart?", "Le français suit toujours" | Scripted, not shot | [`../04-community/REEL-SCRIPTS.md`](../04-community/REEL-SCRIPTS.md) | 8–18 s · phone + the pack's frames |

@@ -1,38 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# social-media-manager — PriceBack social media
 
-> **Content rules:** read [`RULES-README.md`](RULES-README.md) before making anything.
+Everything PriceBack publishes on social media (@priceback.ca on Instagram and Facebook, plus YouTube and TikTok
+videos and the paid Meta ads): the content, the rules, the automation that posts it, and a small dashboard.
 
-## Getting Started
+> **Read [`RULES-README.md`](RULES-README.md) before making anything.** It holds every standing rule and wins over
+> any pack's own notes.
 
-First, run the development server:
+## Where things are
+
+| Path | What |
+|---|---|
+| [`RULES-README.md`](RULES-README.md) | **The rules.** Deal posts, design, wording, videos, app facts, weekly automation, paid ads |
+| [`sm-content/`](sm-content/) | **The content**, one numbered folder per pack. The map of every pack, in order: [`sm-content/README.md`](sm-content/README.md) |
+| [`sm-content/08-costco-price-drops/`](sm-content/08-costco-price-drops/) | The house style and the weekly automated price-drop posts (`STYLE.md`, `weekly/ROUTINE.md`) |
+| [`sm-content/14-new-version-ads/`](sm-content/14-new-version-ads/) | The Meta Ads for the new version, named for upload (`ready-to-upload/EN`, `ready-to-upload/FR`) |
+| [`docs/`](docs/) | Strategy and playbooks: the Instagram playbook, the weekly automation design, the material backlog |
+| [`scripts/`](scripts/) | Automation: `publish-due.js` (evergreen publisher), `check-copy.js` (copy gate), `weekly/` (weekly price-drop builder and publisher) |
+| [`.github/workflows/`](.github/workflows/) | The scheduled jobs: `social-publish`, `weekly-snapshot`, `weekly-publish`, and `social-check` on every content change |
+| [`src/`](src/) | The publish dashboard (Next.js): `src/components/PublishDashboard.tsx`, Meta publishing in `src/lib/metaPublish.ts` |
+
+## Don't move these
+
+The publishing jobs read files by path: `sm-content/evergreen/`, `sm-content/teaser/` and
+`sm-content/08-costco-price-drops/` (and their `schedule.json` / `published.json`). Moving or renaming them breaks live
+posting. Why, and how new packs are added instead: [`sm-content/README.md`](sm-content/README.md).
+
+## Checks
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+node scripts/check-copy.js                                   # every pack's copy gate
+node scripts/publish-due.js --pack=evergreen --check         # a pack's schedule (also 04-community, 05-highlights)
+node --test scripts/weekly/lib/*.test.js                     # the weekly automation's unit tests
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## The dashboard
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev        # http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The app needs the environment in `.env.example`.
 
-## Learn More
+## Related
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Product strategy and the marketing plan live in `Priceback-Documentations` (`Marketing-Plan/`); social media guidance
+lives here, next to the content it governs (see [`docs/README.md`](docs/README.md)).

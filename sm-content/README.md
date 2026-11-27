@@ -3,42 +3,49 @@
 Output assets from Cowork session `cse_01QJzpqDCPqZ4HAHmNa7UfXK`
 ("Instagram and Reddit launch materials"), plus the launch playbook they were built alongside.
 
-## Folders
+## The map
 
-| Folder | Count | What |
-| --- | --- | --- |
-| `reels/` | 2 | 1080×1920 hook Reels, 17.5s — EN + FR (`priceback-reel-hook-{en,fr}.mp4`) |
-| `carousels/` | 20 | 1080×1350 feed carousel, 10 slides each — EN + FR (`priceback-carousel-{en,fr}-01..10.png`) |
-| `statics/` | 6 | 1080×1350 feed singles, 3 colourways — EN + FR (`priceback-static-{en,fr}-01..03.png`) |
-| `stories/` | 10 | 1080×1920 story sequence, 5 frames each — EN + FR (`priceback-stories-{en,fr}-01..05.png`) |
-| `teaser/` | 20 | The **pre-launch** pack — see below. Its own folder, its own renderer |
-| `evergreen/` | 38 | The **permanent** pack — 9 feed posts + 10 story frames, EN + FR, store-agnostic. Its own folder, its own renderer, its own 14-day schedule |
-| `06-launch/` | 20 | The **we're live** post — two 5-slide carousels (EN on the ink field, FR on emerald), published together on IG + FB, 2026-10-02. Its own renderer and 7 gates |
-| `07-costco-toolkit/` | 82 | The **Costco toolkit** pack — 7 how-to carousels (toolkit, scan a receipt, claim a drop, price tag, community, price codes, habits), each EN + FR, 5–7 slides. **Designs only, not posted; `price-codes` is on HOLD** until the Price tag translator ships. Its own renderer and 10 gates — see `07-costco-toolkit/TOOLKIT-NOTES.md` |
-| `08-costco-price-drops/` | 6 | **The house style for new content.** Costco price drops: clean product photo, recreated Costco shelf tag, Costco red/blue/white, "claim the difference" band. One product or one category per post, EN + FR. Data-driven renderer — see `08-costco-price-drops/STYLE.md` |
-| `09-video-styles/` | — | **Every video style in one index**: the hook Reel, the cartoon videos, the scripted Reels, and the Price Forecast and Shelf Street concepts, with where each one's files live and what's still missing. See `09-video-styles/VIDEO-STYLES.md` |
-| `04-community/` | 84 | The **recruiting** pack — 14 bilingual carousel posts, 16 story pairs (5 in the run, 11 living inside the Highlights), 6 unscheduled reserve pairs, the bilingual language notice, 2 carousel dividers, 8 Highlight covers and 6 Reel scripts. Its own folder, renderer and 24-day run |
+Every pack in the order it was made and runs. **Start here, then open the pack's own notes file.** The rules that
+govern all of them are in [`../RULES-README.md`](../RULES-README.md) (it wins over any pack's notes).
 
-Total: 38 launch + 20 teaser + 38 evergreen + 84 community = 180 assets.
+| # | Folder | What it is | Status | Read |
+|---|---|---|---|---|
+| 01 | [`teaser/`](teaser/) | Pre-launch: posts and stories on thermal-receipt paper that name nothing | Past run (pre-launch) | `TEASER-NOTES.md` |
+| 02 | [`02-launch-week/`](02-launch-week/) | Launch week: hook Reel, 10-slide carousel, 3 statics, story sequence (EN + FR) | Past run (launch week) | `ASSET-PACK-NOTES.md` |
+| 03 | [`evergreen/`](evergreen/) | The permanent pack: 9 feed posts + 10 story frames, store-agnostic, with its 14-day schedule | **Live, automated** | `EVERGREEN-NOTES.md`, `AUTOMATION.md` |
+| 04 | [`04-community/`](04-community/) | Recruiting: bilingual carousels, story pairs, Highlight covers, Reel scripts | Past run (planned 21 Sep → 23 Oct 2026) | `COMMUNITY-NOTES.md` |
+| 05 | [`05-highlights/`](05-highlights/) | The ten-Highlight tray | Edited, never retired | `HIGHLIGHTS.md`, `SEQUENCE.md` |
+| 06 | [`06-launch/`](06-launch/) | "We're live": the first post, pinned. **Holds the official store badges** every pack uses | Posted 2026-10-02 | `LAUNCH-NOTES.md` |
+| 07 | [`07-costco-toolkit/`](07-costco-toolkit/) | 7 how-to carousels (scan, claim, price tag, price codes…) | Designs, not posted | `TOOLKIT-NOTES.md` |
+| 08 | [`08-costco-price-drops/`](08-costco-price-drops/) | **The house style**: real Costco price drops, weekly carousels and reels | **Live, automated weekly** | `STYLE.md`, `weekly/ROUTINE.md` |
+| 09 | [`09-video-styles/`](09-video-styles/) | Index of every video style, made or planned | Reference | `VIDEO-STYLES.md` |
+| 10 | [`10-receipt-scan/`](10-receipt-scan/) | What a receipt scan needs: 8-slide carousel + reel script | Designs, not posted | `NOTES.md` |
+| 11 | [`11-realistic-tutorials/`](11-realistic-tutorials/) | Real-life tutorial films, one per feature | Animatic | `SERIES.md` |
+| 12 | [`12-kickstarter/`](12-kickstarter/) | Kickstarter video + app feature videos (9:16 and 16:9) | For review | `README.md` |
+| 13 | [`13-print-posters/`](13-print-posters/) | Print posters (EN + FR) | Done | `README.md` |
+| 14 | [`14-new-version-ads/`](14-new-version-ads/) | **Meta Ads for the new version**: free-tools campaign + receipt-scan/BLACK campaign, every placement, named for upload | Ready, not posted | `README.md` |
+| — | [`brand/`](brand/) | Not a pack: the mark, the leaf, the palette, the type ramp, Instagram's geometry, the icons every pack imports | Permanent | `README.md` |
 
-## Running order
+Also here: [`POSTING-ORDER-CONVENTION.md`](POSTING-ORDER-CONVENTION.md), what each pack's `POSTING-ORDER/` copy is.
 
-Four packs now exist and they run in this sequence. **Only the newest carries its
-number in the folder name.** Renaming the other three would break every `asset`
-path in `evergreen/schedule.json`, the teaser notes and this file's own links,
-for a cosmetic gain — so the order lives here instead, and new packs are numbered
-from now on.
+### Why `teaser/` and `evergreen/` carry no number
 
-| # | Folder | Job | When |
-| --- | --- | --- | --- |
-| 01 | `teaser/` | Withholds. Names nothing. | The eleven days before launch |
-| 02 | `reels/ carousels/ statics/ stories/` | Explains the launch. | Launch week |
-| 03 | `evergreen/` | Describes the mechanic, store-agnostically. | Rotates forever |
-| 04 | `04-community/` | Recruits: solidarity, made-in-Canada, the growing store list, earning credits. | Mon 21 Sep → Fri 23 Oct 2026, then hand back to `evergreen/` |
-| 05 | `05-highlights/` | Answers. The ten-Highlight tray somebody opens **after** they follow: how it works, stores one at a time, earning, plans, the app. | Mon 26 Oct 2026 onward — edited, never retired |
-| 06 | `06-launch/` | Announces. The first post on the account: live on both stores, 75 welcome credits, scan, claim, follow. | Fri 2 Oct 2026, once — then pinned |
-| 08 | `08-costco-price-drops/` | Shows real Costco price drops and tells people who paid full price to claim the difference. **The main style for new posts.** | From 2026-10-15, as drops are found |
-| — | `brand/` | Not a pack. The reusable graphics every pack imports: the mark, the leaf, the palette, the type ramp, Instagram's geometry, the cover icons. | Permanent |
+They are read by path. `scripts/publish-due.js` and `.github/workflows/social-publish.yml` publish `evergreen/`
+(its `schedule.json` lists every `asset` by path, and `published.json` is committed back), and the teaser assets are
+served from the `sm-content-teaser` ref. Renaming them would break live posting for a cosmetic gain, so their place
+in the order lives in the table above. `08-costco-price-drops/` is numbered and is also read by path
+(`scripts/weekly/*`, the weekly workflows): **never rename or move it.**
+
+### Making a new pack
+
+1. Take the next free number: `15-<what-it-is>/`. Never reuse a number.
+2. Inside: a notes file (`README.md`) that says what the pack is, its status, how to render it and its rules;
+   `scenes/` for the source and renderer; the rendered output (`posts/<lang>/`, or `ready-to-upload/<LANG>/` for
+   ads); `POSTING-ORDER/` when it has a posting order.
+3. Add a row to the map above and, if it brings a new standing rule, a section to `../RULES-README.md`.
+
+(History: the launch-week folders were loose at the top of `sm-content/` until 2026-11-27 and now live in
+`02-launch-week/`; the print posters were a second `12-` and are now `13-print-posters/`.)
 
 Inside `04-community/` the same idea goes one level deeper: its wave folders are
 numbered `00`…`06` in publish order, and each asset's filename carries a global
@@ -75,7 +82,7 @@ edit `scenes/strings.json` and re-render rather than editing a PNG.
 
 ## Read first
 
-- `ASSET-PACK-NOTES.md` — what each asset is, the three pre-post fixes (store badges,
+- `02-launch-week/ASSET-PACK-NOTES.md` — what each asset is, the three pre-post fixes (store badges,
   in-app audio, claim screen), story sticker placement, and the compliance rules baked
   into the copy.
 - `evergreen/CALENDAR.md` — the 14-day run, and `evergreen/AUTOMATION.md` for the
