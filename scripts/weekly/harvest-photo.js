@@ -23,7 +23,7 @@ if (!/^\d{3,10}$/.test(sku || "") || !name) {
   console.error('usage: harvest-photo.js <sku> "<product name>" [--upload]');
   process.exit(1);
 }
-const CACHE = path.join(__dirname, "..", "..", "sm-content", "08-costco-price-drops", "scenes", ".cache");
+const CACHE = path.join(require("../lib/packs").dir("price-drops"), "scenes", ".cache");
 const SITES = ["https://www.costco.ca/s?keyword=", "https://www.costcobusinesscentre.ca/s?keyword="];
 const API = (process.env.PRICEBACK_API_BASE || "https://priceback-production.up.railway.app").replace(/\/+$/, "");
 

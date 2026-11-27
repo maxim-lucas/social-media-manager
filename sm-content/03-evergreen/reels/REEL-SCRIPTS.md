@@ -82,7 +82,7 @@ how you say that without a voice-over. Do not cut it shorter to "keep pace".
 
 ## After shooting
 
-Add the file to `sm-content/evergreen/reels/`, then set the matching slot's
+Add the file to `sm-content/03-evergreen/reels/`, then set the matching slot's
 `asset` in `schedule.json`. Leave `automate: false` — Reels stay manual so the
 in-app audio gets picked at post time.
 

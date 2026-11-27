@@ -15,9 +15,9 @@ something**.
 
 | Pack | Job | Lifespan |
 | --- | --- | --- |
-| `teaser/` | Withholds. Says nothing, names nothing. | The eleven days before launch |
+| `01-teaser/` | Withholds. Says nothing, names nothing. | The eleven days before launch |
 | `../{reels,carousels,statics,stories}` | Explains the launch. | Launch week |
-| `evergreen/` | Describes the mechanic, store-agnostically. | Rotates forever |
+| `03-evergreen/` | Describes the mechanic, store-agnostically. | Rotates forever |
 | **`04-community/`** | **Recruits. Asks people to join, contribute and stay.** | **One run, then retire the register** |
 
 ---
@@ -170,7 +170,7 @@ Three things are new:
   drawn that way to avoid an "official endorsement" reading; the owner saw that
   trade-off stated on a side-by-side prototype and chose the real leaf in
   Canadian red. Still never `#FF0000`, which vibrates next to emerald on an OLED
-  phone. See `../brand/leaf.js` for how the outline was built.
+  phone. See `../00-brand/leaf.js` for how the outline was built.
 - **The seam chevrons.** Two, never one or three: one reads as a scroll hint the
   eye skips, three reads as a loading spinner. Direction is authored per frame,
   because a carousel is swiped sideways and a story is read downward — a divider

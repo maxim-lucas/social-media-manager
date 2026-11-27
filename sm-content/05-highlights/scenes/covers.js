@@ -10,7 +10,7 @@
 //
 // So: authored at 1080x1920 (what the picker takes without recompressing, and
 // what lets the same file double as a story), with everything readable inside a
-// centred 640px circle. brand/ig.js COVER holds both numbers and the reasoning.
+// centred 640px circle. 00-brand/ig.js COVER holds both numbers and the reasoning.
 //
 // ── Why the covers carry no words ───────────────────────────────────────────
 //
@@ -30,7 +30,7 @@
 // it at whatever size each path happened to be. Measured, the ink ran from 56%
 // to 91% of the box and from 10248px to 33451px — a 3.3x spread. Invisible at
 // 1080px; at 161px `how-it-works` was a squiggle in a big disc while `stores`
-// filled its circle. brand/icons.js now MEASURES each icon and normalises it,
+// filled its circle. 00-brand/icons.js now MEASURES each icon and normalises it,
 // and gate 11 asserts the result.
 //
 // The ninth cover, "FR", is gone. There is no Français tray any more: every
@@ -40,7 +40,7 @@
 
 const { CANVAS, COVER, C } = require("./tokens");
 const { defs, field, text, coverDisc, r2, isContentMode } = require("./surface");
-const { drawIcon } = require("../../brand/icons");
+const { drawIcon } = require("../../00-brand/icons");
 
 const { w: W, h: H } = CANVAS.cover;
 
@@ -83,7 +83,7 @@ ${body}
 
 // Alternatives awaiting a choice. Rendered to covers/options/ by render.js and
 // never counted by verify.js or listed in strings.json: promoting one means
-// pointing the tray's `icon` at it (brand/icons.js) and deleting the rest.
+// pointing the tray's `icon` at it (00-brand/icons.js) and deleting the rest.
 const OPTIONS = [
   { order: "03", id: "earn-leaf-coin", icon: "earnLeaf" },
   { order: "09", id: "about-leaf-mark", icon: "aboutMark" },

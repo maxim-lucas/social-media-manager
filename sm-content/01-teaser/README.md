@@ -29,8 +29,8 @@ built around.
 ## Re-rendering
 
 ```bash
-node sm-content/teaser/scenes/render.js     # all 20 assets
-node sm-content/teaser/scenes/verify.js     # six gates, must exit 0
+node sm-content/01-teaser/scenes/render.js     # all 20 assets
+node sm-content/01-teaser/scenes/verify.js     # six gates, must exit 0
 ```
 
 Copy lives in `scenes/strings.json`, both languages side by side. Change a word

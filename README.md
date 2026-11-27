@@ -10,6 +10,7 @@ videos and the paid Meta ads): the content, the rules, the automation that posts
 
 | Path | What |
 |---|---|
+| [`CLAUDE.md`](CLAUDE.md) | What every Claude session and routine reads first: where things are, how to find a pack |
 | [`RULES-README.md`](RULES-README.md) | **The rules.** Deal posts, design, wording, videos, app facts, weekly automation, paid ads |
 | [`sm-content/`](sm-content/) | **The content**, one numbered folder per pack. The map of every pack, in order: [`sm-content/README.md`](sm-content/README.md) |
 | [`sm-content/08-costco-price-drops/`](sm-content/08-costco-price-drops/) | The house style and the weekly automated price-drop posts (`STYLE.md`, `weekly/ROUTINE.md`) |
@@ -19,15 +20,18 @@ videos and the paid Meta ads): the content, the rules, the automation that posts
 | [`.github/workflows/`](.github/workflows/) | The scheduled jobs: `social-publish`, `weekly-snapshot`, `weekly-publish`, and `social-check` on every content change |
 | [`src/`](src/) | The publish dashboard (Next.js): `src/components/PublishDashboard.tsx`, Meta publishing in `src/lib/metaPublish.ts` |
 
-## Don't move these
+## Where the automation looks: `sm-content/packs.json`
 
-The publishing jobs read files by path: `sm-content/evergreen/`, `sm-content/teaser/` and
-`sm-content/08-costco-price-drops/` (and their `schedule.json` / `published.json`). Moving or renaming them breaks live
-posting. Why, and how new packs are added instead: [`sm-content/README.md`](sm-content/README.md).
+Every content folder is registered in [`sm-content/packs.json`](sm-content/packs.json) under a stable key
+(`evergreen`, `price-drops`, …). The publishers and the workflows find their folder there, through
+[`scripts/lib/packs.js`](scripts/lib/packs.js), never by a hardcoded path. To move or rename a pack: `git mv` it,
+change its `"dir"` in `packs.json`, run `node scripts/lib/packs.js check`. Details:
+[`sm-content/README.md`](sm-content/README.md#how-the-automation-finds-a-pack-packsjson).
 
 ## Checks
 
 ```bash
+node scripts/lib/packs.js check                              # every pack folder is where packs.json says
 node scripts/check-copy.js                                   # every pack's copy gate
 node scripts/publish-due.js --pack=evergreen --check         # a pack's schedule (also 04-community, 05-highlights)
 node --test scripts/weekly/lib/*.test.js                     # the weekly automation's unit tests

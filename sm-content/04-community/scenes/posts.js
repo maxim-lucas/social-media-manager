@@ -45,7 +45,7 @@ const {
   ADV,
 } = require("./surface");
 const { hookBlock, subBlock, fitSize, rowsBlock, circleMark, fallArrow, checkRow } = require("./layout");
-const { WATERMARK } = require("../../brand/mark");
+const { WATERMARK } = require("../../00-brand/mark");
 
 const { w: W, h: H } = CANVAS.post;
 const M = GRID.margin;
@@ -108,7 +108,7 @@ function stripContent(t, s) {
     // applied to this particular piece of paper.
     //
     // Printed INTO the paper rather than laid over it (ground "paper" in
-    // brand/leaf.js): multiplied, so it picks up the strip's own lighting, and
+    // 00-brand/leaf.js): multiplied, so it picks up the strip's own lighting, and
     // grained like ink. 0.34 under multiply lands about where the old flat 0.19
     // did in strength, while the grain keeps it from reading as a pink blot.
     const ls = Math.min(w * 0.52, s.h * 0.74);
@@ -230,7 +230,7 @@ function stripContent(t, s) {
     // This was drawn at FULL opacity — a luminance delta of about 139 against
     // the paper, louder than the print it sits under, while the same mark on a
     // story frame was drawn at 0.09 and could not be seen at all. Two authors,
-    // both writing an alpha, both meaning "faint". brand/mark.js states the
+    // both writing an alpha, both meaning "faint". 00-brand/mark.js states the
     // strength as a contrast instead, so the two are now recognisably one mark.
     const gs = WATERMARK.onPaper.size;
     out.push(

@@ -1,11 +1,11 @@
-# `brand/` — the reusable graphics, in one place
+# `00-brand/` — the reusable graphics, in one place
 
 Everything here is imported by the packs rather than copied into them. Nothing
 here renders a frame; these are the parts a frame is assembled from.
 
 ```bash
-node sm-content/brand/verify-brand.js            # must pass before any pack renders
-node sm-content/brand/verify-brand.js --update   # re-bless after a deliberate change
+node sm-content/00-brand/verify-brand.js            # must pass before any pack renders
+node sm-content/00-brand/verify-brand.js --update   # re-bless after a deliberate change
 ```
 
 | File | What |

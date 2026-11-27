@@ -88,12 +88,14 @@ jobs:
       - name: Commit the receipt
         if: ${{ vars.PUBLISH_ENABLED == 'true' && !inputs.dry_run }}
         run: |
-          if git diff --quiet -- sm-content/evergreen/published.json; then
+          # The pack's folder comes from sm-content/packs.json, never a hardcoded path.
+          LEDGER="$(node scripts/lib/packs.js dir evergreen)/published.json"
+          if git diff --quiet -- "$LEDGER"; then
             echo "nothing published this run."
             exit 0
           fi
           git config user.name "priceback-bot"
           git config user.email "bot@priceback.ca"
-          git add sm-content/evergreen/published.json
+          git add "$LEDGER"
           git commit -m "chore(social): record published slots [skip ci]"
           git push

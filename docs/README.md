@@ -24,16 +24,16 @@ guidance from the thing it governs is how the two drift.
 | **The Meta Ads for the new version**: concept, rules, upload guide, files named per placement | [`../sm-content/14-new-version-ads/README.md`](../sm-content/14-new-version-ads/README.md) |
 | **The house style for new posts** — Costco price drops, how to make one | [`../sm-content/08-costco-price-drops/STYLE.md`](../sm-content/08-costco-price-drops/STYLE.md) |
 | **Every video style, made or planned**, and where its files live | [`../sm-content/09-video-styles/VIDEO-STYLES.md`](../sm-content/09-video-styles/VIDEO-STYLES.md) |
-| The reusable graphics every pack imports | [`../sm-content/brand/`](../sm-content/brand/) |
+| The reusable graphics every pack imports | [`../sm-content/00-brand/`](../sm-content/00-brand/) |
 | The Highlight tray — ten trays, their covers and how to build them | [`../sm-content/05-highlights/HIGHLIGHTS.md`](../sm-content/05-highlights/HIGHLIGHTS.md) |
 | **The posting-order rule for every tray, and why Instagram's own behavior makes it stick** | [`../sm-content/05-highlights/SEQUENCE.md`](../sm-content/05-highlights/SEQUENCE.md) |
 | **Every pack's `POSTING-ORDER/` folder, what it is, and how to regenerate it** | [`../sm-content/POSTING-ORDER-CONVENTION.md`](../sm-content/POSTING-ORDER-CONVENTION.md) |
 | The product facts marketing copy is allowed to rely on | [`../sm-content/05-highlights/facts.json`](../sm-content/05-highlights/facts.json) |
-| The current content pack, its gates and its 14-day run | [`../sm-content/evergreen/`](../sm-content/evergreen/) |
-| The hook system — the reusable part | [`../sm-content/evergreen/HOOK-BANK.md`](../sm-content/evergreen/HOOK-BANK.md) |
-| The schedule (single source of truth for captions) | [`../sm-content/evergreen/schedule.json`](../sm-content/evergreen/schedule.json) |
-| Turning on automated posting | [`../sm-content/evergreen/AUTOMATION.md`](../sm-content/evergreen/AUTOMATION.md) |
-| The launch and pre-launch packs | [`../sm-content/teaser/`](../sm-content/teaser/), [`../sm-content/02-launch-week/`](../sm-content/02-launch-week/) |
+| The current content pack, its gates and its 14-day run | [`../sm-content/03-evergreen/`](../sm-content/03-evergreen/) |
+| The hook system — the reusable part | [`../sm-content/03-evergreen/HOOK-BANK.md`](../sm-content/03-evergreen/HOOK-BANK.md) |
+| The schedule (single source of truth for captions) | [`../sm-content/03-evergreen/schedule.json`](../sm-content/03-evergreen/schedule.json) |
+| Turning on automated posting | [`../sm-content/03-evergreen/AUTOMATION.md`](../sm-content/03-evergreen/AUTOMATION.md) |
+| The launch and pre-launch packs | [`../sm-content/01-teaser/`](../sm-content/01-teaser/), [`../sm-content/02-launch-week/`](../sm-content/02-launch-week/) |
 
 ## Why the launch playbook was superseded
 
@@ -45,6 +45,6 @@ goes live, and goes on being posted anyway.
 
 The current playbook and the evergreen pack talk about the mechanic instead, and
 that constraint is enforced mechanically rather than remembered:
-`sm-content/evergreen/scenes/claims.js` fails the build on a retailer name, a
+`sm-content/03-evergreen/scenes/claims.js` fails the build on a retailer name, a
 window in days, a currency figure, a percentage or a promise — in either
 language, in the art and in the captions.

@@ -9,9 +9,9 @@
  *   node scripts/publish-due.js --preflight  dry run + check the images are
  *                                            publicly reachable by Meta
  *
- * Reads sm-content/evergreen/schedule.json, works out which slots are due, and
+ * Reads a pack's schedule.json (default: evergreen, found through sm-content/packs.json), works out which slots are due, and
  * publishes them to Instagram through Meta's Graph API. Writes a receipt for
- * every publish into sm-content/evergreen/published.json.
+ * every publish into that pack's published.json.
  *
  * ── Four properties this script exists to guarantee ────────────────────────
  *
@@ -79,9 +79,13 @@ const PREFLIGHT = has("preflight") || WRITE;
 // that drift: this file holds the due-window logic, the idempotency ledger and
 // the disclaimer-append rule, and none of that is pack-specific.
 //
-//   node scripts/publish-due.js --pack=04-community --check
+//   node scripts/publish-due.js --pack=community --check      (a key from sm-content/packs.json, or its folder name)
+//
+// The folder comes from sm-content/packs.json (scripts/lib/packs.js), never from a hardcoded name, so a pack can
+// move without breaking the publisher.
+const packs = require("./lib/packs");
 const PACK_NAME = argVal("pack", "evergreen");
-const PACK = path.join(ROOT, "sm-content", PACK_NAME);
+const PACK = packs.dir(PACK_NAME);
 const SCHEDULE_PATH = path.join(PACK, "schedule.json");
 const LEDGER_PATH = path.join(PACK, "published.json");
 
@@ -113,7 +117,7 @@ const ASSET_BASE =
   process.env.ASSET_BASE_URL ||
   `https://raw.githubusercontent.com/maxim-lucas/social-media-manager/${
     process.env.ASSET_REF || "sm-content-teaser"
-  }/sm-content/evergreen/`;
+  }/${packs.rel(PACK_NAME)}/`;
 
 /**
  * Confirm an asset URL is publicly reachable and is actually an image, BEFORE

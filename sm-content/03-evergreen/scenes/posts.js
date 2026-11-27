@@ -35,7 +35,7 @@ const {
   isContentMode,
 } = require("./surface");
 const { hookBlock, subBlock, fitSize, rowsBlock, circleMark, fallArrow, checkRow, REDACTED } = require("./layout");
-const { WATERMARK } = require("../../brand/mark");
+const { WATERMARK } = require("../../00-brand/mark");
 
 const { w: W, h: H } = CANVAS.post;
 const M = GRID.margin;
@@ -178,7 +178,7 @@ function stripContent(t, s) {
     // Drawn at FULL opacity here for a long time — a luminance delta of about
     // 139 against the paper — while the same mark on a story frame was drawn at
     // 0.09 and could not be seen at all. Two places, both writing an alpha, both
-    // meaning "faint". brand/mark.js states it as a contrast instead.
+    // meaning "faint". 00-brand/mark.js states it as a contrast instead.
     const gs = WATERMARK.onPaper.size;
     out.push(watermark({ x: x + w / 2 - gs / 2, y: s.y + s.h - gs - 78, on: "paper" }));
   }

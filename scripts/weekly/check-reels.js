@@ -18,7 +18,7 @@ if (!/^\d{4}-\d{2}-\d{2}$/.test(monday || "")) {
   console.error("usage: check-reels.js <monday-iso>");
   process.exit(1);
 }
-const dir = path.join(__dirname, "..", "..", "sm-content", "08-costco-price-drops", "weekly", monday, "reels");
+const dir = path.join(require("../lib/packs").dir("price-drops"), "weekly", monday, "reels");
 const mp4s = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith(".mp4")).sort() : [];
 if (!mp4s.length) {
   console.log("no reels rendered: nothing to check");

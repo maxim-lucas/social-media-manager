@@ -6,7 +6,7 @@ const assert = require("node:assert");
 const fs = require("node:fs");
 const path = require("node:path");
 
-const src = fs.readFileSync(path.join(__dirname, "../../../sm-content/08-costco-price-drops/scenes/render.js"), "utf8");
+const src = fs.readFileSync(path.join(require("../../lib/packs").dir("price-drops"), "scenes", "render.js"), "utf8");
 
 function claimCoverBody() {
   const start = src.indexOf("function claimCover(");

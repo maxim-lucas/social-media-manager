@@ -46,7 +46,7 @@ assets use the plain version.
 
 ## 2 · Claim rules for this pack
 
-The evergreen gate ([`sm-content/evergreen/scenes/claims.js`](../sm-content/evergreen/scenes/claims.js))
+The evergreen gate ([`sm-content/03-evergreen/scenes/claims.js`](../sm-content/03-evergreen/scenes/claims.js))
 **bans the word "guarantee"** — correctly: the product cannot guarantee a *retailer’s*
 refund. This campaign’s guarantee is different in kind: it is **our own promise**, a year
 of Unlimited that **we** grant, which we can always honour. So the guarantee pack needs

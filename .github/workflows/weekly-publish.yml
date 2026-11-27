@@ -72,13 +72,15 @@ jobs:
       - name: Commit the receipt
         if: ${{ always() && vars.PUBLISH_ENABLED == 'true' && !inputs.dry_run }}
         run: |
-          if [ -z "$(git status --porcelain -- 'sm-content/08-costco-price-drops/weekly/*/published.json')" ]; then
+          # The pack's folder comes from sm-content/packs.json, never a hardcoded path.
+          PACK="$(node scripts/lib/packs.js dir price-drops)"
+          if [ -z "$(git status --porcelain -- "$PACK/weekly/*/published.json")" ]; then
             echo "nothing published this run."
             exit 0
           fi
           git config user.name "priceback-bot"
           git config user.email "bot@priceback.ca"
-          git add 'sm-content/08-costco-price-drops/weekly/*/published.json'
+          git add "$PACK/weekly/*/published.json"
           git commit -m "chore(social): record published slots [skip ci]"
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push

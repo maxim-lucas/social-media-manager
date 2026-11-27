@@ -1,0 +1,27 @@
+{
+  "_readme": [
+    "THE ONE PLACE THAT SAYS WHERE EACH PACK LIVES. Every script and workflow finds a pack through this file",
+    "(scripts/lib/packs.js), by its stable key, never by a hardcoded folder name. To move or rename a pack: git mv the",
+    "folder, change its \"dir\" here, run `node scripts/lib/packs.js check`, done. Keys never change; folders may.",
+    "\"automated\" names what reads the pack on a schedule; \"dir\" is relative to sm-content/."
+  ],
+  "packs": {
+    "brand":           { "dir": "00-brand",               "title": "Brand graphics every pack imports (not a pack)" },
+    "teaser":          { "dir": "01-teaser",              "title": "Pre-launch teaser" },
+    "launch-week":     { "dir": "02-launch-week",         "title": "Launch week: hook Reel, carousel, statics, stories" },
+    "evergreen":       { "dir": "03-evergreen",           "title": "The permanent pack and its 14-day schedule",
+                         "automated": ["scripts/publish-due.js", ".github/workflows/social-publish.yml", "scripts/weekly/publish-week.js (the disclaimer)"] },
+    "community":       { "dir": "04-community",           "title": "Recruiting pack", "automated": [".github/workflows/social-check.yml"] },
+    "highlights":      { "dir": "05-highlights",          "title": "The Highlight tray", "automated": [".github/workflows/social-check.yml"] },
+    "launch-post":     { "dir": "06-launch",              "title": "We're live post; holds the official store badges" },
+    "costco-toolkit":  { "dir": "07-costco-toolkit",      "title": "How-to carousels" },
+    "price-drops":     { "dir": "08-costco-price-drops",  "title": "The house style: weekly Costco price drops",
+                         "automated": ["scripts/weekly/*", ".github/workflows/weekly-snapshot.yml", ".github/workflows/weekly-publish.yml"] },
+    "video-styles":    { "dir": "09-video-styles",        "title": "Index of every video style" },
+    "receipt-scan":    { "dir": "10-receipt-scan",        "title": "What a receipt scan needs" },
+    "tutorials":       { "dir": "11-realistic-tutorials", "title": "Real-life tutorial films" },
+    "kickstarter":     { "dir": "12-kickstarter",         "title": "Kickstarter and app feature videos" },
+    "print-posters":   { "dir": "13-print-posters",       "title": "Print posters" },
+    "new-version-ads": { "dir": "14-new-version-ads",     "title": "Meta Ads for the new version, named for upload" }
+  }
+}

@@ -48,7 +48,9 @@ const argVal = (name, dflt) => {
   const hit = args.find((a) => a.startsWith(`--${name}=`));
   return hit ? hit.slice(name.length + 3) : dflt;
 };
+// --pack takes a key from sm-content/packs.json ("evergreen") or a folder name ("03-evergreen").
 const only = argVal("pack", null);
+const onlyDir = only ? path.basename(require("./lib/packs").dir(only)) : null;
 
 /** Every directory under sm-content/ that ships its own rule set. */
 function discoverPacks() {
@@ -57,7 +59,7 @@ function discoverPacks() {
     .filter((d) => d.isDirectory())
     .map((d) => d.name)
     .filter((name) => fs.existsSync(path.join(CONTENT, name, "scenes", "claims.js")))
-    .filter((name) => !only || name === only)
+    .filter((name) => !onlyDir || name === onlyDir)
     .sort();
 }
 

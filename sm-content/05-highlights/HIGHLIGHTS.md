@@ -130,7 +130,7 @@ displayed at about 161 x 161 px    ← everything is divided by 6.7
 | Icon stroke | 16 px | ~2.5 px once the tray divides it by 6.7 |
 | Rim | radius 430 | the thin emerald ring, near the crop edge |
 
-All of it lives in `brand/ig.js` under `COVER`.
+All of it lives in `00-brand/ig.js` under `COVER`.
 
 ### The two numbers that get got wrong
 
@@ -153,7 +153,7 @@ be. Measured:
 A 3.3× spread in ink. Invisible at 1080 px; at 161 px `how-it-works` was a
 squiggle in a big disc while `stores` filled its circle. The only cover gate was
 a *floor* on total ink, and all eight cleared it — **a floor cannot see a
-spread.** `brand/icons.js` now renders each icon, measures its real bounding box,
+spread.** `00-brand/icons.js` now renders each icon, measures its real bounding box,
 backs the stroke out of the measurement and solves for the scale; gate 8 asserts
 the result lands at 86 % ± 2.
 

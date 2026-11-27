@@ -6,7 +6,7 @@
 // of them would be a rule the other quietly does not enforce, and the captions
 // are the half that actually gets read.
 //
-// ── How this differs from evergreen/scenes/claims.js ───────────────────────
+// ── How this differs from 03-evergreen/scenes/claims.js ───────────────────────
 //
 // The evergreen pack bans retailer names outright, because its whole design
 // constraint is to survive the store list growing. THIS pack is about the store

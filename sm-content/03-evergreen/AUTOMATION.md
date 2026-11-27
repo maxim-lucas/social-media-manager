@@ -60,7 +60,7 @@ authentication*, from Meta's servers.
 >
 > | Option | Notes |
 > | --- | --- |
-> | **Cloudflare R2** | PriceBack already has a bucket and credentials. Upload `sm-content/evergreen/{posts,stories}/` once; the paths line up. |
+> | **Cloudflare R2** | PriceBack already has a bucket and credentials. Upload `sm-content/03-evergreen/{posts,stories}/` once; the paths line up. |
 > | **The Vercel deployment** | This repo already deploys. Copy the pack into `public/` and point `ASSET_BASE_URL` at `https://<deployment>/evergreen/`. Costs ~8 MB in the repo. |
 > | **Make the repo public** | Then the default works — but the whole content strategy, schedule and captions become public too. |
 >
@@ -139,7 +139,7 @@ caption, from one string in `schedule.json`. See
 | --- | --- | --- |
 | `scripts/publish-due.js --check` | Node only | CI, on every PR touching the pack |
 | `scripts/check-copy.js` | Node only | CI — the claim gate, over art copy, captions *and* Reel scripts |
-| `sm-content/evergreen/scenes/verify.js` | sharp + Roboto fonts | locally, after any copy change |
+| `sm-content/03-evergreen/scenes/verify.js` | sharp + Roboto fonts | locally, after any copy change |
 
 The visual gates are not run in CI on purpose. `render.js` resolves fonts
 through the *system* font list, and a runner's font versions will not match the

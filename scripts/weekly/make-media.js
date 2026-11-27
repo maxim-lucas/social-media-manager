@@ -20,7 +20,7 @@ if (!/^\d{4}-\d{2}-\d{2}$/.test(monday || "")) {
   console.error("usage: make-media.js <monday-iso>");
   process.exit(1);
 }
-const PACK = path.join(__dirname, "..", "..", "sm-content", "08-costco-price-drops");
+const PACK = require("../lib/packs").dir("price-drops");
 const dir = path.join(PACK, "weekly", monday);
 const contentPath = path.join(dir, "content.json");
 const content = fs.existsSync(contentPath) ? JSON.parse(fs.readFileSync(contentPath, "utf8")) : { available: {}, captions: {} };

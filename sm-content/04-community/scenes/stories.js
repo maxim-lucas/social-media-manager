@@ -1,6 +1,6 @@
 // Community pack — the 9:16 story scene.
 //
-// Copied from evergreen/scenes/stories.js and extended. The geometry is
+// Copied from 03-evergreen/scenes/stories.js and extended. The geometry is
 // dictated by two constraints that fight each other, and both are inherited:
 //
 //   SAFE.story     IG's own chrome — header, caption bar, right action rail.
@@ -200,7 +200,7 @@ async function buildStory(t, handle) {
     // 260, not the 196 this used to be. The leaf grew a stem, so at a given box
     // width the BODY is now about three quarters of what the old stemless blob
     // filled. Same box, smaller leaf — the number had to follow the shape.
-    // The real leaf (brand/leaf.js) kept the box: its stem is longer, and at 260
+    // The real leaf (00-brand/leaf.js) kept the box: its stem is longer, and at 260
     // it still clears the kicker at 620 by about 60px.
     parts.push(leaf({ x: X, y: 300, size: 260, fill: C.leaf, op: 0.9, ground: "field" }));
   } else if (t.scene === "seam") {

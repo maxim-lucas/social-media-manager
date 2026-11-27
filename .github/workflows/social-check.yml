@@ -34,6 +34,7 @@ on:
       - "sm-content/**"
       - "scripts/publish-due.js"
       - "scripts/check-copy.js"
+      - "scripts/lib/**"
       - ".github/workflows/social-check.yml"
   workflow_dispatch:
 
@@ -45,6 +46,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+
+      - name: Every pack folder is where sm-content/packs.json says
+        # The publishers find packs through the registry (scripts/lib/packs.js). A folder moved without updating
+        # packs.json, or added without registering it, fails here instead of at posting time.
+        run: node scripts/lib/packs.js check
 
       - name: Validate every pack's schedule
         # Discovered, not listed — the same reason check-copy.js discovers packs

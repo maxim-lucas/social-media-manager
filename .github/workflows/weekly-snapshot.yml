@@ -41,7 +41,7 @@ jobs:
           DATABASE_URL_SOCIAL_RO: ${{ secrets.DATABASE_URL_SOCIAL_RO }}
         run: |
           set -u
-          D=sm-content/08-costco-price-drops/weekly/snapshots
+          D="$(node scripts/lib/packs.js dir price-drops)/weekly/snapshots"
           mkdir -p "$D"
           TODAY=$(TZ=America/Toronto date +%F)
           if [ -f "$D/$TODAY.snapshot.json" ]; then echo "today's snapshot already exists."; exit 0; fi
@@ -61,7 +61,7 @@ jobs:
         run: |
           git config user.name "priceback-bot"
           git config user.email "bot@priceback.ca"
-          git add sm-content/08-costco-price-drops/weekly/snapshots
+          git add "$(node scripts/lib/packs.js dir price-drops)/weekly/snapshots"
           if git diff --cached --quiet; then echo "nothing new."; exit 0; fi
           git commit -m "chore(social): harvest snapshot [skip ci]"
           git pull --rebase origin "${GITHUB_REF_NAME}"

@@ -1,6 +1,6 @@
 // Evergreen pack — the gates. Must exit 0 before anything ships.
 //
-//   node sm-content/evergreen/scenes/verify.js
+//   node sm-content/03-evergreen/scenes/verify.js
 //
 // Re-run these after ANY copy change. Six gates, in the order a defect is
 // cheapest to catch:

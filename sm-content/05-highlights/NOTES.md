@@ -8,9 +8,9 @@ This is the fifth pack in `sm-content/`, and the first one with **no end date**.
 
 | Pack | Job | Lifespan |
 | --- | --- | --- |
-| `teaser/` | Withholds. Says nothing, names nothing. | The eleven days before launch |
+| `01-teaser/` | Withholds. Says nothing, names nothing. | The eleven days before launch |
 | `../{reels,carousels,statics,stories}` | Explains the launch. | Launch week |
-| `evergreen/` | Describes the mechanic, store-agnostically. | Rotates forever |
+| `03-evergreen/` | Describes the mechanic, store-agnostically. | Rotates forever |
 | `04-community/` | Recruits. Asks people to join and contribute. | One run, then retire the register |
 | **`05-highlights/`** | **Answers. The tray somebody opens after they follow.** | **Edited, never retired** |
 
@@ -133,7 +133,7 @@ until the friend's first *purchase*. The frames say what the code does.
 ## Changing it
 
 ```bash
-node sm-content/brand/verify-brand.js                       # primitives match their fixtures
+node sm-content/00-brand/verify-brand.js                       # primitives match their fixtures
 node sm-content/05-highlights/scenes/build-strings.js       # copy + facts -> strings.json
 node sm-content/05-highlights/scenes/build-schedule.js      # trays -> schedule.json
 node sm-content/05-highlights/scenes/render.js              # 60 assets
