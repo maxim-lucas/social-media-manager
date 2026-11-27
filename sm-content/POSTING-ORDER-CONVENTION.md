@@ -17,10 +17,10 @@ always has.
 | `04-community/` | `04-community/POSTING-ORDER/` | `04-community/schedule.json`, via the same script |
 | `evergreen/` | `evergreen/POSTING-ORDER/` | `evergreen/schedule.json`, via the same script |
 | `teaser/` | `teaser/POSTING-ORDER/` | `teaser/TEASER-NOTES.md`'s calendar table (no `schedule.json` exists for this pack) |
-| `carousels/` | `carousels/POSTING-ORDER/` | Numeric filename order — two carousel **posts** (EN, then FR), 10 slides each, not 10 separate posts |
-| `stories/` | `stories/POSTING-ORDER/` | Numeric filename order — one **story sequence**, EN block then FR block |
-| `statics/` | `statics/POSTING-ORDER/` | Numeric filename order — 3 independent single posts, EN/FR paired per colourway |
-| `reels/` | `reels/POSTING-ORDER/` | The two languages, in the order `ASSET-PACK-NOTES.md` lists them |
+| `02-launch-week/carousels/` | `02-launch-week/carousels/POSTING-ORDER/` | Numeric filename order — two carousel **posts** (EN, then FR), 10 slides each, not 10 separate posts |
+| `02-launch-week/stories/` | `02-launch-week/stories/POSTING-ORDER/` | Numeric filename order — one **story sequence**, EN block then FR block |
+| `02-launch-week/statics/` | `02-launch-week/statics/POSTING-ORDER/` | Numeric filename order — 3 independent single posts, EN/FR paired per colourway |
+| `02-launch-week/reels/` | `02-launch-week/reels/POSTING-ORDER/` | The two languages, in the order `02-launch-week/ASSET-PACK-NOTES.md` lists them |
 | `06-launch/` | `06-launch/POSTING-ORDER/` | `06-launch/post.json` — EN post then FR post, same minute |
 | `04-community/08-reserve/` | *(none)* | Deliberately unordered — a swap-in pool, not a run. See `CALENDAR.md`. |
 
@@ -38,7 +38,7 @@ node scripts/build-posting-order-copy.js sm-content/<pack>
 
 It wipes and rebuilds that pack's `POSTING-ORDER/` from the schedule, so it's
 always safe to re-run after an edit. The two packs without a `schedule.json`
-(`teaser/`, and the flat launch pack: `carousels/ statics/ stories/ reels/`)
+(`teaser/`, and the launch-week pack: `02-launch-week/{carousels,statics,stories,reels}/`)
 were built by hand from the tables in their own docs — if their calendar
 changes, redo the copy the same way and note it in this file.
 

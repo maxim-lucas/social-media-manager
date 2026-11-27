@@ -20,6 +20,8 @@ guidance from the thing it governs is how the two drift.
 
 | | |
 | --- | --- |
+| **The map of every content pack, in order** | [`../sm-content/README.md`](../sm-content/README.md) |
+| **The Meta Ads for the new version**: concept, rules, upload guide, files named per placement | [`../sm-content/14-new-version-ads/README.md`](../sm-content/14-new-version-ads/README.md) |
 | **The house style for new posts** — Costco price drops, how to make one | [`../sm-content/08-costco-price-drops/STYLE.md`](../sm-content/08-costco-price-drops/STYLE.md) |
 | **Every video style, made or planned**, and where its files live | [`../sm-content/09-video-styles/VIDEO-STYLES.md`](../sm-content/09-video-styles/VIDEO-STYLES.md) |
 | The reusable graphics every pack imports | [`../sm-content/brand/`](../sm-content/brand/) |
@@ -31,7 +33,7 @@ guidance from the thing it governs is how the two drift.
 | The hook system — the reusable part | [`../sm-content/evergreen/HOOK-BANK.md`](../sm-content/evergreen/HOOK-BANK.md) |
 | The schedule (single source of truth for captions) | [`../sm-content/evergreen/schedule.json`](../sm-content/evergreen/schedule.json) |
 | Turning on automated posting | [`../sm-content/evergreen/AUTOMATION.md`](../sm-content/evergreen/AUTOMATION.md) |
-| The launch and pre-launch packs | [`../sm-content/`](../sm-content/) |
+| The launch and pre-launch packs | [`../sm-content/teaser/`](../sm-content/teaser/), [`../sm-content/02-launch-week/`](../sm-content/02-launch-week/) |
 
 ## Why the launch playbook was superseded
 

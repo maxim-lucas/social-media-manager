@@ -1,5 +1,5 @@
 // PriceBack print posters v2: 11x17, 8.5x11 public posters and a 4x6 counter stand card, EN + FR.
-// node sm-content/12-print-posters/render.js [outdir]   (gp-*-trim.png = Google badges with their transparent margin cropped, so both store badges share one height)
+// node sm-content/13-print-posters/render.js [outdir]   (gp-*-trim.png = Google badges with their transparent margin cropped, so both store badges share one height)
 const fs = require("fs");
 const path = require("path");
 const QR = require("qrcode");
