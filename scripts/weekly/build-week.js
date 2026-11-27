@@ -14,7 +14,7 @@ const path = require("path");
 const { planWeek } = require("./lib/week");
 const { torontoInstant } = require("./lib/time");
 
-const PACK = path.join(__dirname, "..", "..", "sm-content", "08-costco-price-drops");
+const PACK = require("../lib/packs").dir("price-drops");
 const WEEKS = path.join(PACK, "scenes", "weeks");
 const CACHE = path.join(PACK, "scenes", ".cache");
 

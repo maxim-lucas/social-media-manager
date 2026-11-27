@@ -1,7 +1,7 @@
 // The brand kit's gate.
 //
-//   node sm-content/brand/verify-brand.js            # check
-//   node sm-content/brand/verify-brand.js --update    # re-bless the fixtures
+//   node sm-content/00-brand/verify-brand.js            # check
+//   node sm-content/00-brand/verify-brand.js --update    # re-bless the fixtures
 //
 // ── Why this exists ────────────────────────────────────────────────────────
 //

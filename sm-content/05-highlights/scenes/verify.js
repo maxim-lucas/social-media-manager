@@ -38,8 +38,8 @@ const { buildCover } = require("./covers");
 const { PROBE_SIZE } = require("./layout");
 const { scanCopy, checkDisclaimerPairing, namesRetailer } = require("./claims");
 const { storyFile, coverFile, rel } = require("./paths");
-const { geometryBox, ICONS } = require("../../brand/icons");
-const { WATERMARK } = require("../../brand/mark");
+const { geometryBox, ICONS } = require("../../00-brand/icons");
+const { WATERMARK } = require("../../00-brand/mark");
 
 const STRINGS = JSON.parse(fs.readFileSync(path.join(__dirname, "strings.json"), "utf8"));
 const FACTS = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "facts.json"), "utf8"));
@@ -215,7 +215,7 @@ async function checkCovers() {
     }
 
     // Gate 8. The finished icon is geometry plus one stroke; assert it lands at
-    // the fill brand/icons.js solved for. The band is tight on purpose: this is
+    // the fill 00-brand/icons.js solved for. The band is tight on purpose: this is
     // arithmetic, not taste, and anything outside it means the normalisation did
     // not run rather than that a designer disagreed.
     // Filled-art icons (the leaf) are sized by their own `size`, not the line-icon

@@ -3,7 +3,7 @@
 // Copied from 04-community/scenes/surface.js. Each pack owns its SURFACE — the
 // strip, the tear, the grain, the scene composition — so that a tweak in one
 // pack can never silently re-render another pack's PNGs. The mark, the leaf, the
-// palette and the type ramp are NOT copied; they come from ../../brand, because
+// palette and the type ramp are NOT copied; they come from ../../00-brand, because
 // a difference in those would be a defect rather than a style.
 //
 // Every scene is one SVG string rendered to PNG by sharp/librsvg. Anything
@@ -307,11 +307,11 @@ function ghostHeader({ x, y, w, seed = 12 }) {
 
 // ── The mark ──────────────────────────────────────────────────────────
 // Ported 1:1 from the app's src/components/BrandMark.js and now living in
-// ../../brand/mark.js — one copy for every pack, kept in sync with the app by
-// hand, and gated by brand/verify-brand.js. `watermark()` comes with it: the
+// ../../00-brand/mark.js — one copy for every pack, kept in sync with the app by
+// hand, and gated by 00-brand/verify-brand.js. `watermark()` comes with it: the
 // mark at the one strength, solved from a contrast rather than written as an
-// alpha. See brand/README.md § the watermark for what that fixes.
-const { GLYPH_PATHS, glyph, watermark: brandWatermark } = require("../../brand/mark");
+// alpha. See 00-brand/README.md § the watermark for what that fixes.
+const { GLYPH_PATHS, glyph, watermark: brandWatermark } = require("../../00-brand/mark");
 
 // The watermark can be switched off for one render. verify.js's watermark gate
 // measures the mark by DIFFERENCE — it renders each frame with and without, and
@@ -371,9 +371,9 @@ module.exports = {
 const { COVER } = require("./tokens");
 
 // ── The leaf ──────────────────────────────────────────────────────────
-// One copy for every pack, in ../../brand/leaf.js: the real Canadian leaf,
+// One copy for every pack, in ../../00-brand/leaf.js: the real Canadian leaf,
 // traced from the owner's reference, with how it was built and its two blends.
-const { leaf, LEAF_PATH } = require("../../brand/leaf");
+const { leaf, LEAF_PATH } = require("../../00-brand/leaf");
 
 // ── The fine print, on the art ──────────────────────────────────────────────
 // Not a styling choice. legal/MARKETING_CLAIMS.md names the exact failure mode
@@ -447,7 +447,7 @@ function seamChevrons({ cx, cy, w = 96, gap = 46, stroke = C.emerald, width = 11
 // replica of that bar, with the French half lit and the FR card marked, is read
 // without a caption because the reader is already looking at the real one.
 //
-// Proportions are IG's (see brand/ig.js PROGRESS_BAR) but the scale is not: at
+// Proportions are IG's (see 00-brand/ig.js PROGRESS_BAR) but the scale is not: at
 // the real 6px height this reads as a hairline rule rather than as the thing it
 // is pointing at. Drawn at a height that is legible mid-frame and a gap that
 // keeps the segment count countable, which is the property that matters — a

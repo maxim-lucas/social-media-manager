@@ -310,7 +310,9 @@ Source of truth for plans, pricing and the guarantee: https://priceback.ca/.
 ## 7. Where things go
 
 - Approved content: `sm-content/` in this repo, one numbered folder per pack; the map is `sm-content/README.md`.
-  A new pack takes the next free number (`15-…`), never a number already used.
+  A new pack takes the next free number (`15-…`), never a number already used, and is registered in
+  `sm-content/packs.json`. **Code finds a pack through `packs.json` (`scripts/lib/packs.js`), never by a hardcoded
+  folder name**, so a pack can move without breaking the publishers.
 - Posting playbook: `docs/instagram-playbook.md`.
 - Paid ads: their own pack (`sm-content/14-new-version-ads/`), with the files named for upload in `ready-to-upload/`.
 

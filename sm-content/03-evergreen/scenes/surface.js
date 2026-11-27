@@ -305,10 +305,10 @@ function ghostHeader({ x, y, w, seed = 12 }) {
 
 // ── The mark ──────────────────────────────────────────────────────────
 // Ported 1:1 from the app's src/components/BrandMark.js and now living in
-// ../../brand/mark.js — one copy for every pack, kept in sync with the app by
-// hand, and gated by brand/verify-brand.js. `watermark()` comes with it: the
+// ../../00-brand/mark.js — one copy for every pack, kept in sync with the app by
+// hand, and gated by 00-brand/verify-brand.js. `watermark()` comes with it: the
 // mark at one strength, specified as a contrast rather than as an alpha.
-const { GLYPH_PATHS, glyph, watermark } = require("../../brand/mark");
+const { GLYPH_PATHS, glyph, watermark } = require("../../00-brand/mark");
 
 // Footer lockup: mark, wordmark, handle. Every frame carries it — this pack is
 // the permanent voice, so unlike the teaser it is allowed to sign its work.

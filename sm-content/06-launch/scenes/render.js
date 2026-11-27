@@ -4,7 +4,7 @@
 //   node sm-content/06-launch/scenes/render.js
 //   node sm-content/06-launch/scenes/render.js --svg     also dump each SVG
 //
-// Same voice as evergreen/ and 04-community/: a paper strip on the deep green
+// Same voice as 03-evergreen/ and 04-community/: a paper strip on the deep green
 // field, mono kicker, heavy headline, one emerald element per frame.
 //
 // ── The one deviation from the other packs: the headline face ───────────────

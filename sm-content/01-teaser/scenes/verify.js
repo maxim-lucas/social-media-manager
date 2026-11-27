@@ -1,6 +1,6 @@
 // Teaser pack — the gates. Run after any change, before anything is posted:
 //
-//   node sm-content/teaser/scenes/verify.js
+//   node sm-content/01-teaser/scenes/verify.js
 //
 // Exit code is the result: 0 clean, 1 if any gate failed. Every check is
 // mechanical. None of them asks a human to look at something and decide.

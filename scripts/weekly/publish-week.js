@@ -9,7 +9,7 @@
  *
  * The four properties of scripts/publish-due.js, kept: DRY RUN BY DEFAULT; NEVER TWICE (a ledger per week, written
  * after every slot); NEVER LATE (a slot past its 2 h window is MISSED and left for a human); THE DISCLAIMER IS
- * APPENDED HERE from the one string in sm-content/evergreen/schedule.json, never typed per post.
+ * APPENDED HERE from the one string in the evergreen pack's schedule.json (sm-content/packs.json), never typed per post.
  *
  * Env (set by Maxim as repository secrets, never in the repo): META_INSTAGRAM_BUSINESS_ACCOUNT_ID,
  * META_INSTAGRAM_ACCESS_TOKEN (falls back to META_PAGE_ACCESS_TOKEN), META_PAGE_ID, META_PAGE_ACCESS_TOKEN.
@@ -22,7 +22,8 @@ const { dueState } = require("./lib/slots");
 const g = require("./lib/graph");
 
 const ROOT = path.join(__dirname, "..", "..");
-const WEEKLY = path.join(ROOT, "sm-content", "08-costco-price-drops", "weekly");
+const packs = require("../lib/packs");
+const WEEKLY = path.join(packs.dir("price-drops"), "weekly");
 const args = process.argv.slice(2);
 const has = (f) => args.includes(`--${f}`);
 const val = (n) => (args.find((a) => a.startsWith(`--${n}=`)) || "").split("=").slice(1).join("=");
@@ -30,10 +31,10 @@ const val = (n) => (args.find((a) => a.startsWith(`--${n}=`)) || "").split("=").
 const WRITE = has("write");
 const ONLY = val("only");
 const NOW = val("now") ? new Date(val("now")) : new Date();
-const disclaimer = JSON.parse(fs.readFileSync(path.join(ROOT, "sm-content", "evergreen", "schedule.json"), "utf8")).disclaimer;
+const disclaimer = JSON.parse(fs.readFileSync(path.join(packs.dir("evergreen"), "schedule.json"), "utf8")).disclaimer;
 
 const assetBase = (monday) =>
-  (process.env.ASSET_BASE_URL || `https://raw.githubusercontent.com/maxim-lucas/social-media-manager/master/sm-content/08-costco-price-drops/weekly/${monday}`).replace(/\/+$/, "");
+  (process.env.ASSET_BASE_URL || `https://raw.githubusercontent.com/maxim-lucas/social-media-manager/master/${packs.rel("price-drops")}/weekly/${monday}`).replace(/\/+$/, "");
 const reelBase = (monday) => (process.env.REEL_BASE_URL || assetBase(monday)).replace(/\/+$/, "");
 
 async function reachable(url) {

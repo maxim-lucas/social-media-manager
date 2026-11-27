@@ -153,6 +153,6 @@ Do not extend it. The shared-predicament register borrows its energy from the
 predicament, and an account still saying *these are hard times* three months
 later sounds like it is enjoying them.
 
-Hand back to `evergreen/`, which is built to rotate indefinitely, and keep
+Hand back to `03-evergreen/`, which is built to rotate indefinitely, and keep
 [`HOOKS.md`](HOOKS.md) — it has forty more hooks in this register, four of them
 marked as the next ones to render, for the next time the moment calls for it.

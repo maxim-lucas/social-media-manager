@@ -72,10 +72,10 @@ sign it is two trays, not a scheduling problem.
 **If a future pack's guard design does not match its own art** (different
 palette, different frame system than `04-community`'s), do not reuse the
 `04-community` guard as-is — render a new intro / FR-card pair in that pack's
-own scene file, built off the same underlying kit (`sm-content/brand/`) so it
+own scene file, built off the same underlying kit (`sm-content/00-brand/`) so it
 reads as one system rather than a signpost that visibly belongs to a different
-account. Every pack so far imports the same `brand/palette.js`, `brand/type.js`
-and `brand/ig.js`, which is why one shared guard has been correct until now —
+account. Every pack so far imports the same `00-brand/palette.js`, `00-brand/type.js`
+and `00-brand/ig.js`, which is why one shared guard has been correct until now —
 check that before assuming it still is, the next time a pack's `tokens.js`
 diverges.
 

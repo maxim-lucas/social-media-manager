@@ -37,7 +37,7 @@ and new ones get announced here first.* A growing store list is the single best
 reason this account has to exist as a thing people follow rather than a thing
 people see once.
 
-This is enforced, not remembered: `sm-content/evergreen/scenes/claims.js` fails
+This is enforced, not remembered: `sm-content/03-evergreen/scenes/claims.js` fails
 the build on a retailer name, a window in days, a currency figure, a percentage,
 or a promise — in either language, in the art and in the captions.
 
@@ -148,16 +148,16 @@ being told to keep tapping.
 
 ## 3 · What to post
 
-The current pack is [`sm-content/evergreen/`](../sm-content/evergreen/) — 9 feed
+The current pack is [`sm-content/03-evergreen/`](../sm-content/03-evergreen/) — 9 feed
 posts and 10 story frames, EN + FR, plus two Reel scripts.
 
-- [`CALENDAR.md`](../sm-content/evergreen/CALENDAR.md) — the 14-day run, day by
+- [`CALENDAR.md`](../sm-content/03-evergreen/CALENDAR.md) — the 14-day run, day by
   day, and the reasoning
-- [`HOOK-BANK.md`](../sm-content/evergreen/HOOK-BANK.md) — the six hook
+- [`HOOK-BANK.md`](../sm-content/03-evergreen/HOOK-BANK.md) — the six hook
   mechanisms, and the doctrine on converting a viewer into a follower
-- [`EVERGREEN-NOTES.md`](../sm-content/evergreen/EVERGREEN-NOTES.md) — the pack,
+- [`EVERGREEN-NOTES.md`](../sm-content/03-evergreen/EVERGREEN-NOTES.md) — the pack,
   its gates, and the compliance rules baked into it
-- [`AUTOMATION.md`](../sm-content/evergreen/AUTOMATION.md) — the scheduled
+- [`AUTOMATION.md`](../sm-content/03-evergreen/AUTOMATION.md) — the scheduled
   publisher
 
 **Cadence that is actually keepable:** feed post every other day in week one,
@@ -183,7 +183,7 @@ the viewer has to be present for**:
 > New stores get announced here first. Follow, and you'll find out the day yours
 > goes live.
 
-Three rules, from [`HOOK-BANK.md`](../sm-content/evergreen/HOOK-BANK.md):
+Three rules, from [`HOOK-BANK.md`](../sm-content/03-evergreen/HOOK-BANK.md):
 
 1. **The payoff must arrive.** Promise the comment count, post the comment
    count. One unkept loop costs more than the follows it bought.

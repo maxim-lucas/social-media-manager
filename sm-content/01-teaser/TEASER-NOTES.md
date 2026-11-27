@@ -237,8 +237,8 @@ trips it, the fix is to soften the copy, not to loosen the gate.
 ## Changing the pack
 
 ```bash
-node sm-content/teaser/scenes/render.js     # all 20 assets
-node sm-content/teaser/scenes/verify.js     # the six gates — must exit 0
+node sm-content/01-teaser/scenes/render.js     # all 20 assets
+node sm-content/01-teaser/scenes/verify.js     # the six gates — must exit 0
 ```
 
 `render.js --only=posts --lang=fr --svg` narrows the run and dumps the SVG

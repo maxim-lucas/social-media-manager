@@ -25,7 +25,7 @@ const BADGE = {
   fr: [data(path.join(SC, "06-launch/badges/app-store-en.svg"), "image/svg+xml"), data(path.join(SC, "06-launch/badges/google-play-fr.png"), "image/png")],
 };
 
-// Brand palette (brand/palette.js) — only the colours these overlays use.
+// Brand palette (00-brand/palette.js) — only the colours these overlays use.
 const C = { ink: "#0d3d28", inkDeep: "#071410", paper: "#f6f0e5", emerald: "#10b981", emeraldDeep: "#047857", glow: "#34d399" };
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/\n/g, "<br>");

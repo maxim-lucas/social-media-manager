@@ -1,6 +1,6 @@
 // Community pack — layout helpers shared by the post, story and cover scenes.
 //
-// Copied from evergreen/scenes/layout.js (each pack owns its own renderer, so a
+// Copied from 03-evergreen/scenes/layout.js (each pack owns its own renderer, so a
 // tweak in one can never re-render another's PNGs) with one addition:
 // hookBlock() now accepts align:"middle", which the bilingual divider slide
 // needs and no evergreen frame did.

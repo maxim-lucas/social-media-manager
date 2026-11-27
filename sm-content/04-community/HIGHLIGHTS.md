@@ -23,7 +23,7 @@ because neither was visible at the size they were reviewed at:
 - **The eight covers were eight different sizes.** Their icons ran from 56 % to
   91 % of the declared icon box. The only cover gate was a floor on total ink and
   all eight cleared it, because a floor cannot see a spread. The set is redrawn,
-  measured and normalised in `brand/icons.js`.
+  measured and normalised in `00-brand/icons.js`.
 - **The Français cover is gone.** A French-only drawer duplicated the back half
   of every other tray while leaving all of them still opening in English. Every
   Highlight is now bilingual end to end instead.

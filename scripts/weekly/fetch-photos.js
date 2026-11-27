@@ -14,7 +14,7 @@ const fs = require("fs");
 const path = require("path");
 const { fetchPhoto, preflight, substituteFor } = require("./lib/photos");
 
-const PACK = path.join(__dirname, "..", "..", "sm-content", "08-costco-price-drops");
+const PACK = require("../lib/packs").dir("price-drops");
 const CACHE = path.join(PACK, "scenes", ".cache");
 
 (async () => {

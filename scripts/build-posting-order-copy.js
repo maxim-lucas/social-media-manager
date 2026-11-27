@@ -6,7 +6,7 @@
 // originals scripts/publish-due.js reads. Re-run after any schedule edit.
 //
 //   node scripts/build-posting-order-copy.js <pack-dir>
-//   node scripts/build-posting-order-copy.js sm-content/evergreen
+//   node scripts/build-posting-order-copy.js sm-content/03-evergreen
 //   node scripts/build-posting-order-copy.js sm-content/04-community
 
 const fs = require("fs");

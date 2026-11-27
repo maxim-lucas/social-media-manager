@@ -15,8 +15,8 @@ always has.
 | `05-highlights/*/` (each tray) | numbered files inside the tray's own folder | [`05-highlights/SEQUENCE.md`](05-highlights/SEQUENCE.md) — guard → EN → guard → FR, one tray per sitting |
 | `05-highlights/` (whole build week) | `05-highlights/POSTING-ORDER/` | `05-highlights/schedule.json`, via `scripts/build-posting-order-copy.js` |
 | `04-community/` | `04-community/POSTING-ORDER/` | `04-community/schedule.json`, via the same script |
-| `evergreen/` | `evergreen/POSTING-ORDER/` | `evergreen/schedule.json`, via the same script |
-| `teaser/` | `teaser/POSTING-ORDER/` | `teaser/TEASER-NOTES.md`'s calendar table (no `schedule.json` exists for this pack) |
+| `03-evergreen/` | `03-evergreen/POSTING-ORDER/` | `03-evergreen/schedule.json`, via the same script |
+| `01-teaser/` | `01-teaser/POSTING-ORDER/` | `01-teaser/TEASER-NOTES.md`'s calendar table (no `schedule.json` exists for this pack) |
 | `02-launch-week/carousels/` | `02-launch-week/carousels/POSTING-ORDER/` | Numeric filename order — two carousel **posts** (EN, then FR), 10 slides each, not 10 separate posts |
 | `02-launch-week/stories/` | `02-launch-week/stories/POSTING-ORDER/` | Numeric filename order — one **story sequence**, EN block then FR block |
 | `02-launch-week/statics/` | `02-launch-week/statics/POSTING-ORDER/` | Numeric filename order — 3 independent single posts, EN/FR paired per colourway |
@@ -38,7 +38,7 @@ node scripts/build-posting-order-copy.js sm-content/<pack>
 
 It wipes and rebuilds that pack's `POSTING-ORDER/` from the schedule, so it's
 always safe to re-run after an edit. The two packs without a `schedule.json`
-(`teaser/`, and the launch-week pack: `02-launch-week/{carousels,statics,stories,reels}/`)
+(`01-teaser/`, and the launch-week pack: `02-launch-week/{carousels,statics,stories,reels}/`)
 were built by hand from the tables in their own docs — if their calendar
 changes, redo the copy the same way and note it in this file.
 

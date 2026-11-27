@@ -4,7 +4,7 @@ The fourteen hooks in this pack will be spent inside a month. This file is the
 part worth keeping: **why these hooks work, and forty more written to the same
 rules.**
 
-Read `../evergreen/HOOK-BANK.md` first if you have not. It covers the six
+Read `../03-evergreen/HOOK-BANK.md` first if you have not. It covers the six
 general mechanisms. This file covers the one this pack is built on, which the
 evergreen pack deliberately does not use.
 

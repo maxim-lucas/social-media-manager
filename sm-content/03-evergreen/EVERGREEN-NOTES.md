@@ -9,9 +9,9 @@ indefinitely rather than for a moment.
 
 | Pack | Job | Lifespan |
 | --- | --- | --- |
-| `teaser/` | Withholds. Says nothing, names nothing. | The eleven days before launch |
+| `01-teaser/` | Withholds. Says nothing, names nothing. | The eleven days before launch |
 | `../{reels,carousels,statics,stories}` | Explains the launch. | Launch week |
-| **`evergreen/`** | **Describes the mechanic, store-agnostically.** | **Rotates forever** |
+| **`03-evergreen/`** | **Describes the mechanic, store-agnostically.** | **Rotates forever** |
 
 ---
 
@@ -100,8 +100,8 @@ occupies the most screen.
 ## Changing it
 
 ```bash
-node sm-content/evergreen/scenes/render.js     # all 38 assets (~40s)
-node sm-content/evergreen/scenes/verify.js     # the six gates — must exit 0
+node sm-content/03-evergreen/scenes/render.js     # all 38 assets (~40s)
+node sm-content/03-evergreen/scenes/verify.js     # the six gates — must exit 0
 node scripts/check-copy.js                     # the claim gate: art + captions + Reels
 node scripts/publish-due.js --check            # the schedule
 ```

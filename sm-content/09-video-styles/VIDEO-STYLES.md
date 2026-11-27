@@ -10,7 +10,7 @@ New video concepts get their own folder here.
 | --- | --- | --- | --- | --- |
 | 1 | **Hook Reel**: rendered motion graphics, launch pack | Produced, posted at launch | [`../02-launch-week/reels/priceback-reel-hook-{en,fr}.mp4`](../02-launch-week/reels), notes in [`../02-launch-week/ASSET-PACK-NOTES.md`](../02-launch-week/ASSET-PACK-NOTES.md) | 17.5 s · 1080×1920 · silent AAC (add audio in-app) |
 | 2 | **Cartoon-style videos** | Produced | **Not in this repo yet**, see *Missing* below | — |
-| 3 | **Evergreen phone Reels**: "The bin" (EN), "Three steps" (FR) | Scripted, not shot | [`../evergreen/reels/REEL-SCRIPTS.md`](../evergreen/reels/REEL-SCRIPTS.md) | ~20 s · phone-shot, figures hidden |
+| 3 | **Evergreen phone Reels**: "The bin" (EN), "Three steps" (FR) | Scripted, not shot | [`../03-evergreen/reels/REEL-SCRIPTS.md`](../03-evergreen/reels/REEL-SCRIPTS.md) | ~20 s · phone-shot, figures hidden |
 | 4 | **Community Reels R1–R6**: "Nobody beats inflation alone", "Costco was the start", "Point your camera at a shelf tag", "Made here", "What went up the most in your cart?", "Le français suit toujours" | Scripted, not shot | [`../04-community/REEL-SCRIPTS.md`](../04-community/REEL-SCRIPTS.md) | 8–18 s · phone + the pack's frames |
 | 5 | **"Either way"**: Price-Drop Guarantee launch Reel, split screen | Briefed, not made | [`../../docs/material-ideas-to-be-created.md`](../../docs/material-ideas-to-be-created.md) §2 | 15–20 s · EN + FR |
 | 6 | **The Price Forecast / La Météo des prix**: a weekly price weather report, map of Canada, national claim counter | Concept + storyboard, parked | [`price-forecast/`](price-forecast) | 45 s weekly · EN + FR episodes |

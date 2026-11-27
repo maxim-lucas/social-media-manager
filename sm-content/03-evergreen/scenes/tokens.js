@@ -3,8 +3,8 @@
 // Three packs now exist and they are deliberately not the same system:
 //
 //   launch/   dark, emerald glow, big grotesque — EXPLAINS the product
-//   teaser/   warm thermal paper, monospace, mostly empty — WITHHOLDS
-//   evergreen/ (this one) — a paper strip lit on a deep ink-green field
+//   01-teaser/   warm thermal paper, monospace, mostly empty — WITHHOLDS
+//   03-evergreen/ (this one) — a paper strip lit on a deep ink-green field
 //
 // This is the one meant to run forever, so it is the one that has to look
 // like the brand rather than like a campaign. It borrows the receipt from the
@@ -21,15 +21,15 @@
 //
 // The palette, the type ramp, Instagram's geometry, the mark and the leaf used
 // to be written out here and copied into every other pack. They now come from
-// ../../brand — they are facts about the product and the platform, not choices
+// ../../00-brand — they are facts about the product and the platform, not choices
 // about this pack, and four copies of them is how the mark ended up drawn at two
-// different strengths with nothing to notice. See brand/README.md.
+// different strengths with nothing to notice. See 00-brand/README.md.
 //
 // The look above is unchanged and stays this pack's own: the strip, the tear,
 // the grain, the one green element per frame all live in surface.js.
 
-const { C, FADE } = require("../../brand/palette");
-const { DISPLAY, SANS, MONO, TYPE, GRID } = require("../../brand/type");
-const { CANVAS, SAFE, STICKER_BAND, HOOK_ZONE } = require("../../brand/ig");
+const { C, FADE } = require("../../00-brand/palette");
+const { DISPLAY, SANS, MONO, TYPE, GRID } = require("../../00-brand/type");
+const { CANVAS, SAFE, STICKER_BAND, HOOK_ZONE } = require("../../00-brand/ig");
 
 module.exports = { CANVAS, SAFE, STICKER_BAND, HOOK_ZONE, C, FADE, DISPLAY, SANS, MONO, TYPE, GRID };
