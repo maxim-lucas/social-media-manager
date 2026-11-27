@@ -309,8 +309,10 @@ Source of truth for plans, pricing and the guarantee: https://priceback.ca/.
 
 ## 7. Where things go
 
-- Approved content: `sm-content/` in this repo, one numbered folder per pack.
+- Approved content: `sm-content/` in this repo, one numbered folder per pack; the map is `sm-content/README.md`.
+  A new pack takes the next free number (`15-…`), never a number already used.
 - Posting playbook: `docs/instagram-playbook.md`.
+- Paid ads: their own pack (`sm-content/14-new-version-ads/`), with the files named for upload in `ready-to-upload/`.
 
 ## 8. Weekly automation (Maxim, 2026-11-16)
 
@@ -357,3 +359,23 @@ week by hand. Design: `docs/weekly-automation-design.md`. Plan: `docs/weekly-aut
   Any failure opens a GitHub issue and publishes nothing for that slot.
 - **Secrets** (read-only database role, Meta token, bucket key) live in the routine's environment, never in the repo
   or in chat.
+
+## 9. Paid ads (Meta Ads, Maxim, 2026-11-27)
+
+Full rules, the concept and the upload guide: `sm-content/14-new-version-ads/README.md`. In short:
+
+- **One message per ad.** Free tools (Deals, Warehouse prices, last known stock) are sold as **100 % free, no credit
+  card**, with no mention of the scanner, credits, the trial or a code. The receipt scan is its own campaign: **"start
+  free"** (1 week of Unlimited or 75 credits) and the promo code. Never both in one image.
+- **An ad is not an info sheet.** One two-line hook (problem in white, answer in lime), the app on a phone, one
+  sticker, the footer. The paragraph, the headline and the Install button are typed in Ads Manager, not drawn.
+- **Footer on every ad:** Apple's and Google's **official** badges (never redrawn), priceback.ca, Follow
+  @priceback.ca with the Instagram and Facebook icons.
+- **Every Meta placement gets its own file at its exact size**: Feed 1080×1350, Stories 1080×1920, Reels 1080×1920,
+  Square 1080×1080. Stories keep text out of the top and bottom ~270 px; Reels keep it above y 1248. Those zones are
+  filled with design (the faded "following" wall), never left empty.
+- **File names say where they go:** `PriceBack_<ad>_<hook>_<LANG>_<placement>_<platforms>_<ratio>_<WxH>.png`.
+- **True words only:** stock is "last known"; "real time" means within the hour (the harvest checks hourly); every
+  price is an example and says so; no retailer logo; the not-affiliated line on every ad.
+- **English first, French for every hook that ships.**
+
